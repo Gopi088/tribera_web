@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /_archive/
+Disallow: /_drafts/
+Sitemap: https://www.tribera.ai/sitemap-index.xml

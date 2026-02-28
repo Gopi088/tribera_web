@@ -1,0 +1,762 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Brands from '~/components/widgets/Brands.astro';
+
+
+
+const metadata = {
+  title: 'About',
+  description:
+    'Learn how Tribera combines AI and human judgment to help teams hire better, faster, and with confidence.',
+};
+---
+
+<Layout metadata={metadata}>
+  <main>
+
+    <!-- HERO -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+
+  <!-- BACKGROUND GRADIENT -->
+  <div
+    class="absolute inset-0"
+    style="
+      background:
+        radial-gradient(1200px 600px at -10% 50%, rgba(110, 0, 0, 0.75), transparent 60%),
+        radial-gradient(1200px 600px at 110% 50%, rgba(110, 0, 0, 0.75), transparent 60%),
+        linear-gradient(to bottom, #140000 0%, #000000 60%);
+      background-color: #000000;
+    "
+  ></div>
+
+  <!-- FLOATING DOTS -->
+  <div class="absolute inset-0 pointer-events-none">
+    {Array.from({ length: 8 }).map((_, i) => (
+      <span
+        class="absolute rounded-full bg-[#da0007]/80"
+        style={`
+          width:3px;
+          height:${i % 3 === 0 ? 3 : 4}px;
+          left:${Math.random() * 80}%;
+          top:${Math.random() * 80}%;
+          animation: float ${6 + Math.random() * 8}s linear infinite;
+          box-shadow: 0 0 14px rgba(218,0,7,.6);
+        `}
+      />
+    ))}
+  </div>
+
+  <!-- CONTENT -->
+  <div class="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 text-center group">
+
+    <!-- HEADLINE -->
+     
+    <!-- Small Top Label -->
+    <div class="text-[#e10600] text-sm md:text-base font-semibold mb-6">
+      About tribera
+    </div>
+    <h1
+      class="text-white font-[700] leading-[1.05]
+             text-[42px] sm:text-[55px] lg:text-[67px]"
+    >
+     Belong. Build. <br class="hidden sm:block">
+     Become.
+   
+    </h1>
+
+    <!-- SUBTEXT -->
+    <p
+      class="mt-6 sm:mt-7
+             text-white/50
+             mx-auto
+             font-[500]
+             text-[20px] 
+             leading-relaxed"
+    >
+      This industry gave us everything. tribera is how we give back.
+    </p>
+
+  </div>
+</section>
+
+<section class="w-full px-6 md:px-8 mt-8 gap-10 relative">
+    <div class="pointer-events-none absolute inset-0 bg-dotted-static opacity-80"></div>
+
+    <Brands
+      title="Who We Work With"
+      subtitle="Trusted by high-impact </br> teams across industries"
+      images={[
+        { src: '~/assets/images/ICICBank.png', alt: 'ICICI Bank' },
+        { src: '~/assets/images/Aeries.png', alt: 'Aeries' },
+        { src: '~/assets/images/DSP_Mutual_Funds.png', alt: 'DSP Mutual Fund' },
+        { src: '~/assets/images/Enpro.png', alt: 'Enpro' },
+        { src: '~/assets/images/Volkwagen.png', alt: 'Volkswagen' },
+        { src: '~/assets/images/UtkarshBank.png', alt: 'Utkarsh Bank' },
+        { src: '~/assets/images/TechnologyHoldings.png', alt: 'TechnologyHoldings' },
+        { src: '~/assets/images/Payu.png', alt: 'PayU' },
+        { src: '~/assets/images/ICICISecurities.png', alt: 'ICICISecurities' },
+        { src: '~/assets/images/SplashBI.png', alt: 'SplashBI' },
+        { src: '~/assets/images/AegonLife.png', alt: 'AegonLife' },
+      ]}
+    />
+  </section>
+
+<section class="relative bg-black text-white overflow-hidden">
+
+ 
+
+  <div class="relative z-10 max-w-5xl mx-auto px-6 py-24 sm:py-32 text-center">
+
+    <!-- Small Top Line -->
+    <p class="text-white/50 text-[20px] sm:text-base mb-6">
+      We are Akshata and Abhishek.
+    </p>
+
+    <p class="text-white/60 text-[20px] sm:text-base mb-16">
+      We watched brilliant TA Heads with perfect candidates every week.
+    </p>
+
+   <div class="relative inline-block">
+
+  <!-- Red Glow Behind Text -->
+  <div class="absolute inset-0 flex items-center justify-center -z-10">
+    <div class="w-[120%] h-[120%] bg-[#da0007] opacity-10 blur-[20px] rounded-full"></div>
+  </div>
+
+  <h1 class="relative font-semibold leading-tight tracking-tight
+             text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+    “Who will truly <br class="hidden sm:block" />
+    belong here?”
+  </h1>
+
+</div>
+
+    <!-- Glass Card -->
+    <div class="mt-16 mx-auto max-w-xl
+                rounded-2xl
+                border border-white/10
+                bg-white/5
+                backdrop-blur-md
+                p-6 sm:p-8
+                shadow-[0_0_40px_rgba(218,0,7,0.15)]">
+
+      <p class="text-white/70 text-[14px] sm:text-base leading-relaxed">
+        The question wasn't about credentials.<br />
+        It was about who would truly
+        <span class="text-[#da0007]">thrive.</span>
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="relative bg-white py-20 sm:py-28 overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6">
+
+    {/* HEADER */}
+    <div class="text-center mb-10">
+      <p class="text-[#da0007] text-[15px] font-semibold tracking-wide mb-2">
+        What makes us different
+      </p>
+
+      <h2 class="text-3xl sm:text-4xl md:text-4xl font-semibold tracking-tight">
+        The difference is context.
+      </h2>
+
+      <p class="mt-4 text-black/60  sm:text-[15px]">
+        Everyone sees the data. We see how it works for YOUR team.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12 items-start">
+
+      {/* LEFT CARD */}
+      <div>
+        <p class="text-[15px] flex text-center items-center justify-center text-black/40 mb-3">
+          EVERYONE ELSE
+        </p>
+
+        <div class="bg-white rounded-2xl p-8 border border-black/5 shadow-sm">
+          <h3 class="font-semibold text-[15px]">Priya Sharma</h3>
+          <p class="text-[13px] text-black/50 mb-6">Senior Engineer</p>
+<div class="h-px w-full bg-black/5 mb-6"></div>
+
+          
+          <div class="grid grid-cols-2 gap-2 mb-3">
+            
+            {[
+              { label: "EXPERIENCE", value: "8 yrs" },
+              { label: "RATING", value: "4.5★" }
+            ].map((item, i) => (
+              <div data-step={i} class="bg-black/5 rounded p-4 text-center">
+                <p class="text-[12px] text-black/50 mb-1">{item.label}</p>
+                <p class="font-semibold text-black/50 text-lg">{item.value}</p>
+              </div>
+            ))}
+          </div>
+
+          <p class="text-[13px] text-black/50">Python · React · AWS</p>
+          <p class="text-[13px] flex items-center justify-center text-black/40 italic mt-3">"Looks qualified"</p>
+        </div>
+      </div>
+
+      {/* RIGHT CARD */}
+      <div class="relative">
+
+        {/* Glow */}
+        <div class="absolute inset-0 -z-10 flex items-center justify-center">
+          <div class="w-[110%] h-[110%] bg-[#da0007] opacity-20 blur-[120px] rounded-3xl"></div>
+        </div>
+
+        <p class="text-[15px] flex items-center justify-center text-[#da0007] mb-3">
+          TRIBERA
+        </p>
+
+        <div class="bg-[#0b0b0b] text-white rounded-2xl p-8 border border-[#da0007]/40 shadow-2xl">
+
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <h3 class="font-semibold text-[15px]">Priya Sharma</h3>
+              <p class="text-[13px] text-white/60">Senior Engineer</p>
+              
+            </div>
+            <span class="text-xs bg-[#da0007]/20 text-[#da0007] px-3 py-1 rounded-full">
+              ● VERIFIED
+            </span>
+          </div>
+
+          <div class="h-px w-full bg-white/5 mb-6"></div>
+
+          {/* METRICS */}
+          <div class="grid grid-cols-3 gap-2 mb-4">
+            {[
+              { label: "WILL BELONG", value: 92, red: true },
+              { label: "WILL BUILD", value: 94 },
+              { label: "WILL BECOME", value: 88, red: true }
+            ].map((item, i) => (
+              <div data-step={i} class="bg-white/5 rounded-xl p-4 text-center border border-white/10">
+                <p class="text-[11px] text-white/50 mb-1">{item.label}</p>
+                <p class={`text-xl font-semibold ${item.red ? "text-[#da0007]" : ""}`}>
+                  {item.value}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* PROGRESS BARS */}
+          {/* PROGRESS BARS — MATCHING SCREENSHOT */}
+<div class="space-y-1 mb-4 text-[12px]">
+  {[
+    { label: "YOUR Stack", value: 94 },
+    { label: "YOUR Chemistry", value: 91 },
+    { label: "YOUR Success", value: 89 }
+  ].map((bar, i) => (
+    <div data-step={i} class="flex items-center gap-2">
+
+      {/* LEFT LABEL */}
+      <span class="w-[80px] text-[10px] text-white/60">
+        {bar.label}
+      </span>
+
+      {/* CENTER LINE */}
+      <div class="flex-1 h-[4px] bg-white/10 rounded-full overflow-hidden">
+        <div
+          class="h-full bg-[#da0007] rounded-full transition-all duration-700"
+          style={`width:${bar.value}%`}
+        ></div>
+      </div>
+
+      {/* RIGHT VALUE */}
+      <span class="w-[35px] text-right text-white/60">
+        {bar.value}%
+      </span>
+
+    </div>
+  ))}
+</div>
+
+          {/* MATCH BOX */}
+          <div class="bg-[#da0007]/10 border border-[#da0007]/30 rounded-xl p-4 text-[10px] mb-3">
+            <p class="text-white/70 mb-2">MATCHES YOUR TOP PERFORMERS IN:</p>
+            <ul class="space-y-1 text-white/80">
+              {[
+                "Technical depth",
+                "Collaborative style",
+                "Growth mindset"
+              ].map((point, i) => (
+                <li data-step={i}>→ {point}</li>
+              ))}
+            </ul>
+          </div>
+
+          <p class="text-center text-[13px] text-[#da0007]">
+            "Will thrive on YOUR team"
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<section class="bg-black text-white py-24 sm:py-20">
+
+  <div class="max-w-5xl mx-auto px-6">
+
+    {/* HEADER */}
+    <div class="text-center mb-5">
+      <p class="text-[#da0007] text-sm font-semibold mb-4">
+        The journey
+      </p>
+
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">
+        The work behind the insight.
+      </h2>
+    </div>
+
+    {/* STEPS */}
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+
+      {[
+        {
+          number: "01",
+          label: "THE COFFEE",
+          text: (
+            <>
+              <span class="text-[#da0007] text-[13px] font-medium">
+                Akshata and Abhishek.
+              </span>{" "}
+              Two hours mapping the{" "}
+              <span class="text-[#da0007]">"Connection Gap"</span>.
+              By the time the coffee was cold.
+            </>
+          )
+        },
+        {
+          number: "02",
+          label: "THE COMMITMENT",
+          text: (
+            <>
+              <span class="text-[#da0007] font-medium">
+                Pranav joined.
+              </span>{" "}
+              We walked away from everything.
+              The right combinations elevate each other.
+            </>
+          )
+        },
+        {
+          number: "03",
+          label: "THE LAB",
+          text: (
+            <>
+              <span class="text-[#da0007] font-medium">
+                June 2024 → May 2025.
+              </span>{" "}
+              200,000 interviews analyzed.
+              We didn’t launch until we had it right.
+            </>
+          )
+        },
+        {
+          number: "04",
+          label: "TODAY",
+          text: (
+            <>
+              <span class="text-2xl font-semibold text-[#da0007]">
+                3:1
+              </span>
+              <br />
+              <span class="text-white/60 text-[13px]">
+                candidates sent → hired
+              </span>
+            </>
+          )
+        }
+      ].map((step, i) => (
+        <div data-step={i}>
+
+          {/* Circle Number */}
+          <div class="mb-3 mt-10 flex justify-center">
+            <div class="w-10 h-10 rounded-full border border-[#da0007]
+                        flex items-center justify-center
+                        text-[#da0007] font-semibold text-[20px]
+                        shadow-[0_0_30px_rgba(218,0,7,0.2)]">
+              {step.number}
+            </div>
+          </div>
+
+          {/* Label */}
+          <p class="text-[12px] tracking-[0.1em] text-white/40 mb-3">
+            {step.label}
+          </p>
+
+          {/* Card */}
+          <div class="bg-white/3 border border-white/10
+                      rounded-xl p-6
+                      text-[13px] text-white/70
+                      backdrop-blur-md
+                      hover:border-[#da0007]/40
+                      transition duration-300">
+            {step.text}
+          </div>
+
+        </div>
+      ))}
+
+    </div>
+
+    {/* Divider */}
+    <div class="mt-20 border-t border-white/5"></div>
+
+    {/* Bottom Statement */}
+    <div class="text-center mt-16 space-y-4">
+
+      <h3 class="text-2xl sm:text-3xl font-[400] ">
+        <span class="text-[#da0007]">Belong</span>
+        <span class="text-white/40 mx-2">·</span>
+        Build
+        <span class="text-white/40 mx-2">·</span>
+        <span class="text-[#da0007]">Become</span>
+      </h3>
+
+      <p class="text-white/60 text-[15px] font-[500]">
+        What happens when people find teams where they truly belong.
+      </p>
+
+      <p class="text-white/40 italic text-[15px]">
+        tribera is our way of giving back.
+      </p>
+
+    </div>
+
+  </div>
+</section>
+
+
+
+<section class="bg-[#f3f3f5] py-24 px-6">
+
+  <div class="max-w-5xl mx-auto text-center">
+
+    {/* Eyebrow */}
+    <div class="text-[#da0007] text-[15px] font-semibold mb-2">
+      What we've built
+    </div>
+
+    {/* Heading */}
+    <h2 class="text-4xl md:text-5xl lg:text-5xl font-bold text-black mb-10">
+      From Tribe + Era.
+    </h2>
+
+    {/* Cards Wrapper */}
+    <div class="grid md:grid-cols-3 gap-8 text-left">
+
+      {[
+        {
+          number: "1:3",
+          title: "Belong. Build. Become.",
+          desc: "We help organizations find people who belong on their teams, build meaningful work together, and become more than they were individually."
+        },
+        {
+          number: "200k",
+          title: "Learning continuously",
+          desc: "Every interview analyzed. Every outcome tracked. AI surfaces patterns. Senior advisors add context. Together, insights neither could produce alone."
+        },
+        {
+          number: "∞",
+          title: "Growing together",
+          desc: "We started with hiring. The same understanding can help with onboarding, development, and every decision that helps people and teams grow."
+        }
+      ].map((card) => (
+
+        <div class="group
+                    bg-white/30
+                    backdrop-blur-sm
+                    rounded-xl
+                    p-6
+                    transition-all duration-500
+                    hover:bg-white
+                    hover:shadow-[0_15px_40px_rgba(0,0,0,0.08)]">
+
+          {/* Big Number */}
+          <div class="text-4xl font-bold
+                      text-[#da0007]
+                      mb-3
+                      transition-all duration-500
+                      group-hover:text-[#da0007]">
+            {card.number}
+          </div>
+
+          {/* Title */}
+          <h3 class="text-xl font-semibold text-black mb-3">
+            {card.title}
+          </h3>
+
+          {/* Description */}
+          <p class="text-black/60 text-[14px] leading-relaxed">
+            {card.desc}
+          </p>
+
+        </div>
+
+      ))}
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section class="bg-black py-24 px-6 sm:px-10">
+
+  <div class="max-w-5xl mx-auto">
+
+    <!-- Section Header -->
+    <div class="text-center mb-20">
+      <div class="text-[#DA0007] text-sm font-semibold tracking-widest uppercase mb-4">
+        Who we are
+      </div>
+
+      <h2 class="text-white font-semibold leading-tight
+                 text-[34px]
+                 sm:text-[44px]
+                 md:text-[54px]
+                 lg:text-[60px]">
+        Built by people who learned<br class="hidden sm:block">
+        from this industry.
+      </h2>
+    </div>
+
+    <!-- Team Members -->
+    <div class="space-y-20">
+
+      {[
+        {
+          name: "Akshata Chandavarkar",
+          role: "Founder and CEO",
+          img: "/akshata.png",
+          desc: "Years in consulting, learning from global teams. Watched brilliant TA Heads face the same question every week. Built Tribera to give them the insight they deserve.",
+          quote: "Where understanding meets impact."
+        },
+        {
+          name: "Abhishek Prasad",
+          role: "Co-Founder and CBO",
+          img: "/abhishek.png",
+          desc: "Built products used by millions. That coffee conversation turned into two hours mapping out the Connection Gap. Couldn’t unsee the problem.",
+          quote: "Where technology meets people."
+        },
+        {
+          name: "Pranav Gandhi",
+          role: "Chief Success Officer",
+          img: "/pranav.png",
+          desc: "Scaled companies to 500+ people. Lived the reality of how a 'good' hire can shift a 'great' culture. Brought the scaling blueprint.",
+          quote: "Where strategy meets scale."
+        }
+      ].map((member, index) => (
+
+        <div>
+
+          <!-- Row -->
+          <div class="flex flex-col sm:flex-row gap-8 sm:gap-10 items-start">
+
+            <!-- Photo -->
+            <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full
+                        overflow-hidden
+                        border border-white/10
+                        shadow-[0_10px_30px_rgba(0,0,0,0.6)]
+                        shrink-0">
+
+              <img
+                src={member.img}
+                alt={member.name}
+                class="w-full h-full object-cover"
+              />
+
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1">
+
+              <h3 class="text-white text-xl sm:text-2xl font-semibold mb-1">
+                {member.name}
+              </h3>
+
+              <div class="text-[#DA0007] text-sm font-semibold mb-4">
+                {member.role}
+              </div>
+
+              <p class="text-white/60 text-sm sm:text-base leading-relaxed max-w-2xl mb-4">
+                {member.desc}
+              </p>
+
+              <div class="text-[#DA0007] italic text-sm">
+                "{member.quote}"
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Divider -->
+          {index !== 2 && (
+            <div class="mt-14 border-t border-white/10"></div>
+          )}
+
+        </div>
+
+      ))}
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="bg-white py-20 px-6">
+  <div class="max-w-5xl mx-auto text-center">
+
+    {/* Eyebrow */}
+    <div class="text-[#e10600] text-sm font-semibold mb-4">
+      Our approach
+    </div>
+
+    {/* Heading */}
+    <h2 class="text-4xl md:text-5xl font-bold text-[#1a1a1a] mb-16">
+      How we help.
+    </h2>
+
+    {/* Cards Grid */}
+    <div class="grid md:grid-cols-2 gap-5 text-left">
+
+      {[
+        {
+          title: "Data with context",
+          desc: "AI helps us see patterns across thousands of interviews. Advisors help us understand what those patterns mean for real teams and real people.",
+          icon: "tabler:database"
+        },
+        {
+          title: "Learning from outcomes",
+          desc: "Every hire teaches us something. Who stayed and grew. Who found a better fit elsewhere. We learn from every outcome to help make better decisions.",
+          icon: "tabler:chart-line"
+        },
+        {
+          title: "Supporting TA teams",
+          desc: "We're here to help TA leads, hiring managers, and teams. Better data. Better insights. Better decisions.",
+          icon: "tabler:users"
+        },
+        {
+          title: "Growing responsibly",
+          desc: "We started with what we know—hiring. As we learn more, we'll help with more. Always focused on helping people and organizations grow together.",
+          icon: "tabler:target"
+        }
+      ].map((card) => (
+
+        <div class="
+          group
+          rounded-xl
+          p-6
+          bg-white/20
+          transition-all duration-300
+          hover:bg-white
+          hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)]
+        ">
+
+          <div class="
+    w-[28px] h-[28px] mb-3
+    rounded-full border border-[#da0007]/30
+    flex items-center justify-center
+    bg-[#da0007]/10
+  ">
+    <div class="w-[9px] h-[9px] rounded-full bg-[#da0007] dot-fade"></div>
+  </div>
+
+          {/* Title */}
+          <h3 class="text-xl font-semibold mt-4 mb-3 text-[#1a1a1a]">
+            {card.title}
+          </h3>
+
+          {/* Description */}
+          <p class="text-black/50 text-[15px] leading-relaxed">
+            {card.desc}
+          </p>
+
+        </div>
+
+      ))}
+
+    </div>
+
+  </div>
+</section>
+
+
+
+<section class="bg-[#f3f3f5] py-28">
+
+  <div class="max-w-3xl mx-auto px-6 text-center">
+
+    <!-- Eyebrow -->
+    <p class="text-[#da0007] text-[14px] font-semibold mb-4">
+      About Tribera
+    </p>
+
+    <!-- Heading -->
+    <h2 class="text-4xl sm:text-5xl font-semibold tracking-tight text-black leading-tight">
+      We build teams<br class="hidden sm:block" />
+      where people truly belong.
+    </h2>
+
+    <!-- Subtext -->
+    <p class="mt-6 text-[16px] text-black/60 leading-relaxed max-w-2xl mx-auto">
+      Hiring isn't about resumes. It’s about alignment.
+      We combine intelligence, human insight, and deep context
+      to help companies interview fewer — and hire better.
+    </p>
+
+    <!-- Buttons -->
+    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+
+      <button
+  type="button"
+  data-open-demo
+  class="relative overflow-hidden
+         w-full sm:w-auto
+         inline-flex items-center justify-center
+         px-6 py-3
+         rounded-full
+         bg-[#da0007] text-white
+         font-bold text-[14px]
+         transition-all duration-300
+         hover:-translate-y-0.5
+         hover:shadow-[0_20px_60px_rgba(0,0,0,0.35)]
+         hover:bg-[#da0007]/80">
+  <span class="relative z-10">
+    See Platform Demo →
+  </span>
+</button>
+
+    
+    </div>
+
+    <!-- Micro Note -->
+    <p class="mt-6 text-xs text-black/40">
+      Built by operators. Backed by insight. Driven by outcomes.
+    </p>
+
+  </div>
+
+</section>
+
+
+
+  </main>
+</Layout>

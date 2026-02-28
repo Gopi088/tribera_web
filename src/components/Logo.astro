@@ -1,0 +1,7 @@
+---
+import { SITE } from 'astrowind:config';
+import Image from '~/components/common/Image.astro';
+const logo = '~/assets/images/tribera_logo_default.svg';
+---
+
+<Image src={logo} alt={SITE?.name} width={140} height={36} class="h-full w-auto object-contain" />

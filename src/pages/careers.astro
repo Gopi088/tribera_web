@@ -1,0 +1,297 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Careers',
+  description:
+    'Join Tribera and help shape the future of AI-powered hiring. Work on meaningful problems at the intersection of AI, decision-making, and human judgment.',
+};
+---
+
+<Layout metadata={metadata}>
+  <main>
+
+    <!-- HERO -->
+    <section class="relative py-28 bg-white overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-white via-[#fafafa] to-[#fff1f2]"></div>
+
+      <div class="relative max-w-6xl mx-auto px-6 text-center">
+        <span class="inline-block mb-4 px-4 py-1 rounded-lg text-[11px] font-medium bg-[#da0007]/10 text-[#da0007]">
+          Careers at Tribera
+        </span>
+
+        <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900">
+          Build the future of hiring,
+          <span class="block text-[#da0007]">with purpose.</span>
+        </h1>
+
+        <p class="mt-6 text-[20px] text-black/60 max-w-3xl mx-auto">
+          We’re building AI that helps teams make better human decisions.
+          Join us to work on meaningful problems across AI, product, and engineering.
+        </p>
+      </div>
+    </section>
+
+    <!-- WHY TRIBERA -->
+    <section class="relative py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+
+        <div>
+          <h2 class="text-3xl md:text-3xl font-semibold text-slate-900 mb-6">
+            Why work at Tribera?
+          </h2>
+
+          <p class="text-black/60 text-[15px] mb-8 max-w-xl">
+            We believe great hiring blends intelligence, empathy, and judgment.
+            At Tribera, you’ll help build systems that make hiring fairer,
+            faster, and more human.
+          </p>
+
+          <div class="space-y-5">
+  {[
+    [
+      'M',
+      'Meaningful problems',
+      'Work on real-world hiring challenges affecting millions of decisions.',
+    ],
+    [
+      'G',
+      'Growth & ownership',
+      'Small teams, high ownership, fast learning, and real impact.',
+    ],
+    [
+      'F',
+      'Flexible & remote-friendly',
+      'Work where you do your best work — outcomes matter more than location.',
+    ],
+  ].map(([letter, title, desc]) => (
+    <div
+      class="
+        group relative overflow-hidden
+        flex gap-4 items-start
+        px-5 py-5
+        rounded-xl
+        bg-slate-50 border border-slate-200
+        transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
+        hover:-translate-y-1
+        hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)]
+      "
+    >
+      {/* LEFT RED LINE */}
+      <span
+        class="
+          absolute left-0 top-0
+          w-[3px] h-0
+          bg-[#da0007]
+          transition-[height] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
+          group-hover:h-full
+          pointer-events-none
+        "
+      ></span>
+
+      {/* ICON */}
+      <div
+        class="
+          w-11 h-11 rounded-xl
+          bg-[#181818] text-white
+          flex items-center justify-center
+          font-bold text-sm
+          flex-shrink-0
+          transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
+          group-hover:bg-[#da0007]
+          group-hover:rotate-[6deg]
+          group-hover:scale-105
+        "
+      >
+        {letter}
+      </div>
+
+      {/* TEXT */}
+      <div class="relative z-10">
+        <h4 class="font-[650] text-[15px] text-slate-900">
+          {title}
+        </h4>
+        <p class="mt-1 text-[13px] text-black/60 leading-relaxed">
+          {desc}
+        </p>
+      </div>
+    </div>
+  ))}
+</div>
+
+        </div>
+
+        <!-- Visual Card -->
+        <div class="relative">
+          <div class="rounded-xl bg-[#f8f8f8] p-8 shadow-2xl text-[#181818]">
+            <h3 class="text-2xl font-bold mb-4">Life at Tribera</h3>
+
+            <ul class="space-y-4">
+  {[
+    'Build AI systems used in real hiring decisions',
+    'Collaborate with engineers, designers & researchers',
+    'Learn fast, ship often, iterate thoughtfully',
+    'Culture focused on clarity, ownership & respect',
+  ].map(item => (
+    <li
+      class="
+        group relative overflow-hidden
+        flex items-start gap-4
+        px-5 py-4
+        rounded-xl
+        bg-slate-50 border border-slate-200
+        text-[13px] text-black/60
+        transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
+        hover:-translate-y-1
+        hover:shadow-[0_10px_26px_rgba(0,0,0,0.06)]
+      "
+    >
+      {/* LEFT RED LINE */}
+      <span
+        class="
+          absolute left-0 top-0
+          w-[3px] h-0
+          bg-[#da0007]
+          transition-[height] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
+          group-hover:h-full
+          pointer-events-none
+        "
+      ></span>
+
+      {/* CHECK ICON */}
+      <span
+        class="
+          w-6 h-6 rounded-full
+          bg-[#181818] text-white
+          flex items-center justify-center
+          text-xs font-bold
+          flex-shrink-0
+          transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
+          group-hover:bg-[#da0007]
+          group-hover:scale-105
+        "
+      >
+        ✓
+      </span>
+
+      {/* TEXT */}
+      <span class="relative z-10">
+        {item}
+      </span>
+    </li>
+  ))}
+</ul>
+
+
+            <div class="mt-8 grid grid-cols-2 gap-4">
+              <div class="bg-[#181818] text-white rounded-xl p-4 text-center">
+                <div class="text-2xl font-bold">Remote</div>
+                <div class="text-xs opacity-80">Friendly</div>
+              </div>
+              <div class="bg-[#181818] text-white rounded-xl p-4 text-center">
+                <div class="text-2xl font-bold">High</div>
+                <div class="text-xs opacity-80">Ownership</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- OPEN ROLES -->
+    <section class="relative py-28 bg-white overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-white via-[#fafafa] to-white"></div>
+
+      <div class="relative max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-4xl font-bold text-black">
+            Open roles
+          </h2>
+          <p class="mt-4 text-[15px] text-black/60">
+            Join our growing team and help redefine how hiring works.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-10">
+
+          <!-- Role Card -->
+          <div class="rounded-xl bg-[#f8f8f8] p-8 text-[#181818] shadow-xl">
+            <h3 class="text-2xl font-bold mb-3">Frontend Engineer</h3>
+            <p class="text-[13px] opacity-90 mb-6">
+              Build intuitive, high-performance interfaces for AI-powered workflows.
+            </p>
+            <ul class="text-[13px] space-y-2 mb-8 opacity-90">
+              <li>• React / Astro / Tailwind</li>
+              <li>• UX-focused development</li>
+              <li>• Performance & accessibility</li>
+            </ul>
+            <a
+              href="mailto:careers@tribera.ai"
+              class="inline-flex items-center justify-center rounded-lg px-6 py-3 border border-[#da0007] font-semibold text-[13px] hover:opacity-90 transition"
+            >
+              Apply Now
+            </a>
+          </div>
+
+          <div class="rounded-xl bg-[#f8f8f8] p-8 text-[#181818] shadow-xl">
+            <h3 class="text-2xl font-bold mb-3">Backend / AI Engineer</h3>
+            <p class="text-[13px] opacity-90 mb-6">
+              Design systems that power intelligent screening and decision support.
+            </p>
+            <ul class="text-[13px] space-y-2 mb-8 opacity-90">
+              <li>• Python / APIs / LLMs</li>
+              <li>• Evaluation pipelines</li>
+              <li>• Scalable systems</li>
+            </ul>
+            <a
+              href="mailto:careers@tribera.ai"
+              class="inline-flex items-center justify-center rounded-lg px-6 py-3 border border-[#da0007] font-semibold text-[13px] hover:opacity-90 transition"
+            >
+              Apply Now
+            </a>
+          </div>
+
+          <div class="rounded-xl bg-[#f8f8f8] p-8 text-[#181818] shadow-xl">
+            <h3 class="text-2xl font-bold mb-3">Product / Ops</h3>
+            <p class="text-[13px] opacity-90 mb-6">
+              Shape workflows, research hiring behavior, and improve outcomes.
+            </p>
+            <ul class="text-[13px] space-y-2 mb-8 opacity-90">
+              <li>• Hiring workflows</li>
+              <li>• Customer discovery</li>
+              <li>• Process design</li>
+            </ul>
+            <a
+              href="mailto:careers@tribera.ai"
+              class="inline-flex items-center justify-center rounded-lg px-6 py-3 border border-[#da0007] font-semibold text-[13px] hover:opacity-90 transition"
+            >
+              Apply Now
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-black text-white py-24">
+      <div class="max-w-5xl mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          Don’t see your role listed?
+        </h2>
+        <p class="text-white/60 text-[15px] mb-8">
+          We’re always excited to meet thoughtful builders and problem-solvers.
+        </p>
+
+        <a
+          href="mailto:careers@tribera.ai"
+          class="inline-flex items-center justify-center rounded-lg px-6 py-3 bg-[#da0007] font-semibold text-[13px] text-white hover:opacity-90 transition"
+        >
+          Reach Out
+        </a>
+      </div>
+    </section>
+
+  </main>
+</Layout>

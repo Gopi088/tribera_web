@@ -1,0 +1,224 @@
+---
+import '~/assets/styles/tailwind.css';
+
+import { I18N } from 'astrowind:config';
+
+import CommonMeta from '~/components/common/CommonMeta.astro';
+import Favicons from '~/components/Favicons.astro';
+import CustomStyles from '~/components/CustomStyles.astro';
+import ApplyColorMode from '~/components/common/ApplyColorMode.astro';
+import Metadata from '~/components/common/Metadata.astro';
+import SiteVerification from '~/components/common/SiteVerification.astro';
+import Analytics from '~/components/common/Analytics.astro';
+import BasicScripts from '~/components/common/BasicScripts.astro';
+
+
+// Comment the line below to disable View Transitions
+import { ClientRouter } from 'astro:transitions';
+
+import type { MetaData as MetaDataType } from '~/types';
+
+export interface Props {
+  metadata?: MetaDataType;
+}
+
+const { metadata = {} } = Astro.props;
+const { language, textDirection } = I18N;
+---
+
+<!doctype html>
+<html lang={language} dir={textDirection} class="2xl:text-[20px]">
+  <head>
+    <CommonMeta />
+    <Favicons />
+    <CustomStyles />
+    <ApplyColorMode />
+    <Metadata {...metadata} />
+    <SiteVerification />
+    <Analytics />
+
+    <!-- Comment the line below to disable View Transitions -->
+    <ClientRouter fallback="swap" />
+  </head>
+
+
+  
+  <body class="bg-page  overflow-x-hidden ">
+    <slot />
+    <BasicScripts />
+    
+    
+<!-- GLOBAL FULL-WIDTH SCROLL CTA -->
+<div
+  id="scroll-cta"
+  class="fixed bottom-0 left-0 right-0
+         bg-white
+         border-t border-black/10
+         shadow-[0_-20px_50px_rgba(0,0,0,0.12)]
+         translate-y-full opacity-0
+         transition-all duration-500 ease-out
+         z-[999]"
+  style="padding-bottom: env(safe-area-inset-bottom);"
+>
+
+  <div class="max-w-7xl mx-auto
+              px-6 sm:px-8 lg:px-12
+              py-4
+              flex flex-col md:flex-row
+              items-center
+              justify-between
+              gap-5 relative">
+
+    <!-- LEFT TEXT -->
+    <div class="text-center md:text-left">
+
+      <div class="font-semibold text-[16px] text-black">
+        Ready to transform your hiring?
+      </div>
+
+      <div class="mt-1 text-[14px] text-black/60">
+        Join Fortune 500 teams using Tribera’s AI-powered platform
+      </div>
+
+    </div>
+
+    
+
+    <!-- RIGHT ACTIONS -->
+    <div class="flex items-center gap-4">
+
+      <button
+        type="button"
+        id="openDemoBtn"
+        class="px-8 py-3
+               rounded-full
+               bg-[#da0007] text-white
+               text-[14px] font-semibold
+               transition-all duration-300
+               hover:-translate-y-0.5
+               hover:shadow-[0_12px_40px_rgba(218,0,7,0.4)]">
+        Book a Demo →
+      </button>
+
+      <button
+        id="close-cta"
+        class="w-9 h-9
+               rounded-full
+               border border-black/10
+               flex items-center justify-center
+               text-black/40
+               hover:text-black
+               hover:bg-black/5
+               transition">
+        ✕
+      </button>
+
+    </div>
+
+  </div>
+</div>
+
+
+<div id="demoModal" class="fixed inset-0 hidden items-center justify-center
+            bg-black/60 backdrop-blur-sm z-50 p-4">
+
+    <div class="relative bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl">
+
+      <button id="closeDemoBtn"
+              class="absolute top-3 right-3 text-black/50 hover:text-black text-xl">
+        ✕
+      </button>
+
+      <h3 class="text-[20px] font-[600] text-black mb-4">
+        Book a Platform Demo
+      </h3>
+
+      <form id="demoForm"
+            action="https://formsubmit.co/hello@tribera.ai"
+            method="POST"
+            class="space-y-4">
+
+        <input type="hidden" name="_subject" value="New Demo Request - Tribera">
+        <input type="hidden" name="_captcha" value="false">
+
+        <input type="text" name="name" placeholder="Full Name"
+          class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]" />
+
+        <input type="email" name="email" placeholder="Email Address"
+          class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]" />
+
+        <input type="tel" name="phone" placeholder="Phone Number"
+          class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]" />
+
+        <input type="text" name="company" placeholder="Company Name"
+          class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]" />
+
+        <button type="submit"
+          class="w-full bg-[#DA0007] text-white py-3 rounded-lg
+          text-[14px] font-semibold hover:bg-red-700 transition">
+          Submit
+        </button>
+
+        <p id="successMsg"
+           class="hidden text-green-600 text-[14px] text-center">
+           Submitted successfully! We'll contact you soon.
+        </p>
+
+      </form>
+
+    </div>
+  </div>
+
+  
+
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+<script>
+  function initHowItWorksCTA() {
+    if (window.location.pathname !== "/") return;
+
+    const section = document.getElementById("how-it-works");
+    const cta = document.getElementById("scroll-cta");
+    const closeBtn = document.getElementById("close-cta");
+
+    if (!section || !cta) return;
+    const sectionEl = section as HTMLElement;
+    const ctaEl = cta as HTMLElement;
+
+    let closedThisSession = false;
+
+    function handleScroll() {
+      if (closedThisSession) return;
+
+      const sectionTop = sectionEl.offsetTop;
+      const scrollPosition = window.scrollY + window.innerHeight * 0.4;
+
+      if (scrollPosition >= sectionTop) {
+        ctaEl.classList.remove("translate-y-full", "opacity-0");
+        ctaEl.classList.add("translate-y-0", "opacity-100");
+      } else {
+        ctaEl.classList.add("translate-y-full", "opacity-0");
+        ctaEl.classList.remove("translate-y-0", "opacity-100");
+      }
+    }
+
+    closeBtn?.addEventListener("click", () => {
+      closedThisSession = true;
+
+      ctaEl.classList.add("translate-y-full", "opacity-0");
+      ctaEl.classList.remove("translate-y-0", "opacity-100");
+    });
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+  }
+
+  window.addEventListener("load", initHowItWorksCTA);
+  document.addEventListener("astro:page-load", initHowItWorksCTA);
+</script>
+
+
+
+
+  </body>
+</html>

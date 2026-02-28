@@ -1,0 +1,404 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Header from '~/components/widgets/Header.astro';
+import Footer from '~/components/widgets/Footer.astro';
+import ContactSalesModal from '~/components/ContactSalesModal.astro';
+
+
+import { headerData, footerData } from '~/navigation';
+
+const { metadata } = Astro.props;
+const isProduction = import.meta.env.PROD;
+---
+
+<Layout metadata={metadata}>
+  <slot name="header">
+    <Header {...headerData} isSticky showToggleTheme />
+  </slot>
+
+  <main class="w-full overflow-x-hidden">
+      <slot />
+  
+</main>
+
+<ContactSalesModal />   
+  <slot name="footer">
+    <Footer {...footerData} />
+  </slot>
+  
+
+  {isProduction && (
+  <script is:inline>
+    (() => {
+      function injectCrisp() {
+        if (window.__CRISP_LOADED__) return;
+        window.__CRISP_LOADED__ = true;
+
+        window.$crisp = window.$crisp || [];
+        window.CRISP_WEBSITE_ID = "386eb98b-0242-475a-a8ba-84554ec1975b";
+
+        const s = document.createElement("script");
+        s.src = "https://client.crisp.chat/l.js";
+        s.async = true;
+        document.head.appendChild(s);
+      }
+
+      // 1) First page load (don’t rely only on 'load')
+      if (document.readyState === "complete" || document.readyState === "interactive") {
+        injectCrisp();
+      } else {
+        document.addEventListener("DOMContentLoaded", injectCrisp, { once: true });
+        window.addEventListener("load", injectCrisp, { once: true });
+
+        
+      }
+
+      // 2) Astro client-side navigations
+      document.addEventListener("astro:page-load", injectCrisp);
+    })();
+  </script>
+)}
+
+<script is:inline>
+function initCTAAndModal() {
+  if (window.__triberaCTAAndModalInit) return;
+  window.__triberaCTAAndModalInit = true;
+
+  const cta = document.getElementById("scroll-cta");
+  const modal = document.getElementById("demoModal");
+  const successMsg = document.getElementById("successMsg");
+  const form = document.getElementById("demoForm");
+
+  if (!cta) return;
+
+  let lastScrollY = window.scrollY;
+  let closed = false;
+
+  function showCTA() {
+    cta.classList.remove("translate-y-full", "opacity-0");
+    cta.classList.add("translate-y-0", "opacity-100");
+  }
+
+  function hideCTA() {
+    cta.classList.add("translate-y-full", "opacity-0");
+    cta.classList.remove("translate-y-0", "opacity-100");
+  }
+
+  // Scroll behavior
+  window.addEventListener("scroll", () => {
+    if (closed) return;
+
+    const currentY = window.scrollY;
+
+    if (currentY > lastScrollY && currentY > 200) {
+      showCTA();
+    }
+
+    if (currentY < lastScrollY) {
+      hideCTA();
+    }
+
+    lastScrollY = currentY;
+  }, { passive: true });
+
+  // 🔥 GLOBAL CLICK HANDLER (Astro-safe)
+  document.addEventListener("click", (e) => {
+
+    // Open modal
+    if (e.target.closest("#openDemoBtn, [data-open-demo]")) {
+      modal?.classList.remove("hidden");
+      modal?.classList.add("flex");
+    }
+
+    // Close modal (X button)
+    if (e.target.closest("#closeDemoBtn")) {
+      modal?.classList.add("hidden");
+      modal?.classList.remove("flex");
+    }
+
+    // Close CTA
+    if (e.target.closest("#close-cta")) {
+      closed = true;
+      hideCTA();
+    }
+
+    // Click outside modal
+    if (e.target.id === "demoModal") {
+      modal?.classList.add("hidden");
+      modal?.classList.remove("flex");
+    }
+
+  });
+
+  // Form submit
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    await fetch(form.action, {
+      method: "POST",
+      body: formData,
+      headers: { Accept: "application/json" }
+    });
+
+    form.reset();
+    successMsg?.classList.remove("hidden");
+
+    setTimeout(() => {
+      successMsg?.classList.add("hidden");
+      modal?.classList.add("hidden");
+      modal?.classList.remove("flex");
+    }, 3000);
+  });
+
+}
+
+// Astro-safe init
+document.addEventListener("astro:page-load", initCTAAndModal);
+window.addEventListener("load", initCTAAndModal);
+</script>
+
+<script>
+  function initHeroScroll() {
+    const heroes = document.querySelectorAll<HTMLElement>('.hero-section');
+
+    if (!heroes.length) return;
+
+    heroes.forEach(hero => {
+      if (hero.dataset.heroScrollBound === 'true') return;
+      hero.dataset.heroScrollBound = 'true';
+
+      const content = hero.querySelector('.hero-content');
+      if (!content) return;
+      const contentEl = content as HTMLElement;
+
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+
+      function onScroll() {
+  if (ticking) return;
+
+  ticking = true;
+
+  requestAnimationFrame(() => {
+    const currentY = window.scrollY;
+    const heroTop = hero.offsetTop;
+    const heroHeight = hero.offsetHeight;
+
+    if (
+      currentY >= heroTop &&
+      currentY <= heroTop + heroHeight
+    ) {
+      const delta = Math.min(
+        Math.max((currentY - heroTop) / heroHeight, 0),
+        1
+      );
+
+      // ✅ ONLY when scrolling DOWN
+      if (currentY > lastScrollY) {
+        contentEl.style.transform = `
+          translateY(${delta * -40}px)
+          scale(${1 - delta * 0.04})
+        `;
+        contentEl.style.opacity = `${1 - delta * 1.1}`;
+        contentEl.style.filter = `blur(${delta * 4}px)`;
+      }
+
+      // ✅ When scrolling UP → instantly reset
+      if (currentY < lastScrollY) {
+        contentEl.style.transform = 'translateY(0px) scale(1)';
+        contentEl.style.opacity = '1';
+        contentEl.style.filter = 'blur(0px)';
+      }
+    }
+
+    lastScrollY = currentY;
+    ticking = false;
+  });
+}
+
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+    });
+  }
+
+  // INITIAL LOAD
+  initHeroScroll();
+
+  // IMPORTANT: RE-INIT ON ASTRO PAGE CHANGE
+  document.addEventListener('astro:page-load', () => {
+    initHeroScroll();
+  });
+</script>
+<script is:inline defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<script is:inline>
+  function initCandidateSection() {
+
+    const section = document.getElementById("candidateSection");
+    if (!section) return;
+
+    let barsAnimated = false;
+
+    const observer = new IntersectionObserver((entries) => {
+
+      if (!entries[0].isIntersecting || barsAnimated) return;
+
+      barsAnimated = true;
+
+      section.querySelectorAll(".metric-bar").forEach((bar, index) => {
+
+        const targetWidth = bar.dataset.width;
+
+        setTimeout(() => {
+          bar.style.width = targetWidth;
+        }, index * 200);
+
+      });
+
+      observer.disconnect();
+
+    }, { threshold: 0.4 });
+
+    observer.observe(section);
+  }
+
+  /* FIRST LOAD */
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    initCandidateSection();
+  } else {
+    document.addEventListener("DOMContentLoaded", initCandidateSection);
+  }
+
+  /* ASTRO NAVIGATION */
+  document.addEventListener("astro:page-load", initCandidateSection);
+</script>
+
+
+
+<script is:inline>
+  function initProofSection() {
+
+    const section = document.getElementById("proof");
+    if (!section) return;
+
+    let numbersAnimated = false;
+    let barFilled = false;
+
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      const bar = section.querySelector("#triberaBar");
+
+      if (entry.isIntersecting) {
+        if (!numbersAnimated) {
+          numbersAnimated = true;
+
+          /* ===== COUNT NUMBERS ===== */
+          const counters = section.querySelectorAll(".count-number");
+
+          counters.forEach(counter => {
+            const target = Number(counter.dataset.target);
+            let current = 0;
+            const increment = target / 40;
+
+            function update() {
+              current += increment;
+
+              if (current < target) {
+                counter.innerText = Math.floor(current);
+                requestAnimationFrame(update);
+              } else {
+                counter.innerText = target;
+              }
+            }
+
+            update();
+          });
+        }
+
+        /* ===== FILL BAR (replays on every re-entry) ===== */
+        if (bar && !barFilled) {
+          barFilled = true;
+
+          // Reset without animation, then trigger fill transition.
+          bar.style.transition = "none";
+          bar.style.width = "0%";
+          bar.offsetWidth;
+          bar.style.transition = "";
+
+          setTimeout(() => {
+            bar.style.width = "37%";
+          }, 400);
+        }
+        return;
+      }
+
+      if (bar) {
+        barFilled = false;
+        bar.style.transition = "none";
+        bar.style.width = "0%";
+        bar.offsetWidth;
+        bar.style.transition = "";
+      }
+    }, { threshold: 0.3 });
+
+    observer.observe(section);
+  }
+
+  /* FIRST LOAD */
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    initProofSection();
+  } else {
+    document.addEventListener("DOMContentLoaded", initProofSection);
+  }
+
+  /* ASTRO NAVIGATION SUPPORT */
+  document.addEventListener("astro:page-load", initProofSection);
+</script>
+
+<script is:inline>
+  function initCustomerMarquee() {
+    const marquees = document.querySelectorAll("[data-customer-marquee]");
+    if (!marquees.length) return;
+
+    marquees.forEach((marquee) => {
+      if (marquee.dataset.marqueeInitialized === "true") return;
+      marquee.dataset.marqueeInitialized = "true";
+
+      const track = marquee.querySelector(".customer-marquee-track");
+      const groups = marquee.querySelectorAll(".customer-marquee-group");
+      if (!track || groups.length < 2) return;
+
+      const firstGroup = groups[0];
+      const secondGroup = groups[1];
+
+      const setShift = () => {
+        const shift = Math.round(secondGroup.offsetLeft - firstGroup.offsetLeft);
+        if (shift > 0) {
+          track.style.setProperty("--customer-marquee-shift", `${shift}px`);
+        }
+      };
+
+      setShift();
+      window.addEventListener("resize", setShift, { passive: true });
+
+      if ("ResizeObserver" in window) {
+        const ro = new ResizeObserver(setShift);
+        ro.observe(firstGroup);
+        ro.observe(secondGroup);
+        ro.observe(track);
+      }
+    });
+  }
+
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    initCustomerMarquee();
+  } else {
+    document.addEventListener("DOMContentLoaded", initCustomerMarquee);
+  }
+
+  document.addEventListener("astro:page-load", initCustomerMarquee);
+</script>
+
+</Layout>

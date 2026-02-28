@@ -1,0 +1,73 @@
+<div
+  id="contactSalesModal"
+  class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50"
+>
+  <div class="bg-white w-[92vw] max-w-[400px] rounded-xl p-5 sm:p-6 relative">
+    <!-- Close -->
+    <button
+      data-close-sales
+      class="absolute top-3 right-3 text-gray-500 text-lg"
+    >
+      ✕
+    </button>
+
+    <h2 class="text-xl font-semibold text-center mb-4">
+      Contact Sales
+    </h2>
+
+    <p class="text-sm text-center text-gray-500 mb-4">
+      Tell us about your needs and our team will reach out.
+    </p>
+
+    <form class="space-y-4">
+      <input
+        type="text"
+        placeholder="Full name"
+        required
+        class="w-full border rounded-md px-3 py-2"
+      />
+
+      <input
+        type="email"
+        placeholder="Work email"
+        required
+        class="w-full border rounded-md px-3 py-2"
+      />
+
+      <input
+        type="text"
+        placeholder="Company name"
+        class="w-full border rounded-md px-3 py-2"
+      />
+
+      <textarea
+        rows="3"
+        placeholder="How can we help?"
+        class="w-full border rounded-md px-3 py-2"
+      ></textarea>
+
+      <button
+        type="submit"
+        class="w-full bg-[#Da0007] text-white py-2 rounded-md font-semibold"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener("click", (e) => {
+    const modal = document.getElementById("contactSalesModal");
+
+    // OPEN
+    if (e.target.id === "contactSalesBtn") {
+      modal?.classList.remove("hidden");
+    }
+
+    // CLOSE
+    if (e.target.hasAttribute("data-close-sales")) {
+      modal?.classList.add("hidden");
+    }
+  });
+</script>

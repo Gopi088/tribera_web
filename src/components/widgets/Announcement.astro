@@ -1,0 +1,68 @@
+---
+
+---
+
+<div
+  id="tribera-announcement"
+  role="region"
+  aria-label="Announcement"
+  class="hidden w-full bg-[#0f0f0f] text-gray-300 text-xs md:text-sm border-b border-white/10"
+>
+  <div class="max-w-7xl mx-auto px-3 md:px-6 py-2 flex items-center gap-2 md:gap-3">
+    <span class="px-1.5 py-0.5 text-[10px] md:text-[11px] font-semibold rounded bg-white/10 text-white/80">
+      UPDATE
+    </span>
+
+    <p class="whitespace-nowrap overflow-hidden text-ellipsis">
+      Eragina Digital Solutions is now <span class="text-[#da0007] font-semibold">tribera</span>. The name
+      changes, but the mission remains the same. Our new home:
+      <a href="https://www.tribera.ai" class="text-[#da0007] hover:underline">tribera.ai</a>.
+    </p>
+
+    <button
+      type="button"
+      class="ml-auto inline-flex items-center justify-center w-6 h-6 rounded hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-white/20"
+      aria-label="Dismiss announcement"
+      data-dismiss-announcement
+    >
+      <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 opacity-70">
+        <path
+          fill-rule="evenodd"
+          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+          clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const KEY = 'tribera_announcement_v1'; // keep in sync with STORAGE_KEY above
+    try {
+      const bar = document.getElementById('tribera-announcement');
+      if (!bar) return;
+
+      // Show unless previously dismissed
+      if (localStorage.getItem(KEY) !== '1') {
+        bar.classList.remove('hidden');
+      }
+
+      // Wire up dismiss
+      const btn = bar.querySelector('[data-dismiss-announcement]');
+      if (btn) {
+        btn.addEventListener('click', function () {
+          try {
+            localStorage.setItem(KEY, '1');
+          } catch {
+            // ignore storage errors
+          }
+          bar.classList.add('hidden');
+        });
+      }
+    } catch {
+      // If storage is blocked, still show the bar (non-persistent)
+      const barFallback = document.getElementById('tribera-announcement');
+      if (barFallback) barFallback.classList.remove('hidden');
+    }
+  })();
+</script>
