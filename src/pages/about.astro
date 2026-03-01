@@ -14,10 +14,10 @@ const metadata = {
 <Layout metadata={metadata}>
   <main>
 
-    <!-- HERO -->
+    
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
 
-  <!-- BACKGROUND GRADIENT -->
+  
   <div
     class="absolute inset-0"
     style="
@@ -29,7 +29,7 @@ const metadata = {
     "
   ></div>
 
-  <!-- FLOATING DOTS -->
+  
   <div class="absolute inset-0 pointer-events-none">
     {Array.from({ length: 8 }).map((_, i) => (
       <span
@@ -46,12 +46,12 @@ const metadata = {
     ))}
   </div>
 
-  <!-- CONTENT -->
+  
   <div class="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 text-center group">
 
-    <!-- HEADLINE -->
+    
      
-    <!-- Small Top Label -->
+    
     <div class="text-[#e10600] text-sm md:text-base font-semibold mb-6">
       About tribera
     </div>
@@ -64,7 +64,7 @@ const metadata = {
    
     </h1>
 
-    <!-- SUBTEXT -->
+    
     <p
       class="mt-6 sm:mt-7
              text-white/50
@@ -84,7 +84,8 @@ const metadata = {
 
     <Brands
       title="Who We Work With"
-      subtitle="Trusted by high-impact </br> teams across industries"
+      subtitle="Trusted by high-impact <br /> teams across industries"
+      mobileSubtitleSingleLine={true}
       images={[
         { src: '~/assets/images/ICICBank.png', alt: 'ICICI Bank' },
         { src: '~/assets/images/Aeries.png', alt: 'Aeries' },
@@ -107,7 +108,7 @@ const metadata = {
 
   <div class="relative z-10 max-w-5xl mx-auto px-6 py-24 sm:py-32 text-center">
 
-    <!-- Small Top Line -->
+    
     <p class="text-white/50 text-[20px] sm:text-base mb-6">
       We are Akshata and Abhishek.
     </p>
@@ -118,7 +119,7 @@ const metadata = {
 
    <div class="relative inline-block">
 
-  <!-- Red Glow Behind Text -->
+  
   <div class="absolute inset-0 flex items-center justify-center -z-10">
     <div class="w-[120%] h-[120%] bg-[#da0007] opacity-10 blur-[20px] rounded-full"></div>
   </div>
@@ -131,7 +132,7 @@ const metadata = {
 
 </div>
 
-    <!-- Glass Card -->
+    
     <div class="mt-16 mx-auto max-w-xl
                 rounded-2xl
                 border border-white/10
@@ -520,7 +521,7 @@ const metadata = {
 
   <div class="max-w-5xl mx-auto">
 
-    <!-- Section Header -->
+    
     <div class="text-center mb-20">
       <div class="text-[#DA0007] text-sm font-semibold tracking-widest uppercase mb-4">
         Who we are
@@ -536,7 +537,7 @@ const metadata = {
       </h2>
     </div>
 
-    <!-- Team Members -->
+    
     <div class="space-y-20">
 
       {[
@@ -565,10 +566,10 @@ const metadata = {
 
         <div>
 
-          <!-- Row -->
+          
           <div class="flex flex-col sm:flex-row gap-8 sm:gap-10 items-start">
 
-            <!-- Photo -->
+            
             <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full
                         overflow-hidden
                         border border-white/10
@@ -583,7 +584,7 @@ const metadata = {
 
             </div>
 
-            <!-- Content -->
+            
             <div class="flex-1">
 
               <h3 class="text-white text-xl sm:text-2xl font-semibold mb-1">
@@ -606,7 +607,7 @@ const metadata = {
 
           </div>
 
-          <!-- Divider -->
+          
           {index !== 2 && (
             <div class="mt-14 border-t border-white/10"></div>
           )}
@@ -704,25 +705,25 @@ const metadata = {
 
   <div class="max-w-3xl mx-auto px-6 text-center">
 
-    <!-- Eyebrow -->
+    
     <p class="text-[#da0007] text-[14px] font-semibold mb-4">
       About Tribera
     </p>
 
-    <!-- Heading -->
+    
     <h2 class="text-4xl sm:text-5xl font-semibold tracking-tight text-black leading-tight">
       We build teams<br class="hidden sm:block" />
       where people truly belong.
     </h2>
 
-    <!-- Subtext -->
+    
     <p class="mt-6 text-[16px] text-black/60 leading-relaxed max-w-2xl mx-auto">
       Hiring isn't about resumes. It’s about alignment.
       We combine intelligence, human insight, and deep context
       to help companies interview fewer — and hire better.
     </p>
 
-    <!-- Buttons -->
+    
     <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
 
       <button
@@ -747,7 +748,7 @@ const metadata = {
     
     </div>
 
-    <!-- Micro Note -->
+    
     <p class="mt-6 text-xs text-black/40">
       Built by operators. Backed by insight. Driven by outcomes.
     </p>

@@ -18,7 +18,7 @@ const navLinks = headerData.links.slice(2);
 
   <Announcement />
 
-  <div class="mx-auto max-w-7xl px-2.5 py-2">
+  <div class="mx-auto max-w-7xl px-3.5 sm:px-2.5 py-2.5 sm:py-2">
   <div class="flex items-center">
 
   <!-- LEFT: Logo -->
@@ -29,7 +29,7 @@ const navLinks = headerData.links.slice(2);
   <!-- MOBILE HAMBURGER -->
 <button
   id="mobile-btn"
-  class="md:hidden ml-auto flex flex-col gap-1.5"
+  class="md:hidden ml-auto inline-flex h-9 w-9 items-center justify-center flex-col gap-1.5 rounded-md hover:bg-white/5"
   aria-label="Open menu"
 >
   <span class="w-6 h-[2px] bg-white"></span>
@@ -49,7 +49,8 @@ const navLinks = headerData.links.slice(2);
 
     <!-- PAGE LINK -->
     <a
-      href="/" data-astro-reload
+      id="hiring-link"
+      href="/" data-astro-reload data-self-nav-target="/"
       class="relative text-white/60 hover:text-white transition
       after:absolute after:left-0 after:-bottom-1
       after:h-[2px] after:w-0 after:bg-[#DA0007]
@@ -99,7 +100,7 @@ const navLinks = headerData.links.slice(2);
   <div class="flex items-center gap-1">
 
     <a
-      href="/candidates" data-astro-reload
+      href="/candidates" data-astro-reload data-self-nav-target="/candidates"
       class="relative text-white/60 hover:text-white transition
       after:absolute after:left-0 after:-bottom-1
       after:h-[2px] after:w-0 after:bg-[#DA0007]
@@ -394,32 +395,18 @@ function initModal() {
 document.addEventListener("astro:page-load", initModal);
 document.addEventListener("DOMContentLoaded", initModal);
 </script>
-
-
-
-
-
-
     </div>
-
   </div>
-
 </div>
-
-</div>
-
-</div>
-
-    </div>
 
     <!-- Mobile Navigation -->
     <div
       id="mobile-menu"
-      class="hidden md:hidden fixed left-0 right-0 top-[76px] z-50 border-t border-white/10 bg-black/95 backdrop-blur-md"
+      class="hidden md:hidden absolute left-0 right-0 top-full z-50 border-t border-white/10 bg-black"
     >
       <nav class="px-5 py-5 flex flex-col gap-4 text-[13px] font-semibold">
-        <a href="/" data-astro-reload class="text-white/80 hover:text-white transition">For Hiring Teams</a>
-        <a href="/candidates" data-astro-reload class="text-white/80 hover:text-white transition">For Candidates</a>
+        <a href="/" data-astro-reload data-self-nav-target="/" class="text-white/80 hover:text-white transition">For Hiring Teams</a>
+        <a href="/candidates" data-astro-reload data-self-nav-target="/candidates" class="text-white/80 hover:text-white transition">For Candidates</a>
         {navLinks.map(({ text, href }) => (
           <a href={href} data-astro-reload class="text-white/80 hover:text-white transition">
             {text}
@@ -450,9 +437,9 @@ document.addEventListener("DOMContentLoaded", initModal);
 
 <script>
 function initHeaderMenus() {
-  const win = window as Window & { __triberaHeaderMenusInit?: boolean };
-  if (win.__triberaHeaderMenusInit) return;
-  win.__triberaHeaderMenusInit = true;
+  const win = window as Window & {
+    __triberaHeaderOutsideClick?: (e: Event) => void;
+  };
 
   const hiringBtn = document.getElementById("hiring-btn");
   const hiringMenu = document.getElementById("hiring-menu");
@@ -462,40 +449,81 @@ function initHeaderMenus() {
   const mobileBtn = document.getElementById("mobile-btn");
   const mobileMenu = document.getElementById("mobile-menu");
 
-  hiringBtn?.addEventListener("click", (e) => {
+  const bindClickOnce = (
+    el: HTMLElement | null,
+    key: string,
+    handler: (e: Event) => void
+  ) => {
+    if (!el) return;
+    if (el.dataset[key] === "true") return;
+    el.dataset[key] = "true";
+    el.addEventListener("click", handler);
+  };
+
+  bindClickOnce(hiringBtn, "menuBound", (e) => {
     e.stopPropagation();
     hiringMenu?.classList.toggle("hidden");
     candidateMenu?.classList.add("hidden");
   });
 
-  candidateBtn?.addEventListener("click", (e) => {
+  bindClickOnce(candidateBtn, "menuBound", (e) => {
     e.stopPropagation();
     candidateMenu?.classList.toggle("hidden");
     hiringMenu?.classList.add("hidden");
   });
 
-  mobileBtn?.addEventListener("click", (e) => {
+  bindClickOnce(mobileBtn, "menuBound", (e) => {
     e.stopPropagation();
     mobileMenu?.classList.toggle("hidden");
   });
 
-  // Close when dropdown link clicked
-  document.querySelectorAll("#hiring-menu a, #candidate-menu a")
-    .forEach(link => {
-      link.addEventListener("click", () => {
-        hiringMenu?.classList.add("hidden");
-        candidateMenu?.classList.add("hidden");
-      });
+  const normalizePath = (path: string) => {
+    const clean = path.replace(/\/index\.html$/, "").replace(/\/+$/, "");
+    return clean || "/";
+  };
+
+  document.querySelectorAll("[data-self-nav-target]").forEach((link) => {
+    const anchor = link as HTMLAnchorElement;
+    if (anchor.dataset.selfNavBound === "true") return;
+    anchor.dataset.selfNavBound = "true";
+
+    anchor.addEventListener("click", (e) => {
+      const targetPath = normalizePath(anchor.dataset.selfNavTarget || "");
+      const currentPath = normalizePath(window.location.pathname);
+      if (targetPath !== currentPath) return;
+
+      e.preventDefault();
+      hiringMenu?.classList.add("hidden");
+      candidateMenu?.classList.add("hidden");
+      mobileMenu?.classList.add("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
+  });
 
   document.querySelectorAll("#mobile-menu a").forEach(link => {
-    link.addEventListener("click", () => {
+    const anchor = link as HTMLAnchorElement;
+    if (anchor.dataset.menuBound === "true") return;
+    anchor.dataset.menuBound = "true";
+    anchor.addEventListener("click", () => {
       mobileMenu?.classList.add("hidden");
     });
   });
 
-  // Close when clicking outside
-  document.addEventListener("click", (e) => {
+  document.querySelectorAll("#hiring-menu a, #candidate-menu a").forEach(link => {
+    const anchor = link as HTMLAnchorElement;
+    if (anchor.dataset.menuBound === "true") return;
+    anchor.dataset.menuBound = "true";
+    anchor.addEventListener("click", () => {
+      hiringMenu?.classList.add("hidden");
+      candidateMenu?.classList.add("hidden");
+    });
+  });
+
+  if (win.__triberaHeaderOutsideClick) {
+    document.removeEventListener("click", win.__triberaHeaderOutsideClick);
+  }
+
+  const outsideClickHandler = (e: Event) => {
     const target = e.target as Node;
     if (!hiringMenu?.contains(target) &&
         !hiringBtn?.contains(target) &&
@@ -507,8 +535,10 @@ function initHeaderMenus() {
     if (!mobileMenu?.contains(target) && !mobileBtn?.contains(target)) {
       mobileMenu?.classList.add("hidden");
     }
-  });
+  };
 
+  document.addEventListener("click", outsideClickHandler);
+  win.__triberaHeaderOutsideClick = outsideClickHandler;
 }
 
 document.addEventListener("astro:page-load", initHeaderMenus);

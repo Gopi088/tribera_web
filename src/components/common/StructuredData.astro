@@ -1,0 +1,59 @@
+---
+import { SITE, METADATA } from 'astrowind:config';
+import type { MetaData } from '~/types';
+import { getCanonical } from '~/utils/permalinks';
+
+export interface Props {
+  metadata?: MetaData;
+}
+
+const { metadata = {} } = Astro.props;
+
+const siteUrl = String(Astro.site || SITE.site).replace(/\/$/, '');
+const canonical = String(metadata?.canonical || getCanonical(String(Astro.url.pathname)));
+const pageTitle = metadata?.title || METADATA?.title?.default || SITE?.name || 'tribera';
+const pageDescription = metadata?.description || METADATA?.description || '';
+const defaultOgImage = `${siteUrl}/og-default.png`;
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE?.name || 'tribera',
+  url: siteUrl,
+  logo: `${siteUrl}/favicon.png`,
+  sameAs: ['https://www.linkedin.com/company/triberaai'],
+};
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE?.name || 'tribera',
+  url: siteUrl,
+  inLanguage: 'en',
+  publisher: {
+    '@type': 'Organization',
+    name: SITE?.name || 'tribera',
+  },
+};
+
+const webpageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: pageTitle,
+  description: pageDescription,
+  url: canonical,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: SITE?.name || 'tribera',
+    url: siteUrl,
+  },
+  primaryImageOfPage: {
+    '@type': 'ImageObject',
+    url: defaultOgImage,
+  },
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(webpageJsonLd)} />

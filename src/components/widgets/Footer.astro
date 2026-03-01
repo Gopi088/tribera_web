@@ -13,10 +13,10 @@ throw new Error("Function not implemented.");
   <div class="max-w-7xl mx-auto px-6">
 
     <!-- TOP SECTION -->
-    <div class="grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-16 py-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 sm:gap-12 lg:gap-16 py-12 sm:py-14">
 
       <!-- LEFT BRAND COLUMN -->
-      <div>
+      <div class="sm:col-span-2 lg:col-span-1">
         <div class="text-2xl text-[#da0007] font-semibold">
           tribera
         </div>
@@ -29,7 +29,7 @@ throw new Error("Function not implemented.");
         </p>
 
         <!-- SOCIAL -->
-        <div class="flex gap-5 mt-8">
+        <div class="flex gap-5 mt-7 sm:mt-8">
           {socialLinks.map(({ ariaLabel, href, icon }) => (
             <a
               href={href}
@@ -97,12 +97,12 @@ throw new Error("Function not implemented.");
     <div class="border-t border-white/10"></div>
 
     <!-- BOTTOM BAR -->
-    <div class="py-6 text-sm text-white/40 flex flex-col md:flex-row justify-between gap-4">
+      <div class="py-6 text-sm text-white/40 flex flex-col md:flex-row justify-between gap-4">
       <div>
         © {new Date().getFullYear()} Tribera. All rights reserved.
       </div>
 
-      <div class="flex gap-4">
+      <div class="flex flex-wrap gap-x-4 gap-y-2">
         {secondaryLinks.map(({ text, href }) => (
           <a
             href={href}

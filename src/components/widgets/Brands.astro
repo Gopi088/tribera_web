@@ -6,9 +6,11 @@ interface Props {
   title?: string;
   subtitle?: string;
   images?: ImageType[];
+  mobileSubtitleSingleLine?: boolean;
+  mobileLogoClass?: string;
 }
 
-const { title, subtitle, images = [] } = Astro.props as Props;
+const { title, subtitle, images = [], mobileSubtitleSingleLine = false, mobileLogoClass = '' } = Astro.props as Props;
 ---
 
 <section class="w-full py-2 overflow-hidden bg-white dark:bg-[#111]">
@@ -25,10 +27,7 @@ const { title, subtitle, images = [] } = Astro.props as Props;
       {title}
     </h2>
 
-    <p
-      class="text-[14px] text-gray-400 mt-1"
-      set:html={subtitle}
-    ></p>
+    <p class={`text-[14px] text-gray-400 mt-1 ${mobileSubtitleSingleLine ? 'brands-subtitle-mobile-single' : ''}`} set:html={subtitle}></p>
 
   </div>
 
@@ -42,7 +41,7 @@ const { title, subtitle, images = [] } = Astro.props as Props;
           <Image
             src={image.src}
             alt={image.alt || ''}
-            class="h-10 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition"
+            class={`h-10 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition ${mobileLogoClass}`}
             width={160}
             height={60}
           />
@@ -55,7 +54,7 @@ const { title, subtitle, images = [] } = Astro.props as Props;
           <Image
             src={image.src}
             alt={image.alt || ''}
-            class="h-10 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition"
+            class={`h-10 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition ${mobileLogoClass}`}
             width={160}
             height={60}
           />
@@ -149,4 +148,29 @@ const { title, subtitle, images = [] } = Astro.props as Props;
     transform: translateX(-50%);
   }
 }
+
+@media (max-width: 767px) {
+  .brands-subtitle-mobile-single {
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  :global(.brands-subtitle-mobile-single br) {
+    display: none;
+  }
+
+  .brand-slide {
+    margin-right: 28px;
+  }
+
+  :global(.brand-slide img) {
+    height: 32px !important;
+  }
+
+  .fade-left::before,
+  .fade-left::after {
+    width: 24px;
+  }
+}
+
 </style>

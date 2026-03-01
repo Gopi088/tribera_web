@@ -27,9 +27,10 @@ const isProduction = import.meta.env.PROD;
   </slot>
   
 
-  {isProduction && (
-  <script is:inline>
+  <script is:inline define:vars={{ isProduction }}>
     (() => {
+      if (!isProduction) return;
+
       function injectCrisp() {
         if (window.__CRISP_LOADED__) return;
         window.__CRISP_LOADED__ = true;
@@ -57,7 +58,6 @@ const isProduction = import.meta.env.PROD;
       document.addEventListener("astro:page-load", injectCrisp);
     })();
   </script>
-)}
 
 <script is:inline>
 function initCTAAndModal() {
@@ -324,7 +324,7 @@ window.addEventListener("load", initCTAAndModal);
           // Reset without animation, then trigger fill transition.
           bar.style.transition = "none";
           bar.style.width = "0%";
-          bar.offsetWidth;
+          void bar.offsetWidth;
           bar.style.transition = "";
 
           setTimeout(() => {
@@ -338,7 +338,7 @@ window.addEventListener("load", initCTAAndModal);
         barFilled = false;
         bar.style.transition = "none";
         bar.style.width = "0%";
-        bar.offsetWidth;
+        void bar.offsetWidth;
         bar.style.transition = "";
       }
     }, { threshold: 0.3 });

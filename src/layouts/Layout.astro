@@ -11,6 +11,7 @@ import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
 
 
 // Comment the line below to disable View Transitions
@@ -24,6 +25,8 @@ export interface Props {
 
 const { metadata = {} } = Astro.props;
 const { language, textDirection } = I18N;
+const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isCandidatesPage = pathname === '/candidates';
 ---
 
 <!doctype html>
@@ -34,6 +37,7 @@ const { language, textDirection } = I18N;
     <CustomStyles />
     <ApplyColorMode />
     <Metadata {...metadata} />
+    <StructuredData metadata={metadata} />
     <SiteVerification />
     <Analytics />
 
@@ -61,52 +65,80 @@ const { language, textDirection } = I18N;
   style="padding-bottom: env(safe-area-inset-bottom);"
 >
 
-  <div class="max-w-7xl mx-auto
-              px-6 sm:px-8 lg:px-12
-              py-4
-              flex flex-col md:flex-row
+  <div class="max-w-6xl mx-auto
+              px-5 sm:px-7 lg:px-10
+              py-2.5 sm:py-3.5
+              flex flex-col sm:flex-row
               items-center
               justify-between
-              gap-5 relative">
+              gap-3 sm:gap-5 relative">
 
     <!-- LEFT TEXT -->
     <div class="text-center md:text-left">
-
-      <div class="font-semibold text-[16px] text-black">
-        Ready to transform your hiring?
-      </div>
-
-      <div class="mt-1 text-[14px] text-black/60">
-        Join Fortune 500 teams using Tribera’s AI-powered platform
-      </div>
+      {
+        isCandidatesPage ? (
+          <>
+            <div class="font-semibold text-[14px] sm:text-[16px] text-black">Ready to get discovered faster?</div>
+            <div class="mt-0.5 sm:mt-1 text-[12px] sm:text-[14px] text-black/60">
+              Build your profile once. Get matched with high-intent teams.
+            </div>
+          </>
+        ) : (
+          <>
+            <div class="font-semibold text-[14px] sm:text-[16px] text-black">Ready to transform your hiring?</div>
+            <div class="mt-0.5 sm:mt-1 text-[12px] sm:text-[14px] text-black/60">
+              Join Fortune 500 teams using Tribera's AI-powered platform
+            </div>
+          </>
+        )
+      }
 
     </div>
 
     
 
     <!-- RIGHT ACTIONS -->
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-3">
 
-      <button
-        type="button"
-        id="openDemoBtn"
-        class="px-8 py-3
+      {
+        isCandidatesPage ? (
+          <button
+            type="button"
+            data-create-profile
+            class="px-5 py-2
                rounded-full
                bg-[#da0007] text-white
-               text-[14px] font-semibold
+               text-[12px] sm:text-[13px] font-semibold
                transition-all duration-300
                hover:-translate-y-0.5
-               hover:shadow-[0_12px_40px_rgba(218,0,7,0.4)]">
-        Book a Demo →
-      </button>
+               hover:shadow-[0_12px_40px_rgba(218,0,7,0.4)]"
+          >
+            Create Your Profile →
+          </button>
+        ) : (
+          <button
+            type="button"
+            id="openDemoBtn"
+            class="px-5 sm:px-6 py-2 sm:py-2.5
+               rounded-full
+               bg-[#da0007] text-white
+               text-[12px] sm:text-[13px] font-semibold
+               transition-all duration-300
+               hover:-translate-y-0.5
+               hover:shadow-[0_12px_40px_rgba(218,0,7,0.4)]"
+          >
+            Book a Demo →
+          </button>
+        )
+      }
 
       <button
         id="close-cta"
-        class="w-9 h-9
+        class="w-8 h-8
                rounded-full
                border border-black/10
                flex items-center justify-center
-               text-black/40
+               text-[13px] text-black/40
                hover:text-black
                hover:bg-black/5
                transition">

@@ -81,7 +81,7 @@ function waitForServer(url, timeoutMs = 30000) {
 }
 
 function getFreePort(startPort = DEFAULT_PORT) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const tryPort = (port) => {
       const server = net.createServer();
       server.unref();
