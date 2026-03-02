@@ -1,61 +1,23 @@
-<div
-  id="contactSalesModal"
-  class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50"
->
+<div id="contactSalesModal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50">
   <div class="bg-white w-[92vw] max-w-[400px] rounded-xl p-5 sm:p-6 relative">
     <!-- Close -->
-    <button
-      data-close-sales
-      class="absolute top-3 right-3 text-gray-500 text-lg"
-    >
-      ✕
-    </button>
+    <button data-close-sales class="absolute top-3 right-3 text-gray-500 text-lg"> ✕ </button>
 
-    <h2 class="text-xl font-semibold text-center mb-4">
-      Contact Sales
-    </h2>
+    <h2 class="text-xl font-semibold text-center mb-4">Contact Sales</h2>
 
-    <p class="text-sm text-center text-gray-500 mb-4">
-      Tell us about your needs and our team will reach out.
-    </p>
+    <p class="text-sm text-center text-gray-500 mb-4">Tell us about your needs and our team will reach out.</p>
 
-    <form
-      id="contactSalesForm"
-      action="https://api.web3forms.com/submit"
-      method="POST"
-      class="space-y-4"
-    >
+    <form id="contactSalesForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
       <input type="hidden" name="access_key" value="f3c09cb0-6c94-405e-af37-4f01141d40bd" />
       <input type="hidden" name="subject" value="New Contact Sales Submission - Tribera" />
       <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
-      <input
-        type="text"
-        name="name"
-        placeholder="Full name"
-        required
-        class="w-full border rounded-md px-3 py-2"
-      />
+      <input type="text" name="name" placeholder="Full name" required class="w-full border rounded-md px-3 py-2" />
 
-      <input
-        type="email"
-        name="email"
-        placeholder="Work email"
-        required
-        class="w-full border rounded-md px-3 py-2"
-      />
+      <input type="email" name="email" placeholder="Work email" required class="w-full border rounded-md px-3 py-2" />
 
-      <input
-        type="text"
-        name="company"
-        placeholder="Company name"
-        class="w-full border rounded-md px-3 py-2"
-      />
+      <input type="text" name="company" placeholder="Company name" class="w-full border rounded-md px-3 py-2" />
 
-      <textarea
-        rows="3"
-        name="message"
-        placeholder="How can we help?"
-        class="w-full border rounded-md px-3 py-2"
+      <textarea rows="3" name="message" placeholder="How can we help?" class="w-full border rounded-md px-3 py-2"
       ></textarea>
 
       <button
@@ -85,72 +47,72 @@
 
 <script is:inline>
   function initContactSalesModal() {
-    const modal = document.getElementById("contactSalesModal");
-    const form = document.getElementById("contactSalesForm");
-    const submitBtn = document.getElementById("contactSalesSubmitBtn");
-    const successMsg = document.getElementById("contactSalesSuccessMsg");
-    const errorMsg = document.getElementById("contactSalesErrorMsg");
+    const modal = document.getElementById('contactSalesModal');
+    const form = document.getElementById('contactSalesForm');
+    const submitBtn = document.getElementById('contactSalesSubmitBtn');
+    const successMsg = document.getElementById('contactSalesSuccessMsg');
+    const errorMsg = document.getElementById('contactSalesErrorMsg');
     if (!modal || !form) return;
-    if (modal.dataset.bound === "true") return;
-    modal.dataset.bound = "true";
+    if (modal.dataset.bound === 'true') return;
+    modal.dataset.bound = 'true';
 
-    document.addEventListener("click", (e) => {
+    document.addEventListener('click', (e) => {
       const target = e.target;
       if (!(target instanceof Element)) return;
 
-      if (target.id === "contactSalesBtn") {
-        modal.classList.remove("hidden");
+      if (target.id === 'contactSalesBtn') {
+        modal.classList.remove('hidden');
       }
 
-      if (target.hasAttribute("data-close-sales")) {
-        modal.classList.add("hidden");
+      if (target.hasAttribute('data-close-sales')) {
+        modal.classList.add('hidden');
       }
     });
 
-    form.addEventListener("submit", async (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const originalText = submitBtn?.textContent || "Submit";
-      errorMsg?.classList.add("hidden");
-      successMsg?.classList.add("hidden");
+      const originalText = submitBtn?.textContent || 'Submit';
+      errorMsg?.classList.add('hidden');
+      successMsg?.classList.add('hidden');
 
       if (submitBtn) {
-        submitBtn.textContent = "Submitting...";
-        submitBtn.setAttribute("disabled", "true");
+        submitBtn.textContent = 'Submitting...';
+        submitBtn.setAttribute('disabled', 'true');
       }
 
       try {
         const res = await fetch(form.action, {
-          method: "POST",
+          method: 'POST',
           body: new FormData(form),
-          headers: { Accept: "application/json" },
+          headers: { Accept: 'application/json' },
         });
         const result = await res.json();
         if (!res.ok || !result.success) {
-          throw new Error(result.message || "Submission failed");
+          throw new Error(result.message || 'Submission failed');
         }
 
         form.reset();
-        form.classList.add("hidden");
-        successMsg?.classList.remove("hidden");
+        form.classList.add('hidden');
+        successMsg?.classList.remove('hidden');
 
         setTimeout(() => {
-          successMsg?.classList.add("hidden");
-          form.classList.remove("hidden");
-          modal.classList.add("hidden");
+          successMsg?.classList.add('hidden');
+          form.classList.remove('hidden');
+          modal.classList.add('hidden');
         }, 3000);
       } catch (error) {
-        console.error("Contact sales form submit failed:", error);
-        errorMsg?.classList.remove("hidden");
+        console.error('Contact sales form submit failed:', error);
+        errorMsg?.classList.remove('hidden');
       } finally {
         if (submitBtn) {
           submitBtn.textContent = originalText;
-          submitBtn.removeAttribute("disabled");
+          submitBtn.removeAttribute('disabled');
         }
       }
     });
   }
 
-  document.addEventListener("astro:page-load", initContactSalesModal);
-  document.addEventListener("DOMContentLoaded", initContactSalesModal);
+  document.addEventListener('astro:page-load', initContactSalesModal);
+  document.addEventListener('DOMContentLoaded', initContactSalesModal);
 </script>

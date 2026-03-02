@@ -23,575 +23,589 @@ const getStartedBody = [
 const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(getStartedSubject)}&body=${encodeURIComponent(getStartedBody)}`;
 ---
 
-<header
-  class="sticky top-0 z-40 w-full"
-  style="
+<header class="sticky top-0 z-40 w-full" style="
     background: black;
-  "
->
-<div class="absolute bottom-0 left-0 right-0 h-px
-              bg-gradient-to-r from-transparent via-white/10 to-transparent">
+  ">
+  <div
+    class="absolute bottom-0 left-0 right-0 h-px
+              bg-gradient-to-r from-transparent via-white/10 to-transparent"
+  >
   </div>
 
   <Announcement />
 
   <div class="mx-auto max-w-7xl px-3.5 sm:px-2.5 py-2.5 sm:py-2">
-  <div class="flex items-center">
+    <div class="flex items-center">
+      <!-- LEFT: Logo -->
+      <a href="/" data-reload class="flex items-center">
+        <Logo />
+      </a>
 
-  <!-- LEFT: Logo -->
-  <a href="/" data-reload class="flex items-center">
-    <Logo />
-  </a>
+      <!-- MOBILE HAMBURGER -->
+      <button
+        id="mobile-btn"
+        class="md:hidden ml-auto inline-flex h-9 w-9 items-center justify-center flex-col gap-1.5 rounded-md hover:bg-white/5"
+        aria-label="Open menu"
+      >
+        <span class="w-6 h-[2px] bg-white"></span>
+        <span class="w-6 h-[2px] bg-white"></span>
+        <span class="w-6 h-[2px] bg-white"></span>
+      </button>
 
-  <!-- MOBILE HAMBURGER -->
-<button
-  id="mobile-btn"
-  class="md:hidden ml-auto inline-flex h-9 w-9 items-center justify-center flex-col gap-1.5 rounded-md hover:bg-white/5"
-  aria-label="Open menu"
->
-  <span class="w-6 h-[2px] bg-white"></span>
-  <span class="w-6 h-[2px] bg-white"></span>
-  <span class="w-6 h-[2px] bg-white"></span>
-</button>
-
-  <!-- RIGHT SIDE WRAPPER -->
-  <div class="hidden md:flex items-center gap-5 ml-auto">
-
-    <!-- Navigation -->
-    <nav class="flex items-center gap-8 text-[11px] font-semibold">
-
-      <!-- For Hiring Teams -->
-<div class="relative">
-  <div class="flex items-center gap-1">
-
-    <!-- PAGE LINK -->
-    <a
-      id="hiring-link"
-      href="/" data-astro-reload data-self-nav-target="/"
-      class="relative text-white/60 hover:text-white transition
+      <!-- RIGHT SIDE WRAPPER -->
+      <div class="hidden md:flex items-center gap-5 ml-auto">
+        <!-- Navigation -->
+        <nav class="flex items-center gap-8 text-[11px] font-semibold">
+          <!-- For Hiring Teams -->
+          <div class="relative">
+            <div class="flex items-center gap-1">
+              <!-- PAGE LINK -->
+              <a
+                id="hiring-link"
+                href="/"
+                data-astro-reload
+                data-self-nav-target="/"
+                class="relative text-white/60 hover:text-white transition
       after:absolute after:left-0 after:-bottom-1
       after:h-[2px] after:w-0 after:bg-[#DA0007]
       after:transition-all after:duration-300
       hover:after:w-full"
-    >
-      For Hiring Teams
-    </a>
+              >
+                For Hiring Teams
+              </a>
 
-    <!-- DROPDOWN TOGGLE -->
-    <button id="hiring-btn" class="text-white/60 hover:text-white">
-      <Icon name="tabler:chevron-down" class="w-3 h-3" />
-    </button>
+              <!-- DROPDOWN TOGGLE -->
+              <button id="hiring-btn" class="text-white/60 hover:text-white">
+                <Icon name="tabler:chevron-down" class="w-3 h-3" />
+              </button>
+            </div>
 
-  </div>
-
-  <div
-    id="hiring-menu"
-    class="hidden absolute left-1/2 top-full mt-4 w-56 -translate-x-1/2
+            <div
+              id="hiring-menu"
+              class="hidden absolute left-1/2 top-full mt-4 w-56 -translate-x-1/2
     rounded-xl bg-white shadow-xl p-2 transition-all duration-200"
-  >
-    <a href="/#candidateSection"
-      class="block px-4 py-2 text-black/50 rounded-lg text-[12px] hover:bg-red-50 hover:text-[#DA0007]">
-      Platform Overview
-    </a>
+            >
+              <a
+                href="/#candidateSection"
+                class="block px-4 py-2 text-black/50 rounded-lg text-[12px] hover:bg-red-50 hover:text-[#DA0007]"
+              >
+                Platform Overview
+              </a>
 
-    <a href="/#how-it-works"
-      class="block px-4 py-2 text-black/50 rounded-lg text-[12px] hover:bg-red-50 hover:text-[#DA0007]">
-      How It Works
-    </a>
+              <a
+                href="/#how-it-works"
+                class="block px-4 py-2 text-black/50 rounded-lg text-[12px] hover:bg-red-50 hover:text-[#DA0007]"
+              >
+                How It Works
+              </a>
 
-    <a href="/#platform-performance"
-      class="block px-4 py-2 text-black/50 rounded-lg text-[12px] hover:bg-red-50 hover:text-[#DA0007]">
-      Pricing
-    </a>
+              <a
+                href="/#platform-performance"
+                class="block px-4 py-2 text-black/50 rounded-lg text-[12px] hover:bg-red-50 hover:text-[#DA0007]"
+              >
+                Pricing
+              </a>
 
-    <a href="/#customer-stories"
-      class="block px-4 py-2 text-black/50 rounded-lg text-[12px] hover:bg-red-50 hover:text-[#DA0007]">
-      Customer Stories
-    </a>
-  </div>
-</div>
+              <a
+                href="/#customer-stories"
+                class="block px-4 py-2 text-black/50 rounded-lg text-[12px] hover:bg-red-50 hover:text-[#DA0007]"
+              >
+                Customer Stories
+              </a>
+            </div>
+          </div>
 
-
-<!-- FOR CANDIDATES -->
-<div class="relative">
-  <div class="flex items-center gap-1">
-
-    <a
-      href="/candidates" data-astro-reload data-self-nav-target="/candidates"
-      class="relative text-white/60 hover:text-white transition
+          <!-- FOR CANDIDATES -->
+          <div class="relative">
+            <div class="flex items-center gap-1">
+              <a
+                href="/candidates"
+                data-astro-reload
+                data-self-nav-target="/candidates"
+                class="relative text-white/60 hover:text-white transition
       after:absolute after:left-0 after:-bottom-1
       after:h-[2px] after:w-0 after:bg-[#DA0007]
       after:transition-all after:duration-300
       hover:after:w-full"
-    >
-      For Candidates
-    </a>
+              >
+                For Candidates
+              </a>
 
-    <button id="candidate-btn" class="text-white/60 hover:text-white">
-      <Icon name="tabler:chevron-down" class="w-3 h-3" />
-    </button>
+              <button id="candidate-btn" class="text-white/60 hover:text-white">
+                <Icon name="tabler:chevron-down" class="w-3 h-3" />
+              </button>
+            </div>
 
-  </div>
-
-  <div
-    id="candidate-menu"
-    class="hidden absolute left-1/2 top-full mt-4 w-56 -translate-x-1/2
+            <div
+              id="candidate-menu"
+              class="hidden absolute left-1/2 top-full mt-4 w-56 -translate-x-1/2
     rounded-xl bg-white shadow-xl p-2 transition-all duration-200"
-  >
-    <a href="/candidates#why-tribera"
-      class="block px-4 py-2 rounded-lg text-black/50 text-[12px] hover:bg-red-50 hover:text-[#DA0007]">
-      Why Tribera
-    </a>
+            >
+              <a
+                href="/candidates#why-tribera"
+                class="block px-4 py-2 rounded-lg text-black/50 text-[12px] hover:bg-red-50 hover:text-[#DA0007]"
+              >
+                Why Tribera
+              </a>
 
-    <a href="/candidates#screening"
-      class="block px-4 py-2 rounded-lg text-black/50 text-[12px] hover:bg-red-50 hover:text-[#DA0007]">
-      Screening
-    </a>
+              <a
+                href="/candidates#screening"
+                class="block px-4 py-2 rounded-lg text-black/50 text-[12px] hover:bg-red-50 hover:text-[#DA0007]"
+              >
+                Screening
+              </a>
 
-    <a href="/candidates#interview"
-      class="block px-4 py-2 rounded-lg text-black/50 text-[12px] hover:bg-red-50 hover:text-[#DA0007]">
-      Interview Prep
-    </a>
+              <a
+                href="/candidates#interview"
+                class="block px-4 py-2 rounded-lg text-black/50 text-[12px] hover:bg-red-50 hover:text-[#DA0007]"
+              >
+                Interview Prep
+              </a>
 
-    <a href="/candidates#get-discovered"
-      class="block px-4 py-2 rounded-lg text-black/50 text-[12px] hover:bg-red-50 hover:text-[#DA0007]">
-      Get Discovered
-    </a>
-  </div>
-</div>
-      <!-- Static links -->
-     {navLinks.map(({ text, href }) => (
-  <a
-    href={href}
-    data-astro-reload
-    class="relative text-white/60 hover:text-white transition
+              <a
+                href="/candidates#get-discovered"
+                class="block px-4 py-2 rounded-lg text-black/50 text-[12px] hover:bg-red-50 hover:text-[#DA0007]"
+              >
+                Get Discovered
+              </a>
+            </div>
+          </div>
+          <!-- Static links -->
+          {
+            navLinks.map(({ text, href }) => (
+              <a
+                href={href}
+                data-astro-reload
+                class="relative text-white/60 hover:text-white transition
     after:absolute after:left-0 after:-bottom-1
     after:h-[2px] after:w-0 after:bg-[#DA0007]
     after:transition-all after:duration-300
     hover:after:w-full"
-  >
-    {text}
-  </a>
-))}
+              >
+                {text}
+              </a>
+            ))
+          }
+        </nav>
 
-    </nav>
-
-    <!-- Right Buttons -->
-    <div class="flex items-center gap-6">
-
-      <a
-        href="https://app.tribera.ai/auth/login"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="relative text-[#DA0007]
+        <!-- Right Buttons -->
+        <div class="flex items-center gap-6">
+          <a
+            href="https://app.tribera.ai/auth/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="relative text-[#DA0007]
         after:absolute after:left-0 after:-bottom-1
         after:h-[2px] after:w-0 after:bg-[#DA0007]
         after:transition-all after:duration-300
         hover:after:w-full text-[11px] font-semibold"
-      >
-        Login
-      </a>
-<a
-  href={getStartedMailto}
-  class="px-5 py-2 rounded-full bg-[#DA0007] text-white text-[11px] font-semibold hover:bg-red-700 transition text-center inline-block"
->
-  Get Started
-</a>
-<div id="contactModal"
-  class="fixed inset-0 bg-black/65 backdrop-blur-sm flex items-center justify-center hidden z-[1200] p-4">
+          >
+            Login
+          </a>
+          <a
+            href={getStartedMailto}
+            class="px-5 py-2 rounded-full bg-[#DA0007] text-white text-[11px] font-semibold hover:bg-red-700 transition text-center inline-block"
+          >
+            Get Started
+          </a>
+          <div
+            id="contactModal"
+            class="fixed inset-0 bg-black/65 backdrop-blur-sm flex items-center justify-center hidden z-[1200] p-4"
+          >
+            <div
+              class="w-full max-w-[620px] rounded-2xl border border-white/10 bg-gradient-to-b from-white to-[#f7f7f7] shadow-[0_30px_90px_rgba(0,0,0,0.4)] p-6 sm:p-8 relative"
+            >
+              <button
+                id="closeModal"
+                class="absolute top-4 right-4 h-9 w-9 rounded-full border border-black/10 text-black/40 hover:text-black hover:bg-black/5 transition text-xl"
+              >
+                ✕
+              </button>
 
-  <div class="w-full max-w-[620px] rounded-2xl border border-white/10 bg-gradient-to-b from-white to-[#f7f7f7] shadow-[0_30px_90px_rgba(0,0,0,0.4)] p-6 sm:p-8 relative">
+              <!-- FORM -->
+              <form
+                id="candidateForm"
+                action="https://api.web3forms.com/submit"
+                method="POST"
+                enctype="multipart/form-data"
+                class="space-y-4 sm:space-y-5"
+              >
+                <input type="hidden" name="access_key" value="f3c09cb0-6c94-405e-af37-4f01141d40bd" />
+                <input type="hidden" name="subject" value="New Candidate Profile Submission - Tribera" />
+                <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
 
-    <button id="closeModal"
-      class="absolute top-4 right-4 h-9 w-9 rounded-full border border-black/10 text-black/40 hover:text-black hover:bg-black/5 transition text-xl">
-      ✕
-    </button>
+                <div>
+                  <p class="text-[11px] uppercase tracking-[0.16em] text-[#DA0007] font-semibold">For Candidates</p>
+                  <h3 class="mt-2 text-[24px] sm:text-[28px] leading-tight font-[700] text-black">
+                    Create Your Profile
+                  </h3>
+                  <p class="mt-2 text-[13px] sm:text-[14px] text-black/55">
+                    Share your details and resume. We will match you with high-intent opportunities.
+                  </p>
+                </div>
 
-    <!-- FORM -->
-  <form
-    id="candidateForm"
-    action="https://api.web3forms.com/submit"
-    method="POST"
-    enctype="multipart/form-data"
-    class="space-y-4 sm:space-y-5"
-  >
-
-  <input type="hidden" name="access_key" value="f3c09cb0-6c94-405e-af37-4f01141d40bd" />
-  <input type="hidden" name="subject" value="New Candidate Profile Submission - Tribera" />
-  <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
-
-  <div>
-    <p class="text-[11px] uppercase tracking-[0.16em] text-[#DA0007] font-semibold">For Candidates</p>
-    <h3 class="mt-2 text-[24px] sm:text-[28px] leading-tight font-[700] text-black">Create Your Profile</h3>
-    <p class="mt-2 text-[13px] sm:text-[14px] text-black/55">
-      Share your details and resume. We will match you with high-intent opportunities.
-    </p>
-  </div>
-
-  <!-- Name -->
-  <div>
-    <input
-      type="text"
-      name="name"
-      placeholder="Full Name *"
-      required
-      class="w-full border border-black/15 rounded-xl bg-white px-4 py-3.5 text-[14px]
+                <!-- Name -->
+                <div>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Full Name *"
+                    required
+                    class="w-full border border-black/15 rounded-xl bg-white px-4 py-3.5 text-[14px]
       placeholder:text-black/35 focus:border-[#DA0007]/50 focus:ring-2 focus:ring-[#DA0007]/10 focus:outline-none transition"
-    />
-  </div>
+                  />
+                </div>
 
-  <!-- Email -->
-  <div>
-    <input
-      type="email"
-      name="email"
-      placeholder="Email Address *"
-      required
-      class="w-full border border-black/15 rounded-xl bg-white px-4 py-3.5 text-[14px]
+                <!-- Email -->
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address *"
+                    required
+                    class="w-full border border-black/15 rounded-xl bg-white px-4 py-3.5 text-[14px]
       placeholder:text-black/35 focus:border-[#DA0007]/50 focus:ring-2 focus:ring-[#DA0007]/10 focus:outline-none transition"
-    />
-  </div>
+                  />
+                </div>
 
-  <!-- Mobile (Optional) -->
-  <div>
-    <input
-      type="tel"
-      name="mobile"
-      placeholder="Mobile Number (Optional)"
-      class="w-full border border-black/15 rounded-xl bg-white px-4 py-3.5 text-[14px]
+                <!-- Mobile (Optional) -->
+                <div>
+                  <input
+                    type="tel"
+                    name="mobile"
+                    placeholder="Mobile Number (Optional)"
+                    class="w-full border border-black/15 rounded-xl bg-white px-4 py-3.5 text-[14px]
       placeholder:text-black/35 focus:border-[#DA0007]/50 focus:ring-2 focus:ring-[#DA0007]/10 focus:outline-none transition"
-    />
-  </div>
+                  />
+                </div>
 
-  <!-- Hidden File Input -->
-  <input
-    type="file"
-    id="resumeInput"
-    name="resume"
-    accept=".pdf,.doc,.docx"
-    class="hidden"
-  />
+                <!-- Hidden File Input -->
+                <input type="file" id="resumeInput" name="resume" accept=".pdf,.doc,.docx" class="hidden" />
 
-  <!-- Upload + Submit Buttons -->
-  <div class="flex flex-col sm:flex-row gap-3 pt-1">
-
-    <!-- Upload Resume Button -->
-    <button
-      type="button"
-      id="uploadBtn"
-      class="flex-1 border border-[#DA0007]/70 text-[#DA0007]
+                <!-- Upload + Submit Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 pt-1">
+                  <!-- Upload Resume Button -->
+                  <button
+                    type="button"
+                    id="uploadBtn"
+                    class="flex-1 border border-[#DA0007]/70 text-[#DA0007]
       bg-white py-3 rounded-xl text-[14px] font-semibold
-      hover:bg-[#DA0007] hover:text-white transition">
-      Upload Resume *
-    </button>
+      hover:bg-[#DA0007] hover:text-white transition"
+                  >
+                    Upload Resume *
+                  </button>
 
-    <!-- Submit Button -->
-    <button
-      type="submit"
-      id="submitBtn"
-      disabled
-      class="flex-1 bg-[#DA0007] text-white
+                  <!-- Submit Button -->
+                  <button
+                    type="submit"
+                    id="submitBtn"
+                    disabled
+                    class="flex-1 bg-[#DA0007] text-white
       py-3 rounded-xl text-[14px] font-semibold
       disabled:opacity-45 disabled:cursor-not-allowed
-      hover:bg-[#b80000] transition">
-      Submit
-    </button>
+      hover:bg-[#b80000] transition"
+                  >
+                    Submit
+                  </button>
+                </div>
 
-  </div>
+                <!-- File Name Display -->
+                <p id="fileName" class="text-[12px] text-black/60 min-h-[18px] mt-1"></p>
+                <p id="candidateErrorMsg" class="hidden text-[13px] text-black/60 text-center"></p>
+              </form>
+              <script>
+                document.addEventListener('astro:page-load', () => {
+                  const uploadBtn = document.getElementById('uploadBtn');
+                  const resumeInput = document.getElementById('resumeInput');
+                  const submitBtn = document.getElementById('submitBtn');
+                  const fileName = document.getElementById('fileName');
 
-  <!-- File Name Display -->
-  <p id="fileName" class="text-[12px] text-black/60 min-h-[18px] mt-1"></p>
-  <p id="candidateErrorMsg" class="hidden text-[13px] text-black/60 text-center"></p>
+                  if (!uploadBtn || !resumeInput || !submitBtn || !fileName) return;
+                  if (uploadBtn.dataset.bound === 'true') return;
+                  uploadBtn.dataset.bound = 'true';
 
-</form>
-<script>
-document.addEventListener("astro:page-load", () => {
+                  uploadBtn.addEventListener('click', () => {
+                    resumeInput.click();
+                  });
 
-  const uploadBtn = document.getElementById("uploadBtn");
-  const resumeInput = document.getElementById("resumeInput");
-  const submitBtn = document.getElementById("submitBtn");
-  const fileName = document.getElementById("fileName");
+                  resumeInput.addEventListener('change', () => {
+                    const fileInput = resumeInput;
+                    if (fileInput?.files && fileInput.files.length > 0) {
+                      submitBtn.disabled = false;
+                      fileName.textContent = `Selected: ${fileInput.files[0].name}`;
+                    } else {
+                      submitBtn.disabled = true;
+                      fileName.textContent = '';
+                    }
+                  });
+                });
+              </script>
 
-  if (!uploadBtn || !resumeInput || !submitBtn || !fileName) return;
-  if (uploadBtn.dataset.bound === "true") return;
-  uploadBtn.dataset.bound = "true";
+              <!-- THANK YOU STATE -->
+              <div id="successMessage" class="hidden text-center">
+                <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[#DA0007]/10 flex items-center justify-center">
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="w-7 h-7 text-[#DA0007]"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M20 7L10 17l-5-5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </div>
 
-  uploadBtn.addEventListener("click", () => {
-    resumeInput.click();
-  });
+                <h3 class="text-[22px] font-[700] text-black">Profile Submitted</h3>
 
-  resumeInput.addEventListener("change", () => {
-    const fileInput = resumeInput;
-    if (fileInput?.files && fileInput.files.length > 0) {
-      submitBtn.disabled = false;
-      fileName.textContent = `Selected: ${fileInput.files[0].name}`;
-    } else {
-      submitBtn.disabled = true;
-      fileName.textContent = "";
-    }
-  });
+                <p class="mt-3 text-[14px] leading-relaxed text-black/60">
+                  Thanks for sharing your details. Our team will review and reach out shortly with the next steps.
+                </p>
+              </div>
+            </div>
+          </div>
 
-});
-</script>
+          <script is:inline>
+            function initModal() {
+              const modal = document.getElementById('contactModal');
+              const btns = document.querySelectorAll('#contactBtn, [data-create-profile]');
+              const close = document.getElementById('closeModal');
+              const form = document.getElementById('candidateForm');
+              const success = document.getElementById('successMessage');
+              const submitBtn = document.getElementById('submitBtn');
+              const fileName = document.getElementById('fileName');
+              const errorMsg = document.getElementById('candidateErrorMsg');
 
-    <!-- THANK YOU STATE -->
-    <div id="successMessage" class="hidden text-center">
+              if (!form || !modal) return;
 
-      <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[#DA0007]/10 flex items-center justify-center">
-        <svg viewBox="0 0 24 24" class="w-7 h-7 text-[#DA0007]" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M20 7L10 17l-5-5" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
+              // Modal markup is declared inside a desktop-only header container.
+              // On mobile that container is `display: none`, so we move the modal
+              // to `body` once to keep it renderable on all breakpoints.
+              if (modal.dataset.portalized !== 'true') {
+                document.body.appendChild(modal);
+                modal.dataset.portalized = 'true';
+              }
+
+              const debugEnabled =
+                window.location.pathname === '/candidates' &&
+                new URLSearchParams(window.location.search).get('debugButtons') === '1';
+
+              const logDebug = (message) => {
+                if (!debugEnabled) return;
+                if (!window.__triberaCandidateDebugLog) return;
+                window.__triberaCandidateDebugLog(message);
+              };
+
+              if (debugEnabled && !window.__triberaCandidateDebugInit) {
+                window.__triberaCandidateDebugInit = true;
+
+                const panel = document.createElement('div');
+                panel.id = 'candidate-debug-panel';
+                panel.style.position = 'fixed';
+                panel.style.left = '12px';
+                panel.style.right = '12px';
+                panel.style.bottom = '12px';
+                panel.style.zIndex = '99999';
+                panel.style.background = 'rgba(0,0,0,0.9)';
+                panel.style.color = '#fff';
+                panel.style.border = '1px solid rgba(255,255,255,0.25)';
+                panel.style.borderRadius = '10px';
+                panel.style.padding = '10px';
+                panel.style.fontFamily = 'ui-monospace, SFMono-Regular, Menlo, monospace';
+                panel.style.fontSize = '11px';
+                panel.style.lineHeight = '1.4';
+                panel.style.maxHeight = '42vh';
+                panel.style.overflow = 'auto';
+
+                const controls = document.createElement('div');
+                controls.style.display = 'flex';
+                controls.style.gap = '8px';
+                controls.style.marginBottom = '8px';
+
+                const clearBtn = document.createElement('button');
+                clearBtn.type = 'button';
+                clearBtn.textContent = 'Clear';
+                clearBtn.style.padding = '2px 8px';
+                clearBtn.style.border = '1px solid rgba(255,255,255,0.3)';
+                clearBtn.style.borderRadius = '6px';
+                clearBtn.style.background = 'transparent';
+                clearBtn.style.color = '#fff';
+
+                const hideBtn = document.createElement('button');
+                hideBtn.type = 'button';
+                hideBtn.textContent = 'Hide';
+                hideBtn.style.padding = '2px 8px';
+                hideBtn.style.border = '1px solid rgba(255,255,255,0.3)';
+                hideBtn.style.borderRadius = '6px';
+                hideBtn.style.background = 'transparent';
+                hideBtn.style.color = '#fff';
+
+                const lines = document.createElement('div');
+                lines.id = 'candidate-debug-lines';
+
+                clearBtn.addEventListener('click', () => {
+                  lines.innerHTML = '';
+                });
+
+                hideBtn.addEventListener('click', () => {
+                  panel.remove();
+                });
+
+                controls.appendChild(clearBtn);
+                controls.appendChild(hideBtn);
+                panel.appendChild(controls);
+                panel.appendChild(lines);
+                document.body.appendChild(panel);
+
+                window.__triberaCandidateDebugLog = (msg) => {
+                  const row = document.createElement('div');
+                  row.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+                  lines.prepend(row);
+                  while (lines.childElementCount > 30) {
+                    lines.removeChild(lines.lastChild);
+                  }
+                };
+
+                document.addEventListener(
+                  'pointerup',
+                  (e) => {
+                    const target = e.target;
+                    if (!(target instanceof Element)) return;
+                    const matched = target.closest('#contactBtn, [data-create-profile]');
+                    const id = target.id ? `#${target.id}` : target.tagName.toLowerCase();
+                    window.__triberaCandidateDebugLog(
+                      `pointerup target=${id} matchedCTA=${matched ? 'yes' : 'no'} bodyLocked=${document.body.classList.contains('overflow-hidden')}`
+                    );
+                  },
+                  true
+                );
+
+                document.addEventListener(
+                  'click',
+                  (e) => {
+                    const target = e.target;
+                    if (!(target instanceof Element)) return;
+                    const matched = target.closest('#contactBtn, [data-create-profile]');
+                    const id = target.id ? `#${target.id}` : target.tagName.toLowerCase();
+                    window.__triberaCandidateDebugLog(
+                      `click target=${id} matchedCTA=${matched ? 'yes' : 'no'} modalHidden=${modal.classList.contains('hidden')}`
+                    );
+                  },
+                  true
+                );
+              }
+
+              const openModal = () => {
+                modal.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+                logDebug('openModal() called');
+              };
+
+              btns.forEach((btn) => {
+                if (btn.dataset.modalOpenBound === 'true') return;
+                btn.dataset.modalOpenBound = 'true';
+                btn.addEventListener('click', openModal);
+              });
+
+              // Touch-device-safe delegated fallback for buttons added/swapped later.
+              if (!window.__triberaCandidateModalDelegatedOpen) {
+                const delegatedOpenHandler = (e) => {
+                  const target = e.target;
+                  if (!(target instanceof Element)) return;
+                  if (!target.closest('#contactBtn, [data-create-profile]')) return;
+                  openModal();
+                };
+
+                document.addEventListener('pointerup', delegatedOpenHandler, true);
+                document.addEventListener('click', delegatedOpenHandler, true);
+                window.__triberaCandidateModalDelegatedOpen = true;
+              }
+
+              if (close && close.dataset.modalCloseBound !== 'true') {
+                close.dataset.modalCloseBound = 'true';
+                close.addEventListener('click', () => {
+                  modal.classList.add('hidden');
+                  document.body.classList.remove('overflow-hidden');
+                  logDebug('close button clicked');
+                });
+              }
+
+              // Close when clicking outside
+              if (modal.dataset.modalOverlayBound !== 'true') {
+                modal.dataset.modalOverlayBound = 'true';
+                modal.addEventListener('click', (e) => {
+                  if (e.target === modal) {
+                    modal.classList.add('hidden');
+                    document.body.classList.remove('overflow-hidden');
+                    logDebug('overlay click closed modal');
+                  }
+                });
+              }
+
+              if (form.dataset.submitBound === 'true') return;
+              form.dataset.submitBound = 'true';
+              logDebug(`initModal bound. CTA buttons found=${btns.length}`);
+              form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                logDebug('form submit started');
+
+                const originalBtnText = submitBtn?.textContent || 'Submit';
+                const formData = new FormData(form);
+
+                errorMsg?.classList.add('hidden');
+                if (submitBtn) {
+                  submitBtn.disabled = true;
+                  submitBtn.textContent = 'Submitting...';
+                }
+
+                try {
+                  const res = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { Accept: 'application/json' },
+                  });
+
+                  const result = await res.json();
+                  if (!res.ok || !result.success) {
+                    throw new Error(result.message || 'Submission failed');
+                  }
+
+                  form.classList.add('hidden');
+                  success?.classList.remove('hidden');
+
+                  setTimeout(() => {
+                    modal.classList.add('hidden');
+                    form.reset();
+                    if (submitBtn) submitBtn.disabled = true;
+                    if (fileName) fileName.textContent = '';
+                    form.classList.remove('hidden');
+                    success?.classList.add('hidden');
+                    document.body.classList.remove('overflow-hidden');
+                    logDebug('success flow completed and modal closed');
+                  }, 3500);
+                } catch (error) {
+                  console.error('Candidate form submit failed:', error);
+                  if (errorMsg) errorMsg.textContent = 'Submission failed. Please try again in a moment.';
+                  errorMsg?.classList.remove('hidden');
+                  logDebug('form submit failed');
+                } finally {
+                  if (submitBtn) {
+                    submitBtn.textContent = originalBtnText;
+                    const modalResumeInput = form.querySelector('#resumeInput');
+                    if (!modalResumeInput?.files?.length) {
+                      submitBtn.disabled = true;
+                    }
+                  }
+                  logDebug('form submit finished');
+                }
+              });
+            }
+
+            document.addEventListener('astro:page-load', initModal);
+            document.addEventListener('DOMContentLoaded', initModal);
+          </script>
+        </div>
       </div>
-
-      <h3 class="text-[22px] font-[700] text-black">
-        Profile Submitted
-      </h3>
-
-      <p class="mt-3 text-[14px] leading-relaxed text-black/60">
-        Thanks for sharing your details. Our team will review and reach out shortly with the next steps.
-      </p>
-
     </div>
-
-  </div>
-</div>
-
-
-
-<script is:inline>
-function initModal() {
-  const modal = document.getElementById("contactModal");
-  const btns = document.querySelectorAll("#contactBtn, [data-create-profile]");
-  const close = document.getElementById("closeModal");
-  const form = document.getElementById("candidateForm");
-  const success = document.getElementById("successMessage");
-  const submitBtn = document.getElementById("submitBtn");
-  const fileName = document.getElementById("fileName");
-  const errorMsg = document.getElementById("candidateErrorMsg");
-
-  if (!form || !modal) return;
-
-  const debugEnabled =
-    window.location.pathname === "/candidates" &&
-    new URLSearchParams(window.location.search).get("debugButtons") === "1";
-
-  const logDebug = (message) => {
-    if (!debugEnabled) return;
-    if (!window.__triberaCandidateDebugLog) return;
-    window.__triberaCandidateDebugLog(message);
-  };
-
-  if (debugEnabled && !window.__triberaCandidateDebugInit) {
-    window.__triberaCandidateDebugInit = true;
-
-    const panel = document.createElement("div");
-    panel.id = "candidate-debug-panel";
-    panel.style.position = "fixed";
-    panel.style.left = "12px";
-    panel.style.right = "12px";
-    panel.style.bottom = "12px";
-    panel.style.zIndex = "99999";
-    panel.style.background = "rgba(0,0,0,0.9)";
-    panel.style.color = "#fff";
-    panel.style.border = "1px solid rgba(255,255,255,0.25)";
-    panel.style.borderRadius = "10px";
-    panel.style.padding = "10px";
-    panel.style.fontFamily = "ui-monospace, SFMono-Regular, Menlo, monospace";
-    panel.style.fontSize = "11px";
-    panel.style.lineHeight = "1.4";
-    panel.style.maxHeight = "42vh";
-    panel.style.overflow = "auto";
-
-    const controls = document.createElement("div");
-    controls.style.display = "flex";
-    controls.style.gap = "8px";
-    controls.style.marginBottom = "8px";
-
-    const clearBtn = document.createElement("button");
-    clearBtn.type = "button";
-    clearBtn.textContent = "Clear";
-    clearBtn.style.padding = "2px 8px";
-    clearBtn.style.border = "1px solid rgba(255,255,255,0.3)";
-    clearBtn.style.borderRadius = "6px";
-    clearBtn.style.background = "transparent";
-    clearBtn.style.color = "#fff";
-
-    const hideBtn = document.createElement("button");
-    hideBtn.type = "button";
-    hideBtn.textContent = "Hide";
-    hideBtn.style.padding = "2px 8px";
-    hideBtn.style.border = "1px solid rgba(255,255,255,0.3)";
-    hideBtn.style.borderRadius = "6px";
-    hideBtn.style.background = "transparent";
-    hideBtn.style.color = "#fff";
-
-    const lines = document.createElement("div");
-    lines.id = "candidate-debug-lines";
-
-    clearBtn.addEventListener("click", () => {
-      lines.innerHTML = "";
-    });
-
-    hideBtn.addEventListener("click", () => {
-      panel.remove();
-    });
-
-    controls.appendChild(clearBtn);
-    controls.appendChild(hideBtn);
-    panel.appendChild(controls);
-    panel.appendChild(lines);
-    document.body.appendChild(panel);
-
-    window.__triberaCandidateDebugLog = (msg) => {
-      const row = document.createElement("div");
-      row.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
-      lines.prepend(row);
-      while (lines.childElementCount > 30) {
-        lines.removeChild(lines.lastChild);
-      }
-    };
-
-    document.addEventListener(
-      "pointerup",
-      (e) => {
-        const target = e.target;
-        if (!(target instanceof Element)) return;
-        const matched = target.closest("#contactBtn, [data-create-profile]");
-        const id = target.id ? `#${target.id}` : target.tagName.toLowerCase();
-        window.__triberaCandidateDebugLog(
-          `pointerup target=${id} matchedCTA=${matched ? "yes" : "no"} bodyLocked=${document.body.classList.contains("overflow-hidden")}`
-        );
-      },
-      true
-    );
-
-    document.addEventListener(
-      "click",
-      (e) => {
-        const target = e.target;
-        if (!(target instanceof Element)) return;
-        const matched = target.closest("#contactBtn, [data-create-profile]");
-        const id = target.id ? `#${target.id}` : target.tagName.toLowerCase();
-        window.__triberaCandidateDebugLog(
-          `click target=${id} matchedCTA=${matched ? "yes" : "no"} modalHidden=${modal.classList.contains("hidden")}`
-        );
-      },
-      true
-    );
-  }
-
-  const openModal = () => {
-    modal.classList.remove("hidden");
-    document.body.classList.add("overflow-hidden");
-    logDebug("openModal() called");
-  };
-
-  btns.forEach(btn => {
-    if (btn.dataset.modalOpenBound === "true") return;
-    btn.dataset.modalOpenBound = "true";
-    btn.addEventListener("click", openModal);
-  });
-
-  // Touch-device-safe delegated fallback for buttons added/swapped later.
-  if (!window.__triberaCandidateModalDelegatedOpen) {
-    const delegatedOpenHandler = (e) => {
-      const target = e.target;
-      if (!(target instanceof Element)) return;
-      if (!target.closest("#contactBtn, [data-create-profile]")) return;
-      openModal();
-    };
-
-    document.addEventListener("pointerup", delegatedOpenHandler, true);
-    document.addEventListener("click", delegatedOpenHandler, true);
-    window.__triberaCandidateModalDelegatedOpen = true;
-  }
-
-  if (close && close.dataset.modalCloseBound !== "true") {
-    close.dataset.modalCloseBound = "true";
-    close.addEventListener("click", () => {
-      modal.classList.add("hidden");
-      document.body.classList.remove("overflow-hidden");
-      logDebug("close button clicked");
-    });
-  }
-
-  // Close when clicking outside
-  if (modal.dataset.modalOverlayBound !== "true") {
-    modal.dataset.modalOverlayBound = "true";
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        modal.classList.add("hidden");
-        document.body.classList.remove("overflow-hidden");
-        logDebug("overlay click closed modal");
-      }
-    });
-  }
-
-  if (form.dataset.submitBound === "true") return;
-  form.dataset.submitBound = "true";
-  logDebug(`initModal bound. CTA buttons found=${btns.length}`);
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    logDebug("form submit started");
-
-    const originalBtnText = submitBtn?.textContent || "Submit";
-    const formData = new FormData(form);
-
-    errorMsg?.classList.add("hidden");
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Submitting...";
-    }
-
-    try {
-      const res = await fetch(form.action, {
-        method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
-      });
-
-      const result = await res.json();
-      if (!res.ok || !result.success) {
-        throw new Error(result.message || "Submission failed");
-      }
-
-      form.classList.add("hidden");
-      success?.classList.remove("hidden");
-
-      setTimeout(() => {
-        modal.classList.add("hidden");
-        form.reset();
-        if (submitBtn) submitBtn.disabled = true;
-        if (fileName) fileName.textContent = "";
-        form.classList.remove("hidden");
-        success?.classList.add("hidden");
-        document.body.classList.remove("overflow-hidden");
-        logDebug("success flow completed and modal closed");
-      }, 3500);
-    } catch (error) {
-      console.error("Candidate form submit failed:", error);
-      if (errorMsg) errorMsg.textContent = "Submission failed. Please try again in a moment.";
-      errorMsg?.classList.remove("hidden");
-      logDebug("form submit failed");
-    } finally {
-      if (submitBtn) {
-        submitBtn.textContent = originalBtnText;
-        const modalResumeInput = form.querySelector("#resumeInput");
-        if (!modalResumeInput?.files?.length) {
-          submitBtn.disabled = true;
-        }
-      }
-      logDebug("form submit finished");
-    }
-  });
-}
-
-document.addEventListener("astro:page-load", initModal);
-document.addEventListener("DOMContentLoaded", initModal);
-</script>
-    </div>
-  </div>
-</div>
 
     <!-- Mobile Navigation -->
     <div
@@ -599,13 +613,22 @@ document.addEventListener("DOMContentLoaded", initModal);
       class="hidden md:hidden absolute left-0 right-0 top-full z-50 border-t border-white/10 bg-black"
     >
       <nav class="px-5 py-5 flex flex-col gap-4 text-[13px] font-semibold">
-        <a href="/" data-astro-reload data-self-nav-target="/" class="text-white/80 hover:text-white transition">For Hiring Teams</a>
-        <a href="/candidates" data-astro-reload data-self-nav-target="/candidates" class="text-white/80 hover:text-white transition">For Candidates</a>
-        {navLinks.map(({ text, href }) => (
-          <a href={href} data-astro-reload class="text-white/80 hover:text-white transition">
-            {text}
-          </a>
-        ))}
+        <a href="/" data-astro-reload data-self-nav-target="/" class="text-white/80 hover:text-white transition"
+          >For Hiring Teams</a
+        >
+        <a
+          href="/candidates"
+          data-astro-reload
+          data-self-nav-target="/candidates"
+          class="text-white/80 hover:text-white transition">For Candidates</a
+        >
+        {
+          navLinks.map(({ text, href }) => (
+            <a href={href} data-astro-reload class="text-white/80 hover:text-white transition">
+              {text}
+            </a>
+          ))
+        }
 
         <div class="h-px bg-white/10 my-1"></div>
 
@@ -625,114 +648,115 @@ document.addEventListener("DOMContentLoaded", initModal);
         </a>
       </nav>
     </div>
-
   </div>
 </header>
 
 <script>
-function initHeaderMenus() {
-  const win = window;
+  function initHeaderMenus() {
+    const win = window;
 
-  const hiringBtn = document.getElementById("hiring-btn");
-  const hiringMenu = document.getElementById("hiring-menu");
+    const hiringBtn = document.getElementById('hiring-btn');
+    const hiringMenu = document.getElementById('hiring-menu');
 
-  const candidateBtn = document.getElementById("candidate-btn");
-  const candidateMenu = document.getElementById("candidate-menu");
-  const mobileBtn = document.getElementById("mobile-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
+    const candidateBtn = document.getElementById('candidate-btn');
+    const candidateMenu = document.getElementById('candidate-menu');
+    const mobileBtn = document.getElementById('mobile-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-  const bindClickOnce = (el, key, handler) => {
-    if (!el) return;
-    if (el.dataset[key] === "true") return;
-    el.dataset[key] = "true";
-    el.addEventListener("click", handler);
-  };
+    const bindClickOnce = (el, key, handler) => {
+      if (!el) return;
+      if (el.dataset[key] === 'true') return;
+      el.dataset[key] = 'true';
+      el.addEventListener('click', handler);
+    };
 
-  bindClickOnce(hiringBtn, "menuBound", (e) => {
-    e.stopPropagation();
-    hiringMenu?.classList.toggle("hidden");
-    candidateMenu?.classList.add("hidden");
-  });
-
-  bindClickOnce(candidateBtn, "menuBound", (e) => {
-    e.stopPropagation();
-    candidateMenu?.classList.toggle("hidden");
-    hiringMenu?.classList.add("hidden");
-  });
-
-  bindClickOnce(mobileBtn, "menuBound", (e) => {
-    e.stopPropagation();
-    mobileMenu?.classList.toggle("hidden");
-  });
-
-  const normalizePath = (path) => {
-    const clean = path.replace(/\/index\.html$/, "").replace(/\/+$/, "");
-    return clean || "/";
-  };
-
-  document.querySelectorAll("[data-self-nav-target]").forEach((link) => {
-    if (!(link instanceof HTMLAnchorElement)) return;
-    const anchor = link;
-    if (anchor.dataset.selfNavBound === "true") return;
-    anchor.dataset.selfNavBound = "true";
-
-    anchor.addEventListener("click", (e) => {
-      const targetPath = normalizePath(anchor.dataset.selfNavTarget || "");
-      const currentPath = normalizePath(window.location.pathname);
-      if (targetPath !== currentPath) return;
-
-      e.preventDefault();
-      hiringMenu?.classList.add("hidden");
-      candidateMenu?.classList.add("hidden");
-      mobileMenu?.classList.add("hidden");
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    bindClickOnce(hiringBtn, 'menuBound', (e) => {
+      e.stopPropagation();
+      hiringMenu?.classList.toggle('hidden');
+      candidateMenu?.classList.add('hidden');
     });
-  });
 
-  document.querySelectorAll("#mobile-menu a").forEach(link => {
-    if (!(link instanceof HTMLAnchorElement)) return;
-    const anchor = link;
-    if (anchor.dataset.menuBound === "true") return;
-    anchor.dataset.menuBound = "true";
-    anchor.addEventListener("click", () => {
-      mobileMenu?.classList.add("hidden");
+    bindClickOnce(candidateBtn, 'menuBound', (e) => {
+      e.stopPropagation();
+      candidateMenu?.classList.toggle('hidden');
+      hiringMenu?.classList.add('hidden');
     });
-  });
 
-  document.querySelectorAll("#hiring-menu a, #candidate-menu a").forEach(link => {
-    if (!(link instanceof HTMLAnchorElement)) return;
-    const anchor = link;
-    if (anchor.dataset.menuBound === "true") return;
-    anchor.dataset.menuBound = "true";
-    anchor.addEventListener("click", () => {
-      hiringMenu?.classList.add("hidden");
-      candidateMenu?.classList.add("hidden");
+    bindClickOnce(mobileBtn, 'menuBound', (e) => {
+      e.stopPropagation();
+      mobileMenu?.classList.toggle('hidden');
     });
-  });
 
-  if (win.__triberaHeaderOutsideClick) {
-    document.removeEventListener("click", win.__triberaHeaderOutsideClick);
-  }
+    const normalizePath = (path) => {
+      const clean = path.replace(/\/index\.html$/, '').replace(/\/+$/, '');
+      return clean || '/';
+    };
 
-  const outsideClickHandler = (e) => {
-    const target = e.target;
-    if (!(target instanceof Node)) return;
-    if (!hiringMenu?.contains(target) &&
+    document.querySelectorAll('[data-self-nav-target]').forEach((link) => {
+      if (!(link instanceof HTMLAnchorElement)) return;
+      const anchor = link;
+      if (anchor.dataset.selfNavBound === 'true') return;
+      anchor.dataset.selfNavBound = 'true';
+
+      anchor.addEventListener('click', (e) => {
+        const targetPath = normalizePath(anchor.dataset.selfNavTarget || '');
+        const currentPath = normalizePath(window.location.pathname);
+        if (targetPath !== currentPath) return;
+
+        e.preventDefault();
+        hiringMenu?.classList.add('hidden');
+        candidateMenu?.classList.add('hidden');
+        mobileMenu?.classList.add('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    document.querySelectorAll('#mobile-menu a').forEach((link) => {
+      if (!(link instanceof HTMLAnchorElement)) return;
+      const anchor = link;
+      if (anchor.dataset.menuBound === 'true') return;
+      anchor.dataset.menuBound = 'true';
+      anchor.addEventListener('click', () => {
+        mobileMenu?.classList.add('hidden');
+      });
+    });
+
+    document.querySelectorAll('#hiring-menu a, #candidate-menu a').forEach((link) => {
+      if (!(link instanceof HTMLAnchorElement)) return;
+      const anchor = link;
+      if (anchor.dataset.menuBound === 'true') return;
+      anchor.dataset.menuBound = 'true';
+      anchor.addEventListener('click', () => {
+        hiringMenu?.classList.add('hidden');
+        candidateMenu?.classList.add('hidden');
+      });
+    });
+
+    if (win.__triberaHeaderOutsideClick) {
+      document.removeEventListener('click', win.__triberaHeaderOutsideClick);
+    }
+
+    const outsideClickHandler = (e) => {
+      const target = e.target;
+      if (!(target instanceof Node)) return;
+      if (
+        !hiringMenu?.contains(target) &&
         !hiringBtn?.contains(target) &&
         !candidateMenu?.contains(target) &&
-        !candidateBtn?.contains(target)) {
-      hiringMenu?.classList.add("hidden");
-      candidateMenu?.classList.add("hidden");
-    }
-    if (!mobileMenu?.contains(target) && !mobileBtn?.contains(target)) {
-      mobileMenu?.classList.add("hidden");
-    }
-  };
+        !candidateBtn?.contains(target)
+      ) {
+        hiringMenu?.classList.add('hidden');
+        candidateMenu?.classList.add('hidden');
+      }
+      if (!mobileMenu?.contains(target) && !mobileBtn?.contains(target)) {
+        mobileMenu?.classList.add('hidden');
+      }
+    };
 
-  document.addEventListener("click", outsideClickHandler);
-  win.__triberaHeaderOutsideClick = outsideClickHandler;
-}
+    document.addEventListener('click', outsideClickHandler);
+    win.__triberaHeaderOutsideClick = outsideClickHandler;
+  }
 
-document.addEventListener("astro:page-load", initHeaderMenus);
-document.addEventListener("DOMContentLoaded", initHeaderMenus);
+  document.addEventListener('astro:page-load', initHeaderMenus);
+  document.addEventListener('DOMContentLoaded', initHeaderMenus);
 </script>

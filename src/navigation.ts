@@ -2,7 +2,7 @@ import { getPermalink, getBlogPermalink } from './utils/permalinks';
 
 export const headerData = {
   links: [
-     {
+    {
       text: 'For Hiring Teams',
       href: '/',
       reload: true,
@@ -56,7 +56,7 @@ export const footerData = {
         { text: 'Careers', href: getPermalink('/careers') },
         { text: 'Blog', href: getPermalink('/blog') },
         { text: 'Contact', href: getPermalink('/contact') },
-        { text: 'Services', href: getPermalink('/services')},
+        { text: 'Services', href: getPermalink('/services') },
       ],
     },
     {

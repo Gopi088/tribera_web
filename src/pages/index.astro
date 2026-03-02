@@ -721,7 +721,7 @@ const contactSalesMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent
 
                [li:hover_&]:scale-125
                [li:hover_&]:shadow-[0_0_12px_rgba(218,0,7,0.35)]"
-                      ></span>
+                      />
 
                       <span
                         class="text-black/50 text-[13px] leading-relaxed hover:translate-x-1
@@ -981,11 +981,15 @@ const contactSalesMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent
           class="customer-marquee-track flex w-max gap-4 sm:gap-6 animate-customer-marquee"
           style="--customer-marquee-duration: 70s"
         >
-          {[0, 1].map((groupIndex) => (
-            <div class="customer-marquee-group flex shrink-0 gap-4 sm:gap-6" aria-hidden={groupIndex === 1 ? 'true' : 'false'}>
-              {customerstories.map((t) => (
-                <div
-                  class="
+          {
+            [0, 1].map((groupIndex) => (
+              <div
+                class="customer-marquee-group flex shrink-0 gap-4 sm:gap-6"
+                aria-hidden={groupIndex === 1 ? 'true' : 'false'}
+              >
+                {customerstories.map((t) => (
+                  <div
+                    class="
       group relative shrink-0
       w-[260px]
       sm:w-[300px]
@@ -1001,17 +1005,17 @@ const contactSalesMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent
       hover:shadow-[0_20px_48px_rgba(225,6,0,0.16)]
       flex flex-col
     "
-                >
-                  <div class="flex gap-1 mb-5 text-[#da0007]">
-                    {Array(5)
-                      .fill(0)
-                      .map((_, idx) => (
-                        <Icon data-index={idx} name="tabler:star-filled" class="w-4 h-4 sm:w-5 sm:h-5" />
-                      ))}
-                  </div>
+                  >
+                    <div class="flex gap-1 mb-5 text-[#da0007]">
+                      {Array(5)
+                        .fill(0)
+                        .map((_, idx) => (
+                          <Icon data-index={idx} name="tabler:star-filled" class="w-4 h-4 sm:w-5 sm:h-5" />
+                        ))}
+                    </div>
 
-                  <p
-                    class="
+                    <p
+                      class="
       text-[13px]
       sm:text-[14px]
       leading-relaxed
@@ -1019,31 +1023,32 @@ const contactSalesMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent
       mb-8
       flex-grow
     "
-                  >
-                    {t.quote}
-                  </p>
+                    >
+                      {t.quote}
+                    </p>
 
-                  <div class="mt-6">
-                    <div class="w-[40px] h-[2px] bg-[#da0007]/60 rounded-full mb-3" />
+                    <div class="mt-6">
+                      <div class="w-[40px] h-[2px] bg-[#da0007]/60 rounded-full mb-3" />
 
-                    <div
-                      class="
+                      <div
+                        class="
           text-[14px] sm:text-[15px]
           font-semibold
           text-black
           group-hover:text-[#da0007]
           transition duration-300
         "
-                    >
-                      {t.name}
-                    </div>
+                      >
+                        {t.name}
+                      </div>
 
-                    <div class="text-[12px] sm:text-[13px] text-black/60">{t.company}</div>
+                      <div class="text-[12px] sm:text-[13px] text-black/60">{t.company}</div>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          ))}
+                ))}
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>
@@ -1140,7 +1145,7 @@ const contactSalesMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent
                            group-hover:animate-none
                            group-hover:scale-[1.3]
                            group-hover:shadow-[0_0_20px_rgba(218,0,7,.9),0_0_10px_rgba(218,0,7,1)]"
-                      ></span>
+                      />
 
                       <span class="relative text-[#da0007] bg-[#da0007]/15 px-4 md:px-10 py-1.5 rounded-md font-bold text-sm">
                         ✓

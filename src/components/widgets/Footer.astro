@@ -1,54 +1,48 @@
 ---
-import { Icon } from "astro-icon/components";
+import { Icon } from 'astro-icon/components';
 
 const { socialLinks = [], secondaryLinks = [] } = Astro.props;
 ---
 
-
 <!-- function getHomePermalink(): string | URL | null | undefined {
 throw new Error("Function not implemented.");
 } -->
-
 <footer class="bg-black text-white">
   <div class="max-w-7xl mx-auto px-6">
-
     <!-- TOP SECTION -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 sm:gap-12 lg:gap-16 py-12 sm:py-14">
-
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 sm:gap-12 lg:gap-16 py-12 sm:py-14"
+    >
       <!-- LEFT BRAND COLUMN -->
       <div class="sm:col-span-2 lg:col-span-1">
-        <div class="text-2xl text-[#da0007] font-semibold">
-          tribera
-        </div>
+        <div class="text-2xl text-[#da0007] font-semibold">tribera</div>
 
         <p class="mt-4 text-[12px] text-white/60 leading-relaxed max-w-md">
-          Remember interviewing 8 candidates to hire 1? That stops here.
-          We screen thousands. Our advisors interview the standouts.
-          You get 3—all vetted, all qualified.
-          Hiring that actually works, finally.
+          Remember interviewing 8 candidates to hire 1? That stops here. We screen thousands. Our advisors interview the
+          standouts. You get 3—all vetted, all qualified. Hiring that actually works, finally.
         </p>
 
         <!-- SOCIAL -->
         <div class="flex gap-5 mt-7 sm:mt-8">
-          {socialLinks.map(({ ariaLabel, href, icon }) => (
-            <a
-              href={href}
-              aria-label={ariaLabel}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-white/60 hover:text-[#da0007] transition"
-            >
-              <Icon name={icon} class="w-5 h-5" />
-            </a>
-          ))}
+          {
+            socialLinks.map(({ ariaLabel, href, icon }) => (
+              <a
+                href={href}
+                aria-label={ariaLabel}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-white/60 hover:text-[#da0007] transition"
+              >
+                <Icon name={icon} class="w-5 h-5" />
+              </a>
+            ))
+          }
         </div>
       </div>
 
       <!-- PRODUCT -->
       <div>
-        <h4 class="text-[14px] uppercase tracking-wider font-[500] text-white mb-5">
-          Product
-        </h4>
+        <h4 class="text-[14px] uppercase tracking-wider font-[500] text-white mb-5">Product</h4>
         <ul class="space-y-3 text-[13px] text-white/60">
           <li><a href="/" class="hover:text-[#da0007] transition">Platform</a></li>
           <!-- <li><a href="services" class="hover:text-[#da0007] transition">Services</a></li> -->
@@ -59,9 +53,7 @@ throw new Error("Function not implemented.");
 
       <!-- COMPANY -->
       <div>
-        <h4 class="text-[14px] uppercase tracking-wider text-white mb-5">
-          Company
-        </h4>
+        <h4 class="text-[14px] uppercase tracking-wider text-white mb-5">Company</h4>
         <ul class="space-y-3 text-[13px] text-white/60">
           <li><a href="/about" class="hover:text-[#da0007] transition">About</a></li>
           <li><a href="/blog" class="hover:text-[#da0007] transition">Blog</a></li>
@@ -72,47 +64,41 @@ throw new Error("Function not implemented.");
 
       <!-- LEGAL -->
       <div>
-        <h4 class="text-[14px] uppercase tracking-wider text-white mb-5">
-          Legal
-        </h4>
+        <h4 class="text-[14px] uppercase tracking-wider text-white mb-5">Legal</h4>
         <ul class="space-y-3 text-[13px] text-white/60">
-        {secondaryLinks.map(({ text, href }) => (
-          <li>
-            <a
-              href={href}
-              class="hover:text-[#da0007] transition"
-            >
-              {text}
-            </a>
-          </li>
-        ))}
+          {
+            secondaryLinks.map(({ text, href }) => (
+              <li>
+                <a href={href} class="hover:text-[#da0007] transition">
+                  {text}
+                </a>
+              </li>
+            ))
+          }
           <!-- <li><a href="#" class="hover:text-[#da0007] transition">Security</a></li>
           <li><a href="#" class="hover:text-[#da0007] transition">Data Protection</a></li> -->
         </ul>
       </div>
-
     </div>
 
     <!-- DIVIDER -->
     <div class="border-t border-white/10"></div>
 
     <!-- BOTTOM BAR -->
-      <div class="py-6 text-sm text-white/40 flex flex-col md:flex-row justify-between gap-4">
+    <div class="py-6 text-sm text-white/40 flex flex-col md:flex-row justify-between gap-4">
       <div>
         © {new Date().getFullYear()} Tribera. All rights reserved.
       </div>
 
       <div class="flex flex-wrap gap-x-4 gap-y-2">
-        {secondaryLinks.map(({ text, href }) => (
-          <a
-            href={href}
-            class="hover:text-[#da0007] transition"
-          >
-            {text}
-          </a>
-        ))}
+        {
+          secondaryLinks.map(({ text, href }) => (
+            <a href={href} class="hover:text-[#da0007] transition">
+              {text}
+            </a>
+          ))
+        }
       </div>
     </div>
-
   </div>
 </footer>

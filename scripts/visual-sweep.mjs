@@ -47,7 +47,10 @@ function routeFromIndex(indexPath) {
 
 function slugifyRoute(route) {
   if (route === '/') return 'home';
-  return route.replace(/^\/+/, '').replace(/\//g, '__').replace(/[^a-zA-Z0-9_-]/g, '_');
+  return route
+    .replace(/^\/+/, '')
+    .replace(/\//g, '__')
+    .replace(/[^a-zA-Z0-9_-]/g, '_');
 }
 
 async function collectRoutes() {

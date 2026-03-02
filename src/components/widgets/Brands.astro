@@ -15,162 +15,139 @@ const { title, subtitle, images = [], mobileSubtitleSingleLine = false, mobileLo
 
 <section class="w-full py-2 overflow-hidden bg-white dark:bg-[#111]">
   <div class="max-w-8xl mx-auto px-6">
-
     <!-- MAIN ROW -->
     <!-- MAIN ROW -->
-<div class="flex flex-col md:flex-row items-center md:items-center gap-8 mb-5 text-center md:text-left">
+    <div class="flex flex-col md:flex-row items-center md:items-center gap-8 mb-5 text-center md:text-left">
+      <!-- LEFT TEXT -->
+      <div class="min-w-[260px]">
+        <h2 class="text-[16px] font-semibold text-gray-500 uppercase tracking-wide">
+          {title}
+        </h2>
 
-  <!-- LEFT TEXT -->
-  <div class="min-w-[260px]">
+        <p
+          class={`text-[14px] text-gray-400 mt-1 ${mobileSubtitleSingleLine ? 'brands-subtitle-mobile-single' : ''}`}
+          set:html={subtitle}
+        />
+      </div>
 
-    <h2 class="text-[16px] font-semibold text-gray-500 uppercase tracking-wide">
-      {title}
-    </h2>
+      <!-- RIGHT CAROUSEL -->
+      <div class="relative w-full overflow-hidden fade-left">
+        <div class="brand-track">
+          <!-- LOOP 1 -->
+          {
+            images.map((image) => (
+              <div class="brand-slide">
+                <Image
+                  src={image.src}
+                  alt={image.alt || ''}
+                  class={`h-10 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition ${mobileLogoClass}`}
+                  width={160}
+                  height={60}
+                />
+              </div>
+            ))
+          }
 
-    <p class={`text-[14px] text-gray-400 mt-1 ${mobileSubtitleSingleLine ? 'brands-subtitle-mobile-single' : ''}`} set:html={subtitle}></p>
-
-  </div>
-
-  <!-- RIGHT CAROUSEL -->
-  <div class="relative w-full overflow-hidden fade-left">
-    <div class="brand-track">
-      
-      <!-- LOOP 1 -->
-      {images.map((image) => (
-        <div class="brand-slide">
-          <Image
-            src={image.src}
-            alt={image.alt || ''}
-            class={`h-10 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition ${mobileLogoClass}`}
-            width={160}
-            height={60}
-          />
+          <!-- LOOP 2 -->
+          {
+            images.map((image) => (
+              <div class="brand-slide">
+                <Image
+                  src={image.src}
+                  alt={image.alt || ''}
+                  class={`h-10 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition ${mobileLogoClass}`}
+                  width={160}
+                  height={60}
+                />
+              </div>
+            ))
+          }
         </div>
-      ))}
-
-      <!-- LOOP 2 -->
-      {images.map((image) => (
-        <div class="brand-slide">
-          <Image
-            src={image.src}
-            alt={image.alt || ''}
-            class={`h-10 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition ${mobileLogoClass}`}
-            width={160}
-            height={60}
-          />
-        </div>
-      ))}
-
+      </div>
     </div>
-  </div>
-
-</div>
-
   </div>
 </section>
 
 <style>
-.brand-track {
-  display: flex;
-  width: max-content;
-  animation: scroll 65s linear infinite;
-}
-
-.brand-slide {
-  flex-shrink: 0;
-  margin-right: 56px;
-  display: flex;
-  align-items: center;
-}
-
-.fade-left {
-  position: relative;
-}
-
-.fade-left::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 120px;   /* controls fade width */
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(
-    to right,
-    white 0%,
-    rgba(255,255,255,0.8) 40%,
-    rgba(255,255,255,0) 100%
-  );
-}
-
-.fade-left::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 120px;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(
-    to left,
-    white 0%,
-    rgba(255,255,255,0.8) 40%,
-    rgba(255,255,255,0) 100%
-  );
-}
-
-.dark .fade-left::before {
-  background: linear-gradient(
-    to right,
-    #111 0%,
-    rgba(17,17,17,0.8) 30%,
-    rgba(17,17,17,0) 100%
-  );
-}
-
-.dark .fade-left::after {
-  background: linear-gradient(
-    to left,
-    #111 0%,
-    rgba(17,17,17,0.8) 30%,
-    rgba(17,17,17,0) 100%
-  );
-}
-
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-@media (max-width: 767px) {
-  .brands-subtitle-mobile-single {
-    white-space: nowrap;
-    font-size: 12px;
-  }
-
-  :global(.brands-subtitle-mobile-single br) {
-    display: none;
+  .brand-track {
+    display: flex;
+    width: max-content;
+    animation: scroll 65s linear infinite;
   }
 
   .brand-slide {
-    margin-right: 28px;
+    flex-shrink: 0;
+    margin-right: 56px;
+    display: flex;
+    align-items: center;
   }
 
-  :global(.brand-slide img) {
-    height: 32px !important;
+  .fade-left {
+    position: relative;
   }
 
-  .fade-left::before,
+  .fade-left::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px; /* controls fade width */
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0) 100%);
+  }
+
   .fade-left::after {
-    width: 24px;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(to left, white 0%, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0) 100%);
   }
-}
 
+  .dark .fade-left::before {
+    background: linear-gradient(to right, #111 0%, rgba(17, 17, 17, 0.8) 30%, rgba(17, 17, 17, 0) 100%);
+  }
+
+  .dark .fade-left::after {
+    background: linear-gradient(to left, #111 0%, rgba(17, 17, 17, 0.8) 30%, rgba(17, 17, 17, 0) 100%);
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .brands-subtitle-mobile-single {
+      white-space: nowrap;
+      font-size: 12px;
+    }
+
+    :global(.brands-subtitle-mobile-single br) {
+      display: none;
+    }
+
+    .brand-slide {
+      margin-right: 28px;
+    }
+
+    :global(.brand-slide img) {
+      height: 32px !important;
+    }
+
+    .fade-left::before,
+    .fade-left::after {
+      width: 24px;
+    }
+  }
 </style>

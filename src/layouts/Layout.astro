@@ -13,7 +13,6 @@ import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
 import StructuredData from '~/components/common/StructuredData.astro';
 
-
 // Comment the line below to disable View Transitions
 import { ClientRouter } from 'astro:transitions';
 
@@ -46,17 +45,14 @@ const isProduction = import.meta.env.PROD;
     <ClientRouter fallback="swap" />
   </head>
 
-
-  
-  <body class="bg-page  overflow-x-hidden ">
+  <body class="bg-page overflow-x-hidden">
     <slot />
     <BasicScripts />
-    
-    
-<!-- GLOBAL FULL-WIDTH SCROLL CTA -->
-<div
-  id="scroll-cta"
-  class="fixed bottom-0 left-0 right-0
+
+    <!-- GLOBAL FULL-WIDTH SCROLL CTA -->
+    <div
+      id="scroll-cta"
+      class="fixed bottom-0 left-0 right-0
          bg-white
          border-t border-black/10
          shadow-[0_-20px_50px_rgba(0,0,0,0.12)]
@@ -64,80 +60,76 @@ const isProduction = import.meta.env.PROD;
          pointer-events-none
          transition-all duration-500 ease-out
          z-[90]"
-  style="padding-bottom: env(safe-area-inset-bottom);"
->
-
-  <div class="max-w-6xl mx-auto
+      style="padding-bottom: env(safe-area-inset-bottom);"
+    >
+      <div
+        class="max-w-6xl mx-auto
               px-5 sm:px-7 lg:px-10
               py-2 sm:py-3.5
               flex flex-col sm:flex-row
               items-center
               justify-between
               gap-2 sm:gap-5 relative
-              pr-12 sm:pr-0">
+              pr-12 sm:pr-0"
+      >
+        <!-- LEFT TEXT -->
+        <div class="text-center md:text-left">
+          {
+            isCandidatesPage ? (
+              <>
+                <div class="font-semibold text-[14px] sm:text-[16px] text-black">Ready to get discovered faster?</div>
+                <div class="mt-0.5 sm:mt-1 text-[12px] sm:text-[14px] text-black/60">
+                  Build your profile once. Get matched with high-intent teams.
+                </div>
+              </>
+            ) : (
+              <>
+                <div class="font-semibold text-[14px] sm:text-[16px] text-black">Ready to transform your hiring?</div>
+                <div class="mt-0.5 sm:mt-1 text-[12px] sm:text-[14px] text-black/60">
+                  Join Fortune 500 teams using Tribera's AI-powered platform
+                </div>
+              </>
+            )
+          }
+        </div>
 
-    <!-- LEFT TEXT -->
-    <div class="text-center md:text-left">
-      {
-        isCandidatesPage ? (
-          <>
-            <div class="font-semibold text-[14px] sm:text-[16px] text-black">Ready to get discovered faster?</div>
-            <div class="mt-0.5 sm:mt-1 text-[12px] sm:text-[14px] text-black/60">
-              Build your profile once. Get matched with high-intent teams.
-            </div>
-          </>
-        ) : (
-          <>
-            <div class="font-semibold text-[14px] sm:text-[16px] text-black">Ready to transform your hiring?</div>
-            <div class="mt-0.5 sm:mt-1 text-[12px] sm:text-[14px] text-black/60">
-              Join Fortune 500 teams using Tribera's AI-powered platform
-            </div>
-          </>
-        )
-      }
-
-    </div>
-
-    
-
-    <!-- RIGHT ACTIONS -->
-    <div class="flex items-center justify-center sm:justify-start gap-3 w-full sm:w-auto">
-
-      {
-        isCandidatesPage ? (
-          <button
-            type="button"
-            data-create-profile
-            class="px-5 py-2
+        <!-- RIGHT ACTIONS -->
+        <div class="flex items-center justify-center sm:justify-start gap-3 w-full sm:w-auto">
+          {
+            isCandidatesPage ? (
+              <button
+                type="button"
+                data-create-profile
+                class="px-5 py-2
                rounded-full
                bg-[#da0007] text-white
                text-[12px] sm:text-[13px] font-semibold
                transition-all duration-300
                hover:-translate-y-0.5
                hover:shadow-[0_12px_40px_rgba(218,0,7,0.4)]"
-          >
-            Create Your Profile →
-          </button>
-        ) : (
-          <button
-            type="button"
-            id="openDemoBtn"
-            class="px-5 sm:px-6 py-2 sm:py-2.5
+              >
+                Create Your Profile →
+              </button>
+            ) : (
+              <button
+                type="button"
+                id="openDemoBtn"
+                class="px-5 sm:px-6 py-2 sm:py-2.5
                rounded-full
                bg-[#da0007] text-white
                text-[12px] sm:text-[13px] font-semibold
                transition-all duration-300
                hover:-translate-y-0.5
                hover:shadow-[0_12px_40px_rgba(218,0,7,0.4)]"
-          >
-            Book a Demo →
-          </button>
-        )
-      }
+              >
+                Book a Demo →
+              </button>
+            )
+          }
 
-      <button
-        id="close-cta"
-        class="absolute top-2 right-3
+          <button
+            id="close-cta"
+            class="absolute top-2 right-3
                sm:static
                w-7 h-7 sm:w-8 sm:h-8
                rounded-full
@@ -146,160 +138,167 @@ const isProduction = import.meta.env.PROD;
                text-[12px] sm:text-[13px] text-black/40
                hover:text-black
                hover:bg-black/5
-               transition">
-        ✕
-      </button>
-
+               transition"
+          >
+            ✕
+          </button>
+        </div>
+      </div>
     </div>
 
-  </div>
-</div>
+    <div
+      id="demoModal"
+      class="fixed inset-0 hidden items-center justify-center
+            bg-black/60 backdrop-blur-sm z-[1200] p-4"
+    >
+      <div class="relative bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl">
+        <button id="closeDemoBtn" class="absolute top-3 right-3 text-black/50 hover:text-black text-xl"> ✕ </button>
 
+        <h3 class="text-[20px] font-[600] text-black mb-4">Book a Platform Demo</h3>
 
-<div id="demoModal" class="fixed inset-0 hidden items-center justify-center
-            bg-black/60 backdrop-blur-sm z-[1200] p-4">
+        <form id="demoForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+          <input type="hidden" name="access_key" value="f3c09cb0-6c94-405e-af37-4f01141d40bd" />
+          <input type="hidden" name="subject" value="New Demo Request - Tribera" />
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
-    <div class="relative bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl">
+          <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            required
+            class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]"
+          />
 
-      <button id="closeDemoBtn"
-              class="absolute top-3 right-3 text-black/50 hover:text-black text-xl">
-        ✕
-      </button>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            required
+            class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]"
+          />
 
-      <h3 class="text-[20px] font-[600] text-black mb-4">
-        Book a Platform Demo
-      </h3>
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Phone Number"
+            class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]"
+          />
 
-      <form id="demoForm"
-            action="https://api.web3forms.com/submit"
-            method="POST"
-            class="space-y-4">
+          <input
+            type="text"
+            name="company"
+            placeholder="Company Name"
+            class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]"
+          />
 
-        <input type="hidden" name="access_key" value="f3c09cb0-6c94-405e-af37-4f01141d40bd" />
-        <input type="hidden" name="subject" value="New Demo Request - Tribera" />
-        <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+          <button
+            id="demoSubmitBtn"
+            type="submit"
+            class="w-full bg-[#DA0007] text-white py-3 rounded-lg
+          text-[14px] font-semibold hover:bg-red-700 transition"
+          >
+            Submit
+          </button>
 
-        <input type="text" name="name" placeholder="Full Name" required
-          class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]" />
+          <div id="successMsg" class="hidden text-center pt-2">
+            <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[#DA0007]/10 flex items-center justify-center">
+              <svg
+                viewBox="0 0 24 24"
+                class="w-7 h-7 text-[#DA0007]"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="M20 7L10 17l-5-5" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </div>
 
-        <input type="email" name="email" placeholder="Email Address" required
-          class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]" />
+            <h4 class="text-[20px] font-[700] text-black">Demo Request Submitted</h4>
 
-        <input type="tel" name="phone" placeholder="Phone Number"
-          class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]" />
-
-        <input type="text" name="company" placeholder="Company Name"
-          class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]" />
-
-        <button id="demoSubmitBtn" type="submit"
-          class="w-full bg-[#DA0007] text-white py-3 rounded-lg
-          text-[14px] font-semibold hover:bg-red-700 transition">
-          Submit
-        </button>
-
-        <div id="successMsg" class="hidden text-center pt-2">
-          <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[#DA0007]/10 flex items-center justify-center">
-            <svg viewBox="0 0 24 24" class="w-7 h-7 text-[#DA0007]" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M20 7L10 17l-5-5" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
+            <p class="mt-2 text-[14px] leading-relaxed text-black/60">
+              Thanks for reaching out. Our team will contact you shortly.
+            </p>
           </div>
 
-          <h4 class="text-[20px] font-[700] text-black">
-            Demo Request Submitted
-          </h4>
-
-          <p class="mt-2 text-[14px] leading-relaxed text-black/60">
-            Thanks for reaching out. Our team will contact you shortly.
+          <p id="demoErrorMsg" class="hidden text-[13px] text-black/60 text-center">
+            Submission failed. Please try again in a moment.
           </p>
-        </div>
-
-        <p id="demoErrorMsg" class="hidden text-[13px] text-black/60 text-center">
-          Submission failed. Please try again in a moment.
-        </p>
-
-      </form>
-
+        </form>
+      </div>
     </div>
-  </div>
 
-  
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
-<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script>
+      function initHowItWorksCTA() {
+        if (window.location.pathname !== '/') return;
 
-<script>
-  function initHowItWorksCTA() {
-    if (window.location.pathname !== "/") return;
+        const section = document.getElementById('how-it-works');
+        const cta = document.getElementById('scroll-cta');
+        const closeBtn = document.getElementById('close-cta');
 
-    const section = document.getElementById("how-it-works");
-    const cta = document.getElementById("scroll-cta");
-    const closeBtn = document.getElementById("close-cta");
+        if (!section || !cta) return;
+        const sectionEl = section as HTMLElement;
+        const ctaEl = cta as HTMLElement;
 
-    if (!section || !cta) return;
-    const sectionEl = section as HTMLElement;
-    const ctaEl = cta as HTMLElement;
+        let closedThisSession = false;
 
-    let closedThisSession = false;
+        function handleScroll() {
+          if (closedThisSession) return;
 
-    function handleScroll() {
-      if (closedThisSession) return;
+          const sectionTop = sectionEl.offsetTop;
+          const scrollPosition = window.scrollY + window.innerHeight * 0.4;
 
-      const sectionTop = sectionEl.offsetTop;
-      const scrollPosition = window.scrollY + window.innerHeight * 0.4;
+          if (scrollPosition >= sectionTop) {
+            ctaEl.classList.remove('translate-y-full', 'opacity-0');
+            ctaEl.classList.add('translate-y-0', 'opacity-100');
+          } else {
+            ctaEl.classList.add('translate-y-full', 'opacity-0');
+            ctaEl.classList.remove('translate-y-0', 'opacity-100');
+          }
+        }
 
-      if (scrollPosition >= sectionTop) {
-        ctaEl.classList.remove("translate-y-full", "opacity-0");
-        ctaEl.classList.add("translate-y-0", "opacity-100");
-      } else {
-        ctaEl.classList.add("translate-y-full", "opacity-0");
-        ctaEl.classList.remove("translate-y-0", "opacity-100");
+        closeBtn?.addEventListener('click', () => {
+          closedThisSession = true;
+
+          ctaEl.classList.add('translate-y-full', 'opacity-0');
+          ctaEl.classList.remove('translate-y-0', 'opacity-100');
+        });
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
       }
-    }
 
-    closeBtn?.addEventListener("click", () => {
-      closedThisSession = true;
+      window.addEventListener('load', initHowItWorksCTA);
+      document.addEventListener('astro:page-load', initHowItWorksCTA);
+    </script>
 
-      ctaEl.classList.add("translate-y-full", "opacity-0");
-      ctaEl.classList.remove("translate-y-0", "opacity-100");
-    });
+    <script is:inline define:vars={{ isProduction }}>
+      (() => {
+        if (!isProduction) return;
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-  }
+        function injectCrisp() {
+          if (window.__CRISP_LOADED__) return;
+          window.__CRISP_LOADED__ = true;
 
-  window.addEventListener("load", initHowItWorksCTA);
-  document.addEventListener("astro:page-load", initHowItWorksCTA);
-</script>
+          window.$crisp = window.$crisp || [];
+          window.CRISP_WEBSITE_ID = '386eb98b-0242-475a-a8ba-84554ec1975b';
 
-<script is:inline define:vars={{ isProduction }}>
-  (() => {
-    if (!isProduction) return;
+          const s = document.createElement('script');
+          s.src = 'https://client.crisp.chat/l.js';
+          s.async = true;
+          document.head.appendChild(s);
+        }
 
-    function injectCrisp() {
-      if (window.__CRISP_LOADED__) return;
-      window.__CRISP_LOADED__ = true;
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+          injectCrisp();
+        } else {
+          document.addEventListener('DOMContentLoaded', injectCrisp, { once: true });
+          window.addEventListener('load', injectCrisp, { once: true });
+        }
 
-      window.$crisp = window.$crisp || [];
-      window.CRISP_WEBSITE_ID = "386eb98b-0242-475a-a8ba-84554ec1975b";
-
-      const s = document.createElement("script");
-      s.src = "https://client.crisp.chat/l.js";
-      s.async = true;
-      document.head.appendChild(s);
-    }
-
-    if (document.readyState === "complete" || document.readyState === "interactive") {
-      injectCrisp();
-    } else {
-      document.addEventListener("DOMContentLoaded", injectCrisp, { once: true });
-      window.addEventListener("load", injectCrisp, { once: true });
-    }
-
-    document.addEventListener("astro:page-load", injectCrisp);
-  })();
-</script>
-
-
-
-
+        document.addEventListener('astro:page-load', injectCrisp);
+      })();
+    </script>
   </body>
 </html>

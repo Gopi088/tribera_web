@@ -201,7 +201,6 @@ const typographyClasses = {
   small: 'text-sm',
 };
 
-
 export interface ItemGrid {
   items?: Array<Item>;
   columns?: number;
