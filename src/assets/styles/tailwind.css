@@ -293,88 +293,10 @@
     box-shadow: none !important;
   }
 
-  [class*='hover:text-']:hover {
-    color: inherit !important;
-  }
-
-  [class*='hover:bg-']:hover {
-    background-color: inherit !important;
-  }
-
-  [class*='hover:border-']:hover {
-    border-color: inherit !important;
-  }
-
-  [class*='hover:underline']:hover {
-    text-decoration: none !important;
-  }
-
   .group:hover [class*='group-hover:-translate'],
   .group:hover [class*='group-hover:translate-'],
   .group:hover [class*='group-hover:scale-'] {
     transform: none !important;
-  }
-
-  .group:hover [class*='group-hover:text-'] {
-    color: inherit !important;
-  }
-
-  .group:hover [class*='group-hover:bg-'] {
-    background-color: inherit !important;
-  }
-
-  .group:hover [class*='group-hover:border-'] {
-    border-color: inherit !important;
-  }
-
-  .group:hover [class*='group-hover:shadow'] {
-    box-shadow: none !important;
-  }
-
-  .peer:hover ~ [class*='peer-hover:'] {
-    transform: none !important;
-    color: inherit !important;
-    background-color: inherit !important;
-    border-color: inherit !important;
-    box-shadow: none !important;
-  }
-
-  /* Keep touch feedback intentional on mobile instead of hover emulation. */
-  button:active,
-  [role='button']:active,
-  a[data-open-demo]:active,
-  [data-create-profile]:active {
-    transform: scale(0.98) !important;
-    filter: brightness(0.96);
-  }
-
-  /* Brand-consistent touch states for elements designed with hover accents. */
-  [class*='hover:border-']:active {
-    border-color: rgba(218, 0, 7, 0.34) !important;
-  }
-
-  [class*='hover:shadow']:active {
-    box-shadow: 0 14px 34px rgba(218, 0, 7, 0.16) !important;
-  }
-
-  [class*='hover:text-']:active {
-    color: #da0007 !important;
-  }
-
-  .group:active [class*='group-hover:text-'] {
-    color: #da0007 !important;
-  }
-
-  .group:active [class*='group-hover:border-'] {
-    border-color: rgba(218, 0, 7, 0.34) !important;
-  }
-
-  .group:active [class*='group-hover:shadow'] {
-    box-shadow: 0 14px 34px rgba(218, 0, 7, 0.16) !important;
-  }
-
-  .group:active [class*='group-hover:bg-'] {
-    background-color: rgba(218, 0, 7, 0.08) !important;
   }
 }
 
