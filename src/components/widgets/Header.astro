@@ -308,8 +308,8 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
 document.addEventListener("astro:page-load", () => {
 
   const uploadBtn = document.getElementById("uploadBtn");
-  const resumeInput = document.getElementById("resumeInput") as HTMLInputElement | null;
-  const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement | null;
+  const resumeInput = document.getElementById("resumeInput");
+  const submitBtn = document.getElementById("submitBtn");
   const fileName = document.getElementById("fileName");
 
   if (!uploadBtn || !resumeInput || !submitBtn || !fileName) return;
@@ -363,9 +363,9 @@ function initModal() {
   const modal = document.getElementById("contactModal");
   const btns = document.querySelectorAll("#contactBtn, [data-create-profile]");
   const close = document.getElementById("closeModal");
-  const form = document.getElementById("candidateForm") as HTMLFormElement | null;
+  const form = document.getElementById("candidateForm");
   const success = document.getElementById("successMessage");
-  const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement | null;
+  const submitBtn = document.getElementById("submitBtn");
   const fileName = document.getElementById("fileName");
   const errorMsg = document.getElementById("candidateErrorMsg");
 
@@ -436,7 +436,7 @@ function initModal() {
     } finally {
       if (submitBtn) {
         submitBtn.textContent = originalBtnText;
-        const modalResumeInput = form.querySelector("#resumeInput") as HTMLInputElement | null;
+        const modalResumeInput = form.querySelector("#resumeInput");
         if (!modalResumeInput?.files?.length) {
           submitBtn.disabled = true;
         }
@@ -490,9 +490,7 @@ document.addEventListener("DOMContentLoaded", initModal);
 
 <script>
 function initHeaderMenus() {
-  const win = window as Window & {
-    __triberaHeaderOutsideClick?: EventListener;
-  };
+  const win = window;
 
   const hiringBtn = document.getElementById("hiring-btn");
   const hiringMenu = document.getElementById("hiring-menu");
@@ -502,11 +500,7 @@ function initHeaderMenus() {
   const mobileBtn = document.getElementById("mobile-btn");
   const mobileMenu = document.getElementById("mobile-menu");
 
-  const bindClickOnce = (
-    el: HTMLElement | null,
-    key: string,
-    handler: (e: Event) => void
-  ) => {
+  const bindClickOnce = (el, key, handler) => {
     if (!el) return;
     if (el.dataset[key] === "true") return;
     el.dataset[key] = "true";
@@ -530,7 +524,7 @@ function initHeaderMenus() {
     mobileMenu?.classList.toggle("hidden");
   });
 
-  const normalizePath = (path: string) => {
+  const normalizePath = (path) => {
     const clean = path.replace(/\/index\.html$/, "").replace(/\/+$/, "");
     return clean || "/";
   };
@@ -579,7 +573,7 @@ function initHeaderMenus() {
     document.removeEventListener("click", win.__triberaHeaderOutsideClick);
   }
 
-  const outsideClickHandler = (e: Event) => {
+  const outsideClickHandler = (e) => {
     const target = e.target;
     if (!(target instanceof Node)) return;
     if (!hiringMenu?.contains(target) &&
