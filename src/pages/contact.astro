@@ -11,14 +11,12 @@ const metadata = {
   <main>
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       <div
-        class="absolute inset-0"
-        style="
-      background:
-        radial-gradient(1400px 700px at -15% 50%, rgba(115, 0, 0, 0.75), transparent 65%),
-        radial-gradient(1400px 700px at 115% 50%, rgba(115, 0, 0, 0.75), transparent 65%),
-        radial-gradient(800px 400px at 50% 50%, #000000 30%, #000000 80%);
-      background-color: #000000;
-    "
+        class="absolute left-[-15%] top-0 h-full w-[60%] bg-[radial-gradient(circle_at_left_center,rgba(218,0,7,0.45),transparent_60%)]"
+      >
+      </div>
+
+      <div
+        class="absolute right-[-15%] top-0 h-full w-[60%] bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.45),transparent_60%)]"
       >
       </div>
 
@@ -28,11 +26,11 @@ const metadata = {
             <span
               class="absolute rounded-full bg-[#da0007]/80"
               style={`
-          width:${i % 3 === 0 ? 3 : i % 2 ? 3 : 2}px;
-          height:${i % 3 === 0 ? 4 : i % 2 ? 3 : 2}px;
-          left:${Math.random() * 90}%;
-          top:${Math.random() * 90}%;
-          animation: float ${6 + Math.random() * 8}s linear infinite;
+          width:${i % 4 === 0 ? 4 : 4}px;
+          height:${i % 4 === 0 ? 4 : 4}px;
+          left:${Math.random() * 80}%;
+          top:${Math.random() * 80}%;
+          animation: float ${7 + Math.random() * 9}s linear infinite;
           box-shadow: 0 0 12px rgba(218,0,7,.6);
         `}
             />
@@ -110,17 +108,17 @@ const metadata = {
             ].map((item, i) => (
               <div
                 data-index={i}
-                class="group relative rounded-xl p-6 
+                class="group relative rounded-xl p-6
                  bg-[#0b0b0b] border border-white/10
                  transition-all duration-500 ease-out
                  hover:border-[#da0007]/40"
               >
                 <div
-                  class="absolute inset-0 -z-10 opacity-0 
+                  class="absolute inset-0 -z-10 opacity-0
                       bg-[#da0007] blur-[80px] rounded-2xl
                       transition-opacity duration-500
                       group-hover:opacity-20"
-                ></div>
+                />
 
                 <h3 class="text-3xl flex justify-center font-semibold text-[#da0007] mb-2">{item.value}</h3>
 
@@ -177,11 +175,11 @@ const metadata = {
                       hover:shadow-xl hover:-translate-y-1"
                 >
                   <div
-                    class="absolute top-0 left-0 h-[2px] w-0 
+                    class="absolute top-0 left-0 h-[2px] w-0
                         bg-[#da0007] rounded-t-2xl
                         transition-all duration-500
                         group-hover:w-full"
-                  ></div>
+                  />
 
                   <h3 class="text-[20px] font-bold text-black mb-2">{item.title}</h3>
 
@@ -202,7 +200,7 @@ const metadata = {
 
                   <div class="flex items-start gap-3">
                     <div
-                      class="w-8 h-8 rounded-full bg-[#da0007]/10 
+                      class="w-8 h-8 rounded-full bg-[#da0007]/10
               flex items-center justify-center"
                     >
                       <svg
@@ -427,7 +425,7 @@ const metadata = {
       </div>
     </section>
 
-    <section class="bg-black text-white py-20">
+    <section class="bg-[#f7f7f7] text-black py-20">
       <div class="max-w-4xl mx-auto px-6">
         <div class="text-center mb-7">
           <p class="text-[#da0007] text-[14px] font-semibold mb-2">Our offices</p>
@@ -452,8 +450,8 @@ const metadata = {
               },
             ].map((office) => (
               <div
-                class={`relative rounded-xl p-5 bg-[#0b0b0b]
-          border border-white/10 overflow-hidden
+                class={`relative rounded-xl p-5 bg-white
+          border border-black/10 overflow-hidden
           transition-all duration-300
           hover:border-[#da0007]/30`}
               >
@@ -461,15 +459,15 @@ const metadata = {
 
                 <h3 class="text-[20px] font-semibold ">{office.city}</h3>
 
-                <p class="text-[11px] font-[500] tracking-[0.1em] text-white/40 ">{office.type}</p>
+                <p class="text-[11px] font-[500] tracking-[0.1em] text-black/40 ">{office.type}</p>
 
-                <div class="space-y-1 text-white/75 text-[15px] leading-relaxed">
+                <div class="space-y-1 text-black/75 text-[15px] leading-relaxed">
                   {office.address.map((line, idx) => (
                     <p data-index={idx}>{line}</p>
                   ))}
                 </div>
 
-                <div class="my-6 h-px bg-white/10" />
+                <div class="my-6 h-px bg-black/10" />
 
                 <p class="text-[13px] font-[500]">
                   <span class="text-[#da0007] font-medium">Email:</span> contact@tribera.ai
@@ -716,8 +714,8 @@ const metadata = {
             ].map((item, i) => (
               <details
                 data-index={i}
-                class="group rounded-2xl border border-white/10 
-                 bg-[#0b0b0b] px-5 py-3 
+                class="group rounded-2xl border border-white/10
+                 bg-[#0b0b0b] px-5 py-3
                  transition-all duration-300
                  hover:border-[#da0007]/40"
               >
@@ -725,8 +723,8 @@ const metadata = {
                   <span class="text-[15px] font-[600]">{item.question}</span>
 
                   <span
-                    class="flex h-7 w-7 items-center justify-center 
-                         rounded-full bg-[#da0007]/10 
+                    class="flex h-7 w-7 items-center justify-center
+                         rounded-full bg-[#da0007]/10
                          transition group-open:rotate-180"
                   >
                     <svg width="12" height="12" fill="none" stroke="#da0007" stroke-width="2">
