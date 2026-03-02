@@ -61,8 +61,9 @@ const isProduction = import.meta.env.PROD;
          border-t border-black/10
          shadow-[0_-20px_50px_rgba(0,0,0,0.12)]
          translate-y-full opacity-0
+         pointer-events-none
          transition-all duration-500 ease-out
-         z-[999]"
+         z-[90]"
   style="padding-bottom: env(safe-area-inset-bottom);"
 >
 
@@ -156,7 +157,7 @@ const isProduction = import.meta.env.PROD;
 
 
 <div id="demoModal" class="fixed inset-0 hidden items-center justify-center
-            bg-black/60 backdrop-blur-sm z-50 p-4">
+            bg-black/60 backdrop-blur-sm z-[1200] p-4">
 
     <div class="relative bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl">
 
@@ -170,17 +171,18 @@ const isProduction = import.meta.env.PROD;
       </h3>
 
       <form id="demoForm"
-            action="https://formsubmit.co/hello@tribera.ai"
+            action="https://api.web3forms.com/submit"
             method="POST"
             class="space-y-4">
 
-        <input type="hidden" name="_subject" value="New Demo Request - Tribera">
-        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="access_key" value="f3c09cb0-6c94-405e-af37-4f01141d40bd" />
+        <input type="hidden" name="subject" value="New Demo Request - Tribera" />
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
-        <input type="text" name="name" placeholder="Full Name"
+        <input type="text" name="name" placeholder="Full Name" required
           class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]" />
 
-        <input type="email" name="email" placeholder="Email Address"
+        <input type="email" name="email" placeholder="Email Address" required
           class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]" />
 
         <input type="tel" name="phone" placeholder="Phone Number"
@@ -189,15 +191,30 @@ const isProduction = import.meta.env.PROD;
         <input type="text" name="company" placeholder="Company Name"
           class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]" />
 
-        <button type="submit"
+        <button id="demoSubmitBtn" type="submit"
           class="w-full bg-[#DA0007] text-white py-3 rounded-lg
           text-[14px] font-semibold hover:bg-red-700 transition">
           Submit
         </button>
 
-        <p id="successMsg"
-           class="hidden text-green-600 text-[14px] text-center">
-           Submitted successfully! We'll contact you soon.
+        <div id="successMsg" class="hidden text-center pt-2">
+          <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[#DA0007]/10 flex items-center justify-center">
+            <svg viewBox="0 0 24 24" class="w-7 h-7 text-[#DA0007]" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M20 7L10 17l-5-5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+
+          <h4 class="text-[20px] font-[700] text-black">
+            Demo Request Submitted
+          </h4>
+
+          <p class="mt-2 text-[14px] leading-relaxed text-black/60">
+            Thanks for reaching out. Our team will contact you shortly.
+          </p>
+        </div>
+
+        <p id="demoErrorMsg" class="hidden text-[13px] text-black/60 text-center">
+          Submission failed. Please try again in a moment.
         </p>
 
       </form>

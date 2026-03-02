@@ -34,7 +34,9 @@ function initCTAAndModal() {
   const cta = document.getElementById("scroll-cta");
   const modal = document.getElementById("demoModal");
   const successMsg = document.getElementById("successMsg");
+  const errorMsg = document.getElementById("demoErrorMsg");
   const form = document.getElementById("demoForm");
+  const submitBtn = document.getElementById("demoSubmitBtn");
 
   if (!cta) return;
 
@@ -42,13 +44,13 @@ function initCTAAndModal() {
   let closed = false;
 
   function showCTA() {
-    cta.classList.remove("translate-y-full", "opacity-0");
-    cta.classList.add("translate-y-0", "opacity-100");
+    cta.classList.remove("translate-y-full", "opacity-0", "pointer-events-none");
+    cta.classList.add("translate-y-0", "opacity-100", "pointer-events-auto");
   }
 
   function hideCTA() {
-    cta.classList.add("translate-y-full", "opacity-0");
-    cta.classList.remove("translate-y-0", "opacity-100");
+    cta.classList.add("translate-y-full", "opacity-0", "pointer-events-none");
+    cta.classList.remove("translate-y-0", "opacity-100", "pointer-events-auto");
   }
 
   // Scroll behavior
@@ -101,22 +103,46 @@ function initCTAAndModal() {
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    successMsg?.classList.add("hidden");
+    errorMsg?.classList.add("hidden");
+
     const formData = new FormData(form);
 
-    await fetch(form.action, {
-      method: "POST",
-      body: formData,
-      headers: { Accept: "application/json" }
-    });
+    const originalBtnText = submitBtn?.textContent;
+    if (submitBtn) {
+      submitBtn.textContent = "Submitting...";
+      submitBtn.setAttribute("disabled", "true");
+    }
 
-    form.reset();
-    successMsg?.classList.remove("hidden");
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
 
-    setTimeout(() => {
-      successMsg?.classList.add("hidden");
-      modal?.classList.add("hidden");
-      modal?.classList.remove("flex");
-    }, 3000);
+      const result = await res.json();
+      if (!res.ok || !result.success) {
+        throw new Error(result.message || "Submission failed");
+      }
+
+      form.reset();
+      successMsg?.classList.remove("hidden");
+
+      setTimeout(() => {
+        successMsg?.classList.add("hidden");
+        modal?.classList.add("hidden");
+        modal?.classList.remove("flex");
+      }, 3000);
+    } catch (error) {
+      console.error("Demo form submit failed:", error);
+      errorMsg?.classList.remove("hidden");
+    } finally {
+      if (submitBtn) {
+        submitBtn.textContent = originalBtnText || "Submit";
+        submitBtn.removeAttribute("disabled");
+      }
+    }
   });
 
 }
@@ -325,6 +351,14 @@ window.addEventListener("load", initCTAAndModal);
 </script>
 
 <script is:inline>
+  function parseDurationToMs(raw) {
+    const value = String(raw || "").trim();
+    if (!value) return 70000;
+    if (value.endsWith("ms")) return Number.parseFloat(value) || 70000;
+    if (value.endsWith("s")) return (Number.parseFloat(value) || 70) * 1000;
+    return Number.parseFloat(value) || 70000;
+  }
+
   function initCustomerMarquee() {
     const marquees = document.querySelectorAll("[data-customer-marquee]");
     if (!marquees.length) return;
@@ -339,27 +373,112 @@ window.addEventListener("load", initCTAAndModal);
 
       const firstGroup = groups[0];
       const secondGroup = groups[1];
+      const mobileQuery = window.matchMedia("(max-width: 640px)");
+      const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-      const setShift = () => {
-        // Use sub-pixel geometry to avoid tiny jump on loop reset.
+      let groupWidth = 0;
+      let pxPerMs = 0;
+      let offset = 0;
+      let lastTs = 0;
+      let rafId = 0;
+      let paused = false;
+      let destroyed = false;
+      let ro = null;
+
+      const durationMs = parseDurationToMs(getComputedStyle(track).getPropertyValue("--customer-marquee-duration"));
+      const pixelRatio = Math.max(1, window.devicePixelRatio || 1);
+
+      // Remove seam-prone CSS infinite loop once JS takes over.
+      track.classList.remove("animate-customer-marquee");
+
+      const shouldAnimate = () => !mobileQuery.matches && !reduceMotionQuery.matches && groupWidth > 0.5;
+
+      const measure = () => {
         const firstRect = firstGroup.getBoundingClientRect();
         const secondRect = secondGroup.getBoundingClientRect();
         const shift = secondRect.left - firstRect.left;
 
         if (shift > 0.5) {
-          track.style.setProperty("--customer-marquee-shift", `${shift.toFixed(3)}px`);
+          groupWidth = shift;
+          pxPerMs = groupWidth / durationMs;
         }
       };
 
-      setShift();
-      window.addEventListener("resize", setShift, { passive: true });
+      const handleResize = () => {
+        measure();
+        if (!shouldAnimate()) {
+          offset = 0;
+          track.style.transform = "translate3d(0,0,0)";
+        }
+        lastTs = 0;
+      };
+
+      const handleMouseEnter = () => {
+        paused = true;
+      };
+
+      const handleMouseLeave = () => {
+        paused = false;
+      };
+
+      const destroy = () => {
+        if (destroyed) return;
+        destroyed = true;
+
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = 0;
+        window.removeEventListener("resize", handleResize);
+        marquee.removeEventListener("mouseenter", handleMouseEnter);
+        marquee.removeEventListener("mouseleave", handleMouseLeave);
+        marquee.removeEventListener("focusin", handleMouseEnter);
+        marquee.removeEventListener("focusout", handleMouseLeave);
+        if (mobileQuery.removeEventListener) mobileQuery.removeEventListener("change", handleResize);
+        if (reduceMotionQuery.removeEventListener) reduceMotionQuery.removeEventListener("change", handleResize);
+        if (ro) ro.disconnect();
+      };
+
+      const tick = (ts) => {
+        if (!document.body.contains(marquee)) {
+          destroy();
+          return;
+        }
+
+        if (!lastTs) lastTs = ts;
+        const dt = ts - lastTs;
+        lastTs = ts;
+
+        if (!paused && shouldAnimate()) {
+          offset += dt * pxPerMs;
+          if (offset >= groupWidth) offset -= groupWidth;
+
+          // Snap to physical pixels to avoid compositor seam jitter at wrap.
+          const snappedOffset = Math.round(offset * pixelRatio) / pixelRatio;
+          track.style.transform = `translate3d(${-snappedOffset}px,0,0)`;
+        }
+
+        rafId = requestAnimationFrame(tick);
+      };
+
+      measure();
+      handleResize();
+      window.addEventListener("resize", handleResize, { passive: true });
+
+      if (mobileQuery.addEventListener) mobileQuery.addEventListener("change", handleResize);
+      if (reduceMotionQuery.addEventListener) reduceMotionQuery.addEventListener("change", handleResize);
+
+      marquee.addEventListener("mouseenter", handleMouseEnter);
+      marquee.addEventListener("mouseleave", handleMouseLeave);
+      marquee.addEventListener("focusin", handleMouseEnter);
+      marquee.addEventListener("focusout", handleMouseLeave);
 
       if ("ResizeObserver" in window) {
-        const ro = new ResizeObserver(setShift);
+        ro = new ResizeObserver(handleResize);
         ro.observe(firstGroup);
         ro.observe(secondGroup);
         ro.observe(track);
       }
+
+      rafId = requestAnimationFrame(tick);
     });
   }
 

@@ -259,6 +259,25 @@
   transform: translateY(0);
 }
 
+/* Touch devices: disable hover-only motion/elevation effects. */
+@media (hover: none), (pointer: coarse) {
+  [class*="hover:-translate"]:hover,
+  [class*="hover:translate-"]:hover,
+  [class*="hover:scale-"]:hover {
+    transform: none !important;
+  }
+
+  [class*="hover:shadow"]:hover {
+    box-shadow: none !important;
+  }
+
+  .group:hover [class*="group-hover:-translate"],
+  .group:hover [class*="group-hover:translate-"],
+  .group:hover [class*="group-hover:scale-"] {
+    transform: none !important;
+  }
+}
+
 
 
 

@@ -665,12 +665,24 @@ Let's talk about your<br class="hidden sm:block" />
       
       <div
         id="form-success"
-        class="hidden mx-auto mb-6 max-w-xl rounded-lg border border-[#da0007]/25 bg-[#da0007]/5 text-[#da0007] text-center px-6 py-4"
+        class="hidden mx-auto mb-6 max-w-xl rounded-lg border border-[#da0007]/25 bg-[#da0007]/5 text-center px-6 py-6"
       >
-        <p class="text-base font-medium">
-          Thank you! We’ll get back to you shortly.
+        <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[#DA0007]/10 flex items-center justify-center">
+          <svg viewBox="0 0 24 24" class="w-7 h-7 text-[#DA0007]" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M20 7L10 17l-5-5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+
+        <h4 class="text-[20px] font-[700] text-black">Message Sent</h4>
+
+        <p class="mt-2 text-[14px] leading-relaxed text-black/60">
+          Thanks for reaching out. Our team will get back to you within 24 hours.
         </p>
       </div>
+
+      <p id="form-error" class="hidden mb-4 text-center text-[13px] text-black/60">
+        Submission failed. Please try again in a moment.
+      </p>
 
       
       <form id="contact-form" class="space-y-3 sm:space-y-4">
@@ -801,11 +813,16 @@ Let's talk about your<br class="hidden sm:block" />
     function attachContactFormHandler() {
       const form = document.getElementById('contact-form');
       const success = document.getElementById('form-success');
+      const error = document.getElementById('form-error');
 
-      if (!form || !success) return;
+      if (!form || !success || !error) return;
+      if (form.dataset.bound === 'true') return;
+      form.dataset.bound = 'true';
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        error.classList.add('hidden');
 
         const formData = new FormData(form);
 
@@ -821,12 +838,18 @@ Let's talk about your<br class="hidden sm:block" />
             form.reset();
             form.classList.add('hidden');
             success.classList.remove('hidden');
+            setTimeout(() => {
+              success.classList.add('hidden');
+              form.classList.remove('hidden');
+            }, 4000);
           } else {
-            alert(result.message || 'Submission failed. Please try again.');
+            error.textContent = result.message || 'Submission failed. Please try again.';
+            error.classList.remove('hidden');
           }
 
         } catch (err) {
-          alert('Network error. Please check your connection.');
+          error.textContent = 'Network error. Please check your connection.';
+          error.classList.remove('hidden');
           console.error('Web3Forms error:', err);
         }
       });
