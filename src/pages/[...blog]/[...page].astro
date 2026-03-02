@@ -1,24 +1,13 @@
 ---
 import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
+import type { Post } from '~/types';
 
 import Layout from '~/layouts/PageLayout.astro';
+import Pagination from '~/components/blog/Pagination.astro';
+import HeroFilters from '~/components/blog/HeroFilters.astro';
+import EntryGrid from '~/components/blog/EntryGrid.astro';
 
 import { blogListRobots, getStaticPathsBlogList } from '~/utils/blog';
-import hiringTransaction from '~/assets/images/blog/hiring-is-not-a-transaction.png';
-import placeholder from '~/assets/images/blog/placeholder.png';
-import signalBased from '~/assets/images/blog/signal-based-hiring.png';
-import technicalHiring from '~/assets/images/blog/technical-hiring.png';
-import jobHunting from '~/assets/images/blog/when-job-hunting-feels-like-a-black-hole.png';
-import slowHiring from '~/assets/images/blog/why-tech-hiring-really-takes-so-long.png';
-
-const blogImages = {
-  'hiring-is-not-a-transaction.png': hiringTransaction,
-  'placeholder.png': placeholder,
-  'signal-based-hiring.png': signalBased,
-  'technical-hiring.png': technicalHiring,
-  'when-job-hunting-feels-like-a-black-hole.png': jobHunting,
-  'why-tech-hiring-really-takes-so-long.png': slowHiring,
-};
 
 export const prerender = true;
 
@@ -30,6 +19,7 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { page } = Astro.props as Props;
 const currentPage = page.currentPage ?? 1;
+const posts = (page.data ?? []) as Array<Post>;
 
 const metadata = {
   title: `Blog - tribera`,
@@ -41,81 +31,6 @@ const metadata = {
     type: 'blog',
   },
 };
-
-const posts = [
-  {
-    date: 'Feb 15, 2026 · Product',
-    title: 'Why interview-to-hire ratios matter more than time-to-hire',
-    desc: [
-      "Most hiring teams optimize for speed. But the 3:1 interview-to-hire ratio is a better signal of quality — both in candidate and process. Here's why we built Tribera around it, and what we learned...",
-      'Because fewer interviews demand sharper clarity on what “great” truly means.',
-      'Because alignment between role, team, and ambition matters more than resume density.',
-      'Because structured evaluation beats instinct every single time.',
-      'And because when the signal is strong early, every downstream decision becomes easier.',
-    ],
-    tags: ['hiring-metrics', 'enterprise-hiring', 'talent-acquisition', 'ai-in-hiring'],
-    image: 'hiring-is-not-a-transaction.png',
-  },
-  {
-    date: 'Feb 12, 2026· Tribera',
-    title: 'How we score technical conversations with AI ',
-    desc: "Our scoring model analyzes 100+ signals from advisor interviews — from architecture thinking to communication clarity. Here's what happens under the hood.",
-    tags: ['Candidate Experience', 'Job Search Tips', 'Hiring Insights'],
-    image: 'placeholder.png',
-  },
-  {
-    date: 'Feb 10, 2026 · Tribera.ai',
-    title: 'Why GitHub tells us more than resumes',
-    desc: "Code quality, consistency, problem-solving patterns — all visible in commits. Here's what we look for when analyzing a candidate's GitHub profile.",
-    tags: ['signal-based-hiring', 'technical-hiring', 'recruitment'],
-    image: 'signal-based-hiring.png',
-  },
-  {
-    date: 'Feb 8, 2026 · Culture ',
-    source: 'Tribera.AI',
-    title: 'Building a platform candidates actually trust',
-    desc: 'Privacy, transparency, and respect. How we designed tribera for employed professionals exploring opportunities without their employer knowing.',
-    tags: ['signal-based-hiring', 'technical-hiring', 'time-to-hire'],
-    image: 'why-tech-hiring-really-takes-so-long.png',
-  },
-  {
-    date: 'Feb 5, 2026  · Data',
-    source: 'Tribera.ai',
-    title: 'What 50,000 interviews taught us about technical hiring',
-    desc: 'Patterns in what makes great technical hires — insights from our first 50,000 advisor interviews and the signals that predict success',
-    tags: ['thought-leadership', 'human-first-hiring', 'empathy'],
-    image: 'when-job-hunting-feels-like-a-black-hole.png',
-  },
-  {
-    date: 'Feb 1, 2026 · Hiring',
-    source: 'Tribera.ai',
-    title: 'Meet our talent advisors',
-    desc: "Senior engineers who've built at scale. Here's who interviews candidates on tribera — and why we chose them over traditional recruiters.",
-    tags: ['thought-leadership', 'human-first-hiring', 'empathy'],
-    image: 'when-job-hunting-feels-like-a-black-hole.png',
-  },
-  //   {
-  //   date: "Jan 28, 2026 · Engineering",
-  //   title: "Anonymous by default: How we protect candidate privacy",
-  //   desc: "Your employer will never know you're on tribera. Here's how we built privacy into every layer of the platform — from profile visibility to company blocking.",
-  //   tags: ["engineering", "signal-hiring", "architecture"],
-  //   image: "placeholder.png",
-  // },
-  // {
-  //   date: "Jan 24, 2026 · Product",
-  //   title: "Building AI that doesn't hallucinate on technical assessments",
-  //   desc: "How we trained our scoring model to evaluate architecture discussions, code quality, and system design without generating false signals.",
-  //   tags: ["product", "advisor-model", "ai"],
-  //   image: "placeholder.png",
-  // },
-  // {
-  //   date: "Dec 30, 2025 · Hiring",
-  //   title: "From Volume to Precision: The Hiring Shift",
-  //   desc: "Modern teams are moving away from mass screening toward precision evaluation.",
-  //   tags: ["precision-hiring", "talent-acquisition"],
-  //   image: "placeholder.png",
-  // },
-];
 ---
 
 <Layout metadata={metadata}>
@@ -170,201 +85,15 @@ const posts = [
         get discovered properly.
       </p>
 
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-        <button class="px-4 py-2 rounded-full bg-[#da0007] text-white text-[13px] font-semibold"> All </button>
-
-        <button class="px-4 py-2 rounded-full border border-white/15 bg-white/5 text-white/70 text-[13px]">
-          Product
-        </button>
-
-        <button class="px-4 py-2 rounded-full border border-white/15 bg-white/5 text-white/70 text-[13px]">
-          Engineering
-        </button>
-
-        <button class="px-4 py-2 rounded-full border border-white/15 bg-white/5 text-white/70 text-[13px]">
-          Hiring
-        </button>
-
-        <button class="px-4 py-2.5 rounded-full border border-white/15 bg-white/5 text-white/70 text-[13px]">
-          Culture
-        </button>
-
-        <button class="px-4 py-2 rounded-full border border-white/15 bg-white/5 text-white/70 text-[13px]">
-          Data
-        </button>
-      </div>
+      <HeroFilters activeType="all" />
     </div>
   </section>
 
   <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-16 mt-16">
-    {/* TOP SECTION */}
-    <div class="grid lg:grid-cols-3 gap-8">
-      {/* FEATURED LARGE CARD */}
-      <article
-        class="lg:col-span-2
-        group
-        overflow-hidden
-        rounded-xl
-        border border-black/5
-        bg-white hover:border-[#da0007]/30
-        transition-all duration-500
-        hover:-translate-y-2
-        hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.15)]"
-      >
-        <div class="grid md:grid-cols-2 h-full">
-          <div class="relative min-h-[280px] md:min-h-full overflow-hidden">
-            <img
-              src={(blogImages[posts[0].image] ?? placeholder).src}
-              alt={posts[0].title}
-              class="w-full h-full object-cover"
-              loading="lazy"
-            />
-
-            <div class="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent"></div>
-          </div>
-
-          {/* Content Side */}
-          <div class="p-8 flex mt-24 flex-col justify-between">
-            <div>
-              <p class="text-[13px] text-black/40 mb-4">
-                {posts[0].date}
-              </p>
-
-              <h2
-                class="text-[26px] md:text-[30px]
-              font-bold leading-tight
-              text-black
-              group-hover:text-[#da0007]
-              transition-colors"
-              >
-                {posts[0].title}
-              </h2>
-
-              <p class="mt-10 text-[14px] text-black/60 leading-relaxed">
-                {posts[0].desc}
-              </p>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      {/* RIGHT STACK */}
-      <div class="flex flex-col gap-8">
-        {
-          posts.slice(1, 3).map((post) => (
-            <article
-              class="
-            group overflow-hidden
-            rounded-xl
-            border border-black/5
-            bg-white hover:border-[#da0007]/30
-            transition-all duration-500
-            hover:-translate-y-2
-            hover:shadow-md
-          "
-            >
-              <div class="h-40 overflow-hidden rounded-t-2xl">
-                <img
-                  src={(blogImages[post.image] ?? placeholder).src}
-                  alt={post.title}
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-
-              <div class="p-6">
-                <p class="text-[12px] text-black/40 mb-3">{post.date}</p>
-
-                <h3
-                  class="
-              text-[17px] font-bold leading-snug
-              group-hover:text-[#da0007]
-              transition-colors
-            "
-                >
-                  {post.title}
-                </h3>
-
-                <p class="mt-3 text-[13px] text-black/60">{post.desc}</p>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-
-    {/* LOWER GRID */}
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-      {
-        posts.slice(3).map((post) => (
-          <article
-            class="
-          group overflow-hidden
-          rounded-xl
-          border border-black/5
-          bg-white hover:border-[#da0007]/30
-          transition-all duration-500
-          hover:-translate-y-2
-          hover:shadow-md
-        "
-          >
-            <div class="relative h-44 overflow-hidden rounded-t-2xl">
-              <img
-                src={(blogImages[post.image] ?? placeholder).src}
-                alt={post.title}
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
-              />
-
-              <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition duration-500" />
-            </div>
-
-            <div class="p-6">
-              <p class="text-[12px] text-black/40 mb-3">{post.date}</p>
-
-              <h3
-                class="
-            text-[17px] font-bold leading-snug
-            group-hover:text-[#da0007]
-            transition-colors
-          "
-              >
-                {post.title}
-              </h3>
-
-              <p class="mt-3 text-[13px] text-black/60">{post.desc}</p>
-            </div>
-          </article>
-        ))
-      }
-    </div>
+    <EntryGrid posts={posts} />
   </div>
 
-  <!-- 
-<section class="mt-8 sm:mt-12 mb-8 sm:mb-12 px-6 p-10 sm:px-8 lg:px-15">
-
-  <h4 class="text-[15px] font-bold text-black mb-4">
-    Search by Tags:
-  </h4>
-
-  <div class="flex flex-wrap gap-3">
-    {tags.map((tag) => (
-      <button
-        type="button"
-        class="
-          px-4 py-2 rounded-md text-[13px] font-bold
-          border border-black/10
-          bg-white text-black/70
-          transition duration-300
-          hover:border-[#da0007]/40
-          hover:text-[#da0007]
-          hover:-translate-y-1
-        "
-      >
-        {tag}
-      </button>
-    ))}
+  <div class="mb-16">
+    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
   </div>
-
-</section> -->
 </Layout>

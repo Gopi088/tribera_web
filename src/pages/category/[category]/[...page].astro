@@ -1,0 +1,62 @@
+---
+import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
+
+import { blogCategoryRobots, getStaticPathsBlogCategory } from '~/utils/blog';
+
+import Layout from '~/layouts/PageLayout.astro';
+import HeroFilters from '~/components/blog/HeroFilters.astro';
+import EntryGrid from '~/components/blog/EntryGrid.astro';
+import Pagination from '~/components/blog/Pagination.astro';
+
+export const prerender = true;
+
+export const getStaticPaths = (async ({ paginate }) => {
+  return await getStaticPathsBlogCategory({ paginate });
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { page, category } = Astro.props as Props;
+
+const currentPage = page.currentPage ?? 1;
+
+const metadata = {
+  title: `Posts in category '${category.title}'${currentPage > 1 ? ` — Page ${currentPage}` : ''}`,
+  robots: {
+    index: blogCategoryRobots?.index,
+    follow: blogCategoryRobots?.follow,
+  },
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="relative overflow-hidden bg-black py-20 sm:py-24">
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-black"></div>
+      <div
+        class="absolute left-[-15%] top-0 h-full w-[60%] bg-[radial-gradient(circle_at_left_center,rgba(218,0,7,0.45),transparent_60%)]"
+      >
+      </div>
+      <div
+        class="absolute right-[-15%] top-0 h-full w-[60%] bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.45),transparent_60%)]"
+      >
+      </div>
+    </div>
+
+    <div class="relative z-10 mx-auto max-w-4xl px-6 text-center">
+      <p class="text-[#da0007] text-[11px] font-semibold tracking-[0.25em] uppercase mb-3">Insights & Updates</p>
+      <h1 class="text-white text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.05]">
+        Category: {category.title}
+      </h1>
+      <p class="mt-6 text-white/60 text-[16px] sm:text-[18px] max-w-2xl mx-auto leading-relaxed">
+        Explore all posts under this category.
+      </p>
+      <HeroFilters activeType="category" activeSlug={category.slug} />
+    </div>
+  </section>
+
+  <section class="px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20 mx-auto max-w-7xl">
+    <EntryGrid posts={page.data} />
+    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+  </section>
+</Layout>
