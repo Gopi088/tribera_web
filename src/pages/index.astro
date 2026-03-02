@@ -231,17 +231,16 @@ const contactSalesMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent
                 desc: 'Joining probability, 12-month retention likelihood',
               },
             ].map((item) => (
-              <div class="group flex gap-4 items-start py-3 hover:translate-x-1 transition duration-300">
+              <div class="candidate-signal-item group flex gap-4 items-start py-3 transition duration-300">
                 <span
-                  class="mt-1 w-5 h-5 rounded-full bg-[#da0007]/20 text-[#da0007]
-                         flex items-center justify-center text-[13px] font-semibold
-                         group-hover:bg-[#da0007]/40"
+                  class="candidate-signal-icon mt-1 w-5 h-5 rounded-full bg-[#da0007]/20 text-[#da0007]
+                         flex items-center justify-center text-[13px] font-semibold"
                 >
                   ✓
                 </span>
 
                 <div>
-                  <h4 class="text-white font-[550] text-[15px] group-hover:text-[#da0007]">{item.title}</h4>
+                  <h4 class="candidate-signal-title text-white font-[550] text-[15px]">{item.title}</h4>
                   <p class="text-white/50 text-[13px] mt-1 max-w-xs">{item.desc}</p>
                 </div>
               </div>
@@ -1328,4 +1327,34 @@ const contactSalesMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent
       </div>
     </div>
   </section>
+
+  <style>
+    @media (hover: hover) and (pointer: fine) {
+      #candidateSection .candidate-signal-item:hover {
+        transform: translateX(0.25rem);
+      }
+
+      #candidateSection .candidate-signal-item:hover .candidate-signal-icon {
+        background: rgba(218, 0, 7, 0.4);
+      }
+
+      #candidateSection .candidate-signal-item:hover .candidate-signal-title {
+        color: #da0007;
+      }
+    }
+
+    @media (hover: none), (pointer: coarse) {
+      #candidateSection .candidate-signal-item {
+        transform: none !important;
+      }
+
+      #candidateSection .candidate-signal-item .candidate-signal-icon {
+        background: rgba(218, 0, 7, 0.22) !important;
+      }
+
+      #candidateSection .candidate-signal-title {
+        color: #da0007;
+      }
+    }
+  </style>
 </Layout>
