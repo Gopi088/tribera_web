@@ -186,6 +186,51 @@
   animation-play-state: paused;
 }
 
+@media (max-width: 640px) {
+  .customer-marquee {
+    left: 0 !important;
+    width: 100% !important;
+    transform: none !important;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding: 0 1rem;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .customer-marquee::-webkit-scrollbar {
+    display: none;
+  }
+
+  .customer-marquee-track {
+    animation: none !important;
+    gap: 0.85rem !important;
+    width: max-content;
+    padding: 0.25rem 0 0.25rem;
+  }
+
+  .customer-marquee-group {
+    gap: 0.85rem !important;
+  }
+
+  .customer-marquee-group[aria-hidden='true'] {
+    display: none;
+  }
+
+  .customer-marquee-track > .group.relative.shrink-0,
+  .customer-marquee-group > .group.relative.shrink-0 {
+    width: min(84vw, 300px) !important;
+    padding: 1rem !important;
+    scroll-snap-align: center;
+  }
+
+  .customer-marquee-group > .group.relative.shrink-0 > .mt-4 {
+    margin-top: 0.75rem !important;
+  }
+}
+
 /* Prevent raw Crisp fallback text */
 #crisp-chat,
 .crisp-client {

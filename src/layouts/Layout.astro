@@ -27,6 +27,7 @@ const { metadata = {} } = Astro.props;
 const { language, textDirection } = I18N;
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const isCandidatesPage = pathname === '/candidates';
+const isProduction = import.meta.env.PROD;
 ---
 
 <!doctype html>
@@ -67,11 +68,12 @@ const isCandidatesPage = pathname === '/candidates';
 
   <div class="max-w-6xl mx-auto
               px-5 sm:px-7 lg:px-10
-              py-2.5 sm:py-3.5
+              py-2 sm:py-3.5
               flex flex-col sm:flex-row
               items-center
               justify-between
-              gap-3 sm:gap-5 relative">
+              gap-2 sm:gap-5 relative
+              pr-12 sm:pr-0">
 
     <!-- LEFT TEXT -->
     <div class="text-center md:text-left">
@@ -98,7 +100,7 @@ const isCandidatesPage = pathname === '/candidates';
     
 
     <!-- RIGHT ACTIONS -->
-    <div class="flex items-center gap-3">
+    <div class="flex items-center justify-center sm:justify-start gap-3 w-full sm:w-auto">
 
       {
         isCandidatesPage ? (
@@ -134,11 +136,13 @@ const isCandidatesPage = pathname === '/candidates';
 
       <button
         id="close-cta"
-        class="w-8 h-8
+        class="absolute top-2 right-3
+               sm:static
+               w-7 h-7 sm:w-8 sm:h-8
                rounded-full
                border border-black/10
                flex items-center justify-center
-               text-[13px] text-black/40
+               text-[12px] sm:text-[13px] text-black/40
                hover:text-black
                hover:bg-black/5
                transition">
@@ -247,6 +251,34 @@ const isCandidatesPage = pathname === '/candidates';
 
   window.addEventListener("load", initHowItWorksCTA);
   document.addEventListener("astro:page-load", initHowItWorksCTA);
+</script>
+
+<script is:inline define:vars={{ isProduction }}>
+  (() => {
+    if (!isProduction) return;
+
+    function injectCrisp() {
+      if (window.__CRISP_LOADED__) return;
+      window.__CRISP_LOADED__ = true;
+
+      window.$crisp = window.$crisp || [];
+      window.CRISP_WEBSITE_ID = "386eb98b-0242-475a-a8ba-84554ec1975b";
+
+      const s = document.createElement("script");
+      s.src = "https://client.crisp.chat/l.js";
+      s.async = true;
+      document.head.appendChild(s);
+    }
+
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+      injectCrisp();
+    } else {
+      document.addEventListener("DOMContentLoaded", injectCrisp, { once: true });
+      window.addEventListener("load", injectCrisp, { once: true });
+    }
+
+    document.addEventListener("astro:page-load", injectCrisp);
+  })();
 </script>
 
 

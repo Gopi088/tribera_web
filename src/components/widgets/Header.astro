@@ -306,8 +306,8 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
 document.addEventListener("astro:page-load", () => {
 
   const uploadBtn = document.getElementById("uploadBtn");
-  const resumeInput = document.getElementById("resumeInput");
-  const submitBtn = document.getElementById("submitBtn");
+  const resumeInput = document.getElementById("resumeInput") as HTMLInputElement | null;
+  const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement | null;
   const fileName = document.getElementById("fileName");
 
   if (!uploadBtn || !resumeInput || !submitBtn || !fileName) return;
@@ -463,7 +463,9 @@ document.addEventListener("DOMContentLoaded", initModal);
 
 <script>
 function initHeaderMenus() {
-  const win = window;
+  const win = window as Window & {
+    __triberaHeaderOutsideClick?: EventListener;
+  };
 
   const hiringBtn = document.getElementById("hiring-btn");
   const hiringMenu = document.getElementById("hiring-menu");
