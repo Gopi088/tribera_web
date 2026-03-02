@@ -494,35 +494,43 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
                 );
               }
 
+              const clearSuccessTimer = () => {
+                if (!window.__triberaCandidateSuccessTimer) return;
+                clearTimeout(window.__triberaCandidateSuccessTimer);
+                window.__triberaCandidateSuccessTimer = null;
+              };
+
               const openModal = () => {
+                clearSuccessTimer();
+                form.classList.remove('hidden');
+                success?.classList.add('hidden');
+                modal.dataset.lastOpenedAt = String(Date.now());
                 modal.classList.remove('hidden');
                 document.body.classList.add('overflow-hidden');
                 logDebug('openModal() called');
               };
 
-              btns.forEach((btn) => {
-                if (btn.dataset.modalOpenBound === 'true') return;
-                btn.dataset.modalOpenBound = 'true';
-                btn.addEventListener('click', openModal);
-              });
+              window.__triberaOpenCandidateModal = openModal;
 
-              // Touch-device-safe delegated fallback for buttons added/swapped later.
-              if (!window.__triberaCandidateModalDelegatedOpen) {
+              // Global delegated opener keeps working across Astro swaps and dynamic buttons.
+              if (!window.__triberaCandidateModalDelegatedBound) {
                 const delegatedOpenHandler = (e) => {
                   const target = e.target;
                   if (!(target instanceof Element)) return;
                   if (!target.closest('#contactBtn, [data-create-profile]')) return;
-                  openModal();
+                  e.preventDefault?.();
+                  e.stopPropagation?.();
+                  window.__triberaOpenCandidateModal?.();
                 };
 
                 document.addEventListener('pointerup', delegatedOpenHandler, true);
-                document.addEventListener('click', delegatedOpenHandler, true);
-                window.__triberaCandidateModalDelegatedOpen = true;
+                window.__triberaCandidateModalDelegatedBound = true;
               }
 
               if (close && close.dataset.modalCloseBound !== 'true') {
                 close.dataset.modalCloseBound = 'true';
                 close.addEventListener('click', () => {
+                  clearSuccessTimer();
                   modal.classList.add('hidden');
                   document.body.classList.remove('overflow-hidden');
                   logDebug('close button clicked');
@@ -534,6 +542,12 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
                 modal.dataset.modalOverlayBound = 'true';
                 modal.addEventListener('click', (e) => {
                   if (e.target === modal) {
+                    const justOpened = Date.now() - Number(modal.dataset.lastOpenedAt || 0) < 500;
+                    if (justOpened) {
+                      logDebug('ignored overlay click right after open');
+                      return;
+                    }
+                    clearSuccessTimer();
                     modal.classList.add('hidden');
                     document.body.classList.remove('overflow-hidden');
                     logDebug('overlay click closed modal');
@@ -572,7 +586,8 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
                   form.classList.add('hidden');
                   success?.classList.remove('hidden');
 
-                  setTimeout(() => {
+                  clearSuccessTimer();
+                  window.__triberaCandidateSuccessTimer = setTimeout(() => {
                     modal.classList.add('hidden');
                     form.reset();
                     if (submitBtn) submitBtn.disabled = true;
