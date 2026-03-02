@@ -371,20 +371,147 @@ function initModal() {
 
   if (!form || !modal) return;
 
+  const debugEnabled =
+    window.location.pathname === "/candidates" &&
+    new URLSearchParams(window.location.search).get("debugButtons") === "1";
+
+  const logDebug = (message) => {
+    if (!debugEnabled) return;
+    if (!window.__triberaCandidateDebugLog) return;
+    window.__triberaCandidateDebugLog(message);
+  };
+
+  if (debugEnabled && !window.__triberaCandidateDebugInit) {
+    window.__triberaCandidateDebugInit = true;
+
+    const panel = document.createElement("div");
+    panel.id = "candidate-debug-panel";
+    panel.style.position = "fixed";
+    panel.style.left = "12px";
+    panel.style.right = "12px";
+    panel.style.bottom = "12px";
+    panel.style.zIndex = "99999";
+    panel.style.background = "rgba(0,0,0,0.9)";
+    panel.style.color = "#fff";
+    panel.style.border = "1px solid rgba(255,255,255,0.25)";
+    panel.style.borderRadius = "10px";
+    panel.style.padding = "10px";
+    panel.style.fontFamily = "ui-monospace, SFMono-Regular, Menlo, monospace";
+    panel.style.fontSize = "11px";
+    panel.style.lineHeight = "1.4";
+    panel.style.maxHeight = "42vh";
+    panel.style.overflow = "auto";
+
+    const controls = document.createElement("div");
+    controls.style.display = "flex";
+    controls.style.gap = "8px";
+    controls.style.marginBottom = "8px";
+
+    const clearBtn = document.createElement("button");
+    clearBtn.type = "button";
+    clearBtn.textContent = "Clear";
+    clearBtn.style.padding = "2px 8px";
+    clearBtn.style.border = "1px solid rgba(255,255,255,0.3)";
+    clearBtn.style.borderRadius = "6px";
+    clearBtn.style.background = "transparent";
+    clearBtn.style.color = "#fff";
+
+    const hideBtn = document.createElement("button");
+    hideBtn.type = "button";
+    hideBtn.textContent = "Hide";
+    hideBtn.style.padding = "2px 8px";
+    hideBtn.style.border = "1px solid rgba(255,255,255,0.3)";
+    hideBtn.style.borderRadius = "6px";
+    hideBtn.style.background = "transparent";
+    hideBtn.style.color = "#fff";
+
+    const lines = document.createElement("div");
+    lines.id = "candidate-debug-lines";
+
+    clearBtn.addEventListener("click", () => {
+      lines.innerHTML = "";
+    });
+
+    hideBtn.addEventListener("click", () => {
+      panel.remove();
+    });
+
+    controls.appendChild(clearBtn);
+    controls.appendChild(hideBtn);
+    panel.appendChild(controls);
+    panel.appendChild(lines);
+    document.body.appendChild(panel);
+
+    window.__triberaCandidateDebugLog = (msg) => {
+      const row = document.createElement("div");
+      row.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+      lines.prepend(row);
+      while (lines.childElementCount > 30) {
+        lines.removeChild(lines.lastChild);
+      }
+    };
+
+    document.addEventListener(
+      "pointerup",
+      (e) => {
+        const target = e.target;
+        if (!(target instanceof Element)) return;
+        const matched = target.closest("#contactBtn, [data-create-profile]");
+        const id = target.id ? `#${target.id}` : target.tagName.toLowerCase();
+        window.__triberaCandidateDebugLog(
+          `pointerup target=${id} matchedCTA=${matched ? "yes" : "no"} bodyLocked=${document.body.classList.contains("overflow-hidden")}`
+        );
+      },
+      true
+    );
+
+    document.addEventListener(
+      "click",
+      (e) => {
+        const target = e.target;
+        if (!(target instanceof Element)) return;
+        const matched = target.closest("#contactBtn, [data-create-profile]");
+        const id = target.id ? `#${target.id}` : target.tagName.toLowerCase();
+        window.__triberaCandidateDebugLog(
+          `click target=${id} matchedCTA=${matched ? "yes" : "no"} modalHidden=${modal.classList.contains("hidden")}`
+        );
+      },
+      true
+    );
+  }
+
+  const openModal = () => {
+    modal.classList.remove("hidden");
+    document.body.classList.add("overflow-hidden");
+    logDebug("openModal() called");
+  };
+
   btns.forEach(btn => {
     if (btn.dataset.modalOpenBound === "true") return;
     btn.dataset.modalOpenBound = "true";
-    btn.addEventListener("click", () => {
-      modal.classList.remove("hidden");
-      document.body.classList.add("overflow-hidden");
-    });
+    btn.addEventListener("click", openModal);
   });
+
+  // Touch-device-safe delegated fallback for buttons added/swapped later.
+  if (!window.__triberaCandidateModalDelegatedOpen) {
+    const delegatedOpenHandler = (e) => {
+      const target = e.target;
+      if (!(target instanceof Element)) return;
+      if (!target.closest("#contactBtn, [data-create-profile]")) return;
+      openModal();
+    };
+
+    document.addEventListener("pointerup", delegatedOpenHandler, true);
+    document.addEventListener("click", delegatedOpenHandler, true);
+    window.__triberaCandidateModalDelegatedOpen = true;
+  }
 
   if (close && close.dataset.modalCloseBound !== "true") {
     close.dataset.modalCloseBound = "true";
     close.addEventListener("click", () => {
       modal.classList.add("hidden");
       document.body.classList.remove("overflow-hidden");
+      logDebug("close button clicked");
     });
   }
 
@@ -395,14 +522,17 @@ function initModal() {
       if (e.target === modal) {
         modal.classList.add("hidden");
         document.body.classList.remove("overflow-hidden");
+        logDebug("overlay click closed modal");
       }
     });
   }
 
   if (form.dataset.submitBound === "true") return;
   form.dataset.submitBound = "true";
+  logDebug(`initModal bound. CTA buttons found=${btns.length}`);
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    logDebug("form submit started");
 
     const originalBtnText = submitBtn?.textContent || "Submit";
     const formData = new FormData(form);
@@ -436,11 +566,13 @@ function initModal() {
         form.classList.remove("hidden");
         success?.classList.add("hidden");
         document.body.classList.remove("overflow-hidden");
+        logDebug("success flow completed and modal closed");
       }, 3500);
     } catch (error) {
       console.error("Candidate form submit failed:", error);
       if (errorMsg) errorMsg.textContent = "Submission failed. Please try again in a moment.";
       errorMsg?.classList.remove("hidden");
+      logDebug("form submit failed");
     } finally {
       if (submitBtn) {
         submitBtn.textContent = originalBtnText;
@@ -449,6 +581,7 @@ function initModal() {
           submitBtn.disabled = true;
         }
       }
+      logDebug("form submit finished");
     }
   });
 }
