@@ -370,29 +370,37 @@ function initModal() {
   const errorMsg = document.getElementById("candidateErrorMsg");
 
   if (!form || !modal) return;
-  if (modal.dataset.modalBound === "true") return;
-  modal.dataset.modalBound = "true";
 
   btns.forEach(btn => {
+    if (btn.dataset.modalOpenBound === "true") return;
+    btn.dataset.modalOpenBound = "true";
     btn.addEventListener("click", () => {
       modal.classList.remove("hidden");
       document.body.classList.add("overflow-hidden");
     });
   });
 
-  close?.addEventListener("click", () => {
-    modal.classList.add("hidden");
-    document.body.classList.remove("overflow-hidden");
-  });
-
-  // ✅ CLOSE WHEN CLICK OUTSIDE
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
+  if (close && close.dataset.modalCloseBound !== "true") {
+    close.dataset.modalCloseBound = "true";
+    close.addEventListener("click", () => {
       modal.classList.add("hidden");
       document.body.classList.remove("overflow-hidden");
-    }
-  });
+    });
+  }
 
+  // Close when clicking outside
+  if (modal.dataset.modalOverlayBound !== "true") {
+    modal.dataset.modalOverlayBound = "true";
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.add("hidden");
+        document.body.classList.remove("overflow-hidden");
+      }
+    });
+  }
+
+  if (form.dataset.submitBound === "true") return;
+  form.dataset.submitBound = "true";
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
