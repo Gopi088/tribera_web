@@ -47,6 +47,23 @@ const customerstories = [
     company: 'Global Capability Center',
   },
 ];
+
+const getStartedSubject = 'Get Started with tribera';
+const getStartedBody = [
+  '',
+  'Hi Tribera Team,',
+  '',
+  "I'd like to get started with tribera.",
+  '',
+  'Company name:',
+  'Hiring focus (roles/teams):',
+  'Hiring volume (monthly/quarterly):',
+  'Current hiring challenge:',
+  'Preferred timeline:',
+  '',
+  'Thanks,',
+].join('\n');
+const contactSalesMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(getStartedSubject)}&body=${encodeURIComponent(getStartedBody)}`;
 ---
 
 <Layout metadata={metadata}>
@@ -1242,7 +1259,7 @@ const customerstories = [
               </div>
 
               <a
-                href="mailto:sales@tribera.ai?subject=Contact Sales - Tribera&body=Hi Tribera Team,"
+                href={contactSalesMailto}
                 class={`mt-7 w-full py-3 rounded-full text-[15px] font-bold text-center transition
   ${
     plan.popular
