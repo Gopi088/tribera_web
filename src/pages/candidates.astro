@@ -96,7 +96,7 @@ const customerstories = [
         FOR CANDIDATES
       </div>
 
-      <h1 class="font-[650] tracking-tight leading-[1.05] text-center">
+      <h1 class="font-[650] leading-[1.05] text-center">
         <span class="block text-white text-[clamp(2.8rem,6vw,5rem)]">
           <span class="block text-white/70"> Interviewed once. </span>
 
@@ -116,10 +116,7 @@ const customerstories = [
           type="button"
           data-create-profile
           class="px-6 py-3 rounded-full
-         bg-[#e10600]
-         text-white font-semibold text-[15px]
-         transition duration-300
-         hover:bg-[#c40000]"
+         tribera-primary-button font-semibold text-[15px]"
         >
           Create Your Profile →
         </button>
@@ -143,7 +140,7 @@ const customerstories = [
     </div>
   </section>
 
-  <section id="candidates-brands" class="w-full px-6 md:px-8 mt-8 gap-10 relative">
+  <section id="candidates-brands" class="w-full px-6 md:px-8 py-8 md:py-10 gap-10 relative">
     <div class="pointer-events-none absolute inset-0 bg-dotted-static opacity-80"></div>
 
     <Brands
@@ -166,7 +163,7 @@ const customerstories = [
     />
   </section>
 
-  <section class="bg-black px-6 sm:px-10 lg:px-14 py-20 sm:py-10">
+  <section class="bg-black px-6 sm:px-10 lg:px-14 py-16 md:py-20">
     <div class="max-w-6xl mx-auto grid gap-10 lg:gap-10 lg:grid-cols-2 items-center">
       <div>
         <span class="text-[11px] tracking-[0.1em] text-[#da0007] font-medium"> SEE YOUR PROFILE </span>
@@ -437,7 +434,7 @@ const customerstories = [
     </div>
   </section>
 
-  <section id="signalSection" style="background:#fff;padding:140px 48px;overflow:hidden">
+  <section id="signalSection" class="bg-white px-6 md:px-12 py-20 md:py-28 overflow-hidden">
     <div id="signalContainer" style="max-width:1100px;margin:0 auto">
       <div id="signalHeader" style="text-align:center;margin-bottom:72px">
         <div
@@ -777,7 +774,7 @@ const customerstories = [
     }
   </style>
 
-  <section class="bg-black text-white py-16 sm:py-20 lg:py-28">
+  <section class="bg-black text-white py-20 md:py-28">
     <div class="text-center mb-10">
       <p class="text-[10px] tracking-[0.3em] text-[#da0007] uppercase mb-3">WHY CANDIDATES CHOOSE TRIBERA</p>
 
@@ -831,7 +828,7 @@ const customerstories = [
               <div
                 class={`
               absolute top-5 left-5 sm:top-6 sm:left-10
-              text-[50px] font-[700] leading-none text-white/90
+              text-[50px] sm:text-[50px] lg:text-[50px] font-[700] leading-none text-[#da0007]
               pointer-events-none select-none
               transition-all duration-500
               group-hover:text-[#da0007]
@@ -849,7 +846,9 @@ const customerstories = [
 
                 <div class="border-t border-white/10 pt-3 mt-6">
                   <p class="text-[12px] font-[400] text-white/70">
-                    <span class="text-[30px] font-[700] text-white">{card.stat}</span>
+                    <span class="text-[30px] font-[700] text-white transition-all duration-500 group-hover:text-[#da0007]">
+                      {card.stat}
+                    </span>
 
                     <span class="ml-1 text-white/70 text-[12px] font-[400]">{card.statText}</span>
                   </p>
@@ -862,7 +861,7 @@ const customerstories = [
     </div>
   </section>
 
-  <section id="why-tribera" class="bg-[#f5f5f5] py-20">
+  <section id="why-tribera" class="bg-[#f5f5f5] py-16 md:py-20">
     <div class="text-center mb-10">
       <p class="text-[10px] tracking-[0.2em] font-[700] text-[#da0007] uppercase mb-3">HOW IT WORKS</p>
 
@@ -1006,8 +1005,8 @@ const customerstories = [
     </div>
   </section>
 
-  <section class="bg-black text-white">
-    <div class="max-w-5xl mx-auto px-8 py-10">
+  <section class="bg-black text-white py-16 md:py-20">
+    <div class="max-w-5xl mx-auto px-8">
       <div class="grid md:grid-cols-4 gap-3 items-start">
         <div>
           <p class="text-[11px] tracking-[0.2em] text-[#da0007] uppercase mb-2">BUILT FOR WORKING PROFESSIONALS</p>
@@ -1043,8 +1042,8 @@ const customerstories = [
     </div>
   </section>
 
-  <section id="screening" class="bg-white">
-    <div class="max-w-3xl mx-auto px-5 py-20">
+  <section id="screening" class="bg-white py-16 md:py-20">
+    <div class="max-w-3xl mx-auto px-5">
       <div class="grid md:grid-cols-3 text-center gap-10">
         {
           [
@@ -1065,7 +1064,7 @@ const customerstories = [
     </div>
   </section>
 
-  <section id="interview" class="bg-[#f3f3f3] py-20">
+  <section id="interview" class="bg-[#f3f3f3] py-16 md:py-20">
     <div class="text-center mb-16 px-6">
       <p class="text-[10px] sm:text-[11px]
     tracking-[0.2em]
@@ -1221,11 +1220,11 @@ const customerstories = [
     }
   </style>
 
-  <section id="customer-stories" class="py-16 sm:py-20 bg-black overflow-hidden">
+  <section id="customer-stories" class="py-16 md:py-20 bg-black overflow-hidden">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
       <div class="mb-10 sm:mb-14 text-center px-4">
         <a
-          href="/customer-stories"
+          href="/candidates#customer-stories"
           class="text-[#da0007]
           text-[12px] sm:text-[14px]
           tracking-[0.2em]
@@ -1329,7 +1328,7 @@ const customerstories = [
     </div>
   </section>
 
-  <section id="get-discovered" class="bg-[#f3f3f3] py-20 sm:py-28">
+  <section id="get-discovered" class="bg-[#f3f3f3] py-20 md:py-28">
     <div class="max-w-[900px] mx-auto text-center px-6">
       <h2
         class="text-[34px] sm:text-[48px] md:text-[64px]
@@ -1359,10 +1358,7 @@ const customerstories = [
           type="button"
           data-create-profile
           class="px-6 py-3 rounded-full w-full sm:w-auto
-         bg-[#e10600]
-         text-white font-semibold text-[15px]
-         transition duration-300
-         hover:bg-[#c40000]"
+         tribera-primary-button font-semibold text-[15px]"
         >
           Create Your Profile →
         </button>

@@ -102,11 +102,9 @@ const isProduction = import.meta.env.PROD;
                 data-create-profile
                 class="px-5 py-2
                rounded-full
-               bg-[#da0007] text-white
+               tribera-primary-button
                text-[12px] sm:text-[13px] font-semibold
-               transition-all duration-300
-               hover:-translate-y-0.5
-               hover:shadow-[0_12px_40px_rgba(218,0,7,0.4)]"
+               "
               >
                 Create Your Profile →
               </button>
@@ -116,11 +114,9 @@ const isProduction = import.meta.env.PROD;
                 id="openDemoBtn"
                 class="px-5 sm:px-6 py-2 sm:py-2.5
                rounded-full
-               bg-[#da0007] text-white
+               tribera-primary-button
                text-[12px] sm:text-[13px] font-semibold
-               transition-all duration-300
-               hover:-translate-y-0.5
-               hover:shadow-[0_12px_40px_rgba(218,0,7,0.4)]"
+               "
               >
                 Book a Demo →
               </button>
@@ -194,8 +190,8 @@ const isProduction = import.meta.env.PROD;
           <button
             id="demoSubmitBtn"
             type="submit"
-            class="w-full bg-[#DA0007] text-white py-3 rounded-lg
-          text-[14px] font-semibold hover:bg-red-700 transition"
+            class="w-full tribera-primary-button py-3 rounded-lg
+          text-[14px] font-semibold"
           >
             Submit
           </button>
@@ -277,27 +273,27 @@ const isProduction = import.meta.env.PROD;
       (() => {
         if (!isProduction) return;
 
-        function injectCrisp() {
-          if (window.__CRISP_LOADED__) return;
-          window.__CRISP_LOADED__ = true;
-
-          window.$crisp = window.$crisp || [];
-          window.CRISP_WEBSITE_ID = '386eb98b-0242-475a-a8ba-84554ec1975b';
+        function injectTeamsBot() {
+          if (window.__TRIBERA_TEAMS_BOT_LOADED__) return;
+          window.__TRIBERA_TEAMS_BOT_LOADED__ = true;
 
           const s = document.createElement('script');
-          s.src = 'https://client.crisp.chat/l.js';
-          s.async = true;
-          document.head.appendChild(s);
+          s.id = 'chatbot';
+          s.src = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
+          s.type = 'text/javascript';
+          s.crossOrigin = 'anonymous';
+          s.setAttribute('environmentId', '75186a18-80c9-e34b-b323-d376419f05d1');
+          document.body.appendChild(s);
         }
 
         if (document.readyState === 'complete' || document.readyState === 'interactive') {
-          injectCrisp();
+          injectTeamsBot();
         } else {
-          document.addEventListener('DOMContentLoaded', injectCrisp, { once: true });
-          window.addEventListener('load', injectCrisp, { once: true });
+          document.addEventListener('DOMContentLoaded', injectTeamsBot, { once: true });
+          window.addEventListener('load', injectTeamsBot, { once: true });
         }
 
-        document.addEventListener('astro:page-load', injectCrisp);
+        document.addEventListener('astro:page-load', injectTeamsBot);
       })();
     </script>
   </body>

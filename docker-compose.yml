@@ -1,6 +1,6 @@
 services:
-  astrowind:
+  tribera-website:
     build: .
-    container_name: astrowind
+    container_name: tribera-website
     ports:
       - 8080:8080

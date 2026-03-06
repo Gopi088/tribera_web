@@ -35,6 +35,8 @@ import '@fontsource-variable/inter';
     --aw-color-bg-page: rgb(255 255 255);
 
     --aw-color-bg-page-dark: rgb(3 6 32);
+    --aw-letter-spacing-heading: -0.02em;
+    --aw-letter-spacing-h1: -0.07em;
 
     ::selection {
       background-color: lavender;
@@ -59,5 +61,29 @@ import '@fontsource-variable/inter';
       background-color: black;
       color: snow;
     }
+  }
+
+  h1 {
+    letter-spacing: var(--aw-letter-spacing-h1);
+  }
+
+  h2,
+  h3 {
+    letter-spacing: var(--aw-letter-spacing-heading);
+  }
+
+  .tribera-primary-button {
+    background-color: #da0007;
+    color: #fff;
+    transition:
+      background-color 300ms ease,
+      box-shadow 300ms ease,
+      transform 300ms ease;
+  }
+
+  .tribera-primary-button:hover {
+    background-color: #c10006;
+    box-shadow: 0 12px 40px rgba(218, 0, 7, 0.4);
+    transform: translateY(-2px);
   }
 </style>

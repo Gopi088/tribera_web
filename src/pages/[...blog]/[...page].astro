@@ -75,7 +75,7 @@ const metadata = {
     <div class="relative z-10 mx-auto max-w-4xl px-6 text-center">
       <p class="text-[#da0007] text-[11px] font-semibold tracking-[0.25em] uppercase mb-3">Insights & Updates</p>
 
-      <h1 class="text-white text-6xl md:text-6xl font-semibold tracking-tight leading-[1.05]">
+      <h1 class="text-white text-6xl md:text-6xl font-semibold leading-[1.05]">
         Building the future<br />
         of technical hiring.
       </h1>
@@ -89,11 +89,13 @@ const metadata = {
     </div>
   </section>
 
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-16 mt-16">
-    <EntryGrid posts={posts} />
-  </div>
+  <section class="py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <EntryGrid posts={posts} />
+    </div>
 
-  <div class="mb-16">
-    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
-  </div>
+    <div class="mt-12">
+      <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+    </div>
+  </section>
 </Layout>
