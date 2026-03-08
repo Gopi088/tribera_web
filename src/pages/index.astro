@@ -202,7 +202,7 @@ const comparisonRows = [
     />
   </section>
 
-  <section id="candidateSection" class="bg-black px-6 sm:px-10 lg:px-20 py-16 md:py-20 overflow-hidden">
+  <section id="platform-overview" class="bg-black px-6 sm:px-10 lg:px-20 py-16 md:py-20 overflow-hidden">
     <div class="max-w-7xl mx-auto grid lg:grid-cols-[1fr_1.3fr] gap-20 items-center">
       <div>
         <h2 class="text-white font-[650] leading-[1]
@@ -286,7 +286,7 @@ const comparisonRows = [
       <div
         class="flex
             justify-start
-            lg:justify-end
+            lg:justify-center
             items-start
             perspective-[1024px]
             mt-12 lg:mt-0"
@@ -294,37 +294,42 @@ const comparisonRows = [
         <div class="group transform-gpu animate-[floatCard_6s_ease-in-out_infinite]">
           <div
             class="transition-transform duration-700 ease-out
-                [transform:rotateX(5deg)_rotateY(-15deg)]
+                [transform:rotateX(4deg)_rotateY(-10deg)]
                 group-hover:[transform:rotateX(0deg)_rotateY(0deg)]"
           >
             <div
-              class="relative rounded-[28px] p-[10px] w-full lg:w-[736px] max-w-none
-                  bg-gradient-to-br from-[#eeeeee] via-[#d9d9d9] to-[#bfbfbf]
-                  shadow-[0_45px_120px_rgba(0,0,0,0.6)]"
+              id="candidateScorecard"
+              class="relative w-full max-w-[678px] overflow-hidden
+                  border-x border-b border-black/6 bg-[#f3f3f3]
+                  shadow-[0_28px_80px_rgba(0,0,0,0.16)]"
             >
-              <div class="relative rounded-[22px] bg-black p-[3px]">
-                <div
-                  class="absolute top-[6px] left-1/2 -translate-x-1/2
-                      w-[88px] h-[6px] bg-black rounded-b-lg z-10"
-                >
-                </div>
+              <div class="absolute inset-x-0 top-0 h-[6px] bg-[#da0007]"></div>
 
-                <div class="rounded-[18px] bg-[#f3f3f3] px-6 sm:px-7 pt-3 pb-3">
-                  <div class="mb-2">
-                    <div class="text-[10px] tracking-wide text-slate-400 uppercase">Candidate Profile</div>
-                    <div class="flex items-start justify-between mt-2">
-                      <div class="text-[40px] leading-none sm:text-[42px] font-semibold text-black">Bharat R</div>
+              <div class="px-7 pb-4 pt-6 sm:px-8 sm:pb-5 sm:pt-7">
+                  <div class="mb-5 flex items-center justify-between">
+                    <div class="text-[11px] font-semibold uppercase tracking-[0.42em] text-black/45">Tribera Score</div>
 
-                      <span
-                        class="inline-flex px-3 py-1 rounded-md text-[10px] font-semibold tracking-[0.16em]
-               bg-[#da0007]/10 text-[#da0007]"
-                      >
-                        STRONG YES
-                      </span>
+                    <div class="flex items-center gap-2">
+                      <span class="h-2 w-2 rounded-full bg-[#9b9b9b]"></span>
+                      <span class="h-2 w-2 rounded-full bg-[#9b9b9b]"></span>
+                      <span class="h-2 w-2 rounded-full bg-[#da0007]"></span>
                     </div>
                   </div>
 
-                  <div class="mb-2 bg-white/70 border border-black/[0.03] p-4 rounded-xl">
+                  <div>
+                    <div class="text-[38px] leading-none tracking-[-0.04em] sm:text-[44px] font-semibold text-black">Bharat R.</div>
+                    <p class="mt-5 text-[15px] text-black/58 sm:text-[16px]">Microservices · 6+ yrs · Bengaluru</p>
+
+                    <span
+                      class="mt-5 inline-flex rounded-full bg-[#da0007] px-7 py-2.5 text-[10px] font-bold uppercase tracking-[0.14em] text-white"
+                    >
+                      Strong Yes
+                    </span>
+                  </div>
+
+                  <div class="mt-6 h-px w-full bg-black/12"></div>
+
+                  <div class="mb-2 bg-white/70 border border-black/[0.03] p-4 rounded-[8px]">
                     <div class="text-[11px] tracking-wide font-medium text-black/35 uppercase mb-2">
                       Overall Verdict
                     </div>
@@ -332,26 +337,26 @@ const comparisonRows = [
                     <div class="text-3xl font-bold text-[#da0007] leading-none">GREEN</div>
 
                     <p class="mt-2 text-[13px] text-black/60 leading-snug">
-                      Excellent technical depth with 6+ years in microservices.
+                      Excellent technical depth with 6+ years in microservices. Available in 2 weeks.
                     </p>
                   </div>
 
-                  <div class="grid grid-cols-2 gap-2.5">
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     {
                       [
                         ['Technical', '3.8/4', '95%'],
-                        ['Culture', '92%', '90%'],
+                        ['Role Fit', '92%', '90%'],
                         ['Join Prob', '87%', '87%'],
                         ['Retention', '89%', '89%'],
                       ].map(([label, value, width]) => (
-                        <div class="rounded-xl bg-white/70 border border-black/[0.03] p-3.5">
+                        <div class="rounded-[8px] bg-white/70 border border-black/[0.03] p-3.5">
                           <div class="text-[11px] font-medium tracking-wide text-black/35 uppercase">{label}</div>
 
                           <div class="text-2xl font-semibold mt-1 text-black leading-none">{value}</div>
 
                           <div class="mt-2 h-[3px] bg-slate-300 rounded-full overflow-hidden">
                             <div
-                              class="h-full bg-[#da0007] w-0 transition-all duration-1000 ease-out metric-bar"
+                              class="h-full bg-[#da0007] w-0 transition-all duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] metric-bar"
                               data-width={width}
                             />
                           </div>
@@ -359,7 +364,6 @@ const comparisonRows = [
                       ))
                     }
                   </div>
-                </div>
               </div>
             </div>
           </div>
@@ -384,15 +388,16 @@ const comparisonRows = [
         </h2>
       </div>
 
-      <div class="grid lg:grid-cols-[2fr_3fr] gap-6 items-start">
+      <div data-proof-grid class="grid lg:grid-cols-[2fr_3fr] gap-6 items-start">
         <div class="sticky top-[110px]">
           <div
+            id="proofSelectionCard"
             class="bg-gradient-to-br from-white to-[#fafafa]
           border border-black/[0.04]
           rounded-[16px]
           px-10 py-10
           text-center
-          shadow-[0_4px_20px_rgba(0,0,0,0.03)]"
+          shadow-[0_4px_20px_rgba(0,0,0,0.03)] will-change-transform"
           >
             <p class="text-[10px] tracking-[0.2em] font-semibold text-black/40 uppercase mb-3">Selection Rate</p>
 
@@ -419,7 +424,7 @@ const comparisonRows = [
         </div>
 
         <div>
-          <div class="grid grid-cols-2 gap-3 mb-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
             {
               [
                 {
@@ -470,6 +475,7 @@ const comparisonRows = [
           </div>
 
           <div
+            id="proofInterviewEfficiencyCard"
             class="bg-white
           border border-black/[0.06]
           rounded-[12px]
@@ -509,9 +515,94 @@ const comparisonRows = [
     </div>
   </section>
 
-  <script></script>
+  <script>
+    const setupProofCardScroll = () => {
+      const grid = document.querySelector('[data-proof-grid]');
+      const selectionCard = document.getElementById('proofSelectionCard');
+      const efficiencyCard = document.getElementById('proofInterviewEfficiencyCard');
+      const scrollCompression = 0.9;
 
-  <section id="how-it-works" class="bg-black py-16 md:py-20">
+      if (!(grid instanceof HTMLElement) || !(selectionCard instanceof HTMLElement) || !(efficiencyCard instanceof HTMLElement)) {
+        return;
+      }
+
+      let ticking = false;
+      let stickyTop = 110;
+      let baseSelectionOffset = 0;
+      let baseEfficiencyOffset = 0;
+
+      const syncProofOffsets = () => {
+        const gridRect = grid.getBoundingClientRect();
+        const selectionRect = selectionCard.getBoundingClientRect();
+        const efficiencyRect = efficiencyCard.getBoundingClientRect();
+
+        baseSelectionOffset = Math.max(0, selectionRect.top - gridRect.top);
+        baseEfficiencyOffset = Math.max(0, efficiencyRect.top - gridRect.top);
+      };
+
+      const updateProofCardPosition = () => {
+        ticking = false;
+
+        if (window.innerWidth < 1024) {
+          selectionCard.style.transform = '';
+          return;
+        }
+
+        const gridRect = grid.getBoundingClientRect();
+        const gridTop = gridRect.top + window.scrollY;
+        const targetOffset = Math.max(0, baseEfficiencyOffset - baseSelectionOffset);
+        const cardTopInDocument = gridTop + baseSelectionOffset;
+        const startScroll = cardTopInDocument + selectionCard.offsetHeight - window.innerHeight;
+        const scrollDistance = Math.max(targetOffset * scrollCompression, 1);
+        const endScroll = startScroll + scrollDistance;
+
+        if (endScroll <= startScroll) {
+          selectionCard.style.transform = '';
+          return;
+        }
+
+        const progress = Math.min(Math.max((window.scrollY - startScroll) / (endScroll - startScroll), 0), 1);
+        const availableSpace = Math.max(0, grid.scrollHeight - baseSelectionOffset - selectionCard.offsetHeight);
+        const maxTranslate = Math.min(targetOffset, availableSpace);
+
+        selectionCard.style.transform = `translate3d(0, ${maxTranslate * progress}px, 0)`;
+      };
+
+      const requestUpdate = () => {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(updateProofCardPosition);
+      };
+
+      const syncStickyTop = () => {
+        const stickyParent = selectionCard.parentElement;
+        if (!(stickyParent instanceof HTMLElement)) return;
+
+        const topValue = window.getComputedStyle(stickyParent).top;
+        const parsed = Number.parseFloat(topValue);
+        stickyTop = Number.isFinite(parsed) ? parsed : 110;
+      };
+
+      syncStickyTop();
+      syncProofOffsets();
+      updateProofCardPosition();
+
+      window.addEventListener('scroll', requestUpdate, { passive: true });
+      window.addEventListener('resize', () => {
+        syncStickyTop();
+        syncProofOffsets();
+        requestUpdate();
+      });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupProofCardScroll, { once: true });
+    } else {
+      setupProofCardScroll();
+    }
+  </script>
+
+  <section id="what-makes-us-different" class="bg-black py-16 md:py-20">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-10">
         <p class="text-[11px] tracking-[0.1em] font-[550] text-[#da0007] uppercase">PLATFORM CAPABILITIES</p>
@@ -748,6 +839,103 @@ const comparisonRows = [
     </div>
   </section>
 
+  <section id="how-it-works" class="bg-black py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-6 text-center mb-8">
+      <p class="text-[10px] tracking-[0.3em] font-[500] text-[#da0007] uppercase">HOW THE PLATFORM WORKS</p>
+
+      <h2 class="mt-6 text-[16px] md:text-3xl lg:text-5xl font-[600] text-white">How it works, start to finish</h2>
+
+      <p class="mt-6 text-[15px] text-white/50 max-w-2xl mx-auto">
+        Three-stage workflow that turns signals into hiring decisions.
+      </p>
+    </div>
+
+    <div
+      class="max-w-7xl mx-auto px-6 sm:px-10 grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr_auto_1fr] gap-3 items-center"
+    >
+      {
+        [
+          {
+            tag: 'AI-LED',
+            num: '1',
+            title: 'Discover & Context',
+            items: [
+              { h: 'JD INTELLIGENCE', t: 'AI extracts skills, seniority, team dynamics' },
+              { h: 'CONTEXT TRANSLATION', t: 'Advisors convert JDs into hiring briefs' },
+              { h: 'MULTI-PLATFORM SEARCH', t: 'AI searches GitHub, Stack Overflow, beyond resumes' },
+            ],
+          },
+          {
+            tag: 'HUMAN-LED',
+            num: '2',
+            title: 'Deep Evaluation',
+            items: [
+              { h: 'TECHNICAL INTERVIEWS', t: 'Advisors ask scenario-based architecture questions' },
+              { h: 'CULTURE ASSESSMENT', t: 'Team fit, communication style, work preferences' },
+              { h: 'SIGNAL SYNTHESIS', t: 'AI scores 100+ patterns—technical, behavioral, predictive' },
+            ],
+          },
+          {
+            tag: 'AI-SUPPORTED',
+            num: '3',
+            title: 'Decision & Delivery',
+            items: [
+              { h: 'RED/GREY/GREEN', t: 'Advisors deliver verdict with detailed reasoning' },
+              { h: 'SUCCESS PREDICTION', t: 'AI predicts joining, retention, performance' },
+              { h: 'ENGAGEMENT OPTIMIZATION', t: 'Platform tracks engagement, automates follow-ups' },
+            ],
+          },
+        ].map((card, i) => (
+          <div class="contents">
+            <div
+              class="group relative bg-gradient-to-b from-[#111] to-[#0c0c0c]
+                    border border-white/10 rounded-[15px] p-6
+                    transition-all duration-500  hover:translate-y-1
+                    hover:border-[#da0007]/30
+                    hover:shadow-[0_0_40px_rgba(225,6,0,0.15)]"
+            >
+              <div
+                class="inline-block bg-[#da0007]/15 text-[#da0007]
+                      text-[11px] font-[700] tracking-[0.1em] px-2 py-1 rounded"
+              >
+                {card.tag}
+              </div>
+
+              <div class="text-[50px] font-[700]  text-[#da0007] mt-2">{card.num}</div>
+
+              <h3 class="text-[17px] font-[550] text-white mt-1">{card.title}</h3>
+
+              <div class="mt-2 space-y-4">
+                {card.items.map((item) => (
+                  <div class="group flex gap-3">
+                    <div class="relative w-[2px] bg-[#da0007]/20 overflow-hidden">
+                      <div class="absolute top-0 left-0 w-full h-0 bg-[#da0007] transition-all duration-700 ease-out group-hover:h-full" />
+                    </div>
+
+                    <div class="hover:translate-x-1 transition duration-500">
+                      <p class="text-[11px] font-[500] text-white/40 uppercase">{item.h}</p>
+
+                      <p class="mt-2 text-[12px] font-[400] text-white/70">{item.t}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {i !== 2 && (
+              <div
+                class="hidden lg:flex justify-center text-[#da0007]/20 text-3xl"
+                style={{ animation: 'arrowFade 2s ease-in-out infinite' }}
+              >
+                →
+              </div>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
   <section class="bg-white py-20">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16 px-4">
@@ -845,215 +1033,6 @@ const comparisonRows = [
       <p class="mt-10 text-center text-[15px] text-black/50 max-w-3xl mx-auto">
         The more you use tribera, the smarter it gets for your hiring. Network effects other platforms don't have.
       </p>
-    </div>
-  </section>
-
-  <section class="bg-black py-12 md:py-16">
-    <div class="max-w-4xl mx-auto px-6 text-center mb-8">
-      <p class="text-[10px] tracking-[0.3em] font-[500] text-[#da0007] uppercase">HOW THE PLATFORM WORKS</p>
-
-      <h2 class="mt-6 text-[16px] md:text-3xl lg:text-5xl font-[600] text-white">How it works, start to finish</h2>
-
-      <p class="mt-6 text-[15px] text-white/50 max-w-2xl mx-auto">
-        Three-stage workflow that turns signals into hiring decisions.
-      </p>
-    </div>
-
-    <div
-      class="max-w-7xl mx-auto px-6 sm:px-10 grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr_auto_1fr] gap-3 items-center"
-    >
-      {
-        [
-          {
-            tag: 'AI-LED',
-            num: '1',
-            title: 'Discover & Context',
-            items: [
-              { h: 'JD INTELLIGENCE', t: 'AI extracts skills, seniority, team dynamics' },
-              { h: 'CONTEXT TRANSLATION', t: 'Advisors convert JDs into hiring briefs' },
-              { h: 'MULTI-PLATFORM SEARCH', t: 'AI searches GitHub, Stack Overflow, beyond resumes' },
-            ],
-          },
-          {
-            tag: 'HUMAN-LED',
-            num: '2',
-            title: 'Deep Evaluation',
-            items: [
-              { h: 'TECHNICAL INTERVIEWS', t: 'Advisors ask scenario-based architecture questions' },
-              { h: 'CULTURE ASSESSMENT', t: 'Team fit, communication style, work preferences' },
-              { h: 'SIGNAL SYNTHESIS', t: 'AI scores 100+ patterns—technical, behavioral, predictive' },
-            ],
-          },
-          {
-            tag: 'AI-SUPPORTED',
-            num: '3',
-            title: 'Decision & Delivery',
-            items: [
-              { h: 'RED/GREY/GREEN', t: 'Advisors deliver verdict with detailed reasoning' },
-              { h: 'SUCCESS PREDICTION', t: 'AI predicts joining, retention, performance' },
-              { h: 'ENGAGEMENT OPTIMIZATION', t: 'Platform tracks engagement, automates follow-ups' },
-            ],
-          },
-        ].map((card, i) => (
-          <div class="contents">
-            <div
-              class="group relative bg-gradient-to-b from-[#111] to-[#0c0c0c]
-                    border border-white/10 rounded-[15px] p-6
-                    transition-all duration-500  hover:translate-y-1
-                    hover:border-[#da0007]/30
-                    hover:shadow-[0_0_40px_rgba(225,6,0,0.15)]"
-            >
-              <div
-                class="inline-block bg-[#da0007]/15 text-[#da0007]
-                      text-[11px] font-[700] tracking-[0.1em] px-2 py-1 rounded"
-              >
-                {card.tag}
-              </div>
-
-              <div class="text-[50px] font-[700]  text-[#da0007] mt-2">{card.num}</div>
-
-              <h3 class="text-[17px] font-[550] text-white mt-1">{card.title}</h3>
-
-              <div class="mt-2 space-y-4">
-                {card.items.map((item) => (
-                  <div class="group flex gap-3">
-                    <div class="relative w-[2px] bg-[#da0007]/20 overflow-hidden">
-                      <div class="absolute top-0 left-0 w-full h-0 bg-[#da0007] transition-all duration-700 ease-out group-hover:h-full" />
-                    </div>
-
-                    <div class="hover:translate-x-1 transition duration-500">
-                      <p class="text-[11px] font-[500] text-white/40 uppercase">{item.h}</p>
-
-                      <p class="mt-2 text-[12px] font-[400] text-white/70">{item.t}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {i !== 2 && (
-              <div
-                class="hidden lg:flex justify-center text-[#da0007]/20 text-3xl"
-                style={{ animation: 'arrowFade 2s ease-in-out infinite' }}
-              >
-                →
-              </div>
-            )}
-          </div>
-        ))
-      }
-    </div>
-  </section>
-
-  <section id="customer-stories" class="py-16 md:py-20 bg-white overflow-hidden">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
-      <div class="mb-10 sm:mb-14 text-center px-4">
-        <a
-          href="/#customer-stories"
-          class="text-[#da0007]
-               text-[12px] sm:text-[14px]
-               tracking-[0.2em]
-               uppercase
-               transition duration-500 ease-out
-               hover:-translate-y-1"
-        >
-          Customer Stories
-        </a>
-
-        <h2
-          class="mt-4
-          font-semibold
-          text-black
-          leading-tight
-          transition duration-500 ease-out
-          hover:-translate-y-1
-          text-[26px]
-          sm:text-[34px]
-          md:text-[42px]
-          lg:text-[48px]"
-        >
-          What TA teams say
-        </h2>
-      </div>
-
-      <div
-        class="customer-marquee relative left-1/2 w-[100dvw] -translate-x-1/2 overflow-hidden pt-3 -mt-3"
-        data-customer-marquee
-      >
-        <div
-          class="customer-marquee-track flex w-max gap-4 sm:gap-6 animate-customer-marquee"
-          style="--customer-marquee-duration: 70s"
-        >
-          {
-            [0, 1].map((groupIndex) => (
-              <div
-                class="customer-marquee-group flex shrink-0 gap-4 sm:gap-6"
-                aria-hidden={groupIndex === 1 ? 'true' : 'false'}
-              >
-                {customerstories.map((t) => (
-                  <div
-                    class="
-      group relative shrink-0
-      w-[260px]
-      sm:w-[300px]
-      md:w-[340px]
-      rounded-xl
-      p-5 sm:p-6
-      border border-slate-200
-      bg-gradient-to-b from-white to-[#f8f8f8]
-      shadow-[0_12px_28px_rgba(0,0,0,0.07)]
-      transition-all duration-500 ease-out
-      hover:border-[#da0007]/40
-      hover:-translate-y-2
-      hover:shadow-[0_20px_48px_rgba(225,6,0,0.16)]
-      flex flex-col
-    "
-                  >
-                    <div class="flex gap-1 mb-5 text-[#da0007]">
-                      {Array(5)
-                        .fill(0)
-                        .map((_, idx) => (
-                          <Icon data-index={idx} name="tabler:star-filled" class="w-4 h-4 sm:w-5 sm:h-5" />
-                        ))}
-                    </div>
-
-                    <p
-                      class="
-      text-[13px]
-      sm:text-[14px]
-      leading-relaxed
-      text-black/70
-      mb-8
-      flex-grow
-    "
-                    >
-                      {t.quote}
-                    </p>
-
-                    <div class="mt-6">
-                      <div class="w-[40px] h-[2px] bg-[#da0007]/60 rounded-full mb-3" />
-
-                      <div
-                        class="
-          text-[14px] sm:text-[15px]
-          font-semibold
-          text-black
-          group-hover:text-[#da0007]
-          transition duration-300
-        "
-                      >
-                        {t.name}
-                      </div>
-
-                      <div class="text-[12px] sm:text-[13px] text-black/60">{t.company}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ))
-          }
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1219,111 +1198,113 @@ const comparisonRows = [
     </div>
   </section>
 
-  <section class="bg-white px-6 sm:px-10 lg:px-20 py-16 md:py-20">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <p class="text-[11px] tracking-[0.25em] text-[#da0007] uppercase mb-3">THE DIFFERENCE</p>
+  <section id="customer-stories" class="py-16 md:py-20 bg-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+      <div class="mb-10 sm:mb-14 text-center px-4">
+        <a
+          href="/#customer-stories"
+          class="text-[#da0007]
+               text-[12px] sm:text-[14px]
+               tracking-[0.2em]
+               uppercase
+               transition duration-500 ease-out
+               hover:-translate-y-1"
+        >
+          Customer Stories
+        </a>
 
-        <h2 class="text-[48px] font-semibold text-black">Old Way vs tribera Way</h2>
-
-        <p class="text-[16px] text-gray-500 mt-3">From fragmented hiring effort to one clear decision flow.</p>
+        <h2
+          class="mt-4
+          font-semibold
+          text-black
+          leading-tight
+          transition duration-500 ease-out
+          hover:-translate-y-1
+          text-[26px]
+          sm:text-[34px]
+          md:text-[42px]
+          lg:text-[48px]"
+        >
+          What TA teams say
+        </h2>
       </div>
 
-      <div class="rounded-[28px] border border-black/8 bg-gradient-to-br from-white via-[#fbfbfb] to-[#f4f4f4] p-4 sm:p-5 shadow-[0_24px_70px_-40px_rgba(0,0,0,0.18)]">
-        <div class="hidden border-b border-black/8 px-4 py-3 sm:px-5 md:grid md:grid-cols-[180px_1fr_1fr] md:gap-5">
-          <div></div>
-          <div>
-            <p class="text-[11px] tracking-[0.22em] text-black/35 uppercase font-semibold">Old Way</p>
-            <p class="mt-2 text-[15px] font-semibold text-black">manual, fragmented, slow</p>
-          </div>
-          <div>
-            <p class="text-[11px] tracking-[0.22em] text-[#da0007] uppercase font-semibold">tribera Way</p>
-            <p class="mt-2 text-[15px] font-semibold text-black">signal-led, structured, explainable</p>
-          </div>
-        </div>
+      <div
+        class="customer-marquee relative left-1/2 w-[100dvw] -translate-x-1/2 overflow-hidden pt-3 -mt-3"
+        data-customer-marquee
+      >
+        <div
+          class="customer-marquee-track flex w-max gap-4 sm:gap-6 animate-customer-marquee"
+          style="--customer-marquee-duration: 70s"
+        >
+          {
+            [0, 1].map((groupIndex) => (
+              <div
+                class="customer-marquee-group flex shrink-0 gap-4 sm:gap-6"
+                aria-hidden={groupIndex === 1 ? 'true' : 'false'}
+              >
+                {customerstories.map((t) => (
+                  <div
+                    class="
+      group relative shrink-0
+      w-[260px]
+      sm:w-[300px]
+      md:w-[340px]
+      rounded-xl
+      p-5 sm:p-6
+      border border-slate-200
+      bg-gradient-to-b from-white to-[#f8f8f8]
+      shadow-[0_12px_28px_rgba(0,0,0,0.07)]
+      transition-all duration-500 ease-out
+      hover:border-[#da0007]/40
+      hover:-translate-y-2
+      hover:shadow-[0_20px_48px_rgba(225,6,0,0.16)]
+      flex flex-col
+    "
+                  >
+                    <div class="flex gap-1 mb-5 text-[#da0007]">
+                      {Array(5)
+                        .fill(0)
+                        .map((_, idx) => (
+                          <Icon data-index={idx} name="tabler:star-filled" class="w-4 h-4 sm:w-5 sm:h-5" />
+                        ))}
+                    </div>
 
-        <div class="border-b border-black/8 px-4 py-3 sm:px-5 md:hidden">
-          <div class="grid gap-4 sm:grid-cols-2">
-            <div>
-              <p class="text-[11px] tracking-[0.22em] text-black/35 uppercase font-semibold">Old Way</p>
-              <p class="mt-2 text-[15px] font-semibold text-black">manual, fragmented, slow</p>
-            </div>
-            <div>
-              <p class="text-[11px] tracking-[0.22em] text-[#da0007] uppercase font-semibold">tribera Way</p>
-              <p class="mt-2 text-[15px] font-semibold text-black">signal-led, structured, explainable</p>
-            </div>
-          </div>
-        </div>
+                    <p
+                      class="
+      text-[13px]
+      sm:text-[14px]
+      leading-relaxed
+      text-black/70
+      mb-8
+      flex-grow
+    "
+                    >
+                      {t.quote}
+                    </p>
 
-        <div class="divide-y divide-black/6">
-          {[
-            [
-              'Sourcing',
-              'Resume volume',
-              'Search everywhere. Screen hundreds manually. Still miss real fit.',
-              'Signal discovery',
-              'AI reads 100+ signals and surfaces only role-fit candidates.',
-              '100+ signals',
-            ],
-            [
-              'Evaluation',
-              'Interview overload',
-              'Run 8-10 interviews and compare scattered notes afterward.',
-              'Structured validation',
-              'Senior advisors interview. AI scores each conversation against the role.',
-              'advisor-validated',
-            ],
-            [
-              'Decision',
-              'Gut-feel debate',
-              'Balance opinions, spreadsheets, and uncertainty before making the call.',
-              'Explained shortlist',
-              'Get the top 3 with verdicts, reasoning, and hiring confidence built in.',
-              'top 3 delivered',
-            ],
-          ].map(([label, oldTitle, oldWay, newTitle, triberaWay, chip], index) => (
-            <div class="grid gap-3 px-4 py-5 sm:px-5 sm:py-6 md:grid-cols-[180px_1fr_1fr] md:gap-5 md:items-start">
-              <div class="flex items-start gap-3 md:pt-2">
-                <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-black/6 bg-black/[0.03] text-[12px] font-bold text-black/40">
-                  0{index + 1}
-                </div>
-                <div class="pt-0.5">
-                  <p class="text-[11px] uppercase tracking-[0.14em] font-semibold text-black/28">Stage</p>
-                  <p class="mt-1 text-[13px] font-semibold text-black">{label}</p>
-                </div>
-              </div>
+                    <div class="mt-6">
+                      <div class="w-[40px] h-[2px] bg-[#da0007]/60 rounded-full mb-3" />
 
-              <div class="rounded-2xl border border-black/6 bg-[#fcfcfc] px-4 py-4">
-                <p class="text-[11px] uppercase tracking-[0.16em] font-semibold text-black/30">Old Way</p>
-                <p class="mt-3 text-[15px] font-semibold leading-tight text-black/88">{oldTitle}</p>
-                <p class="mt-2 text-[13px] leading-relaxed text-black/50">{oldWay}</p>
-              </div>
+                      <div
+                        class="
+          text-[14px] sm:text-[15px]
+          font-semibold
+          text-black
+          group-hover:text-[#da0007]
+          transition duration-300
+        "
+                      >
+                        {t.name}
+                      </div>
 
-              <div class="rounded-2xl border border-[#da0007]/16 bg-gradient-to-br from-[#fff8f8] to-white px-4 py-4 shadow-[0_14px_28px_-20px_rgba(218,0,7,0.35)]">
-                <div class="mb-3 flex items-center justify-between gap-3">
-                  <div class="min-w-0">
-                    <p class="text-[11px] uppercase tracking-[0.16em] font-semibold text-[#da0007]">tribera Way</p>
-                    <p class="mt-3 text-[15px] font-semibold leading-tight text-black">{newTitle}</p>
+                      <div class="text-[12px] sm:text-[13px] text-black/60">{t.company}</div>
+                    </div>
                   </div>
-                  <span class="shrink-0 rounded-full border border-[#da0007]/12 bg-[#da0007]/8 px-2.5 py-1 text-[11px] font-semibold text-[#da0007]">
-                    {chip}
-                  </span>
-                </div>
-                <p class="text-[13px] leading-relaxed text-black/60">{triberaWay}</p>
+                ))}
               </div>
-            </div>
-          ))}
-        </div>
-
-        <div class="border-t border-black/8 px-4 pb-2 pt-4 sm:px-5">
-          <div class="inline-flex flex-wrap items-center gap-2 rounded-full border border-[#da0007]/10 bg-[#da0007]/6 px-4 py-2 text-[13px] font-medium text-black/60">
-            <span class="text-[#da0007] font-semibold">36 hours</span>
-            <span class="text-black/25">·</span>
-            <span>to first shortlist</span>
-            <span class="text-black/25">·</span>
-            <span class="text-[#da0007] font-semibold">1:3</span>
-            <span class="text-black/25">selection ratio</span>
-          </div>
+            ))
+          }
         </div>
       </div>
     </div>
@@ -1440,71 +1421,73 @@ const comparisonRows = [
     </div>
   </section>
 
-  <section class="bg-white py-16 md:py-20">
-    <div class="max-w-4xl mx-auto px-6 sm:px-8 text-center">
-      <div class="text-[14px] text-[#da0007]">Get Started Today</div>
+  <section class="bg-white pt-8 pb-16 md:pt-10 md:pb-20">
+    <div class="max-w-5xl mx-auto px-6 sm:px-8">
+      <div class="mx-auto max-w-4xl pt-10 md:pt-12 text-center">
+        <div class="text-[14px] text-[#da0007]">Get Started Today</div>
 
-      <h2 class="mt-3 text-[26px]
+        <h2 class="mt-3 text-[26px]
   sm:text-[36px]
   md:text-[46px]
   lg:text-[55px] font-[600] text-black">
-        Ready to hire smarter?
-      </h2>
+          Ready to hire smarter?
+        </h2>
 
-      <p class="mt-4 text-[14px] font-[500] text-black/50 leading-relaxed max-w-3xl mx-auto">
-        Join 500+ tech teams using tribera. 100+ signals. 1:3 selection guarantee. Get tech talent 2x <br
-          class="hidden sm:block"
-        /> faster.
-      </p>
+        <p class="mt-4 text-[14px] font-[500] text-black/50 leading-relaxed max-w-3xl mx-auto">
+          Join 500+ tech teams using tribera. 100+ signals. 1:3 selection guarantee. Get tech talent 2x <br
+            class="hidden sm:block"
+          /> faster.
+        </p>
 
-      <div
-        class="mt-10 sm:mt-8
+        <div
+          class="mt-10 sm:mt-8
                 flex flex-col sm:flex-row
                 items-center justify-center
                 gap-4 sm:gap-6"
-      >
-        <button
-          type="button"
-          data-open-demo
-          class="relative overflow-hidden
+        >
+          <button
+            type="button"
+            data-open-demo
+            class="relative overflow-hidden
          w-full sm:w-auto
          inline-flex items-center justify-center
          px-6 py-3
          rounded-full
          tribera-primary-button
          font-bold text-[14px]"
-        >
-          <span class="relative z-10"> See Platform Demo → </span>
-        </button>
+          >
+            <span class="relative z-10"> See Platform Demo → </span>
+          </button>
+        </div>
       </div>
     </div>
   </section>
 
   <style>
     @media (hover: hover) and (pointer: fine) {
-      #candidateSection .candidate-signal-item:hover {
+      #platform-overview .candidate-signal-item:hover {
         transform: translateX(0.25rem);
       }
 
-      #candidateSection .candidate-signal-item:hover .candidate-signal-icon {
+      #platform-overview .candidate-signal-item:hover .candidate-signal-icon {
         background: rgba(218, 0, 7, 0.4);
       }
 
-      #candidateSection .candidate-signal-item:hover .candidate-signal-title {
+      #platform-overview .candidate-signal-item:hover .candidate-signal-title {
         color: #da0007;
       }
     }
 
     @media (hover: none), (pointer: coarse) {
-      #candidateSection .candidate-signal-item {
+      #platform-overview .candidate-signal-item {
         transform: none !important;
       }
 
-      #candidateSection .candidate-signal-item .candidate-signal-icon {
+      #platform-overview .candidate-signal-item .candidate-signal-icon {
         background: rgba(218, 0, 7, 0.22) !important;
       }
 
-      #candidateSection .candidate-signal-title {
+      #platform-overview .candidate-signal-title {
         color: #da0007;
       }
     }

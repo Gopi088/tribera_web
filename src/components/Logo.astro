@@ -2,6 +2,39 @@
 import { SITE } from 'astrowind:config';
 import Image from '~/components/common/Image.astro';
 const logo = '~/assets/images/tribera_logo_default.svg';
+const { variant = 'header' } = Astro.props;
+
+const sizes = {
+  header: {
+    frame: 'h-[36px] w-[120px]',
+    image: 'h-[120px] w-[120px] -translate-x-[2px] -translate-y-[44px]',
+    dots: 'mt-0.5 gap-1.5 pl-[5px]',
+    dotSize: 'h-1.5 w-1.5',
+  },
+  footer: {
+    frame: 'h-[42px] w-[140px]',
+    image: 'h-[140px] w-[140px] -translate-x-[2px] -translate-y-[52px]',
+    dots: 'mt-1 gap-1.5 pl-[6px]',
+    dotSize: 'h-1.5 w-1.5',
+  },
+};
+
+const current = sizes[variant] ?? sizes.header;
 ---
 
-<Image src={logo} alt={SITE?.name} width={140} height={36} class="h-full w-auto object-contain" />
+<div class="inline-flex flex-col items-start">
+  <div class:list={['relative overflow-hidden', current.frame]}>
+    <Image
+      src={logo}
+      alt={SITE?.name}
+      width={140}
+      height={140}
+      class:list={['block max-w-none', current.image]}
+    />
+  </div>
+  <div class:list={['flex items-center', current.dots]}>
+    <span class:list={[current.dotSize, 'rounded-full bg-[#c2c2c2]']}></span>
+    <span class:list={[current.dotSize, 'rounded-full bg-[#c2c2c2]']}></span>
+    <span class:list={[current.dotSize, 'rounded-full bg-[#da0007]']}></span>
+  </div>
+</div>

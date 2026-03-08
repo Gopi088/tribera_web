@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import Logo from '~/components/Logo.astro';
 
 const { socialLinks = [], secondaryLinks = [] } = Astro.props;
 ---
@@ -15,28 +16,34 @@ throw new Error("Function not implemented.");
     >
       <!-- LEFT BRAND COLUMN -->
       <div class="sm:col-span-2 lg:col-span-1">
-        <div class="text-2xl text-[#da0007] font-semibold">tribera</div>
+        <div class="text-[#da0007]">
+          <Logo variant="footer" />
+        </div>
 
-        <p class="mt-4 text-[12px] text-white/60 leading-relaxed max-w-md">
-          Remember interviewing 8 candidates to hire 1? That stops here. We screen thousands. Our advisors interview the
-          standouts. You get 3—all vetted, all qualified. Hiring that actually works, finally.
-        </p>
+        <div>
+          <p class="mt-4 max-w-[320px] text-[12px] leading-[1.8] text-white/60">
+            Remember interviewing 8 candidates to hire 1? That stops here.
+            <br /><br />
+            We screen thousands. Our advisors interview the standouts. You get 3, all vetted, all qualified. Hiring that
+            actually works, finally.
+          </p>
 
-        <!-- SOCIAL -->
-        <div class="flex gap-5 mt-7 sm:mt-8">
-          {
-            socialLinks.map(({ ariaLabel, href, icon }) => (
-              <a
-                href={href}
-                aria-label={ariaLabel}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-white/60 hover:text-[#da0007] transition"
-              >
-                <Icon name={icon} class="w-5 h-5" />
-              </a>
-            ))
-          }
+          <!-- SOCIAL -->
+          <div class="flex gap-5 mt-7 sm:mt-8">
+            {
+              socialLinks.map(({ ariaLabel, href, icon }) => (
+                <a
+                  href={href}
+                  aria-label={ariaLabel}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-white/60 hover:text-[#da0007] transition"
+                >
+                  <Icon name={icon} class="w-5 h-5" />
+                </a>
+              ))
+            }
+          </div>
         </div>
       </div>
 
