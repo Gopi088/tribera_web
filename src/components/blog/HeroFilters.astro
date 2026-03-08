@@ -13,15 +13,15 @@ const categories = await findCategories();
 const tags = await findTags();
 
 const filters = [
-  ...categories.slice(0, 3).map((category) => ({
+  ...categories.slice(0, 5).map((category) => ({
     label: category.title,
     slug: category.slug,
     type: 'category' as const,
     href: getPermalink(category.slug, 'category'),
   })),
   ...tags
-    .filter((tag) => !categories.some((category) => category.slug === tag.slug))
-    .slice(0, 3)
+    .filter((tag) => tag.slug !== 'tribera' && !categories.some((category) => category.slug === tag.slug))
+    .slice(0, 2)
     .map((tag) => ({
       label: tag.title,
       slug: tag.slug,
@@ -31,7 +31,7 @@ const filters = [
 ];
 ---
 
-<div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+<div class="mt-8 flex flex-wrap items-center justify-center gap-3 blog-display">
   <a
     href={getBlogPermalink()}
     class={`px-4 py-2 rounded-full text-[13px] font-semibold transition-colors duration-200 ${activeType === 'all' ? 'bg-[#da0007] text-white' : 'border border-white/15 bg-white/5 text-white/70 hover:border-[#da0007]/40 hover:text-white'}`}

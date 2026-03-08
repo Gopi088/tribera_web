@@ -16,24 +16,35 @@ export interface Props {
 }
 
 const { post, url } = Astro.props;
+const toMinutes = (value: unknown): number | undefined => {
+  if (typeof value === 'number' && Number.isFinite(value)) return Math.max(1, Math.round(value));
+  if (typeof value === 'string') {
+    const parsed = Number.parseFloat(value);
+    if (Number.isFinite(parsed)) return Math.max(1, Math.round(parsed));
+  }
+  return undefined;
+};
+
+const readTime = toMinutes(post.readingTime);
+const showAuthor = post.author && post.author.toLowerCase() !== 'tribera';
 ---
 
-<section class="py-12 md:py-16 lg:py-20 mx-auto">
+<section class="mx-auto py-10 md:py-14 lg:py-16">
   <article>
     <header
       class={post.image
         ? 'intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade'
         : 'intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade'}
     >
-      <div class="flex justify-between flex-col sm:flex-row max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center">
-        <p>
+      <div class="mx-auto mb-3 max-w-3xl px-4 sm:px-6">
+        <p class="blog-display flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px] font-medium tracking-[-0.01em] text-black/55 sm:text-[14px]">
           <Icon name="tabler:clock" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
           <time datetime={String(post.publishDate)} class="inline-block">{getFormattedDate(post.publishDate)}</time>
           {
-            post.author && (
+            showAuthor && (
               <>
-                {' '}
-                · <Icon name="tabler:user" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
+                <span class="text-black/25">·</span>
+                <Icon name="tabler:user" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
                 <span class="inline-block">{post.author}</span>
               </>
             )
@@ -41,18 +52,18 @@ const { post, url } = Astro.props;
           {
             post.category && (
               <>
-                {' '}
-                ·{' '}
-                <a class="hover:underline inline-block" href={getPermalink(post.category.slug, 'category')}>
+                <span class="text-black/25">·</span>
+                <a class="inline-block text-[#8f1418]" href={getPermalink(post.category.slug, 'category')}>
                   {post.category.title}
                 </a>
               </>
             )
           }
           {
-            post.readingTime && (
+            readTime && (
               <>
-                &nbsp;· <span>{post.readingTime}</span> min read
+                <span class="text-black/25">·</span>
+                <span>{readTime} min read</span>
               </>
             )
           }
@@ -60,12 +71,12 @@ const { post, url } = Astro.props;
       </div>
 
       <h1
-        class="px-4 sm:px-6 max-w-3xl mx-auto text-2xl md:text-3xl font-bold leading-tighter tracking-tighter font-heading"
+        class="blog-display mx-auto max-w-3xl px-4 text-[1.9rem] font-[700] leading-[1.02] tracking-[-0.038em] text-black sm:px-6 sm:text-[2.45rem] md:text-[2.95rem]"
       >
         {post.title}
       </h1>
       <p
-        class="max-w-3xl mx-auto mt-4 mb-8 px-4 sm:px-6 text-[15px] md:text-[15px] text-muted dark:text-slate-400 text-justify"
+        class="mx-auto mt-4 mb-8 max-w-3xl px-4 text-[16px] font-[450] leading-[1.72] tracking-[-0.01em] text-black/56 sm:px-6 md:text-[17px]"
       >
         {post.excerpt}
       </p>
@@ -91,7 +102,7 @@ const { post, url } = Astro.props;
       }
     </header>
     <div
-      class="mx-auto px-6 sm:px-6 max-w-3xl prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8 prose-headings:scroll-mt-[80px] prose-li:my-0"
+      class="blog-body prose prose-neutral mx-auto mt-10 max-w-3xl px-6 text-[17px] leading-[1.82] text-black/78 prose-p:my-0 prose-p:font-[450] prose-p:leading-[1.82] prose-p:text-black/78 prose-headings:scroll-mt-[80px] prose-headings:font-heading prose-headings:font-[700] prose-headings:tracking-[-0.03em] prose-headings:text-black prose-h2:mt-14 prose-h2:mb-5 prose-h2:text-[1.75rem] prose-h2:leading-[1.08] prose-h3:mt-10 prose-h3:mb-4 prose-h3:text-[1.28rem] prose-h3:leading-[1.15] prose-strong:text-black prose-li:my-1 prose-li:text-black/78 prose-a:text-[#b10005] hover:prose-a:text-[#7a0b0f] prose-img:rounded-[18px] prose-img:shadow-none"
     >
       <slot />
     </div>

@@ -1,15 +1,14 @@
 ---
 title: 'Hiring Is Not a Transaction — It’s a Relationship'
 excerpt: 'When hiring becomes transactional, we lose trust. At Tribera, we build belonging, empathy and clarity into every process. It’s not about closing roles — it’s about opening relationships.'
-slug: '/blog/hiring-is-not-a-transaction-its-a-relationship'
+permalinkSlug: 'blog/hiring-is-not-a-transaction-its-a-relationship'
 publishDate: 2025-08-15
-author: 'Tribera.ai'
+author: 'tribera'
+category: 'Hiring Philosophy'
 tags: ['thought-leadership', 'human-first-hiring', 'empathy', 'talent-acquisition']
 image: '~/assets/images/blog/hiring-is-not-a-transaction.png'
 readingTime: '4 min'
 ---
-
-</BlogContent>
 
 I’ve lost count of the number of times I’ve heard, _“We just need this role closed.”_
 

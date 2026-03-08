@@ -1,13 +1,13 @@
 ---
 title: 'When Job Hunting Feels Like a Black Hole: How to Take Back Control'
 excerpt: 'Job hunting shouldn’t feel like an endless loop of waiting and silence. Backed by research from McKinsey, Deloitte, and PwC, here’s how candidates can reclaim their time, protect their energy, and land interviews smarter.'
+permalinkSlug: 'blog/when-job-hunting-feels-like-a-black-hole'
 publishDate: 2025-08-21
-author: 'Tribera'
+author: 'tribera'
+category: 'Candidate Experience'
 image: '~/assets/images/blog/when-job-hunting-feels-like-a-black-hole.png'
-tags: ['Candidate Experience', 'Job Search Tips', 'Hiring Insights', 'Tribera']
+tags: ['candidate-experience', 'job-search-tips', 'hiring-insights']
 ---
-
-# When Job Hunting Feels Like a Black Hole: How to Take Back Control
 
 You hit apply.
 You wait.

@@ -1,9 +1,10 @@
 ---
 title: 'Why Tech Hiring Really Takes So Long — And What We Learned From It'
 excerpt: 'Most organisations believe engineering hiring is slow due to talent shortages — but this story reveals how clarity and signal turn a 327-profile search into a 22-day success.'
-slug: '/blog/why-tech-hiring-really-takes-so-long'
+permalinkSlug: 'blog/why-tech-hiring-really-takes-so-long'
 publishDate: 2025-08-18
-author: 'Tribera.AI'
+author: 'tribera'
+category: 'Technical Hiring'
 tags: ['signal-based-hiring', 'technical-hiring', 'time-to-hire', 'talent-acquisition']
 image: '~/assets/images/blog/why-tech-hiring-really-takes-so-long.png'
 readingTime: '5 min'

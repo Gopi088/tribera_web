@@ -1,7 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { getPermalink } from '~/utils/permalinks';
-import Button from '~/components/ui/Button.astro';
 
 export interface Props {
   prevUrl?: string;
@@ -15,26 +14,28 @@ const { prevUrl, nextUrl, prevText = 'Newer posts', nextText = 'Older posts' } =
 
 {
   (prevUrl || nextUrl) && (
-    <div class="container flex">
-      <div class="flex flex-row mx-auto container justify-between">
-        <Button
-          variant="tertiary"
-          classes={{ container: `md:px-3 px-3 mr-2 ${!prevUrl ? 'invisible' : ''}` }}
-          href={getPermalink(prevUrl)}
-        >
-          <Icon name="tabler:chevron-left" class="w-6 h-6" />
-          <p class="ml-2">{prevText}</p>
-        </Button>
+    <div class="mx-auto flex w-full max-w-7xl items-center justify-between px-6 sm:px-8 lg:px-12">
+      <a
+        href={prevUrl ? getPermalink(prevUrl) : undefined}
+        class:list={[
+          'inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2.5 text-[14px] font-medium text-black/60 transition-all duration-200 hover:border-[#da0007]/25 hover:text-black hover:shadow-[0_10px_30px_-20px_rgba(218,0,7,0.35)]',
+          !prevUrl && 'pointer-events-none invisible',
+        ]}
+      >
+        <Icon name="tabler:chevron-left" class="h-4 w-4" />
+        <span>{prevText}</span>
+      </a>
 
-        <Button
-          variant="tertiary"
-          classes={{ container: `md:px-3 px-3 ${!nextUrl ? 'invisible' : ''}` }}
-          href={getPermalink(nextUrl)}
-        >
-          <span class="mr-2">{nextText}</span>
-          <Icon name="tabler:chevron-right" class="w-6 h-6" />
-        </Button>
-      </div>
+      <a
+        href={nextUrl ? getPermalink(nextUrl) : undefined}
+        class:list={[
+          'inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2.5 text-[14px] font-medium text-black/60 transition-all duration-200 hover:border-[#da0007]/25 hover:text-black hover:shadow-[0_10px_30px_-20px_rgba(218,0,7,0.35)]',
+          !nextUrl && 'pointer-events-none invisible',
+        ]}
+      >
+        <span>{nextText}</span>
+        <Icon name="tabler:chevron-right" class="h-4 w-4" />
+      </a>
     </div>
   )
 }

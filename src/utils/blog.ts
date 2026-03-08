@@ -47,9 +47,11 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
   const {
     publishDate: rawPublishDate = new Date(),
     updateDate: rawUpdateDate,
+    permalinkSlug: rawSlug,
     title,
     excerpt,
     image,
+    readingTime: rawReadingTime,
     tags: rawTags = [],
     category: rawCategory,
     author,
@@ -57,7 +59,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     metadata = {},
   } = data;
 
-  const slug = cleanSlug(id); // cleanSlug(rawSlug.split('/').pop());
+  const slug = cleanSlug(rawSlug || id);
   const publishDate = new Date(rawPublishDate);
   const updateDate = rawUpdateDate ? new Date(rawUpdateDate) : undefined;
 
@@ -96,7 +98,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     Content: Content,
     // or 'content' in case you consume from API
 
-    readingTime: remarkPluginFrontmatter?.readingTime,
+    readingTime: rawReadingTime || remarkPluginFrontmatter?.readingTime,
   };
 };
 
@@ -281,33 +283,45 @@ export async function getRelatedPosts(originalPost: Post, maxResults: number = 4
 }
 
 /** */
-export async function findCategories(): Promise<Array<{ slug: string; title: string }>> {
+export async function findCategories(): Promise<Array<{ slug: string; title: string; count: number }>> {
   const posts = await fetchPosts();
 
-  const categoriesMap = new Map<string, string>();
+  const categoriesMap = new Map<string, { title: string; count: number }>();
 
   for (const post of posts) {
     if (post.category?.slug && post.category?.title) {
-      categoriesMap.set(post.category.slug, post.category.title);
+      const existing = categoriesMap.get(post.category.slug);
+      categoriesMap.set(post.category.slug, {
+        title: existing?.title || post.category.title,
+        count: (existing?.count || 0) + 1,
+      });
     }
   }
 
-  return Array.from(categoriesMap.entries()).map(([slug, title]) => ({ slug, title }));
+  return Array.from(categoriesMap.entries())
+    .map(([slug, value]) => ({ slug, title: value.title, count: value.count }))
+    .sort((a, b) => b.count - a.count || a.title.localeCompare(b.title));
 }
 
 /** */
-export async function findTags(): Promise<Array<{ slug: string; title: string }>> {
+export async function findTags(): Promise<Array<{ slug: string; title: string; count: number }>> {
   const posts = await fetchPosts();
 
-  const tagsMap = new Map<string, string>();
+  const tagsMap = new Map<string, { title: string; count: number }>();
 
   for (const post of posts) {
     for (const tag of post.tags || []) {
       if (tag?.slug && tag?.title) {
-        tagsMap.set(tag.slug, tag.title);
+        const existing = tagsMap.get(tag.slug);
+        tagsMap.set(tag.slug, {
+          title: existing?.title || tag.title,
+          count: (existing?.count || 0) + 1,
+        });
       }
     }
   }
 
-  return Array.from(tagsMap.entries()).map(([slug, title]) => ({ slug, title }));
+  return Array.from(tagsMap.entries())
+    .map(([slug, value]) => ({ slug, title: value.title, count: value.count }))
+    .sort((a, b) => b.count - a.count || a.title.localeCompare(b.title));
 }

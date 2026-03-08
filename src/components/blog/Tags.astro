@@ -12,6 +12,11 @@ export interface Props {
 }
 
 const { tags, class: className = 'text-sm', title = undefined, isCategory = false } = Astro.props;
+const formatLabel = (value: string) =>
+  value
+    .split('-')
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ');
 ---
 
 {
@@ -32,7 +37,7 @@ const { tags, class: className = 'text-sm', title = undefined, isCategory = fals
                 href={getPermalink(tag.slug, isCategory ? 'category' : 'tag')}
                 class="text-muted text-[12px] dark:text-slate-300 hover:text-[#da0007] dark:hover:text-gray-200"
               >
-                {tag.title}
+                {formatLabel(tag.title)}
               </a>
             )}
           </li>

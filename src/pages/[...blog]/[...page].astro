@@ -34,7 +34,7 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+  <section class="blog-editorial relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
     <!-- Background -->
     <div class="absolute inset-0">
       <div class="absolute inset-0 bg-black"></div>
@@ -73,14 +73,14 @@ const metadata = {
 
     <!-- Content -->
     <div class="relative z-10 mx-auto max-w-4xl px-6 text-center">
-      <p class="text-[#da0007] text-[11px] font-semibold tracking-[0.25em] uppercase mb-3">Insights & Updates</p>
+      <p class="blog-display text-[#da0007] text-[11px] font-semibold tracking-[0.25em] uppercase mb-3">Insights & Updates</p>
 
-      <h1 class="text-white text-6xl md:text-6xl font-semibold leading-[1.05]">
+      <h1 class="blog-display text-white text-6xl md:text-6xl font-semibold leading-[1.05]">
         Building the future<br />
         of technical hiring.
       </h1>
 
-      <p class="mt-6 text-white/60 text-[18px] md:text-[20px] max-w-2xl mx-auto leading-relaxed">
+      <p class="blog-body mt-6 text-white/68 text-[19px] max-w-2xl mx-auto leading-relaxed">
         How we’re using AI and senior advisor expertise to help companies hire exceptional talent — and help that talent
         get discovered properly.
       </p>
@@ -89,7 +89,7 @@ const metadata = {
     </div>
   </section>
 
-  <section class="py-16 md:py-20">
+  <section class="blog-editorial py-16 md:py-20">
     <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
       <EntryGrid posts={posts} />
     </div>

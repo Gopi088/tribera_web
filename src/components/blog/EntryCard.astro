@@ -17,7 +17,13 @@ const { post, layout = 'short', equalized = false } = Astro.props;
 
 const image = (await findImage(post.image)) as ImageMetadata | undefined;
 const link = getPermalink(post.permalink, 'post');
-const categoryLabel = post.category?.title ?? 'tribera';
+const formatLabel = (value: string) =>
+  value
+    .split('-')
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ');
+
+const metaLabel = post.category?.title ?? (post.tags?.[0]?.title ? formatLabel(post.tags[0].title) : undefined);
 
 const toMinutes = (value: unknown): number | undefined => {
   if (typeof value === 'number' && Number.isFinite(value)) return Math.max(1, Math.round(value));
@@ -33,12 +39,12 @@ const readTime = toMinutes(post.readingTime);
 
 <a
   href={link}
-  class={`group relative overflow-hidden rounded-[18px] border border-[#da0007]/15 bg-white transition-all duration-500 hover:-translate-y-1.5 hover:border-[#da0007]/45 hover:shadow-[0_22px_55px_-24px_rgba(218,0,7,0.45)] ${layout === 'long' ? `block ${equalized ? 'h-full min-h-0' : 'lg:min-h-[1112px]'}` : `flex flex-col ${equalized ? 'h-full min-h-0' : 'h-[540px]'}`}`}
+  class={`group relative overflow-hidden rounded-[20px] border border-[#da0007]/15 bg-white transition-all duration-500 hover:-translate-y-1 hover:border-[#da0007]/35 hover:shadow-[0_18px_48px_-24px_rgba(218,0,7,0.28)] ${layout === 'long' ? `block ${equalized ? 'h-full min-h-0' : ''}` : `flex h-full min-h-0 flex-col`}`}
 >
   {
     layout === 'long' ? (
-      <div class="flex h-full flex-col lg:grid lg:grid-cols-2">
-        <div class="relative min-h-[280px] overflow-hidden border-b border-black/5 bg-[#1a0000] lg:min-h-full lg:border-b-0 lg:border-r lg:border-black/5">
+      <div class="flex h-full flex-col lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+        <div class="relative aspect-[4/3] overflow-hidden border-b border-black/5 bg-[#1a0000] lg:aspect-auto lg:min-h-full lg:border-b-0 lg:border-r lg:border-black/5">
           <img
             src={image?.src ?? placeholder.src}
             alt={post.title}
@@ -49,14 +55,16 @@ const readTime = toMinutes(post.readingTime);
           <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#250003]/35 to-[#120001]/45 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         </div>
 
-        <div class="flex h-full flex-col justify-between p-7 lg:p-8">
-          <div class="space-y-6">
-            <div class="mb-4 flex flex-wrap items-center gap-x-2 gap-y-2 text-[13px] text-black/45">
+        <div class="flex h-full flex-col p-6 lg:p-7">
+          <div class="space-y-5">
+            <div class="flex flex-wrap items-center gap-x-2 gap-y-2 text-[12px] text-black/42">
               <span>{getFormattedDate(post.publishDate)}</span>
               <span class="text-black/25">·</span>
-              <span class="rounded-md bg-[#da0007]/8 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-[#da0007]">
-                {categoryLabel}
-              </span>
+              {metaLabel && (
+                <>
+                  <span class="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#da0007]">{metaLabel}</span>
+                </>
+              )}
               {readTime && (
                 <>
                   <span class="text-black/25">·</span>
@@ -65,32 +73,27 @@ const readTime = toMinutes(post.readingTime);
               )}
             </div>
 
-            <h3 class="text-[1.2rem] font-[700] leading-[1.2] tracking-[-0.01em] text-black transition-colors duration-300 group-hover:text-[#da0007]">
+            <h3 class="blog-display max-w-[14ch] text-[1.85rem] font-[700] leading-[1.08] tracking-[-0.025em] text-black transition-colors duration-300 group-hover:text-[#7a0b0f] lg:text-[2rem]">
               {post.title}
             </h3>
 
-            {post.excerpt && <p class="mt-4 text-[15px] leading-[1.7] text-black/60">{post.excerpt}</p>}
+            {post.excerpt && <p class="blog-body max-w-[44ch] text-[16px] leading-[1.75] text-black/58">{post.excerpt}</p>}
 
             {Array.isArray(post.tags) && post.tags.length > 0 && (
-              <div class="flex flex-wrap gap-2 pt-1">
+              <div class="flex flex-wrap gap-2 pt-1.5">
                 {post.tags.slice(0, 2).map((tag) => (
-                  <span class="rounded-full border border-[#da0007]/25 bg-[#da0007]/6 px-3 py-1 text-[11px] font-semibold text-[#da0007]">
-                    {tag.title}
+                  <span class="rounded-full border border-[#da0007]/20 bg-[#da0007]/[0.04] px-3 py-1 text-[10px] font-semibold text-[#da0007]">
+                    {formatLabel(tag.title)}
                   </span>
                 ))}
               </div>
             )}
           </div>
-
-          <div class="pt-6">
-            <div class="h-px w-full bg-black/10" />
-            <p class="pt-4 text-[14px] font-medium text-black/55">{post.author ?? 'tribera'}</p>
-          </div>
         </div>
       </div>
     ) : (
       <>
-        <div class="relative h-[40%] min-h-[216px] w-full overflow-hidden border-b border-black/5 bg-[#1a0000]">
+        <div class="relative aspect-[16/10] w-full overflow-hidden border-b border-black/5 bg-[#1a0000]">
           <img
             src={image?.src ?? placeholder.src}
             alt={post.title}
@@ -101,13 +104,11 @@ const readTime = toMinutes(post.readingTime);
           <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#250003]/35 to-[#120001]/45 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         </div>
 
-        <div class="flex flex-1 flex-col p-6">
-          <div class="mb-3 flex flex-wrap items-center gap-x-2 gap-y-2 text-[13px] text-black/45">
+        <div class="flex flex-1 flex-col p-5 sm:p-6">
+          <div class="mb-3 flex flex-wrap items-center gap-x-2 gap-y-2 text-[12px] text-black/42">
             <span>{getFormattedDate(post.publishDate)}</span>
             <span class="text-black/25">·</span>
-            <span class="rounded-md bg-[#da0007]/8 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-[#da0007]">
-              {categoryLabel}
-            </span>
+            {metaLabel && <span class="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#da0007]">{metaLabel}</span>}
             {readTime && (
               <>
                 <span class="text-black/25">·</span>
@@ -116,16 +117,11 @@ const readTime = toMinutes(post.readingTime);
             )}
           </div>
 
-          <h3 class="text-[1.2rem] font-[700] leading-[1.2] tracking-[-0.01em] text-black transition-colors duration-300 group-hover:text-[#da0007]">
+          <h3 class="blog-display text-[1.15rem] font-[700] leading-[1.15] tracking-[-0.02em] text-black transition-colors duration-300 group-hover:text-[#7a0b0f]">
             {post.title}
           </h3>
 
-          {post.excerpt && <p class="mt-3 text-[15px] leading-[1.62] text-black/60">{post.excerpt}</p>}
-
-          <div class="mt-auto pt-5">
-            <div class="h-px w-full bg-black/10" />
-            <p class="pt-3 text-[14px] font-medium text-black/55">{post.author ?? 'tribera'}</p>
-          </div>
+          {post.excerpt && <p class="blog-body mt-3 text-[15px] leading-[1.72] text-black/58">{post.excerpt}</p>}
         </div>
       </>
     )

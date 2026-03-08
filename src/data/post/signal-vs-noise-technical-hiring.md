@@ -1,8 +1,10 @@
 ---
 title: 'Signal vs Noise in Technical Hiring – Why Clarity Drives Speed'
 excerpt: 'Most hiring teams waste time evaluating candidates who should never have been in the process. Focusing on signal, structure and context helps companies hire faster — and better.'
+permalinkSlug: 'blog/signal-vs-noise-technical-hiring'
 publishDate: 2025-08-20
-author: 'Tribera.AI'
+author: 'tribera'
+category: 'Technical Hiring'
 tags:
   - signal-based-hiring
   - technical-hiring
@@ -21,7 +23,7 @@ LinkedIn’s Talent Trends survey points out that **nearly 60%** of recruiters a
 
 That’s not a sourcing problem — that’s a **clarity problem**.
 
-At Tribera, we don’t optimise for volume — we optimise for **signal**. Before any sourcing begins, we define what _evidence_ of ability looks like for that specific context, and use **structured assessments** and **contextual human judgement ** to surface only the candidates who actually belong in the conversation.
+At Tribera, we don’t optimise for volume — we optimise for **signal**. Before any sourcing begins, we define what _evidence_ of ability looks like for that specific context, and use **structured assessments** and **contextual human judgement** to surface only the candidates who actually belong in the conversation.
 
 When teams work this way, everything moves faster.
 Korn Ferry found that structured, contextual evaluation reduces **time-to-hire by 27%** and improves **offer acceptance by 32%**, and LinkedIn reports a **48% increase in hiring-team confidence**.

@@ -17,6 +17,7 @@ export interface Props {
 
 const { post } = Astro.props;
 const image = (await findImage(post.image)) as ImageMetadata | undefined;
+const showAuthor = post.author && post.author.toLowerCase() !== 'tribera';
 
 const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : '';
 ---
@@ -69,7 +70,7 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
           <Icon name="tabler:clock" class="w-3.5 h-3.5 inline-block -mt-0.5 dark:text-gray-400" />
           <time datetime={String(post.publishDate)} class="inline-block">{getFormattedDate(post.publishDate)}</time>
           {
-            post.author && (
+            showAuthor && (
               <>
                 {' '}
                 · <Icon name="tabler:user" class="w-3.5 h-3.5 inline-block -mt-0.5 dark:text-gray-400" />
