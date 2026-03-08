@@ -11,7 +11,7 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' https://*.crisp.chat https://code.iconify.design https://unpkg.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://*.crisp.chat https://client.crisp.chat; connect-src 'self' https://*.crisp.chat https://client.crisp.chat https://api.web3forms.com wss://*.crisp.chat wss://ws.crisp.chat wss://*.relay.crisp.chat https://www.google-analytics.com https://region1.google-analytics.com; frame-ancestors 'self'; frame-src https://*.crisp.chat; font-src 'self' data: https://*.crisp.chat; media-src 'self' https://*.crisp.chat;"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' https://*.crisp.chat https://code.iconify.design https://unpkg.com https://www.googletagmanager.com https://res.public.onecdn.static.microsoft https://statics.teams.cdn.office.net; style-src 'self' 'unsafe-inline' https://*.crisp.chat https://client.crisp.chat; connect-src 'self' https://*.crisp.chat https://client.crisp.chat https://api.web3forms.com wss://*.crisp.chat wss://ws.crisp.chat wss://*.relay.crisp.chat https://www.google-analytics.com https://region1.google-analytics.com https://customerconnect.teams.usercontent.microsoft https://statics.teams.cdn.office.net; frame-ancestors 'self'; frame-src https://*.crisp.chat https://customerconnect.teams.usercontent.microsoft; font-src 'self' data: https://*.crisp.chat; media-src 'self' https://*.crisp.chat;"
 
 [[headers]]
   for = "/_astro/*"
