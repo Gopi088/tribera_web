@@ -526,32 +526,21 @@ const metadata = {
               },
             ].map((card) => (
               <div
-                class="
-          group
-          rounded-xl
-          p-6
-          bg-white/20
-          transition-all duration-300
-          hover:bg-white
-          hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)]
-        "
+                class="group relative overflow-hidden rounded-[24px] border border-black/5 bg-white p-7 sm:p-8 shadow-[0_2px_16px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_48px_-24px_rgba(218,0,7,0.22)]"
               >
+                <div class="absolute left-0 top-0 h-[3px] w-0 bg-[#da0007] transition-all duration-500 group-hover:w-full"></div>
+
                 <div
-                  class="
-    w-[28px] h-[28px] mb-3
-    rounded-full border border-[#da0007]/30
-    flex items-center justify-center
-    bg-[#da0007]/10
-  "
+                  class="mb-5 flex h-[32px] w-[32px] items-center justify-center rounded-full border border-[#da0007]/20 bg-[#da0007]/5"
                 >
                   <div class="w-[9px] h-[9px] rounded-full bg-[#da0007] dot-fade" />
                 </div>
 
                 {/* Title */}
-                <h3 class="text-xl font-semibold mt-4 mb-3 text-[#1a1a1a]">{card.title}</h3>
+                <h3 class="text-[30px] font-semibold tracking-tight leading-tight text-[#1a1a1a]">{card.title}</h3>
 
                 {/* Description */}
-                <p class="text-black/50 text-[15px] leading-relaxed">{card.desc}</p>
+                <p class="mt-4 text-black/55 text-[16px] leading-relaxed">{card.desc}</p>
               </div>
             ))
           }
@@ -578,12 +567,12 @@ const metadata = {
             type="button"
             data-open-demo
             class="relative overflow-hidden
-         w-full sm:w-auto
+         w-auto
          inline-flex items-center justify-center
-         px-6 py-3
+         px-5 py-2.5
          rounded-full
          tribera-primary-button
-         font-bold text-[14px]
+         font-semibold text-[13px]
          "
           >
             <span class="relative z-10"> See Platform Demo → </span>
