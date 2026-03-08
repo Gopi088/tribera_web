@@ -1,7 +1,6 @@
 ---
 import Logo from '~/components/Logo.astro';
 import { Icon } from 'astro-icon/components';
-import Announcement from '~/components/widgets/Announcement.astro';
 import { headerData } from '~/navigation';
 const navLinks = headerData.links.slice(2);
 
@@ -31,9 +30,6 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
               bg-gradient-to-r from-transparent via-white/10 to-transparent"
   >
   </div>
-
-  <Announcement />
-
   <div class="mx-auto max-w-7xl px-6 py-2.5 sm:py-2">
     <div class="flex items-center">
       <!-- LEFT: Logo -->
