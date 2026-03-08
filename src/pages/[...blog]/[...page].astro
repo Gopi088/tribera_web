@@ -29,6 +29,13 @@ const metadata = {
   },
   openGraph: {
     type: 'blog',
+    images: [
+      {
+        url: '/og-default.png',
+        width: 1200,
+        height: 628,
+      },
+    ],
   },
 };
 ---
@@ -75,12 +82,12 @@ const metadata = {
     <div class="relative z-10 mx-auto max-w-4xl px-6 text-center">
       <p class="blog-display text-[#da0007] text-[11px] font-semibold tracking-[0.25em] uppercase mb-3">Insights & Updates</p>
 
-      <h1 class="blog-display text-white text-6xl md:text-6xl font-semibold leading-[1.05]">
+      <h1 class="blog-display text-white text-[3.1rem] sm:text-6xl md:text-6xl font-semibold leading-[0.98] sm:leading-[1.05]">
         Building the future<br />
         of technical hiring.
       </h1>
 
-      <p class="blog-body mt-6 text-white/68 text-[19px] max-w-2xl mx-auto leading-relaxed">
+      <p class="mt-5 text-white/72 text-[16px] sm:text-[19px] max-w-2xl mx-auto leading-[1.65] sm:leading-relaxed">
         How we’re using AI and senior advisor expertise to help companies hire exceptional talent — and help that talent
         get discovered properly.
       </p>

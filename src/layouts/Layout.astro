@@ -273,28 +273,15 @@ const isCandidatesPage = pathname === '/candidates';
         const allowedHosts = new Set(['tribera.ai', 'www.tribera.ai', 'tribera-webv2.netlify.app']);
 
         if (!allowedHosts.has(window.location.hostname)) return;
+        if (document.getElementById('chatbot')) return;
 
-        function injectTeamsBot() {
-          if (window.__TRIBERA_TEAMS_BOT_LOADED__) return;
-          window.__TRIBERA_TEAMS_BOT_LOADED__ = true;
-
-          const s = document.createElement('script');
-          s.id = 'chatbot';
-          s.src = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
-          s.type = 'text/javascript';
-          s.crossOrigin = 'anonymous';
-          s.setAttribute('environmentId', '75186a18-80c9-e34b-b323-d376419f05d1');
-          document.body.appendChild(s);
-        }
-
-        if (document.readyState === 'complete' || document.readyState === 'interactive') {
-          injectTeamsBot();
-        } else {
-          document.addEventListener('DOMContentLoaded', injectTeamsBot, { once: true });
-          window.addEventListener('load', injectTeamsBot, { once: true });
-        }
-
-        document.addEventListener('astro:page-load', injectTeamsBot);
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
+        script.id = 'chatbot';
+        script.setAttribute('environmentId', '75186a18-80c9-e34b-b323-d376419f05d1');
+        script.setAttribute('crossorigin', 'anonymous');
+        document.body.appendChild(script);
       })();
     </script>
   </body>
