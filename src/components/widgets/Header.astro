@@ -4,7 +4,7 @@ import { Icon } from 'astro-icon/components';
 import { headerData } from '~/navigation';
 const navLinks = headerData.links.slice(2);
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
-const showBottomDivider = !pathname.startsWith('/blog');
+const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathname.startsWith(route));
 
 const getStartedSubject = 'Get Started with tribera';
 const getStartedBody = [

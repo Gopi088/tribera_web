@@ -18,7 +18,7 @@ metadata:
   openGraph:
     site_name: tribera
     images:
-      - url: '/og-default.png'
+      - url: 'https://www.tribera.ai/og-default.png'
         width: 1200
         height: 628
     type: website
@@ -67,6 +67,7 @@ analytics:
   vendors:
     googleAnalytics:
       id: G-53PX4YFSBF
+      partytown: false
 
 ui:
   theme: 'light' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"

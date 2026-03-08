@@ -74,15 +74,27 @@ export const adaptOpenGraphImages = async (
           };
         }
 
-        // Public-root assets (e.g. /og-default.png) should remain stable paths.
-        // Keep them root-relative so the same static HTML works on both the
-        // production domain and preview hosts like Netlify deploy previews.
+        // Public-root assets (e.g. /og-default.png) should resolve to the
+        // canonical production host for stable OG/Twitter metadata.
         if (typeof resolvedImage === 'string' && resolvedImage.startsWith('/')) {
           return {
-            url: resolvedImage,
+            url: String(new URL(resolvedImage, astroSite)),
             width: image.width || defaultWidth,
             height: image.height || defaultHeight,
           };
+        }
+
+        if (typeof resolvedImage === 'string' && (resolvedImage.startsWith('http://') || resolvedImage.startsWith('https://'))) {
+          const imageUrl = new URL(resolvedImage);
+          const siteOrigin = astroSite?.origin;
+
+          if (siteOrigin && imageUrl.origin === siteOrigin) {
+            return {
+              url: resolvedImage,
+              width: image.width || defaultWidth,
+              height: image.height || defaultHeight,
+            };
+          }
         }
 
         let _image: OptimizedImage | undefined;
@@ -103,7 +115,7 @@ export const adaptOpenGraphImages = async (
 
         if (typeof _image === 'object') {
           return {
-            url: 'src' in _image && typeof _image.src === 'string' ? _image.src : '',
+            url: 'src' in _image && typeof _image.src === 'string' ? String(new URL(_image.src, astroSite)) : '',
             width: 'width' in _image && typeof _image.width === 'number' ? _image.width : undefined,
             height: 'height' in _image && typeof _image.height === 'number' ? _image.height : undefined,
           };

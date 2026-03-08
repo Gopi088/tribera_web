@@ -1,4 +1,5 @@
 ---
+import { SITE } from 'astrowind:config';
 import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
 import type { Post } from '~/types';
 
@@ -20,6 +21,8 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { page } = Astro.props as Props;
 const currentPage = page.currentPage ?? 1;
 const posts = (page.data ?? []) as Array<Post>;
+const siteUrl = Astro.site ?? new URL(SITE.site);
+const defaultOgImage = String(new URL('/og-default.png', siteUrl));
 
 const metadata = {
   title: `Blog - tribera`,
@@ -31,7 +34,7 @@ const metadata = {
     type: 'blog',
     images: [
       {
-        url: '/og-default.png',
+        url: defaultOgImage,
         width: 1200,
         height: 628,
       },
