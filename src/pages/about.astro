@@ -11,17 +11,21 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <main>
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-      <div
-        class="absolute inset-0"
-        style="
-      background:
-        radial-gradient(1200px 600px at -10% 50%, rgba(110, 0, 0, 0.75), transparent 60%),
-        radial-gradient(1200px 600px at 110% 50%, rgba(110, 0, 0, 0.75), transparent 60%),
-        linear-gradient(to bottom, #140000 0%, #000000 60%);
-      background-color: #000000;
-    "
-      >
+    <section class="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-black">
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-black"></div>
+
+        <div
+          class="absolute left-[-30%] md:left-[-15%] top-0 h-full w-[90%] md:w-[60%]
+        bg-[radial-gradient(circle_at_left_center,rgba(218,0,7,0.45),transparent_60%)]"
+        >
+        </div>
+
+        <div
+          class="absolute right-[-30%] md:right-[-15%] top-0 h-full w-[90%] md:w-[60%]
+        bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.45),transparent_60%)]"
+        >
+        </div>
       </div>
 
       <div class="absolute inset-0 pointer-events-none">
@@ -167,7 +171,7 @@ const metadata = {
           </div>
 
           {/* RIGHT CARD */}
-          <div class="relative">
+          <div class="relative" id="priya-tribera-card">
             {/* Glow */}
             <div class="absolute inset-0 -z-10 flex items-center justify-center">
               <div class="w-[110%] h-[110%] bg-[#da0007] opacity-20 blur-[120px] rounded-3xl"></div>
@@ -175,7 +179,7 @@ const metadata = {
 
             <p class="text-[15px] flex items-center justify-center text-[#da0007] mb-3">TRIBERA</p>
 
-            <div class="bg-[#0b0b0b] text-white rounded-2xl p-8 border border-[#da0007]/40 shadow-2xl">
+            <div class="bg-[#0b0b0b] text-white rounded-2xl p-8 border border-[#da0007]/40 shadow-2xl transform-gpu transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform hover:-translate-y-1">
               <div class="flex justify-between items-start mb-3">
                 <div>
                   <h3 class="font-semibold text-[15px]">Priya Sharma</h3>
@@ -194,9 +198,17 @@ const metadata = {
                     { label: 'WILL BUILD', value: 94 },
                     { label: 'WILL BECOME', value: 88, red: true },
                   ].map((item, i) => (
-                    <div data-step={i} class="bg-white/5 rounded-xl p-4 text-center border border-white/10">
+                    <div
+                      data-step={i}
+                      class="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 p-4 text-center"
+                    >
                       <p class="text-[11px] text-white/50 mb-1">{item.label}</p>
-                      <p class={`text-xl font-semibold ${item.red ? 'text-[#da0007]' : ''}`}>{item.value}</p>
+                      <p
+                        class={`about-metric-value text-xl font-semibold transition-transform duration-300 group-hover:-translate-y-0.5 ${item.red ? 'text-[#da0007]' : 'text-white'}`}
+                        data-target-value={item.value}
+                      >
+                        0
+                      </p>
                     </div>
                   ))
                 }
@@ -218,8 +230,8 @@ const metadata = {
                       {/* CENTER LINE */}
                       <div class="flex-1 h-[4px] bg-white/10 rounded-full overflow-hidden">
                         <div
-                          class="h-full bg-[#da0007] rounded-full transition-all duration-700"
-                          style={`width:${bar.value}%`}
+                          class="about-progress-fill h-full w-0 rounded-full bg-[#da0007] transition-[width] duration-1000 ease-out"
+                          data-target-width={`${bar.value}%`}
                         />
                       </div>
 
@@ -583,4 +595,112 @@ const metadata = {
       </div>
     </section>
   </main>
+  <script is:inline>
+    function initAboutProgressBars() {
+      const card = document.getElementById('priya-tribera-card');
+      if (!(card instanceof HTMLElement)) return;
+      if (card.dataset.progressBound === 'true') return;
+      card.dataset.progressBound = 'true';
+
+      const fills = Array.from(card.querySelectorAll('.about-progress-fill'));
+      const metricValues = Array.from(card.querySelectorAll('.about-metric-value'));
+      if (!fills.length) return;
+
+      let fillTimeouts = [];
+      let metricFrame = null;
+
+      const animate = () => {
+        fillTimeouts.forEach((timeoutId) => window.clearTimeout(timeoutId));
+        fillTimeouts = [];
+
+        fills.forEach((fill, index) => {
+          if (!(fill instanceof HTMLElement)) return;
+          const targetWidth = fill.dataset.targetWidth;
+          if (!targetWidth) return;
+
+          const timeoutId = window.setTimeout(() => {
+            fill.style.width = targetWidth;
+          }, index * 140);
+          fillTimeouts.push(timeoutId);
+        });
+
+        if (metricFrame) {
+          window.cancelAnimationFrame(metricFrame);
+        }
+
+        const targets = metricValues.map((metric) => {
+          if (!(metric instanceof HTMLElement)) return 0;
+          const targetValue = Number(metric.dataset.targetValue || '0');
+          metric.textContent = '0';
+          return Number.isFinite(targetValue) ? targetValue : 0;
+        });
+
+        const startTime = performance.now();
+        const duration = 900;
+
+        const tick = (now) => {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+
+          metricValues.forEach((metric, index) => {
+            if (!(metric instanceof HTMLElement)) return;
+            const nextValue = Math.round(targets[index] * eased);
+            metric.textContent = String(nextValue);
+          });
+
+          if (progress < 1) {
+            metricFrame = window.requestAnimationFrame(tick);
+            return;
+          }
+
+          metricFrame = null;
+        };
+
+        metricFrame = window.requestAnimationFrame(tick);
+      };
+
+      const reset = () => {
+        fillTimeouts.forEach((timeoutId) => window.clearTimeout(timeoutId));
+        fillTimeouts = [];
+        if (metricFrame) {
+          window.cancelAnimationFrame(metricFrame);
+          metricFrame = null;
+        }
+
+        fills.forEach((fill) => {
+          if (!(fill instanceof HTMLElement)) return;
+          fill.style.width = '0';
+        });
+
+        metricValues.forEach((metric) => {
+          if (!(metric instanceof HTMLElement)) return;
+          metric.textContent = '0';
+        });
+      };
+
+      if (!('IntersectionObserver' in window)) {
+        animate();
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animate();
+              return;
+            }
+
+            reset();
+          });
+        },
+        { threshold: 0.35 }
+      );
+
+      observer.observe(card);
+    }
+
+    initAboutProgressBars();
+    document.addEventListener('astro:page-load', initAboutProgressBars);
+  </script>
 </Layout>
