@@ -64,38 +64,103 @@ const isCandidatesPage = pathname === '/candidates';
       (() => {
         const allowedHosts = new Set(['tribera.ai', 'www.tribera.ai', 'tribera-webv2.netlify.app']);
         const environmentId = '75186a18-80c9-e34b-b323-d376419f05d1';
-        const warmupId = 'teams-chatbot-warmup';
+        const chatbotIframeId = 'teams-chat-bot-iframe-a3b60c17-95c7-4cba-8036-be9da15bcc26';
         const iframeBaseUrl = 'https://customerconnect.teams.usercontent.microsoft/customer-service-chatbot';
+        const hiddenIframeStyle =
+          'position:fixed;bottom:0;right:0;width:1px;height:1px;opacity:0;pointer-events:none;border:0;z-index:-1;';
 
-        const warmupBot = () => {
-          if (!allowedHosts.has(window.location.hostname)) return;
-          if (document.getElementById(warmupId)) return;
+        const hideIframe = (iframe) => {
+          iframe.style.cssText = hiddenIframeStyle;
+          iframe.setAttribute('aria-hidden', 'true');
+          iframe.tabIndex = -1;
+        };
 
-          const iframe = document.createElement('iframe');
+        const showIframe = (iframe) => {
+          iframe.style.opacity = '1';
+          iframe.style.pointerEvents = 'auto';
+          iframe.style.zIndex = '10000';
+          iframe.style.border = '0';
+          iframe.removeAttribute('aria-hidden');
+          iframe.tabIndex = 0;
+        };
+
+        const ensureWarmIframe = () => {
+          if (!allowedHosts.has(window.location.hostname)) return null;
+
+          let iframe = document.getElementById(chatbotIframeId);
+          if (iframe instanceof HTMLIFrameElement) return iframe;
+
+          iframe = document.createElement('iframe');
           const url = new URL(iframeBaseUrl);
           url.searchParams.set('environmentId', environmentId);
 
-          iframe.id = warmupId;
+          iframe.id = chatbotIframeId;
           iframe.src = url.toString();
-          iframe.tabIndex = -1;
-          iframe.setAttribute('aria-hidden', 'true');
           iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin');
-          iframe.setAttribute(
-            'style',
-            'position:fixed;bottom:0;right:0;width:1px;height:1px;opacity:0;pointer-events:none;border:0;z-index:-1;'
-          );
-
+          iframe.title = 'Customer Connect chat bot assistant';
+          hideIframe(iframe);
           document.body.appendChild(iframe);
+
+          return iframe;
+        };
+
+        const revealWarmIframe = () => {
+          const iframe = ensureWarmIframe();
+          if (!(iframe instanceof HTMLIFrameElement)) return;
+          showIframe(iframe);
+          iframe.contentWindow?.focus();
+        };
+
+        const interceptLauncher = (event) => {
+          const target = event.target;
+          if (!(target instanceof Element)) return;
+
+          const button = target.closest('img.chatclient-button');
+          if (!(button instanceof HTMLImageElement)) return;
+
+          const iframe = document.getElementById(chatbotIframeId);
+          if (!(iframe instanceof HTMLIFrameElement)) return;
+
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          revealWarmIframe();
         };
 
         const scheduleWarmup = () => {
           if ('requestIdleCallback' in window) {
-            window.requestIdleCallback(() => warmupBot(), { timeout: 2500 });
+            window.requestIdleCallback(() => ensureWarmIframe(), { timeout: 2500 });
             return;
           }
 
-          window.setTimeout(warmupBot, 1200);
+          window.setTimeout(() => ensureWarmIframe(), 1200);
         };
+
+        document.addEventListener('click', interceptLauncher, true);
+        document.addEventListener(
+          'keyup',
+          (event) => {
+            if (event.code !== 'Enter' && event.code !== 'Space') return;
+            interceptLauncher(event);
+          },
+          true
+        );
+
+        window.addEventListener('message', (event) => {
+          const iframe = document.getElementById(chatbotIframeId);
+          if (!(iframe instanceof HTMLIFrameElement)) return;
+
+          if (event.data?.type !== 'toggle') return;
+
+          const width = String(event.data.width ?? '');
+          const height = String(event.data.height ?? '');
+
+          if (width === '0' || height === '0') {
+            hideIframe(iframe);
+            return;
+          }
+
+          showIframe(iframe);
+        });
 
         if (document.readyState === 'complete') {
           scheduleWarmup();
