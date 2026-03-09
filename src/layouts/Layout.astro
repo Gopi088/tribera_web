@@ -68,6 +68,7 @@ const isCandidatesPage = pathname === '/candidates';
         const iframeBaseUrl = 'https://customerconnect.teams.usercontent.microsoft/customer-service-chatbot';
         const hiddenIframeStyle =
           'position:fixed;bottom:0;right:0;width:1px;height:1px;opacity:0;pointer-events:none;border:0;z-index:-1;';
+        let userOpenedChat = false;
 
         const hideIframe = (iframe) => {
           iframe.style.cssText = hiddenIframeStyle;
@@ -107,6 +108,7 @@ const isCandidatesPage = pathname === '/candidates';
         const revealWarmIframe = () => {
           const iframe = ensureWarmIframe();
           if (!(iframe instanceof HTMLIFrameElement)) return;
+          userOpenedChat = true;
           showIframe(iframe);
           iframe.contentWindow?.focus();
         };
@@ -155,10 +157,12 @@ const isCandidatesPage = pathname === '/candidates';
           const height = String(event.data.height ?? '');
 
           if (width === '0' || height === '0') {
+            userOpenedChat = false;
             hideIframe(iframe);
             return;
           }
 
+          if (!userOpenedChat) return;
           showIframe(iframe);
         });
 
