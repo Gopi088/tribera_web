@@ -355,40 +355,85 @@ const { metadata } = Astro.props;
       const section = document.getElementById('proof');
       if (!section) return;
 
-      let numbersAnimated = false;
+      if (typeof section.__proofCleanup === 'function') {
+        section.__proofCleanup();
+      }
+
       let barFilled = false;
+      let barTimeoutId = null;
+      const counterFrames = new Map();
+
+      const counters = Array.from(section.querySelectorAll('.count-number'));
+      const bar = section.querySelector('#triberaBar');
+
+      const resetCounters = () => {
+        counters.forEach((counter) => {
+          const frameId = counterFrames.get(counter);
+          if (frameId) {
+            cancelAnimationFrame(frameId);
+            counterFrames.delete(counter);
+          }
+
+          counter.innerText = '0';
+        });
+      };
+
+      const animateCounters = () => {
+        resetCounters();
+
+        window.requestAnimationFrame(() => {
+          window.requestAnimationFrame(() => {
+            counters.forEach((counter) => {
+              const target = Number(counter.dataset.target);
+              let current = 0;
+              const increment = target / 40;
+
+              const update = () => {
+                current += increment;
+
+                if (current < target) {
+                  counter.innerText = String(Math.floor(current));
+                  const frameId = requestAnimationFrame(update);
+                  counterFrames.set(counter, frameId);
+                  return;
+                }
+
+                counter.innerText = String(target);
+                counterFrames.delete(counter);
+              };
+
+              update();
+            });
+          });
+        });
+      };
+
+      const resetBar = () => {
+        if (!bar) return;
+        if (barTimeoutId) {
+          clearTimeout(barTimeoutId);
+          barTimeoutId = null;
+        }
+
+        barFilled = false;
+        bar.style.transition = 'none';
+        bar.style.width = '0%';
+        void bar.offsetWidth;
+        bar.style.transition = '';
+      };
+
+      const cleanup = () => {
+        resetCounters();
+        resetBar();
+        observer.disconnect();
+      };
 
       const observer = new IntersectionObserver(
         (entries) => {
           const entry = entries[0];
-          const bar = section.querySelector('#triberaBar');
 
           if (entry.isIntersecting) {
-            if (!numbersAnimated) {
-              numbersAnimated = true;
-
-              /* ===== COUNT NUMBERS ===== */
-              const counters = section.querySelectorAll('.count-number');
-
-              counters.forEach((counter) => {
-                const target = Number(counter.dataset.target);
-                let current = 0;
-                const increment = target / 40;
-
-                function update() {
-                  current += increment;
-
-                  if (current < target) {
-                    counter.innerText = Math.floor(current);
-                    requestAnimationFrame(update);
-                  } else {
-                    counter.innerText = target;
-                  }
-                }
-
-                update();
-              });
-            }
+            animateCounters();
 
             /* ===== FILL BAR (replays on every re-entry) ===== */
             if (bar && !barFilled) {
@@ -400,25 +445,22 @@ const { metadata } = Astro.props;
               void bar.offsetWidth;
               bar.style.transition = '';
 
-              setTimeout(() => {
+              barTimeoutId = window.setTimeout(() => {
                 bar.style.width = '37%';
+                barTimeoutId = null;
               }, 400);
             }
             return;
           }
 
-          if (bar) {
-            barFilled = false;
-            bar.style.transition = 'none';
-            bar.style.width = '0%';
-            void bar.offsetWidth;
-            bar.style.transition = '';
-          }
+          resetCounters();
+          resetBar();
         },
         { threshold: 0.3 }
       );
 
       observer.observe(section);
+      section.__proofCleanup = cleanup;
     }
 
     /* FIRST LOAD */
