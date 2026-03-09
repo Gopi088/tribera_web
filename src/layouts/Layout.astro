@@ -39,6 +39,18 @@ const isCandidatesPage = pathname === '/candidates';
     <StructuredData metadata={metadata} />
     <SiteVerification />
     <Analytics />
+    <link rel="preload" as="script" href="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js" crossorigin />
+    <link rel="preconnect" href="https://res.public.onecdn.static.microsoft" crossorigin />
+    <link rel="preconnect" href="https://customerconnect.teams.usercontent.microsoft" crossorigin />
+    <link rel="dns-prefetch" href="//res.public.onecdn.static.microsoft" />
+    <link rel="dns-prefetch" href="//customerconnect.teams.usercontent.microsoft" />
+    <script
+      async
+      type="text/javascript"
+      src="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js"
+      id="chatbot"
+      environmentId="75186a18-80c9-e34b-b323-d376419f05d1"
+      crossorigin="anonymous"></script>
 
     <!-- Comment the line below to disable View Transitions -->
     <ClientRouter fallback="swap" />
@@ -47,6 +59,51 @@ const isCandidatesPage = pathname === '/candidates';
   <body class="bg-page overflow-x-hidden">
     <slot />
     <BasicScripts />
+
+    <script is:inline>
+      (() => {
+        const allowedHosts = new Set(['tribera.ai', 'www.tribera.ai', 'tribera-webv2.netlify.app']);
+        const environmentId = '75186a18-80c9-e34b-b323-d376419f05d1';
+        const warmupId = 'teams-chatbot-warmup';
+        const iframeBaseUrl = 'https://customerconnect.teams.usercontent.microsoft/customer-service-chatbot';
+
+        const warmupBot = () => {
+          if (!allowedHosts.has(window.location.hostname)) return;
+          if (document.getElementById(warmupId)) return;
+
+          const iframe = document.createElement('iframe');
+          const url = new URL(iframeBaseUrl);
+          url.searchParams.set('environmentId', environmentId);
+
+          iframe.id = warmupId;
+          iframe.src = url.toString();
+          iframe.tabIndex = -1;
+          iframe.setAttribute('aria-hidden', 'true');
+          iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin');
+          iframe.setAttribute(
+            'style',
+            'position:fixed;bottom:0;right:0;width:1px;height:1px;opacity:0;pointer-events:none;border:0;z-index:-1;'
+          );
+
+          document.body.appendChild(iframe);
+        };
+
+        const scheduleWarmup = () => {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(() => warmupBot(), { timeout: 2500 });
+            return;
+          }
+
+          window.setTimeout(warmupBot, 1200);
+        };
+
+        if (document.readyState === 'complete') {
+          scheduleWarmup();
+        } else {
+          window.addEventListener('load', scheduleWarmup, { once: true });
+        }
+      })();
+    </script>
 
     <!-- GLOBAL FULL-WIDTH SCROLL CTA -->
     <div
@@ -266,23 +323,6 @@ const isCandidatesPage = pathname === '/candidates';
 
       window.addEventListener('load', initHowItWorksCTA);
       document.addEventListener('astro:page-load', initHowItWorksCTA);
-    </script>
-
-    <script is:inline>
-      (() => {
-        const allowedHosts = new Set(['tribera.ai', 'www.tribera.ai', 'tribera-webv2.netlify.app']);
-
-        if (!allowedHosts.has(window.location.hostname)) return;
-        if (document.getElementById('chatbot')) return;
-
-        const script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
-        script.id = 'chatbot';
-        script.setAttribute('environmentId', '75186a18-80c9-e34b-b323-d376419f05d1');
-        script.setAttribute('crossorigin', 'anonymous');
-        document.body.appendChild(script);
-      })();
     </script>
   </body>
 </html>
