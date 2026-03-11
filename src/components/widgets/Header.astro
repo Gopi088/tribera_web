@@ -326,7 +326,14 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
                   const submitBtn = document.getElementById('submitBtn');
                   const fileName = document.getElementById('fileName');
 
-                  if (!uploadBtn || !resumeInput || !submitBtn || !fileName) return;
+                  if (
+                    !(uploadBtn instanceof HTMLButtonElement) ||
+                    !(resumeInput instanceof HTMLInputElement) ||
+                    !(submitBtn instanceof HTMLButtonElement) ||
+                    !(fileName instanceof HTMLElement)
+                  ) {
+                    return;
+                  }
                   if (uploadBtn.dataset.bound === 'true') return;
                   uploadBtn.dataset.bound = 'true';
 
@@ -335,10 +342,9 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
                   });
 
                   resumeInput.addEventListener('change', () => {
-                    const fileInput = resumeInput;
-                    if (fileInput?.files && fileInput.files.length > 0) {
+                    if (resumeInput.files && resumeInput.files.length > 0) {
                       submitBtn.disabled = false;
-                      fileName.textContent = `Selected: ${fileInput.files[0].name}`;
+                      fileName.textContent = `Selected: ${resumeInput.files[0].name}`;
                     } else {
                       submitBtn.disabled = true;
                       fileName.textContent = '';
@@ -373,7 +379,6 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
           <script is:inline>
             function initModal() {
               const modal = document.getElementById('contactModal');
-              const btns = document.querySelectorAll('#contactBtn, [data-create-profile]');
               const close = document.getElementById('closeModal');
               const form = document.getElementById('candidateForm');
               const success = document.getElementById('successMessage');
@@ -568,8 +573,8 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
     const mobileBtn = document.getElementById('mobile-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
-    const bindClickOnce = (el, key, handler) => {
-      if (!el) return;
+    const bindClickOnce = (el: HTMLElement | null, key: string, handler: (event: MouseEvent) => void) => {
+      if (!(el instanceof HTMLElement)) return;
       if (el.dataset[key] === 'true') return;
       el.dataset[key] = 'true';
       el.addEventListener('click', handler);
@@ -592,12 +597,12 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
       mobileMenu?.classList.toggle('hidden');
     });
 
-    const normalizePath = (path) => {
+    const normalizePath = (path: string) => {
       const clean = path.split('#')[0].replace(/\/index\.html$/, '').replace(/\/+$/, '');
       return clean || '/';
     };
 
-    const isSectionInFocus = (target) => {
+    const isSectionInFocus = (target: Element | null) => {
       if (!(target instanceof HTMLElement)) return false;
 
       const rect = target.getBoundingClientRect();
@@ -610,7 +615,7 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
       return visibleHeight / targetHeight >= 0.55;
     };
 
-    const getAlignedTop = (target) => {
+    const getAlignedTop = (target: Element | null) => {
       if (!(target instanceof HTMLElement)) return 0;
 
       const targetTop = target.getBoundingClientRect().top + window.scrollY;
@@ -619,7 +624,7 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
       return Math.max(targetTop - offset, 0);
     };
 
-    const nudgeToSection = (target) => {
+    const nudgeToSection = (target: Element | null) => {
       if (!(target instanceof HTMLElement)) return;
 
       const alignedTop = getAlignedTop(target);
@@ -641,7 +646,7 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
       }, 120);
     };
 
-    const scrollToHash = (hash) => {
+    const scrollToHash = (hash: string) => {
       if (!hash) {
         if (window.scrollY <= 80) {
           nudgeToTop();
@@ -711,7 +716,7 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
       document.removeEventListener('click', win.__triberaHeaderOutsideClick);
     }
 
-    const outsideClickHandler = (e) => {
+    const outsideClickHandler = (e: MouseEvent) => {
       const target = e.target;
       if (!(target instanceof Node)) return;
       if (

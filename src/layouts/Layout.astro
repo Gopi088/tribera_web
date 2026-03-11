@@ -44,14 +44,6 @@ const isCandidatesPage = pathname === '/candidates';
     <link rel="preconnect" href="https://customerconnect.teams.usercontent.microsoft" crossorigin />
     <link rel="dns-prefetch" href="//res.public.onecdn.static.microsoft" />
     <link rel="dns-prefetch" href="//customerconnect.teams.usercontent.microsoft" />
-    <script
-      async
-      type="text/javascript"
-      src="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js"
-      id="chatbot"
-      environmentId="75186a18-80c9-e34b-b323-d376419f05d1"
-      crossorigin="anonymous"></script>
-
     <!-- Comment the line below to disable View Transitions -->
     <ClientRouter fallback="swap" />
   </head>
@@ -62,9 +54,13 @@ const isCandidatesPage = pathname === '/candidates';
 
     <script is:inline>
       (() => {
+        window.__triberaChatbotCleanup?.();
+
         const allowedHosts = new Set(['tribera.ai', 'www.tribera.ai', 'tribera-webv2.netlify.app']);
         const environmentId = '75186a18-80c9-e34b-b323-d376419f05d1';
+        const chatbotScriptId = 'chatbot';
         const chatbotIframeId = 'teams-chat-bot-iframe-a3b60c17-95c7-4cba-8036-be9da15bcc26';
+        const chatbotScriptSrc = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
         const iframeBaseUrl = 'https://customerconnect.teams.usercontent.microsoft/customer-service-chatbot';
         const hiddenIframeStyle =
           'position:fixed;bottom:0;right:0;width:1px;height:1px;opacity:0;pointer-events:none;border:0;z-index:-1;';
@@ -85,8 +81,26 @@ const isCandidatesPage = pathname === '/candidates';
           iframe.tabIndex = 0;
         };
 
+        const ensureChatbotScript = () => {
+          let script = document.getElementById(chatbotScriptId);
+          if (script instanceof HTMLScriptElement) return script;
+
+          script = document.createElement('script');
+          script.id = chatbotScriptId;
+          script.async = true;
+          script.type = 'text/javascript';
+          script.src = chatbotScriptSrc;
+          script.crossOrigin = 'anonymous';
+          script.setAttribute('environmentId', environmentId);
+          document.head.appendChild(script);
+
+          return script;
+        };
+
         const ensureWarmIframe = () => {
           if (!allowedHosts.has(window.location.hostname)) return null;
+
+          ensureChatbotScript();
 
           let iframe = document.getElementById(chatbotIframeId);
           if (iframe instanceof HTMLIFrameElement) return iframe;
@@ -137,17 +151,12 @@ const isCandidatesPage = pathname === '/candidates';
           window.setTimeout(() => ensureWarmIframe(), 1200);
         };
 
-        document.addEventListener('click', interceptLauncher, true);
-        document.addEventListener(
-          'keyup',
-          (event) => {
-            if (event.code !== 'Enter' && event.code !== 'Space') return;
-            interceptLauncher(event);
-          },
-          true
-        );
+        const keyupHandler = (event) => {
+          if (event.code !== 'Enter' && event.code !== 'Space') return;
+          interceptLauncher(event);
+        };
 
-        window.addEventListener('message', (event) => {
+        const messageHandler = (event) => {
           const iframe = document.getElementById(chatbotIframeId);
           if (!(iframe instanceof HTMLIFrameElement)) return;
 
@@ -164,7 +173,21 @@ const isCandidatesPage = pathname === '/candidates';
 
           if (!userOpenedChat) return;
           showIframe(iframe);
-        });
+        };
+
+        document.addEventListener('click', interceptLauncher, true);
+        document.addEventListener('keyup', keyupHandler, true);
+        window.addEventListener('message', messageHandler);
+
+        const cleanup = () => {
+          document.removeEventListener('click', interceptLauncher, true);
+          document.removeEventListener('keyup', keyupHandler, true);
+          window.removeEventListener('message', messageHandler);
+          window.__triberaChatbotCleanup = undefined;
+        };
+
+        window.__triberaChatbotCleanup = cleanup;
+        document.addEventListener('astro:before-swap', cleanup, { once: true });
 
         if (document.readyState === 'complete') {
           scheduleWarmup();
@@ -352,6 +375,19 @@ const isCandidatesPage = pathname === '/candidates';
 
     <script>
       function initHowItWorksCTA() {
+        if (window.__triberaHowItWorksCTAScroll) {
+          window.removeEventListener('scroll', window.__triberaHowItWorksCTAScroll);
+          window.__triberaHowItWorksCTAScroll = undefined;
+        }
+
+        if (window.__triberaHowItWorksCTAClose) {
+          const previousCloseBtn = document.getElementById('close-cta');
+          if (previousCloseBtn instanceof HTMLElement) {
+            previousCloseBtn.removeEventListener('click', window.__triberaHowItWorksCTAClose);
+          }
+          window.__triberaHowItWorksCTAClose = undefined;
+        }
+
         if (window.location.pathname !== '/') return;
 
         const section = document.getElementById('how-it-works');
@@ -361,6 +397,14 @@ const isCandidatesPage = pathname === '/candidates';
         if (!section || !cta) return;
         const sectionEl = section as HTMLElement;
         const ctaEl = cta as HTMLElement;
+
+        if (window.__triberaHowItWorksCTAScroll) {
+          window.removeEventListener('scroll', window.__triberaHowItWorksCTAScroll);
+        }
+
+        if (window.__triberaHowItWorksCTAClose && closeBtn instanceof HTMLElement) {
+          closeBtn.removeEventListener('click', window.__triberaHowItWorksCTAClose);
+        }
 
         let closedThisSession = false;
 
@@ -379,16 +423,34 @@ const isCandidatesPage = pathname === '/candidates';
           }
         }
 
-        closeBtn?.addEventListener('click', () => {
+        const handleClose = () => {
           closedThisSession = true;
 
           ctaEl.classList.add('translate-y-full', 'opacity-0');
           ctaEl.classList.remove('translate-y-0', 'opacity-100');
-        });
+        };
 
+        closeBtn?.addEventListener('click', handleClose);
         window.addEventListener('scroll', handleScroll);
+        window.__triberaHowItWorksCTAScroll = handleScroll;
+        window.__triberaHowItWorksCTAClose = handleClose;
         handleScroll();
       }
+
+      document.addEventListener('astro:before-swap', () => {
+        if (window.__triberaHowItWorksCTAScroll) {
+          window.removeEventListener('scroll', window.__triberaHowItWorksCTAScroll);
+          window.__triberaHowItWorksCTAScroll = undefined;
+        }
+
+        if (window.__triberaHowItWorksCTAClose) {
+          const closeBtn = document.getElementById('close-cta');
+          if (closeBtn instanceof HTMLElement) {
+            closeBtn.removeEventListener('click', window.__triberaHowItWorksCTAClose);
+          }
+          window.__triberaHowItWorksCTAClose = undefined;
+        }
+      });
 
       window.addEventListener('load', initHowItWorksCTA);
       document.addEventListener('astro:page-load', initHowItWorksCTA);

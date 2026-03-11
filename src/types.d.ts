@@ -182,6 +182,17 @@ export interface Textarea {
 export interface Disclaimer {
   label?: string;
 }
+
+declare global {
+  interface Window {
+    __triberaChatbotCleanup?: () => void;
+    __triberaHeaderOutsideClick?: (event: MouseEvent) => void;
+    __triberaHowItWorksCTAScroll?: () => void;
+    __triberaHowItWorksCTAClose?: () => void;
+    __triberaProofCardScrollCleanup?: () => void;
+  }
+}
+
 // ACTION / BUTTON CONFIG
 export interface CallToAction {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
