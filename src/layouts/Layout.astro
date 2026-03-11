@@ -69,6 +69,7 @@ const isCandidatesPage = pathname === '/candidates';
         const iframeBaseUrl = 'https://customerconnect.teams.usercontent.microsoft/customer-service-chatbot';
         const hiddenIframeStyle =
           'position:fixed;bottom:0;right:0;width:1px;height:1px;opacity:0;pointer-events:none;border:0;z-index:-1;';
+        let userOpenedChat = false;
 
         const hideIframe = (iframe) => {
           iframe.style.cssText = hiddenIframeStyle;
@@ -126,19 +127,30 @@ const isCandidatesPage = pathname === '/candidates';
         const revealWarmIframe = () => {
           const iframe = ensureWarmIframe();
           if (!(iframe instanceof HTMLIFrameElement)) return;
+          userOpenedChat = true;
           showIframe(iframe);
           iframe.contentWindow?.focus();
         };
 
+        const findLauncher = (target) => {
+          if (!(target instanceof Element)) return null;
+
+          return target.closest(
+            [
+              'img.chatclient-button',
+              'button.chatclient-button',
+              '.chatclient-button',
+              '[class*="chatclient-button"]',
+              '[id*="chatclient-button"]',
+              '[class*="customerconnect"] button',
+              '[id*="customerconnect"] button',
+            ].join(', ')
+          );
+        };
+
         const interceptLauncher = (event) => {
-          const target = event.target;
-          if (!(target instanceof Element)) return;
-
-          const button = target.closest('img.chatclient-button');
-          if (!(button instanceof HTMLImageElement)) return;
-
-          const iframe = document.getElementById(chatbotIframeId);
-          if (!(iframe instanceof HTMLIFrameElement)) return;
+          const button = findLauncher(event.target);
+          if (!(button instanceof Element)) return;
 
           event.preventDefault();
           event.stopImmediatePropagation();
@@ -165,14 +177,16 @@ const isCandidatesPage = pathname === '/candidates';
 
           if (event.data?.type !== 'toggle') return;
 
-          const width = String(event.data.width ?? '');
-          const height = String(event.data.height ?? '');
+          const width = Number(event.data.width ?? 0);
+          const height = Number(event.data.height ?? 0);
+          const isCollapsedState = width <= 100 && height <= 100;
 
-          if (width === '0' || height === '0') {
+          if (width === 0 || height === 0 || isCollapsedState) {
             hideIframe(iframe);
             return;
           }
 
+          if (!userOpenedChat) return;
           showIframe(iframe);
         };
 
