@@ -11,14 +11,38 @@
       <input type="hidden" name="access_key" value="f3c09cb0-6c94-405e-af37-4f01141d40bd" />
       <input type="hidden" name="subject" value="New Contact Sales Submission - Tribera" />
       <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
-      <input type="text" name="name" placeholder="Full name" required class="w-full border rounded-md px-3 py-2" />
+      <input
+        type="text"
+        name="name"
+        placeholder="Full name"
+        autocomplete="name"
+        required
+        class="w-full border rounded-md px-3 py-2"
+      />
 
-      <input type="email" name="email" placeholder="Work email" required class="w-full border rounded-md px-3 py-2" />
+      <input
+        type="email"
+        name="email"
+        placeholder="Work email"
+        autocomplete="email"
+        required
+        class="w-full border rounded-md px-3 py-2"
+      />
 
-      <input type="text" name="company" placeholder="Company name" class="w-full border rounded-md px-3 py-2" />
+      <input
+        type="text"
+        name="company"
+        placeholder="Company name"
+        autocomplete="organization"
+        class="w-full border rounded-md px-3 py-2"
+      />
 
-      <textarea rows="3" name="message" placeholder="How can we help?" class="w-full border rounded-md px-3 py-2"
-      ></textarea>
+      <textarea
+        rows="3"
+        name="message"
+        autocomplete="off"
+        placeholder="How can we help?"
+        class="w-full border rounded-md px-3 py-2"></textarea>
 
       <button
         type="submit"
