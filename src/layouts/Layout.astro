@@ -66,47 +66,6 @@ const isCandidatesPage = pathname === '/candidates';
         const chatbotScriptId = 'chatbot';
         const chatbotIframeId = 'teams-chat-bot-iframe-a3b60c17-95c7-4cba-8036-be9da15bcc26';
         const chatbotScriptSrc = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
-        const iframeBaseUrl = 'https://customerconnect.teams.usercontent.microsoft/customer-service-chatbot';
-        const hiddenIframeStyle =
-          'position:fixed;bottom:0;right:0;width:1px;height:1px;opacity:0;pointer-events:none;border:0;z-index:-1;';
-        let userOpenedChat = false;
-        let iframeObserver = null;
-        let iframeStyleObserver = null;
-
-        const getIframeBox = (iframe) => ({
-          width: iframe.getBoundingClientRect().width || iframe.offsetWidth || parseFloat(iframe.style.width) || 0,
-          height: iframe.getBoundingClientRect().height || iframe.offsetHeight || parseFloat(iframe.style.height) || 0,
-        });
-
-        const syncIframeVisibility = (iframe) => {
-          if (!(iframe instanceof HTMLIFrameElement)) return;
-
-          const { width, height } = getIframeBox(iframe);
-          const isCollapsedState = width <= 100 && height <= 100;
-
-          if (isCollapsedState) {
-            hideIframe(iframe);
-            return;
-          }
-
-          if (!userOpenedChat) return;
-          showIframe(iframe);
-        };
-
-        const hideIframe = (iframe) => {
-          iframe.style.cssText = hiddenIframeStyle;
-          iframe.setAttribute('aria-hidden', 'true');
-          iframe.tabIndex = -1;
-        };
-
-        const showIframe = (iframe) => {
-          iframe.style.opacity = '1';
-          iframe.style.pointerEvents = 'auto';
-          iframe.style.zIndex = '10000';
-          iframe.style.border = '0';
-          iframe.removeAttribute('aria-hidden');
-          iframe.tabIndex = 0;
-        };
 
         const ensureChatbotScript = () => {
           let script = document.getElementById(chatbotScriptId);
@@ -124,127 +83,29 @@ const isCandidatesPage = pathname === '/candidates';
           return script;
         };
 
-        const ensureWarmIframe = () => {
-          if (!allowedHosts.has(window.location.hostname)) return null;
-
-          ensureChatbotScript();
-
-          let iframe = document.getElementById(chatbotIframeId);
-          if (iframe instanceof HTMLIFrameElement) return iframe;
-
-          iframe = document.createElement('iframe');
-          const url = new URL(iframeBaseUrl);
-          url.searchParams.set('environmentId', environmentId);
-
-          iframe.id = chatbotIframeId;
-          iframe.src = url.toString();
-          iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin');
-          iframe.title = 'Customer Connect chat bot assistant';
-          hideIframe(iframe);
-          document.body.appendChild(iframe);
-
-          iframeObserver?.disconnect();
-          iframeObserver = new ResizeObserver(() => {
-            syncIframeVisibility(iframe);
-          });
-          iframeObserver.observe(iframe);
-
-          iframeStyleObserver?.disconnect();
-          iframeStyleObserver = new MutationObserver(() => {
-            syncIframeVisibility(iframe);
-          });
-          iframeStyleObserver.observe(iframe, { attributes: true, attributeFilter: ['style'] });
-
-          return iframe;
-        };
-
-        const revealWarmIframe = () => {
-          const iframe = ensureWarmIframe();
-          if (!(iframe instanceof HTMLIFrameElement)) return;
-          userOpenedChat = true;
-          showIframe(iframe);
-          iframe.contentWindow?.focus();
-        };
-
-        const findLauncher = (target) => {
-          if (!(target instanceof Element)) return null;
-
-          return target.closest(
-            [
-              'img.chatclient-button',
-              'button.chatclient-button',
-              '.chatclient-button',
-              '[class*="chatclient-button"]',
-              '[id*="chatclient-button"]',
-              '[class*="customerconnect"] button',
-              '[id*="customerconnect"] button',
-            ].join(', ')
-          );
-        };
-
-        const interceptLauncher = (event) => {
-          const button = findLauncher(event.target);
-          if (!(button instanceof Element)) return;
-
-          event.preventDefault();
-          event.stopImmediatePropagation();
-          revealWarmIframe();
-        };
-
-        const scheduleWarmup = () => {
-          if ('requestIdleCallback' in window) {
-            window.requestIdleCallback(() => ensureWarmIframe(), { timeout: 2500 });
-            return;
-          }
-
-          window.setTimeout(() => ensureWarmIframe(), 1200);
-        };
-
-        const keyupHandler = (event) => {
-          if (event.code !== 'Enter' && event.code !== 'Space') return;
-          interceptLauncher(event);
-        };
-
-        const messageHandler = (event) => {
-          const iframe = document.getElementById(chatbotIframeId);
-          if (!(iframe instanceof HTMLIFrameElement)) return;
-
-          if (event.data?.type !== 'toggle') return;
-
-          const width = Number.parseFloat(String(event.data.width ?? 0));
-          const height = Number.parseFloat(String(event.data.height ?? 0));
-
-          if (width === 0 || height === 0) {
-            hideIframe(iframe);
-            return;
-          }
-
-          if (!userOpenedChat) return;
-          showIframe(iframe);
-        };
-
-        document.addEventListener('click', interceptLauncher, true);
-        document.addEventListener('keyup', keyupHandler, true);
-        window.addEventListener('message', messageHandler);
-
         const cleanup = () => {
-          document.removeEventListener('click', interceptLauncher, true);
-          document.removeEventListener('keyup', keyupHandler, true);
-          window.removeEventListener('message', messageHandler);
-          iframeObserver?.disconnect();
-          iframeStyleObserver?.disconnect();
-          iframeObserver = null;
-          iframeStyleObserver = null;
+          const iframe = document.getElementById(chatbotIframeId);
+          if (iframe instanceof HTMLIFrameElement) {
+            iframe.remove();
+          }
+
+          const script = document.getElementById(chatbotScriptId);
+          if (script instanceof HTMLScriptElement) {
+            script.remove();
+          }
+
           window.__triberaChatbotCleanup = undefined;
         };
 
         window.__triberaChatbotCleanup = cleanup;
         document.addEventListener('astro:before-swap', cleanup, { once: true });
 
-        if (document.readyState === 'complete') {
-          scheduleWarmup();
+        if (!allowedHosts.has(window.location.hostname)) return;
+
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+          ensureChatbotScript();
         } else {
-          window.addEventListener('load', scheduleWarmup, { once: true });
+          window.addEventListener('DOMContentLoaded', ensureChatbotScript, { once: true });
         }
       })();
     </script>
