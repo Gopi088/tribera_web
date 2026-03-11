@@ -84,7 +84,10 @@ export const adaptOpenGraphImages = async (
           };
         }
 
-        if (typeof resolvedImage === 'string' && (resolvedImage.startsWith('http://') || resolvedImage.startsWith('https://'))) {
+        if (
+          typeof resolvedImage === 'string' &&
+          (resolvedImage.startsWith('http://') || resolvedImage.startsWith('https://'))
+        ) {
           const imageUrl = new URL(resolvedImage);
           const siteOrigin = astroSite?.origin;
 

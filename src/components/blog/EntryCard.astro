@@ -77,7 +77,9 @@ const readTime = toMinutes(post.readingTime);
               {post.title}
             </h3>
 
-            {post.excerpt && <p class="blog-body max-w-[44ch] text-[16px] leading-[1.75] text-black/58">{post.excerpt}</p>}
+            {post.excerpt && (
+              <p class="blog-body max-w-[44ch] text-[16px] leading-[1.75] text-black/58">{post.excerpt}</p>
+            )}
 
             {Array.isArray(post.tags) && post.tags.length > 0 && (
               <div class="flex flex-wrap gap-2 pt-1.5">
@@ -108,7 +110,9 @@ const readTime = toMinutes(post.readingTime);
           <div class="mb-3 flex flex-wrap items-center gap-x-2 gap-y-2 text-[12px] text-black/42">
             <span>{getFormattedDate(post.publishDate)}</span>
             <span class="text-black/25">·</span>
-            {metaLabel && <span class="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#da0007]">{metaLabel}</span>}
+            {metaLabel && (
+              <span class="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#da0007]">{metaLabel}</span>
+            )}
             {readTime && (
               <>
                 <span class="text-black/25">·</span>

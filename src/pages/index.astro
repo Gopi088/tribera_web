@@ -131,22 +131,30 @@ const comparisonRows = [
     </div>
 
     <div class="relative z-10 max-w-[1080px] mx-auto px-6 text-center">
-      <h1 class="font-[600] leading-[1.08]">
-        <span class="block text-white text-[clamp(2.8rem,6vw,5rem)] tracking-[-0.07em]">AI finds the signal.</span>
+      <h1 class="font-[600] leading-[1.02] sm:leading-[1.08]">
+        <span
+          class="block whitespace-nowrap text-white text-[clamp(2.15rem,10.8vw,3rem)] sm:text-[clamp(2.8rem,6vw,5rem)] tracking-[-0.08em]"
+        >
+          AI finds the signal.
+        </span>
 
-        <span class="block text-[clamp(2.8rem,6vw,5rem)] text-[#da0007] tracking-[-0.08em]">Advisors validate </span>
+        <span
+          class="block text-[clamp(2.45rem,12vw,3.4rem)] sm:text-[clamp(2.8rem,6vw,5rem)] text-[#da0007] tracking-[-0.08em]"
+        >
+          Advisors validate.
+        </span>
 
-        <span class="block text-[clamp(2.8rem,6vw,5rem)] tracking-[-0.08em]">
-          <span class="text-[#da0007]">them.</span>
-          <span class="text-white"> You hire them.</span>
+        <span class="block text-[clamp(2.45rem,12vw,3.4rem)] sm:text-[clamp(2.8rem,6vw,5rem)] tracking-[-0.08em]">
+          <!-- <span class="text-[#da0007]">them.</span> -->
+          <span class="text-white"> You hire.</span>
         </span>
       </h1>
 
       <p
         class="mt-6 md:mt-8 text-white/60 text-[16px] md:text-[20px] max-w-2xl md:max-w-3xl mx-auto leading-relaxed px-2"
       >
-        AI evaluates hundreds of hiring signals. Senior advisors run structured interviews. You meet three candidates —
-        all worth hiring.
+        tribera.AI evaluates hundreds of hiring signals. Senior advisors run structured interviews. You meet three
+        candidates — all worth hiring.
       </p>
 
       <div class="mt-8 md:mt-12 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-5">
@@ -1106,8 +1114,10 @@ const comparisonRows = [
           comparisonRows.map((row, i) => (
             <article class={`group anim-slide-left delay-${i + 1}`}>
               <div
-                class="relative rounded-xl border border-white/10 bg-black/40 p-4
-                       transition-all duration-500 hover:translate-y-1
+                class="relative overflow-hidden rounded-xl border border-white/10 bg-black/40 p-4
+                       before:pointer-events-none before:absolute before:inset-x-5 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-[#da0007]/45 before:to-transparent
+                       after:pointer-events-none after:absolute after:inset-x-0 after:top-0 after:h-14 after:bg-gradient-to-b after:from-[#da0007]/[0.05] after:to-transparent
+                       transition-all duration-500 active:scale-[0.985] hover:translate-y-1
                        hover:border-[#da0007]/30 hover:shadow-[0_0_40px_rgba(225,6,0,0.15)]"
               >
                 <h3 class="text-[15px] font-semibold text-white leading-snug">{row.feature}</h3>

@@ -6,16 +6,16 @@ const { variant = 'header' } = Astro.props;
 
 const sizes = {
   header: {
-    frame: 'h-[36px] w-[120px]',
-    image: 'h-[120px] w-[120px] -translate-x-[2px] -translate-y-[44px]',
-    dots: 'mt-0.5 gap-1.5 pl-[5px]',
-    dotSize: 'h-1.5 w-1.5',
+    frame: 'h-[28px] w-[92px] sm:h-[36px] sm:w-[120px]',
+    image: 'h-[92px] w-[92px] -translate-x-[2px] -translate-y-[33px] sm:h-[120px] sm:w-[120px] sm:-translate-y-[44px]',
+    dots: 'mt-0.5 gap-1 pl-[4px] sm:gap-1 sm:pl-[5px]',
+    dotSize: 'h-[5px] w-[5px] sm:h-1.5 sm:w-1.5',
   },
   footer: {
-    frame: 'h-[42px] w-[140px]',
-    image: 'h-[140px] w-[140px] -translate-x-[2px] -translate-y-[52px]',
-    dots: 'mt-1 gap-1.5 pl-[6px]',
-    dotSize: 'h-1.5 w-1.5',
+    frame: 'h-[28px] w-[92px] sm:h-[36px] sm:w-[120px]',
+    image: 'h-[92px] w-[92px] -translate-x-[2px] -translate-y-[33px] sm:h-[120px] sm:w-[120px] sm:-translate-y-[44px]',
+    dots: 'mt-0.5 gap-1 pl-[4px] sm:mt-0.5 sm:gap-1 sm:pl-[5px]',
+    dotSize: 'h-[5px] w-[5px] sm:h-1.5 sm:w-1.5',
   },
 };
 
@@ -24,13 +24,7 @@ const current = sizes[variant] ?? sizes.header;
 
 <div class="inline-flex flex-col items-start">
   <div class:list={['relative overflow-hidden', current.frame]}>
-    <Image
-      src={logo}
-      alt={SITE?.name}
-      width={140}
-      height={140}
-      class:list={['block max-w-none', current.image]}
-    />
+    <Image src={logo} alt={SITE?.name} width={140} height={140} class:list={['block max-w-none', current.image]} />
   </div>
   <div class:list={['flex items-center', current.dots]}>
     <span class:list={[current.dotSize, 'rounded-full bg-[#c2c2c2]']}></span>

@@ -221,7 +221,10 @@ const { metadata } = Astro.props;
       window.__triberaSamePageSectionLinksBound = true;
 
       const normalizePath = (path) => {
-        const clean = path.split('#')[0].replace(/\/index\.html$/, '').replace(/\/+$/, '');
+        const clean = path
+          .split('#')[0]
+          .replace(/\/index\.html$/, '')
+          .replace(/\/+$/, '');
         return clean || '/';
       };
 

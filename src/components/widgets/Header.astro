@@ -32,8 +32,7 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
       <div
         class="absolute bottom-0 left-0 right-0 h-px
               bg-gradient-to-r from-transparent via-white/10 to-transparent"
-      >
-      </div>
+      ></div>
     )
   }
   <div class="mx-auto max-w-7xl px-6 py-2.5 sm:py-2">
@@ -308,8 +307,7 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
                     disabled
                     class="flex-1 tribera-primary-button
       py-3 rounded-xl text-[14px] font-semibold
-      disabled:opacity-45 disabled:cursor-not-allowed
-      "
+      disabled:opacity-45 disabled:cursor-not-allowed"
                   >
                     Submit
                   </button>
@@ -519,11 +517,7 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
       class="hidden md:hidden absolute left-0 right-0 top-full z-50 border-t border-white/10 bg-black"
     >
       <nav class="px-5 py-5 flex flex-col gap-4 text-[13px] font-semibold">
-        <a
-          href="/"
-          data-astro-reload
-          data-self-nav-target="/"
-          class="text-white/80 hover:text-white transition"
+        <a href="/" data-astro-reload data-self-nav-target="/" class="text-white/80 hover:text-white transition"
           >For Hiring Teams</a
         >
         <a
@@ -598,7 +592,10 @@ const getStartedMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(g
     });
 
     const normalizePath = (path: string) => {
-      const clean = path.split('#')[0].replace(/\/index\.html$/, '').replace(/\/+$/, '');
+      const clean = path
+        .split('#')[0]
+        .replace(/\/index\.html$/, '')
+        .replace(/\/+$/, '');
       return clean || '/';
     };
 
