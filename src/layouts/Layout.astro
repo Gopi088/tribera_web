@@ -67,6 +67,7 @@ const isCandidatesPage = pathname === '/candidates';
         const chatbotIframeId = 'teams-chat-bot-iframe-a3b60c17-95c7-4cba-8036-be9da15bcc26';
         const chatbotScriptSrc = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
         const chatbotOrigin = 'https://customerconnect.teams.usercontent.microsoft';
+        const chatDebugLog = (window.__triberaChatDebugLog ||= []);
 
         const chatState = (window.__triberaChatState ||= {
           phase: 'idle',
@@ -130,6 +131,14 @@ const isCandidatesPage = pathname === '/candidates';
           window.addEventListener('message', (event) => {
             if (event.origin !== chatbotOrigin) return;
             if (event.data?.type !== 'toggle') return;
+
+            const payload = {
+              origin: event.origin,
+              data: event.data,
+              ts: Date.now(),
+            };
+            chatDebugLog.push(payload);
+            console.info('[tribera-chat-toggle]', payload);
 
             const width = parseSize(event.data.width);
             const height = parseSize(event.data.height);
