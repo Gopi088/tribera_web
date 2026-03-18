@@ -64,8 +64,10 @@ const isCandidatesPage = pathname === '/candidates';
         const chatbotScriptId = 'chatbot';
         const chatbotIframeId = 'teams-chat-bot-iframe-a3b60c17-95c7-4cba-8036-be9da15bcc26';
         const chatbotScriptSrc = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
+        const chatbotFrameSrc = `https://customerconnect.teams.usercontent.microsoft/customer-service-chatbot?environmentId=${environmentId}`;
         const launcherSelector = 'img[aria-label="Open Customer Connect chat bot assistant"]';
         const loadingBadgeId = 'tribera-chatbot-loading-badge';
+        const prewarmIframeId = 'tribera-chatbot-prewarm-frame';
 
         if (!allowedHosts.has(window.location.hostname)) return;
 
@@ -75,6 +77,7 @@ const isCandidatesPage = pathname === '/candidates';
           observerBound: false,
           opening: false,
           open: false,
+          prewarmRequested: false,
           openWatchInterval: null,
           openWatchTimeout: null,
         });
@@ -129,6 +132,56 @@ const isCandidatesPage = pathname === '/candidates';
           return badge;
         };
 
+        const canPrewarmChat = () => {
+          const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+          if (!connection) return true;
+          if (connection.saveData) return false;
+          const effectiveType = String(connection.effectiveType || '').toLowerCase();
+          return !effectiveType.includes('2g');
+        };
+
+        const removePrewarmFrame = () => {
+          const frame = document.getElementById(prewarmIframeId);
+          if (frame instanceof HTMLIFrameElement) {
+            frame.remove();
+          }
+        };
+
+        const ensurePrewarmFrame = () => {
+          if (manager.prewarmRequested || !canPrewarmChat()) return;
+          if (getIframe() instanceof HTMLIFrameElement) return;
+
+          manager.prewarmRequested = true;
+
+          const start = () => {
+            if (document.getElementById(prewarmIframeId)) return;
+            if (getIframe() instanceof HTMLIFrameElement) return;
+
+            const frame = document.createElement('iframe');
+            frame.id = prewarmIframeId;
+            frame.src = chatbotFrameSrc;
+            frame.setAttribute('aria-hidden', 'true');
+            frame.tabIndex = -1;
+            frame.className = 'pointer-events-none fixed bottom-0 right-0 h-0 w-0 border-0 opacity-0';
+
+            const cleanup = () => {
+              window.setTimeout(removePrewarmFrame, 1200);
+            };
+
+            frame.addEventListener('load', cleanup, { once: true });
+            document.body.appendChild(frame);
+
+            window.setTimeout(removePrewarmFrame, 10000);
+          };
+
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(start, { timeout: 2500 });
+            return;
+          }
+
+          window.setTimeout(start, 1800);
+        };
+
         const setLauncherPending = (pending) => {
           const badge = ensureLoadingBadge();
           const launcher = getLauncher();
@@ -158,6 +211,9 @@ const isCandidatesPage = pathname === '/candidates';
           clearOpenWatch();
           manager.opening = false;
           manager.open = isIframeVisible();
+          if (manager.open) {
+            removePrewarmFrame();
+          }
           setLauncherPending(false);
         };
 
@@ -236,6 +292,9 @@ const isCandidatesPage = pathname === '/candidates';
               finishOpenAttempt();
               return;
             }
+            if (isIframeVisible()) {
+              removePrewarmFrame();
+            }
             syncChatState();
           });
 
@@ -244,6 +303,7 @@ const isCandidatesPage = pathname === '/candidates';
 
         ensureChatbotScript();
         ensureLoadingBadge();
+        ensurePrewarmFrame();
         bindLifecycle();
         bindObserver();
         syncChatState();
