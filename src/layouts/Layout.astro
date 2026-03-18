@@ -64,130 +64,7 @@ const isCandidatesPage = pathname === '/candidates';
         const allowedHosts = new Set(['tribera.ai', 'www.tribera.ai', 'tribera-webv2.netlify.app']);
         const environmentId = '75186a18-80c9-e34b-b323-d376419f05d1';
         const chatbotScriptId = 'chatbot';
-        const chatbotIframeId = 'teams-chat-bot-iframe-a3b60c17-95c7-4cba-8036-be9da15bcc26';
         const chatbotScriptSrc = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
-        const chatbotOrigin = 'https://customerconnect.teams.usercontent.microsoft';
-
-        const chatState = (window.__triberaChatState ||= {
-          phase: 'idle',
-          lastSize: null,
-          sawFirstToggleAfterOpen: false,
-          launcherVisible: false,
-        });
-
-        const parseSize = (value) => {
-          const parsed = Number.parseInt(String(value || ''), 10);
-          return Number.isFinite(parsed) ? parsed : null;
-        };
-
-        const isMeaningfulExpand = (last, next) => {
-          const deltaHeight = next.height - last.height;
-          const relativeGrow = last.height > 0 ? (next.height - last.height) / last.height : 0;
-          return deltaHeight > 60 && relativeGrow > 0.15;
-        };
-
-        const isMeaningfulMinimize = (last, next) => {
-          const deltaHeight = next.height - last.height;
-          const relativeDrop = last.height > 0 ? (last.height - next.height) / last.height : 0;
-          return deltaHeight < -60 && relativeDrop > 0.15;
-        };
-
-        const dispatchChatState = (name, detail = {}) => {
-          window.dispatchEvent(
-            new CustomEvent(`tribera:${name}`, {
-              detail: {
-                phase: chatState.phase,
-                ...detail,
-              },
-            })
-          );
-        };
-
-        const getLauncher = () => document.querySelector('img[aria-label="Open Customer Connect chat bot assistant"]');
-
-        const syncLauncherVisibility = () => {
-          const launcher = getLauncher();
-          if (!(launcher instanceof HTMLElement)) {
-            chatState.launcherVisible = false;
-            return;
-          }
-
-          const style = getComputedStyle(launcher);
-          chatState.launcherVisible = style.display !== 'none' && style.visibility !== 'hidden';
-        };
-
-        const markChatOpening = () => {
-          chatState.phase = 'opening';
-          chatState.sawFirstToggleAfterOpen = false;
-        };
-
-        const bindChatStateTracking = () => {
-          if (window.__triberaChatStateBound) return;
-          window.__triberaChatStateBound = true;
-
-          document.addEventListener(
-            'click',
-            (event) => {
-              const target = event.target;
-              if (!(target instanceof Element)) return;
-              if (!target.closest('img[aria-label="Open Customer Connect chat bot assistant"]')) return;
-              markChatOpening();
-            },
-            true
-          );
-
-          window.addEventListener('message', (event) => {
-            if (event.origin !== chatbotOrigin) return;
-            if (event.data?.type !== 'toggle') return;
-
-            const width = parseSize(event.data.width);
-            const height = parseSize(event.data.height);
-            if (width === null || height === null) return;
-
-            const nextSize = { width, height };
-
-            if (chatState.phase === 'opening' && !chatState.sawFirstToggleAfterOpen) {
-              chatState.phase = 'open';
-              chatState.sawFirstToggleAfterOpen = true;
-              chatState.lastSize = nextSize;
-              syncLauncherVisibility();
-              dispatchChatState('chat-opened', { size: nextSize });
-              return;
-            }
-
-            if (chatState.lastSize) {
-              const delta = {
-                width: nextSize.width - chatState.lastSize.width,
-                height: nextSize.height - chatState.lastSize.height,
-              };
-
-              if (isMeaningfulMinimize(chatState.lastSize, nextSize)) {
-                chatState.phase = 'minimized';
-                syncLauncherVisibility();
-                dispatchChatState('chat-minimized', { size: nextSize, delta });
-              } else if (isMeaningfulExpand(chatState.lastSize, nextSize)) {
-                chatState.phase = 'open';
-                syncLauncherVisibility();
-                dispatchChatState('chat-expanded', { size: nextSize, delta });
-              }
-            }
-
-            chatState.lastSize = nextSize;
-          });
-
-          const observer = new MutationObserver(() => {
-            const previous = chatState.launcherVisible;
-            syncLauncherVisibility();
-
-            if (!previous && chatState.launcherVisible && chatState.phase !== 'idle') {
-              chatState.phase = 'minimized';
-              dispatchChatState('chat-launcher-visible');
-            }
-          });
-
-          observer.observe(document.body, { childList: true, subtree: true, attributes: true });
-          syncLauncherVisibility();
-        };
 
         const ensureChatbotScript = () => {
           let script = document.getElementById(chatbotScriptId);
@@ -206,11 +83,6 @@ const isCandidatesPage = pathname === '/candidates';
         };
 
         const cleanup = () => {
-          const iframe = document.getElementById(chatbotIframeId);
-          if (iframe instanceof HTMLIFrameElement) {
-            iframe.remove();
-          }
-
           const script = document.getElementById(chatbotScriptId);
           if (script instanceof HTMLScriptElement) {
             script.remove();
@@ -223,8 +95,6 @@ const isCandidatesPage = pathname === '/candidates';
         document.addEventListener('astro:before-swap', cleanup, { once: true });
 
         if (!allowedHosts.has(window.location.hostname)) return;
-
-        bindChatStateTracking();
 
         if (document.readyState === 'complete' || document.readyState === 'interactive') {
           ensureChatbotScript();
@@ -330,12 +200,24 @@ const isCandidatesPage = pathname === '/candidates';
     <div
       id="demoModal"
       class="fixed inset-0 hidden items-center justify-center
-            bg-black/60 backdrop-blur-sm z-[1200] p-4"
+            bg-black/70 backdrop-blur-sm z-[1200] p-4"
     >
-      <div class="relative bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl">
-        <button id="closeDemoBtn" class="absolute top-3 right-3 text-black/50 hover:text-black text-xl"> ✕ </button>
+      <div class="relative w-full max-w-sm rounded-[26px] bg-[#171717]/95 p-5 shadow-[0_22px_56px_rgba(0,0,0,0.38)] ring-1 ring-white/8">
+        <button
+          id="closeDemoBtn"
+          class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/6 text-[18px] text-white/55 transition hover:bg-white/10 hover:text-white"
+        >
+          ✕
+        </button>
 
-        <h3 class="text-[20px] font-[600] text-black mb-4">Book a Platform Demo</h3>
+        <div class="pr-10">
+          <h3 class="text-[28px] font-[700] leading-[1.02] tracking-[-0.04em] text-white">
+            Book a Platform Demo
+          </h3>
+          <p class="mt-2 text-[14px] leading-6 text-white/62">
+            Share your details and our team will reach out shortly.
+          </p>
+        </div>
 
         <form id="demoForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
           <input type="hidden" name="access_key" value="f3c09cb0-6c94-405e-af37-4f01141d40bd" />
@@ -348,7 +230,7 @@ const isCandidatesPage = pathname === '/candidates';
             placeholder="Full Name"
             autocomplete="name"
             required
-            class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]"
+            class="w-full rounded-2xl border border-white/8 bg-white/6 px-4 py-3.5 text-[14px] text-white placeholder:text-white/34 outline-none transition focus:border-[#f30b0c]/60 focus:bg-white/8"
           />
 
           <input
@@ -357,7 +239,7 @@ const isCandidatesPage = pathname === '/candidates';
             placeholder="Email Address"
             autocomplete="email"
             required
-            class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]"
+            class="w-full rounded-2xl border border-white/8 bg-white/6 px-4 py-3.5 text-[14px] text-white placeholder:text-white/34 outline-none transition focus:border-[#f30b0c]/60 focus:bg-white/8"
           />
 
           <input
@@ -365,7 +247,7 @@ const isCandidatesPage = pathname === '/candidates';
             name="phone"
             placeholder="Phone Number"
             autocomplete="tel"
-            class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]"
+            class="w-full rounded-2xl border border-white/8 bg-white/6 px-4 py-3.5 text-[14px] text-white placeholder:text-white/34 outline-none transition focus:border-[#f30b0c]/60 focus:bg-white/8"
           />
 
           <input
@@ -373,23 +255,30 @@ const isCandidatesPage = pathname === '/candidates';
             name="company"
             placeholder="Company Name"
             autocomplete="organization"
-            class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]"
+            class="w-full rounded-2xl border border-white/8 bg-white/6 px-4 py-3.5 text-[14px] text-white placeholder:text-white/34 outline-none transition focus:border-[#f30b0c]/60 focus:bg-white/8"
           />
 
-          <button
-            id="demoSubmitBtn"
-            type="submit"
-            class="w-full tribera-primary-button py-3 rounded-lg
-          text-[14px] font-semibold"
-          >
+          <div class="flex flex-wrap gap-2 pt-1">
+            <button
+              id="demoSubmitBtn"
+              type="submit"
+              class="rounded-full bg-[#f30b0c] px-5 py-3 text-[14px] font-semibold text-white transition hover:bg-[#d90a0b]"
+            >
             Submit
-          </button>
+            </button>
+            <a
+              href="mailto:sales@tribera.ai"
+              class="rounded-full bg-white/10 px-5 py-3 text-[14px] font-semibold text-white transition hover:bg-white/14"
+            >
+              Email us
+            </a>
+          </div>
 
           <div id="successMsg" class="hidden text-center pt-2">
-            <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[#DA0007]/10 flex items-center justify-center">
+            <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#f30b0c]/15">
               <svg
                 viewBox="0 0 24 24"
-                class="w-7 h-7 text-[#DA0007]"
+                class="h-7 w-7 text-[#f30b0c]"
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.5"
@@ -398,14 +287,14 @@ const isCandidatesPage = pathname === '/candidates';
               </svg>
             </div>
 
-            <h4 class="text-[20px] font-[700] text-black">Demo Request Submitted</h4>
+            <h4 class="text-[22px] font-[700] tracking-[-0.03em] text-white">Demo Request Submitted</h4>
 
-            <p class="mt-2 text-[14px] leading-relaxed text-black/60">
+            <p class="mt-2 text-[14px] leading-relaxed text-white/62">
               Thanks for reaching out. Our team will contact you shortly.
             </p>
           </div>
 
-          <p id="demoErrorMsg" class="hidden text-[13px] text-black/60 text-center">
+          <p id="demoErrorMsg" class="hidden text-center text-[13px] text-white/62">
             Submission failed. Please try again in a moment.
           </p>
         </form>
