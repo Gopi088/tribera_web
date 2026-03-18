@@ -67,10 +67,6 @@ const isCandidatesPage = pathname === '/candidates';
         const chatbotIframeId = 'teams-chat-bot-iframe-a3b60c17-95c7-4cba-8036-be9da15bcc26';
         const chatbotScriptSrc = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
         const chatbotOrigin = 'https://customerconnect.teams.usercontent.microsoft';
-        const chatStatusId = 'tribera-chat-status';
-        const chatFallbackId = 'tribera-chat-fallback';
-        const chatFallbackTimeoutMs = 5000;
-        const salesMailto = 'mailto:sales@tribera.ai';
 
         const chatState = (window.__triberaChatState ||= {
           phase: 'idle',
@@ -78,7 +74,6 @@ const isCandidatesPage = pathname === '/candidates';
           sawFirstToggleAfterOpen: false,
           launcherVisible: false,
         });
-        let chatFallbackTimer = null;
 
         const parseSize = (value) => {
           const parsed = Number.parseInt(String(value || ''), 10);
@@ -126,120 +121,6 @@ const isCandidatesPage = pathname === '/candidates';
           chatState.sawFirstToggleAfterOpen = false;
         };
 
-        const clearFallbackTimer = () => {
-          if (chatFallbackTimer) {
-            window.clearTimeout(chatFallbackTimer);
-            chatFallbackTimer = null;
-          }
-        };
-
-        const getChatStatus = () => document.getElementById(chatStatusId);
-        const getChatFallback = () => document.getElementById(chatFallbackId);
-
-        const setChatStatusVisible = (visible, label = 'Starting live chat...') => {
-          const status = getChatStatus();
-          if (!(status instanceof HTMLElement)) return;
-
-          status.textContent = label;
-          status.style.opacity = visible ? '1' : '0';
-          status.style.transform = visible ? 'translateY(0)' : 'translateY(8px)';
-          status.style.pointerEvents = visible ? 'auto' : 'none';
-        };
-
-        const setChatFallbackVisible = (visible) => {
-          const fallback = getChatFallback();
-          if (!(fallback instanceof HTMLElement)) return;
-
-          fallback.hidden = false;
-          fallback.style.opacity = visible ? '1' : '0';
-          fallback.style.transform = visible ? 'translateY(0)' : 'translateY(10px)';
-          fallback.style.pointerEvents = visible ? 'auto' : 'none';
-          fallback.style.visibility = visible ? 'visible' : 'hidden';
-        };
-
-        const hideChatAssistUi = () => {
-          clearFallbackTimer();
-          setChatStatusVisible(false);
-          setChatFallbackVisible(false);
-        };
-
-        const scheduleChatFallback = () => {
-          clearFallbackTimer();
-          chatFallbackTimer = window.setTimeout(() => {
-            if (chatState.phase !== 'opening') return;
-            setChatStatusVisible(false);
-            setChatFallbackVisible(true);
-          }, chatFallbackTimeoutMs);
-        };
-
-        const mountChatAssistUi = () => {
-          if (getChatStatus() || getChatFallback()) return;
-
-          const status = document.createElement('div');
-          status.id = chatStatusId;
-          status.style.cssText = [
-            'position:fixed',
-            'right:16px',
-            'bottom:88px',
-            'z-index:10002',
-            'padding:10px 14px',
-            'border-radius:999px',
-            'background:rgba(18,18,18,0.92)',
-            'color:#fff',
-            'font:600 13px/1.2 Inter, system-ui, sans-serif',
-            'box-shadow:0 14px 34px rgba(0,0,0,0.24)',
-            'opacity:0',
-            'pointer-events:none',
-            'transform:translateY(8px)',
-            'transition:opacity 160ms ease, transform 160ms ease',
-          ].join(';');
-          status.textContent = 'Starting live chat...';
-          document.body.appendChild(status);
-
-          const fallback = document.createElement('div');
-          fallback.id = chatFallbackId;
-          fallback.hidden = false;
-          fallback.style.cssText = [
-            'position:fixed',
-            'right:16px',
-            'bottom:88px',
-            'z-index:10002',
-            'width:min(300px,calc(100vw - 32px))',
-            'padding:16px',
-            'border-radius:18px',
-            'background:rgba(18,18,18,0.96)',
-            'color:#fff',
-            'box-shadow:0 18px 42px rgba(0,0,0,0.28)',
-            'opacity:0',
-            'visibility:hidden',
-            'pointer-events:none',
-            'transform:translateY(10px)',
-            'transition:opacity 180ms ease, transform 180ms ease, visibility 180ms ease',
-            'font-family:Inter, system-ui, sans-serif',
-          ].join(';');
-          fallback.innerHTML = `
-            <div style="font-size:15px;font-weight:700;line-height:1.2;">Chat is taking longer than expected</div>
-            <div style="margin-top:8px;font-size:13px;line-height:1.45;color:rgba(255,255,255,0.76);">
-              Microsoft Teams is still loading. You can keep waiting or use another path.
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
-              <button type="button" data-chat-fallback-action="wait" style="border:0;border-radius:999px;padding:9px 12px;background:#f30b0c;color:#fff;font:600 13px/1 Inter, system-ui, sans-serif;cursor:pointer;">Keep waiting</button>
-              <a href="/contact" style="border-radius:999px;padding:9px 12px;background:rgba(255,255,255,0.08);color:#fff;text-decoration:none;font:600 13px/1 Inter, system-ui, sans-serif;">Book a demo</a>
-              <a href="${salesMailto}" style="border-radius:999px;padding:9px 12px;background:rgba(255,255,255,0.08);color:#fff;text-decoration:none;font:600 13px/1 Inter, system-ui, sans-serif;">Email us</a>
-            </div>
-          `;
-
-          fallback.addEventListener('click', (event) => {
-            const target = event.target;
-            if (!(target instanceof Element)) return;
-            if (!target.closest('[data-chat-fallback-action="wait"]')) return;
-            setChatFallbackVisible(false);
-            setChatStatusVisible(true, 'Still starting live chat...');
-          });
-
-          document.body.appendChild(fallback);
-        };
-
         const bindChatStateTracking = () => {
           if (window.__triberaChatStateBound) return;
           window.__triberaChatStateBound = true;
@@ -251,9 +132,6 @@ const isCandidatesPage = pathname === '/candidates';
               if (!(target instanceof Element)) return;
               if (!target.closest('img[aria-label="Open Customer Connect chat bot assistant"]')) return;
               markChatOpening();
-              setChatFallbackVisible(false);
-              setChatStatusVisible(true);
-              scheduleChatFallback();
             },
             true
           );
@@ -273,7 +151,6 @@ const isCandidatesPage = pathname === '/candidates';
               chatState.sawFirstToggleAfterOpen = true;
               chatState.lastSize = nextSize;
               syncLauncherVisibility();
-              hideChatAssistUi();
               dispatchChatState('chat-opened', { size: nextSize });
               return;
             }
@@ -287,12 +164,10 @@ const isCandidatesPage = pathname === '/candidates';
               if (isMeaningfulMinimize(chatState.lastSize, nextSize)) {
                 chatState.phase = 'minimized';
                 syncLauncherVisibility();
-                hideChatAssistUi();
                 dispatchChatState('chat-minimized', { size: nextSize, delta });
               } else if (isMeaningfulExpand(chatState.lastSize, nextSize)) {
                 chatState.phase = 'open';
                 syncLauncherVisibility();
-                hideChatAssistUi();
                 dispatchChatState('chat-expanded', { size: nextSize, delta });
               }
             }
@@ -306,7 +181,6 @@ const isCandidatesPage = pathname === '/candidates';
 
             if (!previous && chatState.launcherVisible && chatState.phase !== 'idle') {
               chatState.phase = 'minimized';
-              hideChatAssistUi();
               dispatchChatState('chat-launcher-visible');
             }
           });
@@ -342,18 +216,6 @@ const isCandidatesPage = pathname === '/candidates';
             script.remove();
           }
 
-          const status = getChatStatus();
-          if (status instanceof HTMLElement) {
-            status.remove();
-          }
-
-          const fallback = getChatFallback();
-          if (fallback instanceof HTMLElement) {
-            fallback.remove();
-          }
-
-          clearFallbackTimer();
-
           window.__triberaChatbotCleanup = undefined;
         };
 
@@ -362,7 +224,6 @@ const isCandidatesPage = pathname === '/candidates';
 
         if (!allowedHosts.has(window.location.hostname)) return;
 
-        mountChatAssistUi();
         bindChatStateTracking();
 
         if (document.readyState === 'complete' || document.readyState === 'interactive') {
