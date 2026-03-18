@@ -46,9 +46,6 @@ const isCandidatesPage = pathname === '/candidates';
   <body class="bg-page overflow-x-hidden">
     <slot />
     <BasicScripts />
-    <Fragment
-      set:html={`<script type="text/javascript" src="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js" id="chatbot" environmentId="75186a18-80c9-e34b-b323-d376419f05d1" crossorigin="anonymous"><\/script>`}
-    />
 
     <!-- GLOBAL FULL-WIDTH SCROLL CTA -->
     <div
@@ -146,24 +143,12 @@ const isCandidatesPage = pathname === '/candidates';
     <div
       id="demoModal"
       class="fixed inset-0 hidden items-center justify-center
-            bg-black/70 backdrop-blur-sm z-[1200] p-4"
+            bg-black/60 backdrop-blur-sm z-[1200] p-4"
     >
-      <div class="relative w-full max-w-sm rounded-[26px] bg-[#171717]/95 p-5 shadow-[0_22px_56px_rgba(0,0,0,0.38)] ring-1 ring-white/8">
-        <button
-          id="closeDemoBtn"
-          class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/6 text-[18px] text-white/55 transition hover:bg-white/10 hover:text-white"
-        >
-          ✕
-        </button>
+      <div class="relative bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl">
+        <button id="closeDemoBtn" class="absolute top-3 right-3 text-black/50 hover:text-black text-xl"> ✕ </button>
 
-        <div class="pr-10">
-          <h3 class="text-[28px] font-[700] leading-[1.02] tracking-[-0.04em] text-white">
-            Book a Platform Demo
-          </h3>
-          <p class="mt-2 text-[14px] leading-6 text-white/62">
-            Share your details and our team will reach out shortly.
-          </p>
-        </div>
+        <h3 class="text-[20px] font-[600] text-black mb-4">Book a Platform Demo</h3>
 
         <form id="demoForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
           <input type="hidden" name="access_key" value="f3c09cb0-6c94-405e-af37-4f01141d40bd" />
@@ -176,7 +161,7 @@ const isCandidatesPage = pathname === '/candidates';
             placeholder="Full Name"
             autocomplete="name"
             required
-            class="w-full rounded-2xl border border-white/8 bg-white/6 px-4 py-3.5 text-[14px] text-white placeholder:text-white/34 outline-none transition focus:border-[#f30b0c]/60 focus:bg-white/8"
+            class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]"
           />
 
           <input
@@ -185,7 +170,7 @@ const isCandidatesPage = pathname === '/candidates';
             placeholder="Email Address"
             autocomplete="email"
             required
-            class="w-full rounded-2xl border border-white/8 bg-white/6 px-4 py-3.5 text-[14px] text-white placeholder:text-white/34 outline-none transition focus:border-[#f30b0c]/60 focus:bg-white/8"
+            class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]"
           />
 
           <input
@@ -193,7 +178,7 @@ const isCandidatesPage = pathname === '/candidates';
             name="phone"
             placeholder="Phone Number"
             autocomplete="tel"
-            class="w-full rounded-2xl border border-white/8 bg-white/6 px-4 py-3.5 text-[14px] text-white placeholder:text-white/34 outline-none transition focus:border-[#f30b0c]/60 focus:bg-white/8"
+            class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]"
           />
 
           <input
@@ -201,30 +186,23 @@ const isCandidatesPage = pathname === '/candidates';
             name="company"
             placeholder="Company Name"
             autocomplete="organization"
-            class="w-full rounded-2xl border border-white/8 bg-white/6 px-4 py-3.5 text-[14px] text-white placeholder:text-white/34 outline-none transition focus:border-[#f30b0c]/60 focus:bg-white/8"
+            class="w-full border border-black/20 rounded-lg px-4 py-3 text-[14px]"
           />
 
-          <div class="flex flex-wrap gap-2 pt-1">
-            <button
-              id="demoSubmitBtn"
-              type="submit"
-              class="rounded-full bg-[#f30b0c] px-5 py-3 text-[14px] font-semibold text-white transition hover:bg-[#d90a0b]"
-            >
+          <button
+            id="demoSubmitBtn"
+            type="submit"
+            class="w-full tribera-primary-button py-3 rounded-lg
+          text-[14px] font-semibold"
+          >
             Submit
-            </button>
-            <a
-              href="mailto:sales@tribera.ai"
-              class="rounded-full bg-white/10 px-5 py-3 text-[14px] font-semibold text-white transition hover:bg-white/14"
-            >
-              Email us
-            </a>
-          </div>
+          </button>
 
           <div id="successMsg" class="hidden text-center pt-2">
-            <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#f30b0c]/15">
+            <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[#DA0007]/10 flex items-center justify-center">
               <svg
                 viewBox="0 0 24 24"
-                class="h-7 w-7 text-[#f30b0c]"
+                class="w-7 h-7 text-[#DA0007]"
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.5"
@@ -233,14 +211,14 @@ const isCandidatesPage = pathname === '/candidates';
               </svg>
             </div>
 
-            <h4 class="text-[22px] font-[700] tracking-[-0.03em] text-white">Demo Request Submitted</h4>
+            <h4 class="text-[20px] font-[700] text-black">Demo Request Submitted</h4>
 
-            <p class="mt-2 text-[14px] leading-relaxed text-white/62">
+            <p class="mt-2 text-[14px] leading-relaxed text-black/60">
               Thanks for reaching out. Our team will contact you shortly.
             </p>
           </div>
 
-          <p id="demoErrorMsg" class="hidden text-center text-[13px] text-white/62">
+          <p id="demoErrorMsg" class="hidden text-[13px] text-black/60 text-center">
             Submission failed. Please try again in a moment.
           </p>
         </form>
