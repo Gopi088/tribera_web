@@ -59,17 +59,46 @@ const isCandidatesPage = pathname === '/candidates';
 
     <script is:inline>
       (() => {
-        window.__triberaChatbotCleanup?.();
-
         const allowedHosts = new Set(['tribera.ai', 'www.tribera.ai', 'tribera-webv2.netlify.app']);
         const environmentId = '75186a18-80c9-e34b-b323-d376419f05d1';
         const chatbotScriptId = 'chatbot';
         const chatbotIframeId = 'teams-chat-bot-iframe-a3b60c17-95c7-4cba-8036-be9da15bcc26';
         const chatbotScriptSrc = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
+        const launcherSelector = 'img[aria-label="Open Customer Connect chat bot assistant"]';
+        const loadingBadgeId = 'tribera-chatbot-loading-badge';
+
+        if (!allowedHosts.has(window.location.hostname)) return;
+
+        const manager = (window.__triberaChatbotManager ||= {
+          scriptRequested: false,
+          listenersBound: false,
+          observerBound: false,
+          opening: false,
+          open: false,
+          openWatchInterval: null,
+          openWatchTimeout: null,
+        });
+
+        const getLauncher = () => document.querySelector(launcherSelector);
+        const getIframe = () => document.getElementById(chatbotIframeId);
+
+        const isIframeVisible = () => {
+          const iframe = getIframe();
+          if (!(iframe instanceof HTMLIFrameElement)) return false;
+
+          const style = window.getComputedStyle(iframe);
+          if (style.display === 'none' || style.visibility === 'hidden') return false;
+
+          const rect = iframe.getBoundingClientRect();
+          return rect.width >= 240 || rect.height >= 140;
+        };
 
         const ensureChatbotScript = () => {
           let script = document.getElementById(chatbotScriptId);
-          if (script instanceof HTMLScriptElement) return script;
+          if (script instanceof HTMLScriptElement) {
+            manager.scriptRequested = true;
+            return script;
+          }
 
           script = document.createElement('script');
           script.id = chatbotScriptId;
@@ -79,34 +108,145 @@ const isCandidatesPage = pathname === '/candidates';
           script.crossOrigin = 'anonymous';
           script.setAttribute('environmentId', environmentId);
           document.head.appendChild(script);
+          manager.scriptRequested = true;
 
           return script;
         };
 
-        const cleanup = () => {
-          const iframe = document.getElementById(chatbotIframeId);
-          if (iframe instanceof HTMLIFrameElement) {
-            iframe.remove();
-          }
+        const ensureLoadingBadge = () => {
+          let badge = document.getElementById(loadingBadgeId);
+          if (badge instanceof HTMLDivElement) return badge;
 
-          const script = document.getElementById(chatbotScriptId);
-          if (script instanceof HTMLScriptElement) {
-            script.remove();
-          }
-
-          window.__triberaChatbotCleanup = undefined;
+          badge = document.createElement('div');
+          badge.id = loadingBadgeId;
+          badge.className =
+            'pointer-events-none fixed bottom-[78px] right-3 z-[10010] hidden items-center gap-2 rounded-full border border-black/10 bg-white/96 px-3 py-2 text-[12px] font-semibold text-black shadow-[0_12px_30px_rgba(0,0,0,0.16)] backdrop-blur';
+          badge.innerHTML = `
+            <span class="h-2 w-2 rounded-full bg-[#da0007] animate-pulse"></span>
+            <span>Opening chat...</span>
+          `;
+          document.body.appendChild(badge);
+          return badge;
         };
 
-        window.__triberaChatbotCleanup = cleanup;
-        document.addEventListener('astro:before-swap', cleanup, { once: true });
+        const setLauncherPending = (pending) => {
+          const badge = ensureLoadingBadge();
+          const launcher = getLauncher();
 
-        if (!allowedHosts.has(window.location.hostname)) return;
+          badge.classList.toggle('hidden', !pending);
+          badge.classList.toggle('flex', pending);
 
-        if (document.readyState === 'complete' || document.readyState === 'interactive') {
-          ensureChatbotScript();
-        } else {
-          window.addEventListener('DOMContentLoaded', ensureChatbotScript, { once: true });
-        }
+          if (!(launcher instanceof HTMLElement)) return;
+          launcher.style.opacity = pending ? '0.72' : '';
+          launcher.style.filter = pending ? 'saturate(0.9)' : '';
+          launcher.style.pointerEvents = pending ? 'none' : '';
+        };
+
+        const clearOpenWatch = () => {
+          if (manager.openWatchInterval) {
+            window.clearInterval(manager.openWatchInterval);
+            manager.openWatchInterval = null;
+          }
+
+          if (manager.openWatchTimeout) {
+            window.clearTimeout(manager.openWatchTimeout);
+            manager.openWatchTimeout = null;
+          }
+        };
+
+        const finishOpenAttempt = () => {
+          clearOpenWatch();
+          manager.opening = false;
+          manager.open = isIframeVisible();
+          setLauncherPending(false);
+        };
+
+        const beginOpenWatch = () => {
+          clearOpenWatch();
+          manager.opening = true;
+          setLauncherPending(true);
+
+          manager.openWatchInterval = window.setInterval(() => {
+            if (isIframeVisible()) {
+              finishOpenAttempt();
+            }
+          }, 150);
+
+          manager.openWatchTimeout = window.setTimeout(() => {
+            finishOpenAttempt();
+          }, 8000);
+        };
+
+        const syncChatState = () => {
+          const visible = isIframeVisible();
+          manager.open = visible;
+          if (!manager.opening) {
+            setLauncherPending(false);
+          }
+        };
+
+        const bindLifecycle = () => {
+          if (manager.listenersBound) return;
+          manager.listenersBound = true;
+
+          document.addEventListener(
+            'click',
+            (event) => {
+              const target = event.target;
+              if (!(target instanceof Element)) return;
+
+              const launcher = target.closest(launcherSelector);
+              if (!launcher) return;
+
+              if (manager.opening) {
+                event.preventDefault();
+                event.stopPropagation();
+                return;
+              }
+
+              if (isIframeVisible()) {
+                window.setTimeout(syncChatState, 300);
+                return;
+              }
+
+              beginOpenWatch();
+            },
+            true
+          );
+
+          document.addEventListener('astro:page-load', () => {
+            ensureChatbotScript();
+            syncChatState();
+          });
+
+          document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+              syncChatState();
+            }
+          });
+        };
+
+        const bindObserver = () => {
+          if (manager.observerBound) return;
+          manager.observerBound = true;
+
+          const observer = new MutationObserver(() => {
+            if (!manager.scriptRequested) return;
+            if (manager.opening && isIframeVisible()) {
+              finishOpenAttempt();
+              return;
+            }
+            syncChatState();
+          });
+
+          observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+        };
+
+        ensureChatbotScript();
+        ensureLoadingBadge();
+        bindLifecycle();
+        bindObserver();
+        syncChatState();
       })();
     </script>
 

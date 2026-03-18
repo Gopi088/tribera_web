@@ -35,8 +35,6 @@ const { metadata } = Astro.props;
       const form = document.getElementById('demoForm');
       const submitBtn = document.getElementById('demoSubmitBtn');
 
-      if (!cta) return;
-
       let lastScrollY = window.scrollY;
       let closed = false;
 
@@ -51,30 +49,33 @@ const { metadata } = Astro.props;
       }
 
       // Scroll behavior
-      window.addEventListener(
-        'scroll',
-        () => {
-          if (closed) return;
+      if (cta) {
+        window.addEventListener(
+          'scroll',
+          () => {
+            if (closed) return;
 
-          const currentY = window.scrollY;
+            const currentY = window.scrollY;
 
-          if (currentY > lastScrollY && currentY > 200) {
-            showCTA();
-          }
+            if (currentY > lastScrollY && currentY > 200) {
+              showCTA();
+            }
 
-          if (currentY < lastScrollY) {
-            hideCTA();
-          }
+            if (currentY < lastScrollY) {
+              hideCTA();
+            }
 
-          lastScrollY = currentY;
-        },
-        { passive: true }
-      );
+            lastScrollY = currentY;
+          },
+          { passive: true }
+        );
+      }
 
       // 🔥 GLOBAL CLICK HANDLER (Astro-safe)
       document.addEventListener('click', (e) => {
         // Open modal
         if (e.target.closest('#openDemoBtn, [data-open-demo]')) {
+          e.preventDefault();
           modal?.classList.remove('hidden');
           modal?.classList.add('flex');
         }
@@ -302,6 +303,119 @@ const { metadata } = Astro.props;
     initSamePageSectionLinks();
     document.addEventListener('astro:page-load', initSamePageSectionLinks);
   </script>
+  <script is:inline>
+    function initMailtoFallback() {
+      if (window.__triberaMailtoFallbackBound) return;
+      window.__triberaMailtoFallbackBound = true;
+
+      const toastId = 'tribera-mailto-fallback';
+
+      const ensureToast = () => {
+        let toast = document.getElementById(toastId);
+        if (toast) return toast;
+
+        toast = document.createElement('div');
+        toast.id = toastId;
+        toast.className =
+          'fixed left-1/2 bottom-5 z-[1300] hidden w-[calc(100%-2rem)] max-w-md -translate-x-1/2 rounded-2xl border border-white/10 bg-black/95 p-4 text-white shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur';
+        toast.innerHTML = `
+          <div class="flex items-start gap-3">
+            <div class="mt-0.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[#da0007]"></div>
+            <div class="min-w-0 flex-1">
+              <p class="text-[13px] font-semibold">If your email app did not open</p>
+              <p class="mt-1 text-[12px] leading-relaxed text-white/65">
+                Email <span class="font-semibold text-white">sales@tribera.ai</span> directly or continue on the contact page.
+              </p>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <a
+                  href="/contact"
+                  class="inline-flex items-center justify-center rounded-full bg-[#da0007] px-3 py-1.5 text-[11px] font-semibold text-white transition hover:bg-[#c10006]"
+                >
+                  Open Contact Page
+                </a>
+                <button
+                  type="button"
+                  data-copy-sales-email
+                  class="inline-flex items-center justify-center rounded-full border border-white/15 px-3 py-1.5 text-[11px] font-semibold text-white/85 transition hover:border-white/30 hover:text-white"
+                >
+                  Copy Email
+                </button>
+                <button
+                  type="button"
+                  data-close-mailto-fallback
+                  class="inline-flex items-center justify-center rounded-full border border-white/15 px-3 py-1.5 text-[11px] font-semibold text-white/65 transition hover:border-white/30 hover:text-white"
+                >
+                  Dismiss
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        document.body.appendChild(toast);
+        return toast;
+      };
+
+      const hideToast = () => {
+        const toast = document.getElementById(toastId);
+        if (!toast) return;
+        toast.classList.add('hidden');
+      };
+
+      document.addEventListener('click', async (event) => {
+        const target = event.target instanceof Element ? event.target : null;
+        if (!target) return;
+
+        const copyBtn = target.closest('[data-copy-sales-email]');
+        if (copyBtn) {
+          try {
+            await navigator.clipboard.writeText('sales@tribera.ai');
+            copyBtn.textContent = 'Copied';
+          } catch {
+            copyBtn.textContent = 'Copy failed';
+          }
+
+          window.setTimeout(() => {
+            if (copyBtn instanceof HTMLElement) copyBtn.textContent = 'Copy Email';
+          }, 1600);
+          return;
+        }
+
+        if (target.closest('[data-close-mailto-fallback]')) {
+          hideToast();
+          return;
+        }
+
+        if (event.defaultPrevented) return;
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        if (event.button !== 0) return;
+
+        const link = target.closest('a[data-mailto-fallback]');
+        if (!(link instanceof HTMLAnchorElement)) return;
+        if (!link.href.startsWith('mailto:')) return;
+
+        event.preventDefault();
+        hideToast();
+        window.location.href = link.href;
+
+        window.clearTimeout(window.__triberaMailtoFallbackTimer);
+        window.__triberaMailtoFallbackTimer = window.setTimeout(() => {
+          if (document.visibilityState === 'hidden') return;
+          const toast = ensureToast();
+          toast.classList.remove('hidden');
+        }, 700);
+      });
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') {
+          hideToast();
+        }
+      });
+    }
+
+    initMailtoFallback();
+    document.addEventListener('astro:page-load', initMailtoFallback);
+  </script>
   <script is:inline defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
   <script is:inline>
@@ -336,7 +450,10 @@ const { metadata } = Astro.props;
 
           observer.disconnect();
         },
-        { threshold: 0.65 }
+        {
+          threshold: 0,
+          rootMargin: '-20% 0px -20% 0px',
+        }
       );
 
       observer.observe(scorecard);
@@ -364,6 +481,7 @@ const { metadata } = Astro.props;
 
       let barFilled = false;
       let barTimeoutId = null;
+      let proofActive = false;
       const counterFrames = new Map();
 
       const counters = Array.from(section.querySelectorAll('.count-number'));
@@ -436,6 +554,8 @@ const { metadata } = Astro.props;
           const entry = entries[0];
 
           if (entry.isIntersecting) {
+            if (proofActive) return;
+            proofActive = true;
             animateCounters();
 
             /* ===== FILL BAR (replays on every re-entry) ===== */
@@ -456,10 +576,14 @@ const { metadata } = Astro.props;
             return;
           }
 
+          proofActive = false;
           resetCounters();
           resetBar();
         },
-        { threshold: 0.3 }
+        {
+          threshold: 0,
+          rootMargin: '-20% 0px -20% 0px',
+        }
       );
 
       observer.observe(section);

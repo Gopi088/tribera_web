@@ -491,7 +491,11 @@ const metadata = {
                 quote: 'Where strategy meets scale.',
               },
             ].map((member, index) => (
-              <div>
+              <div
+                class="about-founder-reveal"
+                data-founder-card
+                style={`transition-delay:${index * 120}ms;`}
+              >
                 <div class="flex flex-col sm:flex-row gap-8 sm:gap-10 items-center sm:items-start text-center sm:text-left">
                   <div
                     class="w-28 h-28 sm:w-32 sm:h-32 rounded-full
@@ -711,7 +715,10 @@ const metadata = {
             reset();
           });
         },
-        { threshold: 0.35 }
+        {
+          threshold: 0,
+          rootMargin: '-20% 0px -20% 0px',
+        }
       );
 
       observer.observe(card);
@@ -720,4 +727,70 @@ const metadata = {
     initAboutProgressBars();
     document.addEventListener('astro:page-load', initAboutProgressBars);
   </script>
+  <script is:inline>
+    function initFounderReveal() {
+      const founderCards = Array.from(document.querySelectorAll('[data-founder-card]'));
+      if (!founderCards.length) return;
+
+      founderCards.forEach((card) => {
+        if (!(card instanceof HTMLElement)) return;
+        card.classList.remove('is-visible');
+      });
+
+      if (!('IntersectionObserver' in window)) {
+        founderCards.forEach((card) => {
+          if (card instanceof HTMLElement) card.classList.add('is-visible');
+        });
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!(entry.target instanceof HTMLElement)) return;
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              return;
+            }
+
+            entry.target.classList.remove('is-visible');
+          });
+        },
+        {
+          threshold: 0,
+          rootMargin: '-12% 0px -12% 0px',
+        }
+      );
+
+      founderCards.forEach((card) => {
+        if (card instanceof HTMLElement) observer.observe(card);
+      });
+    }
+
+    initFounderReveal();
+    document.addEventListener('astro:page-load', initFounderReveal);
+  </script>
+  <style>
+    .about-founder-reveal {
+      opacity: 0;
+      transform: translate3d(0, 22px, 0);
+      transition:
+        opacity 560ms ease,
+        transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .about-founder-reveal.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .about-founder-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
 </Layout>
