@@ -39,7 +39,15 @@ const isCandidatesPage = pathname === '/candidates';
     <StructuredData metadata={metadata} />
     <SiteVerification />
     <Analytics />
+    <link
+      rel="preload"
+      as="script"
+      href="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js"
+      crossorigin
+    />
+    <link rel="preconnect" href="https://res.public.onecdn.static.microsoft" crossorigin />
     <link rel="preconnect" href="https://customerconnect.teams.usercontent.microsoft" crossorigin />
+    <link rel="dns-prefetch" href="//res.public.onecdn.static.microsoft" />
     <link rel="dns-prefetch" href="//customerconnect.teams.usercontent.microsoft" />
     <!-- Comment the line below to disable View Transitions -->
     <ClientRouter fallback="swap" />
@@ -55,20 +63,16 @@ const isCandidatesPage = pathname === '/candidates';
 
         const allowedHosts = new Set(['tribera.ai', 'www.tribera.ai', 'tribera-webv2.netlify.app']);
         const environmentId = '75186a18-80c9-e34b-b323-d376419f05d1';
+        const chatbotScriptId = 'chatbot';
         const chatbotIframeId = 'teams-chat-bot-iframe-a3b60c17-95c7-4cba-8036-be9da15bcc26';
+        const chatbotScriptSrc = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
         const chatbotOrigin = 'https://customerconnect.teams.usercontent.microsoft';
-        const customLauncherId = 'tribera-chat-launcher';
-        const customShellId = 'tribera-chat-shell';
-        const customFrameWrapId = 'tribera-chat-frame-wrap';
-        const chatbotUrl = new URL('https://customerconnect.teams.usercontent.microsoft/customer-service-chatbot');
-        chatbotUrl.searchParams.set('environmentId', environmentId);
 
         const chatState = (window.__triberaChatState ||= {
           phase: 'idle',
           lastSize: null,
           sawFirstToggleAfterOpen: false,
           launcherVisible: false,
-          hasShownCustomShell: false,
         });
 
         const parseSize = (value) => {
@@ -99,154 +103,38 @@ const isCandidatesPage = pathname === '/candidates';
           );
         };
 
+        const getLauncher = () => document.querySelector('img[aria-label="Open Customer Connect chat bot assistant"]');
+
+        const syncLauncherVisibility = () => {
+          const launcher = getLauncher();
+          if (!(launcher instanceof HTMLElement)) {
+            chatState.launcherVisible = false;
+            return;
+          }
+
+          const style = getComputedStyle(launcher);
+          chatState.launcherVisible = style.display !== 'none' && style.visibility !== 'hidden';
+        };
+
         const markChatOpening = () => {
           chatState.phase = 'opening';
           chatState.sawFirstToggleAfterOpen = false;
         };
 
-        const isExpandedSize = (size) => size && size.width >= 300 && size.height >= 300;
-
-        const getCustomLauncher = () => document.getElementById(customLauncherId);
-        const getCustomShell = () => document.getElementById(customShellId);
-        const getCustomFrameWrap = () => document.getElementById(customFrameWrapId);
-        const getChatbotIframe = () => document.getElementById(chatbotIframeId);
-
-        const setShellVisible = (visible) => {
-          const shell = getCustomShell();
-          if (!(shell instanceof HTMLElement)) return;
-
-          shell.style.opacity = visible ? '1' : '0';
-          shell.style.visibility = visible ? 'visible' : 'hidden';
-          shell.style.pointerEvents = visible ? 'auto' : 'none';
-          shell.style.transform = visible ? 'translateY(0)' : 'translateY(calc(100% + 32px))';
-          chatState.hasShownCustomShell = visible || chatState.hasShownCustomShell;
-        };
-
-        const setCustomLauncherVisible = (visible, label = 'Live chat') => {
-          const launcher = getCustomLauncher();
-          if (!(launcher instanceof HTMLButtonElement)) return;
-
-          launcher.hidden = !visible;
-          launcher.disabled = !visible && label !== 'Opening...';
-          launcher.textContent = label;
-          launcher.style.opacity = visible ? '1' : '0';
-          launcher.style.pointerEvents = visible ? 'auto' : 'none';
-        };
-
-        const updateChatFrameSize = (size) => {
-          if (!size) return;
-
-          const shell = getCustomShell();
-          const frameWrap = getCustomFrameWrap();
-          const iframe = getChatbotIframe();
-          if (!(shell instanceof HTMLElement) || !(frameWrap instanceof HTMLElement) || !(iframe instanceof HTMLIFrameElement)) {
-            return;
-          }
-
-          const width = `${size.width}px`;
-          const height = `${size.height}px`;
-          shell.style.width = width;
-          shell.style.height = height;
-          frameWrap.style.width = width;
-          frameWrap.style.height = height;
-          iframe.style.width = width;
-          iframe.style.height = height;
-        };
-
-        const mountCustomChatShell = () => {
-          if (getCustomShell() || getCustomLauncher()) return;
-
-          const shell = document.createElement('div');
-          shell.id = customShellId;
-          shell.setAttribute('aria-hidden', 'true');
-          shell.style.cssText = [
-            'position:fixed',
-            'right:10px',
-            'bottom:10px',
-            'z-index:10000',
-            'width:352px',
-            'height:632px',
-            'opacity:0',
-            'visibility:hidden',
-            'pointer-events:none',
-            'transform:translateY(calc(100% + 32px))',
-            'transition:opacity 180ms ease, transform 180ms ease, visibility 180ms ease',
-            'background:transparent',
-          ].join(';');
-
-          const frameWrap = document.createElement('div');
-          frameWrap.id = customFrameWrapId;
-          frameWrap.style.cssText = [
-            'width:352px',
-            'height:632px',
-            'overflow:hidden',
-            'border-radius:0',
-            'box-shadow:none',
-            'background:transparent',
-          ].join(';');
-
-          const iframe = document.createElement('iframe');
-          iframe.id = chatbotIframeId;
-          iframe.src = chatbotUrl.toString();
-          iframe.title = 'Customer Connect chat bot assistant';
-          iframe.loading = 'eager';
-          iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin');
-          iframe.style.cssText = [
-            'display:block',
-            'width:352px',
-            'height:632px',
-            'border:0',
-            'background:transparent',
-          ].join(';');
-
-          frameWrap.appendChild(iframe);
-          shell.appendChild(frameWrap);
-          document.body.appendChild(shell);
-
-          const launcher = document.createElement('button');
-          launcher.id = customLauncherId;
-          launcher.type = 'button';
-          launcher.textContent = 'Live chat';
-          launcher.setAttribute('aria-label', 'Open live chat');
-          launcher.style.cssText = [
-            'position:fixed',
-            'right:16px',
-            'bottom:16px',
-            'z-index:10001',
-            'border:0',
-            'border-radius:999px',
-            'padding:14px 18px',
-            'min-width:108px',
-            'font:600 14px/1.1 Inter, system-ui, sans-serif',
-            'letter-spacing:0.01em',
-            'color:#fff',
-            'background:linear-gradient(140deg,#1c2636 0%,#c74634 100%)',
-            'box-shadow:0 14px 34px rgba(0,0,0,0.22)',
-            'cursor:pointer',
-            'transition:opacity 160ms ease, transform 160ms ease',
-          ].join(';');
-
-          launcher.addEventListener('click', () => {
-            markChatOpening();
-            setShellVisible(true);
-
-            if (isExpandedSize(chatState.lastSize)) {
-              chatState.phase = 'open';
-              chatState.sawFirstToggleAfterOpen = true;
-              setCustomLauncherVisible(false);
-              dispatchChatState('chat-opened', { size: chatState.lastSize, warm: true });
-              return;
-            }
-
-            setCustomLauncherVisible(true, 'Opening...');
-          });
-
-          document.body.appendChild(launcher);
-        };
-
         const bindChatStateTracking = () => {
           if (window.__triberaChatStateBound) return;
           window.__triberaChatStateBound = true;
+
+          document.addEventListener(
+            'click',
+            (event) => {
+              const target = event.target;
+              if (!(target instanceof Element)) return;
+              if (!target.closest('img[aria-label="Open Customer Connect chat bot assistant"]')) return;
+              markChatOpening();
+            },
+            true
+          );
 
           window.addEventListener('message', (event) => {
             if (event.origin !== chatbotOrigin) return;
@@ -257,20 +145,13 @@ const isCandidatesPage = pathname === '/candidates';
             if (width === null || height === null) return;
 
             const nextSize = { width, height };
-            updateChatFrameSize(nextSize);
 
             if (chatState.phase === 'opening' && !chatState.sawFirstToggleAfterOpen) {
               chatState.phase = 'open';
               chatState.sawFirstToggleAfterOpen = true;
               chatState.lastSize = nextSize;
-              setShellVisible(true);
-              setCustomLauncherVisible(false);
+              syncLauncherVisibility();
               dispatchChatState('chat-opened', { size: nextSize });
-              return;
-            }
-
-            if (chatState.phase === 'idle') {
-              chatState.lastSize = nextSize;
               return;
             }
 
@@ -282,34 +163,57 @@ const isCandidatesPage = pathname === '/candidates';
 
               if (isMeaningfulMinimize(chatState.lastSize, nextSize)) {
                 chatState.phase = 'minimized';
-                setShellVisible(true);
+                syncLauncherVisibility();
                 dispatchChatState('chat-minimized', { size: nextSize, delta });
               } else if (isMeaningfulExpand(chatState.lastSize, nextSize)) {
                 chatState.phase = 'open';
-                setShellVisible(true);
-                setCustomLauncherVisible(false);
+                syncLauncherVisibility();
                 dispatchChatState('chat-expanded', { size: nextSize, delta });
               }
             }
 
             chatState.lastSize = nextSize;
           });
+
+          const observer = new MutationObserver(() => {
+            const previous = chatState.launcherVisible;
+            syncLauncherVisibility();
+
+            if (!previous && chatState.launcherVisible && chatState.phase !== 'idle') {
+              chatState.phase = 'minimized';
+              dispatchChatState('chat-launcher-visible');
+            }
+          });
+
+          observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+          syncLauncherVisibility();
+        };
+
+        const ensureChatbotScript = () => {
+          let script = document.getElementById(chatbotScriptId);
+          if (script instanceof HTMLScriptElement) return script;
+
+          script = document.createElement('script');
+          script.id = chatbotScriptId;
+          script.async = true;
+          script.type = 'text/javascript';
+          script.src = chatbotScriptSrc;
+          script.crossOrigin = 'anonymous';
+          script.setAttribute('environmentId', environmentId);
+          document.head.appendChild(script);
+
+          return script;
         };
 
         const cleanup = () => {
-          const iframe = getChatbotIframe();
+          const iframe = document.getElementById(chatbotIframeId);
           if (iframe instanceof HTMLIFrameElement) {
             iframe.remove();
           }
 
-          const shell = getCustomShell();
-          if (shell instanceof HTMLElement) {
-            shell.remove();
-          }
-
-          const launcher = getCustomLauncher();
-          if (launcher instanceof HTMLElement) {
-            launcher.remove();
+          const script = document.getElementById(chatbotScriptId);
+          if (script instanceof HTMLScriptElement) {
+            script.remove();
           }
 
           window.__triberaChatbotCleanup = undefined;
@@ -321,7 +225,12 @@ const isCandidatesPage = pathname === '/candidates';
         if (!allowedHosts.has(window.location.hostname)) return;
 
         bindChatStateTracking();
-        mountCustomChatShell();
+
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+          ensureChatbotScript();
+        } else {
+          window.addEventListener('DOMContentLoaded', ensureChatbotScript, { once: true });
+        }
       })();
     </script>
 
