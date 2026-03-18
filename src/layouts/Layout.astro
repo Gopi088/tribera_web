@@ -56,53 +56,9 @@ const isCandidatesPage = pathname === '/candidates';
   <body class="bg-page overflow-x-hidden">
     <slot />
     <BasicScripts />
-
-    <script is:inline>
-      (() => {
-        window.__triberaChatbotCleanup?.();
-
-        const allowedHosts = new Set(['tribera.ai', 'www.tribera.ai', 'tribera-webv2.netlify.app']);
-        const environmentId = '75186a18-80c9-e34b-b323-d376419f05d1';
-        const chatbotScriptId = 'chatbot';
-        const chatbotScriptSrc = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
-
-        const ensureChatbotScript = () => {
-          let script = document.getElementById(chatbotScriptId);
-          if (script instanceof HTMLScriptElement) return script;
-
-          script = document.createElement('script');
-          script.id = chatbotScriptId;
-          script.async = true;
-          script.type = 'text/javascript';
-          script.src = chatbotScriptSrc;
-          script.crossOrigin = 'anonymous';
-          script.setAttribute('environmentId', environmentId);
-          document.head.appendChild(script);
-
-          return script;
-        };
-
-        const cleanup = () => {
-          const script = document.getElementById(chatbotScriptId);
-          if (script instanceof HTMLScriptElement) {
-            script.remove();
-          }
-
-          window.__triberaChatbotCleanup = undefined;
-        };
-
-        window.__triberaChatbotCleanup = cleanup;
-        document.addEventListener('astro:before-swap', cleanup, { once: true });
-
-        if (!allowedHosts.has(window.location.hostname)) return;
-
-        if (document.readyState === 'complete' || document.readyState === 'interactive') {
-          ensureChatbotScript();
-        } else {
-          window.addEventListener('DOMContentLoaded', ensureChatbotScript, { once: true });
-        }
-      })();
-    </script>
+    <Fragment
+      set:html={`<script type="text/javascript" src="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js" id="chatbot" environmentId="75186a18-80c9-e34b-b323-d376419f05d1" crossorigin="anonymous"><\/script>`}
+    />
 
     <!-- GLOBAL FULL-WIDTH SCROLL CTA -->
     <div
