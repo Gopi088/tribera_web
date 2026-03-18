@@ -59,49 +59,130 @@ const isCandidatesPage = pathname === '/candidates';
 
     <script is:inline>
       (() => {
+        window.__triberaChatbotCleanup?.();
+
         const allowedHosts = new Set(['tribera.ai', 'www.tribera.ai', 'tribera-webv2.netlify.app']);
         const environmentId = '75186a18-80c9-e34b-b323-d376419f05d1';
         const chatbotScriptId = 'chatbot';
         const chatbotIframeId = 'teams-chat-bot-iframe-a3b60c17-95c7-4cba-8036-be9da15bcc26';
         const chatbotScriptSrc = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
-        const chatbotFrameSrc = `https://customerconnect.teams.usercontent.microsoft/customer-service-chatbot?environmentId=${environmentId}`;
-        const launcherSelector = 'img[aria-label="Open Customer Connect chat bot assistant"]';
-        const loadingBadgeId = 'tribera-chatbot-loading-badge';
-        const prewarmIframeId = 'tribera-chatbot-prewarm-frame';
+        const chatbotOrigin = 'https://customerconnect.teams.usercontent.microsoft';
 
-        if (!allowedHosts.has(window.location.hostname)) return;
-
-        const manager = (window.__triberaChatbotManager ||= {
-          scriptRequested: false,
-          listenersBound: false,
-          observerBound: false,
-          opening: false,
-          open: false,
-          prewarmRequested: false,
-          openWatchInterval: null,
-          openWatchTimeout: null,
+        const chatState = (window.__triberaChatState ||= {
+          phase: 'idle',
+          lastSize: null,
+          sawFirstToggleAfterOpen: false,
+          launcherVisible: false,
         });
 
-        const getLauncher = () => document.querySelector(launcherSelector);
-        const getIframe = () => document.getElementById(chatbotIframeId);
+        const parseSize = (value) => {
+          const parsed = Number.parseInt(String(value || ''), 10);
+          return Number.isFinite(parsed) ? parsed : null;
+        };
 
-        const isIframeVisible = () => {
-          const iframe = getIframe();
-          if (!(iframe instanceof HTMLIFrameElement)) return false;
+        const isMeaningfulGrow = (delta) => delta.width > 40 || delta.height > 40;
+        const isMeaningfulShrink = (delta) => delta.width < -40 || delta.height < -40;
 
-          const style = window.getComputedStyle(iframe);
-          if (style.display === 'none' || style.visibility === 'hidden') return false;
+        const dispatchChatState = (name, detail = {}) => {
+          window.dispatchEvent(
+            new CustomEvent(`tribera:${name}`, {
+              detail: {
+                phase: chatState.phase,
+                ...detail,
+              },
+            })
+          );
+        };
 
-          const rect = iframe.getBoundingClientRect();
-          return rect.width >= 240 || rect.height >= 140;
+        const getLauncher = () => document.querySelector('img[aria-label="Open Customer Connect chat bot assistant"]');
+
+        const syncLauncherVisibility = () => {
+          const launcher = getLauncher();
+          if (!(launcher instanceof HTMLElement)) {
+            chatState.launcherVisible = false;
+            return;
+          }
+
+          const style = getComputedStyle(launcher);
+          chatState.launcherVisible = style.display !== 'none' && style.visibility !== 'hidden';
+        };
+
+        const markChatOpening = () => {
+          chatState.phase = 'opening';
+          chatState.sawFirstToggleAfterOpen = false;
+        };
+
+        const bindChatStateTracking = () => {
+          if (window.__triberaChatStateBound) return;
+          window.__triberaChatStateBound = true;
+
+          document.addEventListener(
+            'click',
+            (event) => {
+              const target = event.target;
+              if (!(target instanceof Element)) return;
+              if (!target.closest('img[aria-label="Open Customer Connect chat bot assistant"]')) return;
+              markChatOpening();
+            },
+            true
+          );
+
+          window.addEventListener('message', (event) => {
+            if (event.origin !== chatbotOrigin) return;
+            if (event.data?.type !== 'toggle') return;
+
+            const width = parseSize(event.data.width);
+            const height = parseSize(event.data.height);
+            if (width === null || height === null) return;
+
+            const nextSize = { width, height };
+
+            if (chatState.phase === 'opening' && !chatState.sawFirstToggleAfterOpen) {
+              chatState.phase = 'open';
+              chatState.sawFirstToggleAfterOpen = true;
+              chatState.lastSize = nextSize;
+              syncLauncherVisibility();
+              dispatchChatState('chat-opened', { size: nextSize });
+              return;
+            }
+
+            if (chatState.lastSize) {
+              const delta = {
+                width: nextSize.width - chatState.lastSize.width,
+                height: nextSize.height - chatState.lastSize.height,
+              };
+
+              if (isMeaningfulShrink(delta)) {
+                chatState.phase = 'minimized';
+                syncLauncherVisibility();
+                dispatchChatState('chat-minimized', { size: nextSize, delta });
+              } else if (isMeaningfulGrow(delta)) {
+                chatState.phase = 'open';
+                syncLauncherVisibility();
+                dispatchChatState('chat-expanded', { size: nextSize, delta });
+              }
+            }
+
+            chatState.lastSize = nextSize;
+          });
+
+          const observer = new MutationObserver(() => {
+            const previous = chatState.launcherVisible;
+            syncLauncherVisibility();
+
+            if (!previous && chatState.launcherVisible && chatState.phase !== 'idle') {
+              chatState.phase = 'minimized';
+              dispatchChatState('chat-launcher-visible');
+            }
+          });
+
+          observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+          syncLauncherVisibility();
         };
 
         const ensureChatbotScript = () => {
           let script = document.getElementById(chatbotScriptId);
-          if (script instanceof HTMLScriptElement) {
-            manager.scriptRequested = true;
-            return script;
-          }
+          if (script instanceof HTMLScriptElement) return script;
 
           script = document.createElement('script');
           script.id = chatbotScriptId;
@@ -111,202 +192,36 @@ const isCandidatesPage = pathname === '/candidates';
           script.crossOrigin = 'anonymous';
           script.setAttribute('environmentId', environmentId);
           document.head.appendChild(script);
-          manager.scriptRequested = true;
 
           return script;
         };
 
-        const ensureLoadingBadge = () => {
-          let badge = document.getElementById(loadingBadgeId);
-          if (badge instanceof HTMLDivElement) return badge;
-
-          badge = document.createElement('div');
-          badge.id = loadingBadgeId;
-          badge.className =
-            'pointer-events-none fixed bottom-[78px] right-3 z-[10010] hidden items-center gap-2 rounded-full border border-black/10 bg-white/96 px-3 py-2 text-[12px] font-semibold text-black shadow-[0_12px_30px_rgba(0,0,0,0.16)] backdrop-blur';
-          badge.innerHTML = `
-            <span class="h-2 w-2 rounded-full bg-[#da0007] animate-pulse"></span>
-            <span>Opening chat...</span>
-          `;
-          document.body.appendChild(badge);
-          return badge;
-        };
-
-        const canPrewarmChat = () => {
-          const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-          if (!connection) return true;
-          if (connection.saveData) return false;
-          const effectiveType = String(connection.effectiveType || '').toLowerCase();
-          return !effectiveType.includes('2g');
-        };
-
-        const removePrewarmFrame = () => {
-          const frame = document.getElementById(prewarmIframeId);
-          if (frame instanceof HTMLIFrameElement) {
-            frame.remove();
-          }
-        };
-
-        const ensurePrewarmFrame = () => {
-          if (manager.prewarmRequested || !canPrewarmChat()) return;
-          if (getIframe() instanceof HTMLIFrameElement) return;
-
-          manager.prewarmRequested = true;
-
-          const start = () => {
-            if (document.getElementById(prewarmIframeId)) return;
-            if (getIframe() instanceof HTMLIFrameElement) return;
-
-            const frame = document.createElement('iframe');
-            frame.id = prewarmIframeId;
-            frame.src = chatbotFrameSrc;
-            frame.setAttribute('aria-hidden', 'true');
-            frame.tabIndex = -1;
-            frame.className = 'pointer-events-none fixed bottom-0 right-0 h-0 w-0 border-0 opacity-0';
-
-            const cleanup = () => {
-              window.setTimeout(removePrewarmFrame, 1200);
-            };
-
-            frame.addEventListener('load', cleanup, { once: true });
-            document.body.appendChild(frame);
-
-            window.setTimeout(removePrewarmFrame, 10000);
-          };
-
-          if ('requestIdleCallback' in window) {
-            window.requestIdleCallback(start, { timeout: 2500 });
-            return;
+        const cleanup = () => {
+          const iframe = document.getElementById(chatbotIframeId);
+          if (iframe instanceof HTMLIFrameElement) {
+            iframe.remove();
           }
 
-          window.setTimeout(start, 1800);
-        };
-
-        const setLauncherPending = (pending) => {
-          const badge = ensureLoadingBadge();
-          const launcher = getLauncher();
-
-          badge.classList.toggle('hidden', !pending);
-          badge.classList.toggle('flex', pending);
-
-          if (!(launcher instanceof HTMLElement)) return;
-          launcher.style.opacity = pending ? '0.72' : '';
-          launcher.style.filter = pending ? 'saturate(0.9)' : '';
-          launcher.style.pointerEvents = pending ? 'none' : '';
-        };
-
-        const clearOpenWatch = () => {
-          if (manager.openWatchInterval) {
-            window.clearInterval(manager.openWatchInterval);
-            manager.openWatchInterval = null;
+          const script = document.getElementById(chatbotScriptId);
+          if (script instanceof HTMLScriptElement) {
+            script.remove();
           }
 
-          if (manager.openWatchTimeout) {
-            window.clearTimeout(manager.openWatchTimeout);
-            manager.openWatchTimeout = null;
-          }
+          window.__triberaChatbotCleanup = undefined;
         };
 
-        const finishOpenAttempt = () => {
-          clearOpenWatch();
-          manager.opening = false;
-          manager.open = isIframeVisible();
-          if (manager.open) {
-            removePrewarmFrame();
-          }
-          setLauncherPending(false);
-        };
+        window.__triberaChatbotCleanup = cleanup;
+        document.addEventListener('astro:before-swap', cleanup, { once: true });
 
-        const beginOpenWatch = () => {
-          clearOpenWatch();
-          manager.opening = true;
-          setLauncherPending(true);
+        if (!allowedHosts.has(window.location.hostname)) return;
 
-          manager.openWatchInterval = window.setInterval(() => {
-            if (isIframeVisible()) {
-              finishOpenAttempt();
-            }
-          }, 150);
+        bindChatStateTracking();
 
-          manager.openWatchTimeout = window.setTimeout(() => {
-            finishOpenAttempt();
-          }, 8000);
-        };
-
-        const syncChatState = () => {
-          const visible = isIframeVisible();
-          manager.open = visible;
-          if (!manager.opening) {
-            setLauncherPending(false);
-          }
-        };
-
-        const bindLifecycle = () => {
-          if (manager.listenersBound) return;
-          manager.listenersBound = true;
-
-          document.addEventListener(
-            'click',
-            (event) => {
-              const target = event.target;
-              if (!(target instanceof Element)) return;
-
-              const launcher = target.closest(launcherSelector);
-              if (!launcher) return;
-
-              if (manager.opening) {
-                event.preventDefault();
-                event.stopPropagation();
-                return;
-              }
-
-              if (isIframeVisible()) {
-                window.setTimeout(syncChatState, 300);
-                return;
-              }
-
-              beginOpenWatch();
-            },
-            true
-          );
-
-          document.addEventListener('astro:page-load', () => {
-            ensureChatbotScript();
-            syncChatState();
-          });
-
-          document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'visible') {
-              syncChatState();
-            }
-          });
-        };
-
-        const bindObserver = () => {
-          if (manager.observerBound) return;
-          manager.observerBound = true;
-
-          const observer = new MutationObserver(() => {
-            if (!manager.scriptRequested) return;
-            if (manager.opening && isIframeVisible()) {
-              finishOpenAttempt();
-              return;
-            }
-            if (isIframeVisible()) {
-              removePrewarmFrame();
-            }
-            syncChatState();
-          });
-
-          observer.observe(document.body, { childList: true, subtree: true, attributes: true });
-        };
-
-        ensureChatbotScript();
-        ensureLoadingBadge();
-        ensurePrewarmFrame();
-        bindLifecycle();
-        bindObserver();
-        syncChatState();
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+          ensureChatbotScript();
+        } else {
+          window.addEventListener('DOMContentLoaded', ensureChatbotScript, { once: true });
+        }
       })();
     </script>
 
