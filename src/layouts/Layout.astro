@@ -67,7 +67,6 @@ const isCandidatesPage = pathname === '/candidates';
         const chatbotIframeId = 'teams-chat-bot-iframe-a3b60c17-95c7-4cba-8036-be9da15bcc26';
         const chatbotScriptSrc = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
         const chatbotOrigin = 'https://customerconnect.teams.usercontent.microsoft';
-        const chatDebugLog = (window.__triberaChatDebugLog ||= []);
 
         const chatState = (window.__triberaChatState ||= {
           phase: 'idle',
@@ -81,8 +80,17 @@ const isCandidatesPage = pathname === '/candidates';
           return Number.isFinite(parsed) ? parsed : null;
         };
 
-        const isMeaningfulGrow = (delta) => delta.width > 40 || delta.height > 40;
-        const isMeaningfulShrink = (delta) => delta.width < -40 || delta.height < -40;
+        const isMeaningfulExpand = (last, next) => {
+          const deltaHeight = next.height - last.height;
+          const relativeGrow = last.height > 0 ? (next.height - last.height) / last.height : 0;
+          return deltaHeight > 60 && relativeGrow > 0.15;
+        };
+
+        const isMeaningfulMinimize = (last, next) => {
+          const deltaHeight = next.height - last.height;
+          const relativeDrop = last.height > 0 ? (last.height - next.height) / last.height : 0;
+          return deltaHeight < -60 && relativeDrop > 0.15;
+        };
 
         const dispatchChatState = (name, detail = {}) => {
           window.dispatchEvent(
@@ -132,14 +140,6 @@ const isCandidatesPage = pathname === '/candidates';
             if (event.origin !== chatbotOrigin) return;
             if (event.data?.type !== 'toggle') return;
 
-            const payload = {
-              origin: event.origin,
-              data: event.data,
-              ts: Date.now(),
-            };
-            chatDebugLog.push(payload);
-            console.info('[tribera-chat-toggle]', payload);
-
             const width = parseSize(event.data.width);
             const height = parseSize(event.data.height);
             if (width === null || height === null) return;
@@ -161,11 +161,11 @@ const isCandidatesPage = pathname === '/candidates';
                 height: nextSize.height - chatState.lastSize.height,
               };
 
-              if (isMeaningfulShrink(delta)) {
+              if (isMeaningfulMinimize(chatState.lastSize, nextSize)) {
                 chatState.phase = 'minimized';
                 syncLauncherVisibility();
                 dispatchChatState('chat-minimized', { size: nextSize, delta });
-              } else if (isMeaningfulGrow(delta)) {
+              } else if (isMeaningfulExpand(chatState.lastSize, nextSize)) {
                 chatState.phase = 'open';
                 syncLauncherVisibility();
                 dispatchChatState('chat-expanded', { size: nextSize, delta });
