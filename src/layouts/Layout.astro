@@ -104,6 +104,8 @@ const isCandidatesPage = pathname === '/candidates';
           chatState.sawFirstToggleAfterOpen = false;
         };
 
+        const isExpandedSize = (size) => size && size.width >= 300 && size.height >= 300;
+
         const getCustomLauncher = () => document.getElementById(customLauncherId);
         const getCustomShell = () => document.getElementById(customShellId);
         const getCustomFrameWrap = () => document.getElementById(customFrameWrapId);
@@ -169,6 +171,7 @@ const isCandidatesPage = pathname === '/candidates';
             'pointer-events:none',
             'transform:translateY(calc(100% + 32px))',
             'transition:opacity 180ms ease, transform 180ms ease, visibility 180ms ease',
+            'background:transparent',
           ].join(';');
 
           const frameWrap = document.createElement('div');
@@ -177,9 +180,9 @@ const isCandidatesPage = pathname === '/candidates';
             'width:352px',
             'height:632px',
             'overflow:hidden',
-            'border-radius:16px',
-            'box-shadow:0 18px 48px rgba(0,0,0,0.22)',
-            'background:#fff',
+            'border-radius:0',
+            'box-shadow:none',
+            'background:transparent',
           ].join(';');
 
           const iframe = document.createElement('iframe');
@@ -193,7 +196,7 @@ const isCandidatesPage = pathname === '/candidates';
             'width:352px',
             'height:632px',
             'border:0',
-            'background:#fff',
+            'background:transparent',
           ].join(';');
 
           frameWrap.appendChild(iframe);
@@ -225,8 +228,17 @@ const isCandidatesPage = pathname === '/candidates';
 
           launcher.addEventListener('click', () => {
             markChatOpening();
-            setCustomLauncherVisible(true, 'Opening...');
             setShellVisible(true);
+
+            if (isExpandedSize(chatState.lastSize)) {
+              chatState.phase = 'open';
+              chatState.sawFirstToggleAfterOpen = true;
+              setCustomLauncherVisible(false);
+              dispatchChatState('chat-opened', { size: chatState.lastSize, warm: true });
+              return;
+            }
+
+            setCustomLauncherVisible(true, 'Opening...');
           });
 
           document.body.appendChild(launcher);
