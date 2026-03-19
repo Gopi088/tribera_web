@@ -26,6 +26,7 @@ const { metadata = {} } = Astro.props;
 const { language, textDirection } = I18N;
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const isCandidatesPage = pathname === '/candidates';
+const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
 ---
 
 <!doctype html>
@@ -39,28 +40,39 @@ const isCandidatesPage = pathname === '/candidates';
     <StructuredData metadata={metadata} />
     <SiteVerification />
     <Analytics />
-    <link rel="dns-prefetch" href="//res.public.onecdn.static.microsoft" />
-    <link rel="dns-prefetch" href="//customerconnect.teams.usercontent.microsoft" />
-    <link rel="dns-prefetch" href="//statics.teams.cdn.office.net" />
-    <link rel="preconnect" href="https://res.public.onecdn.static.microsoft" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://customerconnect.teams.usercontent.microsoft" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://statics.teams.cdn.office.net" crossorigin="anonymous" />
-    <link
-      rel="preload"
-      as="script"
-      href="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js"
-      crossorigin="anonymous"
-    />
+    {
+      isChatEnabledHost && (
+        <>
+          <link rel="dns-prefetch" href="//res.public.onecdn.static.microsoft" />
+          <link rel="dns-prefetch" href="//customerconnect.teams.usercontent.microsoft" />
+          <link rel="dns-prefetch" href="//statics.teams.cdn.office.net" />
+          <link rel="preconnect" href="https://res.public.onecdn.static.microsoft" crossorigin="anonymous" />
+          <link rel="preconnect" href="https://customerconnect.teams.usercontent.microsoft" crossorigin="anonymous" />
+          <link rel="preconnect" href="https://statics.teams.cdn.office.net" crossorigin="anonymous" />
+          <link
+            rel="preload"
+            as="script"
+            href="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js"
+            crossorigin="anonymous"
+          />
+        </>
+      )
+    }
     <!-- Comment the line below to disable View Transitions -->
     <ClientRouter fallback="swap" />
   </head>
 
   <body class="bg-page overflow-x-hidden">
-    <Fragment
-      set:html={`<script type="text/javascript" src="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js" id="chatbot" environmentId="75186a18-80c9-e34b-b323-d376419f05d1" crossorigin="anonymous" async><\/script>`}
-    />
+    {
+      isChatEnabledHost && (
+        <Fragment
+          set:html={`<script type="text/javascript" src="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js" id="chatbot" environmentId="75186a18-80c9-e34b-b323-d376419f05d1" crossorigin="anonymous" async><\/script>`}
+        />
+      )
+    }
     <script is:inline>
       (() => {
+        if (!window.location || window.location.hostname !== 'www.tribera.ai') return;
         const chatbotScriptId = 'chatbot';
         const chatbotScriptSrc = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
         const environmentId = '75186a18-80c9-e34b-b323-d376419f05d1';

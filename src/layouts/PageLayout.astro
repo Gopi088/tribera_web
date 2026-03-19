@@ -24,6 +24,116 @@ const { metadata } = Astro.props;
   </slot>
 
   <script is:inline>
+    (() => {
+      if (window.__triberaDirectionalTrigger) return;
+
+      window.__triberaCountAnimationConfig = {
+        durationMs: 1200,
+        steps: 72,
+      };
+
+      const defaultThresholds = {
+        mobile: {
+          downEnter: 0.72,
+          upEnter: 0.38,
+          topExit: 0.08,
+          bottomExit: 0.92,
+        },
+        desktop: {
+          downEnter: 0.62,
+          upEnter: 0.34,
+          topExit: 0.14,
+          bottomExit: 0.86,
+        },
+      };
+
+      window.__triberaDirectionalTrigger = ({ element, onEnter, onExit, thresholds = {} }) => {
+        if (!(element instanceof HTMLElement)) return () => {};
+
+        let active = false;
+        let rafId = null;
+        let lastScrollY = window.scrollY;
+
+        const getThresholds = () => {
+          const isMobile = window.innerWidth < 768;
+          const base = isMobile ? defaultThresholds.mobile : defaultThresholds.desktop;
+          const override = isMobile ? thresholds.mobile || {} : thresholds.desktop || {};
+          return { ...base, ...override };
+        };
+
+        const getDirection = () => {
+          const currentScrollY = window.scrollY;
+          const direction = currentScrollY > lastScrollY ? 'down' : currentScrollY < lastScrollY ? 'up' : 'idle';
+          lastScrollY = currentScrollY;
+          return direction;
+        };
+
+        const shouldActivate = (direction) => {
+          const rect = element.getBoundingClientRect();
+          const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+          const nextThresholds = getThresholds();
+          const downEnterLine = viewportHeight * nextThresholds.downEnter;
+          const upEnterLine = viewportHeight * nextThresholds.upEnter;
+
+          if (direction === 'up') {
+            return rect.bottom >= upEnterLine && rect.top < viewportHeight;
+          }
+
+          return rect.top <= downEnterLine && rect.bottom > 0;
+        };
+
+        const shouldReset = () => {
+          const rect = element.getBoundingClientRect();
+          const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+          const nextThresholds = getThresholds();
+          const topExitLine = viewportHeight * nextThresholds.topExit;
+          const bottomExitLine = viewportHeight * nextThresholds.bottomExit;
+
+          return rect.bottom <= topExitLine || rect.top >= bottomExitLine;
+        };
+
+        const evaluate = () => {
+          const direction = getDirection();
+          const activate = shouldActivate(direction);
+          const reset = shouldReset();
+
+          if (!active && activate) {
+            active = true;
+            onEnter?.();
+            return;
+          }
+
+          if (active && reset) {
+            active = false;
+            onExit?.();
+          }
+        };
+
+        const requestEvaluate = () => {
+          if (rafId) return;
+          rafId = window.requestAnimationFrame(() => {
+            rafId = null;
+            evaluate();
+          });
+        };
+
+        requestEvaluate();
+        window.addEventListener('scroll', requestEvaluate, { passive: true });
+        window.addEventListener('resize', requestEvaluate);
+
+        return () => {
+          if (rafId) {
+            window.cancelAnimationFrame(rafId);
+            rafId = null;
+          }
+          window.removeEventListener('scroll', requestEvaluate);
+          window.removeEventListener('resize', requestEvaluate);
+        };
+      };
+    })();
+  </script>
+
+  <script is:inline>
     function initCTAAndModal() {
       if (window.__triberaCTAAndModalInit) return;
       window.__triberaCTAAndModalInit = true;
@@ -151,71 +261,6 @@ const { metadata } = Astro.props;
     window.addEventListener('load', initCTAAndModal);
   </script>
 
-  <script>
-    function initHeroScroll() {
-      const heroes = document.querySelectorAll<HTMLElement>('.hero-section');
-
-      if (!heroes.length) return;
-
-      heroes.forEach((hero) => {
-        if (hero.dataset.heroScrollBound === 'true') return;
-        hero.dataset.heroScrollBound = 'true';
-
-        const content = hero.querySelector('.hero-content');
-        if (!content) return;
-        const contentEl = content as HTMLElement;
-
-        let lastScrollY = window.scrollY;
-        let ticking = false;
-
-        function onScroll() {
-          if (ticking) return;
-
-          ticking = true;
-
-          requestAnimationFrame(() => {
-            const currentY = window.scrollY;
-            const heroTop = hero.offsetTop;
-            const heroHeight = hero.offsetHeight;
-
-            if (currentY >= heroTop && currentY <= heroTop + heroHeight) {
-              const delta = Math.min(Math.max((currentY - heroTop) / heroHeight, 0), 1);
-
-              // ✅ ONLY when scrolling DOWN
-              if (currentY > lastScrollY) {
-                contentEl.style.transform = `
-          translateY(${delta * -40}px)
-          scale(${1 - delta * 0.04})
-        `;
-                contentEl.style.opacity = `${1 - delta * 1.1}`;
-                contentEl.style.filter = `blur(${delta * 4}px)`;
-              }
-
-              // ✅ When scrolling UP → instantly reset
-              if (currentY < lastScrollY) {
-                contentEl.style.transform = 'translateY(0px) scale(1)';
-                contentEl.style.opacity = '1';
-                contentEl.style.filter = 'blur(0px)';
-              }
-            }
-
-            lastScrollY = currentY;
-            ticking = false;
-          });
-        }
-
-        window.addEventListener('scroll', onScroll, { passive: true });
-      });
-    }
-
-    // INITIAL LOAD
-    initHeroScroll();
-
-    // IMPORTANT: RE-INIT ON ASTRO PAGE CHANGE
-    document.addEventListener('astro:page-load', () => {
-      initHeroScroll();
-    });
-  </script>
   <script is:inline>
     function initSamePageSectionLinks() {
       if (window.__triberaSamePageSectionLinksBound) return;
@@ -423,41 +468,43 @@ const { metadata } = Astro.props;
       const section = document.getElementById('platform-overview');
       const scorecard = document.getElementById('candidateScorecard');
       if (!section || !scorecard) return;
-      const observerRootMargin = window.innerWidth < 768 ? '-32% 0px -32% 0px' : '-20% 0px -20% 0px';
+      if (typeof scorecard.__candidateTriggerCleanup === 'function') {
+        scorecard.__candidateTriggerCleanup();
+      }
 
-      let barsAnimated = false;
+      let barTimeouts = [];
       const bars = Array.from(scorecard.querySelectorAll('.metric-bar'));
 
-      bars.forEach((bar) => {
-        if (bar instanceof HTMLElement) {
-          bar.style.width = '0%';
-        }
+      const reset = () => {
+        barTimeouts.forEach((timeoutId) => window.clearTimeout(timeoutId));
+        barTimeouts = [];
+
+        bars.forEach((bar) => {
+          if (bar instanceof HTMLElement) {
+            bar.style.width = '0%';
+          }
+        });
+      };
+
+      const animate = () => {
+        reset();
+        bars.forEach((bar, index) => {
+          if (!(bar instanceof HTMLElement)) return;
+          const targetWidth = bar.dataset.width;
+
+          const timeoutId = window.setTimeout(() => {
+            bar.style.width = targetWidth || '0%';
+          }, index * 260);
+          barTimeouts.push(timeoutId);
+        });
+      };
+
+      reset();
+      scorecard.__candidateTriggerCleanup = window.__triberaDirectionalTrigger({
+        element: scorecard,
+        onEnter: animate,
+        onExit: reset,
       });
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          if (!entries[0].isIntersecting || barsAnimated) return;
-
-          barsAnimated = true;
-
-          bars.forEach((bar, index) => {
-            if (!(bar instanceof HTMLElement)) return;
-            const targetWidth = bar.dataset.width;
-
-            setTimeout(() => {
-              bar.style.width = targetWidth || '0%';
-            }, index * 260);
-          });
-
-          observer.disconnect();
-        },
-        {
-          threshold: 0,
-          rootMargin: observerRootMargin,
-        }
-      );
-
-      observer.observe(scorecard);
     }
 
     /* FIRST LOAD */
@@ -475,19 +522,18 @@ const { metadata } = Astro.props;
     function initProofSection() {
       const section = document.getElementById('proof');
       if (!section) return;
-      const observerRootMargin = window.innerWidth < 768 ? '-32% 0px -32% 0px' : '-20% 0px -20% 0px';
 
       if (typeof section.__proofCleanup === 'function') {
         section.__proofCleanup();
       }
 
-      let barFilled = false;
       let barTimeoutId = null;
-      let proofActive = false;
       const counterFrames = new Map();
 
       const counters = Array.from(section.querySelectorAll('.count-number'));
       const bar = section.querySelector('#triberaBar');
+      const countersGrid = section.querySelector('#proofCountersGrid');
+      const efficiencyCard = section.querySelector('#proofInterviewEfficiencyCard');
 
       const resetCounters = () => {
         counters.forEach((counter) => {
@@ -508,8 +554,9 @@ const { metadata } = Astro.props;
           window.requestAnimationFrame(() => {
             counters.forEach((counter) => {
               const target = Number(counter.dataset.target);
+              const countConfig = window.__triberaCountAnimationConfig || { durationMs: 1200, steps: 72 };
               let current = 0;
-              const increment = target / 40;
+              const increment = target / countConfig.steps;
 
               const update = () => {
                 current += increment;
@@ -538,7 +585,6 @@ const { metadata } = Astro.props;
           barTimeoutId = null;
         }
 
-        barFilled = false;
         bar.style.transition = 'none';
         bar.style.width = '0%';
         void bar.offsetWidth;
@@ -548,48 +594,40 @@ const { metadata } = Astro.props;
       const cleanup = () => {
         resetCounters();
         resetBar();
-        observer.disconnect();
       };
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          const entry = entries[0];
+      const animateBar = () => {
+        if (!bar) return;
+        resetBar();
+        barTimeoutId = window.setTimeout(() => {
+          bar.style.width = '37%';
+          barTimeoutId = null;
+        }, 400);
+      };
 
-          if (entry.isIntersecting) {
-            if (proofActive) return;
-            proofActive = true;
-            animateCounters();
+      const counterTriggerCleanup =
+        countersGrid instanceof HTMLElement
+          ? window.__triberaDirectionalTrigger({
+              element: countersGrid,
+              onEnter: animateCounters,
+              onExit: resetCounters,
+            })
+          : () => {};
 
-            /* ===== FILL BAR (replays on every re-entry) ===== */
-            if (bar && !barFilled) {
-              barFilled = true;
+      const barTriggerCleanup =
+        efficiencyCard instanceof HTMLElement
+          ? window.__triberaDirectionalTrigger({
+              element: efficiencyCard,
+              onEnter: animateBar,
+              onExit: resetBar,
+            })
+          : () => {};
 
-              // Reset without animation, then trigger fill transition.
-              bar.style.transition = 'none';
-              bar.style.width = '0%';
-              void bar.offsetWidth;
-              bar.style.transition = '';
-
-              barTimeoutId = window.setTimeout(() => {
-                bar.style.width = '37%';
-                barTimeoutId = null;
-              }, 400);
-            }
-            return;
-          }
-
-          proofActive = false;
-          resetCounters();
-          resetBar();
-        },
-        {
-          threshold: 0,
-          rootMargin: observerRootMargin,
-        }
-      );
-
-      observer.observe(section);
-      section.__proofCleanup = cleanup;
+      section.__proofCleanup = () => {
+        counterTriggerCleanup();
+        barTriggerCleanup();
+        cleanup();
+      };
     }
 
     /* FIRST LOAD */

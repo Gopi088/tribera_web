@@ -56,6 +56,7 @@ const getStartedBody = [
   "I'd like to get started with tribera.",
   '',
   'Company name:',
+  'Phone:',
   'Hiring focus (roles/teams):',
   'Hiring volume (monthly/quarterly):',
   'Current hiring challenge:',
@@ -202,11 +203,11 @@ const comparisonRows = [
         </a>
       </div>
 
-      <p class="mt-10 md:mt-14 text-white/30 text-[12px] font-[550]">*We'll walk you through it</p>
+      <p class="mt-8 md:mt-14 text-white/30 text-[12px] font-[550]">*We'll walk you through it</p>
     </div>
   </section>
 
-  <section class="w-full px-6 md:px-8 py-8 md:py-10 gap-10 relative">
+  <section class="w-full px-6 md:px-8 py-6 md:py-10 gap-10 relative">
     <div class="pointer-events-none absolute inset-0 bg-dotted-static opacity-80"></div>
 
     <Brands
@@ -229,8 +230,8 @@ const comparisonRows = [
     />
   </section>
 
-  <section id="platform-overview" class="bg-black px-6 sm:px-10 lg:px-20 py-16 md:py-20 overflow-hidden">
-    <div class="max-w-7xl mx-auto grid lg:grid-cols-[1fr_1.3fr] gap-20 items-center">
+  <section id="platform-overview" class="bg-black px-6 sm:px-10 lg:px-20 py-12 md:py-20 overflow-hidden">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-20 items-center">
       <div>
         <h2 class="text-white font-[650] leading-[1]
                  text-[clamp(1.5rem,5vw,2rem)]">
@@ -280,7 +281,7 @@ const comparisonRows = [
         </div>
 
         <div
-          class="relative mt-8 max-w-xl overflow-hidden rounded-xl
+          class="relative mt-6 md:mt-8 max-w-xl overflow-hidden rounded-xl
             border border-[#da0007]/40
             bg-gradient-to-br from-[#1a0000] to-[#2a0000]
             p-5 sm:p-5 text-white"
@@ -399,9 +400,9 @@ const comparisonRows = [
     </div>
   </section>
 
-  <section id="proof" class="bg-[#f3f3f3] py-12 md:py-16">
+  <section id="proof" class="bg-[#f3f3f3] py-10 md:py-16">
     <div class="max-w-[1100px] mx-auto px-4 sm:px-6 md:px-10 lg:px-12">
-      <div class="mb-8 text-center">
+      <div class="mb-6 md:mb-8 text-center">
         <p class="text-[11px] tracking-[0.18em] font-semibold text-black/40 uppercase mb-2">The Proof</p>
 
         <h2
@@ -415,14 +416,14 @@ const comparisonRows = [
         </h2>
       </div>
 
-      <div data-proof-grid class="grid lg:grid-cols-[2fr_3fr] gap-6 items-start">
+      <div data-proof-grid class="grid lg:grid-cols-[2fr_3fr] gap-4 md:gap-6 items-start">
         <div class="sticky top-[110px]">
           <div
             id="proofSelectionCard"
             class="bg-gradient-to-br from-white to-[#fafafa]
           border border-black/[0.04]
           rounded-[16px]
-          px-10 py-10
+          px-7 py-8 md:px-10 md:py-10
           text-center
           shadow-[0_4px_20px_rgba(0,0,0,0.03)] will-change-transform"
           >
@@ -451,7 +452,7 @@ const comparisonRows = [
         </div>
 
         <div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+          <div id="proofCountersGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5 md:mb-6">
             {
               [
                 {
@@ -636,20 +637,20 @@ const comparisonRows = [
     }
   </script>
 
-  <section id="what-makes-us-different" class="bg-black py-16 md:py-20">
+  <section id="what-makes-us-different" class="bg-black py-12 md:py-20">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-10">
+      <div class="text-center mb-8 md:mb-10">
         <p class="text-[11px] tracking-[0.1em] font-[550] text-[#da0007] uppercase">PLATFORM CAPABILITIES</p>
 
         <h2 class="mt-1 text-[clamp(2rem,7vw,3rem)] font-[600] text-white">What makes us different</h2>
 
-        <p class="mt-2 text-white/50 max-w-2xl mx-auto text-[17px] font-[400]">
+        <p class="mt-2 text-white/50 max-w-2xl mx-auto text-[15px] md:text-[17px] font-[400]">
           Save engineering time with pre-screened candidates. Signal-driven assessment by advisors who've hired at
           scale.
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
         {
           [
             {
@@ -721,7 +722,7 @@ const comparisonRows = [
           ].map((card, index) => (
             <div
               data-index={index}
-              class="group relative rounded-xl bg-white p-5 border border-black/5 overflow-hidden
+              class="group relative rounded-xl bg-white p-4 md:p-5 border border-black/5 overflow-hidden
          transition-all duration-500
 
          hover:shadow-[0_20px_60px_-15px_rgba(218,0,7,0.20)]"
@@ -760,7 +761,7 @@ const comparisonRows = [
     </div>
   </section>
 
-  <section class="bg-[#f5f5f5] py-12 md:py-16">
+  <section class="bg-[#f5f5f5] py-10 md:py-16">
     <div class="max-w-5xl mx-auto px-6">
       <div class="text-center mb-5">
         <p class="text-[11px] font-[500] tracking-[0.3em] text-[#da0007] uppercase">BEYOND RESUMES</p>
@@ -873,7 +874,7 @@ const comparisonRows = [
     </div>
   </section>
 
-  <section id="how-it-works" class="bg-black py-12 md:py-16">
+  <section id="how-it-works" class="bg-black py-10 md:py-16">
     <div class="max-w-4xl mx-auto px-6 text-center mb-8">
       <p class="text-[10px] tracking-[0.3em] font-[500] text-[#da0007] uppercase">HOW THE PLATFORM WORKS</p>
 
@@ -972,7 +973,7 @@ const comparisonRows = [
     </div>
   </section>
 
-  <section class="bg-white py-20">
+  <section class="bg-white py-14 md:py-20">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16 px-4">
         <p class="text-[11px] md:text-[12px]
@@ -1023,7 +1024,7 @@ const comparisonRows = [
           </div>
         </div>
 
-        <div class="grid md:grid-cols-4 gap-6 mt-16">
+        <div class="grid md:grid-cols-4 gap-4 md:gap-6 mt-12 md:mt-16">
           {
             [
               ['1', 'Hire #1', 'Judgment Library', 'First patterns created'],
@@ -1048,7 +1049,7 @@ const comparisonRows = [
           }
         </div>
 
-        <div class="pt-12 mt-16 border-t border-black/10 grid md:grid-cols-3 gap-12 text-center stats-appear">
+        <div class="pt-10 md:pt-12 mt-12 md:mt-16 border-t border-black/10 grid md:grid-cols-3 gap-8 md:gap-12 text-center stats-appear">
           {
             [
               ['3×', 'Faster by hire #50'],
@@ -1236,7 +1237,7 @@ const comparisonRows = [
     </div>
   </section>
 
-  <section id="customer-stories" class="py-16 md:py-20 bg-white overflow-hidden">
+  <section id="customer-stories" class="py-12 md:py-20 bg-white overflow-hidden">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
       <div class="mb-10 sm:mb-14 text-center px-4">
         <a
@@ -1348,7 +1349,7 @@ const comparisonRows = [
     </div>
   </section>
 
-  <section id="platform-performance" class="bg-black py-12 md:py-16">
+  <section id="platform-performance" class="bg-black py-10 md:py-16">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-7">
         <p class="text-[11px] tracking-[0.1em] text-[#da0007] uppercase font-normal">PRICING</p>

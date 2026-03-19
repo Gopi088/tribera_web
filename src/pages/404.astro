@@ -1,64 +1,133 @@
 ---
-import { APP_BLOG } from 'astrowind:config';
+import Layout from '~/layouts/PageLayout.astro';
 
-import Grid from '~/components/blog/Grid.astro';
-
-import { getBlogPermalink } from '~/utils/permalinks';
-import { findLatestPosts } from '~/utils/blog';
-import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import type { Widget } from '~/types';
-import Button from '~/components/ui/Button.astro';
-
-export interface Props extends Widget {
-  title?: string;
-  linkText?: string;
-  linkUrl?: string | URL;
-  information?: string;
-  count?: number;
-}
-
-const {
-  title = await Astro.slots.render('title'),
-  linkText = 'View all posts',
-  linkUrl = getBlogPermalink(),
-  information = await Astro.slots.render('information'),
-  count = 4,
-
-  id,
-  isDark = false,
-  classes = {},
-  bg = await Astro.slots.render('bg'),
-} = Astro.props;
-
-const posts = APP_BLOG.isEnabled ? await findLatestPosts({ count }) : [];
-const safeLinkUrl = typeof linkUrl === 'string' ? linkUrl : linkUrl.toString();
+const metadata = {
+  title: 'Page Not Found',
+  description: 'The page you are looking for does not exist. Explore Tribera for hiring teams, candidates, or get in touch.',
+};
 ---
 
-{
-  APP_BLOG.isEnabled ? (
-    <WidgetWrapper id={id} isDark={isDark} containerClass={classes?.container as string} bg={bg}>
-      <div class="flex flex-col lg:justify-between lg:flex-row mb-8">
-        {title && (
-          <div class="md:max-w-sm">
-            <h2
-              class="text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none group font-heading mb-2"
-              set:html={title}
-            />
-            {APP_BLOG.list.isEnabled && linkText && safeLinkUrl && (
-              <Button variant="link" href={safeLinkUrl}>
-                {' '}
-                {linkText} »
-              </Button>
-            )}
-          </div>
-        )}
-
-        {information && <p class="text-muted dark:text-slate-400 lg:text-sm lg:max-w-md" set:html={information} />}
+<Layout metadata={metadata}>
+  <main>
+    <section class="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-black">
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-black"></div>
+        <div
+          class="absolute left-[-30%] md:left-[-15%] top-0 h-full w-[90%] md:w-[60%]
+          bg-[radial-gradient(circle_at_left_center,rgba(218,0,7,0.45),transparent_60%)]"
+        >
+        </div>
+        <div
+          class="absolute right-[-30%] md:right-[-15%] top-0 h-full w-[90%] md:w-[60%]
+          bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.45),transparent_60%)]"
+        >
+        </div>
       </div>
 
-      <Grid posts={posts} />
-    </WidgetWrapper>
-  ) : (
-    <Fragment />
-  )
-}
+      <div class="absolute inset-0 pointer-events-none">
+        {
+          Array.from({ length: 20 }).map(() => (
+            <span
+              class="absolute rounded-full bg-[#da0007]/80"
+              style={`
+                width:3px;
+                height:3px;
+                left:${12 + Math.random() * 76}%;
+                top:${8 + Math.random() * 84}%;
+                --float-x1:${(Math.random() * 44 - 22).toFixed(1)}px;
+                --float-y1:${(Math.random() * 36 - 18).toFixed(1)}px;
+                --float-x2:${(Math.random() * 52 - 26).toFixed(1)}px;
+                --float-y2:${(Math.random() * 42 - 21).toFixed(1)}px;
+                --float-x3:${(Math.random() * 60 - 30).toFixed(1)}px;
+                --float-y3:${(Math.random() * 36 - 18).toFixed(1)}px;
+                --float-x4:${(Math.random() * 48 - 24).toFixed(1)}px;
+                --float-y4:${(Math.random() * 48 - 24).toFixed(1)}px;
+                --float-x5:${(Math.random() * 56 - 28).toFixed(1)}px;
+                --float-y5:${(Math.random() * 40 - 20).toFixed(1)}px;
+                --float-x6:${(Math.random() * 50 - 25).toFixed(1)}px;
+                --float-y6:${(Math.random() * 34 - 17).toFixed(1)}px;
+                --float-scale1:${(1 + Math.random() * 0.28).toFixed(2)};
+                --float-scale2:${(0.78 + Math.random() * 0.18).toFixed(2)};
+                --float-scale3:${(1.02 + Math.random() * 0.22).toFixed(2)};
+                --float-scale4:${(0.82 + Math.random() * 0.14).toFixed(2)};
+                --float-scale5:${(1 + Math.random() * 0.2).toFixed(2)};
+                --float-scale6:${(0.86 + Math.random() * 0.14).toFixed(2)};
+                animation: float ${11 + Math.random() * 14}s ease-in-out infinite;
+                animation-delay: -${(Math.random() * 18).toFixed(1)}s;
+                box-shadow: 0 0 12px rgba(218,0,7,.6);
+              `}
+            />
+          ))
+        }
+      </div>
+
+      <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+        <div class="inline-flex items-center gap-2 rounded-full border border-[#da0007]/40 bg-[#da0007]/10 px-4 py-1.5 text-[11px] font-semibold tracking-[0.18em] text-[#da0007] uppercase">
+          <span class="h-2 w-2 rounded-full bg-[#da0007]"></span>
+          Error 404
+        </div>
+
+        <h1 class="mt-6 font-[700] leading-[1.02] tracking-[-0.04em] text-white text-[42px] sm:text-[56px] lg:text-[76px]">
+          This page
+          <span class="text-[#da0007]"> missed the shortlist.</span>
+        </h1>
+
+        <p class="mt-6 max-w-2xl mx-auto text-[15px] sm:text-[17px] leading-relaxed text-white/55">
+          The link may be outdated, mistyped, or no longer active. Pick a route below and we will get you back on track.
+        </p>
+
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a
+            href="/"
+            class="inline-flex items-center justify-center rounded-full tribera-primary-button px-6 py-3 text-[14px] font-semibold"
+          >
+            Go Home
+          </a>
+          <a
+            href="/candidates"
+            class="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3 text-[14px] font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
+          >
+            For Candidates
+          </a>
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3 text-[14px] font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
+          >
+            Contact Us
+          </a>
+        </div>
+
+        <div class="mt-16 grid gap-4 md:grid-cols-3 text-left max-w-5xl mx-auto">
+          {
+            [
+              {
+                title: 'For Hiring Teams',
+                desc: 'See how tribera shortlists interview-ready candidates in 36 hours.',
+                href: '/',
+              },
+              {
+                title: 'For Candidates',
+                desc: 'Create one verified profile and let high-intent teams come to you.',
+                href: '/candidates',
+              },
+              {
+                title: 'Need help?',
+                desc: 'If you were expecting something specific, reach out and we will point you to the right page.',
+                href: '/contact',
+              },
+            ].map((item) => (
+              <a
+                href={item.href}
+                class="group rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition hover:border-[#da0007]/30 hover:bg-white/[0.05]"
+              >
+                <div class="text-[11px] font-semibold tracking-[0.16em] uppercase text-[#da0007]">Route</div>
+                <h2 class="mt-3 text-[18px] font-[700] text-white group-hover:text-[#da0007] transition">{item.title}</h2>
+                <p class="mt-2 text-[14px] leading-relaxed text-white/50">{item.desc}</p>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

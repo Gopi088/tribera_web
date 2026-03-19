@@ -120,7 +120,7 @@ const customerstories = [
       </div>
 
       <h1 class="font-[650] leading-[1.05] text-center">
-        <span class="block text-white text-[34px] sm:text-[44px] lg:text-[55px]">
+        <span class="block text-white text-[38px] sm:text-[50px] lg:text-[64px]">
           <span class="block text-white/70"> Interviewed once. </span>
 
           <span class="block text-[#e10600]"> Shortlisted. </span>
@@ -415,13 +415,11 @@ const customerstories = [
           const target = cardPanel instanceof HTMLElement ? cardPanel : section;
 
           let activeFrames = [];
-          let isActive = false;
-          let rafId = null;
-          let lastScrollY = window.scrollY;
 
           function fastCount(el, end) {
             let start = 0;
-            const duration = 500;
+            const countConfig = window.__triberaCountAnimationConfig || { durationMs: 1200, steps: 72 };
+            const duration = countConfig.durationMs;
             const increment = end / (duration / 16);
             const isDecimal = !Number.isInteger(end);
 
@@ -478,84 +476,16 @@ const customerstories = [
             });
           }
 
-          function getThresholds() {
-            const isMobile = window.innerWidth < 768;
-            if (isMobile) {
-              return {
-                downEnter: 0.72,
-                upEnter: 0.38,
-                topExit: 0.08,
-                bottomExit: 0.92,
-              };
-            }
-
-            return {
-              downEnter: 0.62,
-              upEnter: 0.34,
-              topExit: 0.14,
-              bottomExit: 0.86,
-            };
+          if (typeof section.__profileTriggerCleanup === 'function') {
+            section.__profileTriggerCleanup();
           }
 
-          function evaluateDirection() {
-            const currentScrollY = window.scrollY;
-            const direction = currentScrollY > lastScrollY ? 'down' : currentScrollY < lastScrollY ? 'up' : 'idle';
-            lastScrollY = currentScrollY;
-            return direction;
-          }
-
-          function shouldActivate(direction) {
-            const rect = target.getBoundingClientRect();
-            const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-            const thresholds = getThresholds();
-            const downEnterLine = viewportHeight * thresholds.downEnter;
-            const upEnterLine = viewportHeight * thresholds.upEnter;
-
-            if (direction === 'up') {
-              return rect.bottom >= upEnterLine && rect.top < viewportHeight;
-            }
-
-            return rect.top <= downEnterLine && rect.bottom > 0;
-          }
-
-          function shouldReset() {
-            const rect = target.getBoundingClientRect();
-            const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-            const thresholds = getThresholds();
-            const topExitLine = viewportHeight * thresholds.topExit;
-            const bottomExitLine = viewportHeight * thresholds.bottomExit;
-
-            return rect.bottom <= topExitLine || rect.top >= bottomExitLine;
-          }
-
-          function evaluate() {
-            const direction = evaluateDirection();
-            const activate = shouldActivate(direction);
-            const reset = shouldReset();
-
-            if (!isActive && activate) {
-              isActive = true;
-              startAnimation();
-              return;
-            }
-
-            if (isActive && reset) {
-              isActive = false;
-              resetAnimation();
-            }
-          }
-
-          function requestEvaluate() {
-            if (rafId) return;
-            rafId = window.requestAnimationFrame(() => {
-              rafId = null;
-              evaluate();
-            });
-          }
-
-          requestEvaluate();
-          window.addEventListener('scroll', requestEvaluate, { passive: true });
-          window.addEventListener('resize', requestEvaluate);
+          resetAnimation();
+          section.__profileTriggerCleanup = window.__triberaDirectionalTrigger({
+            element: target,
+            onEnter: startAnimation,
+            onExit: resetAnimation,
+          });
         }
 
         /* Run on first load */
@@ -816,10 +746,11 @@ const customerstories = [
       if (!(section instanceof HTMLElement)) return;
       if (section.dataset.signalBound === 'true') return;
       section.dataset.signalBound = 'true';
-      const observerRootMargin = window.innerWidth < 768 ? '-32% 0px -32% 0px' : '-20% 0px -20% 0px';
 
       const scoreEl = section.querySelector('#signalScore');
       const bars = section.querySelectorAll('.fillBar');
+      const signalCards = Array.from(section.querySelectorAll('.signalCard'));
+      const animatedCard = signalCards[1];
 
       if (!scoreEl) return;
 
@@ -852,8 +783,9 @@ const customerstories = [
         barTimeouts = [];
 
         const target = Number(scoreEl.dataset.target);
+        const countConfig = window.__triberaCountAnimationConfig || { durationMs: 1200, steps: 72 };
         let current = 0;
-        const increment = target / 40;
+        const increment = target / countConfig.steps;
 
         scoreEl.textContent = '0';
 
@@ -881,24 +813,16 @@ const customerstories = [
         });
       };
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              animate();
-              return;
-            }
+      if (typeof section.__signalTriggerCleanup === 'function') {
+        section.__signalTriggerCleanup();
+      }
 
-            reset();
-          });
-        },
-        {
-          threshold: 0,
-          rootMargin: observerRootMargin,
-        }
-      );
-
-      observer.observe(section);
+      reset();
+      section.__signalTriggerCleanup = window.__triberaDirectionalTrigger({
+        element: animatedCard instanceof HTMLElement ? animatedCard : section,
+        onEnter: animate,
+        onExit: reset,
+      });
     }
 
     /* FIRST LOAD */
@@ -1189,42 +1113,44 @@ const customerstories = [
   </section>
 
   <section class="bg-black text-white py-16 md:py-20">
-    <div class="max-w-5xl mx-auto px-8">
-      <div class="grid md:grid-cols-4 gap-3 items-start">
-        <div>
+    <div class="max-w-7xl mx-auto px-8 lg:px-12">
+      <div class="grid gap-12 lg:grid-cols-[minmax(360px,1.05fr)_minmax(0,1.75fr)] xl:grid-cols-[minmax(400px,1fr)_minmax(0,1.9fr)] lg:gap-14 items-start">
+        <div class="lg:pr-8 xl:pr-10">
           <p class="text-[11px] tracking-[0.2em] text-[#da0007] uppercase mb-2">BUILT FOR WORKING PROFESSIONALS</p>
 
-          <h3 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] max-w-2xl">
+          <h3 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] max-w-[11ch]">
             Your employer will never know you're here.
           </h3>
         </div>
 
-        {
-          [
-            {
-              title: 'Anonymous by default',
-              desc: 'Your profile is hidden until you choose to go live. Block any company by name.',
-            },
-            {
-              title: 'You control every contact',
-              desc: 'Companies cannot message you directly. Every request goes through tribera first.',
-            },
-            {
-              title: 'Pause or archive instantly',
-              desc: "Got an offer? One click makes your profile invisible. Reactivate when you're ready to look again.",
-            },
-          ].map((item) => (
-            <div class="group flex gap-4 items-start">
-              <div class="w-[2px] min-h-[42px] bg-white/10 transition-all duration-300 group-hover:bg-[#da0007]" />
+        <div class="grid gap-8 md:grid-cols-3 lg:gap-10 xl:gap-12 lg:items-start lg:self-center">
+          {
+            [
+              {
+                title: 'Anonymous by default',
+                desc: 'Your profile is hidden until you choose to go live. Block any company by name.',
+              },
+              {
+                title: 'You control every contact',
+                desc: 'Companies cannot message you directly. Every request goes through tribera first.',
+              },
+              {
+                title: 'Pause or archive instantly',
+                desc: "Got an offer? One click makes your profile invisible. Reactivate when you're ready to look again.",
+              },
+            ].map((item) => (
+              <div class="group flex gap-4 items-start">
+                <div class="w-[2px] min-h-[42px] bg-white/10 transition-all duration-300 group-hover:bg-[#da0007]" />
 
-              <div>
-                <h4 class="text-[14px] font-[700] mb-1">{item.title}</h4>
+                <div class="max-w-none">
+                  <h4 class="text-[14px] font-[700] mb-1">{item.title}</h4>
 
-                <p class="text-white/40 text-[14px] leading-relaxed">{item.desc}</p>
+                  <p class="text-white/40 text-[14px] leading-relaxed">{item.desc}</p>
+                </div>
               </div>
-            </div>
-          ))
-        }
+            ))
+          }
+        </div>
       </div>
     </div>
   </section>

@@ -1,0 +1,11 @@
+import { chromium } from 'playwright';
+const browser = await chromium.launch({ headless: true });
+const page = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, deviceScaleFactor: 1 });
+await page.goto('http://127.0.0.1:4321/', { waitUntil: 'networkidle', timeout: 60000 });
+const before = await page.locator('#mobile-menu').count().catch(() => 0);
+await page.locator('#mobile-btn').click();
+await page.waitForTimeout(300);
+const visible = await page.locator('#mobile-menu').isVisible().catch(() => false);
+const text = await page.locator('#mobile-menu').textContent().catch(() => '');
+console.log(JSON.stringify({ before, visible, text: (text||'').slice(0,300) }, null, 2));
+await browser.close();
