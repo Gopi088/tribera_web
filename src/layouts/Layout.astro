@@ -52,10 +52,37 @@ const isCandidatesPage = pathname === '/candidates';
         const chatbotScriptId = 'chatbot';
         const chatbotScriptSrc = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
         const environmentId = '75186a18-80c9-e34b-b323-d376419f05d1';
+        const chatbotIframeId = 'teams-chat-bot-iframe-a3b60c17-95c7-4cba-8036-be9da15bcc26';
 
-        const ensureChatbotScript = () => {
+        const getLauncher = () => document.querySelector('img[aria-label="Open Customer Connect chat bot assistant"]');
+        const getIframe = () => document.getElementById(chatbotIframeId);
+        const getLoader = () => document.querySelector('.chatclient-loader');
+
+        const removeChatbotArtifacts = () => {
+          const script = document.getElementById(chatbotScriptId);
+          if (script instanceof HTMLScriptElement) script.remove();
+
+          const iframe = getIframe();
+          if (iframe instanceof HTMLIFrameElement) iframe.remove();
+
+          const launcher = getLauncher();
+          if (launcher instanceof HTMLElement) launcher.remove();
+
+          const loader = getLoader();
+          if (loader instanceof HTMLElement) loader.remove();
+        };
+
+        const ensureChatbotScript = (forceRemount = false) => {
+          if (forceRemount) {
+            removeChatbotArtifacts();
+          }
+
+          const hasChatbotUi = getLauncher() || getIframe() || getLoader();
           let script = document.getElementById(chatbotScriptId);
-          if (script instanceof HTMLScriptElement) return script;
+          if (script instanceof HTMLScriptElement && hasChatbotUi) return script;
+          if (script instanceof HTMLScriptElement && !hasChatbotUi) {
+            script.remove();
+          }
 
           script = document.createElement('script');
           script.type = 'text/javascript';
@@ -72,8 +99,13 @@ const isCandidatesPage = pathname === '/candidates';
           ensureChatbotScript();
         };
 
+        const reinitChatbotOnPageShow = () => {
+          ensureChatbotScript();
+        };
+
         document.addEventListener('astro:page-load', initChatbot);
         window.addEventListener('load', initChatbot);
+        window.addEventListener('pageshow', reinitChatbotOnPageShow);
 
         document.addEventListener(
           'click',
@@ -81,7 +113,7 @@ const isCandidatesPage = pathname === '/candidates';
             const target = event.target;
             if (!(target instanceof Element)) return;
             if (!target.closest('a[href="/"][data-reload], a[href="/"][data-astro-reload]')) return;
-            ensureChatbotScript();
+            ensureChatbotScript(true);
           },
           true
         );
