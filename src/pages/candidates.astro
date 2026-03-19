@@ -286,6 +286,7 @@ const customerstories = [
       <section id="profileCard" class="flex justify-center mt-16 px-4">
         <div class="w-full max-w-[720px]">
           <div
+            data-profile-card-panel
             class="rounded-[20px]
                 bg-gradient-to-b from-[#181818] to-[#0f0f0f]
                 border border-white/10
@@ -410,9 +411,12 @@ const customerstories = [
           if (!(section instanceof HTMLElement)) return;
           if (section.dataset.profileBound === 'true') return;
           section.dataset.profileBound = 'true';
-          const observerRootMargin = window.innerWidth < 768 ? '-32% 0px -32% 0px' : '-20% 0px -20% 0px';
+          const cardPanel = section.querySelector('[data-profile-card-panel]');
+          const target = cardPanel instanceof HTMLElement ? cardPanel : section;
 
           let activeFrames = [];
+          let isActive = false;
+          let rafId = null;
 
           function fastCount(el, end) {
             let start = 0;
@@ -473,24 +477,40 @@ const customerstories = [
             });
           }
 
-          const observer = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  startAnimation();
-                  return;
-                }
+          function isInActivationBand() {
+            const rect = target.getBoundingClientRect();
+            const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+            const startLine = window.innerWidth < 768 ? viewportHeight * 0.52 : viewportHeight * 0.64;
+            const endLine = viewportHeight * 0.14;
 
-                resetAnimation();
-              });
-            },
-            {
-              threshold: 0,
-              rootMargin: observerRootMargin,
+            return rect.top <= startLine && rect.bottom >= endLine;
+          }
+
+          function evaluate() {
+            const shouldBeActive = isInActivationBand();
+            if (shouldBeActive === isActive) return;
+
+            isActive = shouldBeActive;
+
+            if (isActive) {
+              startAnimation();
+              return;
             }
-          );
 
-          observer.observe(section);
+            resetAnimation();
+          }
+
+          function requestEvaluate() {
+            if (rafId) return;
+            rafId = window.requestAnimationFrame(() => {
+              rafId = null;
+              evaluate();
+            });
+          }
+
+          requestEvaluate();
+          window.addEventListener('scroll', requestEvaluate, { passive: true });
+          window.addEventListener('resize', requestEvaluate);
         }
 
         /* Run on first load */
