@@ -65,6 +65,8 @@ const isCandidatesPage = pathname === '/candidates';
         const chatbotScriptSrc = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
         const environmentId = '75186a18-80c9-e34b-b323-d376419f05d1';
         const chatbotIframeId = 'teams-chat-bot-iframe-a3b60c17-95c7-4cba-8036-be9da15bcc26';
+        const warmupDelayMs = 2500;
+        const warmupTimeoutMs = 12000;
         const microsoftOrigins = [
           'https://res.public.onecdn.static.microsoft',
           'https://customerconnect.teams.usercontent.microsoft',
@@ -80,6 +82,17 @@ const isCandidatesPage = pathname === '/candidates';
             sessionStartedAt: Date.now(),
             events: [],
             resources: [],
+          });
+        const warmupState =
+          window.__triberaChatWarmup ||
+          (window.__triberaChatWarmup = {
+            attempted: false,
+            warming: false,
+            warmed: false,
+            revealed: false,
+            pendingReveal: false,
+            proxy: null,
+            timerId: null,
           });
 
         const pushDebugEvent = (type, detail = {}) => {
@@ -114,6 +127,148 @@ const isCandidatesPage = pathname === '/candidates';
             width: iframe.style.width || null,
             height: iframe.style.height || null,
           });
+        };
+
+        const hideOriginalLauncher = () => {
+          const launcher = getLauncher();
+          if (!(launcher instanceof HTMLImageElement)) return;
+
+          launcher.dataset.triberaHiddenByWarmup = 'true';
+          launcher.style.opacity = '0';
+          launcher.style.pointerEvents = 'none';
+          launcher.style.visibility = 'hidden';
+        };
+
+        const styleProxyLauncher = (proxy) => {
+          proxy.type = 'button';
+          proxy.id = 'tribera-chat-proxy-launcher';
+          proxy.setAttribute('aria-label', 'Open Customer Connect chat bot assistant');
+          proxy.style.position = 'fixed';
+          proxy.style.right = '24px';
+          proxy.style.bottom = '24px';
+          proxy.style.width = '72px';
+          proxy.style.height = '72px';
+          proxy.style.padding = '0';
+          proxy.style.border = '0';
+          proxy.style.background = 'transparent';
+          proxy.style.cursor = 'pointer';
+          proxy.style.zIndex = '10001';
+        };
+
+        const createProxyLauncher = () => {
+          if (warmupState.proxy instanceof HTMLButtonElement && document.body.contains(warmupState.proxy)) {
+            return warmupState.proxy;
+          }
+
+          const launcher = getLauncher();
+          if (!(launcher instanceof HTMLImageElement)) return null;
+
+          const proxy = document.createElement('button');
+          styleProxyLauncher(proxy);
+
+          const visual = launcher.cloneNode(true);
+          if (visual instanceof HTMLImageElement) {
+            visual.removeAttribute('aria-hidden');
+            visual.style.width = '100%';
+            visual.style.height = '100%';
+            visual.style.display = 'block';
+            visual.style.pointerEvents = 'none';
+          }
+
+          proxy.appendChild(visual);
+          proxy.addEventListener('click', () => {
+            pushDebugEvent('proxy-click', {
+              warmed: warmupState.warmed,
+              warming: warmupState.warming,
+              hasIframe: !!getIframe(),
+            });
+
+            if (warmupState.warmed && getIframe()) {
+              revealPrewarmedIframe();
+              return;
+            }
+
+            warmupState.pendingReveal = true;
+            const liveLauncher = getLauncher();
+            if (liveLauncher instanceof HTMLImageElement) {
+              liveLauncher.click();
+            }
+          });
+
+          document.body.appendChild(proxy);
+          warmupState.proxy = proxy;
+          return proxy;
+        };
+
+        const hidePrewarmedIframe = () => {
+          const iframe = getIframe();
+          if (!(iframe instanceof HTMLIFrameElement)) return;
+
+          iframe.dataset.triberaPrewarmed = 'true';
+          iframe.style.opacity = '0';
+          iframe.style.pointerEvents = 'none';
+          iframe.style.visibility = 'hidden';
+        };
+
+        const revealPrewarmedIframe = () => {
+          const iframe = getIframe();
+          if (!(iframe instanceof HTMLIFrameElement)) return;
+
+          iframe.style.opacity = '';
+          iframe.style.pointerEvents = '';
+          iframe.style.visibility = '';
+          delete iframe.dataset.triberaPrewarmed;
+
+          if (warmupState.proxy instanceof HTMLButtonElement) {
+            warmupState.proxy.style.display = 'none';
+          }
+
+          warmupState.revealed = true;
+          warmupState.pendingReveal = false;
+          pushDebugEvent('warmup-revealed');
+        };
+
+        const markWarmupReady = () => {
+          if (!warmupState.warming) return;
+
+          warmupState.warming = false;
+          warmupState.warmed = true;
+          pushDebugEvent('warmup-ready');
+
+          if (warmupState.pendingReveal) {
+            revealPrewarmedIframe();
+            return;
+          }
+
+          hidePrewarmedIframe();
+        };
+
+        const scheduleWarmup = () => {
+          if (warmupState.attempted) return;
+          if (document.visibilityState !== 'visible') return;
+
+          const launcher = getLauncher();
+          if (!(launcher instanceof HTMLImageElement)) return;
+
+          warmupState.attempted = true;
+          createProxyLauncher();
+          hideOriginalLauncher();
+
+          warmupState.timerId = window.setTimeout(() => {
+            const liveLauncher = getLauncher();
+            if (!(liveLauncher instanceof HTMLImageElement)) return;
+
+            warmupState.warming = true;
+            pushDebugEvent('warmup-start');
+            liveLauncher.click();
+
+            window.setTimeout(() => {
+              if (warmupState.warming && !warmupState.warmed) {
+                pushDebugEvent('warmup-timeout');
+                warmupState.warming = false;
+              }
+            }, warmupTimeoutMs);
+          }, warmupDelayMs);
         };
 
         const relevantResource = (name) => microsoftOrigins.some((origin) => name.startsWith(origin));
@@ -158,13 +313,24 @@ const isCandidatesPage = pathname === '/candidates';
 
         const observeIframeLifecycle = () => {
           const observer = new MutationObserver(() => {
+            createProxyLauncher();
+            hideOriginalLauncher();
+            scheduleWarmup();
+
             const iframe = getIframe();
             if (!(iframe instanceof HTMLIFrameElement)) return;
             if (iframe.dataset.triberaObserved === 'true') return;
 
             iframe.dataset.triberaObserved = 'true';
             recordIframeSnapshot('iframe-found');
-            iframe.addEventListener('load', () => recordIframeSnapshot('iframe-load'));
+            if (warmupState.warming && !warmupState.revealed) {
+              hidePrewarmedIframe();
+            }
+
+            iframe.addEventListener('load', () => {
+              recordIframeSnapshot('iframe-load');
+              markWarmupReady();
+            });
           });
 
           observer.observe(document.body, { childList: true, subtree: true });
@@ -220,10 +386,12 @@ const isCandidatesPage = pathname === '/candidates';
 
         const initChatbot = () => {
           ensureChatbotScript();
+          scheduleWarmup();
         };
 
         const reinitChatbotOnPageShow = () => {
           ensureChatbotScript();
+          scheduleWarmup();
         };
 
         document.addEventListener('astro:page-load', initChatbot);
@@ -233,6 +401,7 @@ const isCandidatesPage = pathname === '/candidates';
           if (!isWidgetMessage(event)) return;
           pushDebugEvent('message', { origin: event.origin, data: event.data });
           recordIframeSnapshot('iframe-after-message');
+          markWarmupReady();
         });
 
         document.addEventListener(
@@ -243,6 +412,19 @@ const isCandidatesPage = pathname === '/candidates';
             const link = target.closest('a');
             if (!shouldReinitForLink(link)) return;
             pushDebugEvent('nav-remount', { href: link.href });
+            if (warmupState.timerId) {
+              window.clearTimeout(warmupState.timerId);
+              warmupState.timerId = null;
+            }
+            warmupState.attempted = false;
+            warmupState.warming = false;
+            warmupState.warmed = false;
+            warmupState.revealed = false;
+            warmupState.pendingReveal = false;
+            if (warmupState.proxy instanceof HTMLButtonElement) {
+              warmupState.proxy.remove();
+              warmupState.proxy = null;
+            }
             ensureChatbotScript(true);
           },
           true
@@ -262,6 +444,7 @@ const isCandidatesPage = pathname === '/candidates';
 
         observeResources();
         observeIframeLifecycle();
+        scheduleWarmup();
       })();
     </script>
     <slot />
