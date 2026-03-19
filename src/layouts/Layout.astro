@@ -185,15 +185,12 @@ const isCandidatesPage = pathname === '/candidates';
         };
 
         const ensureChatbotScript = (forceRemount = false) => {
-          if (forceRemount) {
-            removeChatbotArtifacts();
-          }
-
-          const hasChatbotUi = getLauncher() || getIframe() || getLoader();
           let script = document.getElementById(chatbotScriptId);
-          if (script instanceof HTMLScriptElement && hasChatbotUi) return script;
-          if (script instanceof HTMLScriptElement && !hasChatbotUi) {
-            script.remove();
+          if (!forceRemount) {
+            if (script instanceof HTMLScriptElement) return script;
+          } else {
+            removeChatbotArtifacts();
+            script = null;
           }
 
           script = document.createElement('script');
