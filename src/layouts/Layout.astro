@@ -67,6 +67,8 @@ const isCandidatesPage = pathname === '/candidates';
         const chatbotIframeId = 'teams-chat-bot-iframe-a3b60c17-95c7-4cba-8036-be9da15bcc26';
         const chatbotFrameSrc = `https://customerconnect.teams.usercontent.microsoft/customer-service-chatbot?environmentId=${environmentId}`;
         const prewarmIframeId = 'tribera-chatbot-prewarm-frame';
+        const chatStatusBadgeId = 'tribera-chat-status-badge';
+        const chatStatusTimeoutMs = 10000;
         const prewarmIdleTimeoutMs = 1200;
         const prewarmFallbackDelayMs = 600;
         const prewarmFrameTtlMs = 120000;
@@ -93,6 +95,12 @@ const isCandidatesPage = pathname === '/candidates';
             completed: false,
             timerId: null,
             cleanupTimerId: null,
+          });
+        const chatStatusState =
+          window.__triberaChatStatus ||
+          (window.__triberaChatStatus = {
+            visible: false,
+            timeoutId: null,
           });
         const pushDebugEvent = (type, detail = {}) => {
           const entry = {
@@ -149,6 +157,55 @@ const isCandidatesPage = pathname === '/candidates';
 
           const effectiveType = String(connection.effectiveType || '').toLowerCase();
           return !effectiveType.includes('2g');
+        };
+
+        const ensureChatStatusBadge = () => {
+          let badge = document.getElementById(chatStatusBadgeId);
+          if (badge instanceof HTMLDivElement) return badge;
+
+          badge = document.createElement('div');
+          badge.id = chatStatusBadgeId;
+          badge.className =
+            'pointer-events-none fixed bottom-[98px] right-5 z-[10020] hidden w-[260px] rounded-[22px] border border-white/10 bg-[rgba(14,14,16,0.92)] px-4 py-3 text-white shadow-[0_20px_60px_rgba(0,0,0,0.38)] backdrop-blur';
+          badge.innerHTML = `
+            <div class="flex items-start gap-3">
+              <span class="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#da0007] text-white shadow-[0_8px_24px_rgba(218,0,7,0.28)]">
+                <span class="h-2.5 w-2.5 rounded-full bg-white animate-pulse"></span>
+              </span>
+              <div class="min-w-0">
+                <div class="text-[13px] font-semibold leading-5 text-white">Connecting to chat</div>
+                <div class="mt-1 text-[12px] leading-5 text-white/65">Waking up Tribera's live assistant...</div>
+              </div>
+            </div>
+          `;
+          document.body.appendChild(badge);
+          return badge;
+        };
+
+        const clearChatStatusTimeout = () => {
+          if (chatStatusState.timeoutId) {
+            window.clearTimeout(chatStatusState.timeoutId);
+            chatStatusState.timeoutId = null;
+          }
+        };
+
+        const setChatStatusVisible = (visible) => {
+          const badge = ensureChatStatusBadge();
+          chatStatusState.visible = visible;
+          badge.classList.toggle('hidden', !visible);
+          badge.classList.toggle('block', visible);
+
+          if (!visible) {
+            clearChatStatusTimeout();
+          }
+        };
+
+        const showConnectingStatus = () => {
+          setChatStatusVisible(true);
+          clearChatStatusTimeout();
+          chatStatusState.timeoutId = window.setTimeout(() => {
+            setChatStatusVisible(false);
+          }, chatStatusTimeoutMs);
         };
 
         const removePrewarmFrame = () => {
@@ -240,7 +297,10 @@ const isCandidatesPage = pathname === '/candidates';
             removePrewarmFrame();
             iframe.dataset.triberaObserved = 'true';
             recordIframeSnapshot('iframe-found');
-            iframe.addEventListener('load', () => recordIframeSnapshot('iframe-load'));
+            iframe.addEventListener('load', () => {
+              recordIframeSnapshot('iframe-load');
+              setChatStatusVisible(false);
+            });
           });
 
           observer.observe(document.body, { childList: true, subtree: true });
@@ -311,6 +371,7 @@ const isCandidatesPage = pathname === '/candidates';
           if (!isWidgetMessage(event)) return;
           pushDebugEvent('message', { origin: event.origin, data: event.data });
           recordIframeSnapshot('iframe-after-message');
+          setChatStatusVisible(false);
         });
 
         document.addEventListener(
@@ -332,6 +393,7 @@ const isCandidatesPage = pathname === '/candidates';
             prewarmState.requested = false;
             prewarmState.completed = false;
             removePrewarmFrame();
+            setChatStatusVisible(false);
             ensureChatbotScript(true);
             ensurePrewarmFrame();
           },
@@ -346,6 +408,7 @@ const isCandidatesPage = pathname === '/candidates';
             const launcher = target.closest('img[aria-label="Open Customer Connect chat bot assistant"]');
             if (!(launcher instanceof HTMLImageElement)) return;
             pushDebugEvent('launcher-click', { ariaLabel: launcher.getAttribute('aria-label') });
+            showConnectingStatus();
           },
           true
         );
