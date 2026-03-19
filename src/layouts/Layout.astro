@@ -44,6 +44,49 @@ const isCandidatesPage = pathname === '/candidates';
   </head>
 
   <body class="bg-page overflow-x-hidden">
+    <Fragment
+      set:html={`<script type="text/javascript" src="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js" id="chatbot" environmentId="75186a18-80c9-e34b-b323-d376419f05d1" crossorigin="anonymous"><\/script>`}
+    />
+    <script is:inline>
+      (() => {
+        const chatbotScriptId = 'chatbot';
+        const chatbotScriptSrc = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
+        const environmentId = '75186a18-80c9-e34b-b323-d376419f05d1';
+
+        const ensureChatbotScript = () => {
+          let script = document.getElementById(chatbotScriptId);
+          if (script instanceof HTMLScriptElement) return script;
+
+          script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = chatbotScriptSrc;
+          script.id = chatbotScriptId;
+          script.async = true;
+          script.crossOrigin = 'anonymous';
+          script.setAttribute('environmentId', environmentId);
+          document.body.appendChild(script);
+          return script;
+        };
+
+        const initChatbot = () => {
+          ensureChatbotScript();
+        };
+
+        document.addEventListener('astro:page-load', initChatbot);
+        window.addEventListener('load', initChatbot);
+
+        document.addEventListener(
+          'click',
+          (event) => {
+            const target = event.target;
+            if (!(target instanceof Element)) return;
+            if (!target.closest('a[href="/"][data-reload], a[href="/"][data-astro-reload]')) return;
+            ensureChatbotScript();
+          },
+          true
+        );
+      })();
+    </script>
     <slot />
     <BasicScripts />
 

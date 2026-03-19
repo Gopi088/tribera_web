@@ -410,6 +410,7 @@ const customerstories = [
           if (!(section instanceof HTMLElement)) return;
           if (section.dataset.profileBound === 'true') return;
           section.dataset.profileBound = 'true';
+          const observerRootMargin = window.innerWidth < 768 ? '-32% 0px -32% 0px' : '-20% 0px -20% 0px';
 
           let activeFrames = [];
 
@@ -485,7 +486,7 @@ const customerstories = [
             },
             {
               threshold: 0,
-              rootMargin: '-20% 0px -20% 0px',
+              rootMargin: observerRootMargin,
             }
           );
 
@@ -750,6 +751,7 @@ const customerstories = [
       if (!(section instanceof HTMLElement)) return;
       if (section.dataset.signalBound === 'true') return;
       section.dataset.signalBound = 'true';
+      const observerRootMargin = window.innerWidth < 768 ? '-32% 0px -32% 0px' : '-20% 0px -20% 0px';
 
       const scoreEl = section.querySelector('#signalScore');
       const bars = section.querySelectorAll('.fillBar');
@@ -827,7 +829,7 @@ const customerstories = [
         },
         {
           threshold: 0,
-          rootMargin: '-20% 0px -20% 0px',
+          rootMargin: observerRootMargin,
         }
       );
 

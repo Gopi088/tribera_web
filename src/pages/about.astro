@@ -622,6 +622,7 @@ const metadata = {
       if (!(card instanceof HTMLElement)) return;
       if (card.dataset.progressBound === 'true') return;
       card.dataset.progressBound = 'true';
+      const observerRootMargin = window.innerWidth < 768 ? '-32% 0px -32% 0px' : '-20% 0px -20% 0px';
 
       const fills = Array.from(card.querySelectorAll('.about-progress-fill'));
       const metricValues = Array.from(card.querySelectorAll('.about-metric-value'));
@@ -717,7 +718,7 @@ const metadata = {
         },
         {
           threshold: 0,
-          rootMargin: '-20% 0px -20% 0px',
+          rootMargin: observerRootMargin,
         }
       );
 
@@ -731,6 +732,7 @@ const metadata = {
     function initFounderReveal() {
       const founderCards = Array.from(document.querySelectorAll('[data-founder-card]'));
       if (!founderCards.length) return;
+      const observerRootMargin = window.innerWidth < 768 ? '-24% 0px -24% 0px' : '-12% 0px -12% 0px';
 
       founderCards.forEach((card) => {
         if (!(card instanceof HTMLElement)) return;
@@ -758,7 +760,7 @@ const metadata = {
         },
         {
           threshold: 0,
-          rootMargin: '-12% 0px -12% 0px',
+          rootMargin: observerRootMargin,
         }
       );
 
