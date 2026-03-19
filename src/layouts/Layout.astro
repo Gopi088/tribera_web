@@ -39,13 +39,25 @@ const isCandidatesPage = pathname === '/candidates';
     <StructuredData metadata={metadata} />
     <SiteVerification />
     <Analytics />
+    <link rel="dns-prefetch" href="//res.public.onecdn.static.microsoft" />
+    <link rel="dns-prefetch" href="//customerconnect.teams.usercontent.microsoft" />
+    <link rel="dns-prefetch" href="//statics.teams.cdn.office.net" />
+    <link rel="preconnect" href="https://res.public.onecdn.static.microsoft" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://customerconnect.teams.usercontent.microsoft" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://statics.teams.cdn.office.net" crossorigin="anonymous" />
+    <link
+      rel="preload"
+      as="script"
+      href="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js"
+      crossorigin="anonymous"
+    />
     <!-- Comment the line below to disable View Transitions -->
     <ClientRouter fallback="swap" />
   </head>
 
   <body class="bg-page overflow-x-hidden">
     <Fragment
-      set:html={`<script type="text/javascript" src="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js" id="chatbot" environmentId="75186a18-80c9-e34b-b323-d376419f05d1" crossorigin="anonymous"><\/script>`}
+      set:html={`<script type="text/javascript" src="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js" id="chatbot" environmentId="75186a18-80c9-e34b-b323-d376419f05d1" crossorigin="anonymous" async><\/script>`}
     />
     <script is:inline>
       (() => {
@@ -53,10 +65,110 @@ const isCandidatesPage = pathname === '/candidates';
         const chatbotScriptSrc = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
         const environmentId = '75186a18-80c9-e34b-b323-d376419f05d1';
         const chatbotIframeId = 'teams-chat-bot-iframe-a3b60c17-95c7-4cba-8036-be9da15bcc26';
+        const microsoftOrigins = [
+          'https://res.public.onecdn.static.microsoft',
+          'https://customerconnect.teams.usercontent.microsoft',
+          'https://statics.teams.cdn.office.net',
+        ];
 
         const getLauncher = () => document.querySelector('img[aria-label="Open Customer Connect chat bot assistant"]');
         const getIframe = () => document.getElementById(chatbotIframeId);
         const getLoader = () => document.querySelector('.chatclient-loader');
+        const debugStore =
+          window.__triberaChatDebug ||
+          (window.__triberaChatDebug = {
+            sessionStartedAt: Date.now(),
+            events: [],
+            resources: [],
+          });
+
+        const pushDebugEvent = (type, detail = {}) => {
+          const entry = {
+            type,
+            ts: Date.now(),
+            sinceSessionMs: Date.now() - debugStore.sessionStartedAt,
+            ...detail,
+          };
+          debugStore.events.push(entry);
+          console.log('[tribera-chat-debug]', entry);
+
+          if (type === 'launcher-click') {
+            console.info('[tribera-chat-timing] first-click started', entry);
+          } else if (type === 'iframe-found') {
+            console.info('[tribera-chat-timing] iframe inserted', entry);
+          } else if (type === 'iframe-load') {
+            console.info('[tribera-chat-timing] iframe loaded', entry);
+          } else if (type === 'message') {
+            console.info('[tribera-chat-timing] iframe message', entry);
+          }
+
+          return entry;
+        };
+
+        const recordIframeSnapshot = (reason) => {
+          const iframe = getIframe();
+          if (!(iframe instanceof HTMLIFrameElement)) return;
+
+          pushDebugEvent(reason, {
+            iframeSrc: iframe.src,
+            width: iframe.style.width || null,
+            height: iframe.style.height || null,
+          });
+        };
+
+        const relevantResource = (name) => microsoftOrigins.some((origin) => name.startsWith(origin));
+        const isWidgetMessage = (event) => {
+          if (microsoftOrigins.includes(event.origin)) return true;
+
+          const iframe = getIframe();
+          if (!(iframe instanceof HTMLIFrameElement)) return false;
+
+          try {
+            return event.source === iframe.contentWindow;
+          } catch {
+            return false;
+          }
+        };
+
+        const observeResources = () => {
+          if (!('PerformanceObserver' in window)) return;
+
+          try {
+            const observer = new PerformanceObserver((list) => {
+              for (const entry of list.getEntries()) {
+                if (!relevantResource(entry.name)) continue;
+                const resource = {
+                  name: entry.name,
+                  initiatorType: entry.initiatorType,
+                  startTime: Math.round(entry.startTime),
+                  duration: Math.round(entry.duration),
+                  transferSize: entry.transferSize,
+                };
+                debugStore.resources.push(resource);
+                console.log('[tribera-chat-resource]', resource);
+                console.info('[tribera-chat-timing] resource', resource);
+              }
+            });
+
+            observer.observe({ type: 'resource', buffered: true });
+          } catch {
+            // Ignore unsupported PerformanceObserver configurations.
+          }
+        };
+
+        const observeIframeLifecycle = () => {
+          const observer = new MutationObserver(() => {
+            const iframe = getIframe();
+            if (!(iframe instanceof HTMLIFrameElement)) return;
+            if (iframe.dataset.triberaObserved === 'true') return;
+
+            iframe.dataset.triberaObserved = 'true';
+            recordIframeSnapshot('iframe-found');
+            iframe.addEventListener('load', () => recordIframeSnapshot('iframe-load'));
+          });
+
+          observer.observe(document.body, { childList: true, subtree: true });
+        };
 
         const removeChatbotArtifacts = () => {
           const script = document.getElementById(chatbotScriptId);
@@ -95,6 +207,20 @@ const isCandidatesPage = pathname === '/candidates';
           return script;
         };
 
+        const shouldReinitForLink = (link) => {
+          if (!(link instanceof HTMLAnchorElement)) return false;
+          if (!link.matches('[data-reload], [data-astro-reload]')) return false;
+          if (!link.href) return false;
+
+          try {
+            const url = new URL(link.href, window.location.href);
+            if (url.origin !== window.location.origin) return false;
+            return url.protocol === 'http:' || url.protocol === 'https:';
+          } catch {
+            return false;
+          }
+        };
+
         const initChatbot = () => {
           ensureChatbotScript();
         };
@@ -106,17 +232,39 @@ const isCandidatesPage = pathname === '/candidates';
         document.addEventListener('astro:page-load', initChatbot);
         window.addEventListener('load', initChatbot);
         window.addEventListener('pageshow', reinitChatbotOnPageShow);
+        window.addEventListener('message', (event) => {
+          if (!isWidgetMessage(event)) return;
+          pushDebugEvent('message', { origin: event.origin, data: event.data });
+          recordIframeSnapshot('iframe-after-message');
+        });
 
         document.addEventListener(
           'click',
           (event) => {
             const target = event.target;
             if (!(target instanceof Element)) return;
-            if (!target.closest('a[href="/"][data-reload], a[href="/"][data-astro-reload]')) return;
+            const link = target.closest('a');
+            if (!shouldReinitForLink(link)) return;
+            pushDebugEvent('nav-remount', { href: link.href });
             ensureChatbotScript(true);
           },
           true
         );
+
+        document.addEventListener(
+          'click',
+          (event) => {
+            const target = event.target;
+            if (!(target instanceof Element)) return;
+            const launcher = target.closest('img[aria-label="Open Customer Connect chat bot assistant"]');
+            if (!(launcher instanceof HTMLImageElement)) return;
+            pushDebugEvent('launcher-click', { ariaLabel: launcher.getAttribute('aria-label') });
+          },
+          true
+        );
+
+        observeResources();
+        observeIframeLifecycle();
       })();
     </script>
     <slot />
