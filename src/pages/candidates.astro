@@ -417,6 +417,7 @@ const customerstories = [
           let activeFrames = [];
           let isActive = false;
           let rafId = null;
+          let lastScrollY = window.scrollY;
 
           function fastCount(el, end) {
             let start = 0;
@@ -477,28 +478,71 @@ const customerstories = [
             });
           }
 
-          function isInActivationBand() {
+          function getThresholds() {
+            const isMobile = window.innerWidth < 768;
+            if (isMobile) {
+              return {
+                downEnter: 0.72,
+                upEnter: 0.38,
+                topExit: 0.08,
+                bottomExit: 0.92,
+              };
+            }
+
+            return {
+              downEnter: 0.62,
+              upEnter: 0.34,
+              topExit: 0.14,
+              bottomExit: 0.86,
+            };
+          }
+
+          function evaluateDirection() {
+            const currentScrollY = window.scrollY;
+            const direction = currentScrollY > lastScrollY ? 'down' : currentScrollY < lastScrollY ? 'up' : 'idle';
+            lastScrollY = currentScrollY;
+            return direction;
+          }
+
+          function shouldActivate(direction) {
             const rect = target.getBoundingClientRect();
             const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-            const isMobile = window.innerWidth < 768;
-            const startLine = isMobile ? viewportHeight * 0.52 : viewportHeight * 0.56;
-            const endLine = isMobile ? viewportHeight * 0.14 : viewportHeight * 0.22;
+            const thresholds = getThresholds();
+            const downEnterLine = viewportHeight * thresholds.downEnter;
+            const upEnterLine = viewportHeight * thresholds.upEnter;
 
-            return rect.top <= startLine && rect.bottom >= endLine;
+            if (direction === 'up') {
+              return rect.bottom >= upEnterLine && rect.top < viewportHeight;
+            }
+
+            return rect.top <= downEnterLine && rect.bottom > 0;
+          }
+
+          function shouldReset() {
+            const rect = target.getBoundingClientRect();
+            const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+            const thresholds = getThresholds();
+            const topExitLine = viewportHeight * thresholds.topExit;
+            const bottomExitLine = viewportHeight * thresholds.bottomExit;
+
+            return rect.bottom <= topExitLine || rect.top >= bottomExitLine;
           }
 
           function evaluate() {
-            const shouldBeActive = isInActivationBand();
-            if (shouldBeActive === isActive) return;
+            const direction = evaluateDirection();
+            const activate = shouldActivate(direction);
+            const reset = shouldReset();
 
-            isActive = shouldBeActive;
-
-            if (isActive) {
+            if (!isActive && activate) {
+              isActive = true;
               startAnimation();
               return;
             }
 
-            resetAnimation();
+            if (isActive && reset) {
+              isActive = false;
+              resetAnimation();
+            }
           }
 
           function requestEvaluate() {
