@@ -1,595 +1,448 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import Brands from '~/components/widgets/Brands.astro';
+
 const metadata = {
-  title: 'Services',
+  title: 'Hiring Services | RPO, Executive Search & Contract Hiring',
   description:
-    'Tribera provides AI-powered hiring services that bring clarity, signal, and judgment into recruitment decisions.',
+    'Explore tribera hiring services for permanent hiring, contract hiring, executive search, and RPO powered by AI signal analysis and advisor-led interviews.',
 };
+
+const engagementModes = [
+  {
+    title: 'Permanent Hiring',
+    desc: 'End-to-end hiring for full-time roles. Tribera returns vetted candidates your team can move on quickly.',
+    note: 'Built for roles that need precision, not volume.',
+  },
+  {
+    title: 'Contract & Fixed-Term',
+    desc: 'C2H, FXT, and project-based hiring with clear review points, fast decisions, and no process sprawl.',
+    note: 'Useful when timelines matter more than headcount plans.',
+  },
+  {
+    title: 'Executive Search',
+    desc: 'Senior leadership and specialist searches with deeper assessment, advisor oversight, and sharper calibration.',
+    note: 'For high-stakes hires where fit has to be defensible.',
+  },
+  {
+    title: 'TA Strategy Consulting',
+    desc: 'Audit your hiring funnel, define role signals, and build repeatable frameworks that your teams can actually use.',
+    note: 'Good for teams redesigning the process behind the process.',
+  },
+  {
+    title: 'Full RPO',
+    desc: 'Strategy, sourcing, screening, advisor-led interviews, and execution across the full hiring engine.',
+    note: 'For teams that want throughput without losing judgment.',
+  },
+];
+
+const deliverySteps = [
+  {
+    number: '01',
+    title: 'Define the signal',
+    desc: 'We calibrate the role with your team, map the skills that matter, and decide what “good” actually means.',
+  },
+  {
+    number: '02',
+    title: 'Run the interviews',
+    desc: 'AI and senior advisors work together to screen, interview, and score for both capability and fit.',
+  },
+  {
+    number: '03',
+    title: 'Deliver the shortlist',
+    desc: 'You get a concise, explainable shortlist with the reasoning attached, so decisions move faster.',
+  },
+];
 ---
 
 <Layout metadata={metadata}>
-  <section class="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-black">
-    <div class="absolute inset-0">
-      <div class="absolute inset-0 bg-black"></div>
+  <main>
+    <section class="relative min-h-[90vh] md:min-h-screen flex items-start md:items-center justify-center overflow-hidden bg-black pt-20 pb-12 md:pb-0 md:pt-0">
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-black"></div>
 
-      <div
-        class="absolute left-[-30%] md:left-[-15%] top-0 h-full w-[90%] md:w-[60%]
-      bg-[radial-gradient(circle_at_left_center,rgba(218,0,7,0.45),transparent_60%)]"
-      >
+        <div class="absolute inset-0 md:hidden bg-[radial-gradient(circle_at_center,rgba(218,0,7,0.26),transparent_62%)]"></div>
+
+        <div class="absolute hidden md:block left-[-15%] top-0 h-full w-[60%] bg-[radial-gradient(circle_at_left_center,rgba(218,0,7,0.26),transparent_60%)]"></div>
+
+        <div class="absolute hidden md:block right-[-15%] top-0 h-full w-[60%] bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.26),transparent_60%)]"></div>
       </div>
 
-      <div
-        class="absolute right-[-30%] md:right-[-15%] top-0 h-full w-[90%] md:w-[60%]
-      bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.45),transparent_60%)]"
-      >
-      </div>
-    </div>
-
-    <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
-      <h1 class="font-[600] leading-[1.05]">
-        <span class="block text-white text-[clamp(1.8rem,9vw,2.6rem)] sm:text-[clamp(2rem,6vw,5rem)]">
-          Platform + people.
-        </span>
-
-        <span class="block text-[#ff0000] text-[clamp(1.8rem,9vw,2.6rem)] sm:text-[clamp(2rem,6vw,5rem)]">
-          Intelligence + execution.
-        </span>
-      </h1>
-
-      <p class="mt-8 text-white/50 text-[20px] max-w-3xl mx-auto leading-relaxed">
-        AI analyzes 100+ signals per candidate. Senior advisors conduct interviews and validate every decision.
-        Permanent, contract, C2H, executive, or full RPO—human-reviewed with a 1:3 guarantee*.
-      </p>
-
-      <div class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-6">
-        <a
-          href="/"
-          class="inline-flex items-center justify-center
-      px-6 py-3
-      rounded-full
-      tribera-primary-button
-      text-[12px] font-semibold
-      tracking-[0.2px]"
-        >
-          See How It Works →
-        </a>
-
-        <a
-          href="/contact"
-          class="inline-flex items-center justify-center
-      px-6 py-3
-      rounded-full
-      text-white
-      text-[12px] font-semibold
-      bg-[#121212]
-      border border-white/10
-      transition-all duration-300
-      hover:-translate-y-[2px]
-      hover:text-white
-      hover:border-white/20"
-        >
-          Book a Demo
-        </a>
-      </div>
-
-      <div class="mt-10 flex justify-center">
-        <div
-          class="inline-flex items-center gap-3
-      px-6 py-3
-      rounded-xl
-      border border-[#da0007]/40
-      bg-black/30
-      text-white/70
-      text-[14px]"
-        >
-          <span
-            class="w-5 h-5
-        flex items-center justify-center
-        rounded-full
-        border-2 border-[#da0007]
-        text-[#da0007]
-        text-[18px]"
-          >
-            ✓
-          </span>
-          <strong class="text-[#da0007] font-bold">1:3</strong>
-
-          <span class="text-[12px] font-semibold text-white/50"> Selection Ratio* Guarantee </span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-[#f3f3f3] py-20 md:py-28">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <p class="text-[11px] tracking-[0.35em] font-[600] text-[#da0007] uppercase">WHAT WE DELIVER</p>
-
-        <h2 class="mt-6 text-5xl md:text-6xl font-[600] text-black leading-tight">Choose your engagement model</h2>
-
-        <p class="mt-6 text-[15px] text-black/50 max-w-2xl mx-auto">
-          Project-based hiring or full RPO. Same quality, same 1:3 guarantee*.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="absolute inset-0 pointer-events-none">
         {
-          [
-            {
-              title: 'Permanent Hiring (FTE)',
-              desc: 'End-to-end hiring for full-time roles. Vetted candidates ready for your final approval.',
-            },
-            {
-              title: 'Contract & Fixed-Term',
-              desc: 'C2H, FXT, project-based roles. Full compliance, seamless conversions.',
-            },
-            {
-              title: 'Executive Search',
-              desc: 'C-suite, VP-level, technical leadership. Deep assessments for high-stakes hires.',
-            },
-            {
-              title: 'TA Strategy Consulting',
-              desc: 'Skill DNA analysis, TA roadmaps, hiring frameworks that scale with growth.',
-            },
-            {
-              title: 'Full RPO',
-              desc: 'Outsource your entire TA function. Strategy, process, execution across all roles.',
-            },
-          ].map((card) => (
-            <div
-              class="group relative bg-white rounded-xl border border-black/5 p-8
-                 transition-all duration-500 ease-out
-                 hover:-translate-y-1
-                 hover:shadow-[0_15px_40px_rgba(218,0,7,0.25)]"
-            >
-              <div
-                class="absolute left-0 top-0 h-full w-[3px] bg-[#da0007]
-                      rounded-l-xl
-                      transition-all duration-500
-                      group-hover:w-[5px]"
-              />
-
-              <h3
-                class="text-[18px] font-[600] text-black
-                     transition-colors duration-300
-                     group-hover:text-[#da0007]"
-              >
-                {card.title}
-              </h3>
-
-              <p class="mt-4 text-[14px] text-black/50 leading-relaxed">{card.desc}</p>
-            </div>
+          Array.from({ length: 12 }).map((_, i) => (
+            <span
+              class="absolute rounded-full bg-[#da0007]/80"
+              style={`
+                width:${i % 4 === 0 ? 3 : 2}px;
+                height:${i % 4 === 0 ? 3 : 2}px;
+                left:${12 + Math.random() * 76}%;
+                top:${8 + Math.random() * 84}%;
+                --float-x1:${(Math.random() * 22 - 11).toFixed(1)}px;
+                --float-y1:${(Math.random() * 18 - 9).toFixed(1)}px;
+                --float-x2:${(Math.random() * 26 - 13).toFixed(1)}px;
+                --float-y2:${(Math.random() * 20 - 10).toFixed(1)}px;
+                --float-x3:${(Math.random() * 28 - 14).toFixed(1)}px;
+                --float-y3:${(Math.random() * 18 - 9).toFixed(1)}px;
+                --float-x4:${(Math.random() * 24 - 12).toFixed(1)}px;
+                --float-y4:${(Math.random() * 24 - 12).toFixed(1)}px;
+                --float-x5:${(Math.random() * 28 - 14).toFixed(1)}px;
+                --float-y5:${(Math.random() * 20 - 10).toFixed(1)}px;
+                --float-x6:${(Math.random() * 24 - 12).toFixed(1)}px;
+                --float-y6:${(Math.random() * 18 - 9).toFixed(1)}px;
+                --float-scale1:${(1 + Math.random() * 0.16).toFixed(2)};
+                --float-scale2:${(0.9 + Math.random() * 0.08).toFixed(2)};
+                --float-scale3:${(1 + Math.random() * 0.14).toFixed(2)};
+                --float-scale4:${(0.92 + Math.random() * 0.08).toFixed(2)};
+                --float-scale5:${(1 + Math.random() * 0.12).toFixed(2)};
+                --float-scale6:${(0.94 + Math.random() * 0.06).toFixed(2)};
+                animation: float ${16 + Math.random() * 12}s ease-in-out infinite;
+                animation-delay: -${(Math.random() * 18).toFixed(1)}s;
+                box-shadow: 0 0 6px rgba(218,0,7,.36);
+                opacity:${(0.48 + Math.random() * 0.2).toFixed(2)};
+              `}
+            />
           ))
         }
       </div>
 
-      <div class="mt-16">
-        <div class="bg-black rounded-2xl py-6 px-8 text-center text-white/80 text-[14px] shadow-lg">
-          All services powered by 100+ signal AI analysis, senior advisor interviews, culture scoring, and explainable
-          decisions.
+      <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 w-full">
+        <div class="grid gap-10 md:gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(360px,0.85fr)] items-center">
+          <div class="text-center lg:text-left">
+            <div class="text-[11px] tracking-[0.24em] font-semibold uppercase text-[#da0007]">
+              Hiring Services
+            </div>
+
+            <h1 class="mt-6 text-white font-[650] leading-[1.02] tracking-[-0.06em] text-[38px] sm:text-[50px] lg:text-[64px]">
+              When software is not enough,
+              <span class="block text-[#da0007]">we run the hiring too.</span>
+            </h1>
+
+            <p class="mt-6 max-w-[22rem] sm:max-w-2xl text-[15px] sm:text-[18px] leading-relaxed text-white/55 mx-auto lg:mx-0">
+              Tribera supports permanent hiring, executive search, contract roles, and RPO with advisor-led interviews,
+              100+ signal analysis, and shortlists your team can move on quickly.
+            </p>
+
+            <p class="mt-3 hidden sm:block max-w-2xl text-[14px] sm:text-[15px] leading-relaxed text-white/40 mx-auto lg:mx-0">
+              Looking for the platform view first? Explore how
+              <a href="/" class="text-white/80 underline decoration-white/25 underline-offset-4 hover:text-white">tribera.ai works for hiring teams</a>.
+            </p>
+
+            <div class="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <a
+                href="/#how-it-works"
+                class="px-6 py-3 rounded-full bg-[#ff0000] text-white text-[13px] font-bold transition-all duration-300 hover:bg-[#e00000]"
+              >
+                See How It Works →
+              </a>
+
+              <a
+                href="/contact"
+                class="px-6 py-3 rounded-full bg-[#121212] border border-white/10 text-white/80 text-[13px] font-bold transition-all duration-300 hover:border-white/20"
+              >
+                Book a Demo
+              </a>
+            </div>
+
+            <div class="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3 text-[11px] sm:text-[12px] text-white/40">
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">100+ signals</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Advisor interviews</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">1:3 guarantee<sup class="ml-[1px] text-[9px] align-super">*</sup></span>
+            </div>
+          </div>
+
+          <div class="relative group transform-gpu md:animate-[floatCard_9s_ease-in-out_infinite]">
+            <div class="absolute inset-0 -z-10 flex items-center justify-center">
+              <div class="h-[300px] w-[300px] rounded-full bg-[#da0007]/12 blur-[110px]"></div>
+            </div>
+
+            <div
+              class="transition-transform duration-700 ease-out md:[transform:rotateX(2deg)_rotateY(4deg)] md:group-hover:[transform:rotateX(0deg)_rotateY(0deg)]"
+            >
+              <div class="rounded-[24px] border border-white/10 bg-[linear-gradient(180deg,rgba(18,18,18,0.96),rgba(8,8,8,0.98))] p-6 sm:p-8 shadow-[0_30px_100px_rgba(0,0,0,0.35)]">
+                <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <p class="text-[10px] tracking-[0.24em] uppercase text-[#da0007]">Engagement snapshot</p>
+                    <p class="mt-2 text-white text-[16px] sm:text-[18px] font-semibold">A sharper way to hire</p>
+                  </div>
+
+                  <div class="text-left sm:text-right">
+                    <div class="text-[10px] sm:text-[11px] text-white/40">Avg. shortlist</div>
+                    <div class="text-[17px] sm:text-[20px] font-semibold text-white">36 hours</div>
+                  </div>
+                </div>
+
+                <div class="mt-6 space-y-4">
+                  {
+                    [
+                      ['Permanent', 'Role-fit hiring for critical teams'],
+                      ['Contract', 'C2H and fixed-term execution'],
+                      ['Executive', 'Deep evaluation for senior roles'],
+                    ].map(([label, desc], index) => (
+                      <div
+                        data-service-reveal
+                        class="service-reveal group/item flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:-translate-y-[2px] hover:border-[#da0007]/25 hover:bg-white/[0.07]"
+                        style={`transition-delay:${index * 90}ms`}
+                      >
+                        <div class="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-2xl bg-[#da0007]/15 text-[#da0007] text-[14px] sm:text-[16px] font-semibold transition-all duration-300 group-hover/item:bg-[#da0007]/22 group-hover/item:scale-[1.03]">
+                          0{index + 1}
+                        </div>
+
+                        <div>
+                          <div class="text-[15px] sm:text-[16px] text-white font-semibold transition-colors duration-300 group-hover/item:text-white">
+                            {label}
+                          </div>
+                          <div class="mt-1 text-[12px] sm:text-[13px] leading-relaxed text-white/50 transition-colors duration-300 group-hover/item:text-white/72">
+                            {desc}
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  }
+                </div>
+
+                <div class="mt-6 grid grid-cols-3 gap-2">
+                  <div class="rounded-2xl border border-white/10 bg-white/5 px-2 py-3 text-center transition-all duration-300 hover:-translate-y-[1px] hover:border-[#da0007]/22">
+                    <div class="text-[10px] uppercase tracking-[0.16em] text-white/35">Signals</div>
+                    <div class="mt-2 text-[18px] sm:text-[22px] font-semibold text-[#da0007]">100+</div>
+                  </div>
+                  <div class="rounded-2xl border border-white/10 bg-white/5 px-2 py-3 text-center transition-all duration-300 hover:-translate-y-[1px] hover:border-[#da0007]/22">
+                    <div class="text-[10px] uppercase tracking-[0.16em] text-white/35">Shortlist</div>
+                    <div class="mt-2 text-[18px] sm:text-[22px] font-semibold text-white">3</div>
+                  </div>
+                  <div class="rounded-2xl border border-white/10 bg-white/5 px-1.5 py-3 text-center transition-all duration-300 hover:-translate-y-[1px] hover:border-[#da0007]/22">
+                    <div class="text-[9px] uppercase tracking-[0.14em] text-white/35">Guarantee</div>
+                    <div class="mt-2 text-[17px] sm:text-[22px] font-semibold text-white">1:3<sup class="ml-[1px] text-[9px] sm:text-[11px] align-super">*</sup></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="bg-[#f3f3f3] py-20 md:py-28">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-20">
-        <p class="text-[11px] tracking-[0.35em] font-[600] text-[#da0007] uppercase">PLATFORM CAPABILITIES</p>
+    <section class="w-full px-6 md:px-8 py-8 md:py-10 gap-10 relative">
+      <div class="pointer-events-none absolute inset-0 bg-dotted-static opacity-80"></div>
 
-        <h2 class="mt-6 text-5xl md:text-6xl font-[600] text-black leading-tight">
-          100+ signals. Human validation. Decisions you can defend.
-        </h2>
+      <Brands
+        title="Who We Work With"
+        subtitle="Trusted by hiring teams <br /> making high-stakes decisions"
+        mobileSubtitleSingleLine={true}
+        images={[
+          { src: '~/assets/images/ICICBank.png', alt: 'ICICI Bank' },
+          { src: '~/assets/images/Aeries.png', alt: 'Aeries' },
+          { src: '~/assets/images/DSP_Mutual_Funds.png', alt: 'DSP Mutual Fund' },
+          { src: '~/assets/images/Enpro.png', alt: 'Enpro' },
+          { src: '~/assets/images/Volkwagen.png', alt: 'Volkswagen' },
+          { src: '~/assets/images/UtkarshBank.png', alt: 'Utkarsh Bank' },
+          { src: '~/assets/images/TechnologyHoldings.png', alt: 'TechnologyHoldings' },
+          { src: '~/assets/images/Payu.png', alt: 'PayU' },
+          { src: '~/assets/images/ICICISecurities.png', alt: 'ICICISecurities' },
+          { src: '~/assets/images/SplashBI.png', alt: 'SplashBI' },
+          { src: '~/assets/images/AegonLife.png', alt: 'AegonLife' },
+        ]}
+      />
+    </section>
 
-        <p class="mt-6 text-[15px] text-black/50 max-w-2xl mx-auto">
-          The only platform giving TA leaders AI intelligence AND senior advisors.
-        </p>
-      </div>
+    <section class="bg-black py-12 md:py-20">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid gap-7 md:gap-10 lg:grid-cols-[minmax(320px,0.9fr)_minmax(0,1.1fr)] items-center">
+          <div class="lg:pr-8 lg:self-center">
+            <p class="text-[11px] tracking-[0.24em] font-semibold text-[#da0007] uppercase">What we deliver</p>
+            <h2 class="mt-3 text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] tracking-[-0.03em] text-white max-w-[12ch]">
+              Engagement models that stay sharp under pressure.
+            </h2>
+            <p class="mt-4 max-w-xl text-[15px] sm:text-[16px] leading-relaxed text-white/55">
+              Same Tribera rigor underneath every service. The shape changes based on the role, the urgency, and how
+              much of the hiring engine you want us to run.
+            </p>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {
-          [
-            {
-              tag: '100+ SIGNALS',
-              title: 'Contextual Intelligence',
-              desc: 'Beyond resumes—100+ signals from GitHub, Stack Overflow, projects, verified experience.',
-              items: [
-                'Multi-platform activity analysis',
-                'Project depth verification',
-                'Risk flags & credibility checks',
-                'Self-taught talent discovery',
-              ],
-            },
-            {
-              tag: 'HUMAN-IN-LOOP',
-              title: 'Senior Advisor Interviews',
-              desc: 'Not just AI. Senior advisors conduct 25–30 min technical interviews and validate every decision.',
-              items: [
-                'Advisor-led technical panels',
-                'Human review of AI scoring',
-                'Explainable decision records',
-                'Bias mitigation built-in',
-              ],
-            },
-            {
-              tag: 'SMART MATCHING',
-              title: 'Culture & Behavioral Scoring',
-              desc: 'Match candidates to your org culture, team dynamics, behavioral requirements.',
-              items: [
-                'Organization culture mapping',
-                'Team fit analysis',
-                'Communication style matching',
-                'Retention prediction',
-              ],
-            },
-            {
-              tag: 'DATA-DRIVEN',
-              title: 'Predictive Analytics',
-              desc: "Know who'll succeed before you make an offer. Forecast retention, identify flight risks.",
-              items: [
-                'Retention probability modeling',
-                'Performance prediction scoring',
-                'Flight risk indicators',
-                'Funnel optimization',
-              ],
-            },
-            {
-              tag: 'EXPLAINABLE',
-              title: 'Auditable Decisions',
-              desc: 'Every hire comes with detailed decision records you can defend to leadership.',
-              items: [
-                'Decision audit trails',
-                'Explainable AI documentation',
-                'Bias detection reports',
-                'Compliance ready',
-              ],
-            },
-            {
-              tag: 'SCALABLE',
-              title: 'Institutional Memory',
-              desc: 'Your hiring decisions become reusable knowledge. Each evaluation refines your intelligence.',
-              items: [
-                'Judgment library (reusable logic)',
-                'Cross-team knowledge sharing',
-                'Continuous refinement',
-                'Network effects compound',
-              ],
-            },
-          ].map((card) => (
-            <div
-              class="group relative bg-white rounded-xl border border-black/5 p-8 overflow-hidden
-         transition-all duration-500 ease-out
-         hover:-translate-y-1
-         hover:shadow-[0_15px_40px_rgba(218,0,7,0.08)]"
-            >
-              <div
-                class="absolute top-0 left-0 h-[3px] w-0 bg-[#da0007]
-                      transition-all duration-500
-                      group-hover:w-full"
-              />
+            <div class="relative mt-6 md:mt-8 max-w-xl overflow-hidden rounded-xl border border-[#da0007]/40 bg-gradient-to-br from-[#1a0000] to-[#2a0000] p-4 sm:p-5 text-white">
+              <div class="pointer-events-none absolute inset-0 flex items-center justify-center">
+                <div class="h-[200px] w-[200px] bg-[radial-gradient(circle,rgba(218,0,7,0.9),transparent_70%)] blur-[40px] animate-[redInnerGlow_4s_ease-in-out_infinite]"></div>
+              </div>
 
-              <span
-                class="inline-block text-[10px] tracking-[0.2em]
-                       bg-[#da0007]/10 text-[#da0007]
-                       px-2 py-1 rounded-sm font-[700]"
-              >
-                {card.tag}
-              </span>
-
-              <h3 class="mt-4 text-[17px] font-[600] text-black">{card.title}</h3>
-
-              <p class="mt-3 text-[13px] text-black/60 leading-relaxed">{card.desc}</p>
-
-              <ul class="mt-6 space-y-4">
-                {card.items.map((item) => (
-                  <li class="flex items-start gap-3">
-                    <span class="relative mt-[6px] w-2 h-2 rounded-full bg-[#da0007] dot-glow" />
-
-                    <span class="text-[13px] text-black/70 leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <div class="relative z-10 text-[13px] leading-relaxed text-white/85">
+                <span class="text-[14px] font-[500] uppercase tracking-[0.2em] text-[#da0007]">
+                  What stays true across every service
+                </span>
+                <p class="mt-3">
+                  Every engagement is powered by
+                  <span class="font-semibold text-white"> 100+ signal AI analysis</span>,
+                  <span class="font-semibold text-white"> senior advisor interviews</span>,
+                  culture scoring, and explainable decisions.
+                </p>
+              </div>
             </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+          </div>
 
-  <section class="bg-black py-16 md:py-20">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <p class="text-[11px] tracking-[0.35em] text-[#da0007] uppercase font-semibold">INDUSTRIES WE SERVE</p>
-
-        <h2 class="mt-6 text-5xl font-[650] text-white leading-tight">Tech talent across the sectors that matter</h2>
-
-        <p class="mt-6 text-[15px] text-white/50">Same platform, same rigor. Adapted to your industry's needs.</p>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-5">
-        {
-          [
+          <div class="grid gap-4 md:gap-5 md:grid-cols-2">
             {
-              title: 'GCC (Global Capability Centers)',
-              desc: 'Scale tech teams for captive units. 0–500 engineers with consistent quality.',
-            },
-            {
-              title: 'BFSI (Banking, Financial Services)',
-              desc: 'Fintech platforms, payment systems, risk analytics. Security-first mindsets.',
-            },
-            {
-              title: 'IT Services & Consulting',
-              desc: 'Client-facing engineers, solution architects, delivery teams. Consultants who execute.',
-            },
-            {
-              title: 'Product & SaaS',
-              desc: 'B2B platforms, cloud infrastructure, API development. Builders who ship fast.',
-            },
-            {
-              title: 'E-commerce & Retail Tech',
-              desc: 'Marketplace platforms, inventory systems, logistics tech. High-scale engineering.',
-            },
-            {
-              title: 'Manufacturing & Industrial',
-              desc: 'IoT, automation, embedded systems. Hardware-software integration expertise.',
-            },
-          ].map((item) => (
-            <div
-              class="group relative rounded-xl border border-white/10 
-                 bg-gradient-to-r from-[#111] to-[#0c0c0c]
-                 p-8 transition-all duration-500 ease-out
-                 hover:border-[#da0007]/40 hover:translate-y-1
-                 hover:shadow-[0_0_40px_rgba(218,0,7,0.15)]"
-            >
-              <span
-                class="absolute left-0 top-0 h-full w-[3px] 
-                   bg-transparent
-                   group-hover:bg-[#da0007]
-                   transition-all duration-500"
-              />
+              engagementModes.map((mode, index) => (
+                <article
+                  class={`relative overflow-hidden rounded-[20px] bg-gradient-to-b from-[#181818] to-[#0f0f0f] border border-white/10 p-5 sm:p-7 shadow-[0_20px_60px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-1 hover:border-[#da0007]/30 ${index === 4 ? 'md:col-span-2' : ''}`}
+                >
+                  <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#da0007] to-[#ff6b6b]"></div>
+                  <div class="flex items-center justify-between gap-4">
+                    <div class="text-[11px] uppercase tracking-[0.22em] text-[#da0007] font-semibold">
+                      0{index + 1}
+                    </div>
+                    <div class="h-2 w-2 rounded-full bg-[#da0007]/70"></div>
+                  </div>
 
-              <h3
-                class="text-lg font-semibold text-white 
-                   transition-colors duration-300
-                   group-hover:text-[#da0007]"
-              >
-                {item.title}
-              </h3>
-
-              <p class="mt-4 text-[14px] text-white/60 leading-relaxed">{item.desc}</p>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section
-    class="bg-white py-16 md:py-20"
-    x-data="{
-    active: 0,
-    steps: [
-      {
-        number: '01',
-        title: 'Signal Collection',
-        subtitle: 'AI analyzes 100+ signals'
-      },
-      {
-        number: '02',
-        title: 'Advisor Evaluation',
-        subtitle: 'Senior advisors interview'
-      },
-      {
-        number: '03',
-        title: 'Audited Decision',
-        subtitle: 'Bias audit & compliance'
-      }
-    ]
-  }"
-  >
-    <div class="max-w-6xl mx-auto px-6">
-      <p class="text-center text-[10px] tracking-[0.3em] text-[#da0007] font-semibold mb-4">HOW THE PLATFORM WORKS</p>
-
-      <h2
-        class="text-center font-[600] text-black
-               text-[clamp(2rem,5vw,2.5rem)]
-               leading-[1.05] tracking-tight"
-      >
-        AI precision meets human intelligence
-      </h2>
-
-      <p class="mt-3 text-center text-black/60 text-[14px] max-w-2xl mx-auto">
-        Three stages. Senior advisors at every step. Decisions you can defend.
-      </p>
-
-      <div class="mt-10 grid lg:grid-cols-2 gap-16 items-start">
-        <div class="space-y-4">
-          <template x-for="(step, index) in steps" x-bind:key="index">
-            <div
-              x-on:mouseenter="active = index"
-              x-bind:class="active === index
-              ? 'border-black/10 shadow-[0_20px_40px_rgba(0,0,0,0.15)] -translate-y-2 bg-white'
-              : 'border-black/5 bg-white'"
-              class="rounded-2xl border p-8 transition-all duration-300 ease-out cursor-pointer"
-            >
-              <p class="text-[12px] font-semibold text-[#da0007] mb-2" x-text="step.number"></p>
-
-              <h3
-                x-bind:class="active === index ? 'text-[#da0007]' : 'text-black'"
-                class="text-[18px] font-[600] leading-[1.2] transition-colors duration-300"
-                x-text="step.title"
-              >
-              </h3>
-
-              <p class="text-[14px] text-black/50 mt-2" x-text="step.subtitle"></p>
-            </div>
-          </template>
+                  <h3 class="mt-4 text-[17px] sm:text-[20px] font-[700] text-white">{mode.title}</h3>
+                  <p class="mt-3 text-[13px] sm:text-[14px] leading-relaxed text-white/50">{mode.desc}</p>
+                  <p class="mt-5 text-[12px] sm:text-[13px] font-medium leading-relaxed text-white/75">{mode.note}</p>
+                </article>
+              ))
+            }
+          </div>
         </div>
 
-        <div>
-          <span
-            class="inline-block text-[11px] font-semibold tracking-widest
-                       px-4 py-1 rounded-md bg-[#da0007]/10 text-[#da0007] mb-6"
-          >
-            <span x-text="'STAGE 0' + (active + 1)"></span>
-          </span>
+      </div>
+    </section>
 
-          <h3
-            class="text-[clamp(2rem,5vw,2.5rem)] font-[600] text-black leading-[1.1] mb-6"
-            x-text="[
-                'Signal Collection & Analysis',
-                'Human Advisor Deep Interview',
-                'Audited & Defensible Decision'
-              ][active]"
-          >
-          </h3>
-
-          <p
-            class="text-[15px] text-black/60 leading-relaxed mb-8"
-            x-text="[
-               'AI aggregates 100+ signals from GitHub, Stack Overflow, portfolios, and communication patterns.',
-               'Senior advisors conduct structured technical interviews and validate AI scoring.',
-               'Every hiring decision includes explainable documentation, audit trails, and compliance records.'
-             ][active]"
-          >
+    <section class="bg-[#f3f3f3] py-12 md:py-20">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-10 md:mb-14">
+          <p class="text-[11px] tracking-[0.28em] font-semibold text-[#da0007] uppercase">How it works</p>
+          <h2 class="mt-4 text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] tracking-[-0.03em] text-black">
+            A delivery flow that stays clear from brief to shortlist.
+          </h2>
+          <p class="mt-4 max-w-2xl mx-auto text-[15px] sm:text-[16px] leading-relaxed text-black/55">
+            We keep the process compact. You stay involved where judgment matters and out of the weeds where it
+            doesn’t.
           </p>
-
-          <ul class="space-y-4 text-[15px] text-black/70 font-medium">
-            <template
-              x-for="point in [
-              [
-                'Multi-platform activity analysis',
-                'Contextual skill mapping',
-                'Preliminary match scoring',
-                'Self-taught talent discovery'
-              ],
-              [
-                'Advisor-led technical panels',
-                'Human review of AI scoring',
-                'Explainable evaluation notes',
-                'Bias mitigation framework'
-              ],
-              [
-                'Decision audit trails',
-                'Explainable AI documentation',
-                'Compliance-ready records',
-                'Defensible hiring reports'
-              ]
-            ][active]"
-              x-bind:key="point"
-            >
-              <li class="flex gap-3 items-start">
-                <span class="text-[#da0007] font-bold mt-[2px]">•</span>
-                <span x-text="point"></span>
-              </li>
-            </template>
-          </ul>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <section class="bg-black py-16 md:py-20">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <p class="text-[11px] tracking-[0.35em] text-[#da0007] uppercase font-semibold">INSTITUTIONAL MEMORY</p>
-
-        <h2 class="mt-6 text-5xl font-semibold text-white leading-tight">
-          Your hiring intelligence compounds over time
-        </h2>
-
-        <p class="mt-6 text-[15px] text-white/50 max-w-3xl mx-auto">
-          Each hire builds your organization's hiring knowledge. This is the advantage that scales.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-5">
-        {
-          [
+        <div class="grid gap-4 md:gap-5 lg:grid-cols-[0.96fr_1.04fr] items-stretch">
+          <div class="space-y-4">
             {
-              title: 'Reusable Logic',
-              desc: 'Decision patterns become templates. What worked for Software Engineer #1 accelerates Engineer #50. Your hiring criteria auto-refine.',
-            },
-            {
-              title: 'Cross-Org Learning',
-              desc: "Network effects across 500+ companies. When one org discovers a great signal, the platform learns for everyone. Your quality improves from others' hiring.",
-            },
-            {
-              title: 'Continuous Refinement',
-              desc: 'Platform learns YOUR preferences. Culture fit gets more precise. Signal weighting adapts to your team. Every hire trains tribera to be better for you.',
-            },
-          ].map((item) => (
-            <div
-              class="group relative rounded-xl border border-white/10 
-                 bg-gradient-to-r from-[#111] to-[#0c0c0c]
-                 p-8 transition-all duration-500 ease-out
-                 hover:border-[#da0007]/40
-                 hover:shadow-[0_0_60px_rgba(218,0,7,0.15)]"
-            >
-              <span
-                class="absolute left-0 top-0 h-full w-[3px] 
-                   bg-transparent 
-                   group-hover:bg-[#da0007] 
-                   transition-all duration-500"
-              />
+              deliverySteps.map((step) => (
+                <div
+                  class="rounded-[20px] border border-black/5 bg-white p-4 sm:p-6 shadow-[0_12px_35px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(218,0,7,0.12)]"
+                >
+                  <div class="flex items-start gap-4">
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#da0007]/18 bg-white text-[#da0007] font-semibold shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+                      {step.number}
+                    </div>
 
-              <h3
-                class="text-lg font-semibold text-white 
-                   transition-colors duration-300
-                   group-hover:text-[#da0007]"
-              >
-                {item.title}
-              </h3>
+                    <div>
+                      <h3 class="text-[17px] sm:text-[18px] font-semibold text-black">{step.title}</h3>
+                      <p class="mt-2 text-[13px] sm:text-[14px] leading-relaxed text-black/58">{step.desc}</p>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
 
-              <p class="mt-4 text-[14px] text-white/60 leading-relaxed">{item.desc}</p>
+          <div class="group h-full transform-gpu transition-transform duration-500 ease-out hover:-translate-y-1">
+            <div class="relative h-full overflow-hidden rounded-[24px] border border-black/8 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.08)] transition-all duration-500 group-hover:shadow-[0_28px_70px_rgba(0,0,0,0.12)]">
+              <div class="absolute inset-x-0 top-0 h-[4px] bg-[#da0007]"></div>
+
+              <div class="px-5 pb-5 pt-5 sm:px-8 sm:pb-8 sm:pt-7 lg:px-9">
+                <div class="mb-5 flex items-center justify-between">
+                  <p class="text-[11px] font-semibold uppercase tracking-[0.34em] text-black/42">Built for decision makers</p>
+
+                  <div class="flex items-center gap-2">
+                    <span class="h-2 w-2 rounded-full bg-[#9b9b9b]"></span>
+                    <span class="h-2 w-2 rounded-full bg-[#9b9b9b]"></span>
+                    <span class="h-2 w-2 rounded-full bg-[#da0007]"></span>
+                  </div>
+                </div>
+
+                <h3 class="text-[21px] sm:text-[34px] font-semibold leading-[1.05] tracking-[-0.03em] text-black">
+                  Services that reduce noise instead of adding another layer.
+                </h3>
+
+                <p class="mt-5 text-[13px] sm:text-[14px] leading-relaxed text-black/58">
+                  Whether you want a single shortlist or a full hiring function, the output should stay the same:
+                  explainable signal, fewer interviews, and sharper decisions.
+                </p>
+
+                <div class="mt-6 sm:mt-8 grid gap-3 sm:grid-cols-2">
+                  {
+                    ['Role calibration', 'Advisor interviews', 'Explainable shortlists', 'Live hiring support'].map((item) => (
+                      <div class="rounded-[14px] border border-black/[0.05] bg-[#f7f7f7] px-5 py-4 text-[12px] sm:text-[13px] font-medium text-black/72 shadow-[0_2px_10px_rgba(0,0,0,0.03)]">
+                        {item}
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
             </div>
-          ))
-        }
-      </div>
-
-      <div class="mt-10 flex justify-center">
-        <div
-          class="max-w-3xl text-center rounded-xl border border-white/10
-                  bg-gradient-to-r from-[#111] to-[#0c0c0c]
-                  px-10 py-8 text-white/70 text-[15px] leading-relaxed"
-        >
-          This isn't just a service—it's hiring infrastructure that gets exponentially better. SaaS platforms don't
-          learn. Traditional RPOs don't share knowledge. tribera does both.
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="bg-[#f3f3f3] py-20 md:py-28">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <p class="text-[11px] tracking-[0.35em] text-[#da0007] uppercase font-semibold">GET STARTED TODAY</p>
+    <section class="bg-black text-white py-16 md:py-20">
+      <div class="max-w-7xl mx-auto px-8 lg:px-12">
+        <div class="grid gap-12 lg:grid-cols-[minmax(420px,0.96fr)_minmax(0,1.2fr)] lg:gap-16 items-center">
+          <div class="max-w-[32rem]">
+            <p class="text-[11px] tracking-[0.24em] font-semibold text-[#da0007] uppercase">Where this helps most</p>
+            <h2 class="mt-3 text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] tracking-[-0.03em] text-white">
+              Best used when the role is too important for guesswork.
+            </h2>
+          </div>
 
-      <h2 class="mt-6 text-6xl font-semibold text-black leading-tight">Ready to hire smarter?</h2>
+          <div class="grid gap-8 md:grid-cols-3 lg:gap-12 lg:self-center lg:pl-4">
+            {[
+              {
+                title: 'Critical roles',
+                desc: 'When the shortlist has to be credible from the first round, not after five calibration loops.',
+              },
+              {
+                title: 'High-context searches',
+                desc: 'Leadership or specialist hiring where judgment matters more than keyword matching.',
+              },
+              {
+                title: 'Scaling without noise',
+                desc: 'Teams that need more throughput without turning the process into recruiter volume theatre.',
+              },
+            ].map((item) => (
+              <div class="group flex gap-4 items-start">
+                <div class="w-[2px] min-h-[42px] bg-white/10 transition-all duration-300 group-hover:bg-[#da0007]" />
 
-      <p class="mt-6 text-[16px] text-black/50 max-w-2xl mx-auto leading-relaxed">
-        Join 500+ tech teams using tribera. 100+ signals. 1:3 selection guarantee*. Get tech talent 2x faster.
-      </p>
-
-      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-5">
-        <button
-          type="button"
-          data-open-demo
-          class="px-8 py-4 rounded-full tribera-primary-button text-[14px] font-semibold
-                shadow-[0_8px_25px_rgba(218,0,7,0.3)]"
-        >
-          See Platform Demo →
-        </button>
-
-        <a
-          href="/contact"
-          class="px-8 py-4 rounded-full border border-black/20
-                text-black text-[14px] font-medium
-               
-                transition-all duration-300"
-        >
-          Book a Demo
-        </a>
+                <div class="max-w-none">
+                  <h4 class="text-[13px] sm:text-[14px] font-[700] mb-1">{item.title}</h4>
+                  <p class="text-white/40 text-[13px] sm:text-[14px] leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="bg-[#f3f3f3] py-14 md:py-20">
+      <div class="max-w-5xl mx-auto px-6 text-center">
+        <p class="text-[11px] tracking-[0.28em] text-[#da0007] uppercase font-semibold">Ready to start</p>
+        <h2 class="mt-4 text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] tracking-[-0.03em] text-black">
+          Need services that feel sharp on day one?
+        </h2>
+        <p class="mt-4 text-[15px] sm:text-[16px] leading-relaxed text-black/55 max-w-2xl mx-auto">
+          Start with a demo, a quick conversation, or a scoped engagement. We’ll help you choose the right path
+          without forcing a generic sales cycle.
+        </p>
+
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="/#how-it-works"
+            class="px-6 py-3 rounded-full bg-[#ff0000] text-white text-[13px] font-bold transition-all duration-300 hover:bg-[#e00000]"
+          >
+            See How It Works →
+          </a>
+          <a
+            href="/contact"
+            class="px-6 py-3 rounded-full bg-[#121212] border border-white/10 text-white/80 text-[13px] font-bold transition-all duration-300 hover:border-white/20"
+          >
+            Book a Demo
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>

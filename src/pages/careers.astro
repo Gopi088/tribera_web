@@ -2,178 +2,234 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'Careers',
+  title: 'Careers at tribera | Build the Future of Hiring',
   description:
-    'Join Tribera and help shape the future of AI-powered hiring. Work on meaningful problems at the intersection of AI, decision-making, and human judgment.',
+    'Join tribera and help build the future of AI-powered hiring across product, engineering, and decision-support systems.',
 };
+
+const values = [
+  {
+    letter: 'M',
+    title: 'Meaningful problems',
+    desc: 'Work on hiring systems that affect real outcomes, not vanity metrics.',
+  },
+  {
+    letter: 'O',
+    title: 'Ownership with scope',
+    desc: 'Small team energy, real autonomy, and work that ships into production.',
+  },
+  {
+    letter: 'H',
+    title: 'Human judgment first',
+    desc: 'Build AI that supports better decisions without flattening nuance or context.',
+  },
+];
+
+const benefits = [
+  'Build AI systems used in real hiring decisions',
+  'Collaborate with engineers, designers, and researchers',
+  'Learn fast, ship often, iterate thoughtfully',
+  'Culture focused on clarity, ownership, and respect',
+];
+
+const roles = [
+  {
+    title: 'Backend Engineer',
+    desc: 'Build the core systems that power hiring workflows, scoring pipelines, and product reliability.',
+    bullets: ['Golang or C++', 'Python', 'Scalable backend systems'],
+  },
+  {
+    title: 'AI/ML Engineer',
+    desc: 'Work on NLP-led intelligence across screening, reasoning, and decision support, with voice-model experience as a strong plus.',
+    bullets: ['Natural language processing', 'Speech/voice model experience desirable', 'Applied ML workflows'],
+  },
+  {
+    title: 'Software Intern',
+    desc: 'Ship real product work across engineering and AI systems while learning inside a high-ownership team.',
+    bullets: ['Hands-on product building', 'Strong mentorship', 'Real production exposure'],
+  },
+];
 ---
 
 <Layout metadata={metadata}>
   <main>
-    <!-- HERO -->
-    <section class="relative py-20 md:py-28 bg-white overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-br from-white via-[#fafafa] to-[#fff1f2]"></div>
+    <section class="relative overflow-hidden bg-black pt-20 pb-16 sm:pt-24 sm:pb-18 md:min-h-screen md:flex md:items-center md:justify-center md:py-0">
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-black"></div>
 
-      <div class="relative max-w-6xl mx-auto px-6 text-center">
-        <span class="inline-block mb-4 px-4 py-1 rounded-lg text-[11px] font-medium bg-[#da0007]/10 text-[#da0007]">
+        <div class="absolute left-[-28%] md:left-[-14%] top-0 h-full w-[88%] md:w-[58%] bg-[radial-gradient(circle_at_left_center,rgba(218,0,7,0.46),transparent_62%)]"></div>
+        <div class="absolute right-[-28%] md:right-[-14%] top-0 h-full w-[88%] md:w-[58%] bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.38),transparent_62%)]"></div>
+      </div>
+
+      <div class="absolute inset-0 pointer-events-none opacity-70">
+        {
+          Array.from({ length: 22 }).map((_, i) => (
+            <span
+              class="absolute rounded-full bg-[#da0007]/80"
+              style={`
+                width:3px;
+                height:${i % 4 === 0 ? 4 : 3}px;
+                left:${10 + Math.random() * 80}%;
+                top:${8 + Math.random() * 82}%;
+                --float-x1:${(Math.random() * 16 - 8).toFixed(1)}px;
+                --float-y1:${(Math.random() * 12 - 6).toFixed(1)}px;
+                --float-x2:${(Math.random() * 18 - 9).toFixed(1)}px;
+                --float-y2:${(Math.random() * 14 - 7).toFixed(1)}px;
+                --float-x3:${(Math.random() * 16 - 8).toFixed(1)}px;
+                --float-y3:${(Math.random() * 12 - 6).toFixed(1)}px;
+                --float-scale1:${(1 + Math.random() * 0.08).toFixed(2)};
+                --float-scale2:${(0.96 + Math.random() * 0.05).toFixed(2)};
+                --float-scale3:${(1 + Math.random() * 0.06).toFixed(2)};
+                animation: float ${14 + Math.random() * 6}s ease-in-out infinite;
+                animation-delay: -${(Math.random() * 10).toFixed(1)}s;
+                box-shadow: 0 0 8px rgba(218,0,7,.45);
+              `}
+            />
+          ))
+        }
+      </div>
+
+      <div class="relative z-10 max-w-[1120px] mx-auto px-6 sm:px-8 lg:px-10 text-center md:py-16">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#da0007]/50 text-[11px] tracking-[0.24em] text-white/80 uppercase mb-6 bg-black/20 backdrop-blur-sm">
+          <span class="w-2 h-2 bg-[#da0007] rounded-full"></span>
           Careers at Tribera
-        </span>
+        </div>
 
-        <h1 class="text-[2.25rem] sm:text-4xl md:text-5xl font-semibold text-slate-900">
-          Build the future of hiring,
+        <h1 class="font-[650] leading-[1.02] tracking-[-0.06em] text-[38px] sm:text-[50px] lg:text-[64px]">
+          <span class="block text-white">Build the future of hiring</span>
           <span class="block text-[#da0007]">with purpose.</span>
         </h1>
 
-        <p class="mt-6 text-[20px] text-black/60 max-w-3xl mx-auto">
-          We’re building AI that helps teams make better human decisions. Join us to work on meaningful problems across
+        <p class="mt-6 md:mt-8 text-white/60 text-[16px] md:text-[19px] max-w-3xl mx-auto leading-relaxed">
+          We are building AI that helps teams make better human decisions. Join us to work on meaningful problems across
           AI, product, and engineering.
         </p>
+
+        <div class="mt-8 md:mt-12 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-5">
+          <a
+            href="#open-roles"
+            class="px-6 py-3 rounded-full tribera-primary-button text-[13px] font-bold"
+          >
+            See open roles
+          </a>
+
+          <a
+            href="mailto:careers@tribera.ai"
+            class="px-6 py-3 rounded-full bg-[#121212] border border-white/10 text-white/80 text-[13px] font-bold transition-all duration-300 hover:border-white/20"
+          >
+            Open a conversation
+          </a>
+        </div>
+
+        <div class="mt-10 md:mt-14 grid grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
+          {
+            [
+              ['High', 'ownership'],
+              ['Meaningful', 'problems'],
+              ['AI +', 'judgment'],
+            ].map(([top, bottom]) => (
+              <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-center backdrop-blur-sm">
+                <div class="text-[15px] sm:text-[18px] font-[700] text-white">{top}</div>
+                <div class="text-[11px] uppercase tracking-[0.18em] text-white/45 mt-1">{bottom}</div>
+              </div>
+            ))
+          }
+        </div>
+
+        <p class="mt-8 md:mt-12 text-white/30 text-[12px] font-[550]">Built by operators. Backed by insight.</p>
       </div>
     </section>
 
-    <!-- WHY TRIBERA -->
-    <section class="relative py-16 md:py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-        <div>
-          <h2 class="text-3xl md:text-3xl font-semibold text-slate-900 mb-6">Why work at Tribera?</h2>
-
-          <p class="text-black/60 text-[15px] mb-8 max-w-xl">
-            We believe great hiring blends intelligence, empathy, and judgment. At Tribera, you’ll help build systems
-            that make hiring fairer, faster, and more human.
+    <section class="relative bg-[#f5f5f5] py-10 md:py-16">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-10 md:mb-12">
+          <p class="text-[#da0007] text-[11px] font-semibold tracking-[0.24em] uppercase mb-2">Why Tribera</p>
+          <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] tracking-[-0.03em] text-black">
+            Serious problems.
+            <span class="block text-black/65">Serious craft.</span>
+          </h2>
+          <p class="mt-4 mx-auto max-w-2xl text-[15px] sm:text-[16px] leading-relaxed text-black/55">
+            We care about systems that are durable, explainable, and useful in the real world. The team works with a
+            high bar and a low ego.
           </p>
-
-          <div class="space-y-5">
-            {
-              [
-                ['M', 'Meaningful problems', 'Work on real-world hiring challenges affecting millions of decisions.'],
-                ['G', 'Growth & ownership', 'Small teams, high ownership, fast learning, and real impact.'],
-                [
-                  'F',
-                  'Flexible & remote-friendly',
-                  'Work where you do your best work — outcomes matter more than location.',
-                ],
-              ].map(([letter, title, desc]) => (
-                <div
-                  class="
-        group relative overflow-hidden
-        flex gap-4 items-start
-        px-5 py-5
-        rounded-xl
-        bg-slate-50 border border-slate-200
-        transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
-        hover:-translate-y-1
-        hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)]
-      "
-                >
-                  {/* LEFT RED LINE */}
-                  <span
-                    class="
-          absolute left-0 top-0
-          w-[3px] h-0
-          bg-[#da0007]
-          transition-[height] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
-          group-hover:h-full
-          pointer-events-none
-        "
-                  />
-
-                  {/* ICON */}
-                  <div
-                    class="
-          w-11 h-11 rounded-xl
-          bg-[#181818] text-white
-          flex items-center justify-center
-          font-bold text-sm
-          flex-shrink-0
-          transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
-          group-hover:bg-[#da0007]
-          group-hover:rotate-[6deg]
-          group-hover:scale-105
-        "
-                  >
-                    {letter}
-                  </div>
-
-                  {/* TEXT */}
-                  <div class="relative z-10">
-                    <h4 class="font-[650] text-[15px] text-slate-900">{title}</h4>
-                    <p class="mt-1 text-[13px] text-black/60 leading-relaxed">{desc}</p>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
         </div>
 
-        <!-- Visual Card -->
-        <div class="relative">
-          <div class="rounded-xl bg-[#f8f8f8] p-8 shadow-2xl text-[#181818]">
-            <h3 class="text-2xl font-bold mb-4">Life at Tribera</h3>
+        <div class="grid md:grid-cols-3 gap-3 md:gap-5">
+          {
+            values.map((item, index) => (
+              <div
+                class="group relative overflow-hidden rounded-2xl border border-black/5 bg-white p-5 md:p-6 shadow-[0_12px_28px_rgba(0,0,0,0.05)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_-15px_rgba(218,0,7,0.16)]"
+              >
+                <div class="absolute inset-x-0 top-0 h-[3px] bg-[#da0007]" />
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(218,0,7,0.06),transparent_42%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
 
-            <ul class="space-y-4">
+                <div class="relative z-10">
+                  <span class="inline-block rounded-sm bg-[#da0007]/10 px-2 py-1 text-[10px] font-[700] tracking-[0.1em] text-[#da0007]">
+                    0{index + 1}
+                  </span>
+
+                  <h3 class="mt-3 text-[17px] sm:text-[18px] font-[700] text-black">{item.title}</h3>
+                  <p class="mt-2 text-[13px] sm:text-[14px] leading-relaxed text-black/60">{item.desc}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="relative bg-black text-white py-10 md:py-16">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid gap-5 lg:gap-6 lg:grid-cols-[1.2fr_0.8fr] items-start">
+          <div>
+            <p class="text-[11px] tracking-[0.22em] text-[#da0007] uppercase mb-2">What you will actually do</p>
+            <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] tracking-[-0.03em]">
+              Build tools that make hiring clearer.
+            </h2>
+            <p class="mt-4 max-w-2xl text-white/55 text-[15px] sm:text-[16px] leading-relaxed">
+              This is not a filler-role environment. You will ship product that people use, improve decisions that
+              matter, and shape how the platform feels for both hiring teams and candidates.
+            </p>
+
+            <div class="mt-7 grid gap-3 sm:grid-cols-2">
               {
-                [
-                  'Build AI systems used in real hiring decisions',
-                  'Collaborate with engineers, designers & researchers',
-                  'Learn fast, ship often, iterate thoughtfully',
-                  'Culture focused on clarity, ownership & respect',
-                ].map((item) => (
-                  <li
-                    class="
-        group relative overflow-hidden
-        flex items-start gap-4
-        px-5 py-4
-        rounded-xl
-        bg-slate-50 border border-slate-200
-        text-[13px] text-black/60
-        transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
-        hover:-translate-y-1
-        hover:shadow-[0_10px_26px_rgba(0,0,0,0.06)]
-      "
-                  >
-                    {/* LEFT RED LINE */}
-                    <span
-                      class="
-          absolute left-0 top-0
-          w-[3px] h-0
-          bg-[#da0007]
-          transition-[height] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
-          group-hover:h-full
-          pointer-events-none
-        "
-                    />
-
-                    {/* CHECK ICON */}
-                    <span
-                      class="
-          w-6 h-6 rounded-full
-          bg-[#181818] text-white
-          flex items-center justify-center
-          text-xs font-bold
-          flex-shrink-0
-          transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
-          group-hover:bg-[#da0007]
-          group-hover:scale-105
-        "
-                    >
-                      ✓
-                    </span>
-
-                    {/* TEXT */}
-                    <span class="relative z-10">{item}</span>
-                  </li>
+                benefits.map((item) => (
+                  <div class="group relative overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-b from-[#181818] to-[#0f0f0f] px-4 py-4 md:px-5 shadow-[0_20px_60px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-1 hover:border-[#da0007]/30">
+                    <div class="absolute inset-y-0 left-0 w-[3px] bg-[#da0007] opacity-70"></div>
+                    <div class="pl-2 text-[13px] sm:text-[14px] leading-relaxed text-white/75 transition-colors duration-300 group-hover:text-white">
+                      {item}
+                    </div>
+                  </div>
                 ))
               }
-            </ul>
+            </div>
+          </div>
 
-            <div class="mt-8 grid grid-cols-2 gap-4">
-              <div class="bg-[#181818] text-white rounded-xl p-4 text-center">
-                <div class="text-2xl font-bold">Remote</div>
-                <div class="text-xs opacity-80">Friendly</div>
+          <div class="group transform-gpu">
+            <div class="transition-transform duration-500 ease-out group-hover:-translate-y-1">
+              <div class="relative overflow-hidden rounded-[24px] border border-white/10 bg-gradient-to-b from-[#181818] to-[#0f0f0f] p-5 md:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.6)] transition-shadow duration-500 group-hover:shadow-[0_28px_80px_rgba(0,0,0,0.68)]">
+                <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#da0007] to-[#ff6b6b]"></div>
+            <div class="text-[11px] uppercase tracking-[0.22em] text-[#da0007] font-semibold mb-4">Team feel</div>
+            <div class="space-y-3">
+              <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 transition-all duration-300 hover:-translate-y-[2px] hover:border-[#da0007]/25 hover:bg-white/[0.07]">
+                <div class="text-[12px] sm:text-[13px] font-semibold text-white">High trust</div>
+                <div class="mt-1 text-[12px] sm:text-[13px] text-white/55 leading-relaxed">
+                  Fewer meetings, clearer ownership, and direct feedback.
+                </div>
               </div>
-              <div class="bg-[#181818] text-white rounded-xl p-4 text-center">
-                <div class="text-2xl font-bold">High</div>
-                <div class="text-xs opacity-80">Ownership</div>
+              <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 transition-all duration-300 hover:-translate-y-[2px] hover:border-[#da0007]/25 hover:bg-white/[0.07]">
+                <div class="text-[12px] sm:text-[13px] font-semibold text-white">Fast iteration</div>
+                <div class="mt-1 text-[12px] sm:text-[13px] text-white/55 leading-relaxed">
+                  You ship, learn, and adjust quickly without losing the thread.
+                </div>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 transition-all duration-300 hover:-translate-y-[2px] hover:border-[#da0007]/25 hover:bg-white/[0.07]">
+                <div class="text-[12px] sm:text-[13px] font-semibold text-white">Real stakes</div>
+                <div class="mt-1 text-[12px] sm:text-[13px] text-white/55 leading-relaxed">
+                  Your work touches how companies and candidates make decisions.
+                </div>
+              </div>
+            </div>
               </div>
             </div>
           </div>
@@ -181,88 +237,135 @@ const metadata = {
       </div>
     </section>
 
-    <!-- OPEN ROLES -->
-    <section class="relative py-20 md:py-28 bg-white overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-br from-white via-[#fafafa] to-white"></div>
-
-      <div class="relative max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-4xl font-bold text-black">Open roles</h2>
-          <p class="mt-4 text-[15px] text-black/60">Join our growing team and help redefine how hiring works.</p>
+    <section id="open-roles" class="relative bg-[#f5f5f5] py-10 md:py-16">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-10 md:mb-12">
+          <p class="text-[11px] tracking-[0.24em] font-semibold text-[#da0007] uppercase">Open roles</p>
+          <h2 class="mt-3 text-[34px] sm:text-[44px] lg:text-[55px] font-[700] text-black leading-[1.08] tracking-[-0.03em]">
+            A few places to start
+          </h2>
+          <p class="mt-4 text-[15px] text-black/55 max-w-2xl mx-auto">
+            We are small enough that every role matters and focused enough that the work stays legible.
+          </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-10">
-          <!-- Role Card -->
-          <div class="rounded-xl bg-[#f8f8f8] p-8 text-[#181818] shadow-xl">
-            <h3 class="text-2xl font-bold mb-3">Frontend Engineer</h3>
-            <p class="text-[13px] opacity-90 mb-6">
-              Build intuitive, high-performance interfaces for AI-powered workflows.
-            </p>
-            <ul class="text-[13px] space-y-2 mb-8 opacity-90">
-              <li>• React / Astro / Tailwind</li>
-              <li>• UX-focused development</li>
-              <li>• Performance & accessibility</li>
-            </ul>
-            <a
-              href="mailto:careers@tribera.ai"
-              class="inline-flex items-center justify-center rounded-lg px-6 py-3 border border-[#da0007] font-semibold text-[13px] hover:opacity-90 transition"
-            >
-              Apply Now
-            </a>
+        <div class="grid gap-3 md:gap-4 lg:grid-cols-3">
+          {
+            roles.map((role) => (
+              <div class="group relative overflow-hidden rounded-2xl border border-black/5 bg-white p-6 md:p-7 shadow-[0_12px_35px_rgba(0,0,0,0.05)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(218,0,7,0.16)]">
+                <div class="absolute inset-x-0 top-0 h-[3px] bg-[#da0007]"></div>
+                <h3 class="text-[19px] sm:text-[21px] font-[700] text-black">{role.title}</h3>
+                <p class="mt-3 text-[13px] sm:text-[14px] leading-relaxed text-black/60">{role.desc}</p>
+                <ul class="mt-6 space-y-2 text-[12px] sm:text-[13px] text-black/70">
+                  {role.bullets.map((bullet) => (
+                    <li class="flex items-start gap-2">
+                      <span class="mt-[6px] h-1.5 w-1.5 rounded-full bg-[#da0007]"></span>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div class="mt-8 flex items-center justify-between gap-4 pt-5 border-t border-black/5">
+                  <span class="text-[11px] uppercase tracking-[0.2em] text-black/35">Open now</span>
+                  <a
+                    href="mailto:careers@tribera.ai"
+                    class="inline-flex items-center justify-center rounded-full bg-[#da0007] px-4 py-2 text-[12px] font-semibold text-white transition hover:bg-[#c50006]"
+                  >
+                    Apply
+                  </a>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-black text-white py-16 md:py-20">
+      <div class="max-w-7xl mx-auto px-8 lg:px-12">
+        <div class="grid gap-12 lg:grid-cols-[minmax(320px,0.92fr)_minmax(0,1.45fr)] lg:gap-14 items-center">
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.22em] text-[#da0007] mb-3">How we hire</p>
+            <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] tracking-[-0.03em] leading-[1.08]">
+              We look for judgment, not just polish.
+            </h2>
           </div>
 
-          <div class="rounded-xl bg-[#f8f8f8] p-8 text-[#181818] shadow-xl">
-            <h3 class="text-2xl font-bold mb-3">Backend / AI Engineer</h3>
-            <p class="text-[13px] opacity-90 mb-6">
-              Design systems that power intelligent screening and decision support.
-            </p>
-            <ul class="text-[13px] space-y-2 mb-8 opacity-90">
-              <li>• Python / APIs / LLMs</li>
-              <li>• Evaluation pipelines</li>
-              <li>• Scalable systems</li>
-            </ul>
-            <a
-              href="mailto:careers@tribera.ai"
-              class="inline-flex items-center justify-center rounded-lg px-6 py-3 border border-[#da0007] font-semibold text-[13px] hover:opacity-90 transition"
-            >
-              Apply Now
-            </a>
-          </div>
+          <div class="grid gap-8 sm:grid-cols-3 lg:gap-10 lg:self-center">
+            {[
+              ['Clarity', 'Can you reason well and make tradeoffs explicit?'],
+              ['Craft', 'Do you care how the work feels, not just whether it ships?'],
+              ['Ownership', 'Will you move things forward without waiting for permission on every detail?'],
+            ].map(([title, desc]) => (
+              <div class="group flex gap-4 items-start">
+                <div class="w-[2px] min-h-[42px] bg-white/10 transition-all duration-300 group-hover:bg-[#da0007]" />
 
-          <div class="rounded-xl bg-[#f8f8f8] p-8 text-[#181818] shadow-xl">
-            <h3 class="text-2xl font-bold mb-3">Product / Ops</h3>
-            <p class="text-[13px] opacity-90 mb-6">Shape workflows, research hiring behavior, and improve outcomes.</p>
-            <ul class="text-[13px] space-y-2 mb-8 opacity-90">
-              <li>• Hiring workflows</li>
-              <li>• Customer discovery</li>
-              <li>• Process design</li>
-            </ul>
-            <a
-              href="mailto:careers@tribera.ai"
-              class="inline-flex items-center justify-center rounded-lg px-6 py-3 border border-[#da0007] font-semibold text-[13px] hover:opacity-90 transition"
-            >
-              Apply Now
-            </a>
+                <div class="max-w-none">
+                  <div class="text-[13px] sm:text-[14px] font-[700] mb-1 text-white">{title}</div>
+                  <div class="text-[13px] sm:text-[14px] leading-relaxed text-white/40">{desc}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="bg-black text-white py-16 md:py-20">
+    <section class="bg-[#f5f5f5] text-black py-14 md:py-20">
       <div class="max-w-5xl mx-auto px-6 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Don’t see your role listed?</h2>
-        <p class="text-white/60 text-[15px] mb-8">
-          We’re always excited to meet thoughtful builders and problem-solvers.
+        <p class="text-[11px] uppercase tracking-[0.22em] text-[#da0007] mb-3">Not seeing your fit?</p>
+        <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] tracking-[-0.03em] leading-[1.08]">
+          We still want to hear from thoughtful builders.
+        </h2>
+        <p class="mt-5 text-black/60 text-[15px] sm:text-[16px] max-w-2xl mx-auto leading-relaxed">
+          If you like hard problems, direct feedback, and building systems that matter, reach out. We review every
+          message.
         </p>
 
-        <a
-          href="mailto:careers@tribera.ai"
-          class="inline-flex items-center justify-center rounded-lg px-6 py-3 bg-[#da0007] font-semibold text-[13px] text-white hover:opacity-90 transition"
-        >
-          Reach Out
-        </a>
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="mailto:careers@tribera.ai"
+            class="inline-flex items-center justify-center rounded-full bg-[#da0007] px-6 py-3 text-[13px] font-semibold text-white transition hover:bg-[#c50006]"
+          >
+            Email Careers
+          </a>
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-[13px] font-semibold text-black/80 transition hover:border-black/20 hover:text-black"
+          >
+            Contact Tribera
+          </a>
+        </div>
       </div>
     </section>
   </main>
+
+  <style>
+    @keyframes float {
+      0%,
+      100% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+
+      25% {
+        transform: translate3d(var(--float-x1), var(--float-y1), 0) scale(var(--float-scale1));
+      }
+
+      50% {
+        transform: translate3d(var(--float-x2), var(--float-y2), 0) scale(var(--float-scale2));
+      }
+
+      75% {
+        transform: translate3d(var(--float-x3), var(--float-y3), 0) scale(var(--float-scale3));
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .group,
+      .group * {
+        transition-duration: 0ms !important;
+        animation: none !important;
+      }
+    }
+  </style>
 </Layout>

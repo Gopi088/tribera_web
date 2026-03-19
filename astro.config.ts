@@ -29,7 +29,26 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap(),
+    sitemap({
+      filter(page) {
+        const pathname = new URL(page).pathname;
+
+        if (
+          pathname.startsWith('/category/') ||
+          pathname.startsWith('/tag/') ||
+          pathname === '/privacy/' ||
+          pathname === '/terms/'
+        ) {
+          return false;
+        }
+
+        if (/^\/blog\/\d+\/$/.test(pathname)) {
+          return false;
+        }
+
+        return true;
+      },
+    }),
     mdx(),
     icon({
       include: {

@@ -21,18 +21,18 @@ export const headerData = {
       text: 'Contact',
       href: getPermalink('/contact'),
     },
-    // {
-    //   text: 'Careers',
-    //   href: getPermalink('/careers'),
-    // },
+    {
+      text: 'Careers',
+      href: getPermalink('/careers'),
+    },
     {
       text: 'Blog',
       href: getBlogPermalink(), // resolves to /blog/
     },
-    //  {
-    //   text: 'Services',
-    //   href: getPermalink('/services'), // resolves to /blog/
-    // },
+    {
+      text: 'Services',
+      href: getPermalink('/services'),
+    },
   ],
   actions: [],
 };

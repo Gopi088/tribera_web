@@ -23,8 +23,10 @@ const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: SITE?.name || 'tribera',
+  alternateName: 'tribera.ai',
   url: siteUrl,
   logo: `${siteUrl}/favicon.png`,
+  description: METADATA?.description || 'AI hiring platform combining signal analysis with human judgment.',
   sameAs: ['https://www.linkedin.com/company/triberaai'],
 };
 
@@ -33,10 +35,13 @@ const websiteJsonLd = {
   '@type': 'WebSite',
   name: SITE?.name || 'tribera',
   url: siteUrl,
+  description: METADATA?.description || 'AI hiring platform combining signal analysis with human judgment.',
   inLanguage: 'en',
   publisher: {
     '@type': 'Organization',
     name: SITE?.name || 'tribera',
+    url: siteUrl,
+    logo: `${siteUrl}/favicon.png`,
   },
 };
 

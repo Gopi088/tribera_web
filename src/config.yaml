@@ -11,7 +11,7 @@ metadata:
   title:
     default: 'tribera — Belong.Build.Become.'
     template: '%s — tribera'
-  description: 'tribera combines human insight with AI to deliver data-backed, role-fit shortlists—helping teams hire faster and build teams that belong, build, and become.'
+  description: 'tribera helps hiring teams make faster, sharper decisions with AI signal analysis, advisor-led interviews, and role-fit shortlists.'
   robots:
     index: true
     follow: true
@@ -52,7 +52,7 @@ apps:
       isEnabled: true
       pathname: 'category' # Category main path /category/some-category, you can change this to "group" (/group/some-category)
       robots:
-        index: true
+        index: false
 
     tag:
       isEnabled: true

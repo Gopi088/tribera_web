@@ -8,30 +8,44 @@ interface Props {
   images?: ImageType[];
   mobileSubtitleSingleLine?: boolean;
   mobileLogoClass?: string;
+  theme?: 'light' | 'dark';
 }
 
-const { title, subtitle, images = [], mobileSubtitleSingleLine = false, mobileLogoClass = '' } = Astro.props as Props;
+const {
+  title,
+  subtitle,
+  images = [],
+  mobileSubtitleSingleLine = false,
+  mobileLogoClass = '',
+  theme = 'light',
+} = Astro.props as Props;
+
+const isDark = theme === 'dark';
 ---
 
-<section class="w-full py-2 overflow-hidden bg-white dark:bg-[#111]">
+<section class:list={['w-full py-2 overflow-hidden', isDark ? 'brands-surface-dark' : 'brands-surface-light']}>
   <div class="max-w-8xl mx-auto px-6">
     <!-- MAIN ROW -->
     <!-- MAIN ROW -->
     <div class="flex flex-col md:flex-row items-center md:items-center gap-8 mb-5 text-center md:text-left">
       <!-- LEFT TEXT -->
       <div class="min-w-[260px]">
-        <h2 class="text-[16px] font-semibold text-gray-500 uppercase tracking-wide">
+        <h2 class:list={['text-[14px] md:text-[16px] font-semibold uppercase tracking-wide', isDark ? 'text-white/55' : 'text-gray-500']}>
           {title}
         </h2>
 
         <p
-          class={`text-[14px] text-gray-400 mt-1 ${mobileSubtitleSingleLine ? 'brands-subtitle-mobile-single' : ''}`}
+          class:list={[
+            'text-[12px] md:text-[14px] mt-1',
+            isDark ? 'text-white/35' : 'text-gray-400',
+            mobileSubtitleSingleLine && 'brands-subtitle-mobile-single',
+          ]}
           set:html={subtitle}
         />
       </div>
 
       <!-- RIGHT CAROUSEL -->
-      <div class="relative w-full overflow-hidden fade-left">
+      <div class:list={['relative w-full overflow-hidden fade-left', isDark && 'brands-dark-fade']}>
         <div class="brand-track">
           <!-- LOOP 1 -->
           {
@@ -110,12 +124,20 @@ const { title, subtitle, images = [], mobileSubtitleSingleLine = false, mobileLo
     background: linear-gradient(to left, white 0%, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0) 100%);
   }
 
-  .dark .fade-left::before {
-    background: linear-gradient(to right, #111 0%, rgba(17, 17, 17, 0.8) 30%, rgba(17, 17, 17, 0) 100%);
+  .brands-surface-dark {
+    background: #000;
   }
 
-  .dark .fade-left::after {
-    background: linear-gradient(to left, #111 0%, rgba(17, 17, 17, 0.8) 30%, rgba(17, 17, 17, 0) 100%);
+  .brands-surface-light {
+    background: #fff;
+  }
+
+  .brands-dark-fade.fade-left::before {
+    background: linear-gradient(to right, #000 0%, rgba(0, 0, 0, 0.82) 30%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  .brands-dark-fade.fade-left::after {
+    background: linear-gradient(to left, #000 0%, rgba(0, 0, 0, 0.82) 30%, rgba(0, 0, 0, 0) 100%);
   }
 
   @keyframes scroll {
@@ -130,7 +152,7 @@ const { title, subtitle, images = [], mobileSubtitleSingleLine = false, mobileLo
   @media (max-width: 767px) {
     .brands-subtitle-mobile-single {
       white-space: nowrap;
-      font-size: 12px;
+      font-size: 11px;
     }
 
     :global(.brands-subtitle-mobile-single br) {

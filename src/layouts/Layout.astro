@@ -26,6 +26,7 @@ const { metadata = {} } = Astro.props;
 const { language, textDirection } = I18N;
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const isCandidatesPage = pathname === '/candidates';
+const isCareersPage = pathname === '/careers';
 const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
 ---
 
@@ -441,98 +442,99 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
     <slot />
     <BasicScripts />
 
-    <!-- GLOBAL FULL-WIDTH SCROLL CTA -->
-    <div
-      id="scroll-cta"
-      class="fixed bottom-0 left-0 right-0
-         bg-white
-         border-t border-black/10
-         shadow-[0_-20px_50px_rgba(0,0,0,0.12)]
-         translate-y-full opacity-0
-         pointer-events-none
-         transition-all duration-500 ease-out
-         z-[90]"
-      style="padding-bottom: env(safe-area-inset-bottom);"
-    >
-      <div
-        class="max-w-6xl mx-auto
-              px-4 sm:px-7 lg:px-10
-              py-1.5 sm:py-3.5
-              flex flex-col sm:flex-row
-              items-center
-              justify-between
-              gap-1.5 sm:gap-5 relative
-              pr-10 sm:pr-0"
-      >
-        <!-- LEFT TEXT -->
-        <div class="text-center md:text-left">
-          {
-            isCandidatesPage ? (
-              <>
-                <div class="font-semibold text-[13px] sm:text-[16px] text-black">Ready to get discovered faster?</div>
-                <div class="hidden sm:block mt-0.5 sm:mt-1 text-[12px] sm:text-[14px] text-black/60">
-                  Build your profile once. Get matched with high-intent teams.
-                </div>
-              </>
-            ) : (
-              <>
-                <div class="font-semibold text-[13px] sm:text-[16px] text-black">Ready to transform your hiring?</div>
-                <div class="hidden sm:block mt-0.5 sm:mt-1 text-[12px] sm:text-[14px] text-black/60">
-                  Join Fortune 500 teams using Tribera's AI-powered platform
-                </div>
-              </>
-            )
-          }
-        </div>
-
-        <!-- RIGHT ACTIONS -->
-        <div class="flex items-center justify-center sm:justify-start gap-3 w-full sm:w-auto">
-          {
-            isCandidatesPage ? (
-              <button
-                type="button"
-                data-create-profile
-                class="px-4 sm:px-5 py-1.5 sm:py-2
-               rounded-full
-               tribera-primary-button
-               text-[12px] sm:text-[13px] font-semibold
-               "
-              >
-                Create Your Profile →
-              </button>
-            ) : (
-              <button
-                type="button"
-                id="openDemoBtn"
-                class="px-4 sm:px-6 py-1.5 sm:py-2.5
-               rounded-full
-               tribera-primary-button
-               text-[12px] sm:text-[13px] font-semibold
-               "
-              >
-                Book a Demo →
-              </button>
-            )
-          }
-
-          <button
-            id="close-cta"
-            class="absolute top-1.5 right-2.5
-               sm:static
-               w-6 h-6 sm:w-8 sm:h-8
-               rounded-full
-               border border-black/10
-               flex items-center justify-center
-               text-[11px] sm:text-[13px] text-black/40
-               hover:text-black
-               hover:bg-black/5
-               transition"
+    {
+      !isCareersPage && (
+        <div
+          id="scroll-cta"
+          class="fixed bottom-0 left-0 right-0
+             bg-white
+             border-t border-black/10
+             shadow-[0_-20px_50px_rgba(0,0,0,0.12)]
+             translate-y-full opacity-0
+             pointer-events-none
+             transition-all duration-500 ease-out
+             z-[90]"
+          style="padding-bottom: env(safe-area-inset-bottom);"
+        >
+          <div
+            class="max-w-6xl mx-auto
+                  px-4 sm:px-7 lg:px-10
+                  py-1.5 sm:py-3.5
+                  flex flex-col sm:flex-row
+                  items-center
+                  justify-between
+                  gap-1.5 sm:gap-5 relative
+                  pr-10 sm:pr-0"
           >
-            ✕
-          </button>
+            <div class="text-center md:text-left">
+              {
+                isCandidatesPage ? (
+                  <>
+                    <div class="font-semibold text-[13px] sm:text-[16px] text-black">Ready to get discovered faster?</div>
+                    <div class="hidden sm:block mt-0.5 sm:mt-1 text-[12px] sm:text-[14px] text-black/60">
+                      Build your profile once. Get matched with high-intent teams.
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div class="font-semibold text-[13px] sm:text-[16px] text-black">Ready to transform your hiring?</div>
+                    <div class="hidden sm:block mt-0.5 sm:mt-1 text-[12px] sm:text-[14px] text-black/60">
+                      Join Fortune 500 teams using Tribera's AI-powered platform
+                    </div>
+                  </>
+                )
+              }
+            </div>
+
+            <div class="flex items-center justify-center sm:justify-start gap-3 w-full sm:w-auto">
+              {
+                isCandidatesPage ? (
+                  <button
+                    type="button"
+                    data-create-profile
+                    class="px-4 sm:px-5 py-1.5 sm:py-2
+                   rounded-full
+                   tribera-primary-button
+                   text-[12px] sm:text-[13px] font-semibold
+                   "
+                  >
+                    Create Your Profile →
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    id="openDemoBtn"
+                    class="px-4 sm:px-6 py-1.5 sm:py-2.5
+                   rounded-full
+                   tribera-primary-button
+                   text-[12px] sm:text-[13px] font-semibold
+                   "
+                  >
+                    Book a Demo →
+                  </button>
+                )
+              }
+
+              <button
+                id="close-cta"
+                class="absolute top-1.5 right-2.5
+                   sm:static
+                   w-6 h-6 sm:w-8 sm:h-8
+                   rounded-full
+                   border border-black/10
+                   flex items-center justify-center
+                   text-[11px] sm:text-[13px] text-black/40
+                   hover:text-black
+                   hover:bg-black/5
+                   transition"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )
+    }
 
     <div
       id="demoModal"

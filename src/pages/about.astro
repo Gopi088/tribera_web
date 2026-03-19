@@ -3,9 +3,9 @@ import Layout from '~/layouts/PageLayout.astro';
 import Brands from '~/components/widgets/Brands.astro';
 
 const metadata = {
-  title: 'About',
+  title: 'About tribera | AI Hiring Platform with Human Judgment',
   description:
-    'Learn how Tribera combines AI and human judgment to help teams hire better, faster, and with confidence.',
+    'Learn how tribera combines AI signal analysis and human judgment to help hiring teams make faster, more defensible decisions.',
 };
 ---
 
@@ -66,7 +66,9 @@ const metadata = {
       </div>
 
       <div class="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 text-center group">
-        <div class="text-[#e10600] text-sm md:text-base font-semibold mb-6">About tribera</div>
+        <div class="text-[#da0007] text-[11px] sm:text-[12px] font-semibold tracking-[0.24em] uppercase mb-6">
+          ABOUT TRIBERA
+        </div>
         <h1 class="text-white font-[700] leading-[1.05]
              text-[38px] sm:text-[50px] lg:text-[64px]">
           Belong. Build.<span class="sm:hidden"> </span><br class="hidden sm:block" />
@@ -76,6 +78,35 @@ const metadata = {
         <p class="mt-6 max-w-2xl mx-auto text-[15px] sm:text-[16px] leading-relaxed text-white/50">
           This industry gave us everything. tribera is how we give back.
         </p>
+
+        <p class="mt-4 max-w-2xl mx-auto text-[14px] sm:text-[15px] leading-relaxed text-white/35">
+          We built tribera.ai to combine AI signal analysis with human judgment, and
+          <a href="/services" class="text-white/70 underline decoration-white/20 underline-offset-4 hover:text-white">our hiring services</a>
+          bring that same model to teams that want more than software alone.
+        </p>
+
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button
+            type="button"
+            data-open-demo
+            class="relative overflow-hidden
+         w-auto
+         inline-flex items-center justify-center
+         px-5 py-2.5
+         rounded-full
+         tribera-primary-button
+         font-semibold text-[13px]"
+          >
+            <span class="relative z-10">See Platform Demo →</span>
+          </button>
+
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#121212] border border-white/10 text-white/80 text-[13px] font-bold transition-all duration-300 hover:border-white/20"
+          >
+            Book a Demo
+          </a>
+        </div>
       </div>
     </section>
 
@@ -115,10 +146,7 @@ const metadata = {
             <div class="w-[120%] h-[120%] bg-[#da0007] opacity-10 blur-[20px] rounded-full"></div>
           </div>
 
-          <h1
-            class="relative font-semibold leading-tight tracking-tight
-             text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
-          >
+          <h1 class="relative font-semibold leading-tight tracking-tight text-[34px] sm:text-[44px] lg:text-[55px]">
             “Who will truly<span class="sm:hidden"> </span><br class="hidden sm:block" />
             belong here?”
           </h1>
@@ -146,7 +174,9 @@ const metadata = {
       <div class="max-w-6xl mx-auto px-6">
         {/* HEADER */}
         <div class="text-center mb-10">
-          <p class="text-[#da0007] text-[15px] font-semibold tracking-wide mb-2">What makes us different</p>
+          <p class="text-[#da0007] text-[11px] tracking-[0.24em] font-semibold uppercase mb-2">
+            WHAT MAKES US DIFFERENT
+          </p>
 
           <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] tracking-[-0.02em]">
             The difference is context.
@@ -283,7 +313,7 @@ const metadata = {
       <div class="max-w-5xl mx-auto px-6">
         {/* HEADER */}
         <div class="text-center mb-5">
-          <p class="text-[#da0007] text-sm font-semibold mb-4">The journey</p>
+          <p class="text-[#da0007] text-[11px] tracking-[0.24em] font-semibold uppercase mb-4">THE JOURNEY</p>
 
           <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] tracking-[-0.02em]">
             The work behind the insight.
@@ -423,15 +453,10 @@ const metadata = {
               },
             ].map((card) => (
               <div
-                class="group
-                    bg-white/30
-                    backdrop-blur-sm
-                    rounded-xl
-                    p-6
-                    transition-all duration-500
-                    hover:bg-white
-                    hover:shadow-[0_15px_40px_rgba(0,0,0,0.08)]"
+                class="group relative overflow-hidden rounded-[24px] border border-black/5 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_48px_-24px_rgba(218,0,7,0.20)]"
               >
+                <div class="absolute left-0 top-0 h-[3px] w-0 bg-[#da0007] transition-all duration-500 group-hover:w-full" />
+
                 {/* Big Number */}
                 <div
                   class="text-4xl font-bold
@@ -444,7 +469,9 @@ const metadata = {
                 </div>
 
                 {/* Title */}
-                <h3 class="text-xl font-semibold text-black mb-3">{card.title}</h3>
+                <h3 class="text-[21px] sm:text-[22px] font-semibold tracking-tight leading-tight text-black mb-3">
+                  {card.title}
+                </h3>
 
                 {/* Description */}
                 <p class="text-black/60 text-[14px] leading-relaxed">{card.desc}</p>
@@ -458,7 +485,9 @@ const metadata = {
     <section class="bg-black py-20 md:py-28 px-6 sm:px-10">
       <div class="max-w-5xl mx-auto">
         <div class="text-center mb-20">
-          <div class="text-[#DA0007] text-sm font-semibold tracking-widest uppercase mb-4">Who we are</div>
+          <div class="text-[#da0007] text-[11px] tracking-[0.24em] font-semibold uppercase mb-4">
+            WHO WE ARE
+          </div>
 
           <h2 class="text-white font-[700] leading-[1.08] tracking-[-0.02em] text-[34px] sm:text-[44px] lg:text-[55px]">
             Built by people who learned<span class="sm:hidden"> </span><br class="hidden sm:block" />
@@ -529,7 +558,9 @@ const metadata = {
     <section class="bg-white py-16 md:py-20 px-6">
       <div class="max-w-5xl mx-auto text-center">
         {/* Eyebrow */}
-        <div class="text-[#e10600] text-sm font-semibold mb-4">Our approach</div>
+        <div class="text-[#da0007] text-[11px] tracking-[0.24em] font-semibold uppercase mb-4">
+          OUR APPROACH
+        </div>
 
         {/* Heading */}
         <h2
@@ -584,7 +615,7 @@ const metadata = {
 
     <section class="bg-[#f3f3f5] py-20 md:py-28">
       <div class="max-w-3xl mx-auto px-6 text-center">
-        <p class="text-[#da0007] text-[14px] font-semibold mb-4">About Tribera</p>
+        <p class="text-[#da0007] text-[11px] tracking-[0.24em] font-semibold uppercase mb-4">ABOUT TRIBERA</p>
 
         <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] tracking-[-0.02em] text-black">
           We build teams<span class="sm:hidden"> </span><br class="hidden sm:block" />
@@ -608,8 +639,15 @@ const metadata = {
          tribera-primary-button
          font-semibold text-[13px]"
           >
-            <span class="relative z-10"> See Platform Demo → </span>
+            <span class="relative z-10">See Platform Demo →</span>
           </button>
+
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#121212] border border-black/10 text-white text-[13px] font-bold transition-all duration-300 hover:border-black/20"
+          >
+            Book a Demo
+          </a>
         </div>
 
         <p class="mt-6 text-xs text-black/40">Built by operators. Backed by insight. Driven by outcomes.</p>

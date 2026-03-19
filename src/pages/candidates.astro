@@ -320,7 +320,7 @@ const customerstories = [
                   { id: 'culture', label: 'Culture Fit', value: 91, suffix: '%' },
                 ].map((item) => (
                   <div class="bg-white/5 border hover:bg-white/10 hover:border-[#da0007]/10 hover:translate-y-[-2px] transition duration-500 border-white/10 rounded-[12px] p-2 text-center">
-                    <div class="text-[10px] font-[550] tracking-[0.1em] text-white/30 uppercase mb-2 min-h-[30px] leading-[1.25]">
+                    <div class="text-[9px] sm:text-[10px] font-[550] tracking-[0.08em] sm:tracking-[0.1em] text-white/30 uppercase mb-2 min-h-[28px] sm:min-h-[30px] leading-[1.2] sm:leading-[1.25]">
                       {item.label === 'Technical Score' ? (
                         <>
                           Technical
@@ -333,13 +333,13 @@ const customerstories = [
                     </div>
 
                     <div
-                      class={`relative inline-flex items-end justify-center text-[24px] font-semibold leading-none ${item.red ? 'text-[#da0007]' : 'text-white'} ${item.suffix ? 'pr-[14px]' : ''}`}
+                      class={`relative inline-flex items-end justify-center text-[21px] sm:text-[24px] font-semibold leading-none ${item.red ? 'text-[#da0007]' : 'text-white'} ${item.suffix ? 'pr-[12px] sm:pr-[14px]' : ''}`}
                     >
                       <span id={item.id} class="leading-none tabular-nums">
                         0
                       </span>
                       {item.suffix && (
-                        <span class="absolute right-0 bottom-0 text-white/40 text-[14px] leading-none">
+                        <span class="absolute right-0 bottom-0 text-white/40 text-[11px] sm:text-[14px] leading-none">
                           {item.suffix}
                         </span>
                       )}
@@ -377,13 +377,13 @@ const customerstories = [
 
             <div class="h-px bg-white/10 my-4"></div>
 
-            <div class="flex justify-between items-center">
+            <div class="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
               <div>
                 <div class="text-[10px] font-[500] tracking-[0.1em] text-white/30 uppercase mb-2">
                   Viewing your profile
                 </div>
 
-                <div class="flex gap-2">
+                <div class="flex flex-wrap gap-2">
                   {
                     ['GS', 'MS', 'IBM'].map((company) => (
                       <span
@@ -398,7 +398,7 @@ const customerstories = [
                 </div>
               </div>
 
-              <div class="text-[#da0007]/70 text-[13px] font-medium hover:underline cursor-pointer">
+              <div class="self-start sm:self-auto text-[#da0007]/70 text-[13px] font-medium hover:underline cursor-pointer">
                 2 interview requests →
               </div>
             </div>
