@@ -480,8 +480,9 @@ const customerstories = [
           function isInActivationBand() {
             const rect = target.getBoundingClientRect();
             const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-            const startLine = window.innerWidth < 768 ? viewportHeight * 0.52 : viewportHeight * 0.64;
-            const endLine = viewportHeight * 0.14;
+            const isMobile = window.innerWidth < 768;
+            const startLine = isMobile ? viewportHeight * 0.52 : viewportHeight * 0.56;
+            const endLine = isMobile ? viewportHeight * 0.14 : viewportHeight * 0.22;
 
             return rect.top <= startLine && rect.bottom >= endLine;
           }
