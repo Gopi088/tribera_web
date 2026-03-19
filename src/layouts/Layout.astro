@@ -67,6 +67,9 @@ const isCandidatesPage = pathname === '/candidates';
         const chatbotIframeId = 'teams-chat-bot-iframe-a3b60c17-95c7-4cba-8036-be9da15bcc26';
         const chatbotFrameSrc = `https://customerconnect.teams.usercontent.microsoft/customer-service-chatbot?environmentId=${environmentId}`;
         const prewarmIframeId = 'tribera-chatbot-prewarm-frame';
+        const prewarmIdleTimeoutMs = 1200;
+        const prewarmFallbackDelayMs = 600;
+        const prewarmFrameTtlMs = 120000;
         const microsoftOrigins = [
           'https://res.public.onecdn.static.microsoft',
           'https://customerconnect.teams.usercontent.microsoft',
@@ -89,6 +92,7 @@ const isCandidatesPage = pathname === '/candidates';
             requested: false,
             completed: false,
             timerId: null,
+            cleanupTimerId: null,
           });
         const pushDebugEvent = (type, detail = {}) => {
           const entry = {
@@ -148,6 +152,11 @@ const isCandidatesPage = pathname === '/candidates';
         };
 
         const removePrewarmFrame = () => {
+          if (prewarmState.cleanupTimerId) {
+            window.clearTimeout(prewarmState.cleanupTimerId);
+            prewarmState.cleanupTimerId = null;
+          }
+
           const frame = document.getElementById(prewarmIframeId);
           if (frame instanceof HTMLIFrameElement) {
             frame.remove();
@@ -178,22 +187,22 @@ const isCandidatesPage = pathname === '/candidates';
               () => {
                 prewarmState.completed = true;
                 pushDebugEvent('prewarm-frame-load');
-                window.setTimeout(removePrewarmFrame, 1200);
+                prewarmState.cleanupTimerId = window.setTimeout(removePrewarmFrame, prewarmFrameTtlMs);
               },
               { once: true }
             );
 
             document.body.appendChild(frame);
             pushDebugEvent('prewarm-frame-created', { iframeSrc: chatbotFrameSrc });
-            window.setTimeout(removePrewarmFrame, 10000);
+            prewarmState.cleanupTimerId = window.setTimeout(removePrewarmFrame, prewarmFrameTtlMs);
           };
 
           if ('requestIdleCallback' in window) {
-            prewarmState.timerId = window.requestIdleCallback(start, { timeout: 2500 });
+            prewarmState.timerId = window.requestIdleCallback(start, { timeout: prewarmIdleTimeoutMs });
             return;
           }
 
-          prewarmState.timerId = window.setTimeout(start, 1800);
+          prewarmState.timerId = window.setTimeout(start, prewarmFallbackDelayMs);
         };
 
         const observeResources = () => {
@@ -228,6 +237,7 @@ const isCandidatesPage = pathname === '/candidates';
             if (!(iframe instanceof HTMLIFrameElement)) return;
             if (iframe.dataset.triberaObserved === 'true') return;
 
+            removePrewarmFrame();
             iframe.dataset.triberaObserved = 'true';
             recordIframeSnapshot('iframe-found');
             iframe.addEventListener('load', () => recordIframeSnapshot('iframe-load'));
