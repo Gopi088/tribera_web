@@ -65,6 +65,8 @@ const isCandidatesPage = pathname === '/candidates';
         const chatbotScriptSrc = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
         const environmentId = '75186a18-80c9-e34b-b323-d376419f05d1';
         const chatbotIframeId = 'teams-chat-bot-iframe-a3b60c17-95c7-4cba-8036-be9da15bcc26';
+        const chatbotFrameSrc = `https://customerconnect.teams.usercontent.microsoft/customer-service-chatbot?environmentId=${environmentId}`;
+        const prewarmIframeId = 'tribera-chatbot-prewarm-frame';
         const microsoftOrigins = [
           'https://res.public.onecdn.static.microsoft',
           'https://customerconnect.teams.usercontent.microsoft',
@@ -80,6 +82,13 @@ const isCandidatesPage = pathname === '/candidates';
             sessionStartedAt: Date.now(),
             events: [],
             resources: [],
+          });
+        const prewarmState =
+          window.__triberaChatPrewarm ||
+          (window.__triberaChatPrewarm = {
+            requested: false,
+            completed: false,
+            timerId: null,
           });
         const pushDebugEvent = (type, detail = {}) => {
           const entry = {
@@ -127,6 +136,64 @@ const isCandidatesPage = pathname === '/candidates';
           } catch {
             return false;
           }
+        };
+
+        const canPrewarmChat = () => {
+          const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+          if (!connection) return true;
+          if (connection.saveData) return false;
+
+          const effectiveType = String(connection.effectiveType || '').toLowerCase();
+          return !effectiveType.includes('2g');
+        };
+
+        const removePrewarmFrame = () => {
+          const frame = document.getElementById(prewarmIframeId);
+          if (frame instanceof HTMLIFrameElement) {
+            frame.remove();
+            pushDebugEvent('prewarm-frame-removed');
+          }
+        };
+
+        const ensurePrewarmFrame = () => {
+          if (prewarmState.requested || prewarmState.completed) return;
+          if (!canPrewarmChat()) return;
+          if (getIframe() instanceof HTMLIFrameElement) return;
+
+          prewarmState.requested = true;
+
+          const start = () => {
+            if (document.getElementById(prewarmIframeId)) return;
+            if (getIframe() instanceof HTMLIFrameElement) return;
+
+            const frame = document.createElement('iframe');
+            frame.id = prewarmIframeId;
+            frame.src = chatbotFrameSrc;
+            frame.setAttribute('aria-hidden', 'true');
+            frame.tabIndex = -1;
+            frame.className = 'pointer-events-none fixed bottom-0 right-0 h-0 w-0 border-0 opacity-0';
+
+            frame.addEventListener(
+              'load',
+              () => {
+                prewarmState.completed = true;
+                pushDebugEvent('prewarm-frame-load');
+                window.setTimeout(removePrewarmFrame, 1200);
+              },
+              { once: true }
+            );
+
+            document.body.appendChild(frame);
+            pushDebugEvent('prewarm-frame-created', { iframeSrc: chatbotFrameSrc });
+            window.setTimeout(removePrewarmFrame, 10000);
+          };
+
+          if ('requestIdleCallback' in window) {
+            prewarmState.timerId = window.requestIdleCallback(start, { timeout: 2500 });
+            return;
+          }
+
+          prewarmState.timerId = window.setTimeout(start, 1800);
         };
 
         const observeResources = () => {
@@ -219,10 +286,12 @@ const isCandidatesPage = pathname === '/candidates';
 
         const initChatbot = () => {
           ensureChatbotScript();
+          ensurePrewarmFrame();
         };
 
         const reinitChatbotOnPageShow = () => {
           ensureChatbotScript();
+          ensurePrewarmFrame();
         };
 
         document.addEventListener('astro:page-load', initChatbot);
@@ -242,7 +311,19 @@ const isCandidatesPage = pathname === '/candidates';
             const link = target.closest('a');
             if (!shouldReinitForLink(link)) return;
             pushDebugEvent('nav-remount', { href: link.href });
+            if (prewarmState.timerId) {
+              if ('cancelIdleCallback' in window && typeof prewarmState.timerId === 'number') {
+                window.cancelIdleCallback(prewarmState.timerId);
+              } else {
+                window.clearTimeout(prewarmState.timerId);
+              }
+              prewarmState.timerId = null;
+            }
+            prewarmState.requested = false;
+            prewarmState.completed = false;
+            removePrewarmFrame();
             ensureChatbotScript(true);
+            ensurePrewarmFrame();
           },
           true
         );
@@ -261,6 +342,7 @@ const isCandidatesPage = pathname === '/candidates';
 
         observeResources();
         observeIframeLifecycle();
+        ensurePrewarmFrame();
       })();
     </script>
     <slot />
