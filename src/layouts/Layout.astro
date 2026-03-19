@@ -174,7 +174,7 @@ const isCandidatesPage = pathname === '/candidates';
               </span>
               <div class="min-w-0">
                 <div class="text-[13px] font-semibold leading-5 text-white">Connecting to chat</div>
-                <div class="mt-1 text-[12px] leading-5 text-white/65">Waking up Tribera's live assistant...</div>
+                <div class="mt-1 text-[12px] leading-5 text-white/65">Andy’s on the way.</div>
               </div>
             </div>
           `;
@@ -354,8 +354,18 @@ const isCandidatesPage = pathname === '/candidates';
           }
         };
 
+        const hasChatbotUi = () => {
+          return !!(getLauncher() || getIframe() || getLoader());
+        };
+
         const initChatbot = () => {
-          ensureChatbotScript();
+          const script = document.getElementById(chatbotScriptId);
+          if (script instanceof HTMLScriptElement && !hasChatbotUi()) {
+            pushDebugEvent('post-load-remount');
+            ensureChatbotScript(true);
+          } else {
+            ensureChatbotScript();
+          }
           ensurePrewarmFrame();
         };
 
@@ -381,7 +391,7 @@ const isCandidatesPage = pathname === '/candidates';
             if (!(target instanceof Element)) return;
             const link = target.closest('a');
             if (!shouldReinitForLink(link)) return;
-            pushDebugEvent('nav-remount', { href: link.href });
+            pushDebugEvent('nav-click', { href: link.href });
             if (prewarmState.timerId) {
               if ('cancelIdleCallback' in window && typeof prewarmState.timerId === 'number') {
                 window.cancelIdleCallback(prewarmState.timerId);
@@ -394,8 +404,6 @@ const isCandidatesPage = pathname === '/candidates';
             prewarmState.completed = false;
             removePrewarmFrame();
             setChatStatusVisible(false);
-            ensureChatbotScript(true);
-            ensurePrewarmFrame();
           },
           true
         );
