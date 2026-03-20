@@ -67,6 +67,55 @@ const postCollection = defineCollection({
   }),
 });
 
+const jobCollection = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: 'src/data/jobs' }),
+  schema: z
+    .object({
+      title: z.string(),
+
+      status: z.enum(['open', 'closed', 'draft']).default('open'),
+      department: z.enum([
+        'Engineering',
+        'Talent Advisory',
+        'Business Development',
+        'Operations',
+        'Founders Office',
+        'Design',
+        'Marketing',
+      ]),
+      roleFamily: z.enum(['technical', 'talent', 'go-to-market', 'operations', 'intern']),
+      employmentType: z.enum(['full-time', 'intern', 'contract']),
+      location: z.string(),
+      remotePolicy: z.enum(['remote', 'hybrid', 'onsite']),
+      experienceLevel: z.string().optional(),
+
+      featured: z.boolean().optional().default(false),
+      sortOrder: z.number().int().optional().default(100),
+
+      summary: z.string(),
+      applyEmail: z.string().email().optional(),
+      applyUrl: z.string().url().optional(),
+
+      postedAt: z.date().optional(),
+      updatedAt: z.date().optional(),
+
+      seoTitle: z.string().optional(),
+      seoDescription: z.string().optional(),
+
+      metadata: metadataDefinition(),
+    })
+    .superRefine((data, ctx) => {
+      if (!data.applyEmail && !data.applyUrl) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'Provide either applyEmail or applyUrl.',
+          path: ['applyEmail'],
+        });
+      }
+    }),
+});
+
 export const collections = {
   post: postCollection,
+  job: jobCollection,
 };

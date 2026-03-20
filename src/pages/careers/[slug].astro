@@ -1,0 +1,287 @@
+---
+import type { GetStaticPaths } from 'astro';
+import merge from 'lodash.merge';
+import Layout from '~/layouts/PageLayout.astro';
+import { getCanonical, getPermalink } from '~/utils/permalinks';
+import type { Job } from '~/utils/jobs';
+import { getStaticPathsJobs } from '~/utils/jobs';
+import type { MetaData } from '~/types';
+import RoleMeta from '~/components/careers/RoleMeta.astro';
+import ApplyCard from '~/components/careers/ApplyCard.astro';
+import CareersApplyModal from '~/components/careers/CareersApplyModal.astro';
+
+export const prerender = true;
+
+export const getStaticPaths = (async () => {
+  return await getStaticPathsJobs();
+}) satisfies GetStaticPaths;
+
+const { job } = Astro.props as { job: Job };
+
+const url = getCanonical(getPermalink(job.permalink, 'page'));
+const metadata = merge(
+  {
+    title: job.seoTitle || job.title,
+    description: job.seoDescription || job.summary,
+    robots: {
+      index: job.status === 'open',
+      follow: true,
+    },
+    openGraph: {
+      type: 'website',
+    },
+    canonical: url,
+  },
+  job.metadata || {}
+) as MetaData;
+
+const isClosed = job.status === 'closed';
+---
+
+<Layout metadata={metadata}>
+  <main>
+    <section
+      class="relative overflow-hidden bg-black pt-20 pb-14 sm:pt-24 sm:pb-16 md:min-h-[72vh] md:flex md:items-center"
+    >
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-black"></div>
+        <div
+          class="absolute left-[-30%] md:left-[-15%] top-0 h-full w-[90%] md:w-[60%] bg-[radial-gradient(circle_at_left_center,rgba(218,0,7,0.45),transparent_60%)]"
+        >
+        </div>
+        <div
+          class="absolute right-[-30%] md:right-[-15%] top-0 h-full w-[90%] md:w-[60%] bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.45),transparent_60%)]"
+        >
+        </div>
+      </div>
+
+      <div class="absolute inset-0 pointer-events-none">
+        {
+          Array.from({ length: 20 }).map((_, i) => (
+            <span
+              class="absolute rounded-full bg-[#da0007]/80"
+              style={`
+                width:${i % 4 === 0 ? 4 : 3}px;
+                height:${i % 4 === 0 ? 4 : 3}px;
+                left:${10 + Math.random() * 80}%;
+                top:${8 + Math.random() * 82}%;
+                --float-x1:${(Math.random() * 26 - 13).toFixed(1)}px;
+                --float-y1:${(Math.random() * 20 - 10).toFixed(1)}px;
+                --float-x2:${(Math.random() * 28 - 14).toFixed(1)}px;
+                --float-y2:${(Math.random() * 22 - 11).toFixed(1)}px;
+                --float-x3:${(Math.random() * 24 - 12).toFixed(1)}px;
+                --float-y3:${(Math.random() * 18 - 9).toFixed(1)}px;
+                --float-scale1:${(1 + Math.random() * 0.08).toFixed(2)};
+                --float-scale2:${(0.96 + Math.random() * 0.04).toFixed(2)};
+                --float-scale3:${(1 + Math.random() * 0.05).toFixed(2)};
+                animation: float ${13 + Math.random() * 6}s ease-in-out infinite;
+                animation-delay: -${(Math.random() * 10).toFixed(1)}s;
+                box-shadow: 0 0 10px rgba(218,0,7,.5);
+              `}
+            />
+          ))
+        }
+      </div>
+
+      <div class="relative z-10 mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-10">
+        <a
+          href="/careers"
+          class="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-white/35 transition hover:text-white/60 sm:text-[12px]"
+        >
+          <span class="text-[#da0007]">←</span>
+          All openings
+        </a>
+
+        <div class="mt-5 max-w-3xl sm:mt-6">
+          <div
+            class="inline-flex items-center gap-2 rounded-full border border-[#da0007]/50 bg-black/20 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/80 backdrop-blur-sm sm:text-[12px]"
+          >
+            <span class="h-2 w-2 rounded-full bg-[#da0007]"></span>
+            {isClosed ? 'Role filled' : 'Open role'}
+          </div>
+
+          <h1
+            class="mt-5 text-[38px] font-[700] leading-[1.05] tracking-tight text-white sm:text-[50px] lg:text-[64px]"
+          >
+            {job.title}
+          </h1>
+
+          {
+            job.summary ? (
+              <p class="mt-5 max-w-2xl text-[15px] leading-relaxed text-white/50 sm:text-[16px] md:mt-6">
+                {job.summary}
+              </p>
+            ) : null
+          }
+        </div>
+
+        <div class="mt-8 max-w-4xl">
+          <RoleMeta
+            status={job.status}
+            department={job.department}
+            employmentType={job.employmentType}
+            location={job.location}
+            remotePolicy={job.remotePolicy}
+            experienceLevel={job.experienceLevel}
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="relative bg-[#f5f5f5] py-10 md:py-16">
+      <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
+        <div class="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.72fr)] lg:items-start lg:gap-8">
+          <article
+            class="job-content rounded-[28px] border border-black/5 bg-white p-5 sm:p-8 shadow-[0_12px_35px_rgba(0,0,0,0.06)]"
+          >
+            {job.Content ? <job.Content /> : <Fragment set:html={job.content || ''} />}
+          </article>
+
+          <div class="lg:sticky lg:top-28">
+            <ApplyCard title={job.title} summary={job.summary} status={job.status} applyUrl={job.applyUrl} />
+
+            <div
+              class="mt-4 rounded-[24px] border border-black/5 bg-white p-4 sm:p-5 shadow-[0_12px_35px_rgba(0,0,0,0.05)]"
+            >
+              <p class="text-[11px] uppercase tracking-[0.22em] text-black/35">A note from Tribera</p>
+              <p class="mt-3 text-[13px] leading-relaxed text-black/60">
+                We care about judgment, clarity, and execution. If this role feels close but not perfect, still reach
+                out.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  {
+    !isClosed && !job.applyUrl ? (
+      <CareersApplyModal title={job.title} slug={job.slug} department={job.department} />
+    ) : null
+  }
+
+  <style is:global>
+    .job-content h2 {
+      margin-top: 1.6rem;
+      font-size: 0.98rem;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+      color: #000;
+    }
+
+    .job-content h2:first-child {
+      margin-top: 0;
+    }
+
+    .job-content h2 + p {
+      margin-top: 0.45rem;
+    }
+
+    .job-content h2 + p + p {
+      margin-top: 0.5rem;
+    }
+
+    .job-content h3 {
+      margin-top: 1.2rem;
+      font-size: 0.82rem;
+      line-height: 1.32;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .job-content p {
+      margin-top: 0.72rem;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: rgba(0, 0, 0, 0.64);
+    }
+
+    .job-content h2 + p,
+    .job-content h2 + p + p {
+      font-size: 0.76rem;
+      line-height: 1.52;
+      color: rgba(0, 0, 0, 0.58);
+    }
+
+    .job-content ul {
+      margin-top: 0.9rem;
+      padding-left: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.32rem;
+    }
+
+    .job-content li {
+      position: relative;
+      padding-left: 1.35rem;
+      font-size: 0.8rem;
+      line-height: 1.48;
+      color: rgba(0, 0, 0, 0.66);
+    }
+
+    .job-content li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.62rem;
+      height: 0.38rem;
+      width: 0.38rem;
+      border-radius: 9999px;
+      background: #da0007;
+    }
+
+    .job-content strong {
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .job-content blockquote {
+      margin-top: 1.25rem;
+      border-left: 3px solid #da0007;
+      padding-left: 1rem;
+      color: rgba(0, 0, 0, 0.58);
+    }
+
+    .job-content hr {
+      margin: 2rem 0;
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+
+    @media (min-width: 640px) {
+      .job-content h2 {
+        margin-top: 1.8rem;
+        font-size: 1.08rem;
+      }
+
+      .job-content h2 + p {
+        margin-top: 0.5rem;
+      }
+
+      .job-content h2 + p + p {
+        margin-top: 0.55rem;
+      }
+
+      .job-content h3 {
+        margin-top: 1.35rem;
+        font-size: 0.86rem;
+      }
+
+      .job-content p,
+      .job-content li {
+        font-size: 0.84rem;
+        line-height: 1.52;
+      }
+
+      .job-content h2 + p,
+      .job-content h2 + p + p {
+        font-size: 0.78rem;
+        line-height: 1.5;
+      }
+
+      .job-content ul {
+        margin-top: 0.95rem;
+      }
+    }
+  </style>
+</Layout>

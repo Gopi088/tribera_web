@@ -1,0 +1,66 @@
+---
+const {
+  status = 'open',
+  department,
+  employmentType,
+  location,
+  remotePolicy,
+  experienceLevel,
+} = Astro.props as {
+  status?: string;
+  department?: string;
+  employmentType?: string;
+  location?: string;
+  remotePolicy?: string;
+  experienceLevel?: string;
+};
+
+const labelMap: Record<string, string> = {
+  'full-time': 'Full-time',
+};
+
+const formatLabel = (value: string) => {
+  const normalized = value.toLowerCase();
+
+  if (labelMap[normalized]) {
+    return labelMap[normalized];
+  }
+
+  if (/[0-9]/.test(value)) {
+    return value;
+  }
+
+  return value
+    .split(/[-_]+|\s+/)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+    .join(' ');
+};
+
+const chips = [
+  department,
+  employmentType ? formatLabel(employmentType) : undefined,
+  location,
+  remotePolicy ? formatLabel(remotePolicy) : undefined,
+  experienceLevel,
+].filter(Boolean) as Array<string>;
+---
+
+<div class="rounded-[24px] border border-white/10 bg-white/5 p-4 sm:p-6 backdrop-blur-sm">
+  <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
+    <span
+      class="inline-flex items-center gap-2 rounded-full border border-[#da0007]/40 bg-[#da0007]/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#da0007]"
+    >
+      <span class="h-1.5 w-1.5 rounded-full bg-[#da0007]"></span>
+      {status === 'closed' ? 'Closed' : 'Open role'}
+    </span>
+
+    {
+      chips.map((chip) => (
+        <span class="rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[11px] font-medium text-white/75">
+          {chip}
+        </span>
+      ))
+    }
+  </div>
+</div>

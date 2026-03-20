@@ -1,64 +1,125 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import RoleCard from '~/components/careers/RoleCard.astro';
+import { fetchJobs } from '~/utils/jobs';
+
+type Job = {
+  title: string;
+  slug: string;
+  permalink?: string;
+  summary: string;
+  department: string;
+  roleFamily?: string;
+  employmentType?: string;
+  location?: string;
+  remotePolicy?: string;
+  experienceLevel?: string;
+  status?: string;
+  featured?: boolean;
+  sortOrder?: number;
+};
 
 const metadata = {
-  title: 'Careers at tribera | Build the Future of Hiring',
+  title: 'Careers at tribera | Build Better Hiring',
   description:
-    'Join tribera and help build the future of AI-powered hiring across product, engineering, and decision-support systems.',
+    'Join tribera across engineering, talent advisory, business development, operations, and internships to help teams hire with more signal and better judgment.',
 };
+
+const toSlug = (value = '') =>
+  value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+const departmentOrder = [
+  'Engineering',
+  'Talent Advisory',
+  'Business Development',
+  'Operations',
+  'Founders Office',
+  'Design',
+  'Marketing',
+];
+
+const sortJobs = (a: Job, b: Job) =>
+  Number(Boolean(b.featured)) - Number(Boolean(a.featured)) ||
+  (a.sortOrder ?? 100) - (b.sortOrder ?? 100) ||
+  a.title.localeCompare(b.title);
+
+const jobs = ((await fetchJobs()) as Array<Job>).slice().sort(sortJobs);
+const openJobs = jobs.filter((job) => (job.status || 'open') === 'open');
+const featuredJobs = openJobs.filter((job) => job.featured).slice(0, 3);
+const featuredSlugs = new Set(featuredJobs.map((job) => job.slug));
+
+const orderedDepartments = departmentOrder.filter((department) =>
+  openJobs.some((job) => job.department === department && !featuredSlugs.has(job.slug))
+);
+
+const extraDepartments = Array.from(
+  new Set(openJobs.filter((job) => !departmentOrder.includes(job.department)).map((job) => job.department))
+);
+
+const groupedDepartments = [...orderedDepartments, ...extraDepartments].map((department) => ({
+  department,
+  slug: toSlug(department),
+  jobs: openJobs
+    .filter((job) => job.department === department)
+    .filter((job) => !featuredSlugs.has(job.slug))
+    .sort(sortJobs),
+}));
+
+const activeDepartments = groupedDepartments.filter((group) => group.jobs.length > 0);
+const allDepartmentLinks = activeDepartments.map((group) => ({
+  title: group.department,
+  href: `#${group.slug}`,
+}));
 
 const values = [
   {
-    letter: 'M',
-    title: 'Meaningful problems',
-    desc: 'Work on hiring systems that affect real outcomes, not vanity metrics.',
+    title: 'Work that matters',
+    desc: 'The work here changes how teams hire and how candidates are assessed.',
   },
   {
-    letter: 'O',
-    title: 'Ownership with scope',
-    desc: 'Small team energy, real autonomy, and work that ships into production.',
+    title: 'Ownership from the start',
+    desc: 'You will own meaningful work and carry it through properly.',
   },
   {
-    letter: 'H',
-    title: 'Human judgment first',
-    desc: 'Build AI that supports better decisions without flattening nuance or context.',
+    title: 'Better decisions',
+    desc: 'We build technology that helps people make clearer, better hiring decisions.',
   },
 ];
 
 const benefits = [
-  'Build AI systems used in real hiring decisions',
-  'Collaborate with engineers, designers, and researchers',
-  'Learn fast, ship often, iterate thoughtfully',
-  'Culture focused on clarity, ownership, and respect',
+  'Work across engineering, talent, business, and operations with the same level of trust',
+  'Ship systems and processes that sit inside real hiring work',
+  'Stay close to outcomes, not just activity',
+  'Work with a team that values clarity, respect, and high standards',
 ];
 
-const roles = [
-  {
-    title: 'Backend Engineer',
-    desc: 'Build the core systems that power hiring workflows, scoring pipelines, and product reliability.',
-    bullets: ['Golang or C++', 'Python', 'Scalable backend systems'],
-  },
-  {
-    title: 'AI/ML Engineer',
-    desc: 'Work on NLP-led intelligence across screening, reasoning, and decision support, with voice-model experience as a strong plus.',
-    bullets: ['Natural language processing', 'Speech/voice model experience desirable', 'Applied ML workflows'],
-  },
-  {
-    title: 'Software Intern',
-    desc: 'Ship real product work across engineering and AI systems while learning inside a high-ownership team.',
-    bullets: ['Hands-on product building', 'Strong mentorship', 'Real production exposure'],
-  },
+const hiringPrinciples = [
+  ['Clarity', 'You can reason well, explain tradeoffs, and make the next step clear.'],
+  ['Craft', 'You care about quality in the work itself, not just delivery on paper.'],
+  ['Ownership', 'You move things forward and stay accountable for the outcome.'],
 ];
 ---
 
 <Layout metadata={metadata}>
   <main>
-    <section class="relative overflow-hidden bg-black pt-20 pb-16 sm:pt-24 sm:pb-18 md:min-h-screen md:flex md:items-center md:justify-center md:py-0">
+    <section
+      class="relative overflow-hidden bg-black pt-20 pb-16 sm:pt-24 sm:pb-18 md:min-h-screen md:flex md:items-center md:justify-center md:py-0"
+    >
       <div class="absolute inset-0">
         <div class="absolute inset-0 bg-black"></div>
 
-        <div class="absolute left-[-28%] md:left-[-14%] top-0 h-full w-[88%] md:w-[58%] bg-[radial-gradient(circle_at_left_center,rgba(218,0,7,0.46),transparent_62%)]"></div>
-        <div class="absolute right-[-28%] md:right-[-14%] top-0 h-full w-[88%] md:w-[58%] bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.38),transparent_62%)]"></div>
+        <div
+          class="absolute left-[-28%] md:left-[-14%] top-0 h-full w-[88%] md:w-[58%] bg-[radial-gradient(circle_at_left_center,rgba(218,0,7,0.46),transparent_62%)]"
+        >
+        </div>
+        <div
+          class="absolute right-[-28%] md:right-[-14%] top-0 h-full w-[88%] md:w-[58%] bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.38),transparent_62%)]"
+        >
+        </div>
       </div>
 
       <div class="absolute inset-0 pointer-events-none opacity-70">
@@ -89,46 +150,47 @@ const roles = [
         }
       </div>
 
-      <div class="relative z-10 max-w-[1120px] mx-auto px-6 sm:px-8 lg:px-10 text-center md:py-16">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#da0007]/50 text-[11px] tracking-[0.24em] text-white/80 uppercase mb-6 bg-black/20 backdrop-blur-sm">
+      <div class="relative z-10 mx-auto max-w-[1120px] px-5 text-center sm:px-8 lg:px-10 md:py-16">
+        <div
+          class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#da0007]/50 bg-black/20 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/80 backdrop-blur-sm sm:text-[12px]"
+        >
           <span class="w-2 h-2 bg-[#da0007] rounded-full"></span>
           Careers at Tribera
         </div>
 
-        <h1 class="font-[650] leading-[1.02] tracking-[-0.06em] text-[38px] sm:text-[50px] lg:text-[64px]">
-          <span class="block text-white">Build the future of hiring</span>
-          <span class="block text-[#da0007]">with purpose.</span>
+        <h1 class="font-[700] leading-[1.05] tracking-tight text-[38px] sm:text-[50px] lg:text-[64px]">
+          <span class="block text-white">Build Tribera</span>
+          <span class="block text-[#da0007]">across every function.</span>
         </h1>
 
-        <p class="mt-6 md:mt-8 text-white/60 text-[16px] md:text-[19px] max-w-3xl mx-auto leading-relaxed">
-          We are building AI that helps teams make better human decisions. Join us to work on meaningful problems across
-          AI, product, and engineering.
+        <p class="mx-auto mt-6 max-w-2xl text-[15px] leading-relaxed text-white/50 sm:text-[16px] md:mt-8">
+          Tribera helps teams make better hiring decisions. We are hiring across the company to shape the product, the
+          customer experience, and the business around it.
         </p>
 
-        <div class="mt-8 md:mt-12 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-5">
-          <a
-            href="#open-roles"
-            class="px-6 py-3 rounded-full tribera-primary-button text-[13px] font-bold"
-          >
+        <div
+          class="mt-8 flex flex-col items-stretch justify-center gap-3 sm:mt-12 sm:flex-row sm:flex-wrap sm:items-center sm:gap-5"
+        >
+          <a href="#open-roles" class="rounded-full px-6 py-3 text-[13px] font-bold tribera-primary-button sm:w-auto">
             See open roles
           </a>
 
           <a
             href="mailto:careers@tribera.ai"
-            class="px-6 py-3 rounded-full bg-[#121212] border border-white/10 text-white/80 text-[13px] font-bold transition-all duration-300 hover:border-white/20"
+            class="rounded-full border border-white/10 bg-[#121212] px-6 py-3 text-[13px] font-bold text-white/80 transition-all duration-300 hover:border-white/20 sm:w-auto"
           >
             Open a conversation
           </a>
         </div>
 
-        <div class="mt-10 md:mt-14 grid grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
+        <div class="mx-auto mt-10 grid max-w-3xl gap-3 sm:mt-14 sm:grid-cols-3 sm:gap-4">
           {
             [
               ['High', 'ownership'],
-              ['Meaningful', 'problems'],
-              ['AI +', 'judgment'],
+              ['Cross-functional', 'teams'],
+              ['Human', 'judgment'],
             ].map(([top, bottom]) => (
-              <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-center backdrop-blur-sm">
+              <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5 text-center backdrop-blur-sm sm:py-4">
                 <div class="text-[15px] sm:text-[18px] font-[700] text-white">{top}</div>
                 <div class="text-[11px] uppercase tracking-[0.18em] text-white/45 mt-1">{bottom}</div>
               </div>
@@ -136,32 +198,30 @@ const roles = [
           }
         </div>
 
-        <p class="mt-8 md:mt-12 text-white/30 text-[12px] font-[550]">Built by operators. Backed by insight.</p>
+        <p class="mt-8 text-[12px] font-[550] text-white/30 md:mt-12">Built with judgment. Run with ownership.</p>
       </div>
     </section>
 
     <section class="relative bg-[#f5f5f5] py-10 md:py-16">
-      <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-7xl mx-auto px-5 sm:px-6">
         <div class="text-center mb-10 md:mb-12">
           <p class="text-[#da0007] text-[11px] font-semibold tracking-[0.24em] uppercase mb-2">Why Tribera</p>
           <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] tracking-[-0.03em] text-black">
-            Serious problems.
-            <span class="block text-black/65">Serious craft.</span>
+            Good work, done seriously.
+            <span class="block text-black/65">That is the standard.</span>
           </h2>
           <p class="mt-4 mx-auto max-w-2xl text-[15px] sm:text-[16px] leading-relaxed text-black/55">
-            We care about systems that are durable, explainable, and useful in the real world. The team works with a
-            high bar and a low ego.
+            We care about work that is durable, explainable, and useful in practice. The team is direct, thoughtful, and
+            serious about quality.
           </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-3 md:gap-5">
+        <div class="grid gap-3 md:grid-cols-3 md:gap-5">
           {
             values.map((item, index) => (
-              <div
-                class="group relative overflow-hidden rounded-2xl border border-black/5 bg-white p-5 md:p-6 shadow-[0_12px_28px_rgba(0,0,0,0.05)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_-15px_rgba(218,0,7,0.16)]"
-              >
+              <div class="group relative overflow-hidden rounded-2xl border border-black/5 bg-white p-5 md:p-6 shadow-[0_12px_28px_rgba(0,0,0,0.05)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_-15px_rgba(218,0,7,0.16)]">
                 <div class="absolute inset-x-0 top-0 h-[3px] bg-[#da0007]" />
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(218,0,7,0.06),transparent_42%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(218,0,7,0.06),transparent_42%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                 <div class="relative z-10">
                   <span class="inline-block rounded-sm bg-[#da0007]/10 px-2 py-1 text-[10px] font-[700] tracking-[0.1em] text-[#da0007]">
@@ -179,23 +239,23 @@ const roles = [
     </section>
 
     <section class="relative bg-black text-white py-10 md:py-16">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="grid gap-5 lg:gap-6 lg:grid-cols-[1.2fr_0.8fr] items-start">
-          <div>
+      <div class="max-w-7xl mx-auto px-5 sm:px-6">
+        <div class="grid items-start gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-6">
+          <div id="careers-work-left-column">
             <p class="text-[11px] tracking-[0.22em] text-[#da0007] uppercase mb-2">What you will actually do</p>
             <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] tracking-[-0.03em]">
-              Build tools that make hiring clearer.
+              Build the systems and workflows behind better hiring.
             </h2>
             <p class="mt-4 max-w-2xl text-white/55 text-[15px] sm:text-[16px] leading-relaxed">
-              This is not a filler-role environment. You will ship product that people use, improve decisions that
-              matter, and shape how the platform feels for both hiring teams and candidates.
+              You will work on the product, process, and conversations that shape how Tribera helps teams and candidates
+              make better decisions.
             </p>
 
             <div class="mt-7 grid gap-3 sm:grid-cols-2">
               {
                 benefits.map((item) => (
-                  <div class="group relative overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-b from-[#181818] to-[#0f0f0f] px-4 py-4 md:px-5 shadow-[0_20px_60px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-1 hover:border-[#da0007]/30">
-                    <div class="absolute inset-y-0 left-0 w-[3px] bg-[#da0007] opacity-70"></div>
+                  <div class="group relative overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-b from-[#181818] to-[#0f0f0f] px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-1 hover:border-[#da0007]/30 md:px-5">
+                    <div class="absolute inset-y-0 left-0 w-[3px] bg-[#da0007] opacity-70" />
                     <div class="pl-2 text-[13px] sm:text-[14px] leading-relaxed text-white/75 transition-colors duration-300 group-hover:text-white">
                       {item}
                     </div>
@@ -207,29 +267,40 @@ const roles = [
 
           <div class="group transform-gpu">
             <div class="transition-transform duration-500 ease-out group-hover:-translate-y-1">
-              <div class="relative overflow-hidden rounded-[24px] border border-white/10 bg-gradient-to-b from-[#181818] to-[#0f0f0f] p-5 md:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.6)] transition-shadow duration-500 group-hover:shadow-[0_28px_80px_rgba(0,0,0,0.68)]">
+              <div
+                id="careers-team-feel-card"
+                class="relative flex h-full flex-col overflow-hidden rounded-[24px] border border-white/10 bg-gradient-to-b from-[#181818] to-[#0f0f0f] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.6)] transition-shadow duration-500 group-hover:shadow-[0_28px_80px_rgba(0,0,0,0.68)] md:px-7 md:pt-6 md:pb-4"
+              >
                 <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#da0007] to-[#ff6b6b]"></div>
-            <div class="text-[11px] uppercase tracking-[0.22em] text-[#da0007] font-semibold mb-4">Team feel</div>
-            <div class="space-y-3">
-              <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 transition-all duration-300 hover:-translate-y-[2px] hover:border-[#da0007]/25 hover:bg-white/[0.07]">
-                <div class="text-[12px] sm:text-[13px] font-semibold text-white">High trust</div>
-                <div class="mt-1 text-[12px] sm:text-[13px] text-white/55 leading-relaxed">
-                  Fewer meetings, clearer ownership, and direct feedback.
+                <div class="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#da0007] md:mb-5">
+                  Team feel
                 </div>
-              </div>
-              <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 transition-all duration-300 hover:-translate-y-[2px] hover:border-[#da0007]/25 hover:bg-white/[0.07]">
-                <div class="text-[12px] sm:text-[13px] font-semibold text-white">Fast iteration</div>
-                <div class="mt-1 text-[12px] sm:text-[13px] text-white/55 leading-relaxed">
-                  You ship, learn, and adjust quickly without losing the thread.
+                <div class="mt-1 flex flex-1 flex-col justify-between gap-4 md:gap-5">
+                  <div
+                    class="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 md:px-6 md:py-[18px] transition-all duration-300 hover:-translate-y-[2px] hover:border-[#da0007]/25 hover:bg-white/[0.07]"
+                  >
+                    <div class="text-[12px] font-semibold text-white sm:text-[13px]">High trust</div>
+                    <div class="mt-1 text-[12px] leading-relaxed text-white/55 sm:text-[13px]">
+                      Clear ownership, direct feedback, and room to do focused work.
+                    </div>
+                  </div>
+                  <div
+                    class="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 md:px-6 md:py-[18px] transition-all duration-300 hover:-translate-y-[2px] hover:border-[#da0007]/25 hover:bg-white/[0.07]"
+                  >
+                    <div class="text-[12px] font-semibold text-white sm:text-[13px]">Fast iteration</div>
+                    <div class="mt-1 text-[12px] leading-relaxed text-white/55 sm:text-[13px]">
+                      You ship, learn, and improve quickly without losing clarity.
+                    </div>
+                  </div>
+                  <div
+                    class="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 md:px-6 md:py-[18px] transition-all duration-300 hover:-translate-y-[2px] hover:border-[#da0007]/25 hover:bg-white/[0.07]"
+                  >
+                    <div class="text-[12px] font-semibold text-white sm:text-[13px]">Real stakes</div>
+                    <div class="mt-1 text-[12px] leading-relaxed text-white/55 sm:text-[13px]">
+                      Your work affects how companies hire and how candidates are assessed.
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 transition-all duration-300 hover:-translate-y-[2px] hover:border-[#da0007]/25 hover:bg-white/[0.07]">
-                <div class="text-[12px] sm:text-[13px] font-semibold text-white">Real stakes</div>
-                <div class="mt-1 text-[12px] sm:text-[13px] text-white/55 leading-relaxed">
-                  Your work touches how companies and candidates make decisions.
-                </div>
-              </div>
-            </div>
               </div>
             </div>
           </div>
@@ -238,46 +309,113 @@ const roles = [
     </section>
 
     <section id="open-roles" class="relative bg-[#f5f5f5] py-10 md:py-16">
-      <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-7xl mx-auto px-5 sm:px-6">
         <div class="text-center mb-10 md:mb-12">
           <p class="text-[11px] tracking-[0.24em] font-semibold text-[#da0007] uppercase">Open roles</p>
-          <h2 class="mt-3 text-[34px] sm:text-[44px] lg:text-[55px] font-[700] text-black leading-[1.08] tracking-[-0.03em]">
-            A few places to start
+          <h2
+            class="mt-3 text-[34px] sm:text-[44px] lg:text-[55px] font-[700] text-black leading-[1.08] tracking-[-0.03em]"
+          >
+            Open roles across the company.
           </h2>
           <p class="mt-4 text-[15px] text-black/55 max-w-2xl mx-auto">
-            We are small enough that every role matters and focused enough that the work stays legible.
+            {
+              openJobs.length > 0
+                ? `We currently have ${openJobs.length} open role${openJobs.length === 1 ? '' : 's'} across engineering, talent advisory, business development, operations, and internships.`
+                : 'We do not have open roles listed right now, but we still welcome thoughtful introductions across engineering, talent advisory, business development, operations, and internships.'
+            }
           </p>
-        </div>
 
-        <div class="grid gap-3 md:gap-4 lg:grid-cols-3">
           {
-            roles.map((role) => (
-              <div class="group relative overflow-hidden rounded-2xl border border-black/5 bg-white p-6 md:p-7 shadow-[0_12px_35px_rgba(0,0,0,0.05)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(218,0,7,0.16)]">
-                <div class="absolute inset-x-0 top-0 h-[3px] bg-[#da0007]"></div>
-                <h3 class="text-[19px] sm:text-[21px] font-[700] text-black">{role.title}</h3>
-                <p class="mt-3 text-[13px] sm:text-[14px] leading-relaxed text-black/60">{role.desc}</p>
-                <ul class="mt-6 space-y-2 text-[12px] sm:text-[13px] text-black/70">
-                  {role.bullets.map((bullet) => (
-                    <li class="flex items-start gap-2">
-                      <span class="mt-[6px] h-1.5 w-1.5 rounded-full bg-[#da0007]"></span>
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div class="mt-8 flex items-center justify-between gap-4 pt-5 border-t border-black/5">
-                  <span class="text-[11px] uppercase tracking-[0.2em] text-black/35">Open now</span>
+            allDepartmentLinks.length > 0 && (
+              <div class="mt-6 flex flex-wrap justify-center gap-2">
+                {allDepartmentLinks.map((item) => (
                   <a
-                    href="mailto:careers@tribera.ai"
-                    class="inline-flex items-center justify-center rounded-full bg-[#da0007] px-4 py-2 text-[12px] font-semibold text-white transition hover:bg-[#c50006]"
+                    href={item.href}
+                    class="inline-flex items-center rounded-full border border-black/10 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-black/55 transition hover:border-black/20 hover:text-black"
                   >
-                    Apply
+                    {item.title}
                   </a>
-                </div>
+                ))}
               </div>
-            ))
+            )
           }
         </div>
+
+        {
+          featuredJobs.length > 0 && (
+            <div class="mb-10 md:mb-14">
+              <div class="mb-4 flex items-end justify-between gap-4">
+                <div>
+                  <p class="text-[11px] tracking-[0.24em] font-semibold text-[#da0007] uppercase">Featured roles</p>
+                  <h3 class="mt-2 text-[24px] sm:text-[30px] font-[700] text-black tracking-[-0.03em]">
+                    A few places to start
+                  </h3>
+                </div>
+                <span class="hidden sm:inline text-[11px] uppercase tracking-[0.2em] text-black/35">
+                  {featuredJobs.length} role{featuredJobs.length === 1 ? '' : 's'}
+                </span>
+              </div>
+
+              <div class="grid gap-3 md:gap-4 lg:grid-cols-3">
+                {featuredJobs.map((role) => (
+                  <RoleCard role={role} featured={true} />
+                ))}
+              </div>
+            </div>
+          )
+        }
+
+        {
+          activeDepartments.length > 0 ? (
+            <div class="space-y-8 md:space-y-10">
+              {activeDepartments.map((group) => (
+                <section id={group.slug} class="scroll-mt-24">
+                  <div class="mb-4 flex items-end justify-between gap-4">
+                    <div>
+                      <p class="text-[11px] tracking-[0.24em] font-semibold text-[#da0007] uppercase">Department</p>
+                      <h3 class="mt-2 text-[24px] sm:text-[30px] font-[700] text-black tracking-[-0.03em]">
+                        {group.department}
+                      </h3>
+                    </div>
+                    <span class="text-[11px] uppercase tracking-[0.2em] text-black/35">
+                      {group.jobs.length} role{group.jobs.length === 1 ? '' : 's'}
+                    </span>
+                  </div>
+
+                  <div class="grid gap-3 md:gap-4 lg:grid-cols-2">
+                    {group.jobs.map((role) => (
+                      <RoleCard role={role} />
+                    ))}
+                  </div>
+                </section>
+              ))}
+            </div>
+          ) : (
+            <div class="mx-auto max-w-4xl rounded-[28px] border border-black/5 bg-white p-6 md:p-8 text-center shadow-[0_12px_35px_rgba(0,0,0,0.05)]">
+              <p class="text-[11px] tracking-[0.24em] font-semibold text-[#da0007] uppercase">No roles listed yet</p>
+              <h3 class="mt-3 text-[24px] sm:text-[30px] font-[700] text-black tracking-[-0.03em]">
+                We are always open to strong people.
+              </h3>
+              <p class="mt-4 text-[15px] leading-relaxed text-black/60 max-w-2xl mx-auto">
+                If you think you would do strong work here, reach out and tell us where you can contribute best.
+              </p>
+              <div class="mt-7 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a
+                  href="mailto:careers@tribera.ai"
+                  class="inline-flex items-center justify-center rounded-full bg-[#da0007] px-6 py-3 text-[13px] font-semibold text-white transition hover:bg-[#c50006]"
+                >
+                  Email Careers
+                </a>
+                <a
+                  href="/contact"
+                  class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-[13px] font-semibold text-black/80 transition hover:border-black/20 hover:text-black"
+                >
+                  Contact Tribera
+                </a>
+              </div>
+            </div>
+          )
+        }
       </div>
     </section>
 
@@ -287,25 +425,23 @@ const roles = [
           <div>
             <p class="text-[11px] uppercase tracking-[0.22em] text-[#da0007] mb-3">How we hire</p>
             <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] tracking-[-0.03em] leading-[1.08]">
-              We look for judgment, not just polish.
+              We hire for judgment, craft, and ownership.
             </h2>
           </div>
 
           <div class="grid gap-8 sm:grid-cols-3 lg:gap-10 lg:self-center">
-            {[
-              ['Clarity', 'Can you reason well and make tradeoffs explicit?'],
-              ['Craft', 'Do you care how the work feels, not just whether it ships?'],
-              ['Ownership', 'Will you move things forward without waiting for permission on every detail?'],
-            ].map(([title, desc]) => (
-              <div class="group flex gap-4 items-start">
-                <div class="w-[2px] min-h-[42px] bg-white/10 transition-all duration-300 group-hover:bg-[#da0007]" />
+            {
+              hiringPrinciples.map(([title, desc]) => (
+                <div class="group flex gap-4 items-start">
+                  <div class="w-[2px] min-h-[42px] bg-white/10 transition-all duration-300 group-hover:bg-[#da0007]" />
 
-                <div class="max-w-none">
-                  <div class="text-[13px] sm:text-[14px] font-[700] mb-1 text-white">{title}</div>
-                  <div class="text-[13px] sm:text-[14px] leading-relaxed text-white/40">{desc}</div>
+                  <div class="max-w-none">
+                    <div class="text-[13px] sm:text-[14px] font-[700] mb-1 text-white">{title}</div>
+                    <div class="text-[13px] sm:text-[14px] leading-relaxed text-white/40">{desc}</div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            }
           </div>
         </div>
       </div>
@@ -315,11 +451,10 @@ const roles = [
       <div class="max-w-5xl mx-auto px-6 text-center">
         <p class="text-[11px] uppercase tracking-[0.22em] text-[#da0007] mb-3">Not seeing your fit?</p>
         <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] tracking-[-0.03em] leading-[1.08]">
-          We still want to hear from thoughtful builders.
+          We still want to hear from thoughtful builders and operators.
         </h2>
         <p class="mt-5 text-black/60 text-[15px] sm:text-[16px] max-w-2xl mx-auto leading-relaxed">
-          If you like hard problems, direct feedback, and building systems that matter, reach out. We review every
-          message.
+          If you care about the work and think you can add something important, reach out. We review every message.
         </p>
 
         <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -368,4 +503,33 @@ const roles = [
       }
     }
   </style>
+
+  <script is:inline>
+    function syncCareersTeamFeelHeight() {
+      const leftColumn = document.getElementById('careers-work-left-column');
+      const rightCard = document.getElementById('careers-team-feel-card');
+
+      if (!(leftColumn instanceof HTMLElement) || !(rightCard instanceof HTMLElement)) return;
+
+      if (!window.matchMedia('(min-width: 1024px)').matches) {
+        rightCard.style.height = '';
+        return;
+      }
+
+      rightCard.style.height = `${leftColumn.offsetHeight}px`;
+    }
+
+    function initCareersTeamFeelHeight() {
+      syncCareersTeamFeelHeight();
+
+      if (!window.__triberaCareersTeamFeelHeightBound) {
+        window.addEventListener('resize', syncCareersTeamFeelHeight);
+        window.__triberaCareersTeamFeelHeightBound = true;
+      }
+    }
+
+    document.addEventListener('astro:page-load', initCareersTeamFeelHeight);
+    document.addEventListener('DOMContentLoaded', initCareersTeamFeelHeight);
+    window.addEventListener('load', syncCareersTeamFeelHeight);
+  </script>
 </Layout>

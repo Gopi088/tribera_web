@@ -568,12 +568,11 @@ const metadata = {
           </div>
 
           <p id="form-error" class="hidden mb-4 text-center text-[13px] text-black/60">
-            Submission failed. Please try again in a moment.
+            Something went wrong while sending your message. Please try again or email contact@tribera.ai.
           </p>
 
-          <form id="contact-form" class="space-y-3 sm:space-y-4">
-            <input type="hidden" name="access_key" value="f3c09cb0-6c94-405e-af37-4f01141d40bd" />
-            <input type="hidden" name="subject" value="New Contact Form Submission - Tribera" />
+          <form id="contact-form" action="/.netlify/functions/site-inquiry" class="space-y-3 sm:space-y-4">
+            <input type="hidden" name="form_type" value="contact" />
             <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -692,10 +691,10 @@ const metadata = {
 
             error.classList.add('hidden');
 
-            const formData = new FormData(form);
+              const formData = new FormData(form);
 
             try {
-              const res = await fetch('https://api.web3forms.com/submit', {
+              const res = await fetch(form.action, {
                 method: 'POST',
                 body: formData,
               });
@@ -711,13 +710,16 @@ const metadata = {
                   form.classList.remove('hidden');
                 }, 4000);
               } else {
-                error.textContent = result.message || 'Submission failed. Please try again.';
+                error.textContent =
+                  result.message ||
+                  'Something went wrong while sending your message. Please try again or email contact@tribera.ai.';
                 error.classList.remove('hidden');
               }
             } catch (err) {
-              error.textContent = 'Network error. Please check your connection.';
+              error.textContent =
+                'Something went wrong while sending your message. Please try again or email contact@tribera.ai.';
               error.classList.remove('hidden');
-              console.error('Web3Forms error:', err);
+              console.error('Contact form submit failed:', err);
             }
           });
         }

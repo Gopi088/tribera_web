@@ -23,5 +23,9 @@ pnpm-lock.yaml
 
 .astro
 
+tmp/*
 artifacts/screenshots/
 artifacts/screenshots.zip
+
+# Local Netlify folder
+.netlify

@@ -27,3 +27,52 @@ collections:
       - { label: 'Publish Date', name: 'publishDate', widget: 'datetime', required: false }
       - { label: 'Author', name: 'author', widget: 'string' }
       - { label: 'Content', name: 'body', widget: 'markdown' }
+  - name: 'jobs'
+    label: 'Jobs'
+    folder: 'src/data/jobs'
+    create: true
+    slug: '{{title}}'
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Slug', name: 'slug', widget: 'string', required: false }
+      - { label: 'Status', name: 'status', widget: 'select', options: ['open', 'closed', 'draft'], default: 'open' }
+      - {
+          label: 'Department',
+          name: 'department',
+          widget: 'select',
+          options:
+            [
+              'Engineering',
+              'Talent Advisory',
+              'Business Development',
+              'Operations',
+              'Founders Office',
+              'Design',
+              'Marketing',
+            ],
+        }
+      - {
+          label: 'Role Family',
+          name: 'roleFamily',
+          widget: 'select',
+          options: ['technical', 'talent', 'go-to-market', 'operations', 'intern'],
+        }
+      - {
+          label: 'Employment Type',
+          name: 'employmentType',
+          widget: 'select',
+          options: ['full-time', 'intern', 'contract'],
+        }
+      - { label: 'Location', name: 'location', widget: 'string' }
+      - { label: 'Remote Policy', name: 'remotePolicy', widget: 'select', options: ['remote', 'hybrid', 'onsite'] }
+      - { label: 'Experience Level', name: 'experienceLevel', widget: 'string', required: false }
+      - { label: 'Featured', name: 'featured', widget: 'boolean', default: false, required: false }
+      - { label: 'Sort Order', name: 'sortOrder', widget: 'number', default: 100, required: false }
+      - { label: 'Summary', name: 'summary', widget: 'text' }
+      - { label: 'Apply Email', name: 'applyEmail', widget: 'string', required: false }
+      - { label: 'Apply URL', name: 'applyUrl', widget: 'string', required: false }
+      - { label: 'Posted At', name: 'postedAt', widget: 'datetime', required: false }
+      - { label: 'Updated At', name: 'updatedAt', widget: 'datetime', required: false }
+      - { label: 'SEO Title', name: 'seoTitle', widget: 'string', required: false }
+      - { label: 'SEO Description', name: 'seoDescription', widget: 'text', required: false }
+      - { label: 'Content', name: 'body', widget: 'markdown' }

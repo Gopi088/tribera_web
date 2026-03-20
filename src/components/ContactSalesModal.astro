@@ -1,15 +1,17 @@
-<div id="contactSalesModal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50">
-  <div class="bg-white w-[92vw] max-w-[400px] rounded-xl p-5 sm:p-6 relative">
+<div
+  id="contactSalesModal"
+  class="fixed inset-0 z-[1200] hidden items-start justify-center overflow-y-auto bg-black/50 p-3 sm:items-center sm:p-4"
+>
+  <div class="relative my-4 w-full max-w-[420px] rounded-2xl border border-black/10 bg-white p-5 sm:my-0 sm:p-6">
     <!-- Close -->
-    <button data-close-sales class="absolute top-3 right-3 text-gray-500 text-lg"> ✕ </button>
+    <button data-close-sales class="absolute right-3 top-3 text-lg text-gray-500"> ✕ </button>
 
     <h2 class="text-xl font-semibold text-center mb-4">Contact Sales</h2>
 
     <p class="text-sm text-center text-gray-500 mb-4">Tell us about your needs and our team will reach out.</p>
 
-    <form id="contactSalesForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
-      <input type="hidden" name="access_key" value="f3c09cb0-6c94-405e-af37-4f01141d40bd" />
-      <input type="hidden" name="subject" value="New Contact Sales Submission - Tribera" />
+    <form id="contactSalesForm" action="/.netlify/functions/site-inquiry" method="POST" class="space-y-4">
+      <input type="hidden" name="form_type" value="sales" />
       <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
       <input
         type="text"
@@ -17,7 +19,7 @@
         placeholder="Full name"
         autocomplete="name"
         required
-        class="w-full border rounded-md px-3 py-2"
+        class="w-full rounded-xl border border-black/15 px-4 py-3 text-[14px] focus:border-[#DA0007]/40 focus:outline-none focus:ring-1 focus:ring-[#DA0007]/30"
       />
 
       <input
@@ -26,7 +28,7 @@
         placeholder="Work email"
         autocomplete="email"
         required
-        class="w-full border rounded-md px-3 py-2"
+        class="w-full rounded-xl border border-black/15 px-4 py-3 text-[14px] focus:border-[#DA0007]/40 focus:outline-none focus:ring-1 focus:ring-[#DA0007]/30"
       />
 
       <input
@@ -34,7 +36,7 @@
         name="company"
         placeholder="Company name"
         autocomplete="organization"
-        class="w-full border rounded-md px-3 py-2"
+        class="w-full rounded-xl border border-black/15 px-4 py-3 text-[14px] focus:border-[#DA0007]/40 focus:outline-none focus:ring-1 focus:ring-[#DA0007]/30"
       />
 
       <textarea
@@ -42,17 +44,17 @@
         name="message"
         autocomplete="off"
         placeholder="How can we help?"
-        class="w-full border rounded-md px-3 py-2"></textarea>
+        class="w-full rounded-xl border border-black/15 px-4 py-3 text-[14px] focus:border-[#DA0007]/40 focus:outline-none focus:ring-1 focus:ring-[#DA0007]/30"></textarea>
 
       <button
         type="submit"
         id="contactSalesSubmitBtn"
-        class="w-full bg-[#Da0007] text-white py-2 rounded-md font-semibold"
+        class="w-full rounded-xl bg-[#Da0007] py-3 font-semibold text-white"
       >
         Submit
       </button>
       <p id="contactSalesErrorMsg" class="hidden text-[13px] text-center text-black/60">
-        Submission failed. Please try again in a moment.
+        Something went wrong while submitting your request. Please try again or email sales@tribera.ai.
       </p>
     </form>
     <div id="contactSalesSuccessMsg" class="hidden text-center pt-2">
