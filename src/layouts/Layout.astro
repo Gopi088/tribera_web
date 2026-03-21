@@ -67,6 +67,15 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
     <script is:inline>
       (() => {
         if (!window.location || window.location.hostname !== 'www.tribera.ai') return;
+        const runtimeVersion = '2026-03-21.1';
+        const runtimeKey = '__triberaChatRuntime';
+        const existingRuntime = window[runtimeKey];
+        if (existingRuntime?.version === runtimeVersion) {
+          existingRuntime.handlePageVisit?.('chat-inline-bootstrap-reuse');
+          return;
+        }
+
+        existingRuntime?.teardown?.();
         const chatbotScriptId = 'chatbot';
         const chatbotScriptSrc = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
         const environmentId = '75186a18-80c9-e34b-b323-d376419f05d1';
@@ -87,6 +96,40 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
         const getLauncher = () => document.querySelector('img[aria-label="Open Customer Connect chat bot assistant"]');
         const getIframe = () => document.getElementById(chatbotIframeId);
         const getLoader = () => document.querySelector('.chatclient-loader');
+        const chatRuntime = {
+          version: runtimeVersion,
+          scriptRequested: false,
+          scriptLoaded: false,
+          resourceObserver: null,
+          iframeObserver: null,
+          pageLoadHandler: null,
+          loadHandler: null,
+          pageShowHandler: null,
+          beforeSwapHandler: null,
+          messageHandler: null,
+          navClickHandler: null,
+          launcherClickHandler: null,
+          preservedNodes: {
+            script: null,
+            iframe: null,
+            launcher: null,
+            loader: null,
+            badge: null,
+          },
+          teardown() {
+            if (this.pageLoadHandler) document.removeEventListener('astro:page-load', this.pageLoadHandler);
+            if (this.loadHandler) window.removeEventListener('load', this.loadHandler);
+            if (this.pageShowHandler) window.removeEventListener('pageshow', this.pageShowHandler);
+            if (this.beforeSwapHandler) document.removeEventListener('astro:before-swap', this.beforeSwapHandler);
+            if (this.messageHandler) window.removeEventListener('message', this.messageHandler);
+            if (this.navClickHandler) document.removeEventListener('click', this.navClickHandler, true);
+            if (this.launcherClickHandler) document.removeEventListener('click', this.launcherClickHandler, true);
+            this.resourceObserver?.disconnect?.();
+            this.iframeObserver?.disconnect?.();
+          },
+          handlePageVisit: null,
+        };
+        window[runtimeKey] = chatRuntime;
         const debugStore =
           window.__triberaChatDebug ||
           (window.__triberaChatDebug = {
@@ -302,6 +345,30 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           }, chatStatusTimeoutMs);
         };
 
+        const preserveNode = (key, node) => {
+          if (!(node instanceof HTMLElement)) return;
+          chatRuntime.preservedNodes[key] = node;
+        };
+
+        const preserveChatArtifacts = () => {
+          preserveNode('script', document.getElementById(chatbotScriptId));
+          preserveNode('iframe', getIframe());
+          preserveNode('launcher', getLauncher());
+          preserveNode('loader', getLoader());
+          preserveNode('badge', document.getElementById(chatStatusBadgeId));
+        };
+
+        const reattachPreservedArtifacts = () => {
+          if (!(document.body instanceof HTMLBodyElement)) return;
+
+          for (const [key, node] of Object.entries(chatRuntime.preservedNodes)) {
+            if (!(node instanceof HTMLElement)) continue;
+            if (node.isConnected) continue;
+            document.body.appendChild(node);
+            logChatState('artifact-reattached', { artifact: key });
+          }
+        };
+
         const removePrewarmFrame = () => {
           if (prewarmState.cleanupTimerId) {
             window.clearTimeout(prewarmState.cleanupTimerId);
@@ -357,10 +424,11 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
         };
 
         const observeResources = () => {
+          if (chatRuntime.resourceObserver) return;
           if (!('PerformanceObserver' in window)) return;
 
           try {
-            const observer = new PerformanceObserver((list) => {
+            chatRuntime.resourceObserver = new PerformanceObserver((list) => {
               for (const entry of list.getEntries()) {
                 if (!relevantResource(entry.name)) continue;
                 const resource = {
@@ -376,14 +444,16 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
               }
             });
 
-            observer.observe({ type: 'resource', buffered: true });
+            chatRuntime.resourceObserver.observe({ type: 'resource', buffered: true });
           } catch {
             // Ignore unsupported PerformanceObserver configurations.
           }
         };
 
         const observeIframeLifecycle = () => {
-          const observer = new MutationObserver(() => {
+          if (chatRuntime.iframeObserver) return;
+
+          chatRuntime.iframeObserver = new MutationObserver(() => {
             const iframe = getIframe();
             if (!(iframe instanceof HTMLIFrameElement)) return;
             if (iframe.dataset.triberaObserved === 'true') return;
@@ -399,7 +469,7 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
             });
           });
 
-          observer.observe(document.body, { childList: true, subtree: true });
+          chatRuntime.iframeObserver.observe(document.body, { childList: true, subtree: true });
         };
 
         const removeChatbotArtifacts = () => {
@@ -426,15 +496,25 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           logChatState('ensure-script-enter', {
             forceRemount,
             scriptAlreadyPresent: script instanceof HTMLScriptElement,
+            scriptRequested: chatRuntime.scriptRequested,
+            scriptLoaded: chatRuntime.scriptLoaded,
           });
           if (!forceRemount) {
             if (script instanceof HTMLScriptElement) {
+              preserveNode('script', script);
               logChatState('ensure-script-skip-existing', { forceRemount });
               return script;
+            }
+            if (chatRuntime.scriptRequested || chatRuntime.scriptLoaded) {
+              reattachPreservedArtifacts();
+              logChatState('ensure-script-skip-runtime-singleton', { forceRemount });
+              return null;
             }
           } else {
             removeChatbotArtifacts();
             script = null;
+            chatRuntime.scriptRequested = false;
+            chatRuntime.scriptLoaded = false;
           }
 
           script = document.createElement('script');
@@ -444,7 +524,29 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           script.async = true;
           script.crossOrigin = 'anonymous';
           script.setAttribute('environmentId', environmentId);
+          script.addEventListener(
+            'load',
+            () => {
+              chatRuntime.scriptRequested = false;
+              chatRuntime.scriptLoaded = true;
+              script.dataset.triberaLoaded = 'true';
+              preserveNode('script', script);
+              logChatState('ensure-script-load');
+            },
+            { once: true }
+          );
+          script.addEventListener(
+            'error',
+            () => {
+              chatRuntime.scriptRequested = false;
+              chatRuntime.scriptLoaded = false;
+              logChatState('ensure-script-error');
+            },
+            { once: true }
+          );
+          chatRuntime.scriptRequested = true;
           document.body.appendChild(script);
+          preserveNode('script', script);
           logChatState('ensure-script-appended', { forceRemount });
           return script;
         };
@@ -468,6 +570,7 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
         };
 
         const initChatbot = (source = 'unknown') => {
+          reattachPreservedArtifacts();
           const script = document.getElementById(chatbotScriptId);
           const uiPresent = hasChatbotUi();
           logChatDom('init-chatbot', {
@@ -494,60 +597,73 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
 
         const reinitChatbotOnPageShow = () => {
           logChatState('pageshow-reinit-enter');
+          reattachPreservedArtifacts();
           ensureChatbotScript();
           ensurePrewarmFrame();
         };
 
         logChatState('chat-inline-bootstrap');
-        document.addEventListener('astro:page-load', () => initChatbot('astro:page-load'));
-        window.addEventListener('load', () => initChatbot('window:load'));
-        window.addEventListener('pageshow', reinitChatbotOnPageShow);
-        window.addEventListener('message', (event) => {
+        chatRuntime.handlePageVisit = (source = 'runtime:handlePageVisit') => {
+          logChatState('chat-inline-bootstrap-reuse', { source });
+          reattachPreservedArtifacts();
+          initChatbot(source);
+        };
+        chatRuntime.pageLoadHandler = () => initChatbot('astro:page-load');
+        chatRuntime.loadHandler = () => initChatbot('window:load');
+        chatRuntime.pageShowHandler = reinitChatbotOnPageShow;
+        chatRuntime.beforeSwapHandler = () => {
+          preserveChatArtifacts();
+          removePrewarmFrame();
+          setChatStatusVisible(false);
+          logChatState('before-swap-preserve');
+        };
+        chatRuntime.messageHandler = (event) => {
           if (!isWidgetMessage(event)) return;
           logChatState('message', { origin: event.origin, data: event.data });
           recordIframeSnapshot('iframe-after-message');
+          preserveChatArtifacts();
           setChatStatusVisible(false);
-        });
-
-        document.addEventListener(
-          'click',
-          (event) => {
-            const target = event.target;
-            if (!(target instanceof Element)) return;
-            const link = target.closest('a');
-            if (!shouldReinitForLink(link)) return;
-            logChatDom('nav-click', { href: link.href });
-            if (prewarmState.timerId) {
-              if ('cancelIdleCallback' in window && typeof prewarmState.timerId === 'number') {
-                window.cancelIdleCallback(prewarmState.timerId);
-              } else {
-                window.clearTimeout(prewarmState.timerId);
-              }
-              prewarmState.timerId = null;
+        };
+        chatRuntime.navClickHandler = (event) => {
+          const target = event.target;
+          if (!(target instanceof Element)) return;
+          const link = target.closest('a');
+          if (!shouldReinitForLink(link)) return;
+          logChatDom('nav-click', { href: link.href });
+          preserveChatArtifacts();
+          if (prewarmState.timerId) {
+            if ('cancelIdleCallback' in window && typeof prewarmState.timerId === 'number') {
+              window.cancelIdleCallback(prewarmState.timerId);
+            } else {
+              window.clearTimeout(prewarmState.timerId);
             }
-            prewarmState.requested = false;
-            prewarmState.completed = false;
-            removePrewarmFrame();
-            setChatStatusVisible(false);
-          },
-          true
-        );
-
-        document.addEventListener(
-          'click',
-          (event) => {
-            const target = event.target;
-            if (!(target instanceof Element)) return;
-            const launcher = target.closest('img[aria-label="Open Customer Connect chat bot assistant"]');
-            if (!(launcher instanceof HTMLImageElement)) return;
-            pushDebugEvent('launcher-click', { ariaLabel: launcher.getAttribute('aria-label') });
-            showConnectingStatus();
-          },
-          true
-        );
+            prewarmState.timerId = null;
+          }
+          prewarmState.requested = false;
+          prewarmState.completed = false;
+          removePrewarmFrame();
+          setChatStatusVisible(false);
+        };
+        chatRuntime.launcherClickHandler = (event) => {
+          const target = event.target;
+          if (!(target instanceof Element)) return;
+          const launcher = target.closest('img[aria-label="Open Customer Connect chat bot assistant"]');
+          if (!(launcher instanceof HTMLImageElement)) return;
+          pushDebugEvent('launcher-click', { ariaLabel: launcher.getAttribute('aria-label') });
+          preserveChatArtifacts();
+          showConnectingStatus();
+        };
+        document.addEventListener('astro:page-load', chatRuntime.pageLoadHandler);
+        window.addEventListener('load', chatRuntime.loadHandler);
+        window.addEventListener('pageshow', chatRuntime.pageShowHandler);
+        document.addEventListener('astro:before-swap', chatRuntime.beforeSwapHandler);
+        window.addEventListener('message', chatRuntime.messageHandler);
+        document.addEventListener('click', chatRuntime.navClickHandler, true);
+        document.addEventListener('click', chatRuntime.launcherClickHandler, true);
 
         observeResources();
         observeIframeLifecycle();
+        preserveChatArtifacts();
         ensurePrewarmFrame();
       })();
     </script>
