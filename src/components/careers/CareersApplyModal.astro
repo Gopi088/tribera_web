@@ -176,14 +176,12 @@ const { title, slug, department } = Astro.props as {
       success?.classList.add('hidden');
       errorMsg.classList.add('hidden');
       modal.classList.remove('hidden');
-      modal.classList.add('flex');
       document.body.classList.add('overflow-hidden');
       modal.dataset.lastOpenedAt = String(Date.now());
     };
 
     const closeModal = () => {
       modal.classList.add('hidden');
-      modal.classList.remove('flex');
       document.body.classList.remove('overflow-hidden');
     };
 
