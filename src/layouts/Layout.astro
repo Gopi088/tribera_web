@@ -138,6 +138,33 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           return entry;
         };
 
+        const getChatSnapshot = () => {
+          const script = document.getElementById(chatbotScriptId);
+          const iframe = getIframe();
+          const launcher = getLauncher();
+          const loader = getLoader();
+
+          return {
+            path: window.location.pathname,
+            scriptPresent: script instanceof HTMLScriptElement,
+            scriptSrc: script instanceof HTMLScriptElement ? script.src : null,
+            iframePresent: iframe instanceof HTMLIFrameElement,
+            iframeReadyState:
+              iframe instanceof HTMLIFrameElement ? iframe.dataset.triberaObserved || 'unobserved' : null,
+            launcherPresent: launcher instanceof HTMLElement,
+            loaderPresent: loader instanceof HTMLElement,
+            prewarmRequested: Boolean(prewarmState.requested),
+            prewarmCompleted: Boolean(prewarmState.completed),
+          };
+        };
+
+        const logChatState = (type, detail = {}) => {
+          return pushDebugEvent(type, {
+            ...getChatSnapshot(),
+            ...detail,
+          });
+        };
+
         const recordIframeSnapshot = (reason) => {
           const iframe = getIframe();
           if (!(iframe instanceof HTMLIFrameElement)) return;
@@ -230,7 +257,7 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           const frame = document.getElementById(prewarmIframeId);
           if (frame instanceof HTMLIFrameElement) {
             frame.remove();
-            pushDebugEvent('prewarm-frame-removed');
+            logChatState('prewarm-frame-removed');
           }
         };
 
@@ -256,14 +283,14 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
               'load',
               () => {
                 prewarmState.completed = true;
-                pushDebugEvent('prewarm-frame-load');
+                logChatState('prewarm-frame-load');
                 prewarmState.cleanupTimerId = window.setTimeout(removePrewarmFrame, prewarmFrameTtlMs);
               },
               { once: true }
             );
 
             document.body.appendChild(frame);
-            pushDebugEvent('prewarm-frame-created', { iframeSrc: chatbotFrameSrc });
+            logChatState('prewarm-frame-created', { iframeSrc: chatbotFrameSrc });
             prewarmState.cleanupTimerId = window.setTimeout(removePrewarmFrame, prewarmFrameTtlMs);
           };
 
@@ -309,8 +336,10 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
 
             removePrewarmFrame();
             iframe.dataset.triberaObserved = 'true';
+            logChatState('iframe-found');
             recordIframeSnapshot('iframe-found');
             iframe.addEventListener('load', () => {
+              logChatState('iframe-load');
               recordIframeSnapshot('iframe-load');
               setChatStatusVisible(false);
             });
@@ -321,22 +350,34 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
 
         const removeChatbotArtifacts = () => {
           const script = document.getElementById(chatbotScriptId);
-          if (script instanceof HTMLScriptElement) script.remove();
-
           const iframe = getIframe();
-          if (iframe instanceof HTMLIFrameElement) iframe.remove();
-
           const launcher = getLauncher();
-          if (launcher instanceof HTMLElement) launcher.remove();
-
           const loader = getLoader();
+
+          logChatState('remove-chatbot-artifacts', {
+            removingScript: script instanceof HTMLScriptElement,
+            removingIframe: iframe instanceof HTMLIFrameElement,
+            removingLauncher: launcher instanceof HTMLElement,
+            removingLoader: loader instanceof HTMLElement,
+          });
+
+          if (script instanceof HTMLScriptElement) script.remove();
+          if (iframe instanceof HTMLIFrameElement) iframe.remove();
+          if (launcher instanceof HTMLElement) launcher.remove();
           if (loader instanceof HTMLElement) loader.remove();
         };
 
         const ensureChatbotScript = (forceRemount = false) => {
           let script = document.getElementById(chatbotScriptId);
+          logChatState('ensure-script-enter', {
+            forceRemount,
+            scriptAlreadyPresent: script instanceof HTMLScriptElement,
+          });
           if (!forceRemount) {
-            if (script instanceof HTMLScriptElement) return script;
+            if (script instanceof HTMLScriptElement) {
+              logChatState('ensure-script-skip-existing', { forceRemount });
+              return script;
+            }
           } else {
             removeChatbotArtifacts();
             script = null;
@@ -350,6 +391,7 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           script.crossOrigin = 'anonymous';
           script.setAttribute('environmentId', environmentId);
           document.body.appendChild(script);
+          logChatState('ensure-script-appended', { forceRemount });
           return script;
         };
 
@@ -371,28 +413,45 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           return !!(getLauncher() || getIframe() || getLoader());
         };
 
-        const initChatbot = () => {
+        const initChatbot = (source = 'unknown') => {
           const script = document.getElementById(chatbotScriptId);
-          if (script instanceof HTMLScriptElement && !hasChatbotUi()) {
-            pushDebugEvent('post-load-remount');
+          const uiPresent = hasChatbotUi();
+          logChatState('init-chatbot', {
+            source,
+            scriptPresentBeforeInit: script instanceof HTMLScriptElement,
+            uiPresentBeforeInit: uiPresent,
+          });
+
+          if (script instanceof HTMLScriptElement && !uiPresent) {
+            logChatState('post-load-remount', { source });
             ensureChatbotScript(true);
           } else {
             ensureChatbotScript();
           }
           ensurePrewarmFrame();
+
+          window.setTimeout(() => {
+            logChatState('post-init-snapshot', { source, delayMs: 150 });
+          }, 150);
+
+          window.setTimeout(() => {
+            logChatState('post-init-snapshot', { source, delayMs: 800 });
+          }, 800);
         };
 
         const reinitChatbotOnPageShow = () => {
+          logChatState('pageshow-reinit-enter');
           ensureChatbotScript();
           ensurePrewarmFrame();
         };
 
-        document.addEventListener('astro:page-load', initChatbot);
-        window.addEventListener('load', initChatbot);
+        logChatState('chat-inline-bootstrap');
+        document.addEventListener('astro:page-load', () => initChatbot('astro:page-load'));
+        window.addEventListener('load', () => initChatbot('window:load'));
         window.addEventListener('pageshow', reinitChatbotOnPageShow);
         window.addEventListener('message', (event) => {
           if (!isWidgetMessage(event)) return;
-          pushDebugEvent('message', { origin: event.origin, data: event.data });
+          logChatState('message', { origin: event.origin, data: event.data });
           recordIframeSnapshot('iframe-after-message');
           setChatStatusVisible(false);
         });
@@ -404,7 +463,7 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
             if (!(target instanceof Element)) return;
             const link = target.closest('a');
             if (!shouldReinitForLink(link)) return;
-            pushDebugEvent('nav-click', { href: link.href });
+            logChatState('nav-click', { href: link.href });
             if (prewarmState.timerId) {
               if ('cancelIdleCallback' in window && typeof prewarmState.timerId === 'number') {
                 window.cancelIdleCallback(prewarmState.timerId);
