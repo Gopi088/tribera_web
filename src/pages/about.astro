@@ -30,35 +30,35 @@ const metadata = {
 
       <div class="absolute inset-0 pointer-events-none">
         {
-          Array.from({ length: 24 }).map((_, i) => (
+          Array.from({ length: 22 }).map(() => (
             <span
               class="absolute rounded-full bg-[#da0007]/80"
               style={`
           width:3px;
-          height:${i % 3 === 0 ? 3 : 4}px;
+          height:3px;
           left:${12 + Math.random() * 76}%;
           top:${8 + Math.random() * 84}%;
-          --float-x1:${(Math.random() * 40 - 20).toFixed(1)}px;
-          --float-y1:${(Math.random() * 34 - 17).toFixed(1)}px;
-          --float-x2:${(Math.random() * 46 - 23).toFixed(1)}px;
-          --float-y2:${(Math.random() * 38 - 19).toFixed(1)}px;
-          --float-x3:${(Math.random() * 54 - 27).toFixed(1)}px;
-          --float-y3:${(Math.random() * 34 - 17).toFixed(1)}px;
-          --float-x4:${(Math.random() * 42 - 21).toFixed(1)}px;
-          --float-y4:${(Math.random() * 42 - 21).toFixed(1)}px;
-          --float-x5:${(Math.random() * 50 - 25).toFixed(1)}px;
-          --float-y5:${(Math.random() * 36 - 18).toFixed(1)}px;
-          --float-x6:${(Math.random() * 44 - 22).toFixed(1)}px;
-          --float-y6:${(Math.random() * 30 - 15).toFixed(1)}px;
-          --float-scale1:${(1 + Math.random() * 0.24).toFixed(2)};
-          --float-scale2:${(0.8 + Math.random() * 0.16).toFixed(2)};
-          --float-scale3:${(1.02 + Math.random() * 0.18).toFixed(2)};
-          --float-scale4:${(0.84 + Math.random() * 0.12).toFixed(2)};
-          --float-scale5:${(1 + Math.random() * 0.16).toFixed(2)};
-          --float-scale6:${(0.88 + Math.random() * 0.12).toFixed(2)};
-          animation: float ${10 + Math.random() * 12}s ease-in-out infinite;
-          animation-delay: -${(Math.random() * 16).toFixed(1)}s;
-          box-shadow: 0 0 14px rgba(218,0,7,.6);
+          --float-x1:${(Math.random() * 44 - 22).toFixed(1)}px;
+          --float-y1:${(Math.random() * 36 - 18).toFixed(1)}px;
+          --float-x2:${(Math.random() * 52 - 26).toFixed(1)}px;
+          --float-y2:${(Math.random() * 42 - 21).toFixed(1)}px;
+          --float-x3:${(Math.random() * 60 - 30).toFixed(1)}px;
+          --float-y3:${(Math.random() * 36 - 18).toFixed(1)}px;
+          --float-x4:${(Math.random() * 48 - 24).toFixed(1)}px;
+          --float-y4:${(Math.random() * 48 - 24).toFixed(1)}px;
+          --float-x5:${(Math.random() * 56 - 28).toFixed(1)}px;
+          --float-y5:${(Math.random() * 40 - 20).toFixed(1)}px;
+          --float-x6:${(Math.random() * 50 - 25).toFixed(1)}px;
+          --float-y6:${(Math.random() * 34 - 17).toFixed(1)}px;
+          --float-scale1:${(1 + Math.random() * 0.28).toFixed(2)};
+          --float-scale2:${(0.78 + Math.random() * 0.18).toFixed(2)};
+          --float-scale3:${(1.02 + Math.random() * 0.22).toFixed(2)};
+          --float-scale4:${(0.82 + Math.random() * 0.14).toFixed(2)};
+          --float-scale5:${(1 + Math.random() * 0.2).toFixed(2)};
+          --float-scale6:${(0.86 + Math.random() * 0.14).toFixed(2)};
+          animation: float ${11 + Math.random() * 14}s ease-in-out infinite;
+          animation-delay: -${(Math.random() * 18).toFixed(1)}s;
+          box-shadow: 0 0 10px rgba(218,0,7,.6);
         `}
             />
           ))

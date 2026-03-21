@@ -27,12 +27,12 @@ const metadata = {
 
       <div class="absolute inset-0 pointer-events-none">
         {
-          Array.from({ length: 24 }).map((_, i) => (
+          Array.from({ length: 22 }).map(() => (
             <span
               class="absolute rounded-full bg-[#da0007]/80"
               style={`
-          width:${i % 4 === 0 ? 4 : 4}px;
-          height:${i % 4 === 0 ? 4 : 4}px;
+          width:3px;
+          height:3px;
           left:${12 + Math.random() * 76}%;
           top:${8 + Math.random() * 84}%;
           --float-x1:${(Math.random() * 44 - 22).toFixed(1)}px;
@@ -55,7 +55,7 @@ const metadata = {
           --float-scale6:${(0.86 + Math.random() * 0.14).toFixed(2)};
           animation: float ${11 + Math.random() * 14}s ease-in-out infinite;
           animation-delay: -${(Math.random() * 18).toFixed(1)}s;
-          box-shadow: 0 0 12px rgba(218,0,7,.6);
+          box-shadow: 0 0 10px rgba(218,0,7,.6);
         `}
             />
           ))

@@ -422,12 +422,7 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
             uiPresentBeforeInit: uiPresent,
           });
 
-          if (script instanceof HTMLScriptElement && !uiPresent) {
-            logChatState('post-load-remount', { source });
-            ensureChatbotScript(true);
-          } else {
-            ensureChatbotScript();
-          }
+          ensureChatbotScript();
           ensurePrewarmFrame();
 
           window.setTimeout(() => {
