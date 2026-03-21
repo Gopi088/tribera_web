@@ -2,9 +2,9 @@ import { getResendConfig, json, parseMultipartForm, sendResendEmail } from './_l
 
 const configs = {
   contact: {
-    recipient: process.env.CONTACT_TO || 'contact@tribera.ai',
+    recipient: process.env.CONTACT_TO || 'hello@tribera.ai',
     subject: (fields) => `Contact form: ${fields.first_name} ${fields.last_name}`.trim(),
-    failureMessage: 'Something went wrong while sending your message. Please try again or email contact@tribera.ai.',
+    failureMessage: 'Something went wrong while sending your message. Please try again or email hello@tribera.ai.',
     validate: (fields) => fields.first_name && fields.last_name && fields.email && fields.interest && fields.message,
     build: (fields) => ({
       text: [

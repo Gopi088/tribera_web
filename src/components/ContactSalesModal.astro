@@ -1,72 +1,99 @@
 <div
   id="contactSalesModal"
-  class="fixed inset-0 z-[1200] hidden items-start justify-center overflow-y-auto bg-black/50 p-3 sm:items-center sm:p-4"
+  class="fixed inset-0 z-[1200] hidden overflow-y-auto bg-black/55 px-4 py-6 sm:px-6 sm:py-8"
 >
-  <div class="relative my-4 w-full max-w-[420px] rounded-2xl border border-black/10 bg-white p-5 sm:my-0 sm:p-6">
-    <!-- Close -->
-    <button data-close-sales class="absolute right-3 top-3 text-lg text-gray-500"> ✕ </button>
-
-    <h2 class="text-xl font-semibold text-center mb-4">Contact Sales</h2>
-
-    <p class="text-sm text-center text-gray-500 mb-4">Tell us about your needs and our team will reach out.</p>
-
-    <form id="contactSalesForm" action="/.netlify/functions/site-inquiry" method="POST" class="space-y-4">
-      <input type="hidden" name="form_type" value="sales" />
-      <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
-      <input
-        type="text"
-        name="name"
-        placeholder="Full name"
-        autocomplete="name"
-        required
-        class="w-full rounded-xl border border-black/15 px-4 py-3 text-[14px] focus:border-[#DA0007]/40 focus:outline-none focus:ring-1 focus:ring-[#DA0007]/30"
-      />
-
-      <input
-        type="email"
-        name="email"
-        placeholder="Work email"
-        autocomplete="email"
-        required
-        class="w-full rounded-xl border border-black/15 px-4 py-3 text-[14px] focus:border-[#DA0007]/40 focus:outline-none focus:ring-1 focus:ring-[#DA0007]/30"
-      />
-
-      <input
-        type="text"
-        name="company"
-        placeholder="Company name"
-        autocomplete="organization"
-        class="w-full rounded-xl border border-black/15 px-4 py-3 text-[14px] focus:border-[#DA0007]/40 focus:outline-none focus:ring-1 focus:ring-[#DA0007]/30"
-      />
-
-      <textarea
-        rows="3"
-        name="message"
-        autocomplete="off"
-        placeholder="How can we help?"
-        class="w-full rounded-xl border border-black/15 px-4 py-3 text-[14px] focus:border-[#DA0007]/40 focus:outline-none focus:ring-1 focus:ring-[#DA0007]/30"></textarea>
-
+  <div class="pointer-events-none flex min-h-full items-center justify-center">
+    <div class="pointer-events-auto relative w-full max-w-[560px] overflow-hidden rounded-[30px] border border-white/10 bg-[#0a0a0a] px-6 py-6 text-white shadow-[0_28px_100px_rgba(0,0,0,0.45)] sm:px-8 sm:py-8">
+      <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#DA0007]/80 to-transparent"></div>
+      <div class="pointer-events-none absolute -left-20 top-0 h-52 w-52 rounded-full bg-[#DA0007]/12 blur-3xl"></div>
+      <div class="pointer-events-none absolute -right-16 bottom-0 h-44 w-44 rounded-full bg-white/[0.04] blur-3xl"></div>
       <button
-        type="submit"
-        id="contactSalesSubmitBtn"
-        class="w-full rounded-xl bg-[#Da0007] py-3 font-semibold text-white"
+        data-close-sales
+        aria-label="Close contact sales modal"
+        class="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-xl text-white/45 transition hover:border-white/20 hover:bg-white/[0.05] hover:text-white/75"
       >
-        Submit
+        ✕
       </button>
-      <p id="contactSalesErrorMsg" class="hidden text-[13px] text-center text-black/60">
-        Something went wrong while submitting your request. Please try again or email sales@tribera.ai.
-      </p>
-    </form>
-    <div id="contactSalesSuccessMsg" class="hidden text-center pt-2">
-      <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[#DA0007]/10 flex items-center justify-center">
-        <svg viewBox="0 0 24 24" class="w-7 h-7 text-[#DA0007]" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M20 7L10 17l-5-5" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
+
+      <div class="relative">
+        <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#DA0007]">For Hiring Teams</p>
+        <h2 class="max-w-[12ch] text-[2rem] font-[650] leading-[0.95] tracking-[-0.05em] text-white sm:text-[2.6rem]">
+          Contact Sales
+        </h2>
+        <p class="mt-4 max-w-[28rem] text-[14px] leading-7 text-white/58 sm:text-[15px]">
+          Tell us what you are hiring for. We will reach out with the right next step.
+        </p>
       </div>
-      <h4 class="text-[20px] font-[700] text-black">Request Submitted</h4>
-      <p class="mt-2 text-[14px] leading-relaxed text-black/60">
-        Thanks for reaching out. Our team will contact you shortly.
-      </p>
+
+      <form
+        id="contactSalesForm"
+        action="/.netlify/functions/site-inquiry"
+        method="POST"
+        class="relative mt-7 space-y-3.5 sm:mt-8 sm:space-y-4"
+      >
+        <input type="hidden" name="form_type" value="sales" />
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
+
+        <div class="grid gap-3.5 sm:grid-cols-2 sm:gap-4">
+          <input
+            type="text"
+            name="name"
+            placeholder="Full name"
+            autocomplete="name"
+            required
+            class="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-[14px] text-white placeholder:text-white/35 focus:border-[#DA0007]/60 focus:bg-white/[0.05] focus:outline-none focus:ring-1 focus:ring-[#DA0007]/25"
+          />
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Work email"
+            autocomplete="email"
+            required
+            class="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-[14px] text-white placeholder:text-white/35 focus:border-[#DA0007]/60 focus:bg-white/[0.05] focus:outline-none focus:ring-1 focus:ring-[#DA0007]/25"
+          />
+        </div>
+
+        <input
+          type="text"
+          name="company"
+          placeholder="Company name"
+          autocomplete="organization"
+          class="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-[14px] text-white placeholder:text-white/35 focus:border-[#DA0007]/60 focus:bg-white/[0.05] focus:outline-none focus:ring-1 focus:ring-[#DA0007]/25"
+        />
+
+        <textarea
+          rows="3"
+          name="message"
+          autocomplete="off"
+          placeholder="How can we help?"
+          class="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-[14px] text-white placeholder:text-white/35 focus:border-[#DA0007]/60 focus:bg-white/[0.05] focus:outline-none focus:ring-1 focus:ring-[#DA0007]/25"></textarea>
+
+        <div class="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center sm:justify-between">
+          <p class="text-[12px] leading-6 text-white/35">Response within 24 hours for qualified hiring requests.</p>
+          <button
+            type="submit"
+            id="contactSalesSubmitBtn"
+            class="w-full rounded-full bg-[#DA0007] px-8 py-3 text-[14px] font-semibold text-white transition hover:bg-[#b80005] sm:w-auto"
+          >
+            Submit
+          </button>
+        </div>
+        <p id="contactSalesErrorMsg" class="hidden text-[13px] leading-6 text-white/55">
+          Something went wrong while submitting your request. Please try again or email sales@tribera.ai.
+        </p>
+      </form>
+      <div id="contactSalesSuccessMsg" class="hidden pt-2 text-center">
+        <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#DA0007]/10">
+          <svg viewBox="0 0 24 24" class="h-7 w-7 text-[#DA0007]" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M20 7L10 17l-5-5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+        <h4 class="text-[20px] font-[700] text-white">Request Submitted</h4>
+        <p class="mt-2 text-[14px] leading-relaxed text-white/60">
+          Thanks for reaching out. Our team will contact you shortly.
+        </p>
+      </div>
     </div>
   </div>
 </div>

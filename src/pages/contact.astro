@@ -187,7 +187,7 @@ const metadata = {
                 label: 'FOR HIRING TEAMS',
                 title: 'Book a Demo',
                 desc: '30-minute platform walkthrough',
-                actionLabel: 'Open Sales Form',
+                actionLabel: 'Talk to Sales',
                 actionAttr: 'data-open-sales',
                 email: 'sales@tribera.ai',
                 footerTitle: 'Abhishek responds <24hrs',
@@ -531,8 +531,8 @@ const metadata = {
 
                 <p class="text-[13px] font-[500]">
                   <span class="text-[#da0007] font-medium">Email:</span>{' '}
-                  <a href="mailto:contact@tribera.ai" class="hover:underline">
-                    contact@tribera.ai
+                  <a href="mailto:hello@tribera.ai" class="hover:underline">
+                    hello@tribera.ai
                   </a>
                 </p>
               </div>
@@ -580,7 +580,7 @@ const metadata = {
           </div>
 
           <p id="form-error" class="hidden mb-4 text-center text-[13px] text-black/60">
-            Something went wrong while sending your message. Please try again or email contact@tribera.ai.
+            Something went wrong while sending your message. Please try again or email hello@tribera.ai.
           </p>
 
           <form id="contact-form" action="/.netlify/functions/site-inquiry" class="space-y-3 sm:space-y-4">
@@ -858,12 +858,12 @@ const metadata = {
               } else {
                 error.textContent =
                   result.message ||
-                  'Something went wrong while sending your message. Please try again or email contact@tribera.ai.';
+                  'Something went wrong while sending your message. Please try again or email hello@tribera.ai.';
                 error.classList.remove('hidden');
               }
             } catch (err) {
               error.textContent =
-                'Something went wrong while sending your message. Please try again or email contact@tribera.ai.';
+                'Something went wrong while sending your message. Please try again or email hello@tribera.ai.';
               error.classList.remove('hidden');
               console.error('Contact form submit failed:', err);
             }
