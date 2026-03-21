@@ -41,42 +41,55 @@ const isClosed = job.status === 'closed';
 <Layout metadata={metadata}>
   <main>
     <section
-      class="relative overflow-hidden bg-black pt-20 pb-14 sm:pt-24 sm:pb-16 md:min-h-[72vh] md:flex md:items-center"
+      class="relative overflow-hidden bg-black pt-20 pb-14 sm:pt-24 sm:pb-16 md:min-h-[88vh] md:flex md:items-center"
     >
       <div class="absolute inset-0">
         <div class="absolute inset-0 bg-black"></div>
         <div
-          class="absolute left-[-30%] md:left-[-15%] top-0 h-full w-[90%] md:w-[60%] bg-[radial-gradient(circle_at_left_center,rgba(218,0,7,0.45),transparent_60%)]"
+          class="absolute left-[-28%] md:left-[-14%] top-0 h-full w-[88%] md:w-[58%] bg-[radial-gradient(circle_at_left_center,rgba(218,0,7,0.46),transparent_62%)]"
         >
         </div>
         <div
-          class="absolute right-[-30%] md:right-[-15%] top-0 h-full w-[90%] md:w-[60%] bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.45),transparent_60%)]"
+          class="absolute right-[-28%] md:right-[-14%] top-0 h-full w-[88%] md:w-[58%] bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.38),transparent_62%)]"
         >
+        </div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(218,0,7,0.08),transparent_52%)] opacity-80">
         </div>
       </div>
 
-      <div class="absolute inset-0 pointer-events-none">
+      <div class="pointer-events-none absolute inset-0 bg-dotted-static opacity-70"></div>
+
+      <div class="absolute inset-0 pointer-events-none opacity-75">
         {
-          Array.from({ length: 20 }).map((_, i) => (
+          Array.from({ length: 24 }).map((_, i) => (
             <span
               class="absolute rounded-full bg-[#da0007]/80"
               style={`
-                width:${i % 4 === 0 ? 4 : 3}px;
-                height:${i % 4 === 0 ? 4 : 3}px;
-                left:${10 + Math.random() * 80}%;
+                width:3px;
+                height:${i % 3 === 0 ? 3 : 4}px;
+                left:${12 + Math.random() * 76}%;
                 top:${8 + Math.random() * 82}%;
-                --float-x1:${(Math.random() * 26 - 13).toFixed(1)}px;
-                --float-y1:${(Math.random() * 20 - 10).toFixed(1)}px;
-                --float-x2:${(Math.random() * 28 - 14).toFixed(1)}px;
-                --float-y2:${(Math.random() * 22 - 11).toFixed(1)}px;
-                --float-x3:${(Math.random() * 24 - 12).toFixed(1)}px;
-                --float-y3:${(Math.random() * 18 - 9).toFixed(1)}px;
-                --float-scale1:${(1 + Math.random() * 0.08).toFixed(2)};
-                --float-scale2:${(0.96 + Math.random() * 0.04).toFixed(2)};
-                --float-scale3:${(1 + Math.random() * 0.05).toFixed(2)};
-                animation: float ${13 + Math.random() * 6}s ease-in-out infinite;
-                animation-delay: -${(Math.random() * 10).toFixed(1)}s;
-                box-shadow: 0 0 10px rgba(218,0,7,.5);
+                --float-x1:${(Math.random() * 38 - 19).toFixed(1)}px;
+                --float-y1:${(Math.random() * 32 - 16).toFixed(1)}px;
+                --float-x2:${(Math.random() * 44 - 22).toFixed(1)}px;
+                --float-y2:${(Math.random() * 36 - 18).toFixed(1)}px;
+                --float-x3:${(Math.random() * 52 - 26).toFixed(1)}px;
+                --float-y3:${(Math.random() * 34 - 17).toFixed(1)}px;
+                --float-x4:${(Math.random() * 40 - 20).toFixed(1)}px;
+                --float-y4:${(Math.random() * 40 - 20).toFixed(1)}px;
+                --float-x5:${(Math.random() * 48 - 24).toFixed(1)}px;
+                --float-y5:${(Math.random() * 34 - 17).toFixed(1)}px;
+                --float-x6:${(Math.random() * 42 - 21).toFixed(1)}px;
+                --float-y6:${(Math.random() * 30 - 15).toFixed(1)}px;
+                --float-scale1:${(1 + Math.random() * 0.22).toFixed(2)};
+                --float-scale2:${(0.82 + Math.random() * 0.14).toFixed(2)};
+                --float-scale3:${(1.02 + Math.random() * 0.18).toFixed(2)};
+                --float-scale4:${(0.86 + Math.random() * 0.12).toFixed(2)};
+                --float-scale5:${(1 + Math.random() * 0.16).toFixed(2)};
+                --float-scale6:${(0.88 + Math.random() * 0.12).toFixed(2)};
+                animation: float ${11 + Math.random() * 12}s ease-in-out infinite;
+                animation-delay: -${(Math.random() * 14).toFixed(1)}s;
+                box-shadow: 0 0 14px rgba(218,0,7,.6);
               `}
             />
           ))
