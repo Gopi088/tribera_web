@@ -204,7 +204,7 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
           >
             <div class="pointer-events-none flex min-h-full items-center justify-center">
               <div
-                class="pointer-events-auto relative w-full max-w-[560px] overflow-hidden rounded-[30px] border border-white/10 bg-[#0a0a0a] px-6 py-6 text-white shadow-[0_28px_100px_rgba(0,0,0,0.45)] sm:px-8 sm:py-8"
+                class="pointer-events-auto relative w-full max-w-[560px] overflow-hidden rounded-[30px] border border-white/10 bg-[#0a0a0a] px-6 pt-6 pb-5 text-white shadow-[0_28px_100px_rgba(0,0,0,0.45)] sm:px-8 sm:pt-8 sm:pb-6"
               >
                 <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#DA0007]/80 to-transparent"></div>
                 <div class="pointer-events-none absolute -left-20 top-0 h-52 w-52 rounded-full bg-[#DA0007]/12 blur-3xl"></div>
@@ -230,7 +230,7 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
 
                   <div class="relative">
                     <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#DA0007]">For Candidates</p>
-                    <h3 class="max-w-[12ch] text-[2rem] font-[650] leading-[0.95] tracking-[-0.05em] text-white sm:text-[2.6rem]">
+                    <h3 class="pr-12 text-[1.7rem] font-[650] leading-[0.98] tracking-[-0.045em] text-white sm:text-[2.1rem]">
                       Create Your Profile
                     </h3>
                     <p class="mt-4 max-w-[28rem] text-[14px] leading-7 text-white/58 sm:text-[15px]">
@@ -268,11 +268,11 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
 
                   <input type="file" id="resumeInput" name="resume" accept=".pdf,.doc,.docx" class="hidden" />
 
-                  <div class="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center sm:justify-between">
+                  <div class="grid grid-cols-1 gap-3 pt-4 sm:grid-cols-2">
                     <button
                       type="button"
                       id="uploadBtn"
-                      class="w-full rounded-full border border-white/14 bg-white/[0.03] px-6 py-3 text-[14px] font-semibold text-white transition hover:border-[#DA0007]/50 hover:bg-[#DA0007]/10 sm:w-auto"
+                      class="w-full rounded-full border border-white/14 bg-white/[0.03] px-6 py-3 text-[14px] font-semibold text-white transition hover:border-[#DA0007]/50 hover:bg-[#DA0007]/10"
                     >
                       Upload Resume *
                     </button>
@@ -281,13 +281,13 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
                       type="submit"
                       id="submitBtn"
                       disabled
-                      class="w-full rounded-full bg-[#DA0007] px-8 py-3 text-[14px] font-semibold text-white transition hover:bg-[#b80005] disabled:cursor-not-allowed disabled:opacity-45 sm:w-auto"
+                      class="w-full rounded-full bg-[#DA0007] px-8 py-3 text-[14px] font-semibold text-white transition hover:bg-[#b80005] disabled:cursor-not-allowed disabled:opacity-45"
                     >
                       Submit
                     </button>
                   </div>
 
-                  <p id="fileName" class="min-h-[18px] break-words text-[12px] text-white/45"></p>
+                  <p id="fileName" class="min-h-[16px] break-words text-[12px] leading-5 text-white/45"></p>
                   <p id="candidateErrorMsg" class="hidden text-[13px] text-white/55"></p>
                 </form>
 

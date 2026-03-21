@@ -48,24 +48,6 @@ const customerstories = [
   },
 ];
 
-const getStartedSubject = 'Get Started with tribera';
-const getStartedBody = [
-  '',
-  'Hi Tribera Team,',
-  '',
-  "I'd like to get started with tribera.",
-  '',
-  'Company name:',
-  'Phone:',
-  'Hiring focus (roles/teams):',
-  'Hiring volume (monthly/quarterly):',
-  'Current hiring challenge:',
-  'Preferred timeline:',
-  '',
-  'Thanks,',
-].join('\n');
-const contactSalesMailto = `mailto:sales@tribera.ai?subject=${encodeURIComponent(getStartedSubject)}&body=${encodeURIComponent(getStartedBody)}`;
-
 const comparisonRows = [
   { feature: '100+ Signal Analysis', tribera: 'check', saas: '✗', rpo: '✗' },
   { feature: 'Technical Deep-Dive Interviews', tribera: 'check', saas: '✗', rpo: 'Surface only' },
@@ -188,8 +170,9 @@ const comparisonRows = [
           See How It Works →
         </a>
 
-        <a
-          href={contactSalesMailto}
+        <button
+          type="button"
+          data-open-sales
           class="px-6 py-3 rounded-full
                 bg-[#121212]
                 border border-white/10
@@ -200,7 +183,7 @@ const comparisonRows = [
                 hover:border-white/20"
         >
           Book a Demo
-        </a>
+        </button>
       </div>
 
       <p class="mt-8 md:mt-14 text-white/30 text-[12px] font-[550]">*We'll walk you through it</p>
@@ -1438,8 +1421,9 @@ const comparisonRows = [
                 </ul>
               </div>
 
-              <a
-                href={contactSalesMailto}
+              <button
+                type="button"
+                data-open-sales
                 class={`mt-7 w-full py-3 rounded-full text-[15px] font-bold text-center transition
   ${
     plan.popular
@@ -1448,7 +1432,7 @@ const comparisonRows = [
   }`}
               >
                 Contact Sales
-              </a>
+              </button>
             </div>
           ))
         }
@@ -1484,8 +1468,9 @@ const comparisonRows = [
                 items-center justify-center
                 gap-4 sm:gap-6"
         >
-          <a
-            href={contactSalesMailto}
+          <button
+            type="button"
+            data-open-sales
             class="relative overflow-hidden
          w-full sm:w-auto
          inline-flex items-center justify-center
@@ -1495,7 +1480,7 @@ const comparisonRows = [
          font-bold text-[14px]"
           >
             <span class="relative z-10"> See Platform Demo → </span>
-          </a>
+          </button>
         </div>
       </div>
     </div>
