@@ -224,13 +224,13 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
                   action="/.netlify/functions/candidate-profile"
                   method="POST"
                   enctype="multipart/form-data"
-                  class="relative space-y-4"
+                  class="relative space-y-5"
                 >
                   <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
 
-                  <div class="relative">
+                  <div class="relative pb-1">
                     <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#DA0007]">For Candidates</p>
-                    <h3 class="pr-12 text-[1.7rem] font-[650] leading-[0.98] tracking-[-0.045em] text-white sm:text-[2.1rem]">
+                    <h3 class="pr-12 text-[1.5rem] font-[640] leading-[1.02] tracking-[-0.035em] text-white sm:text-[1.8rem]">
                       Create Your Profile
                     </h3>
                     <p class="mt-4 max-w-[28rem] text-[14px] leading-7 text-white/58 sm:text-[15px]">
@@ -238,57 +238,61 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
                     </p>
                   </div>
 
-                  <div class="grid gap-3.5 sm:grid-cols-2 sm:gap-4">
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Full name *"
-                      autocomplete="name"
-                      required
-                      class="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-[14px] text-white placeholder:text-white/35 focus:border-[#DA0007]/60 focus:bg-white/[0.05] focus:outline-none focus:ring-1 focus:ring-[#DA0007]/25"
-                    />
+                  <div class="space-y-3.5">
+                    <div class="grid gap-3.5 sm:grid-cols-2 sm:gap-4">
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Full name *"
+                        autocomplete="name"
+                        required
+                        class="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-[14px] text-white placeholder:text-white/35 focus:border-[#DA0007]/60 focus:bg-white/[0.05] focus:outline-none focus:ring-1 focus:ring-[#DA0007]/25"
+                      />
+
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Email address *"
+                        autocomplete="email"
+                        required
+                        class="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-[14px] text-white placeholder:text-white/35 focus:border-[#DA0007]/60 focus:bg-white/[0.05] focus:outline-none focus:ring-1 focus:ring-[#DA0007]/25"
+                      />
+                    </div>
 
                     <input
-                      type="email"
-                      name="email"
-                      placeholder="Email address *"
-                      autocomplete="email"
-                      required
+                      type="tel"
+                      name="mobile"
+                      placeholder="Mobile number (optional)"
+                      autocomplete="tel"
                       class="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-[14px] text-white placeholder:text-white/35 focus:border-[#DA0007]/60 focus:bg-white/[0.05] focus:outline-none focus:ring-1 focus:ring-[#DA0007]/25"
                     />
                   </div>
-
-                  <input
-                    type="tel"
-                    name="mobile"
-                    placeholder="Mobile number (optional)"
-                    autocomplete="tel"
-                    class="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-[14px] text-white placeholder:text-white/35 focus:border-[#DA0007]/60 focus:bg-white/[0.05] focus:outline-none focus:ring-1 focus:ring-[#DA0007]/25"
-                  />
 
                   <input type="file" id="resumeInput" name="resume" accept=".pdf,.doc,.docx" class="hidden" />
 
-                  <div class="grid grid-cols-1 gap-3 pt-4 sm:grid-cols-2">
-                    <button
-                      type="button"
-                      id="uploadBtn"
-                      class="w-full rounded-full border border-white/14 bg-white/[0.03] px-6 py-3 text-[14px] font-semibold text-white transition hover:border-[#DA0007]/50 hover:bg-[#DA0007]/10"
-                    >
-                      Upload Resume *
-                    </button>
+                  <div class="space-y-3 border-t border-white/5 pt-4">
+                    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                      <button
+                        type="button"
+                        id="uploadBtn"
+                        class="w-full rounded-full border border-white/14 bg-white/[0.03] px-6 py-3 text-[14px] font-semibold text-white transition hover:border-[#DA0007]/50 hover:bg-[#DA0007]/10"
+                      >
+                        Upload Resume *
+                      </button>
 
-                    <button
-                      type="submit"
-                      id="submitBtn"
-                      disabled
-                      class="w-full rounded-full bg-[#DA0007] px-8 py-3 text-[14px] font-semibold text-white transition hover:bg-[#b80005] disabled:cursor-not-allowed disabled:opacity-45"
-                    >
-                      Submit
-                    </button>
+                      <button
+                        type="submit"
+                        id="submitBtn"
+                        disabled
+                        class="w-full rounded-full bg-[#DA0007] px-8 py-3 text-[14px] font-semibold text-white transition hover:bg-[#b80005] disabled:cursor-not-allowed disabled:opacity-45"
+                      >
+                        Submit
+                      </button>
+                    </div>
+
+                    <p id="fileName" class="min-h-[16px] break-words text-[12px] leading-5 text-white/45"></p>
+                    <p id="candidateErrorMsg" class="hidden text-[13px] text-white/55"></p>
                   </div>
-
-                  <p id="fileName" class="min-h-[16px] break-words text-[12px] leading-5 text-white/45"></p>
-                  <p id="candidateErrorMsg" class="hidden text-[13px] text-white/55"></p>
                 </form>
 
                 <div id="successMessage" class="hidden text-center">
