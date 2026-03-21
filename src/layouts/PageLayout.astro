@@ -354,6 +354,27 @@ const { metadata } = Astro.props;
       window.__triberaMailtoFallbackBound = true;
 
       const toastId = 'tribera-mailto-fallback';
+      const shownSessionKey = '__triberaMailtoFallbackShown';
+
+      const isLikelyMacDesktop = () => {
+        const userAgentData = navigator.userAgentData;
+        const platformFromUAData =
+          userAgentData && typeof userAgentData.platform === 'string' ? userAgentData.platform : '';
+        const platform = platformFromUAData || navigator.platform || '';
+        const userAgent = navigator.userAgent || '';
+        const maxTouchPoints = Number(navigator.maxTouchPoints || 0);
+
+        const isMacPlatform = /mac/i.test(platform) || /\bmac os x\b/i.test(userAgent);
+        const isIOSDevice = /iphone|ipad|ipod/i.test(platform) || /iphone|ipad|ipod/i.test(userAgent);
+
+        return isMacPlatform && !isIOSDevice && maxTouchPoints < 2;
+      };
+
+      const shouldShowMailtoFallback = () => {
+        if (!isLikelyMacDesktop()) return false;
+        if (window.sessionStorage?.getItem(shownSessionKey) === 'true') return false;
+        return true;
+      };
 
       const ensureToast = () => {
         let toast = document.getElementById(toastId);
@@ -443,12 +464,15 @@ const { metadata } = Astro.props;
         hideToast();
         window.location.href = link.href;
 
+        if (!shouldShowMailtoFallback()) return;
+
         window.clearTimeout(window.__triberaMailtoFallbackTimer);
         window.__triberaMailtoFallbackTimer = window.setTimeout(() => {
           if (document.visibilityState === 'hidden') return;
           const toast = ensureToast();
+          window.sessionStorage?.setItem(shownSessionKey, 'true');
           toast.classList.remove('hidden');
-        }, 700);
+        }, 1800);
       });
 
       document.addEventListener('visibilitychange', () => {

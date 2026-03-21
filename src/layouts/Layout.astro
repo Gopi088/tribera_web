@@ -95,6 +95,7 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
 
         const getLauncher = () => document.querySelector('img[aria-label="Open Customer Connect chat bot assistant"]');
         const getIframe = () => document.getElementById(chatbotIframeId);
+        const getPrewarmFrame = () => document.getElementById(prewarmIframeId);
         const getLoader = () => document.querySelector('.chatclient-loader');
         const chatRuntime = {
           version: runtimeVersion,
@@ -105,6 +106,7 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           loadHandler: null,
           pageShowHandler: null,
           beforeSwapHandler: null,
+          prewarmMessageCaptureHandler: null,
           messageHandler: null,
           navClickHandler: null,
           launcherClickHandler: null,
@@ -120,6 +122,9 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
             if (this.loadHandler) window.removeEventListener('load', this.loadHandler);
             if (this.pageShowHandler) window.removeEventListener('pageshow', this.pageShowHandler);
             if (this.beforeSwapHandler) document.removeEventListener('astro:before-swap', this.beforeSwapHandler);
+            if (this.prewarmMessageCaptureHandler) {
+              window.removeEventListener('message', this.prewarmMessageCaptureHandler, true);
+            }
             if (this.messageHandler) window.removeEventListener('message', this.messageHandler);
             if (this.navClickHandler) document.removeEventListener('click', this.navClickHandler, true);
             if (this.launcherClickHandler) document.removeEventListener('click', this.launcherClickHandler, true);
@@ -150,6 +155,19 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
 
           try {
             return event.source === iframe.contentWindow;
+          } catch {
+            return false;
+          }
+        };
+
+        const isPrewarmMessage = (event) => {
+          if (!microsoftOrigins.includes(event.origin)) return false;
+
+          const frame = getPrewarmFrame();
+          if (!(frame instanceof HTMLIFrameElement)) return false;
+
+          try {
+            return event.source === frame.contentWindow;
           } catch {
             return false;
           }
@@ -408,6 +426,16 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           removePrewarmFrame();
           setChatStatusVisible(false);
         };
+        chatRuntime.prewarmMessageCaptureHandler = (event) => {
+          if (!isPrewarmMessage(event)) return;
+          if (getIframe() instanceof HTMLIFrameElement) return;
+
+          const messageType =
+            event.data && typeof event.data === 'object' && 'type' in event.data ? String(event.data.type) : '';
+
+          if (!['toggle', 'resize'].includes(messageType)) return;
+          event.stopImmediatePropagation();
+        };
         chatRuntime.messageHandler = (event) => {
           if (!isWidgetMessage(event)) return;
           preserveChatArtifacts();
@@ -444,6 +472,7 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
         window.addEventListener('load', chatRuntime.loadHandler);
         window.addEventListener('pageshow', chatRuntime.pageShowHandler);
         document.addEventListener('astro:before-swap', chatRuntime.beforeSwapHandler);
+        window.addEventListener('message', chatRuntime.prewarmMessageCaptureHandler, true);
         window.addEventListener('message', chatRuntime.messageHandler);
         document.addEventListener('click', chatRuntime.navClickHandler, true);
         document.addEventListener('click', chatRuntime.launcherClickHandler, true);

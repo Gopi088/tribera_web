@@ -86,7 +86,7 @@
       const target = e.target;
       if (!(target instanceof Element)) return;
 
-      if (target.id === 'contactSalesBtn') {
+      if (target.id === 'contactSalesBtn' || target.closest('[data-open-sales]')) {
         modal.classList.remove('hidden');
       }
 
