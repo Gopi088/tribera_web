@@ -19,10 +19,13 @@ const { title, slug, department } = Astro.props as {
       <div class="pointer-events-none absolute -right-16 bottom-0 h-44 w-44 rounded-full bg-white/[0.04] blur-3xl"></div>
       <button
         id="closeCareersApplyModal"
-        class="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-xl text-white/45 transition hover:border-white/20 hover:bg-white/[0.05] hover:text-white/75"
+        class="absolute right-4 top-4 z-20 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-white/[0.02] p-0 text-white/45 transition-colors duration-200 hover:border-[#DA0007]/35 hover:bg-[#DA0007]/12 hover:text-white/85"
         type="button"
       >
-        ✕
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="h-[18px] w-[18px]" fill="none" stroke="currentColor" stroke-width="1.9">
+          <path d="M6 6L18 18" stroke-linecap="round"></path>
+          <path d="M18 6L6 18" stroke-linecap="round"></path>
+        </svg>
       </button>
 
       <form
@@ -211,6 +214,15 @@ const { title, slug, department } = Astro.props as {
         if (justOpened) return;
         closeModal();
       });
+    }
+
+    if (!window.__triberaCareersApplyEscBound) {
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        if (modal.classList.contains('hidden')) return;
+        closeModal();
+      });
+      window.__triberaCareersApplyEscBound = true;
     }
 
     if (uploadBtn.dataset.bound !== 'true') {

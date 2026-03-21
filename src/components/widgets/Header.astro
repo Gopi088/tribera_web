@@ -211,9 +211,12 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
                 <div class="pointer-events-none absolute -right-16 bottom-0 h-44 w-44 rounded-full bg-white/[0.04] blur-3xl"></div>
                 <button
                   id="closeModal"
-                  class="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-xl text-white/45 transition hover:border-white/20 hover:bg-white/[0.05] hover:text-white/75"
+                  class="absolute right-4 top-4 z-20 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-white/[0.02] p-0 text-white/45 transition-colors duration-200 hover:border-[#DA0007]/35 hover:bg-[#DA0007]/12 hover:text-white/85"
                 >
-                  ✕
+                  <svg viewBox="0 0 24 24" aria-hidden="true" class="h-[18px] w-[18px]" fill="none" stroke="currentColor" stroke-width="1.9">
+                    <path d="M6 6L18 18" stroke-linecap="round"></path>
+                    <path d="M18 6L6 18" stroke-linecap="round"></path>
+                  </svg>
                 </button>
 
                 <form
@@ -373,6 +376,12 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
                 window.__triberaCandidateSuccessTimer = null;
               };
 
+              const closeModal = () => {
+                clearSuccessTimer();
+                modal.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+              };
+
               const openModal = () => {
                 clearSuccessTimer();
                 form.classList.remove('hidden');
@@ -401,11 +410,7 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
 
               if (close && close.dataset.modalCloseBound !== 'true') {
                 close.dataset.modalCloseBound = 'true';
-                close.addEventListener('click', () => {
-                  clearSuccessTimer();
-                  modal.classList.add('hidden');
-                  document.body.classList.remove('overflow-hidden');
-                });
+                close.addEventListener('click', closeModal);
               }
 
               // Close when clicking outside
@@ -415,11 +420,18 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
                   if (e.target === modal) {
                     const justOpened = Date.now() - Number(modal.dataset.lastOpenedAt || 0) < 500;
                     if (justOpened) return;
-                    clearSuccessTimer();
-                    modal.classList.add('hidden');
-                    document.body.classList.remove('overflow-hidden');
+                    closeModal();
                   }
                 });
+              }
+
+              if (!window.__triberaCandidateModalEscBound) {
+                document.addEventListener('keydown', (e) => {
+                  if (e.key !== 'Escape') return;
+                  if (modal.classList.contains('hidden')) return;
+                  closeModal();
+                });
+                window.__triberaCandidateModalEscBound = true;
               }
 
               if (form.dataset.submitBound === 'true') return;
