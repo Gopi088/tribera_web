@@ -64,13 +64,6 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
   </head>
 
   <body class="bg-page overflow-x-hidden">
-    {
-      isChatEnabledHost && (
-        <Fragment
-          set:html={`<script type="text/javascript" src="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js" id="chatbot" environmentId="75186a18-80c9-e34b-b323-d376419f05d1" crossorigin="anonymous" async></script>`}
-        />
-      )
-    }
     <script is:inline>
       (() => {
         if (!window.location || window.location.hostname !== 'www.tribera.ai') return;
