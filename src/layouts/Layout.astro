@@ -100,7 +100,6 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           version: runtimeVersion,
           scriptRequested: false,
           scriptLoaded: false,
-          resourceObserver: null,
           iframeObserver: null,
           pageLoadHandler: null,
           loadHandler: null,
@@ -124,19 +123,11 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
             if (this.messageHandler) window.removeEventListener('message', this.messageHandler);
             if (this.navClickHandler) document.removeEventListener('click', this.navClickHandler, true);
             if (this.launcherClickHandler) document.removeEventListener('click', this.launcherClickHandler, true);
-            this.resourceObserver?.disconnect?.();
             this.iframeObserver?.disconnect?.();
           },
           handlePageVisit: null,
         };
         window[runtimeKey] = chatRuntime;
-        const debugStore =
-          window.__triberaChatDebug ||
-          (window.__triberaChatDebug = {
-            sessionStartedAt: Date.now(),
-            events: [],
-            resources: [],
-          });
         const prewarmState =
           window.__triberaChatPrewarm ||
           (window.__triberaChatPrewarm = {
@@ -151,129 +142,6 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
             visible: false,
             timeoutId: null,
           });
-        const pushDebugEvent = (type, detail = {}) => {
-          const entry = {
-            type,
-            ts: Date.now(),
-            sinceSessionMs: Date.now() - debugStore.sessionStartedAt,
-            ...detail,
-          };
-          debugStore.events.push(entry);
-          console.log('[tribera-chat-debug]', entry);
-
-          if (type === 'launcher-click') {
-            console.info('[tribera-chat-timing] first-click started', entry);
-          } else if (type === 'iframe-found') {
-            console.info('[tribera-chat-timing] iframe inserted', entry);
-          } else if (type === 'iframe-load') {
-            console.info('[tribera-chat-timing] iframe loaded', entry);
-          } else if (type === 'message') {
-            console.info('[tribera-chat-timing] iframe message', entry);
-          }
-
-          return entry;
-        };
-
-        const getChatSnapshot = () => {
-          const script = document.getElementById(chatbotScriptId);
-          const iframe = getIframe();
-          const launcher = getLauncher();
-          const loader = getLoader();
-
-          return {
-            path: window.location.pathname,
-            scriptPresent: script instanceof HTMLScriptElement,
-            scriptSrc: script instanceof HTMLScriptElement ? script.src : null,
-            iframePresent: iframe instanceof HTMLIFrameElement,
-            iframeReadyState:
-              iframe instanceof HTMLIFrameElement ? iframe.dataset.triberaObserved || 'unobserved' : null,
-            launcherPresent: launcher instanceof HTMLElement,
-            loaderPresent: loader instanceof HTMLElement,
-            prewarmRequested: Boolean(prewarmState.requested),
-            prewarmCompleted: Boolean(prewarmState.completed),
-          };
-        };
-
-        const logChatState = (type, detail = {}) => {
-          return pushDebugEvent(type, {
-            ...getChatSnapshot(),
-            ...detail,
-          });
-        };
-
-        const summarizeElement = (element) => ({
-          tag: element.tagName.toLowerCase(),
-          id: element.id || null,
-          className:
-            typeof element.className === 'string'
-              ? element.className.slice(0, 180)
-              : element.getAttribute('class')?.slice(0, 180) || null,
-          ariaLabel: element.getAttribute('aria-label'),
-          role: element.getAttribute('role'),
-          src: 'src' in element && typeof element.src === 'string' ? element.src : element.getAttribute('src'),
-          title: element.getAttribute('title'),
-        });
-
-        const getChatDomSnapshot = () => {
-          const candidateElements = Array.from(
-            document.querySelectorAll(
-              [
-                'iframe',
-                'script',
-                '[aria-label*="chat" i]',
-                '[aria-label*="bot" i]',
-                '[id*="chat" i]',
-                '[id*="bot" i]',
-                '[class*="chat" i]',
-                '[class*="bot" i]',
-                '[title*="chat" i]',
-              ].join(', ')
-            )
-          );
-
-          const filtered = candidateElements.filter((element) => {
-            const text = [
-              element.id,
-              element.getAttribute('class'),
-              element.getAttribute('aria-label'),
-              element.getAttribute('title'),
-              'src' in element ? element.getAttribute('src') : null,
-            ]
-              .filter(Boolean)
-              .join(' ')
-              .toLowerCase();
-
-            return (
-              text.includes('chat') ||
-              text.includes('bot') ||
-              text.includes('customerconnect') ||
-              text.includes('onecdn') ||
-              text.includes('teams')
-            );
-          });
-
-          return filtered.slice(0, 25).map((element) => summarizeElement(element));
-        };
-
-        const logChatDom = (type, detail = {}) => {
-          return logChatState(type, {
-            domNodes: getChatDomSnapshot(),
-            ...detail,
-          });
-        };
-
-        const recordIframeSnapshot = (reason) => {
-          const iframe = getIframe();
-          if (!(iframe instanceof HTMLIFrameElement)) return;
-
-          pushDebugEvent(reason, {
-            iframeSrc: iframe.src,
-            width: iframe.style.width || null,
-            height: iframe.style.height || null,
-          });
-        };
-
-        const relevantResource = (name) => microsoftOrigins.some((origin) => name.startsWith(origin));
         const isWidgetMessage = (event) => {
           if (microsoftOrigins.includes(event.origin)) return true;
 
@@ -365,7 +233,6 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
             if (!(node instanceof HTMLElement)) continue;
             if (node.isConnected) continue;
             document.body.appendChild(node);
-            logChatState('artifact-reattached', { artifact: key });
           }
         };
 
@@ -378,7 +245,6 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           const frame = document.getElementById(prewarmIframeId);
           if (frame instanceof HTMLIFrameElement) {
             frame.remove();
-            logChatState('prewarm-frame-removed');
           }
         };
 
@@ -404,14 +270,12 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
               'load',
               () => {
                 prewarmState.completed = true;
-                logChatState('prewarm-frame-load');
                 prewarmState.cleanupTimerId = window.setTimeout(removePrewarmFrame, prewarmFrameTtlMs);
               },
               { once: true }
             );
 
             document.body.appendChild(frame);
-            logChatState('prewarm-frame-created', { iframeSrc: chatbotFrameSrc });
             prewarmState.cleanupTimerId = window.setTimeout(removePrewarmFrame, prewarmFrameTtlMs);
           };
 
@@ -421,33 +285,6 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           }
 
           prewarmState.timerId = window.setTimeout(start, prewarmFallbackDelayMs);
-        };
-
-        const observeResources = () => {
-          if (chatRuntime.resourceObserver) return;
-          if (!('PerformanceObserver' in window)) return;
-
-          try {
-            chatRuntime.resourceObserver = new PerformanceObserver((list) => {
-              for (const entry of list.getEntries()) {
-                if (!relevantResource(entry.name)) continue;
-                const resource = {
-                  name: entry.name,
-                  initiatorType: entry.initiatorType,
-                  startTime: Math.round(entry.startTime),
-                  duration: Math.round(entry.duration),
-                  transferSize: entry.transferSize,
-                };
-                debugStore.resources.push(resource);
-                console.log('[tribera-chat-resource]', resource);
-                console.info('[tribera-chat-timing] resource', resource);
-              }
-            });
-
-            chatRuntime.resourceObserver.observe({ type: 'resource', buffered: true });
-          } catch {
-            // Ignore unsupported PerformanceObserver configurations.
-          }
         };
 
         const observeIframeLifecycle = () => {
@@ -460,11 +297,7 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
 
             removePrewarmFrame();
             iframe.dataset.triberaObserved = 'true';
-            logChatState('iframe-found');
-            recordIframeSnapshot('iframe-found');
             iframe.addEventListener('load', () => {
-              logChatState('iframe-load');
-              recordIframeSnapshot('iframe-load');
               setChatStatusVisible(false);
             });
           });
@@ -478,13 +311,6 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           const launcher = getLauncher();
           const loader = getLoader();
 
-          logChatState('remove-chatbot-artifacts', {
-            removingScript: script instanceof HTMLScriptElement,
-            removingIframe: iframe instanceof HTMLIFrameElement,
-            removingLauncher: launcher instanceof HTMLElement,
-            removingLoader: loader instanceof HTMLElement,
-          });
-
           if (script instanceof HTMLScriptElement) script.remove();
           if (iframe instanceof HTMLIFrameElement) iframe.remove();
           if (launcher instanceof HTMLElement) launcher.remove();
@@ -493,21 +319,13 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
 
         const ensureChatbotScript = (forceRemount = false) => {
           let script = document.getElementById(chatbotScriptId);
-          logChatState('ensure-script-enter', {
-            forceRemount,
-            scriptAlreadyPresent: script instanceof HTMLScriptElement,
-            scriptRequested: chatRuntime.scriptRequested,
-            scriptLoaded: chatRuntime.scriptLoaded,
-          });
           if (!forceRemount) {
             if (script instanceof HTMLScriptElement) {
               preserveNode('script', script);
-              logChatState('ensure-script-skip-existing', { forceRemount });
               return script;
             }
             if (chatRuntime.scriptRequested || chatRuntime.scriptLoaded) {
               reattachPreservedArtifacts();
-              logChatState('ensure-script-skip-runtime-singleton', { forceRemount });
               return null;
             }
           } else {
@@ -531,7 +349,6 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
               chatRuntime.scriptLoaded = true;
               script.dataset.triberaLoaded = 'true';
               preserveNode('script', script);
-              logChatState('ensure-script-load');
             },
             { once: true }
           );
@@ -540,14 +357,12 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
             () => {
               chatRuntime.scriptRequested = false;
               chatRuntime.scriptLoaded = false;
-              logChatState('ensure-script-error');
             },
             { once: true }
           );
           chatRuntime.scriptRequested = true;
           document.body.appendChild(script);
           preserveNode('script', script);
-          logChatState('ensure-script-appended', { forceRemount });
           return script;
         };
 
@@ -571,40 +386,17 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
 
         const initChatbot = (source = 'unknown') => {
           reattachPreservedArtifacts();
-          const script = document.getElementById(chatbotScriptId);
-          const uiPresent = hasChatbotUi();
-          logChatDom('init-chatbot', {
-            source,
-            scriptPresentBeforeInit: script instanceof HTMLScriptElement,
-            uiPresentBeforeInit: uiPresent,
-          });
-
           ensureChatbotScript();
           ensurePrewarmFrame();
-
-          window.setTimeout(() => {
-            logChatDom('post-init-snapshot', { source, delayMs: 150 });
-          }, 150);
-
-          window.setTimeout(() => {
-            logChatDom('post-init-snapshot', { source, delayMs: 800 });
-          }, 800);
-
-          window.setTimeout(() => {
-            logChatDom('post-init-snapshot', { source, delayMs: 2000 });
-          }, 2000);
         };
 
         const reinitChatbotOnPageShow = () => {
-          logChatState('pageshow-reinit-enter');
           reattachPreservedArtifacts();
           ensureChatbotScript();
           ensurePrewarmFrame();
         };
 
-        logChatState('chat-inline-bootstrap');
         chatRuntime.handlePageVisit = (source = 'runtime:handlePageVisit') => {
-          logChatState('chat-inline-bootstrap-reuse', { source });
           reattachPreservedArtifacts();
           initChatbot(source);
         };
@@ -615,12 +407,9 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           preserveChatArtifacts();
           removePrewarmFrame();
           setChatStatusVisible(false);
-          logChatState('before-swap-preserve');
         };
         chatRuntime.messageHandler = (event) => {
           if (!isWidgetMessage(event)) return;
-          logChatState('message', { origin: event.origin, data: event.data });
-          recordIframeSnapshot('iframe-after-message');
           preserveChatArtifacts();
           setChatStatusVisible(false);
         };
@@ -629,7 +418,6 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           if (!(target instanceof Element)) return;
           const link = target.closest('a');
           if (!shouldReinitForLink(link)) return;
-          logChatDom('nav-click', { href: link.href });
           preserveChatArtifacts();
           if (prewarmState.timerId) {
             if ('cancelIdleCallback' in window && typeof prewarmState.timerId === 'number') {
@@ -649,7 +437,6 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           if (!(target instanceof Element)) return;
           const launcher = target.closest('img[aria-label="Open Customer Connect chat bot assistant"]');
           if (!(launcher instanceof HTMLImageElement)) return;
-          pushDebugEvent('launcher-click', { ariaLabel: launcher.getAttribute('aria-label') });
           preserveChatArtifacts();
           showConnectingStatus();
         };
@@ -661,7 +448,6 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
         document.addEventListener('click', chatRuntime.navClickHandler, true);
         document.addEventListener('click', chatRuntime.launcherClickHandler, true);
 
-        observeResources();
         observeIframeLifecycle();
         preserveChatArtifacts();
         ensurePrewarmFrame();
