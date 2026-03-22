@@ -36,6 +36,7 @@
         class="relative mt-7 space-y-3.5 sm:mt-8 sm:space-y-4"
       >
         <input type="hidden" name="form_type" value="sales" />
+        <input type="hidden" name="form_loaded_at" value="" data-form-loaded-at />
         <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
 
         <div class="grid gap-3.5 sm:grid-cols-2 sm:gap-4">
@@ -63,6 +64,14 @@
           name="company"
           placeholder="Company name"
           autocomplete="organization"
+          class="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-[14px] text-white placeholder:text-white/35 focus:border-[#DA0007]/60 focus:bg-white/[0.05] focus:outline-none focus:ring-1 focus:ring-[#DA0007]/25"
+        />
+
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Phone number"
+          autocomplete="tel"
           class="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-[14px] text-white placeholder:text-white/35 focus:border-[#DA0007]/60 focus:bg-white/[0.05] focus:outline-none focus:ring-1 focus:ring-[#DA0007]/25"
         />
 
@@ -109,6 +118,7 @@
     const submitBtn = document.getElementById('contactSalesSubmitBtn');
     const successMsg = document.getElementById('contactSalesSuccessMsg');
     const errorMsg = document.getElementById('contactSalesErrorMsg');
+    const formLoadedAtInput = form.querySelector('[data-form-loaded-at]');
     const closeBtn = modal?.querySelector('[data-close-sales]');
     if (!modal || !form) return;
     if (modal.dataset.bound === 'true') return;
@@ -119,11 +129,18 @@
       document.body.classList.remove('overflow-hidden');
     };
 
+    const stampFormLoadedAt = () => {
+      if (formLoadedAtInput instanceof HTMLInputElement) {
+        formLoadedAtInput.value = String(Date.now());
+      }
+    };
+
     document.addEventListener('click', (e) => {
       const target = e.target;
       if (!(target instanceof Element)) return;
 
       if (target.id === 'contactSalesBtn' || target.closest('[data-open-sales]')) {
+        stampFormLoadedAt();
         modal.classList.remove('hidden');
         document.body.classList.add('overflow-hidden');
         modal.dataset.lastOpenedAt = String(Date.now());
@@ -172,12 +189,23 @@
           body: new FormData(form),
           headers: { Accept: 'application/json' },
         });
-        const result = await res.json();
+        const isJson = res.headers.get('content-type')?.includes('application/json');
+        const result = isJson
+          ? await res.json()
+          : {
+              success: false,
+              message: 'Something went wrong while submitting your request. Please try again or email sales@tribera.ai.',
+            };
         if (!res.ok || !result.success) {
-          throw new Error(result.message || 'Submission failed');
+          const safeClientMessage =
+            res.status >= 400 && res.status < 500 && typeof result.message === 'string' && result.message.trim()
+              ? result.message
+              : 'Something went wrong while submitting your request. Please try again or email sales@tribera.ai.';
+          throw new Error(safeClientMessage);
         }
 
         form.reset();
+        stampFormLoadedAt();
         form.classList.add('hidden');
         successMsg?.classList.remove('hidden');
 
@@ -188,6 +216,12 @@
         }, 3000);
       } catch (error) {
         console.error('Contact sales form submit failed:', error);
+        if (errorMsg instanceof HTMLElement) {
+          errorMsg.textContent =
+            error instanceof Error && error.message
+              ? error.message
+              : 'Something went wrong while submitting your request. Please try again or email sales@tribera.ai.';
+        }
         errorMsg?.classList.remove('hidden');
       } finally {
         if (submitBtn) {

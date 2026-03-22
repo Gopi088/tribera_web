@@ -7,10 +7,12 @@
     "node": "^18.17.1 || ^20.3.0 || >= 21.0.0"
   },
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
+    "dev": "bash scripts/netlify-dev.sh",
+    "start": "bash scripts/netlify-dev.sh",
+    "dev:astro": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "test:handlers": "node --test tests/netlify-functions.test.mjs",
     "visual:shots": "node scripts/visual-sweep.mjs",
     "visual:shots:all": "npm run build && npm run visual:shots",
     "astro": "astro",

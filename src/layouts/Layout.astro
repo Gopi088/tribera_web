@@ -543,7 +543,7 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
               ) : (
                 <button
                   type="button"
-                  id="openDemoBtn"
+                  data-open-sales
                   class="px-4 sm:px-6 py-1.5 sm:py-2.5
                    rounded-full
                    tribera-primary-button
@@ -607,6 +607,7 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
 
           <form id="demoForm" action="/.netlify/functions/site-inquiry" method="POST" class="relative mt-7 space-y-4 sm:mt-8">
             <input type="hidden" name="form_type" value="demo" />
+            <input type="hidden" name="form_loaded_at" value="" data-form-loaded-at />
             <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
             <div class="grid gap-3.5 sm:grid-cols-2 sm:gap-4">

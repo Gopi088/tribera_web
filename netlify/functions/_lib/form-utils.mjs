@@ -1,6 +1,14 @@
 import Busboy from 'busboy';
+import path from 'node:path';
+import { enforceRateLimit, validateRequestOrigin } from './request-guards.mjs';
 
 export const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024;
+const ALLOWED_RESUME_EXTENSIONS = new Set(['.pdf', '.doc', '.docx']);
+const ALLOWED_RESUME_MIME_TYPES = new Set([
+  'application/pdf',
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+]);
 
 export const json = (statusCode, body) => ({
   statusCode,
@@ -9,6 +17,105 @@ export const json = (statusCode, body) => ({
   },
   body: JSON.stringify(body),
 });
+
+export const badRequest = (message) =>
+  json(400, {
+    success: false,
+    message,
+  });
+
+export const logFunctionError = (event, operation, errorCode = 'internal_error') => {
+  const requestId =
+    event?.headers?.['x-nf-request-id'] ||
+    event?.headers?.['X-Nf-Request-Id'] ||
+    event?.headers?.['x-request-id'] ||
+    event?.headers?.['X-Request-Id'] ||
+    'unknown';
+
+  console.error(JSON.stringify({ level: 'error', operation, errorCode, requestId }));
+};
+
+export const escapeHtml = (value = '') =>
+  String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+
+export const normalizeTextField = (value) => String(value || '').trim();
+
+export const sanitizeSubjectPart = (value, maxLength = 120) =>
+  normalizeTextField(value)
+    .replace(/[\r\n\t]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .slice(0, maxLength);
+
+export const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizeTextField(value));
+
+export const isValidHttpUrl = (value) => {
+  const normalized = normalizeTextField(value);
+  if (!normalized) return false;
+
+  try {
+    const url = new URL(normalized);
+    return url.protocol === 'http:' || url.protocol === 'https:';
+  } catch {
+    return false;
+  }
+};
+
+export const validateSubmissionTiming = (value) => {
+  const minSubmitMs = Number(process.env.FORM_MIN_SUBMIT_MS || 1500);
+  const maxSubmitAgeMs = Number(process.env.FORM_MAX_SUBMIT_AGE_MS || 2 * 60 * 60 * 1000);
+  const submittedAt = Number.parseInt(String(value || ''), 10);
+
+  if (!Number.isFinite(submittedAt) || submittedAt <= 0) {
+    return { ok: false, message: 'Invalid form submission.' };
+  }
+
+  const elapsedMs = Date.now() - submittedAt;
+
+  if (elapsedMs < minSubmitMs) {
+    return { ok: false, message: 'Please take a moment to complete the form before submitting.' };
+  }
+
+  if (elapsedMs > maxSubmitAgeMs) {
+    return { ok: false, message: 'This form has expired. Please refresh and try again.' };
+  }
+
+  return { ok: true };
+};
+
+export const normalizeFilename = (filename, fallbackBase = 'resume') => {
+  const parsed = path.parse(String(filename || ''));
+  const extension = ALLOWED_RESUME_EXTENSIONS.has(parsed.ext.toLowerCase()) ? parsed.ext.toLowerCase() : '.pdf';
+  const safeBase = (parsed.name || fallbackBase).replace(/[^a-zA-Z0-9._-]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+  return `${safeBase || fallbackBase}${extension}`;
+};
+
+export const validateResumeFile = (file) => {
+  if (!file) {
+    return { ok: false, message: 'Please complete the required fields and attach your resume.' };
+  }
+
+  const extension = path.extname(String(file.filename || '')).toLowerCase();
+  const mimeType = String(file.mimeType || '').toLowerCase();
+  const hasAllowedExtension = ALLOWED_RESUME_EXTENSIONS.has(extension);
+  const hasAllowedMimeType = ALLOWED_RESUME_MIME_TYPES.has(mimeType);
+
+  if (!hasAllowedExtension || !hasAllowedMimeType) {
+    return { ok: false, message: 'Please upload a PDF, DOC, or DOCX resume.' };
+  }
+
+  return {
+    ok: true,
+    file: {
+      ...file,
+      filename: normalizeFilename(file.filename),
+    },
+  };
+};
 
 export const parseMultipartForm = async (event, options = {}) => {
   const { maxFiles = 1, maxFileSize = MAX_FILE_SIZE_BYTES } = options;
@@ -30,6 +137,9 @@ export const parseMultipartForm = async (event, options = {}) => {
       limits: {
         files: maxFiles,
         fileSize: maxFileSize,
+        fields: 20,
+        fieldNameSize: 100,
+        fieldSize: 10 * 1024,
       },
     });
 
@@ -76,6 +186,44 @@ export const parseMultipartForm = async (event, options = {}) => {
 
     busboy.end(bodyBuffer);
   });
+};
+
+export const runFormRequestChecks = async (
+  event,
+  {
+    scope,
+    maxFiles = 1,
+    maxFileSize = MAX_FILE_SIZE_BYTES,
+    honeypotField = 'botcheck',
+  } = {}
+) => {
+  const originCheck = validateRequestOrigin(event);
+  if (!originCheck.ok) {
+    return { response: badRequest(originCheck.message) };
+  }
+
+  const rateLimit = enforceRateLimit(event, scope);
+  if (!rateLimit.ok) {
+    return {
+      response: json(rateLimit.statusCode, {
+        success: false,
+        message: rateLimit.message,
+      }),
+    };
+  }
+
+  const { fields, files } = await parseMultipartForm(event, { maxFiles, maxFileSize });
+
+  if (fields[honeypotField]) {
+    return { response: json(200, { success: true }) };
+  }
+
+  const submissionTiming = validateSubmissionTiming(fields.form_loaded_at);
+  if (!submissionTiming.ok) {
+    return { response: badRequest(submissionTiming.message) };
+  }
+
+  return { fields, files };
 };
 
 export const getResendConfig = () => {
@@ -129,4 +277,19 @@ export const sendResendEmail = async ({
     const message = resendError?.message || 'Failed to send email via Resend.';
     throw new Error(message);
   }
+};
+
+export const deliverFormEmail = async ({ to, replyTo, subject, text, html, attachments = [] }) => {
+  const { resendApiKey, from } = getResendConfig();
+
+  await sendResendEmail({
+    to,
+    from,
+    resendApiKey,
+    replyTo,
+    subject,
+    text,
+    html,
+    attachments,
+  });
 };

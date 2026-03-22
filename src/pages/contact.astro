@@ -80,7 +80,7 @@ const metadata = {
           Need more hands-on help? Explore{' '}
           <a
             href="/services"
-            class="text-white/80 underline decoration-[#da0007]/50 underline-offset-4 transition-colors duration-200 hover:text-white hover:decoration-[#da0007]"
+            class="text-white/70 underline decoration-[#da0007]/50 underline-offset-4 transition-colors duration-200 hover:text-white"
           >
             tribera hiring services
           </a>{' '}
@@ -591,6 +591,7 @@ const metadata = {
 
           <form id="contact-form" action="/.netlify/functions/site-inquiry" class="space-y-3 sm:space-y-4">
             <input type="hidden" name="form_type" value="contact" />
+            <input type="hidden" name="form_loaded_at" value="" data-form-loaded-at />
             <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -757,6 +758,7 @@ const metadata = {
           form.dataset.bound = 'true';
 
           const customSelect = form.querySelector('[data-contact-select]');
+          const formLoadedAtInput = form.querySelector('[data-form-loaded-at]');
           const customSelectInput = form.querySelector('[data-contact-select-input]');
           const customSelectTrigger = form.querySelector('[data-contact-select-trigger]');
           const customSelectLabel = form.querySelector('[data-contact-select-label]');
@@ -829,6 +831,10 @@ const metadata = {
             });
           }
 
+          if (formLoadedAtInput instanceof HTMLInputElement) {
+            formLoadedAtInput.value = String(Date.now());
+          }
+
           form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
@@ -849,10 +855,19 @@ const metadata = {
                 body: formData,
               });
 
-              const result = await res.json();
+              const isJson = res.headers.get('content-type')?.includes('application/json');
+              const result = isJson
+                ? await res.json()
+                : {
+                    success: false,
+                    message: 'Something went wrong while sending your message. Please try again or email hello@tribera.ai.',
+                  };
 
               if (result.success) {
                 form.reset();
+                if (formLoadedAtInput instanceof HTMLInputElement) {
+                  formLoadedAtInput.value = String(Date.now());
+                }
                 setSelectValue('');
                 setSelectOpen(false);
                 form.classList.add('hidden');

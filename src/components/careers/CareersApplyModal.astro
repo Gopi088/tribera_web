@@ -38,6 +38,7 @@ const { title, slug, department } = Astro.props as {
         <input type="hidden" name="job_title" value={title} />
         <input type="hidden" name="job_slug" value={slug} />
         <input type="hidden" name="department" value={department || ''} />
+        <input type="hidden" name="form_loaded_at" value="" data-form-loaded-at />
         <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
 
         <div class="relative pb-1">
@@ -161,6 +162,7 @@ const { title, slug, department } = Astro.props as {
     const submitBtn = document.getElementById('careersSubmitBtn');
     const fileName = document.getElementById('careersFileName');
     const errorMsg = document.getElementById('careersErrorMsg');
+    const formLoadedAtInput = form.querySelector('[data-form-loaded-at]');
 
     if (
       !(modal instanceof HTMLDivElement) ||
@@ -179,6 +181,9 @@ const { title, slug, department } = Astro.props as {
       form.classList.remove('hidden');
       success?.classList.add('hidden');
       errorMsg.classList.add('hidden');
+      if (formLoadedAtInput instanceof HTMLInputElement) {
+        formLoadedAtInput.value = String(Date.now());
+      }
       modal.classList.remove('hidden');
       document.body.classList.add('overflow-hidden');
       modal.dataset.lastOpenedAt = String(Date.now());
@@ -256,7 +261,13 @@ const { title, slug, department } = Astro.props as {
           method: 'POST',
           body: new FormData(form),
         });
-        const result = await res.json();
+        const isJson = res.headers.get('content-type')?.includes('application/json');
+        const result = isJson
+          ? await res.json()
+          : {
+              success: false,
+              message: careersApplyFailureMessage,
+            };
 
         if (!res.ok || !result.success) {
           throw new Error(result.message || 'Submission failed');
@@ -267,6 +278,9 @@ const { title, slug, department } = Astro.props as {
 
         window.setTimeout(() => {
           form.reset();
+          if (formLoadedAtInput instanceof HTMLInputElement) {
+            formLoadedAtInput.value = String(Date.now());
+          }
           form.classList.remove('hidden');
           success?.classList.add('hidden');
           submitBtn.textContent = originalText;

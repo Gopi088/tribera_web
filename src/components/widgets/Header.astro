@@ -131,24 +131,24 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
     rounded-xl bg-white shadow-xl p-2 transition-all duration-200"
             >
               <a
-                href="/candidates#why-tribera"
+                href="/candidates#signalSection"
                 class="block px-4 py-2 rounded-lg text-black/50 text-[12px] hover:bg-red-50 hover:text-[#DA0007]"
               >
-                Why Tribera
+                AI Signal
               </a>
 
               <a
-                href="/candidates#screening"
+                href="/candidates#why-tribera"
                 class="block px-4 py-2 rounded-lg text-black/50 text-[12px] hover:bg-red-50 hover:text-[#DA0007]"
               >
-                Screening
+                How It Works
               </a>
 
               <a
                 href="/candidates#interview"
                 class="block px-4 py-2 rounded-lg text-black/50 text-[12px] hover:bg-red-50 hover:text-[#DA0007]"
               >
-                Interview Prep
+                Timeline
               </a>
 
               <a
@@ -226,6 +226,7 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
                   enctype="multipart/form-data"
                   class="relative space-y-5"
                 >
+                  <input type="hidden" name="form_loaded_at" value="" data-form-loaded-at />
                   <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
 
                   <div class="relative pb-1">
@@ -363,6 +364,7 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
               const submitBtn = document.getElementById('submitBtn');
               const fileName = document.getElementById('fileName');
               const errorMsg = document.getElementById('candidateErrorMsg');
+              const formLoadedAtInput = form.querySelector('[data-form-loaded-at]');
 
               if (!form || !modal) return;
 
@@ -390,6 +392,9 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
                 clearSuccessTimer();
                 form.classList.remove('hidden');
                 success?.classList.add('hidden');
+                if (formLoadedAtInput instanceof HTMLInputElement) {
+                  formLoadedAtInput.value = String(Date.now());
+                }
                 modal.dataset.lastOpenedAt = String(Date.now());
                 modal.classList.remove('hidden');
                 document.body.classList.add('overflow-hidden');
@@ -459,7 +464,14 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
                     headers: { Accept: 'application/json' },
                   });
 
-                  const result = await res.json();
+                  const isJson = res.headers.get('content-type')?.includes('application/json');
+                  const result = isJson
+                    ? await res.json()
+                    : {
+                        success: false,
+                        message:
+                          'Something went wrong while submitting your profile. Please try again or email your resume to careers@tribera.ai.',
+                      };
                   if (!res.ok || !result.success) {
                     throw new Error(result.message || 'Submission failed');
                   }
@@ -471,6 +483,9 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
                   window.__triberaCandidateSuccessTimer = setTimeout(() => {
                     modal.classList.add('hidden');
                     form.reset();
+                    if (formLoadedAtInput instanceof HTMLInputElement) {
+                      formLoadedAtInput.value = String(Date.now());
+                    }
                     if (submitBtn) submitBtn.disabled = true;
                     if (fileName) fileName.textContent = '';
                     form.classList.remove('hidden');

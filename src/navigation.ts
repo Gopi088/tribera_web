@@ -90,13 +90,6 @@ export const footerData = {
       rel: 'noopener noreferrer',
     },
     {
-      ariaLabel: 'X (Twitter)',
-      icon: 'tabler:brand-x',
-      href: 'https://twitter.com/TriberaA46978',
-      target: '_blank',
-      rel: 'noopener noreferrer',
-    },
-    {
       ariaLabel: 'Email',
       icon: 'tabler:mail',
       href: 'mailto:hello@tribera.ai',
