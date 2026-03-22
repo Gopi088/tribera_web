@@ -5,7 +5,7 @@ department: Engineering
 roleFamily: technical
 employmentType: full-time
 location: Bengaluru, India
-remotePolicy: hybrid
+remotePolicy: onsite
 experienceLevel: 3-6 years
 featured: true
 sortOrder: 10

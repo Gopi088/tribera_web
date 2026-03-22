@@ -6,6 +6,7 @@ const {
   location,
   remotePolicy,
   experienceLevel,
+  positions = 1,
 } = Astro.props as {
   status?: string;
   department?: string;
@@ -13,6 +14,7 @@ const {
   location?: string;
   remotePolicy?: string;
   experienceLevel?: string;
+  positions?: number;
 };
 
 const labelMap: Record<string, string> = {
@@ -43,6 +45,7 @@ const chips = [
   location,
   remotePolicy ? formatLabel(remotePolicy) : undefined,
   experienceLevel,
+  `${positions} position${positions === 1 ? '' : 's'}`,
 ].filter(Boolean) as Array<string>;
 ---
 

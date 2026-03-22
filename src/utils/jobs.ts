@@ -15,7 +15,7 @@ export type JobDepartment =
   | 'Marketing';
 export type JobRoleFamily = 'technical' | 'talent' | 'go-to-market' | 'operations' | 'intern';
 export type JobEmploymentType = 'full-time' | 'intern' | 'contract';
-export type JobRemotePolicy = 'remote' | 'hybrid' | 'onsite';
+export type JobRemotePolicy = 'remote' | 'onsite';
 
 export interface Job {
   id: string;
@@ -30,6 +30,7 @@ export interface Job {
   location: string;
   remotePolicy: JobRemotePolicy;
   experienceLevel?: string;
+  positions: number;
 
   featured: boolean;
   sortOrder: number;
@@ -84,6 +85,7 @@ const getNormalizedJob = async (job: CollectionEntry<'job'>): Promise<Job> => {
     location,
     remotePolicy,
     experienceLevel,
+    positions = 1,
     featured = false,
     sortOrder = 100,
     summary,
@@ -114,6 +116,7 @@ const getNormalizedJob = async (job: CollectionEntry<'job'>): Promise<Job> => {
     location: location,
     remotePolicy: remotePolicy,
     experienceLevel: experienceLevel,
+    positions: positions,
 
     featured: featured,
     sortOrder: sortOrder,

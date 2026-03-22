@@ -5,7 +5,7 @@ department: Engineering
 roleFamily: intern
 employmentType: intern
 location: Bengaluru, India
-remotePolicy: hybrid
+remotePolicy: onsite
 experienceLevel: Student or recent graduate
 featured: false
 sortOrder: 40

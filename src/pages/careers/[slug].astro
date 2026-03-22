@@ -136,6 +136,7 @@ const isClosed = job.status === 'closed';
             location={job.location}
             remotePolicy={job.remotePolicy}
             experienceLevel={job.experienceLevel}
+            positions={job.positions}
           />
         </div>
       </div>
@@ -229,9 +230,9 @@ const isClosed = job.status === 'closed';
     .job-content li {
       position: relative;
       padding-left: 1.35rem;
-      font-size: 0.8rem;
-      line-height: 1.48;
-      color: rgba(0, 0, 0, 0.66);
+      font-size: 0.76rem;
+      line-height: 1.52;
+      color: rgba(0, 0, 0, 0.62);
     }
 
     .job-content li::before {
@@ -280,10 +281,14 @@ const isClosed = job.status === 'closed';
         font-size: 0.86rem;
       }
 
-      .job-content p,
-      .job-content li {
+      .job-content p {
         font-size: 0.84rem;
         line-height: 1.52;
+      }
+
+      .job-content li {
+        font-size: 0.78rem;
+        line-height: 1.5;
       }
 
       .job-content h2 + p,

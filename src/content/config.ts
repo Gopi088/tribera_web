@@ -86,8 +86,9 @@ const jobCollection = defineCollection({
       roleFamily: z.enum(['technical', 'talent', 'go-to-market', 'operations', 'intern']),
       employmentType: z.enum(['full-time', 'intern', 'contract']),
       location: z.string(),
-      remotePolicy: z.enum(['remote', 'hybrid', 'onsite']),
+      remotePolicy: z.enum(['remote', 'onsite']),
       experienceLevel: z.string().optional(),
+      positions: z.number().int().positive().optional().default(1),
 
       featured: z.boolean().optional().default(false),
       sortOrder: z.number().int().optional().default(100),

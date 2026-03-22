@@ -1,8 +1,8 @@
 ---
 title: Senior Delivery Partner
 status: open
-department: Operations
-roleFamily: operations
+department: Talent Advisory
+roleFamily: talent
 employmentType: full-time
 location: Indiranagar, Bengaluru
 remotePolicy: onsite
