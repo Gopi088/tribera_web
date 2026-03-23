@@ -107,7 +107,6 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           version: runtimeVersion,
           scriptRequested: false,
           scriptLoaded: false,
-          needsRemountAfterSwap: false,
           iframeObserver: null,
           pageLoadHandler: null,
           loadHandler: null,
@@ -246,6 +245,15 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
 
         const preserveWidgetStyles = () => {
           chatRuntime.preservedNodes.styles = getWidgetStyles();
+        };
+
+        const clearPreservedArtifacts = () => {
+          chatRuntime.preservedNodes.script = null;
+          chatRuntime.preservedNodes.iframe = null;
+          chatRuntime.preservedNodes.launcher = null;
+          chatRuntime.preservedNodes.loader = null;
+          chatRuntime.preservedNodes.badge = null;
+          chatRuntime.preservedNodes.styles = [];
         };
 
         const preserveChatArtifacts = () => {
@@ -428,23 +436,13 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
 
         const initChatbot = (source = 'unknown') => {
           reattachPreservedArtifacts();
-          if (chatRuntime.needsRemountAfterSwap) {
-            ensureChatbotScript(true);
-            chatRuntime.needsRemountAfterSwap = false;
-          } else {
-            ensureChatbotScript();
-          }
+          ensureChatbotScript();
           ensurePrewarmFrame();
         };
 
         const reinitChatbotOnPageShow = () => {
           reattachPreservedArtifacts();
-          if (chatRuntime.needsRemountAfterSwap) {
-            ensureChatbotScript(true);
-            chatRuntime.needsRemountAfterSwap = false;
-          } else {
-            ensureChatbotScript();
-          }
+          ensureChatbotScript();
           ensurePrewarmFrame();
         };
 
@@ -456,11 +454,15 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
         chatRuntime.loadHandler = () => initChatbot('window:load');
         chatRuntime.pageShowHandler = reinitChatbotOnPageShow;
         chatRuntime.beforeSwapHandler = () => {
-          const launcher = getLauncher();
           const iframe = getIframe();
-          chatRuntime.needsRemountAfterSwap =
-            launcher instanceof HTMLImageElement && !(iframe instanceof HTMLIFrameElement);
-          preserveChatArtifacts();
+          if (iframe instanceof HTMLIFrameElement) {
+            preserveChatArtifacts();
+          } else {
+            removeChatbotArtifacts();
+            clearPreservedArtifacts();
+            chatRuntime.scriptRequested = false;
+            chatRuntime.scriptLoaded = false;
+          }
           removePrewarmFrame();
           setChatStatusVisible(false);
         };
