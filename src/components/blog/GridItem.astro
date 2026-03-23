@@ -24,7 +24,7 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
     {
       image &&
         (link ? (
-          <a href={link}>
+          <a href={link} data-astro-reload>
             <Image
               src={image}
               class="w-full md:h-full rounded shadow-lg bg-gray-400 dark:bg-slate-700"
@@ -61,6 +61,7 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
         <a
           class="inline-block hover:text-[#da0007] dark:hover:text-[#da0007] transition ease-in duration-200"
           href={link}
+          data-astro-reload
         >
           {post.title}
         </a>

@@ -28,7 +28,7 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
   {
     image &&
       (link ? (
-        <a class="relative block group" href={link ?? 'javascript:void(0)'}>
+        <a class="relative block group" href={link ?? 'javascript:void(0)'} data-astro-reload>
           <div class="relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded shadow-lg">
             {image && (
               <Image
@@ -83,7 +83,7 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
               <>
                 {' '}
                 ·{' '}
-                <a class="hover:underline" href={getPermalink(post.category.slug, 'category')}>
+                <a class="hover:underline" href={getPermalink(post.category.slug, 'category')} data-astro-reload>
                   {post.category.title}
                 </a>
               </>
@@ -97,6 +97,7 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
             <a
               class="inline-block hover:text-[#da0007] dark:hover:text-[#da0007] transition ease-in duration-200"
               href={link}
+              data-astro-reload
             >
               {post.title}
             </a>

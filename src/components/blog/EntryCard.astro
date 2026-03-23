@@ -39,6 +39,7 @@ const readTime = toMinutes(post.readingTime);
 
 <a
   href={link}
+  data-astro-reload
   class={`group relative overflow-hidden rounded-[20px] border border-[#da0007]/15 bg-white transition-all duration-500 hover:-translate-y-1 hover:border-[#da0007]/35 hover:shadow-[0_18px_48px_-24px_rgba(218,0,7,0.28)] ${layout === 'long' ? `block ${equalized ? 'h-full min-h-0' : ''}` : `flex h-full min-h-0 flex-col`}`}
 >
   {
