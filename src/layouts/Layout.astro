@@ -522,6 +522,51 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
         ensurePrewarmFrame();
       })();
     </script>
+    <script is:inline>
+      (() => {
+        if (window.__triberaFullReloadLinksBound) return;
+        window.__triberaFullReloadLinksBound = true;
+
+        const normalizePathname = (value) => value.replace(/\/index\.html$/, '').replace(/\/+$/, '') || '/';
+
+        document.addEventListener(
+          'click',
+          (event) => {
+            if (event.defaultPrevented) return;
+            if (event.button !== 0) return;
+            if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+            const target = event.target;
+            if (!(target instanceof Element)) return;
+
+            const link = target.closest('a[href]');
+            if (!(link instanceof HTMLAnchorElement)) return;
+            if (!link.href) return;
+            if (link.target && link.target !== '_self') return;
+            if (link.hasAttribute('download')) return;
+
+            let url;
+            try {
+              url = new URL(link.href, window.location.href);
+            } catch {
+              return;
+            }
+
+            if (url.origin !== window.location.origin) return;
+            if (url.protocol !== 'http:' && url.protocol !== 'https:') return;
+
+            const currentPath = normalizePathname(window.location.pathname);
+            const nextPath = normalizePathname(url.pathname);
+
+            if (currentPath === nextPath) return;
+
+            event.preventDefault();
+            window.location.assign(url.href);
+          },
+          true
+        );
+      })();
+    </script>
     <slot />
     <BasicScripts />
 
