@@ -97,6 +97,12 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
         const getIframe = () => document.getElementById(chatbotIframeId);
         const getPrewarmFrame = () => document.getElementById(prewarmIframeId);
         const getLoader = () => document.querySelector('.chatclient-loader');
+        const getWidgetStyles = () =>
+          Array.from(document.querySelectorAll('style')).filter(
+            (node) =>
+              node instanceof HTMLStyleElement &&
+              /chatclient-button|chatclient-loader|teams-chat-bot-iframe/i.test(node.textContent || '')
+          );
         const chatRuntime = {
           version: runtimeVersion,
           scriptRequested: false,
@@ -116,6 +122,7 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
             launcher: null,
             loader: null,
             badge: null,
+            styles: [],
           },
           teardown() {
             if (this.pageLoadHandler) document.removeEventListener('astro:page-load', this.pageLoadHandler);
@@ -236,18 +243,30 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           chatRuntime.preservedNodes[key] = node;
         };
 
+        const preserveWidgetStyles = () => {
+          chatRuntime.preservedNodes.styles = getWidgetStyles();
+        };
+
         const preserveChatArtifacts = () => {
           preserveNode('script', document.getElementById(chatbotScriptId));
           preserveNode('iframe', getIframe());
           preserveNode('launcher', getLauncher());
           preserveNode('loader', getLoader());
           preserveNode('badge', document.getElementById(chatStatusBadgeId));
+          preserveWidgetStyles();
         };
 
         const reattachPreservedArtifacts = () => {
           if (!(document.body instanceof HTMLBodyElement)) return;
 
+          for (const styleNode of chatRuntime.preservedNodes.styles) {
+            if (!(styleNode instanceof HTMLStyleElement)) continue;
+            if (styleNode.isConnected) continue;
+            document.body.appendChild(styleNode);
+          }
+
           for (const [key, node] of Object.entries(chatRuntime.preservedNodes)) {
+            if (key === 'styles') continue;
             if (!(node instanceof HTMLElement)) continue;
             if (node.isConnected) continue;
             document.body.appendChild(node);
@@ -328,11 +347,15 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           const iframe = getIframe();
           const launcher = getLauncher();
           const loader = getLoader();
+          const styles = getWidgetStyles();
 
           if (script instanceof HTMLScriptElement) script.remove();
           if (iframe instanceof HTMLIFrameElement) iframe.remove();
           if (launcher instanceof HTMLElement) launcher.remove();
           if (loader instanceof HTMLElement) loader.remove();
+          for (const styleNode of styles) {
+            styleNode.remove();
+          }
         };
 
         const ensureChatbotScript = (forceRemount = false) => {
