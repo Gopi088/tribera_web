@@ -67,7 +67,7 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
     <script is:inline>
       (() => {
         if (!window.location || window.location.hostname !== 'www.tribera.ai') return;
-        const runtimeVersion = '2026-03-21.1';
+        const runtimeVersion = '2026-03-23.1';
         const runtimeKey = '__triberaChatRuntime';
         const existingRuntime = window[runtimeKey];
         if (existingRuntime?.version === runtimeVersion) {
@@ -107,6 +107,7 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           version: runtimeVersion,
           scriptRequested: false,
           scriptLoaded: false,
+          needsRemountAfterSwap: false,
           iframeObserver: null,
           pageLoadHandler: null,
           loadHandler: null,
@@ -427,13 +428,23 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
 
         const initChatbot = (source = 'unknown') => {
           reattachPreservedArtifacts();
-          ensureChatbotScript();
+          if (chatRuntime.needsRemountAfterSwap) {
+            ensureChatbotScript(true);
+            chatRuntime.needsRemountAfterSwap = false;
+          } else {
+            ensureChatbotScript();
+          }
           ensurePrewarmFrame();
         };
 
         const reinitChatbotOnPageShow = () => {
           reattachPreservedArtifacts();
-          ensureChatbotScript();
+          if (chatRuntime.needsRemountAfterSwap) {
+            ensureChatbotScript(true);
+            chatRuntime.needsRemountAfterSwap = false;
+          } else {
+            ensureChatbotScript();
+          }
           ensurePrewarmFrame();
         };
 
@@ -445,6 +456,10 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
         chatRuntime.loadHandler = () => initChatbot('window:load');
         chatRuntime.pageShowHandler = reinitChatbotOnPageShow;
         chatRuntime.beforeSwapHandler = () => {
+          const launcher = getLauncher();
+          const iframe = getIframe();
+          chatRuntime.needsRemountAfterSwap =
+            launcher instanceof HTMLImageElement && !(iframe instanceof HTMLIFrameElement);
           preserveChatArtifacts();
           removePrewarmFrame();
           setChatStatusVisible(false);
