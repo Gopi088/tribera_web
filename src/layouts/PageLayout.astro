@@ -189,7 +189,7 @@ const { metadata } = Astro.props;
       // 🔥 GLOBAL CLICK HANDLER (Astro-safe)
       document.addEventListener('click', (e) => {
         // Open modal
-        if (e.target.closest('#openDemoBtn, [data-open-demo]')) {
+        if (e.target.closest('#openDemoBtn')) {
           e.preventDefault();
           if (formLoadedAtInput instanceof HTMLInputElement) {
             formLoadedAtInput.value = String(Date.now());
@@ -447,6 +447,17 @@ const { metadata } = Astro.props;
       const bar = section.querySelector('#triberaBar');
       const countersGrid = section.querySelector('#proofCountersGrid');
       const efficiencyCard = section.querySelector('#proofInterviewEfficiencyCard');
+      const formatCounterValue = (counter, value) => {
+        const format = counter.dataset.format || 'number';
+        const suffix = counter.dataset.suffix || '';
+        const denominator = counter.dataset.denominator || '';
+
+        if (format === 'ratio' && denominator) {
+          return `${Math.floor(value)}:${denominator}`;
+        }
+
+        return `${Math.floor(value)}${suffix}`;
+      };
 
       const resetCounters = () => {
         counters.forEach((counter) => {
@@ -456,32 +467,32 @@ const { metadata } = Astro.props;
             counterFrames.delete(counter);
           }
 
-          counter.innerText = '0';
+          counter.innerText = counter.dataset.displayValue || formatCounterValue(counter, Number(counter.dataset.target || 0));
         });
       };
 
       const animateCounters = () => {
-        resetCounters();
-
         window.requestAnimationFrame(() => {
           window.requestAnimationFrame(() => {
             counters.forEach((counter) => {
               const target = Number(counter.dataset.target);
               const countConfig = window.__triberaCountAnimationConfig || { durationMs: 1200, steps: 72 };
-              let current = 0;
+              let current = Number.parseFloat(counter.textContent || '');
+              if (!Number.isFinite(current)) current = target;
               const increment = target / countConfig.steps;
 
               const update = () => {
                 current += increment;
 
                 if (current < target) {
-                  counter.innerText = String(Math.floor(current));
+                  counter.innerText = formatCounterValue(counter, current);
                   const frameId = requestAnimationFrame(update);
                   counterFrames.set(counter, frameId);
                   return;
                 }
 
-                counter.innerText = String(target);
+                counter.innerText =
+                  counter.dataset.displayValue || formatCounterValue(counter, target);
                 counterFrames.delete(counter);
               };
 

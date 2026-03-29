@@ -25,7 +25,6 @@ export interface Props {
 const { metadata = {} } = Astro.props;
 const { language, textDirection } = I18N;
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
-const isCandidatesPage = pathname === '/candidates';
 const isCareersPage = pathname === '/careers' || pathname.startsWith('/careers/');
 const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
 ---
@@ -570,96 +569,6 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
     <slot />
     <BasicScripts />
 
-    {
-      !isCareersPage && (
-        <div
-          id="scroll-cta"
-          class="fixed bottom-0 left-0 right-0
-             bg-white
-             border-t border-black/10
-             shadow-[0_-20px_50px_rgba(0,0,0,0.12)]
-             translate-y-full opacity-0
-             pointer-events-none
-             transition-all duration-500 ease-out
-             z-[90]"
-          style="padding-bottom: env(safe-area-inset-bottom);"
-        >
-          <div
-            class="max-w-6xl mx-auto
-                  px-4 sm:px-7 lg:px-10
-                  py-1.5 sm:py-3.5
-                  flex flex-col sm:flex-row
-                  items-center
-                  justify-between
-                  gap-1.5 sm:gap-5 relative
-                  pr-10 sm:pr-0"
-          >
-            <div class="text-center md:text-left">
-              {isCandidatesPage ? (
-                <>
-                  <div class="font-semibold text-[13px] sm:text-[16px] text-black">Ready to get discovered faster?</div>
-                  <div class="hidden sm:block mt-0.5 sm:mt-1 text-[12px] sm:text-[14px] text-black/60">
-                    Build your profile once. Get matched with high-intent teams.
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div class="font-semibold text-[13px] sm:text-[16px] text-black">Ready to transform your hiring?</div>
-                  <div class="hidden sm:block mt-0.5 sm:mt-1 text-[12px] sm:text-[14px] text-black/60">
-                    Join Fortune 500 teams using Tribera's AI-powered platform
-                  </div>
-                </>
-              )}
-            </div>
-
-            <div class="flex items-center justify-center sm:justify-start gap-3 w-full sm:w-auto">
-              {isCandidatesPage ? (
-                <button
-                  type="button"
-                  data-create-profile
-                  class="px-4 sm:px-5 py-1.5 sm:py-2
-                   rounded-full
-                   tribera-primary-button
-                   text-[12px] sm:text-[13px] font-semibold
-                   "
-                >
-                  Create Your Profile →
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  data-open-sales
-                  class="px-4 sm:px-6 py-1.5 sm:py-2.5
-                   rounded-full
-                   tribera-primary-button
-                   text-[12px] sm:text-[13px] font-semibold
-                   "
-                >
-                  Book a Demo →
-                </button>
-              )}
-
-              <button
-                id="close-cta"
-                class="absolute top-1.5 right-2.5
-                   sm:static
-                   w-6 h-6 sm:w-8 sm:h-8
-                   rounded-full
-                   border border-black/10
-                   flex items-center justify-center
-                   text-[11px] sm:text-[13px] text-black/40
-                   hover:text-black
-                   hover:bg-black/5
-                   transition"
-              >
-                ✕
-              </button>
-            </div>
-          </div>
-        </div>
-      )
-    }
-
     <div
       id="demoModal"
       class="fixed inset-0 z-[1200] hidden overflow-y-auto bg-black/55 px-4 py-6 sm:px-6 sm:py-8"
@@ -740,7 +649,7 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
                 type="submit"
                 class="w-full rounded-full bg-[#DA0007] px-8 py-3 text-[14px] font-semibold text-white transition hover:bg-[#b80005] sm:w-auto"
               >
-                Submit
+                Request a demo
               </button>
             </div>
 

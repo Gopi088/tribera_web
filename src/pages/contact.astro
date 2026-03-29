@@ -194,7 +194,8 @@ const metadata = {
                 title: 'Book a Demo',
                 desc: '30-minute platform walkthrough',
                 actionLabel: 'Talk to Sales',
-                actionAttr: 'data-open-sales',
+                actionIntent: 'sales',
+                actionSource: 'contact_sales_card',
                 email: 'sales@tribera.ai',
                 footerTitle: 'Abhishek responds <24hrs',
                 footerSub: 'Shipped products at Micro Focus',
@@ -204,7 +205,8 @@ const metadata = {
                 title: 'Submit Your Profile',
                 desc: "Send resume, we'll match you with roles",
                 actionLabel: 'Create Your Profile',
-                actionAttr: 'data-create-profile',
+                actionIntent: 'candidate',
+                actionSource: 'contact_candidate_card',
                 email: 'careers@tribera.ai',
                 footerTitle: 'Team reviews in 48hrs',
                 footerSub: 'Only relevant roles',
@@ -239,7 +241,8 @@ const metadata = {
 
                   <button
                     type="button"
-                    {...{ [item.actionAttr]: true }}
+                    data-form-intent={item.actionIntent}
+                    data-form-source={item.actionSource}
                     class="mb-3 inline-flex items-center justify-center rounded-full bg-[#da0007] px-4 py-2 text-[12px] font-semibold text-white transition hover:bg-[#c10006]"
                   >
                     {item.actionLabel}
@@ -741,7 +744,7 @@ const metadata = {
               class="w-full rounded-xl tribera-primary-button py-3
                  text-[14px] font-bold"
             >
-              Send Message
+              Start the conversation
             </button>
           </form>
         </div>
@@ -982,7 +985,8 @@ const metadata = {
         <div class="mt-7 flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             type="button"
-            data-open-demo
+            data-form-intent="demo"
+            data-form-source="contact_bottom_cta"
             class="relative overflow-hidden
          w-full sm:w-auto
          inline-flex items-center justify-center

@@ -2,9 +2,11 @@
 import Logo from '~/components/Logo.astro';
 import { Icon } from 'astro-icon/components';
 import { headerData } from '~/navigation';
+import { defaultCandidateFormIntent, formIntentConfigs } from '~/config/formIntents';
 const navLinks = headerData.links.slice(2);
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathname.startsWith(route));
+const candidateIntentConfig = formIntentConfigs[defaultCandidateFormIntent];
 
 ---
 
@@ -91,7 +93,7 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
                 data-self-nav-target="/#platform-performance"
                 class="block px-4 py-2 text-black/50 rounded-lg text-[12px] hover:bg-red-50 hover:text-[#DA0007]"
               >
-                Pricing
+                Plans
               </a>
 
               <a
@@ -193,10 +195,11 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
           </a>
           <button
             type="button"
-            data-open-sales
+            data-form-intent="demo"
+            data-form-source="header_desktop"
             class="px-5 py-2 rounded-full tribera-primary-button text-[11px] font-semibold text-center inline-block"
           >
-            Get Started
+            Book a Demo
           </button>
           <div
             id="contactModal"
@@ -226,16 +229,25 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
                   enctype="multipart/form-data"
                   class="relative space-y-5"
                 >
+                  <input type="hidden" name="form_type" value={candidateIntentConfig.formType} data-form-type />
+                  <input type="hidden" name="form_intent" value={defaultCandidateFormIntent} data-form-intent-input />
+                  <input type="hidden" name="form_source" value="" data-form-source-input />
+                  <input type="hidden" name="form_label" value="" data-form-label-input />
                   <input type="hidden" name="form_loaded_at" value="" data-form-loaded-at />
                   <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
 
                   <div class="relative pb-1">
-                    <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#DA0007]">For Candidates</p>
-                    <h3 class="pr-12 text-[1.5rem] font-[640] leading-[1.02] tracking-[-0.035em] text-white sm:text-[1.8rem]">
-                      Create Your Profile
+                    <p data-candidate-audience class="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#DA0007]">
+                      {candidateIntentConfig.audienceLabel}
+                    </p>
+                    <h3
+                      data-candidate-title
+                      class="pr-12 text-[1.5rem] font-[640] leading-[1.02] tracking-[-0.035em] text-white sm:text-[1.8rem]"
+                    >
+                      {candidateIntentConfig.title}
                     </h3>
-                    <p class="mt-4 max-w-[28rem] text-[14px] leading-7 text-white/58 sm:text-[15px]">
-                      Share your details and resume. We will match you with high-intent opportunities.
+                    <p data-candidate-body class="mt-4 max-w-[28rem] text-[14px] leading-7 text-white/58 sm:text-[15px]">
+                      {candidateIntentConfig.body}
                     </p>
                   </div>
 
@@ -285,9 +297,9 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
                         type="submit"
                         id="submitBtn"
                         disabled
-                        class="w-full rounded-full bg-[#DA0007] px-8 py-3 text-[14px] font-semibold text-white transition hover:bg-[#b80005] disabled:cursor-not-allowed disabled:opacity-45"
+                        class="w-full rounded-full bg-[#DA0007] px-8 py-3 text-[14px] font-semibold text-white transition hover:bg-[#b80005] disabled:cursor-not-allowed disabled:opacity-45 sm:min-w-[12.75rem]"
                       >
-                        Submit
+                        {candidateIntentConfig.submitLabel}
                       </button>
                     </div>
 
@@ -309,10 +321,12 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
                     </svg>
                   </div>
 
-                  <h3 class="text-[22px] font-[700] text-white">Profile Submitted</h3>
+                  <h3 data-candidate-success-title class="text-[22px] font-[700] text-white">
+                    {candidateIntentConfig.successTitle}
+                  </h3>
 
-                  <p class="mt-3 text-[14px] leading-relaxed text-white/60">
-                    Thanks for sharing your details. Our team will review and reach out shortly with the next steps.
+                  <p data-candidate-success-body class="mt-3 text-[14px] leading-relaxed text-white/60">
+                    {candidateIntentConfig.successBody}
                   </p>
                 </div>
               </div>
@@ -352,7 +366,13 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
               </script>
           </div>
 
-          <script is:inline>
+          <script
+            is:inline
+            define:vars={{
+              candidateIntentConfig,
+              defaultCandidateFormIntent,
+            }}
+          >
             const candidateFormFailureMessage =
               'Something went wrong while submitting your profile. Please try again or email your resume to careers@tribera.ai.';
 
@@ -365,6 +385,15 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
               const fileName = document.getElementById('fileName');
               const errorMsg = document.getElementById('candidateErrorMsg');
               const formLoadedAtInput = form.querySelector('[data-form-loaded-at]');
+              const formTypeInput = form.querySelector('[data-form-type]');
+              const formIntentInput = form.querySelector('[data-form-intent-input]');
+              const formSourceInput = form.querySelector('[data-form-source-input]');
+              const formLabelInput = form.querySelector('[data-form-label-input]');
+              const audience = modal.querySelector('[data-candidate-audience]');
+              const title = modal.querySelector('[data-candidate-title]');
+              const body = modal.querySelector('[data-candidate-body]');
+              const successTitle = modal.querySelector('[data-candidate-success-title]');
+              const successBody = modal.querySelector('[data-candidate-success-body]');
 
               if (!form || !modal) return;
 
@@ -400,6 +429,22 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
                 document.body.classList.add('overflow-hidden');
               };
 
+              const applyIntentConfig = (trigger) => {
+                const source = trigger?.dataset.formSource || '';
+                const label = (trigger?.dataset.formLabel || trigger?.textContent || '').trim();
+
+                if (audience instanceof HTMLElement) audience.textContent = candidateIntentConfig.audienceLabel;
+                if (title instanceof HTMLElement) title.textContent = candidateIntentConfig.title;
+                if (body instanceof HTMLElement) body.textContent = candidateIntentConfig.body;
+                if (successTitle instanceof HTMLElement) successTitle.textContent = candidateIntentConfig.successTitle;
+                if (successBody instanceof HTMLElement) successBody.textContent = candidateIntentConfig.successBody;
+                if (submitBtn instanceof HTMLButtonElement) submitBtn.textContent = candidateIntentConfig.submitLabel;
+                if (formTypeInput instanceof HTMLInputElement) formTypeInput.value = candidateIntentConfig.formType;
+                if (formIntentInput instanceof HTMLInputElement) formIntentInput.value = defaultCandidateFormIntent;
+                if (formSourceInput instanceof HTMLInputElement) formSourceInput.value = source;
+                if (formLabelInput instanceof HTMLInputElement) formLabelInput.value = label;
+              };
+
               window.__triberaOpenCandidateModal = openModal;
 
               // Global delegated opener keeps working across Astro swaps and dynamic buttons.
@@ -407,9 +452,11 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
                 const delegatedOpenHandler = (e) => {
                   const target = e.target;
                   if (!(target instanceof Element)) return;
-                  if (!target.closest('#contactBtn, [data-create-profile]')) return;
+                  const trigger = target.closest('[data-form-intent="candidate"], #contactBtn, [data-create-profile]');
+                  if (!(trigger instanceof HTMLElement)) return;
                   e.preventDefault?.();
                   e.stopPropagation?.();
+                  applyIntentConfig(trigger);
                   window.__triberaOpenCandidateModal?.();
                 };
 
@@ -550,10 +597,11 @@ const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathna
         </a>
         <button
           type="button"
-          data-open-sales
+          data-form-intent="demo"
+          data-form-source="header_mobile"
           class="inline-flex items-center justify-center px-4 py-2 rounded-full tribera-primary-button text-[12px] font-semibold"
         >
-          Get Started
+          Book a Demo
         </button>
       </nav>
     </div>

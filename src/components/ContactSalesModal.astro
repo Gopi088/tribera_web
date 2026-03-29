@@ -1,3 +1,13 @@
+---
+import { defaultHiringFormIntent, formIntentConfigs } from '~/config/formIntents';
+
+const hiringIntentConfigs = {
+  demo: formIntentConfigs.demo,
+  sales: formIntentConfigs.sales,
+};
+const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
+---
+
 <div
   id="contactSalesModal"
   class="fixed inset-0 z-[1200] hidden overflow-y-auto bg-black/55 px-4 py-6 sm:px-6 sm:py-8"
@@ -20,12 +30,14 @@
       </button>
 
       <div class="relative">
-        <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#DA0007]">For Hiring Teams</p>
-        <h2 class="pr-12 text-[1.5rem] font-[640] leading-[1.02] tracking-[-0.035em] text-white sm:text-[1.8rem]">
-          Contact Sales
+        <p data-form-audience class="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#DA0007]">
+          {defaultIntentConfig.audienceLabel}
+        </p>
+        <h2 data-form-title class="pr-12 text-[1.5rem] font-[640] leading-[1.02] tracking-[-0.035em] text-white sm:text-[1.8rem]">
+          {defaultIntentConfig.title}
         </h2>
-        <p class="mt-4 max-w-[28rem] text-[14px] leading-7 text-white/58 sm:text-[15px]">
-          Tell us what you are hiring for. We will reach out with the right next step.
+        <p data-form-body class="mt-4 max-w-[28rem] text-[14px] leading-7 text-white/58 sm:text-[15px]">
+          {defaultIntentConfig.body}
         </p>
       </div>
 
@@ -35,7 +47,10 @@
         method="POST"
         class="relative mt-7 space-y-3.5 sm:mt-8 sm:space-y-4"
       >
-        <input type="hidden" name="form_type" value="sales" />
+        <input type="hidden" name="form_type" value={defaultIntentConfig.formType} data-form-type />
+        <input type="hidden" name="form_intent" value={defaultHiringFormIntent} data-form-intent-input />
+        <input type="hidden" name="form_source" value="" data-form-source-input />
+        <input type="hidden" name="form_label" value="" data-form-label-input />
         <input type="hidden" name="form_loaded_at" value="" data-form-loaded-at />
         <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
 
@@ -83,13 +98,13 @@
           class="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-[14px] text-white placeholder:text-white/35 focus:border-[#DA0007]/60 focus:bg-white/[0.05] focus:outline-none focus:ring-1 focus:ring-[#DA0007]/25"></textarea>
 
         <div class="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center sm:justify-between">
-          <p class="text-[12px] leading-6 text-white/35">Response within 24 hours for qualified hiring requests.</p>
+          <p data-form-response-note class="text-[12px] leading-6 text-white/35">{defaultIntentConfig.responseNote}</p>
           <button
             type="submit"
             id="contactSalesSubmitBtn"
-            class="w-full rounded-full bg-[#DA0007] px-8 py-3 text-[14px] font-semibold text-white transition hover:bg-[#b80005] sm:w-auto"
+            class="w-full rounded-full bg-[#DA0007] px-8 py-3 text-[14px] font-semibold text-white transition hover:bg-[#b80005] sm:w-auto sm:min-w-[12.75rem]"
           >
-            Submit
+            {defaultIntentConfig.submitLabel}
           </button>
         </div>
         <p id="contactSalesErrorMsg" class="hidden text-[13px] leading-6 text-white/55">
@@ -102,27 +117,72 @@
             <path d="M20 7L10 17l-5-5" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
         </div>
-        <h4 class="text-[20px] font-[700] text-white">Request Submitted</h4>
-        <p class="mt-2 text-[14px] leading-relaxed text-white/60">
-          Thanks for reaching out. Our team will contact you shortly.
+        <h4 data-form-success-title class="text-[20px] font-[700] text-white">{defaultIntentConfig.successTitle}</h4>
+        <p data-form-success-body class="mt-2 text-[14px] leading-relaxed text-white/60">
+          {defaultIntentConfig.successBody}
         </p>
       </div>
     </div>
   </div>
 </div>
 
-<script is:inline>
+<script
+  is:inline
+  define:vars={{
+    hiringIntentConfigs,
+    defaultHiringFormIntent,
+  }}
+>
   function initContactSalesModal() {
     const modal = document.getElementById('contactSalesModal');
     const form = document.getElementById('contactSalesForm');
     const submitBtn = document.getElementById('contactSalesSubmitBtn');
     const successMsg = document.getElementById('contactSalesSuccessMsg');
     const errorMsg = document.getElementById('contactSalesErrorMsg');
-    const formLoadedAtInput = form.querySelector('[data-form-loaded-at]');
+    const formLoadedAtInput = form?.querySelector('[data-form-loaded-at]');
+    const formTypeInput = form?.querySelector('[data-form-type]');
+    const formIntentInput = form?.querySelector('[data-form-intent-input]');
+    const formSourceInput = form?.querySelector('[data-form-source-input]');
+    const formLabelInput = form?.querySelector('[data-form-label-input]');
+    const audience = modal?.querySelector('[data-form-audience]');
+    const title = modal?.querySelector('[data-form-title]');
+    const body = modal?.querySelector('[data-form-body]');
+    const responseNote = modal?.querySelector('[data-form-response-note]');
+    const successTitle = modal?.querySelector('[data-form-success-title]');
+    const successBody = modal?.querySelector('[data-form-success-body]');
     const closeBtn = modal?.querySelector('[data-close-sales]');
     if (!modal || !form) return;
     if (modal.dataset.bound === 'true') return;
     modal.dataset.bound = 'true';
+
+    const resolveIntentConfig = (intent) => {
+      if (intent && hiringIntentConfigs[intent]) return [intent, hiringIntentConfigs[intent]];
+
+      if (intent && !hiringIntentConfigs[intent] && window.location.hostname === 'localhost') {
+        console.warn(`[tribera] Unknown hiring form intent "${intent}". Falling back to "${defaultHiringFormIntent}".`);
+      }
+
+      return [defaultHiringFormIntent, hiringIntentConfigs[defaultHiringFormIntent]];
+    };
+
+    const applyIntentConfig = (intent, source = '', label = '') => {
+      const [resolvedIntent, config] = resolveIntentConfig(intent);
+      modal.dataset.activeFormIntent = resolvedIntent;
+      modal.dataset.activeFormSource = source;
+      modal.dataset.activeFormLabel = label;
+
+      if (audience instanceof HTMLElement) audience.textContent = config.audienceLabel;
+      if (title instanceof HTMLElement) title.textContent = config.title;
+      if (body instanceof HTMLElement) body.textContent = config.body;
+      if (responseNote instanceof HTMLElement) responseNote.textContent = config.responseNote;
+      if (submitBtn instanceof HTMLButtonElement) submitBtn.textContent = config.submitLabel;
+      if (successTitle instanceof HTMLElement) successTitle.textContent = config.successTitle;
+      if (successBody instanceof HTMLElement) successBody.textContent = config.successBody;
+      if (formTypeInput instanceof HTMLInputElement) formTypeInput.value = config.formType;
+      if (formIntentInput instanceof HTMLInputElement) formIntentInput.value = resolvedIntent;
+      if (formSourceInput instanceof HTMLInputElement) formSourceInput.value = source;
+      if (formLabelInput instanceof HTMLInputElement) formLabelInput.value = label;
+    };
 
     const closeModal = () => {
       modal.classList.add('hidden');
@@ -139,7 +199,18 @@
       const target = e.target;
       if (!(target instanceof Element)) return;
 
-      if (target.id === 'contactSalesBtn' || target.closest('[data-open-sales]')) {
+      const trigger = target.closest('[data-form-intent], [data-open-sales], [data-open-demo], #contactSalesBtn');
+      if (trigger instanceof HTMLElement) {
+        const rawIntent =
+          trigger.dataset.formIntent ||
+          (trigger.hasAttribute('data-open-demo')
+            ? 'demo'
+            : trigger.hasAttribute('data-open-sales')
+              ? defaultHiringFormIntent
+              : '');
+        const source = trigger.dataset.formSource || '';
+        const label = (trigger.dataset.formLabel || trigger.textContent || '').trim();
+        applyIntentConfig(rawIntent, source, label);
         stampFormLoadedAt();
         modal.classList.remove('hidden');
         document.body.classList.add('overflow-hidden');

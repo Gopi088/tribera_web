@@ -62,6 +62,9 @@ const configs = {
         `Email: ${fields.email}`,
         `Phone: ${fields.phone || 'Not provided'}`,
         `Company: ${fields.company || 'Not provided'}`,
+        '',
+        'Message:',
+        fields.message || 'Not provided',
       ].join('\n'),
       html: `
         <div style="font-family: Inter, Arial, sans-serif; color: #111;">
@@ -70,6 +73,8 @@ const configs = {
           <p><strong>Email:</strong> ${escapeHtml(fields.email)}</p>
           <p><strong>Phone:</strong> ${escapeHtml(fields.phone || 'Not provided')}</p>
           <p><strong>Company:</strong> ${escapeHtml(fields.company || 'Not provided')}</p>
+          <p><strong>Message:</strong></p>
+          <p>${withBreaks(fields.message || 'Not provided')}</p>
         </div>
       `,
     }),

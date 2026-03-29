@@ -45,7 +45,7 @@ export const footerData = {
         { text: 'Overview', href: getPermalink('/') },
         { text: 'How it Works', href: getPermalink('/#how-it-works') },
         { text: 'Interview Prep', href: getPermalink('/candidates#interview') },
-        { text: 'Pricing', href: getPermalink('/#platform-performance') },
+        { text: 'Plans', href: getPermalink('/#platform-performance') },
         { text: 'Screening', href: getPermalink('/candidates#screening') },
       ],
     },
