@@ -63,6 +63,12 @@ const metadata = {
       </div>
 
       <div class="relative z-10 max-w-4xl mx-auto px-6 text-center group">
+        <div
+          class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#da0007]/40 bg-white/[0.03] px-3.5 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/80 sm:text-[12px]"
+        >
+          <span class="h-1.5 w-1.5 rounded-full bg-[#da0007]"></span>
+          <span>REACH OUT TO TRIBERA</span>
+        </div>
         <h1
           class="font-semibold tracking-tight leading-[1.05] text-white
                text-[38px] sm:text-[50px] lg:text-[64px]"
@@ -72,8 +78,9 @@ const metadata = {
         </h1>
 
         <p class="mt-6 max-w-2xl mx-auto text-[15px] sm:text-[16px] leading-relaxed text-white/70">
-          <span class="text-[#da0007]/90">36 hours</span> to first shortlist. Interview 3, hire 1.
-          Our <span class="text-white/90">1:3 guarantee*</span>.
+          <span class="text-[#da0007]/90">36 hours</span> to first shortlist. Interview 3, hire 1. Our <span
+            class="text-white/90">1:3 guarantee*</span
+          >.
         </p>
 
         <p class="mt-4 max-w-2xl mx-auto text-[14px] sm:text-[15px] leading-relaxed text-white/50">
@@ -770,7 +777,8 @@ const metadata = {
           const customSelectOptions = Array.from(form.querySelectorAll('[data-contact-select-option]'));
 
           const setSelectOpen = (open) => {
-            if (!(customSelectTrigger instanceof HTMLButtonElement) || !(customSelectMenu instanceof HTMLDivElement)) return;
+            if (!(customSelectTrigger instanceof HTMLButtonElement) || !(customSelectMenu instanceof HTMLDivElement))
+              return;
             customSelectTrigger.setAttribute('aria-expanded', open ? 'true' : 'false');
             customSelectMenu.classList.toggle('hidden', !open);
             customSelectTrigger.classList.toggle('border-[#da0007]/40', open);
@@ -786,7 +794,10 @@ const metadata = {
             customSelectLabel.textContent = value || 'Select an option';
             customSelectLabel.classList.toggle('text-black/45', !value);
             customSelectLabel.classList.toggle('text-black', Boolean(value));
-            customSelectTrigger?.classList.toggle('border-[#da0007]/40', !value ? false : customSelectTrigger.getAttribute('aria-expanded') === 'true');
+            customSelectTrigger?.classList.toggle(
+              'border-[#da0007]/40',
+              !value ? false : customSelectTrigger.getAttribute('aria-expanded') === 'true'
+            );
 
             customSelectOptions.forEach((option) => {
               if (!(option instanceof HTMLButtonElement)) return;
@@ -850,7 +861,7 @@ const metadata = {
               return;
             }
 
-              const formData = new FormData(form);
+            const formData = new FormData(form);
 
             try {
               const res = await fetch(form.action, {
@@ -863,7 +874,8 @@ const metadata = {
                 ? await res.json()
                 : {
                     success: false,
-                    message: 'Something went wrong while sending your message. Please try again or email hello@tribera.ai.',
+                    message:
+                      'Something went wrong while sending your message. Please try again or email hello@tribera.ai.',
                   };
 
               if (result.success) {

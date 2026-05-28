@@ -65,7 +65,15 @@ collections:
         }
       - { label: 'Location', name: 'location', widget: 'string' }
       - { label: 'Remote Policy', name: 'remotePolicy', widget: 'select', options: ['remote', 'onsite'] }
-      - { label: 'Positions', name: 'positions', widget: 'number', default: 1, value_type: 'int', min: 1, required: false }
+      - {
+          label: 'Positions',
+          name: 'positions',
+          widget: 'number',
+          default: 1,
+          value_type: 'int',
+          min: 1,
+          required: false,
+        }
       - { label: 'Experience Level', name: 'experienceLevel', widget: 'string', required: false }
       - { label: 'Featured', name: 'featured', widget: 'boolean', default: false, required: false }
       - { label: 'Sort Order', name: 'sortOrder', widget: 'number', default: 100, required: false }

@@ -3,7 +3,8 @@ import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
   title: 'Page Not Found',
-  description: 'The page you are looking for does not exist. Explore Tribera for hiring teams, candidates, or get in touch.',
+  description:
+    'The page you are looking for does not exist. Explore Tribera for hiring teams, candidates, or get in touch.',
 };
 ---
 
@@ -62,12 +63,16 @@ const metadata = {
       </div>
 
       <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
-        <div class="inline-flex items-center gap-2 rounded-full border border-[#da0007]/40 bg-[#da0007]/10 px-4 py-1.5 text-[11px] font-semibold tracking-[0.18em] text-[#da0007] uppercase">
+        <div
+          class="inline-flex items-center gap-2 rounded-full border border-[#da0007]/40 bg-[#da0007]/10 px-4 py-1.5 text-[11px] font-semibold tracking-[0.18em] text-[#da0007] uppercase"
+        >
           <span class="h-2 w-2 rounded-full bg-[#da0007]"></span>
           Error 404
         </div>
 
-        <h1 class="mt-6 font-[700] leading-[1.02] tracking-[-0.04em] text-white text-[42px] sm:text-[56px] lg:text-[76px]">
+        <h1
+          class="mt-6 font-[700] leading-[1.02] tracking-[-0.04em] text-white text-[42px] sm:text-[56px] lg:text-[76px]"
+        >
           This page
           <span class="text-[#da0007]"> missed the shortlist.</span>
         </h1>
@@ -121,7 +126,9 @@ const metadata = {
                 class="group rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition hover:border-[#da0007]/30 hover:bg-white/[0.05]"
               >
                 <div class="text-[11px] font-semibold tracking-[0.16em] uppercase text-[#da0007]">Route</div>
-                <h2 class="mt-3 text-[18px] font-[700] text-white group-hover:text-[#da0007] transition">{item.title}</h2>
+                <h2 class="mt-3 text-[18px] font-[700] text-white group-hover:text-[#da0007] transition">
+                  {item.title}
+                </h2>
                 <p class="mt-2 text-[14px] leading-relaxed text-white/50">{item.desc}</p>
               </a>
             ))

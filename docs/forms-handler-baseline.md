@@ -3,6 +3,7 @@
 Date: 2026-03-22
 
 Purpose:
+
 - lock the current happy-path behavior and response contract before security hardening
 - make it explicit which behaviors must keep working while validation and abuse controls are added
 

@@ -40,9 +40,15 @@ Scope:
 - Done: escape user-controlled values before rendering HTML email bodies.
 - Done: validate and allowlist uploaded file types, and normalize attachment filenames.
 - Done: add stricter server-side validation for email fields, LinkedIn URLs, and enumerated `interest` values.
-- Pending: add stronger server-side max-length enforcement on all text fields.
+- Done: add explicit server-side max-length enforcement across contact, candidate-profile, and careers-apply text fields.
 - Done: stop trusting client-supplied job title/department in career applications; resolve role data from trusted `job_slug`.
 - Done: add multipart limits for field size, field count, and field-name length.
+- Done: fall back to the local rate limiter when the shared backend is unavailable, instead of returning 500s.
+- Done: require configured upload scanning in production and fail closed when it is unavailable.
+- Done: add request timeouts for outbound upload-scanner and shared-rate-limiter calls.
+- Done: fail closed in production when the shared rate-limiter backend is unavailable, instead of silently weakening limits.
+- Done: make DOCX validation compatible with standard ZIP central-directory parsing, including data-descriptor archives used by common office exporters.
+- Done: trust only Netlify's authoritative connection IP header in production rate-limit keying; do not rely on client-supplied `Client-IP` or `X-Forwarded-For`.
 
 ## Hardening Backlog
 
@@ -54,6 +60,9 @@ Scope:
 - Consolidate duplicated parsing and outbound email logic into shared utilities.
 - Upgrade vulnerable production dependencies where fixes are available.
 - Replace in-memory function throttling with a stronger edge- or datastore-backed rate limiter for production.
+- Keep `FORM_UPLOAD_SCAN_URL` configured anywhere production uploads are accepted; production now fails closed when scanning is not configured.
+- Keep the shared rate-limiter backend healthy in production; production now returns 429 rather than downgrading to per-instance limits when that backend is unavailable.
+- Treat extension/MIME/signature checks as format heuristics only; the configured upload scanner remains the real production control for uploaded resumes.
 
 ## Operational Monitoring Gaps
 
@@ -217,7 +226,7 @@ Affected files:
 - `netlify/functions/careers-apply.mjs`
 
 Issue:
-Validation is stronger than before: emails are validated, LinkedIn URLs are validated, `interest` is allowlisted, and submission timing is checked. But broader per-field shape and length enforcement is still incomplete, especially for names, company, phone numbers, and free-text fields.
+Validation is stronger than before: emails are validated, LinkedIn URLs are validated, `interest` is allowlisted, submission timing is checked, and explicit per-field length caps are enforced across names, company, phone/mobile numbers, role metadata, and free-text fields.
 
 Remediation:
 

@@ -5,9 +5,11 @@ import {
   isValidEmail,
   json,
   logFunctionError,
+  normalizeFields,
   normalizeTextField,
   runFormRequestChecks,
   sanitizeSubjectPart,
+  validateFieldLengths,
 } from './_lib/form-utils.mjs';
 
 const CONTACT_INTERESTS = new Set(['Hiring Talent', 'Getting Hired', 'Partnerships', 'General Inquiry']);
@@ -51,8 +53,7 @@ const configs = {
   demo: {
     recipient: process.env.SALES_TO || 'sales@tribera.ai',
     subject: (fields) => `Demo request: ${sanitizeSubjectPart(fields.name)}`,
-    failureMessage:
-      'Something went wrong while submitting your request. Please try again or email sales@tribera.ai.',
+    failureMessage: 'Something went wrong while submitting your request. Please try again or email sales@tribera.ai.',
     validate: (fields) => fields.name && fields.email,
     build: (fields) => ({
       text: [
@@ -82,8 +83,7 @@ const configs = {
   sales: {
     recipient: process.env.SALES_TO || 'sales@tribera.ai',
     subject: (fields) => `Sales inquiry: ${sanitizeSubjectPart(fields.name)}`,
-    failureMessage:
-      'Something went wrong while submitting your request. Please try again or email sales@tribera.ai.',
+    failureMessage: 'Something went wrong while submitting your request. Please try again or email sales@tribera.ai.',
     validate: (fields) => fields.name && fields.email,
     build: (fields) => ({
       text: [
@@ -128,7 +128,7 @@ export const handler = async (event) => {
       return requestChecks.response;
     }
 
-    const { fields } = requestChecks;
+    const fields = normalizeFields(requestChecks.fields);
     const formType = fields.form_type;
     const config = configs[formType];
 
@@ -140,6 +140,21 @@ export const handler = async (event) => {
 
     if (!config.validate(fields)) {
       return json(400, { success: false, message: 'Please complete the required fields.' });
+    }
+
+    const fieldLengthValidation = validateFieldLengths(fields, [
+      { name: 'form_type', label: 'Form type', maxLength: 32 },
+      { name: 'first_name', label: 'First name', maxLength: 80 },
+      { name: 'last_name', label: 'Last name', maxLength: 80 },
+      { name: 'name', label: 'Name', maxLength: 120 },
+      { name: 'email', label: 'Email', maxLength: 254 },
+      { name: 'phone', label: 'Phone', maxLength: 32 },
+      { name: 'company', label: 'Company', maxLength: 120 },
+      { name: 'interest', label: 'Inquiry type', maxLength: 64 },
+      { name: 'message', label: 'Message', maxLength: 4000 },
+    ]);
+    if (!fieldLengthValidation.ok) {
+      return badRequest(fieldLengthValidation.message);
     }
 
     if (!isValidEmail(fields.email)) {
@@ -161,7 +176,7 @@ export const handler = async (event) => {
     });
 
     return json(200, { success: true });
-  } catch (error) {
+  } catch {
     logFunctionError(event, 'site-inquiry', 'site_inquiry_failed');
 
     return json(500, {

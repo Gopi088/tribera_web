@@ -254,7 +254,8 @@ const { metadata } = Astro.props;
             ? await res.json()
             : {
                 success: false,
-                message: 'Something went wrong while submitting your request. Please try again or email sales@tribera.ai.',
+                message:
+                  'Something went wrong while submitting your request. Please try again or email sales@tribera.ai.',
               };
           if (!res.ok || !result.success) {
             throw new Error(result.message || 'Submission failed');
@@ -467,7 +468,8 @@ const { metadata } = Astro.props;
             counterFrames.delete(counter);
           }
 
-          counter.innerText = counter.dataset.displayValue || formatCounterValue(counter, Number(counter.dataset.target || 0));
+          counter.innerText =
+            counter.dataset.displayValue || formatCounterValue(counter, Number(counter.dataset.target || 0));
         });
       };
 
@@ -491,8 +493,7 @@ const { metadata } = Astro.props;
                   return;
                 }
 
-                counter.innerText =
-                  counter.dataset.displayValue || formatCounterValue(counter, target);
+                counter.innerText = counter.dataset.displayValue || formatCounterValue(counter, target);
                 counterFrames.delete(counter);
               };
 

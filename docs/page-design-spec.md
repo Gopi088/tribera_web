@@ -1,6 +1,7 @@
 # Tribera Page Design Spec
 
 Reference pages:
+
 - `src/pages/index.astro`
 - `src/pages/candidates.astro`
 
@@ -160,4 +161,4 @@ Avoid duplicated CTA meaning in the same group.
   - reusing an existing pattern
   - removing a weak section
   - simplifying a layout
-  instead of adding another decorative treatment.
+    instead of adding another decorative treatment.

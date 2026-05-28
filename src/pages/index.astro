@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import Brands from '~/components/widgets/Brands.astro';
-import { Icon } from 'astro-icon/components';
+import { Icon } from '~/components/common/icon-module';
 const metadata = {
   title: 'tribera — 3 vetted candidates in 36 hours | 1:3 hiring guarantee',
   description:
@@ -114,6 +114,12 @@ const comparisonRows = [
     </div>
 
     <div class="relative z-10 max-w-[1080px] mx-auto px-6 text-center">
+      <div
+        class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#da0007]/40 bg-white/[0.03] px-3.5 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/80"
+      >
+        <span class="h-1.5 w-1.5 rounded-full bg-[#da0007]"></span>
+        <span>Pre-screened. Advisor-interviewed. Hire-ready.</span>
+      </div>
       <h1 class="font-[600] leading-[1.02] sm:leading-[1.08]">
         <span
           class="block whitespace-nowrap text-white text-[clamp(2.15rem,10.8vw,3rem)] sm:text-[clamp(2.8rem,6vw,5rem)] tracking-[-0.08em]"
@@ -251,8 +257,8 @@ const comparisonRows = [
 
             <p class="mt-5 text-[13px] font-[400] text-white/85">
               AI screened 100+ signals — RED profiles eliminated before any human time was spent. A senior domain
-              advisor ran a structured interview — 20+ role-specific questions, independently scored. AI then produced
-              a composite verdict across all three layers. Every score is auditable, attributable, and reusable.
+              advisor ran a structured interview — 20+ role-specific questions, independently scored. AI then produced a
+              composite verdict across all three layers. Every score is auditable, attributable, and reusable.
             </p>
           </div>
         </div>
@@ -650,11 +656,13 @@ const comparisonRows = [
       <div class="text-center mb-8 md:mb-10">
         <p class="text-[11px] tracking-[0.1em] font-[550] text-[#da0007] uppercase">PLATFORM CAPABILITIES</p>
 
-        <h2 class="mt-1 text-[clamp(2rem,7vw,3rem)] font-[600] text-white">Your hiring managers get signal, not stack</h2>
+        <h2 class="mt-1 text-[clamp(2rem,7vw,3rem)] font-[600] text-white">
+          Your hiring managers get signal, not stack
+        </h2>
 
         <p class="mt-2 text-white/50 max-w-2xl mx-auto text-[15px] md:text-[17px] font-[400]">
-          Every candidate arrives technically validated, advisor-interviewed, and scored across 100+ signals. Your
-          team interviews to decide — not to discover.
+          Every candidate arrives technically validated, advisor-interviewed, and scored across 100+ signals. Your team
+          interviews to decide — not to discover.
         </p>
       </div>
 

@@ -2,13 +2,13 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import { defineConfig } from 'astro/config';
+import autoprefixer from 'autoprefixer';
 
 import sitemap from '@astrojs/sitemap';
-import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
-import icon from 'astro-icon';
 import compress from 'astro-compress';
+import tailwindcss from 'tailwindcss';
 import type { AstroIntegration } from 'astro';
 
 import astrowind from './vendor/integration';
@@ -26,9 +26,6 @@ export default defineConfig({
   trailingSlash: 'ignore',
 
   integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
     sitemap({
       filter(page) {
         const pathname = new URL(page).pathname;
@@ -50,22 +47,6 @@ export default defineConfig({
       },
     }),
     mdx(),
-    icon({
-      include: {
-        tabler: ['*'],
-        'flat-color-icons': [
-          'template',
-          'gallery',
-          'approval',
-          'document',
-          'advertising',
-          'currency-exchange',
-          'voice-presentation',
-          'business-contact',
-          'database',
-        ],
-      },
-    }),
 
     ...whenExternalScripts(() =>
       partytown({
@@ -101,8 +82,15 @@ export default defineConfig({
   },
 
   vite: {
+    css: {
+      postcss: {
+        plugins: [tailwindcss(), autoprefixer()],
+      },
+    },
     resolve: {
       alias: {
+        'astro-icon/components': path.resolve(__dirname, './src/components/common/icon-module.ts'),
+        'astro-icon/components/Icon.astro': path.resolve(__dirname, './src/components/common/Icon.astro'),
         '~': path.resolve(__dirname, './src'),
       },
     },

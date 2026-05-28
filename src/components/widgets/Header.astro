@@ -1,13 +1,12 @@
 ---
 import Logo from '~/components/Logo.astro';
-import { Icon } from 'astro-icon/components';
+import { Icon } from '~/components/common/icon-module';
 import { headerData } from '~/navigation';
 import { defaultCandidateFormIntent, formIntentConfigs } from '~/config/formIntents';
 const navLinks = headerData.links.slice(2);
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathname.startsWith(route));
 const candidateIntentConfig = formIntentConfigs[defaultCandidateFormIntent];
-
 ---
 
 <header class="sticky top-0 z-40 w-full" style="
@@ -209,14 +208,30 @@ const candidateIntentConfig = formIntentConfigs[defaultCandidateFormIntent];
               <div
                 class="pointer-events-auto relative w-full max-w-[560px] overflow-hidden rounded-[30px] border border-white/10 bg-[#0a0a0a] px-6 pt-6 pb-5 text-white shadow-[0_28px_100px_rgba(0,0,0,0.45)] sm:px-8 sm:pt-8 sm:pb-6"
               >
-                <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#DA0007]/80 to-transparent"></div>
-                <div class="pointer-events-none absolute -left-20 top-0 h-52 w-52 rounded-full bg-[#DA0007]/12 blur-3xl"></div>
-                <div class="pointer-events-none absolute -right-16 bottom-0 h-44 w-44 rounded-full bg-white/[0.04] blur-3xl"></div>
+                <div
+                  class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#DA0007]/80 to-transparent"
+                >
+                </div>
+                <div
+                  class="pointer-events-none absolute -left-20 top-0 h-52 w-52 rounded-full bg-[#DA0007]/12 blur-3xl"
+                >
+                </div>
+                <div
+                  class="pointer-events-none absolute -right-16 bottom-0 h-44 w-44 rounded-full bg-white/[0.04] blur-3xl"
+                >
+                </div>
                 <button
                   id="closeModal"
                   class="absolute right-4 top-4 z-20 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-white/[0.02] p-0 text-white/45 transition-colors duration-200 hover:border-[#DA0007]/35 hover:bg-[#DA0007]/12 hover:text-white/85"
                 >
-                  <svg viewBox="0 0 24 24" aria-hidden="true" class="h-[18px] w-[18px]" fill="none" stroke="currentColor" stroke-width="1.9">
+                  <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    class="h-[18px] w-[18px]"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.9"
+                  >
                     <path d="M6 6L18 18" stroke-linecap="round"></path>
                     <path d="M18 6L6 18" stroke-linecap="round"></path>
                   </svg>
@@ -237,7 +252,10 @@ const candidateIntentConfig = formIntentConfigs[defaultCandidateFormIntent];
                   <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
 
                   <div class="relative pb-1">
-                    <p data-candidate-audience class="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#DA0007]">
+                    <p
+                      data-candidate-audience
+                      class="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#DA0007]"
+                    >
                       {candidateIntentConfig.audienceLabel}
                     </p>
                     <h3
@@ -246,7 +264,10 @@ const candidateIntentConfig = formIntentConfigs[defaultCandidateFormIntent];
                     >
                       {candidateIntentConfig.title}
                     </h3>
-                    <p data-candidate-body class="mt-4 max-w-[28rem] text-[14px] leading-7 text-white/58 sm:text-[15px]">
+                    <p
+                      data-candidate-body
+                      class="mt-4 max-w-[28rem] text-[14px] leading-7 text-white/58 sm:text-[15px]"
+                    >
                       {candidateIntentConfig.body}
                     </p>
                   </div>
@@ -331,39 +352,39 @@ const candidateIntentConfig = formIntentConfigs[defaultCandidateFormIntent];
                 </div>
               </div>
             </div>
-              <script>
-                document.addEventListener('astro:page-load', () => {
-                  const uploadBtn = document.getElementById('uploadBtn');
-                  const resumeInput = document.getElementById('resumeInput');
-                  const submitBtn = document.getElementById('submitBtn');
-                  const fileName = document.getElementById('fileName');
+            <script>
+              document.addEventListener('astro:page-load', () => {
+                const uploadBtn = document.getElementById('uploadBtn');
+                const resumeInput = document.getElementById('resumeInput');
+                const submitBtn = document.getElementById('submitBtn');
+                const fileName = document.getElementById('fileName');
 
-                  if (
-                    !(uploadBtn instanceof HTMLButtonElement) ||
-                    !(resumeInput instanceof HTMLInputElement) ||
-                    !(submitBtn instanceof HTMLButtonElement) ||
-                    !(fileName instanceof HTMLElement)
-                  ) {
-                    return;
-                  }
-                  if (uploadBtn.dataset.bound === 'true') return;
-                  uploadBtn.dataset.bound = 'true';
+                if (
+                  !(uploadBtn instanceof HTMLButtonElement) ||
+                  !(resumeInput instanceof HTMLInputElement) ||
+                  !(submitBtn instanceof HTMLButtonElement) ||
+                  !(fileName instanceof HTMLElement)
+                ) {
+                  return;
+                }
+                if (uploadBtn.dataset.bound === 'true') return;
+                uploadBtn.dataset.bound = 'true';
 
-                  uploadBtn.addEventListener('click', () => {
-                    resumeInput.click();
-                  });
-
-                  resumeInput.addEventListener('change', () => {
-                    if (resumeInput.files && resumeInput.files.length > 0) {
-                      submitBtn.disabled = false;
-                      fileName.textContent = `Selected: ${resumeInput.files[0].name}`;
-                    } else {
-                      submitBtn.disabled = true;
-                      fileName.textContent = '';
-                    }
-                  });
+                uploadBtn.addEventListener('click', () => {
+                  resumeInput.click();
                 });
-              </script>
+
+                resumeInput.addEventListener('change', () => {
+                  if (resumeInput.files && resumeInput.files.length > 0) {
+                    submitBtn.disabled = false;
+                    fileName.textContent = `Selected: ${resumeInput.files[0].name}`;
+                  } else {
+                    submitBtn.disabled = true;
+                    fileName.textContent = '';
+                  }
+                });
+              });
+            </script>
           </div>
 
           <script

@@ -4,9 +4,12 @@ import {
   escapeHtml,
   isValidEmail,
   json,
+  inspectUploadedFile,
   logFunctionError,
+  normalizeFields,
   runFormRequestChecks,
   sanitizeSubjectPart,
+  validateFieldLengths,
   validateResumeFile,
 } from './_lib/form-utils.mjs';
 
@@ -26,11 +29,21 @@ export const handler = async (event) => {
       return requestChecks.response;
     }
 
-    const { fields, files } = requestChecks;
+    const fields = normalizeFields(requestChecks.fields);
+    const { files } = requestChecks;
     const resumeFile = files[0];
 
     if (!fields.name || !fields.email || !resumeFile) {
       return badRequest('Please complete the required fields and attach your resume.');
+    }
+
+    const fieldLengthValidation = validateFieldLengths(fields, [
+      { name: 'name', label: 'Name', maxLength: 120 },
+      { name: 'email', label: 'Email', maxLength: 254 },
+      { name: 'mobile', label: 'Mobile number', maxLength: 32 },
+    ]);
+    if (!fieldLengthValidation.ok) {
+      return badRequest(fieldLengthValidation.message);
     }
 
     if (!isValidEmail(fields.email)) {
@@ -40,6 +53,11 @@ export const handler = async (event) => {
     const resumeValidation = validateResumeFile(resumeFile);
     if (!resumeValidation.ok) {
       return badRequest(resumeValidation.message);
+    }
+
+    const scanResult = await inspectUploadedFile(resumeValidation.file, 'candidate-profile');
+    if (!scanResult.ok) {
+      return badRequest(scanResult.message);
     }
 
     const recipient = process.env.CANDIDATES_TO || 'careers@tribera.ai';
@@ -67,11 +85,11 @@ export const handler = async (event) => {
       subject: `Candidate profile: ${sanitizeSubjectPart(fields.name)}`,
       text,
       html,
-      attachments: [resumeValidation.file],
+      attachments: [scanResult.file],
     });
 
     return json(200, { success: true });
-  } catch (error) {
+  } catch {
     logFunctionError(event, 'candidate-profile', 'candidate_profile_failed');
 
     return json(500, {

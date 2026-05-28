@@ -24,8 +24,6 @@ export interface Props {
 
 const { metadata = {} } = Astro.props;
 const { language, textDirection } = I18N;
-const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
-const isCareersPage = pathname === '/careers' || pathname.startsWith('/careers/');
 const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
 ---
 
@@ -429,11 +427,7 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           }
         };
 
-        const hasChatbotUi = () => {
-          return !!(getLauncher() || getIframe() || getLoader());
-        };
-
-        const initChatbot = (source = 'unknown') => {
+        const initChatbot = (_source = 'unknown') => {
           reattachPreservedArtifacts();
           ensureChatbotScript();
           ensurePrewarmFrame();
@@ -569,21 +563,32 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
     <slot />
     <BasicScripts />
 
-    <div
-      id="demoModal"
-      class="fixed inset-0 z-[1200] hidden overflow-y-auto bg-black/55 px-4 py-6 sm:px-6 sm:py-8"
-    >
+    <div id="demoModal" class="fixed inset-0 z-[1200] hidden overflow-y-auto bg-black/55 px-4 py-6 sm:px-6 sm:py-8">
       <div class="pointer-events-none flex min-h-full items-center justify-center">
-        <div class="pointer-events-auto relative w-full max-w-[560px] overflow-hidden rounded-[30px] border border-white/10 bg-[#0a0a0a] px-6 py-6 text-white shadow-[0_28px_100px_rgba(0,0,0,0.45)] sm:px-8 sm:py-8">
-          <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#DA0007]/80 to-transparent"></div>
-          <div class="pointer-events-none absolute -left-20 top-0 h-52 w-52 rounded-full bg-[#DA0007]/12 blur-3xl"></div>
-          <div class="pointer-events-none absolute -right-16 bottom-0 h-44 w-44 rounded-full bg-white/[0.04] blur-3xl"></div>
+        <div
+          class="pointer-events-auto relative w-full max-w-[560px] overflow-hidden rounded-[30px] border border-white/10 bg-[#0a0a0a] px-6 py-6 text-white shadow-[0_28px_100px_rgba(0,0,0,0.45)] sm:px-8 sm:py-8"
+        >
+          <div
+            class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#DA0007]/80 to-transparent"
+          >
+          </div>
+          <div class="pointer-events-none absolute -left-20 top-0 h-52 w-52 rounded-full bg-[#DA0007]/12 blur-3xl">
+          </div>
+          <div class="pointer-events-none absolute -right-16 bottom-0 h-44 w-44 rounded-full bg-white/[0.04] blur-3xl">
+          </div>
           <button
             id="closeDemoBtn"
             type="button"
             class="absolute right-4 top-4 z-20 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-white/[0.02] p-0 text-white/45 transition-colors duration-200 hover:border-[#DA0007]/35 hover:bg-[#DA0007]/12 hover:text-white/85"
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-[18px] w-[18px]" fill="none" stroke="currentColor" stroke-width="1.9">
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              class="h-[18px] w-[18px]"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.9"
+            >
               <path d="M6 6L18 18" stroke-linecap="round"></path>
               <path d="M18 6L6 18" stroke-linecap="round"></path>
             </svg>
@@ -599,7 +604,12 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
             </p>
           </div>
 
-          <form id="demoForm" action="/.netlify/functions/site-inquiry" method="POST" class="relative mt-7 space-y-4 sm:mt-8">
+          <form
+            id="demoForm"
+            action="/.netlify/functions/site-inquiry"
+            method="POST"
+            class="relative mt-7 space-y-4 sm:mt-8"
+          >
             <input type="hidden" name="form_type" value="demo" />
             <input type="hidden" name="form_loaded_at" value="" data-form-loaded-at />
             <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
@@ -682,6 +692,5 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
     </div>
 
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-
   </body>
 </html>
