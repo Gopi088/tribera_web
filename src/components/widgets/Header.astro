@@ -1,12 +1,15 @@
 ---
 import Logo from '~/components/Logo.astro';
-import { Icon } from '~/components/common/icon-module';
+import { Icon } from 'astro-icon/components';
 import { headerData } from '~/navigation';
 import { defaultCandidateFormIntent, formIntentConfigs } from '~/config/formIntents';
+import { industries } from '~/data/industries';
+import { jobFunctions } from '~/data/functions';
 const navLinks = headerData.links.slice(2);
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const showBottomDivider = !['/blog', '/category', '/tag'].some((route) => pathname.startsWith(route));
 const candidateIntentConfig = formIntentConfigs[defaultCandidateFormIntent];
+
 ---
 
 <header class="sticky top-0 z-40 w-full" style="
@@ -160,6 +163,96 @@ const candidateIntentConfig = formIntentConfigs[defaultCandidateFormIntent];
               </a>
             </div>
           </div>
+          <!-- INDUSTRIES -->
+          <div class="relative">
+            <div class="flex items-center gap-1">
+              <a
+                href="/industries"
+                data-astro-reload
+                class="relative text-white/60 hover:text-white transition
+      after:absolute after:left-0 after:-bottom-1
+      after:h-[2px] after:w-0 after:bg-[#DA0007]
+      after:transition-all after:duration-300
+      hover:after:w-full"
+              >
+                Industries
+              </a>
+              <button id="industries-btn" class="text-white/60 hover:text-white">
+                <Icon name="tabler:chevron-down" class="w-3 h-3" />
+              </button>
+            </div>
+
+            <div
+              id="industries-menu"
+              class="hidden absolute left-1/2 top-full mt-4 w-64 -translate-x-1/2
+    rounded-xl bg-white shadow-xl p-2 transition-all duration-200"
+            >
+              {
+                industries.map((industry) => (
+                  <a
+                    href={`/industries/${industry.slug}`}
+                    class="block px-4 py-2 text-black/50 rounded-lg text-[12px] hover:bg-red-50 hover:text-[#DA0007]"
+                  >
+                    {industry.title}
+                  </a>
+                ))
+              }
+              <div class="mx-2 my-1 h-px bg-black/6"></div>
+              <a
+                href="/industries"
+                data-astro-reload
+                class="block px-4 py-2 text-[#DA0007] rounded-lg text-[12px] font-semibold hover:bg-red-50"
+              >
+                View All Industries →
+              </a>
+            </div>
+          </div>
+
+          <!-- FUNCTIONS -->
+          <div class="relative">
+            <div class="flex items-center gap-1">
+              <a
+                href="/functions"
+                data-astro-reload
+                class="relative text-white/60 hover:text-white transition
+      after:absolute after:left-0 after:-bottom-1
+      after:h-[2px] after:w-0 after:bg-[#DA0007]
+      after:transition-all after:duration-300
+      hover:after:w-full"
+              >
+                Functions
+              </a>
+              <button id="functions-btn" class="text-white/60 hover:text-white">
+                <Icon name="tabler:chevron-down" class="w-3 h-3" />
+              </button>
+            </div>
+
+            <div
+              id="functions-menu"
+              class="hidden absolute left-1/2 top-full mt-4 w-64 -translate-x-1/2
+    rounded-xl bg-white shadow-xl p-2 transition-all duration-200"
+            >
+              {
+                jobFunctions.map((fn) => (
+                  <a
+                    href={`/functions/${fn.slug}`}
+                    class="block px-4 py-2 text-black/50 rounded-lg text-[12px] hover:bg-red-50 hover:text-[#DA0007]"
+                  >
+                    {fn.title}
+                  </a>
+                ))
+              }
+              <div class="mx-2 my-1 h-px bg-black/6"></div>
+              <a
+                href="/functions"
+                data-astro-reload
+                class="block px-4 py-2 text-[#DA0007] rounded-lg text-[12px] font-semibold hover:bg-red-50"
+              >
+                View All Functions →
+              </a>
+            </div>
+          </div>
+
           <!-- Static links -->
           {
             navLinks.map(({ text, href }) => (
@@ -208,30 +301,14 @@ const candidateIntentConfig = formIntentConfigs[defaultCandidateFormIntent];
               <div
                 class="pointer-events-auto relative w-full max-w-[560px] overflow-hidden rounded-[30px] border border-white/10 bg-[#0a0a0a] px-6 pt-6 pb-5 text-white shadow-[0_28px_100px_rgba(0,0,0,0.45)] sm:px-8 sm:pt-8 sm:pb-6"
               >
-                <div
-                  class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#DA0007]/80 to-transparent"
-                >
-                </div>
-                <div
-                  class="pointer-events-none absolute -left-20 top-0 h-52 w-52 rounded-full bg-[#DA0007]/12 blur-3xl"
-                >
-                </div>
-                <div
-                  class="pointer-events-none absolute -right-16 bottom-0 h-44 w-44 rounded-full bg-white/[0.04] blur-3xl"
-                >
-                </div>
+                <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#DA0007]/80 to-transparent"></div>
+                <div class="pointer-events-none absolute -left-20 top-0 h-52 w-52 rounded-full bg-[#DA0007]/12 blur-3xl"></div>
+                <div class="pointer-events-none absolute -right-16 bottom-0 h-44 w-44 rounded-full bg-white/[0.04] blur-3xl"></div>
                 <button
                   id="closeModal"
                   class="absolute right-4 top-4 z-20 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-white/[0.02] p-0 text-white/45 transition-colors duration-200 hover:border-[#DA0007]/35 hover:bg-[#DA0007]/12 hover:text-white/85"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                    class="h-[18px] w-[18px]"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.9"
-                  >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" class="h-[18px] w-[18px]" fill="none" stroke="currentColor" stroke-width="1.9">
                     <path d="M6 6L18 18" stroke-linecap="round"></path>
                     <path d="M18 6L6 18" stroke-linecap="round"></path>
                   </svg>
@@ -252,10 +329,7 @@ const candidateIntentConfig = formIntentConfigs[defaultCandidateFormIntent];
                   <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
 
                   <div class="relative pb-1">
-                    <p
-                      data-candidate-audience
-                      class="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#DA0007]"
-                    >
+                    <p data-candidate-audience class="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#DA0007]">
                       {candidateIntentConfig.audienceLabel}
                     </p>
                     <h3
@@ -264,10 +338,7 @@ const candidateIntentConfig = formIntentConfigs[defaultCandidateFormIntent];
                     >
                       {candidateIntentConfig.title}
                     </h3>
-                    <p
-                      data-candidate-body
-                      class="mt-4 max-w-[28rem] text-[14px] leading-7 text-white/58 sm:text-[15px]"
-                    >
+                    <p data-candidate-body class="mt-4 max-w-[28rem] text-[14px] leading-7 text-white/58 sm:text-[15px]">
                       {candidateIntentConfig.body}
                     </p>
                   </div>
@@ -352,39 +423,39 @@ const candidateIntentConfig = formIntentConfigs[defaultCandidateFormIntent];
                 </div>
               </div>
             </div>
-            <script>
-              document.addEventListener('astro:page-load', () => {
-                const uploadBtn = document.getElementById('uploadBtn');
-                const resumeInput = document.getElementById('resumeInput');
-                const submitBtn = document.getElementById('submitBtn');
-                const fileName = document.getElementById('fileName');
+              <script>
+                document.addEventListener('astro:page-load', () => {
+                  const uploadBtn = document.getElementById('uploadBtn');
+                  const resumeInput = document.getElementById('resumeInput');
+                  const submitBtn = document.getElementById('submitBtn');
+                  const fileName = document.getElementById('fileName');
 
-                if (
-                  !(uploadBtn instanceof HTMLButtonElement) ||
-                  !(resumeInput instanceof HTMLInputElement) ||
-                  !(submitBtn instanceof HTMLButtonElement) ||
-                  !(fileName instanceof HTMLElement)
-                ) {
-                  return;
-                }
-                if (uploadBtn.dataset.bound === 'true') return;
-                uploadBtn.dataset.bound = 'true';
-
-                uploadBtn.addEventListener('click', () => {
-                  resumeInput.click();
-                });
-
-                resumeInput.addEventListener('change', () => {
-                  if (resumeInput.files && resumeInput.files.length > 0) {
-                    submitBtn.disabled = false;
-                    fileName.textContent = `Selected: ${resumeInput.files[0].name}`;
-                  } else {
-                    submitBtn.disabled = true;
-                    fileName.textContent = '';
+                  if (
+                    !(uploadBtn instanceof HTMLButtonElement) ||
+                    !(resumeInput instanceof HTMLInputElement) ||
+                    !(submitBtn instanceof HTMLButtonElement) ||
+                    !(fileName instanceof HTMLElement)
+                  ) {
+                    return;
                   }
+                  if (uploadBtn.dataset.bound === 'true') return;
+                  uploadBtn.dataset.bound = 'true';
+
+                  uploadBtn.addEventListener('click', () => {
+                    resumeInput.click();
+                  });
+
+                  resumeInput.addEventListener('change', () => {
+                    if (resumeInput.files && resumeInput.files.length > 0) {
+                      submitBtn.disabled = false;
+                      fileName.textContent = `Selected: ${resumeInput.files[0].name}`;
+                    } else {
+                      submitBtn.disabled = true;
+                      fileName.textContent = '';
+                    }
+                  });
                 });
-              });
-            </script>
+              </script>
           </div>
 
           <script
@@ -598,6 +669,58 @@ const candidateIntentConfig = formIntentConfigs[defaultCandidateFormIntent];
           data-self-nav-target="/candidates"
           class="text-white/80 hover:text-white transition">For Candidates</a
         >
+        <!-- Industries mobile accordion -->
+        <div>
+          <button
+            id="mobile-industries-btn"
+            class="flex items-center justify-between w-full text-white/80 hover:text-white transition"
+          >
+            <span>Industries</span>
+            <Icon name="tabler:chevron-down" class="w-4 h-4" id="mobile-industries-icon" />
+          </button>
+          <div id="mobile-industries-sub" class="hidden mt-2 ml-3 flex flex-col gap-2">
+            {
+              industries.map((industry) => (
+                <a
+                  href={`/industries/${industry.slug}`}
+                  data-astro-reload
+                  class="text-white/55 hover:text-white transition text-[12px]"
+                >
+                  {industry.title}
+                </a>
+              ))
+            }
+            <a href="/industries" data-astro-reload class="text-[#DA0007] text-[12px] font-semibold mt-1">
+              View All →
+            </a>
+          </div>
+        </div>
+        <!-- Functions mobile accordion -->
+        <div>
+          <button
+            id="mobile-functions-btn"
+            class="flex items-center justify-between w-full text-white/80 hover:text-white transition"
+          >
+            <span>Functions</span>
+            <Icon name="tabler:chevron-down" class="w-4 h-4" id="mobile-functions-icon" />
+          </button>
+          <div id="mobile-functions-sub" class="hidden mt-2 ml-3 flex flex-col gap-2">
+            {
+              jobFunctions.map((fn) => (
+                <a
+                  href={`/functions/${fn.slug}`}
+                  data-astro-reload
+                  class="text-white/55 hover:text-white transition text-[12px]"
+                >
+                  {fn.title}
+                </a>
+              ))
+            }
+            <a href="/functions" data-astro-reload class="text-[#DA0007] text-[12px] font-semibold mt-1">
+              View All →
+            </a>
+          </div>
+        </div>
         {
           navLinks.map(({ text, href }) => (
             <a href={href} data-astro-reload class="text-white/80 hover:text-white transition">
@@ -638,8 +761,24 @@ const candidateIntentConfig = formIntentConfigs[defaultCandidateFormIntent];
 
     const candidateBtn = document.getElementById('candidate-btn');
     const candidateMenu = document.getElementById('candidate-menu');
+
+    const industriesBtn = document.getElementById('industries-btn');
+    const industriesMenu = document.getElementById('industries-menu');
+
+    const functionsBtn = document.getElementById('functions-btn');
+    const functionsMenu = document.getElementById('functions-menu');
+
     const mobileBtn = document.getElementById('mobile-btn');
     const mobileMenu = document.getElementById('mobile-menu');
+
+    // Mobile accordion buttons
+    const mobileIndustriesBtn = document.getElementById('mobile-industries-btn');
+    const mobileIndustriesSub = document.getElementById('mobile-industries-sub');
+    const mobileIndustriesIcon = document.getElementById('mobile-industries-icon');
+
+    const mobileFunctionsBtn = document.getElementById('mobile-functions-btn');
+    const mobileFunctionsSub = document.getElementById('mobile-functions-sub');
+    const mobileFunctionsIcon = document.getElementById('mobile-functions-icon');
 
     const bindClickOnce = (el: HTMLElement | null, key: string, handler: (event: MouseEvent) => void) => {
       if (!(el instanceof HTMLElement)) return;
@@ -648,21 +787,62 @@ const candidateIntentConfig = formIntentConfigs[defaultCandidateFormIntent];
       el.addEventListener('click', handler);
     };
 
+    const allDesktopMenus = [hiringMenu, candidateMenu, industriesMenu, functionsMenu];
+
+    const closeAllDesktop = () => allDesktopMenus.forEach((m) => m?.classList.add('hidden'));
+
     bindClickOnce(hiringBtn, 'menuBound', (e) => {
       e.stopPropagation();
-      hiringMenu?.classList.toggle('hidden');
-      candidateMenu?.classList.add('hidden');
+      const wasHidden = hiringMenu?.classList.contains('hidden');
+      closeAllDesktop();
+      if (wasHidden) hiringMenu?.classList.remove('hidden');
     });
 
     bindClickOnce(candidateBtn, 'menuBound', (e) => {
       e.stopPropagation();
-      candidateMenu?.classList.toggle('hidden');
-      hiringMenu?.classList.add('hidden');
+      const wasHidden = candidateMenu?.classList.contains('hidden');
+      closeAllDesktop();
+      if (wasHidden) candidateMenu?.classList.remove('hidden');
+    });
+
+    bindClickOnce(industriesBtn, 'menuBound', (e) => {
+      e.stopPropagation();
+      const wasHidden = industriesMenu?.classList.contains('hidden');
+      closeAllDesktop();
+      if (wasHidden) industriesMenu?.classList.remove('hidden');
+    });
+
+    bindClickOnce(functionsBtn, 'menuBound', (e) => {
+      e.stopPropagation();
+      const wasHidden = functionsMenu?.classList.contains('hidden');
+      closeAllDesktop();
+      if (wasHidden) functionsMenu?.classList.remove('hidden');
     });
 
     bindClickOnce(mobileBtn, 'menuBound', (e) => {
       e.stopPropagation();
       mobileMenu?.classList.toggle('hidden');
+    });
+
+    // Mobile accordions
+    bindClickOnce(mobileIndustriesBtn, 'menuBound', (e) => {
+      e.stopPropagation();
+      mobileIndustriesSub?.classList.toggle('hidden');
+      if (mobileIndustriesIcon instanceof HTMLElement) {
+        mobileIndustriesIcon.style.transform = mobileIndustriesSub?.classList.contains('hidden')
+          ? 'rotate(0deg)'
+          : 'rotate(180deg)';
+      }
+    });
+
+    bindClickOnce(mobileFunctionsBtn, 'menuBound', (e) => {
+      e.stopPropagation();
+      mobileFunctionsSub?.classList.toggle('hidden');
+      if (mobileFunctionsIcon instanceof HTMLElement) {
+        mobileFunctionsIcon.style.transform = mobileFunctionsSub?.classList.contains('hidden')
+          ? 'rotate(0deg)'
+          : 'rotate(180deg)';
+      }
     });
 
     const normalizePath = (path: string) => {
@@ -772,14 +952,13 @@ const candidateIntentConfig = formIntentConfigs[defaultCandidateFormIntent];
       });
     });
 
-    document.querySelectorAll('#hiring-menu a, #candidate-menu a').forEach((link) => {
+    document.querySelectorAll('#hiring-menu a, #candidate-menu a, #industries-menu a, #functions-menu a').forEach((link) => {
       if (!(link instanceof HTMLAnchorElement)) return;
       const anchor = link;
       if (anchor.dataset.menuBound === 'true') return;
       anchor.dataset.menuBound = 'true';
       anchor.addEventListener('click', () => {
-        hiringMenu?.classList.add('hidden');
-        candidateMenu?.classList.add('hidden');
+        closeAllDesktop();
       });
     });
 
@@ -794,10 +973,13 @@ const candidateIntentConfig = formIntentConfigs[defaultCandidateFormIntent];
         !hiringMenu?.contains(target) &&
         !hiringBtn?.contains(target) &&
         !candidateMenu?.contains(target) &&
-        !candidateBtn?.contains(target)
+        !candidateBtn?.contains(target) &&
+        !industriesMenu?.contains(target) &&
+        !industriesBtn?.contains(target) &&
+        !functionsMenu?.contains(target) &&
+        !functionsBtn?.contains(target)
       ) {
-        hiringMenu?.classList.add('hidden');
-        candidateMenu?.classList.add('hidden');
+        closeAllDesktop();
       }
       if (!mobileMenu?.contains(target) && !mobileBtn?.contains(target)) {
         mobileMenu?.classList.add('hidden');

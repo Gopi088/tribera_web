@@ -12,19 +12,6 @@ export const headerData = {
       href: '/candidates',
       reload: true,
     },
-
-    {
-      text: 'About',
-      href: getPermalink('/about'),
-    },
-    {
-      text: 'Contact',
-      href: getPermalink('/contact'),
-    },
-    {
-      text: 'Careers',
-      href: getPermalink('/careers'),
-    },
     {
       text: 'Blog',
       href: getBlogPermalink(), // resolves to /blog/

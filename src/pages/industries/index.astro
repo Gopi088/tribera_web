@@ -1,0 +1,103 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { industries } from '~/data/industries';
+import { Icon } from 'astro-icon/components';
+
+const metadata = {
+  title: 'Industries — tribera',
+  description:
+    'Tribera delivers AI-validated, advisor-interviewed talent across every major industry. Explore our industry hiring coverage.',
+  robots: { index: true, follow: true },
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-black pt-24 pb-16 sm:pt-28 sm:pb-20">
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-black"></div>
+      <div
+        class="absolute left-[-28%] md:left-[-14%] top-0 h-full w-[88%] md:w-[58%]
+               bg-[radial-gradient(circle_at_left_center,rgba(218,0,7,0.38),transparent_62%)]"
+      ></div>
+      <div
+        class="absolute right-[-28%] md:right-[-14%] top-0 h-full w-[88%] md:w-[58%]
+               bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.28),transparent_62%)]"
+      ></div>
+    </div>
+    <div class="pointer-events-none absolute inset-0 bg-dotted-static opacity-70"></div>
+
+    <div class="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 lg:px-10 text-center">
+      <div
+        class="inline-flex items-center gap-2 rounded-full border border-[#da0007]/50 bg-black/20
+               px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/80
+               backdrop-blur-sm mb-5"
+      >
+        <span class="h-2 w-2 rounded-full bg-[#da0007]"></span>
+        Industries
+      </div>
+      <h1 class="text-[38px] sm:text-[52px] font-[700] tracking-tight text-white leading-[1.05]">
+        Hire confidently,<br />across every industry
+      </h1>
+      <p class="mt-5 text-[15px] sm:text-[17px] leading-relaxed text-white/45 max-w-xl mx-auto">
+        Tribera advisors bring domain context your sector demands — so shortlists arrive already
+        calibrated to your world.
+      </p>
+    </div>
+  </section>
+
+  <!-- Grid -->
+  <section class="bg-[#f5f5f5] py-14 md:py-20">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10">
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {
+          industries.map((industry) => (
+            <a
+              href={`/industries/${industry.slug}`}
+              class="group flex flex-col rounded-[24px] border border-black/5 bg-white p-6
+                     shadow-[0_8px_28px_rgba(0,0,0,0.05)] transition hover:shadow-[0_16px_40px_rgba(0,0,0,0.10)]
+                     hover:border-[#da0007]/20"
+            >
+              {industry.icon && (
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#da0007]/8 mb-4 transition group-hover:bg-[#da0007]/14">
+                  <Icon name={industry.icon} class="w-5 h-5 text-[#da0007]" />
+                </div>
+              )}
+              <h2 class="text-[15px] font-[700] text-black tracking-tight">{industry.title}</h2>
+              <p class="mt-2 text-[12.5px] leading-relaxed text-black/50 flex-1">
+                {industry.shortDescription}
+              </p>
+              <span class="mt-4 text-[12px] font-semibold text-[#da0007] transition group-hover:underline underline-offset-4">
+                Explore →
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="relative bg-black py-16 md:py-20 overflow-hidden">
+    <div
+      class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(218,0,7,0.10),transparent_60%)]"
+    ></div>
+    <div class="relative z-10 max-w-2xl mx-auto px-5 sm:px-8 text-center">
+      <h2 class="text-[28px] sm:text-[36px] font-[700] tracking-tight text-white">
+        Don't see your industry?
+      </h2>
+      <p class="mt-4 text-[15px] leading-relaxed text-white/45">
+        We cover more ground than we list. Tell us your sector and role — we'll tell you honestly
+        whether we're the right fit.
+      </p>
+      <div class="mt-7">
+        <a
+          href="/contact"
+          class="inline-block px-8 py-3.5 rounded-full tribera-primary-button text-[13px] font-semibold"
+        >
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
