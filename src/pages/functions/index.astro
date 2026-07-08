@@ -6,7 +6,7 @@ import { Icon } from 'astro-icon/components';
 const metadata = {
   title: 'Functions — tribera',
   description:
-    'Tribera delivers AI-validated, advisor-interviewed talent across every major business function. Explore our function hiring coverage.',
+    'AI-validated, advisor-interviewed talent across every business function. Three hire-ready candidates in 36 hours — with a 1:3 selection guarantee.',
   robots: { index: true, follow: true },
 };
 ---
@@ -16,33 +16,36 @@ const metadata = {
   <section class="relative overflow-hidden bg-black pt-24 pb-16 sm:pt-28 sm:pb-20">
     <div class="absolute inset-0">
       <div class="absolute inset-0 bg-black"></div>
-      <div
-        class="absolute left-[-28%] md:left-[-14%] top-0 h-full w-[88%] md:w-[58%]
-               bg-[radial-gradient(circle_at_left_center,rgba(218,0,7,0.38),transparent_62%)]"
-      ></div>
-      <div
-        class="absolute right-[-28%] md:right-[-14%] top-0 h-full w-[88%] md:w-[58%]
-               bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.28),transparent_62%)]"
-      ></div>
+      <div class="absolute left-[-30%] md:left-[-15%] top-0 h-full w-[90%] md:w-[60%]
+                  bg-[radial-gradient(circle_at_left_center,rgba(218,0,7,0.45),transparent_60%)]"></div>
+      <div class="absolute right-[-30%] md:right-[-15%] top-0 h-full w-[90%] md:w-[60%]
+                  bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.45),transparent_60%)]"></div>
     </div>
     <div class="pointer-events-none absolute inset-0 bg-dotted-static opacity-70"></div>
 
     <div class="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 lg:px-10 text-center">
-      <div
-        class="inline-flex items-center gap-2 rounded-full border border-[#da0007]/50 bg-black/20
-               px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/80
-               backdrop-blur-sm mb-5"
-      >
+      <div class="inline-flex items-center gap-2 rounded-full border border-[#da0007]/50 bg-black/20
+                  px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/80
+                  backdrop-blur-sm mb-6">
         <span class="h-2 w-2 rounded-full bg-[#da0007]"></span>
         Functions
       </div>
-      <h1 class="text-[38px] sm:text-[52px] font-[700] tracking-tight text-white leading-[1.05]">
-        Every function,<br />hire-ready in 36 hours
+      <h1 class="font-[600] leading-[1.04] tracking-[-0.05em] text-white
+                 text-[clamp(2.2rem,9vw,3.4rem)] sm:text-[clamp(2.6rem,6vw,4rem)]">
+        Every function.<br />Hire-ready in 36 hours.
       </h1>
       <p class="mt-5 text-[15px] sm:text-[17px] leading-relaxed text-white/45 max-w-xl mx-auto">
-        From engineering to finance, our advisors know the role before the first interview — and
-        your shortlist reflects that.
+        From engineering to executive search — Tribera advisors know the role before the first interview.
+        Your shortlist reflects that.
       </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-5">
+        {['1:3 Selection Guarantee', 'First shortlist in 36 hours', 'Function-expert advisors'].map(item => (
+          <div class="flex items-center gap-2 text-[11px] text-white/40">
+            <span class="h-1.5 w-1.5 rounded-full bg-[#da0007]"></span>
+            {item}
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -50,51 +53,45 @@ const metadata = {
   <section class="bg-[#f5f5f5] py-14 md:py-20">
     <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10">
       <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {
-          jobFunctions.map((fn) => (
-            <a
-              href={`/functions/${fn.slug}`}
-              class="group flex flex-col rounded-[24px] border border-black/5 bg-white p-6
-                     shadow-[0_8px_28px_rgba(0,0,0,0.05)] transition hover:shadow-[0_16px_40px_rgba(0,0,0,0.10)]
-                     hover:border-[#da0007]/20"
-            >
-              {fn.icon && (
-                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#da0007]/8 mb-4 transition group-hover:bg-[#da0007]/14">
-                  <Icon name={fn.icon} class="w-5 h-5 text-[#da0007]" />
-                </div>
-              )}
-              <h2 class="text-[15px] font-[700] text-black tracking-tight">{fn.title}</h2>
-              <p class="mt-2 text-[12.5px] leading-relaxed text-black/50 flex-1">
-                {fn.shortDescription}
-              </p>
-              <span class="mt-4 text-[12px] font-semibold text-[#da0007] transition group-hover:underline underline-offset-4">
-                Explore →
-              </span>
-            </a>
-          ))
-        }
+        {jobFunctions.map((fn) => (
+          <a
+            href={`/functions/${fn.slug}`}
+            class="group flex flex-col rounded-[24px] border border-black/5 bg-white p-6
+                   shadow-[0_8px_28px_rgba(0,0,0,0.05)] transition-all duration-500
+                   hover:shadow-[0_20px_50px_rgba(0,0,0,0.10)] hover:border-[#da0007]/20
+                   overflow-hidden relative"
+          >
+            <div class="absolute top-0 left-0 h-[3px] w-0 bg-[#da0007] transition-all duration-700 group-hover:w-full" />
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#da0007]/8 mb-5
+                        transition group-hover:bg-[#da0007]/14">
+              <Icon name={fn.icon} class="w-5 h-5 text-[#da0007]" />
+            </div>
+            <h2 class="text-[15px] font-[700] text-black tracking-tight">{fn.title}</h2>
+            <p class="mt-2 text-[13px] leading-relaxed text-black/50 flex-1">{fn.subtitle}</p>
+            <span class="mt-5 text-[12px] font-semibold text-[#da0007] group-hover:underline underline-offset-4 transition">
+              Explore →
+            </span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
 
   <!-- CTA -->
   <section class="relative bg-black py-16 md:py-20 overflow-hidden">
-    <div
-      class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(218,0,7,0.10),transparent_60%)]"
-    ></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(218,0,7,0.10),transparent_60%)]"></div>
+    <div class="pointer-events-none absolute inset-0 bg-dotted-static opacity-50"></div>
     <div class="relative z-10 max-w-2xl mx-auto px-5 sm:px-8 text-center">
-      <h2 class="text-[28px] sm:text-[36px] font-[700] tracking-tight text-white">
+      <h2 class="text-[clamp(1.6rem,5vw,2.2rem)] font-[600] tracking-tight text-white">
         Need a different function?
       </h2>
       <p class="mt-4 text-[15px] leading-relaxed text-white/45">
-        We hire across more functions than we list here. Reach out — we'll tell you exactly
-        what we can do for your role.
+        We hire across more functions than we list here. Tell us the role — we'll tell you
+        what we can do.
       </p>
       <div class="mt-7">
-        <a
-          href="/contact"
-          class="inline-block px-8 py-3.5 rounded-full tribera-primary-button text-[13px] font-semibold"
-        >
+        <a href="/contact"
+           class="inline-block px-8 py-3.5 rounded-full tribera-primary-button text-[13px] font-semibold">
           Get in Touch
         </a>
       </div>
