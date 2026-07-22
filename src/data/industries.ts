@@ -37,6 +37,8 @@ export const industries: Industry[] = [
     subtitle: `Three vetted candidates in 36 hours — for roles where the wrong hire costs more than a quarter.`,
     badge: `Financial Services`,
     icon: `tabler:building-bank`,
+    seoTitle: `Banking & Financial Services Hiring — tribera`,
+    seoDescription: `AI-validated, advisor-interviewed banking and financial services candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
     overview:
       `BFSI hiring demands more than a matched resume. Regulatory literacy, risk awareness, and domain depth are non-negotiable — and impossible to verify from a CV alone. Tribera advisors have operated inside banks, NBFCs, asset managers, and fintech businesses. They know what a strong credit analyst actually looks like in an interview, what a payments product manager needs to navigate, and which engineering candidates genuinely understand financial infrastructure. AI handles the screening volume. Advisors handle the judgment. You get three candidates you can actually hire.`,
     hiringChallenges: [
@@ -113,6 +115,8 @@ export const industries: Industry[] = [
     subtitle: `Engineering and product talent that ships — not just candidates who clear a screen.`,
     badge: `Enterprise Technology`,
     icon: `tabler:cpu`,
+    seoTitle: `Enterprise Technology Hiring — tribera`,
+    seoDescription: `AI-validated, advisor-interviewed enterprise technology candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
     overview:
       `Enterprise technology companies face a paradox: the market is flooded with candidates, yet finding someone with genuine depth — the kind that compounds over time — is harder than ever. Tribera's AI eliminates noise at scale, validating GitHub activity, architecture judgement, and system design thinking before a single human hour is spent. Advisors with technology backgrounds conduct the shortlist interviews. The result is three candidates your engineering managers will actually want to talk to.`,
     hiringChallenges: [
@@ -188,6 +192,8 @@ export const industries: Industry[] = [
     subtitle: `Product thinkers. Not just product managers.`,
     badge: `Product & SaaS`,
     icon: `tabler:layout-kanban`,
+    seoTitle: `Product & SaaS Hiring — tribera`,
+    seoDescription: `AI-validated, advisor-interviewed product and SaaS candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
     overview:
       `Hiring for product roles in a SaaS business is deceptively hard. Every candidate has the vocabulary. Very few have the judgment. Tribera advisors have built and shipped products — they can tell the difference between someone who attended roadmap reviews and someone who defined product strategy under real commercial pressure. Add AI validation of signal depth and a 1:3 selection guarantee, and you stop interviewing to discover — you start interviewing to decide.`,
     hiringChallenges: [
@@ -259,6 +265,8 @@ export const industries: Industry[] = [
     subtitle: `Signal over noise — for the people who build AI and data systems.`,
     badge: `AI & Data`,
     icon: `tabler:brain`,
+    seoTitle: `AI & Data Hiring — tribera`,
+    seoDescription: `AI-validated, advisor-interviewed AI and data candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
     overview:
       `AI and data hiring is the most credentialing-inflated segment in the market. The proliferation of certifications, Kaggle rankings, and LLM wrapper projects makes it nearly impossible to distinguish genuine depth from well-presented surface knowledge. Tribera's AI validation cross-references research contributions, open source activity, and real production system experience before a single advisory interview begins. The result is a shortlist of three candidates who have actually built at the depth you require.`,
     hiringChallenges: [
@@ -330,6 +338,8 @@ export const industries: Industry[] = [
     subtitle: `The people who protect what matters — validated before they reach your interview room.`,
     badge: `Cybersecurity`,
     icon: `tabler:shield-lock`,
+    seoTitle: `Cybersecurity Hiring — tribera`,
+    seoDescription: `AI-validated, advisor-interviewed cybersecurity candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
     overview:
       `Security hiring has two failure modes: hiring someone with certifications but no operational depth, or running a process so slow that strong candidates accept elsewhere. Tribera eliminates both. Our AI validates real incident response experience, architecture depth, and threat modelling capability. Advisory interviews probe the decision-making that can't be certified. The shortlist you receive is three candidates who are genuinely ready — not three candidates who passed a keyword screen.`,
     hiringChallenges: [
@@ -397,6 +407,8 @@ export const industries: Industry[] = [
     subtitle: `Talent that understands the stakes — clinical, regulatory, and commercial.`,
     badge: `Healthcare & Life Sciences`,
     icon: `tabler:heart-rate-monitor`,
+    seoTitle: `Healthcare & Life Sciences Hiring — tribera`,
+    seoDescription: `AI-validated, advisor-interviewed healthcare and life sciences candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
     overview:
       `Healthcare and life sciences hiring sits at the intersection of deep scientific knowledge, regulatory complexity, and commercial pressure. Finding candidates who hold all three is rare — and verifying them through a traditional hiring process is slow and unreliable. Tribera advisors have operated inside pharma, MedTech, diagnostics, and digital health businesses. They run interviews that probe regulatory awareness, clinical domain understanding, and commercial acuity simultaneously — delivering shortlists that would take internal teams weeks to assemble.`,
     hiringChallenges: [
@@ -464,6 +476,8 @@ export const industries: Industry[] = [
     subtitle: `Precision hiring for an industry where accuracy is everything.`,
     badge: `Pharmaceutical`,
     icon: `tabler:pill`,
+    seoTitle: `Pharmaceutical Hiring — tribera`,
+    seoDescription: `AI-validated, advisor-interviewed pharmaceutical candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
     overview:
       `Pharmaceutical companies are expanding R&D pipelines, scaling manufacturing operations, and building commercial capabilities simultaneously. Each track demands a different depth of expertise — and a hiring process that can accurately distinguish it. Tribera advisors have pharma-specific domain experience. They probe for the regulatory depth, scientific rigour, and commercial judgement that separates a truly strong pharma hire from a credentialed generalist.`,
     hiringChallenges: [
@@ -527,6 +541,8 @@ export const industries: Industry[] = [
     subtitle: `Operations, engineering, and quality leaders who run plants — not just describe them.`,
     badge: `Manufacturing`,
     icon: `tabler:settings-2`,
+    seoTitle: `Manufacturing Hiring — tribera`,
+    seoDescription: `AI-validated, advisor-interviewed manufacturing candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
     overview:
       `Manufacturing hiring has a credibility problem. Plant experience is easy to claim and hard to verify in a standard interview. Tribera advisors have run manufacturing operations, led quality teams, and owned production P&Ls. They ask the questions that separate genuine operational depth from well-rehearsed answers — and the AI validation layer cross-references industry certifications, project scale, and productivity outcomes before any advisory time is committed.`,
     hiringChallenges: [
@@ -594,6 +610,8 @@ export const industries: Industry[] = [
     subtitle: `Technical depth for the projects that build the physical world.`,
     badge: `Industrial & Engineering`,
     icon: `tabler:tool`,
+    seoTitle: `Industrial & Engineering Hiring — tribera`,
+    seoDescription: `AI-validated, advisor-interviewed industrial and engineering candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
     overview:
       `Industrial and engineering projects demand candidates who combine deep technical knowledge with the ability to deliver under real constraints — budget, timeline, regulation, and physics. Tribera advisors have managed large engineering projects, led multi-discipline teams, and navigated client delivery environments. They probe for the depth of experience that portfolio documents and certifications cannot convey — and the AI layer validates project scale, technical scope, and delivery outcomes before the first advisory conversation begins.`,
     hiringChallenges: [
@@ -653,6 +671,8 @@ export const industries: Industry[] = [
     subtitle: `Built for GCCs scaling in India — where speed, calibre, and cultural alignment all matter.`,
     badge: `GCC`,
     icon: `tabler:building-skyscraper`,
+    seoTitle: `Global Capability Centers Hiring — tribera`,
+    seoDescription: `AI-validated, advisor-interviewed global capability center candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
     overview:
       `India's GCC ecosystem is scaling at a pace that most hiring models can't keep up with. Tribera was built partly in response to this reality. Our advisory team includes people who have led GCC capability builds — they understand the matrix reporting structures, the parent-company calibration requirements, and the cultural alignment nuance that separates a hire who thrives in a GCC from one who churns within six months. The result is a shortlist designed not just for the role, but for the specific GCC context.`,
     hiringChallenges: [
@@ -724,6 +744,8 @@ export const industries: Industry[] = [
     subtitle: `For businesses where speed, taste, and commercial instinct all have to coexist.`,
     badge: `Consumer & Digital Commerce`,
     icon: `tabler:shopping-bag`,
+    seoTitle: `Consumer & Digital Commerce Hiring — tribera`,
+    seoDescription: `AI-validated, advisor-interviewed consumer and digital commerce candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
     overview:
       `Consumer and digital commerce businesses move fast, operate at margin pressure, and need people who can balance brand instinct with data fluency. The candidates who excel here are rare — they understand consumer behaviour at depth, can read a P&L, and know when to trust intuition and when to let the data override it. Tribera advisors have built consumer brands, led D2C growth, and run large retail operations. They know who the genuinely strong candidates are — and how to find the ones who aren't actively looking.`,
     hiringChallenges: [
@@ -791,6 +813,8 @@ export const industries: Industry[] = [
     subtitle: `Value creation timelines are real. Your hiring process needs to be faster than they are.`,
     badge: `Private Equity`,
     icon: `tabler:chart-line`,
+    seoTitle: `Private Equity Portfolio Companies Hiring — tribera`,
+    seoDescription: `AI-validated, advisor-interviewed private equity portfolio candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
     overview:
       `PE-backed companies have a different hiring calculus. Every key hire either accelerates or compresses the value creation timeline. Mistakes are expensive not just in salary cost but in board credibility, team momentum, and exit readiness. Tribera advisors understand how PE-portfolio businesses operate — the governance structures, the 100-day plan pressure, the performance accountability that comes with institutional ownership. Every shortlist is calibrated not just for role fit but for the specific PE context the candidate will be walking into.`,
     hiringChallenges: [
