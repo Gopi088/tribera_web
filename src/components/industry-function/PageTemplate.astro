@@ -1,5 +1,4 @@
 ---
-import { Icon } from 'astro-icon/components';
 
 interface Challenge { title: string; desc: string; }
 interface Role { title: string; level: string; }
@@ -10,7 +9,6 @@ interface Props {
   type: 'industry' | 'function';
   slug: string;
   badge: string;
-  icon: string;
   title: string;
   subtitle: string;
   overview: string;
@@ -20,14 +18,12 @@ interface Props {
   faqs: FAQ[];
   ctaHeadline: string;
   ctaSubtext: string;
-  seoTitle?: string;
 }
 
 const {
   type,
   slug,
   badge,
-  icon,
   title,
   subtitle,
   overview,
@@ -124,7 +120,7 @@ const formSource = `${type}_${slug}`;
                px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/80
                backdrop-blur-sm sm:text-[12px]"
       >
-        <Icon name={icon} class="w-3.5 h-3.5 text-[#da0007]" />
+        <span class="h-2 w-2 rounded-full bg-[#da0007]"></span>
         {badgeLabel}
       </div>
 
