@@ -493,6 +493,10 @@ export const industries: Industry[] = [
         title: `Commercial teams without scientific fluency`,
         desc: `The strongest pharma commercial hires can walk the science conversation with KOLs. Our advisors assess scientific literacy even for commercial mandates.`,
       },
+      {
+        title: `Cross-market regulatory experience is rare`,
+        desc: `A candidate with deep FDA submission experience may lack EMA or emerging-market exposure. We map regulatory experience to your specific market footprint.`,
+      },
     ],
     rolesWeHire: [
       { title: `Regulatory Affairs`, level: `RA Executive to Global Head` },
@@ -626,6 +630,10 @@ export const industries: Industry[] = [
       {
         title: `Client-facing delivery depth`,
         desc: `Engineering services candidates need commercial awareness alongside technical competence. Our advisors probe for both.`,
+      },
+      {
+        title: `Niche domain expertise is hard to benchmark`,
+        desc: `From structural steel detailing to HV substation design, niche engineering domains lack standard skill taxonomies. Our advisors calibrate against your actual project requirements.`,
       },
     ],
     rolesWeHire: [
