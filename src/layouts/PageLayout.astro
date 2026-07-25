@@ -436,6 +436,7 @@ const { metadata } = Astro.props;
     function initProofSection() {
       const section = document.getElementById('proof');
       if (!section) return;
+      if (!section.querySelector('.count-number, #triberaBar, #proofCountersGrid')) return;
 
       if (typeof section.__proofCleanup === 'function') {
         section.__proofCleanup();

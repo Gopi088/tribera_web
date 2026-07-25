@@ -1,6 +1,8 @@
 export interface HiringChallenge {
   title: string;
   desc: string;
+  tag?: string;
+  items?: string[];
 }
 
 export interface RoleItem {
@@ -22,6 +24,7 @@ export interface Industry {
   icon: string;
   seoTitle: string;
   seoDescription: string;
+  advisorLabel?: string;
   hiringChallenges: HiringChallenge[];
   rolesWeHire: RoleItem[];
   whyTribera: { title: string; desc: string }[];
@@ -43,20 +46,28 @@ export const industries: Industry[] = [
       `BFSI hiring demands more than a matched resume. Regulatory literacy, risk awareness, and domain depth are non-negotiable — and impossible to verify from a CV alone. Tribera advisors have operated inside banks, NBFCs, asset managers, and fintech businesses. They know what a strong credit analyst actually looks like in an interview, what a payments product manager needs to navigate, and which engineering candidates genuinely understand financial infrastructure. AI handles the screening volume. Advisors handle the judgment. You get three candidates you can actually hire.`,
     hiringChallenges: [
       {
+        tag: `COMPLIANCE`,
         title: `Compliance-fit is invisible on paper`,
         desc: `Risk appetite, regulatory awareness, and audit mindset cannot be inferred from job titles. Tribera advisors probe for these directly.`,
+        items: [`Risk appetite probed directly`, `Regulatory awareness verified`, `Audit mindset assessed`, `Compliance blindspots flagged`],
       },
       {
+        tag: `FINTECH DEPTH`,
         title: `Technical talent without domain context`,
         desc: `Engineering candidates in BFSI need fintech-specific depth — core banking integrations, payment rails, data residency. Generic tech interviews miss this entirely.`,
+        items: [`Core banking integrations tested`, `Payment rails fluency checked`, `Data residency awareness probed`, `Domain-specific tech screening`],
       },
       {
+        tag: `SPEED`,
         title: `Long interview cycles damaging offer acceptance`,
         desc: `Top BFSI talent holds multiple offers simultaneously. Slow pipelines lose them. Tribera's 36-hour shortlist is designed for this reality.`,
+        items: [`36-hour first shortlist`, `Built for competing offers`, `Parallel pipeline management`, `Offer-acceptance risk reduced`],
       },
       {
+        tag: `CALIBRATION`,
         title: `Seniority inflation across resumes`,
         desc: `AVP and VP titles vary wildly across institutions. Our advisors calibrate candidates against real accountability — not designations.`,
+        items: [`Titles checked against scope`, `Real accountability verified`, `Cross-institution benchmarking`, `Designation inflation flagged`],
       },
     ],
     rolesWeHire: [
@@ -121,20 +132,28 @@ export const industries: Industry[] = [
       `Enterprise technology companies face a paradox: the market is flooded with candidates, yet finding someone with genuine depth — the kind that compounds over time — is harder than ever. Tribera's AI eliminates noise at scale, validating GitHub activity, architecture judgement, and system design thinking before a single human hour is spent. Advisors with technology backgrounds conduct the shortlist interviews. The result is three candidates your engineering managers will actually want to talk to.`,
     hiringChallenges: [
       {
+        tag: `SIGNAL VALIDATION`,
         title: `Resume embellishment at scale`,
         desc: `Enterprise technology hiring is saturated with inflated profiles. Our AI cross-validates what candidates claim against what they have actually built — GitHub, Stack Overflow, project depth.`,
+        items: [`GitHub activity cross-checked`, `Stack Overflow contributions verified`, `Project depth validated`, `Claims matched to evidence`],
       },
       {
+        tag: `BANDWIDTH`,
         title: `Technical screening consuming engineering bandwidth`,
         desc: `Engineering managers are the most expensive people in the room to run interviews. Tribera absorbs the discovery and first-pass evaluation entirely.`,
+        items: [`Discovery handled end-to-end`, `First-pass evaluation absorbed`, `Engineering time protected`, `Only qualified profiles surface`],
       },
       {
+        tag: `CALIBRATION`,
         title: `Seniority misalignment`,
         desc: `A Staff Engineer at one company is a mid-level contributor at another. Our advisors calibrate against real scope of impact, not titles.`,
+        items: [`Scope of impact assessed`, `Title inflation discounted`, `Cross-company benchmarking`, `Real ownership verified`],
       },
       {
+        tag: `CULTURE FIT`,
         title: `Attrition driven by wrong culture signals`,
         desc: `Our behavioural scoring captures communication style, autonomy preference, and team integration likelihood — reducing 90-day attrition significantly.`,
+        items: [`Communication style scored`, `Autonomy preference mapped`, `Team integration modelled`, `90-day attrition reduced`],
       },
     ],
     rolesWeHire: [
@@ -198,20 +217,28 @@ export const industries: Industry[] = [
       `Hiring for product roles in a SaaS business is deceptively hard. Every candidate has the vocabulary. Very few have the judgment. Tribera advisors have built and shipped products — they can tell the difference between someone who attended roadmap reviews and someone who defined product strategy under real commercial pressure. Add AI validation of signal depth and a 1:3 selection guarantee, and you stop interviewing to discover — you start interviewing to decide.`,
     hiringChallenges: [
       {
+        tag: `JUDGMENT`,
         title: `Product vocabulary ≠ product thinking`,
         desc: `Every candidate talks about metrics, user research, and roadmap trade-offs. Our advisors probe for the judgment behind the language.`,
+        items: [`Metrics fluency probed`, `Roadmap reasoning tested`, `Trade-off judgment surfaced`, `Vocabulary vs substance separated`],
       },
       {
+        tag: `CUSTOMER BALANCE`,
         title: `Customer-centricity that doesn't scale`,
         desc: `SaaS businesses need PMs who can balance customer voice with business model constraints. Generic behavioural interviews don't surface this.`,
+        items: [`Customer voice weighed`, `Business constraints considered`, `Scenario-based scoring`, `Behavioural theatre avoided`],
       },
       {
+        tag: `TECHNICAL FLUENCY`,
         title: `Engineering collaboration depth`,
         desc: `The best SaaS PMs are technical enough to challenge architecture decisions without overstepping. Tribera assesses this specifically.`,
+        items: [`Architecture literacy checked`, `Engineering credibility tested`, `Collaboration style assessed`, `Overstep risk flagged`],
       },
       {
+        tag: `STAGE FIT`,
         title: `Growth-stage vs scale-stage mismatch`,
         desc: `A PM who excels in a scrappy Series A environment may fail in a structured Series C. We calibrate for your current operating context.`,
+        items: [`Operating context matched`, `Series A vs C calibrated`, `Structure tolerance assessed`, `Stage-specific scoring`],
       },
     ],
     rolesWeHire: [
@@ -271,20 +298,28 @@ export const industries: Industry[] = [
       `AI and data hiring is the most credentialing-inflated segment in the market. The proliferation of certifications, Kaggle rankings, and LLM wrapper projects makes it nearly impossible to distinguish genuine depth from well-presented surface knowledge. Tribera's AI validation cross-references research contributions, open source activity, and real production system experience before a single advisory interview begins. The result is a shortlist of three candidates who have actually built at the depth you require.`,
     hiringChallenges: [
       {
+        tag: `CREDENTIAL CHECK`,
         title: `Credential inflation is severe`,
         desc: `Everyone has a deep learning certification. Our AI validates production ML system experience, not course completions.`,
+        items: [`Production ML experience verified`, `Course completions discounted`, `Research contributions cross-checked`, `Real depth surfaced`],
       },
       {
+        tag: `RESEARCH VS APPLIED`,
         title: `Research vs applied depth mismatch`,
         desc: `Academic ML talent often struggles in applied engineering contexts. We assess for both dimensions and surface which profile your role actually requires.`,
+        items: [`Both dimensions assessed`, `Applied engineering tested`, `Academic depth verified`, `Profile fit surfaced`],
       },
       {
+        tag: `ARCHITECTURE JUDGMENT`,
         title: `Rapidly evolving tooling landscape`,
         desc: `Data stack choices made 18 months ago are already obsolete. Our advisors probe architectural judgment — the ability to choose tools wisely — not just familiarity with the current stack.`,
+        items: [`Tool-choice reasoning probed`, `Stack-agnostic evaluation`, `Adaptability assessed`, `Obsolescence risk avoided`],
       },
       {
+        tag: `GOVERNANCE`,
         title: `Data quality and governance blindspots`,
         desc: `Strong data engineers often have weak data governance instincts. We surface this explicitly in every shortlist evaluation.`,
+        items: [`Data quality instincts checked`, `Governance discipline probed`, `Blindspots surfaced explicitly`, `Compliance awareness verified`],
       },
     ],
     rolesWeHire: [
@@ -344,20 +379,28 @@ export const industries: Industry[] = [
       `Security hiring has two failure modes: hiring someone with certifications but no operational depth, or running a process so slow that strong candidates accept elsewhere. Tribera eliminates both. Our AI validates real incident response experience, architecture depth, and threat modelling capability. Advisory interviews probe the decision-making that can't be certified. The shortlist you receive is three candidates who are genuinely ready — not three candidates who passed a keyword screen.`,
     hiringChallenges: [
       {
+        tag: `OPERATIONAL DEPTH`,
         title: `Certification ≠ operational capability`,
         desc: `CISSP, CISM, and CEH are table stakes. Tribera evaluates real incident response history, threat modelling depth, and architecture decision quality.`,
+        items: [`Incident response history checked`, `Threat modelling depth tested`, `Architecture decisions probed`, `Certifications treated as baseline`],
       },
       {
+        tag: `GRC VS TECHNICAL`,
         title: `GRC vs technical security misalignment`,
         desc: `Organisations frequently conflate governance, risk, and compliance roles with hands-on security engineering. We separate these sharply in every mandate.`,
+        items: [`Governance roles separated`, `Hands-on engineering verified`, `Mandate-specific calibration`, `Role clarity enforced`],
       },
       {
+        tag: `THREAT CONTEXT`,
         title: `Security talent with no industry context`,
         desc: `A BFSI security hire requires different depth than a SaaS AppSec hire. Our advisors evaluate candidates against your specific threat model and compliance landscape.`,
+        items: [`Sector-specific threat model`, `Compliance landscape matched`, `BFSI vs SaaS calibrated`, `Context-aware evaluation`],
       },
       {
+        tag: `DISCREET SOURCING`,
         title: `Confidentiality requirements in sourcing`,
         desc: `Security roles often cannot be publicly advertised. Tribera's passive-talent network and discreet outreach protocols are built for this.`,
+        items: [`Passive-talent network used`, `Outreach kept confidential`, `No public postings`, `Candidate identity protected`],
       },
     ],
     rolesWeHire: [
@@ -413,20 +456,28 @@ export const industries: Industry[] = [
       `Healthcare and life sciences hiring sits at the intersection of deep scientific knowledge, regulatory complexity, and commercial pressure. Finding candidates who hold all three is rare — and verifying them through a traditional hiring process is slow and unreliable. Tribera advisors have operated inside pharma, MedTech, diagnostics, and digital health businesses. They run interviews that probe regulatory awareness, clinical domain understanding, and commercial acuity simultaneously — delivering shortlists that would take internal teams weeks to assemble.`,
     hiringChallenges: [
       {
+        tag: `REGULATORY DEPTH`,
         title: `Regulatory literacy is non-negotiable`,
         desc: `From CDSCO to FDA and ISO 13485, the regulatory landscape varies by product category and geography. Our advisors probe for real familiarity — not just label awareness.`,
+        items: [`CDSCO and FDA probed`, `ISO 13485 familiarity checked`, `Geography-specific calibration`, `Label awareness rejected`],
       },
       {
+        tag: `SCIENCE + COMMERCE`,
         title: `Scientific depth vs commercial translation`,
         desc: `The strongest healthcare hires combine domain credibility with commercial instinct. We surface both dimensions explicitly in every shortlist.`,
+        items: [`Domain credibility verified`, `Commercial instinct tested`, `Both dimensions scored`, `KOL-ready fluency checked`],
       },
       {
+        tag: `SPEED`,
         title: `Long validation cycles creating offer risk`,
         desc: `Healthcare leadership candidates often require extended due diligence. Tribera's process compresses discovery without compromising depth.`,
+        items: [`Discovery cycle compressed`, `Depth not compromised`, `36-hour shortlist`, `Offer risk reduced`],
       },
       {
+        tag: `DIGITAL HEALTH`,
         title: `Digital health talent straddling two worlds`,
         desc: `Digital health roles require candidates who are literate in both clinical workflow and technology architecture. Generic interviews miss this intersection entirely.`,
+        items: [`Clinical workflow literacy`, `Technology architecture fluency`, `Intersection assessed directly`, `Generic screens bypassed`],
       },
     ],
     rolesWeHire: [
@@ -482,20 +533,28 @@ export const industries: Industry[] = [
       `Pharmaceutical companies are expanding R&D pipelines, scaling manufacturing operations, and building commercial capabilities simultaneously. Each track demands a different depth of expertise — and a hiring process that can accurately distinguish it. Tribera advisors have pharma-specific domain experience. They probe for the regulatory depth, scientific rigour, and commercial judgement that separates a truly strong pharma hire from a credentialed generalist.`,
     hiringChallenges: [
       {
+        tag: `GMP DEPTH`,
         title: `GMP and regulatory compliance depth is hard to verify`,
         desc: `Manufacturing and quality candidates often list GMP compliance experience. Our advisors probe for real process understanding — deviation management, CAPA design, audit experience.`,
+        items: [`Deviation management probed`, `CAPA design tested`, `Audit experience verified`, `Process understanding checked`],
       },
       {
+        tag: `LIFECYCLE FIT`,
         title: `Drug development lifecycle knowledge varies enormously`,
         desc: `A Phase 1 trial manager and a Phase 3 NDA submission specialist are different roles requiring very different experience. We calibrate the brief and the evaluation to your exact lifecycle stage.`,
+        items: [`Phase-specific calibration`, `Trial-stage experience matched`, `Brief tailored to pipeline`, `Lifecycle mismatch avoided`],
       },
       {
+        tag: `SCIENTIFIC FLUENCY`,
         title: `Commercial teams without scientific fluency`,
         desc: `The strongest pharma commercial hires can walk the science conversation with KOLs. Our advisors assess scientific literacy even for commercial mandates.`,
+        items: [`KOL conversation readiness`, `Science literacy assessed`, `Commercial mandates included`, `Fluency tested directly`],
       },
       {
+        tag: `MARKET MAPPING`,
         title: `Cross-market regulatory experience is rare`,
         desc: `A candidate with deep FDA submission experience may lack EMA or emerging-market exposure. We map regulatory experience to your specific market footprint.`,
+        items: [`FDA vs EMA mapped`, `Emerging-market exposure checked`, `Footprint-specific calibration`, `Regulatory gaps surfaced`],
       },
     ],
     rolesWeHire: [
@@ -551,20 +610,28 @@ export const industries: Industry[] = [
       `Manufacturing hiring has a credibility problem. Plant experience is easy to claim and hard to verify in a standard interview. Tribera advisors have run manufacturing operations, led quality teams, and owned production P&Ls. They ask the questions that separate genuine operational depth from well-rehearsed answers — and the AI validation layer cross-references industry certifications, project scale, and productivity outcomes before any advisory time is committed.`,
     hiringChallenges: [
       {
+        tag: `TITLE CALIBRATION`,
         title: `Operational depth vs title inflation`,
         desc: `Plant Manager and General Manager titles vary enormously in scope. We calibrate every candidate against real headcount, throughput, and P&L accountability.`,
+        items: [`Headcount scope verified`, `Throughput accountability checked`, `P&L ownership confirmed`, `Title inflation discounted`],
       },
       {
+        tag: `SYSTEMS DEPTH`,
         title: `Process knowledge without manufacturing systems depth`,
         desc: `Strong candidates understand both the physical process and the ERP and MES systems that run it. We assess both layers.`,
+        items: [`ERP fluency assessed`, `MES literacy checked`, `Physical process understood`, `Both layers evaluated`],
       },
       {
+        tag: `TRANSFORMATION PROOF`,
         title: `Lean and Six Sigma credentials without implementation evidence`,
         desc: `Certifications are common. Real transformation evidence is rare. Our advisors probe for actual DMAIC projects, cost-saving outcomes, and sustained OEE improvement.`,
+        items: [`DMAIC projects verified`, `Cost-saving outcomes checked`, `OEE improvement confirmed`, `Certifications treated as baseline`],
       },
       {
+        tag: `SAFETY CULTURE`,
         title: `Safety culture fit`,
         desc: `EHS mindset and safety-first leadership are non-negotiable in manufacturing. We assess for this specifically — it doesn't surface in a standard competency interview.`,
+        items: [`EHS mindset assessed`, `Safety-first leadership probed`, `Non-negotiable scoring`, `Surfaced beyond competency interview`],
       },
     ],
     rolesWeHire: [
@@ -620,20 +687,28 @@ export const industries: Industry[] = [
       `Industrial and engineering projects demand candidates who combine deep technical knowledge with the ability to deliver under real constraints — budget, timeline, regulation, and physics. Tribera advisors have managed large engineering projects, led multi-discipline teams, and navigated client delivery environments. They probe for the depth of experience that portfolio documents and certifications cannot convey — and the AI layer validates project scale, technical scope, and delivery outcomes before the first advisory conversation begins.`,
     hiringChallenges: [
       {
+        tag: `SCALE VERIFICATION`,
         title: `Project scale misrepresentation`,
         desc: `Engineering candidates routinely inflate project scope and leadership contribution. Our AI cross-references employer data, project timelines, and team sizes before advisory interviews.`,
+        items: [`Employer data cross-checked`, `Project timelines validated`, `Team size confirmed`, `Scope inflation flagged`],
       },
       {
+        tag: `MULTI-DISCIPLINE`,
         title: `Multi-discipline coordination experience`,
         desc: `Senior engineering roles require coordination across civil, mechanical, electrical, and instrumentation disciplines. We assess for this explicitly.`,
+        items: [`Civil and mechanical checked`, `Electrical coordination assessed`, `Instrumentation fluency tested`, `Cross-team leadership verified`],
       },
       {
+        tag: `DELIVERY DEPTH`,
         title: `Client-facing delivery depth`,
         desc: `Engineering services candidates need commercial awareness alongside technical competence. Our advisors probe for both.`,
+        items: [`Commercial awareness tested`, `Technical competence checked`, `Client-facing scenarios probed`, `Both dimensions scored`],
       },
       {
+        tag: `NICHE CALIBRATION`,
         title: `Niche domain expertise is hard to benchmark`,
         desc: `From structural steel detailing to HV substation design, niche engineering domains lack standard skill taxonomies. Our advisors calibrate against your actual project requirements.`,
+        items: [`Project-specific benchmarking`, `Standard taxonomies bypassed`, `Actual requirements matched`, `Domain depth verified`],
       },
     ],
     rolesWeHire: [
@@ -685,20 +760,28 @@ export const industries: Industry[] = [
       `India's GCC ecosystem is scaling at a pace that most hiring models can't keep up with. Tribera was built partly in response to this reality. Our advisory team includes people who have led GCC capability builds — they understand the matrix reporting structures, the parent-company calibration requirements, and the cultural alignment nuance that separates a hire who thrives in a GCC from one who churns within six months. The result is a shortlist designed not just for the role, but for the specific GCC context.`,
     hiringChallenges: [
       {
+        tag: `MATRIX FLUENCY`,
         title: `Matrix structure alignment is invisible in interviews`,
         desc: `GCC roles require candidates who can navigate parent-company relationships, dotted-line accountability, and global stakeholder management. Standard interviews don't surface this.`,
+        items: [`Parent-company navigation checked`, `Dotted-line accountability probed`, `Global stakeholder management tested`, `Standard interviews bypassed`],
       },
       {
+        tag: `GLOBAL CALIBRATION`,
         title: `Calibration with global standards in an Indian market`,
         desc: `Parent companies often have specific benchmarks from their home markets. Tribera helps bridge the calibration gap — translating global role expectations into India-market realities.`,
+        items: [`Home-market benchmarks mapped`, `India-market realities bridged`, `Expectation translation applied`, `Gap-specific scoring`],
       },
       {
+        tag: `BUILD CAPABILITY`,
         title: `Centre of Excellence build-out capability`,
         desc: `Many GCC mandates require people who can build a function from scratch — not just run an established team. We assess for this explicitly.`,
+        items: [`Zero-to-one capability checked`, `Function build-out assessed`, `Not just team running`, `Explicit evaluation applied`],
       },
       {
+        tag: `RETENTION RISK`,
         title: `Retention in a competitive Bengaluru / Hyderabad / Pune market`,
         desc: `GCC talent in India's tech hubs is aggressively courted. Our 12-month retention scoring and joining-probability modelling reduce the risk of a hire who accepts and reverses.`,
+        items: [`Joining-probability modelled`, `12-month retention scored`, `Competitive-market risk flagged`, `Reversal risk reduced`],
       },
     ],
     rolesWeHire: [
@@ -754,24 +837,33 @@ export const industries: Industry[] = [
     icon: `tabler:shopping-bag`,
     seoTitle: `Consumer & Digital Commerce Hiring — tribera`,
     seoDescription: `AI-validated, advisor-interviewed consumer and digital commerce candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
+    advisorLabel: `Consumer-Sector Advisor Interviews`,
     overview:
-      `Consumer and digital commerce businesses move fast, operate at margin pressure, and need people who can balance brand instinct with data fluency. The candidates who excel here are rare — they understand consumer behaviour at depth, can read a P&L, and know when to trust intuition and when to let the data override it. Tribera advisors have built consumer brands, led D2C growth, and run large retail operations. They know who the genuinely strong candidates are — and how to find the ones who aren't actively looking.`,
+      `Consumer businesses move fast, run under margin pressure, and need people who hold brand instinct and data fluency at once. Each of the four below is assessed explicitly in the advisor interview and scored independently of the resume.`,
     hiringChallenges: [
       {
-        title: `Brand intuition vs data rigour — most candidates hold only one`,
-        desc: `The strongest consumer hires hold both. Our advisors probe for the intersection — candidates who can feel a trend and validate it with numbers.`,
+        tag: `THE BLEND`,
+        title: `Brand instinct meets data rigour`,
+        desc: `The strongest consumer hires hold both. Our advisors probe the intersection directly — can this person read a trend, then check it against the numbers without flinching when the numbers disagree.`,
+        items: [`Commercial acumen scored explicitly`, `P&L fluency validated in interview`, `Trend reading tested with scenarios`, `Data-override judgment probed`],
       },
       {
-        title: `Omnichannel operational complexity`,
-        desc: `Modern consumer businesses run across D2C, marketplaces, and physical retail simultaneously. We assess for multi-channel operational experience explicitly.`,
+        tag: `OMNICHANNEL`,
+        title: `Multi-channel operating depth`,
+        desc: `D2C, marketplaces and physical retail run at once, on different clocks. We assess multi-channel experience rather than inferring it from a job title.`,
+        items: [`Marketplace vs D2C experience split`, `Quick commerce tempo assessed`, `Retail operations depth verified`, `Channel P&L ownership confirmed`],
       },
       {
-        title: `Category management depth`,
-        desc: `Category leadership requires both commercial acumen and consumer insight. Generic product or commercial interviews miss the category-specific nuance.`,
+        tag: `CATEGORY`,
+        title: `Category-specific judgment`,
+        desc: `Category leadership needs commercial acumen and consumer insight together. A standard product or commercial screen misses the category judgment entirely.`,
+        items: [`Category economics understanding`, `Assortment and margin reasoning`, `Consumer insight application`, `Competitive response thinking`],
       },
       {
-        title: `Startup-to-scale transition readiness`,
-        desc: `Consumer businesses scaling from startup to enterprise need people who can build systems without losing customer empathy. We calibrate for this transition specifically.`,
+        tag: `SCALE STAGE`,
+        title: `Startup-to-scale transition`,
+        desc: `Scaling businesses need people who can build systems without losing customer empathy. We calibrate for the transition itself, not for experience at either end.`,
+        items: [`Systems-building evidence`, `Customer empathy at scale`, `Team-building track record`, `Ambiguity tolerance scored`],
       },
     ],
     rolesWeHire: [
@@ -827,20 +919,28 @@ export const industries: Industry[] = [
       `PE-backed companies have a different hiring calculus. Every key hire either accelerates or compresses the value creation timeline. Mistakes are expensive not just in salary cost but in board credibility, team momentum, and exit readiness. Tribera advisors understand how PE-portfolio businesses operate — the governance structures, the 100-day plan pressure, the performance accountability that comes with institutional ownership. Every shortlist is calibrated not just for role fit but for the specific PE context the candidate will be walking into.`,
     hiringChallenges: [
       {
+        tag: `PE CONTEXT`,
         title: `PE-context literacy is non-negotiable`,
         desc: `Candidates need to understand board accountability, investor reporting, and value creation pressure from day one. Our advisors assess PE-context readiness specifically.`,
+        items: [`Board accountability checked`, `Investor reporting fluency`, `Value-creation pressure tested`, `Day-one readiness verified`],
       },
       {
+        tag: `SPEED`,
         title: `Speed of mandate is driven by value creation milestones`,
         desc: `A 100-day plan doesn't wait for a 12-week search. Tribera's 36-hour shortlist is built for PE-timeline urgency.`,
+        items: [`100-day plan alignment`, `36-hour shortlist built`, `No 12-week search wait`, `Milestone-driven urgency`],
       },
       {
+        tag: `TEAM CHEMISTRY`,
         title: `Leadership team chemistry at transformation speed`,
         desc: `PE portfolio hires often join leadership teams mid-transformation. Cultural and interpersonal alignment is as important as functional competence.`,
+        items: [`Cultural alignment assessed`, `Interpersonal fit probed`, `Mid-transformation readiness`, `Functional competence matched`],
       },
       {
+        tag: `EXIT READINESS`,
         title: `Exit-readiness calibration`,
         desc: `Candidates need the ability to build processes that will hold up to due diligence — not just run operations today. We probe for this forward-looking capability.`,
+        items: [`Due-diligence-ready processes`, `Forward-looking capability probed`, `Not just current operations`, `Build-to-hold-up tested`],
       },
     ],
     rolesWeHire: [

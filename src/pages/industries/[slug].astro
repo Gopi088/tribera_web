@@ -3,7 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import Layout from '~/layouts/PageLayout.astro';
 import { getStaticPathsIndustries } from '~/data/industries';
 import type { Industry } from '~/data/industries';
-import PageTemplate from '~/components/industry-function/PageTemplate.astro';
+import IndustriesTemplate from '~/components/industry-function/IndustriesTemplate.astro';
 
 export const prerender = true;
 
@@ -21,7 +21,7 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <PageTemplate
+  <IndustriesTemplate
     type="industry"
     slug={industry.slug}
     badge={industry.badge}

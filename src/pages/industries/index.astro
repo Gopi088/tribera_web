@@ -20,41 +20,77 @@ const metadata = {
       <div class="absolute right-[-30%] md:right-[-15%] top-0 h-full w-[90%] md:w-[60%]
                   bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.45),transparent_60%)]"></div>
     </div>
-    <div class="pointer-events-none absolute inset-0 bg-dotted-static opacity-70"></div>
 
-    <div class="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 lg:px-10 text-center">
-      <div class="inline-flex items-center gap-2 rounded-full border border-[#da0007]/50 bg-black/20
-                  px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/80
-                  backdrop-blur-sm mb-6">
-        <span class="h-2 w-2 rounded-full bg-[#da0007]"></span>
-        Industries
+    <div class="absolute inset-0 pointer-events-none">
+      {Array.from({ length: 22 }).map(() => (
+        <span class="absolute rounded-full bg-[#da0007]/80" style={`
+          width:3px;height:3px;
+          left:${12 + Math.random() * 76}%;
+          top:${8 + Math.random() * 84}%;
+          --float-x1:${(Math.random() * 44 - 22).toFixed(1)}px;
+          --float-y1:${(Math.random() * 36 - 18).toFixed(1)}px;
+          --float-x2:${(Math.random() * 52 - 26).toFixed(1)}px;
+          --float-y2:${(Math.random() * 42 - 21).toFixed(1)}px;
+          --float-x3:${(Math.random() * 60 - 30).toFixed(1)}px;
+          --float-y3:${(Math.random() * 36 - 18).toFixed(1)}px;
+          --float-x4:${(Math.random() * 48 - 24).toFixed(1)}px;
+          --float-y4:${(Math.random() * 48 - 24).toFixed(1)}px;
+          --float-x5:${(Math.random() * 56 - 28).toFixed(1)}px;
+          --float-y5:${(Math.random() * 40 - 20).toFixed(1)}px;
+          --float-x6:${(Math.random() * 50 - 25).toFixed(1)}px;
+          --float-y6:${(Math.random() * 34 - 17).toFixed(1)}px;
+          --float-scale1:${(1 + Math.random() * 0.28).toFixed(2)};
+          --float-scale2:${(0.78 + Math.random() * 0.18).toFixed(2)};
+          --float-scale3:${(1.02 + Math.random() * 0.22).toFixed(2)};
+          --float-scale4:${(0.82 + Math.random() * 0.14).toFixed(2)};
+          --float-scale5:${(1 + Math.random() * 0.2).toFixed(2)};
+          --float-scale6:${(0.86 + Math.random() * 0.14).toFixed(2)};
+          animation: float ${11 + Math.random() * 14}s ease-in-out infinite;
+          animation-delay: -${(Math.random() * 18).toFixed(1)}s;
+          box-shadow: 0 0 10px rgba(218,0,7,.6);
+        `} />
+      ))}
+    </div>
+
+    <div class="relative z-10 max-w-[1080px] mx-auto px-6 text-center">
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#da0007]/40 bg-white/[0.03] px-3.5 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/80">
+        <span class="h-1.5 w-1.5 rounded-full bg-[#da0007]"></span>
+        <span>Industries</span>
       </div>
-      <h1 class="font-[600] leading-[1.04] tracking-[-0.05em] text-white
-                 text-[clamp(2.2rem,9vw,3.4rem)] sm:text-[clamp(2.6rem,6vw,4rem)]">
-        Domain-first hiring,<br />across every industry
+
+      <h1 class="font-[600] leading-[1.02] sm:leading-[1.08]">
+        <span class="block whitespace-nowrap text-white text-[clamp(2.15rem,10.8vw,3rem)] sm:text-[clamp(2.8rem,6vw,5rem)] tracking-[-0.08em]">
+          Domain-first hiring,
+        </span>
+        <span class="block text-[clamp(2.45rem,12vw,3.4rem)] sm:text-[clamp(2.8rem,6vw,5rem)] text-[#da0007] tracking-[-0.08em]">
+          across every industry.
+        </span>
       </h1>
-      <p class="mt-5 text-[15px] sm:text-[17px] leading-relaxed text-white/45 max-w-xl mx-auto">
-        Tribera advisors bring the domain context your sector demands. Shortlists arrive already calibrated
-        to your world — not just your job description.
+
+      <p class="mt-6 md:mt-8 text-white/60 text-[16px] md:text-[20px] max-w-2xl md:max-w-3xl mx-auto leading-relaxed px-2">
+        Tribera advisors bring the domain context your sector demands. Shortlists arrive already calibrated to your world — not just your job description.
       </p>
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+
+      <div class="mt-8 md:mt-12 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-5">
+        <div class="flex w-auto max-w-full flex-col items-center gap-1 px-4 py-3 rounded-xl border border-[#da0007]/40 bg-[#da0007]/20 text-center text-white sm:w-auto sm:flex-row sm:gap-2 sm:px-5 sm:text-left">
+          <span class="whitespace-nowrap text-[13px] font-[600] leading-tight text-white/90">
+            <span class="text-[#da0007]">1:3</span> Selection Ratio Guarantee*
+          </span>
+          <span class="text-[11px] font-[550] leading-tight text-white/50">Interview 3, hire 1</span>
+        </div>
+
         <button type="button" data-form-intent="demo" data-form-source="industries_index_hero"
-          class="px-7 py-3 rounded-full tribera-primary-button text-[13px] font-semibold">
+          class="px-6 py-3 rounded-full bg-[#ff0000] text-white text-[13px] font-bold transition-all duration-300 hover:bg-[#e00000]">
           Book a Demo
         </button>
+
         <a href="/contact"
-          class="px-7 py-3 rounded-full border border-white/20 text-white/70 text-[13px] font-semibold transition hover:border-white/40 hover:text-white">
+          class="px-6 py-3 rounded-full bg-[#121212] border border-white/10 text-white/80 text-[13px] font-bold transition-all duration-300 hover:border-white/20">
           Talk to Us
         </a>
       </div>
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-5">
-        {['1:3 Selection Guarantee', 'First shortlist in 36 hours', '100+ AI signals per candidate'].map(item => (
-          <div class="flex items-center gap-2 text-[11px] text-white/40">
-            <span class="h-1.5 w-1.5 rounded-full bg-[#da0007]"></span>
-            {item}
-          </div>
-        ))}
-      </div>
+
+      <p class="mt-8 md:mt-14 text-white/30 text-[12px] font-[550]">*We'll walk you through it</p>
     </div>
   </section>
 
