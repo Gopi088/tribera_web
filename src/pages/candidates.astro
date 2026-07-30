@@ -1,1448 +1,993 @@
 ---
-import Icon from '~/components/common/Icon.astro';
-import Layout from '~/layouts/PageLayout.astro';
-import Brands from '~/components/widgets/Brands.astro';
-
-const metadata = {
-  title: 'For Candidates',
-  description:
-    'Get discovered by companies looking for your skills. Upload your resume and let tribera match you with roles that fit your strengths.',
-};
-
-const customerstories = [
-  {
-    quote:
-      'I was stuck in endless screening loops. After one tribera interview, I got 4 relevant inbound requests in 10 days.',
-    name: 'Senior Backend Engineer',
-    company: 'Fintech Product Company',
-  },
-  {
-    quote:
-      'Unlike mass applications, tribera matched me to roles where I actually fit. The interview felt like a technical discussion, not interrogation.',
-    name: 'Full Stack Engineer',
-    company: 'AI SaaS Startup',
-  },
-  {
-    quote:
-      'My profile stayed private while I explored opportunities. I only spoke to serious teams, and got an offer in under 3 weeks.',
-    name: 'Engineering Manager',
-    company: 'Enterprise Platform Team',
-  },
-  {
-    quote:
-      'I got 3 interview requests in one week, all aligned to my stack. No spam, no repetition, and much faster decisions.',
-    name: 'Frontend Engineer',
-    company: 'Consumer App Company',
-  },
-  {
-    quote:
-      'I had paused job hunting for months because outbound applying was draining. tribera brought only relevant opportunities back to me.',
-    name: 'Data Engineer',
-    company: 'B2B Analytics Company',
-  },
-  {
-    quote:
-      'The score breakdown was clear and practical. I knew exactly what to improve, and the next round of interviews felt much stronger.',
-    name: 'Senior Platform Engineer',
-    company: 'Cloud Infrastructure Startup',
-  },
-  {
-    quote:
-      'I switched without announcing I was looking. Privacy controls worked well, and every conversation I took was worth my time.',
-    name: 'Mobile Engineer',
-    company: 'Digital Payments Company',
-  },
+import Header from '~/components/widgets/Header.astro';
+import Logo from '~/components/Logo.astro';
+const brands = ['Flipkart', 'Myntra', 'Heineken', 'Volkswagen', 'Mizuho', 'ICICI Bank', 'Publicis Sapient', 'Capco', 'PayU', 'DSP Mutual Fund', 'ICICI Securities', 'Utkarsh Bank', 'Aeries', 'SplashBI', 'Aegon Life', 'Enpro'];
+const profileDimensions = [
+  ['Architecture thinking', 96],
+  ['Systems design', 91],
+  ['Code quality', 95],
+  ['Communication', 89],
+];
+const profileMin = Math.min(...profileDimensions.map(d => d[1]));
+const allDimensions = [
+  ...profileDimensions,
+  ['Ops and on-call', 74],
+  ['Product sense', 68],
+];
+const scorePresets = [
+  { name: 'Consumer scale', score: '91.1', label: 'Top of their list', rank: 'top', note: 'Scale and throughput. Architecture and systems carry two-thirds of their bar — and they barely look at product.', weights: [30, 30, 15, 15, 10, 0] },
+  { name: 'Fintech platform', score: '90.0', label: 'Strongly in range', rank: 'mid', note: 'Correctness first. Depth and code discipline weighted evenly, communication low, product almost nil.', weights: [25, 25, 25, 10, 10, 5] },
+  { name: 'Infrastructure / SRE', score: '87.4', label: 'In range, not top', rank: 'low', note: 'Who carries the pager. Ops experience is weighted as heavily as systems design — the one place you scored 74.', weights: [15, 30, 15, 10, 30, 0] },
+  { name: 'Early-stage product', score: '84.8', label: 'In range, not top', rank: 'low', note: 'Breadth and judgment. They weight product sense above everything you scored highest on.', weights: [15, 15, 10, 25, 5, 30] },
+];
+const questions = [
+  ['Built microservices handling two million requests a day.', 'Which service did you split off first — and what broke when you did?'],
+  ['Led migration from monolith to event-driven architecture.', 'What did you have to keep in the monolith, and who argued for keeping more?'],
+  ['Reduced p99 latency by 40%.', 'What was the 40% measured against, and what did you check before you believed it?'],
+];
+const teamChecks = [
+  ['Is the headcount real?', "Approved and funded, or we don't list it.", 'Verified'],
+  ['How many rounds?', 'Stated up front. If it changes, you hear from us, not from them.', 'Three'],
+  ['How fast do they decide?', 'Measured from your final interview, not from their intake call.', '6 days'],
+  ['How long has the manager been there?', "The person you'd report to, not the org chart.", '4 yrs'],
+  ['Do people stay?', 'Twelve-month retention on their last five hires through us.', 'One flag'],
+];
+const controls = [
+  ['Anonymous by default', 'Your name, employer and contact stay hidden until you release them to a specific team.', 'Hidden', true],
+  ['Block by name', 'Name your current employer, or anyone else. They never see you exist.', '3 companies blocked', true],
+  ['No direct contact', 'Companies cannot message you. Every request comes through us first.', 'All requests routed', true],
+  ['Pause in one click', 'Got an offer? Make the profile invisible. Turn it back on whenever.', 'Profile live', false],
+];
+const timeline = [
+  ['Day 1 · 15 min', 'Set up your profile', 'Stack, preferences, and who you want blocked. Anonymous from the first second.'],
+  ['Day 3–5 · 30 min', 'An expert interviews you', 'Someone who has done your job. Recorded, and you get the score.'],
+  ['Day 7+ · inbound', 'Teams ask for you', 'Your profile goes live to teams that cleared our checks. No cold applying.'],
+  ['~3 weeks · offer', 'You decide', "Accept what fits, decline what doesn't. Most people see more than one."],
+];
+const testimonials = [
+  ['I was stuck in endless screening loops. After one interview here I had four relevant requests in ten days.', 'Senior backend engineer', 'Fintech product company'],
+  ["The expert had already read my GitHub. The first question was about a design decision I made in 2022. That's when I knew this was different.", 'Senior backend engineer', '6 yrs, now placed'],
+  ['It matched me to roles where I actually fit. The interview felt like a technical discussion, not an interrogation.', 'Full-stack engineer', 'AI SaaS startup'],
+  ['My profile stayed private while I explored. I only spoke to serious teams, and had an offer inside three weeks.', 'Engineering manager', 'Enterprise platform team'],
+  ['Three requests in one week, all aligned to my stack. No spam, no repetition.', 'Frontend engineer', 'Consumer app company'],
+  ["I'd paused looking for months because applying was draining. This brought the relevant ones back to me.", 'Data engineer', 'B2B analytics company'],
+  ['The score breakdown was clear and practical. I knew exactly what to work on, and the next round felt stronger.', 'Senior platform engineer', 'Cloud infrastructure startup'],
+  ['I switched without announcing I was looking. Every conversation I took was worth the time.', 'Mobile engineer', 'Digital payments company'],
+];
+const teamFaceChecks = [
+  ['Headcount', 'Approved and funded this quarter'],
+  ['Rounds', 'Three, then a decision'],
+  ['Decision speed', 'Six days from final interview'],
+  ['Manager tenure', 'Four years in the role'],
+];
+const candidatesStats = [
+  ['85', '%', 'of candidates who reach a final interview get an offer'],
+  ['3', 'wks', 'median from profile going live to an offer in hand'],
+  ['1.8', 'offers', 'the average person here ends up choosing between'],
+];
+const outcomes = [
+  ['Cleared', 'ok', 'The request reaches you', 'Normal case. You see the role, the team, and what they weighted.'],
+  ['Flagged', 'fl', 'It reaches you with the flag', 'One check failed. You see which, and what it means, and you decide whether it matters.'],
+  ['Declined', 'no', 'It never reaches you', 'Unfunded headcount, or a role that has churned twice this year. You are never told about it, because there is nothing to tell.'],
 ];
 ---
+<title>Interviewed once. Shortlisted everywhere. — tribera</title>
+<meta name="description" content="One conversation. Thirty minutes. Your CV gets six seconds. Your LinkedIn gets skimmed. One honest conversation with someone who has done your job gets read.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700;800&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<Layout metadata={metadata}>
-  <section class="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-black">
-    <div class="absolute inset-0">
-      <div class="absolute inset-0 bg-black"></div>
+<Header />
 
-      <div
-        class="absolute left-[-30%] md:left-[-15%] top-0 h-full w-[90%] md:w-[60%] bg-[radial-gradient(circle_at_left_center,rgba(218,0,7,0.45),transparent_60%)]"
-      >
-      </div>
-
-      <div
-        class="absolute right-[-30%] md:right-[-15%] top-0 h-full w-[90%] md:w-[60%] bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.45),transparent_60%)]"
-      >
-      </div>
-    </div>
-
-    <div class="absolute inset-0 pointer-events-none">
-      {
-        Array.from({ length: 24 }).map((_, i) => (
-          <span
-            class="absolute rounded-full bg-[#da0007]/80"
-            style={`
-          width:${i % 4 === 0 ? 4 : 4}px;
-          height:${i % 4 === 0 ? 4 : 4}px;
-          left:${12 + Math.random() * 76}%;
-          top:${8 + Math.random() * 84}%;
-          --float-x1:${(Math.random() * 44 - 22).toFixed(1)}px;
-          --float-y1:${(Math.random() * 36 - 18).toFixed(1)}px;
-          --float-x2:${(Math.random() * 52 - 26).toFixed(1)}px;
-          --float-y2:${(Math.random() * 42 - 21).toFixed(1)}px;
-          --float-x3:${(Math.random() * 60 - 30).toFixed(1)}px;
-          --float-y3:${(Math.random() * 36 - 18).toFixed(1)}px;
-          --float-x4:${(Math.random() * 48 - 24).toFixed(1)}px;
-          --float-y4:${(Math.random() * 48 - 24).toFixed(1)}px;
-          --float-x5:${(Math.random() * 56 - 28).toFixed(1)}px;
-          --float-y5:${(Math.random() * 40 - 20).toFixed(1)}px;
-          --float-x6:${(Math.random() * 50 - 25).toFixed(1)}px;
-          --float-y6:${(Math.random() * 34 - 17).toFixed(1)}px;
-          --float-scale1:${(1 + Math.random() * 0.28).toFixed(2)};
-          --float-scale2:${(0.78 + Math.random() * 0.18).toFixed(2)};
-          --float-scale3:${(1.02 + Math.random() * 0.22).toFixed(2)};
-          --float-scale4:${(0.82 + Math.random() * 0.14).toFixed(2)};
-          --float-scale5:${(1 + Math.random() * 0.2).toFixed(2)};
-          --float-scale6:${(0.86 + Math.random() * 0.14).toFixed(2)};
-          animation: float ${11 + Math.random() * 14}s ease-in-out infinite;
-          animation-delay: -${(Math.random() * 18).toFixed(1)}s;
-          box-shadow: 0 0 12px rgba(218,0,7,.6);
-        `}
-          />
-        ))
-      }
-    </div>
-
-    <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center">
-      <div
-        class="inline-flex items-center gap-2 px-4 py-1.5
-                rounded-full border border-[#da0007]/50
-                text-[11px] tracking-[0.2em]
-                text-white/80 uppercase mb-5"
-      >
-        <span class="w-2 h-2 bg-[#da0007] rounded-full"></span>
-        FOR CANDIDATES
-      </div>
-
-      <h1 class="font-[650] leading-[1.05] text-center">
-        <span class="block text-white text-[38px] sm:text-[50px] lg:text-[64px]">
-          <span class="block text-white">Interviewed once.</span>
-          <span class="block text-white">Shortlisted everywhere.</span>
-        </span>
-      </h1>
-
-      <p class="mt-6 max-w-2xl mx-auto text-[15px] sm:text-[16px] leading-relaxed text-white/50">
-        One 30-minute interview. AI scores it. Companies see your verified profile <br class="hidden sm:block" /> and reach
-        out.
-      </p>
-
-      <div class="mt-5">
-        <button
-          type="button"
-          data-form-intent="candidate"
-          data-form-source="candidates_hero"
-          class="px-6 py-3 rounded-full
-         tribera-primary-button font-semibold text-[15px]"
-        >
-          Create Your Profile →
-        </button>
-      </div>
-
-      <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 text-[13px] text-white/30">
-        <span>
-          <span class="text-white font-semibold">50,000+</span> professionals
-        </span>
-
-        <span class="hidden sm:inline">•</span>
-
-        <span>Fortune 500 companies</span>
-
-        <span class="hidden sm:inline">•</span>
-
-        <span>
-          <span class="text-white font-semibold">3 wks</span> avg. time to offer
-        </span>
-      </div>
-    </div>
-  </section>
-
-  <section id="candidates-brands" class="w-full px-6 md:px-8 py-8 md:py-10 gap-10 relative">
-    <div class="pointer-events-none absolute inset-0 bg-dotted-static opacity-80"></div>
-
-    <Brands
-      title="Who We Work With"
-      subtitle="Trusted by high-impact <br /> teams across industries"
-      mobileSubtitleSingleLine={true}
-      images={[
-        { src: '~/assets/images/ICICBank.png', alt: 'ICICI Bank' },
-        { src: '~/assets/images/Aeries.png', alt: 'Aeries' },
-        { src: '~/assets/images/DSP_Mutual_Funds.png', alt: 'DSP Mutual Fund' },
-        { src: '~/assets/images/Enpro.png', alt: 'Enpro' },
-        { src: '~/assets/images/Volkwagen.png', alt: 'Volkswagen' },
-        { src: '~/assets/images/UtkarshBank.png', alt: 'Utkarsh Bank' },
-        { src: '~/assets/images/TechnologyHoldings.png', alt: 'TechnologyHoldings' },
-        { src: '~/assets/images/Payu.png', alt: 'PayU' },
-        { src: '~/assets/images/ICICISecurities.png', alt: 'ICICISecurities' },
-        { src: '~/assets/images/SplashBI.png', alt: 'SplashBI' },
-        { src: '~/assets/images/AegonLife.png', alt: 'AegonLife' },
-      ]}
-    />
-  </section>
-
-  <section class="bg-black px-6 sm:px-10 lg:px-14 py-16 md:py-20">
-    <div class="max-w-6xl mx-auto grid gap-10 lg:gap-10 lg:grid-cols-2 items-center">
-      <div>
-        <span class="text-[11px] tracking-[0.1em] text-[#da0007] font-medium"> SEE YOUR PROFILE </span>
-
-        <h2 class="mt-3 text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] text-white">
-          Professional profile <br />
-          that stands out
-        </h2>
-
-        <p class="mt-4 max-w-2xl text-[15px] sm:text-[16px] leading-relaxed text-white/50">
-          Your verified profile showcases technical depth, real skills, and cultural fit — giving companies exactly what
-          they need to say yes.
-        </p>
-
-        <div class="mt-10 space-y-6">
-          {
-            [
-              [
-                'Deep technical validation by real advisors',
-                'A focused 30-minute session on architecture, complexity, and real-world execution.',
-              ],
-              [
-                'AI scores the conversation',
-                'Technical depth, problem-solving, culture signals — scored objectively. Companies trust it',
-              ],
-              [
-                'Get high-intent inbound opportunities',
-                'Your verified score reaches hiring teams with active roles, so conversations start with stronger context and intent.',
-              ],
-            ].map(([title, desc]) => (
-              <div
-                class="group flex gap-5 items-start cursor-pointer
-             transition-all duration-300"
-              >
-                <div
-                  class="w-[2px] min-h-[42px]
-               bg-white/10
-               transition-all duration-300
-               group-hover:bg-[#da0007]"
-                />
-
-                <div class="max-w-xl">
-                  <h4
-                    class="text-[15px] font-[600]
-                 text-white/70
-                 transition-colors duration-300
-                 group-hover:text-[#da0007]"
-                  >
-                    {title}
-                  </h4>
-
-                  <p
-                    class="mt-1 text-[13px] leading-relaxed
-                 text-white/50
-                 transition-colors duration-300
-                 group-hover:text-white/70"
-                  >
-                    {desc}
-                  </p>
-                </div>
-              </div>
-            ))
-          }
-        </div>
-        <div
-          class="relative mt-8 max-w-xl overflow-hidden rounded-xl
-            border border-[#da0007]/40
-            bg-gradient-to-br from-[#1a0000] to-[#2a0000]
-            p-5 sm:p-5 text-white"
-        >
-          <div class="pointer-events-none absolute inset-0 flex items-center justify-center">
-            <div
-              class="w-[200px] h-[200px]
-                bg-[radial-gradient(circle,rgba(218,0,7,0.9),transparent_70%)]
-                blur-[40px]
-                animate-[redInnerGlow_4s_ease-in-out_infinite]"
-            >
+<!-- ══ HERO ══ -->
+<header class="hero" id="top">
+      <div class="wrap">
+        <div class="hero__top">
+          <div class="hero__copy">
+            <p class="eyebrow" data-rv>One conversation. Thirty minutes.</p>
+            <h1 class="h1" data-rv style="--d:60ms">Interviewed once.<br>Shortlisted <em>everywhere</em>.</h1>
+            <p class="hero__p" data-rv style="--d:110ms">Your CV gets six seconds. Your LinkedIn gets skimmed.
+            <b>One honest conversation with someone who has done your job gets read</b> — by every team that
+            asks for you afterwards.</p>
+            <p class="hero__p" data-rv style="--d:150ms"><b>You're not one of eight in a pile. You're one of three,
+            and they've read your interview before they pick up the phone.</b></p>
+            <div class="btns" data-rv style="--d:190ms">
+              <a href="#apply" class="btn btn--light">Create your profile</a>
+              <a href="/" class="btn btn--wire">I'm hiring</a>
             </div>
           </div>
 
-          <div class="relative z-10 text-[13px] font-[400] leading-relaxed text-white/85">
-            <span class="text-[#da0007] text-[14px] uppercase tracking-[0.2em] font-[500]">
-              What most candidates don't realize
-            </span>
-            <p class="mt-3">
-              Your resume gets 6 seconds of attention. Your LinkedIn gets skimmed. But one honest conversation with
-              someone who actually understands what you've built?
-            </p>
-
-            <p class="mt-5 text-[13px] font-[400] text-white/85">
-              That's what companies remember. That's what tribera captures.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <section id="profileCard" class="flex justify-center mt-16 px-4">
-        <div class="w-full max-w-[720px]">
-          <div
-            data-profile-card-panel
-            class="rounded-[20px]
-                bg-gradient-to-b from-[#181818] to-[#0f0f0f]
-                border border-white/10
-                p-8
-                shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
-          >
-            <div class="flex justify-between items-start">
-              <div>
-                <h3 class="text-[18px] font-[700] text-white">Arjun Mehta</h3>
-                <p class="text-[13px] font-[500] text-white/40 mt-1">Senior Backend Engineer · 6 yrs</p>
-              </div>
-
-              <div
-                class="flex items-center gap-2 px-3 py-1 rounded-md
-                    bg-[#da0007]/15 border border-[#da0007]/40
-                    text-[10px] font-[500] tracking-[0.15em]
-                    text-[#da0007] uppercase"
-              >
-                <span class="w-1 h-1 bg-[#da0007] rounded-full"></span>
-                Verified
-              </div>
+          <div class="hero__card" data-rv style="--d:150ms">
+            <div class="ftabs" role="tablist" aria-label="Two sides of the same conversation">
+              <button class="ftab is" id="tabA" role="tab" aria-selected="true" aria-controls="faceA">Your profile</button>
+              <button class="ftab" id="tabB" role="tab" aria-selected="false" aria-controls="faceB">The team asking</button>
             </div>
-
-            <div class="h-px bg-white/10 my-3"></div>
-
-            <div class="grid grid-cols-3 gap-2 mb-4">
-              {
-                [
-                  { id: 'score', label: 'Signal Score', value: 94, red: true },
-                  { id: 'tech', label: 'Technical Score', value: 3.8, suffix: '/4' },
-                  { id: 'culture', label: 'Culture Fit', value: 91, suffix: '%' },
-                ].map((item) => (
-                  <div class="bg-white/5 border hover:bg-white/10 hover:border-[#da0007]/10 hover:translate-y-[-2px] transition duration-500 border-white/10 rounded-[12px] p-2 text-center">
-                    <div class="text-[9px] sm:text-[10px] font-[550] tracking-[0.08em] sm:tracking-[0.1em] text-white/30 uppercase mb-2 min-h-[28px] sm:min-h-[30px] leading-[1.2] sm:leading-[1.25]">
-                      {item.label === 'Technical Score' ? (
-                        <>
-                          Technical
-                          <br />
-                          Score
-                        </>
-                      ) : (
-                        item.label
-                      )}
-                    </div>
-
-                    <div
-                      class={`relative inline-flex items-end justify-center text-[21px] sm:text-[24px] font-semibold leading-none ${item.red ? 'text-[#da0007]' : 'text-white'} ${item.suffix ? 'pr-[12px] sm:pr-[14px]' : ''}`}
-                    >
-                      <span id={item.id} class="leading-none tabular-nums">
-                        0
+            <div class="tilt" id="tilt">
+              <div class="flip cflip" id="flip">
+                <div class="face" id="faceA" role="tabpanel" aria-labelledby="tabA"><span class="face__glint"></span>
+                  <div class="face__hd"><span>Your profile <span class="rank">· live</span></span>
+                    <span>Senior backend · Bengaluru</span></div>
+                  <div class="side">
+                    <div class="side__hd">
+                      <div><p class="side__nm">A. Mehta</p>
+                        <p class="side__sub">6 yrs · Python, AWS, Kubernetes · <b>anonymous</b></p></div>
+                      <span class="scr">
+                        <span class="scr__n"><b>88</b><i>/100</i></span>
+                        <span class="pill">TOP 8%</span>
+                        <span class="scale" aria-hidden="true"><span class="scale__sel"></span>
+                          <span class="scale__pin"></span></span>
+                        <span class="scale__k">Top decile starts at 85</span>
                       </span>
-                      {item.suffix && (
-                        <span class="absolute right-0 bottom-0 text-white/40 text-[11px] sm:text-[14px] leading-none">
-                          {item.suffix}
-                        </span>
-                      )}
+                    </div>
+                    <div class="vrd"><p class="vrd__k">What the expert wrote</p>
+                      <p class="vrd__t">He has built the thing most teams are hiring for — and he can show you
+                      the decision, not just the system.</p></div>
+                    <div class="mtr2">
+                      {profileDimensions.map(([label, value]) => (
+                        <div class="mtr2__r{value === profileMin ? ' mtr2__r--low' : ''}"><span class="mtr2__n">{label}</span><span class="mtr2__b"><span class="mtr2__f" style={`width:${value}%`}></span></span><span class="mtr2__v">{value}</span></div>
+                      ))}
+                    </div>
+                    <p class="tiles__cap">Four dimensions, scored on the same rubric the team receives</p>
+                    <div class="notes">
+                      <div class="note note--warn"><span class="note__k">Next</span>
+                        <p class="note__v">Communication is the one below your band. One worked example of a
+                        disagreement you resolved would move it.</p></div>
+                      <div class="note"><span class="note__k">Heard</span>
+                        <p class="note__v">Named the failure mode he was designing against before anyone
+                        asked him to.</p></div>
                     </div>
                   </div>
-                ))
-              }
-            </div>
+                  <div class="face__ft"><span>Recorded call · you keep the transcript</span>
+                    <span class="lg"><i class="lg--g">LIVE</i><i class="lg--y">PAUSED</i><i class="lg--r">HIDDEN</i></span></div>
+                </div>
 
-            <div class="space-y-1">
-              {
-                [
-                  { name: 'Architecture', score: 92 },
-                  { name: 'Systems Design', score: 87 },
-                  { name: 'Code Quality', score: 95 },
-                  { name: 'Problem Solving', score: 89 },
-                ].map((skill) => (
-                  <div class="grid grid-cols-[140px_1fr] items-center gap-1">
-                    <div class="text-[13px] font-[550] text-white/50">{skill.name}</div>
-
-                    <div class="flex items-center gap-2">
-                      <div class="relative flex-1 h-[2px] bg-white/10 rounded-full overflow-hidden">
-                        <div
-                          class="skill-bar h-full bg-[#e10600] w-0 transition-all duration-700 ease-out"
-                          data-width={skill.score}
-                        />
-                      </div>
-
-                      <div class="text-[13px] text-white/40 w-[40px] text-right">{skill.score}%</div>
+                <div class="face face--b" id="faceB" role="tabpanel" aria-labelledby="tabB" aria-hidden="true">
+                  <span class="face__glint"></span>
+                  <div class="face__hd"><span>The team asking <span class="rank">· 1 of 3</span></span>
+                    <span>Consumer internet · Series D</span></div>
+                  <div class="side">
+                    <div class="side__hd">
+                      <div><p class="side__nm">Platform team, 9 engineers</p>
+                        <p class="side__sub">Reports to VP Engineering · <b>headcount approved</b></p></div>
+                      <span class="verd__band b-sel" style="font-size:9.5px;padding:6px 11px">CLEARED</span>
+                    </div>
+                    <div class="vrd"><p class="vrd__k">Why we let them ask</p>
+                      <p class="vrd__t">They know what they want, they decide in a week, and people stay.</p></div>
+                    <div class="sig__list">{teamFaceChecks.map(([label, value]) => (
+                      <div class="sig__r"><span class="sig__k2">{label}</span><span class="sig__v">{value}</span></div>
+                    ))}</div>
+                    <div class="notes">
+                      <div class="note note--warn"><span class="note__k">Watch</span>
+                        <p class="note__v">They interview in one-week blocks. If you need longer, say so before
+                        you accept the call.</p></div>
                     </div>
                   </div>
-                ))
-              }
-            </div>
-
-            <div class="h-px bg-white/10 my-4"></div>
-
-            <div class="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
-              <div>
-                <div class="text-[10px] font-[500] tracking-[0.1em] text-white/30 uppercase mb-2">
-                  Viewing your profile
+                  <p class="tiles__cap">What we verified before this request reached you</p>
+                  <div class="face__ft"><span>We check them before you meet them</span>
+                    <span class="lg"><i class="lg--g">SERIOUS</i><i class="lg--y">SLOW</i><i class="lg--r">DECLINED</i></span></div>
                 </div>
-
-                <div class="flex flex-wrap gap-2">
-                  {
-                    ['GS', 'MS', 'IBM'].map((company) => (
-                      <span
-                        class="px-2 py-1 text-[11px]
-                     bg-white/5 border border-white/15
-                     rounded-md text-white/40"
-                      >
-                        {company}
-                      </span>
-                    ))
-                  }
-                </div>
-              </div>
-
-              <div
-                class="self-start sm:self-auto text-[#da0007]/70 text-[13px] font-medium hover:underline cursor-pointer"
-              >
-                2 interview requests →
               </div>
             </div>
           </div>
         </div>
-      </section>
-      <script is:inline>
-        function initProfileCard() {
-          const section = document.getElementById('profileCard');
-          if (!(section instanceof HTMLElement)) return;
-          if (section.dataset.profileBound === 'true') return;
-          section.dataset.profileBound = 'true';
-          const cardPanel = section.querySelector('[data-profile-card-panel]');
-          const target = cardPanel instanceof HTMLElement ? cardPanel : section;
 
-          let activeFrames = [];
-
-          function fastCount(el, end) {
-            let start = 0;
-            const countConfig = window.__triberaCountAnimationConfig || { durationMs: 1200, steps: 72 };
-            const duration = countConfig.durationMs;
-            const increment = end / (duration / 16);
-            const isDecimal = !Number.isInteger(end);
-
-            el.textContent = '0';
-
-            function update() {
-              start += increment;
-
-              if (start >= end) {
-                el.textContent = String(end);
-              } else {
-                el.textContent = isDecimal ? start.toFixed(2) : String(Math.floor(start));
-                const frameId = requestAnimationFrame(update);
-                activeFrames.push(frameId);
-              }
-            }
-
-            update();
-          }
-
-          function resetAnimation() {
-            activeFrames.forEach((frameId) => window.cancelAnimationFrame(frameId));
-            activeFrames = [];
-            const score = section.querySelector('#score');
-            const tech = section.querySelector('#tech');
-            const culture = section.querySelector('#culture');
-
-            section.querySelectorAll('.skill-bar').forEach((bar) => {
-              if (!(bar instanceof HTMLElement)) return;
-              bar.style.width = '0%';
-            });
-
-            if (score instanceof HTMLElement) score.textContent = '0';
-            if (tech instanceof HTMLElement) tech.textContent = '0';
-            if (culture instanceof HTMLElement) culture.textContent = '0';
-          }
-
-          function startAnimation() {
-            resetAnimation();
-
-            const score = section.querySelector('#score');
-            const tech = section.querySelector('#tech');
-            const culture = section.querySelector('#culture');
-
-            if (score instanceof HTMLElement) fastCount(score, 94);
-            if (tech instanceof HTMLElement) fastCount(tech, 3.63);
-            if (culture instanceof HTMLElement) fastCount(culture, 91);
-
-            section.querySelectorAll('.skill-bar').forEach((bar) => {
-              if (!(bar instanceof HTMLElement)) return;
-              const width = bar.dataset.width;
-              if (!width) return;
-              bar.style.width = `${width}%`;
-            });
-          }
-
-          if (typeof section.__profileTriggerCleanup === 'function') {
-            section.__profileTriggerCleanup();
-          }
-
-          resetAnimation();
-          section.__profileTriggerCleanup = window.__triberaDirectionalTrigger({
-            element: target,
-            onEnter: startAnimation,
-            onExit: resetAnimation,
-          });
-        }
-
-        /* Run on first load */
-        if (document.readyState === 'complete' || document.readyState === 'interactive') {
-          initProfileCard();
-        } else {
-          document.addEventListener('DOMContentLoaded', initProfileCard);
-        }
-
-        /* Run again after Astro page navigation */
-        document.addEventListener('astro:page-load', initProfileCard);
-      </script>
-    </div>
-  </section>
-
-  <section id="signalSection" class="bg-white px-6 md:px-12 py-20 md:py-28 overflow-hidden">
-    <div id="signalContainer" style="max-width:1100px;margin:0 auto">
-      <div id="signalHeader" style="text-align:center;margin-bottom:72px">
-        <div
-          style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#DA0007;margin-bottom:20px"
-        >
-          What companies actually see
+        <div class="logos" data-rv>
+          <p class="logos__l">Teams hiring through us</p>
+          <div class="logos__vp"><div class="logos__tk">{brands.map(b => <span>{b}</span>)}<span aria-hidden="true" class="logos__dup">{brands.map(b => <span>{b}</span>)}</span></div></div>
         </div>
+      </div>
+    </header>
 
-        <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.1] tracking-[-0.02em] text-black">
-          140 applications. 3 replies.<br />
-          Then Arjun joined
-          <span style="color:#DA0007">tribera</span>.
-        </h2>
-
-        <p id="signalSubtext" class="mx-auto mt-5 max-w-2xl text-[15px] sm:text-[16px] leading-relaxed text-black/50">
-          One advisor interview created a verified profile that reached serious teams already hiring for his stack.
-        </p>
+    <!-- ══ TALLY ══ -->
+    <section class="band band--w" id="tally"><div class="wrap">
+      <div class="shead">
+        <div>
+          <p class="eyebrow eyebrow--red" data-rv>The only thing that changed</p>
+          <h2 class="h2" data-rv style="--d:60ms">Nothing about him changed. What they could see did.</h2>
+        </div>
+        <p class="dek" data-rv style="--d:100ms">Same person, same six years, same CV. In the spring he sent
+        140 applications and got three replies. Months later, three teams asked for him inside forty-eight
+        hours — <b>and none of them had seen the CV.</b></p>
       </div>
 
-      <div
-        id="signalGrid"
-        style="display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:24px;overflow:hidden"
-      >
-        <div class="signalCard" style="background:#f0f0f0;padding:52px 48px;position:relative">
-          <div
-            class="signalLabel"
-            style="position:absolute;top:24px;left:28px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(0,0,0,.25)"
-          >
-            Without tribera
-          </div>
-
-          <div style="margin-top:16px;display:flex;flex-direction:column;gap:18px">
-            <div>
-              <div style="font-size:18px;font-weight:600;color:rgba(0,0,0,.25);margin-bottom:4px">
-                Senior Backend Engineer
-              </div>
-              <div style="font-size:13px;color:rgba(0,0,0,.2)">6 years experience</div>
-            </div>
-
-            <div style="height:1px;background:rgba(0,0,0,.1)"></div>
-
-            <div>
-              <div
-                style="font-size:11px;font-weight:600;color:rgba(0,0,0,.2);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px"
-              >
-                Skills
-              </div>
-
-              <div style="display:flex;gap:6px;flex-wrap:wrap">
-                <span
-                  style="font-size:11px;color:rgba(0,0,0,.25);background:rgba(0,0,0,.05);padding:5px 10px;border-radius:4px"
-                  >Python</span
-                >
-                <span
-                  style="font-size:11px;color:rgba(0,0,0,.25);background:rgba(0,0,0,.05);padding:5px 10px;border-radius:4px"
-                  >AWS</span
-                >
-                <span
-                  style="font-size:11px;color:rgba(0,0,0,.25);background:rgba(0,0,0,.05);padding:5px 10px;border-radius:4px"
-                  >Kubernetes</span
-                >
-                <span
-                  style="font-size:11px;color:rgba(0,0,0,.25);background:rgba(0,0,0,.05);padding:5px 10px;border-radius:4px"
-                  >Docker</span
-                >
-              </div>
-            </div>
-
-            <div style="height:1px;background:rgba(0,0,0,.1)"></div>
-
-            <div>
-              <div
-                style="font-size:11px;font-weight:600;color:rgba(0,0,0,.2);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px"
-              >
-                Education
-              </div>
-              <div style="font-size:13px;color:rgba(0,0,0,.25)">B.Tech Computer Science</div>
-            </div>
-
-            <div>
-              <div
-                style="font-size:11px;font-weight:600;color:rgba(0,0,0,.2);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px"
-              >
-                Experience
-              </div>
-              <div style="font-size:13px;color:rgba(0,0,0,.25);line-height:1.6">
-                Built microservices architecture<br />
-                handling 2M+ daily requests
-              </div>
-            </div>
-          </div>
-
-          <div
-            style="margin-top:32px;padding:18px 20px;background:rgba(0,0,0,.05);border-radius:10px;border-left:2px solid rgba(0,0,0,.12)"
-          >
-            <div style="font-size:28px;font-weight:700;color:rgba(0,0,0,.2);letter-spacing:-.04em;margin-bottom:4px">
-              3%
-            </div>
-            <div style="font-size:12px;color:rgba(0,0,0,.4);line-height:1.5">
-              Response rate.<br />
-              140 applications sent.
-            </div>
-          </div>
+      <div class="big" data-rv style="--d:140ms">
+        <div class="fan__side fan__side--own">
+          <p class="fan__was">His spring — <span id="tallyN">140</span> applications</p>
+          <svg class="tally tally--big" viewBox="0 0 300 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path class="tk" pathLength="1" d="M7.9 14.2 Q7.8 27.7 8.0 41.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M13.1 13.1 Q13.5 26.6 13.8 40.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M17.4 13.4 Q18.4 26.2 17.9 38.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M22.4 15.4 Q22.9 28.3 22.6 41.3" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M5.0 36.6 Q14.8 24.7 27.0 14.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M49.3 13.9 Q50.4 26.9 49.4 39.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M55.2 14.0 Q55.1 27.2 54.7 40.5" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M60.7 15.4 Q61.4 28.2 60.3 41.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M64.6 13.4 Q65.5 26.1 64.4 38.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M48.1 37.7 Q56.9 26.2 69.7 17.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M92.6 13.9 Q92.2 27.6 91.5 41.3" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M97.2 14.8 Q95.9 27.1 96.8 39.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M102.6 14.7 Q101.8 26.8 101.7 38.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M106.4 14.8 Q106.6 27.0 106.3 39.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M89.0 38.6 Q98.2 27.2 110.4 16.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk tk--r" pathLength="1" d="M143.4 15.4 Q142.7 27.3 144.1 39.2" stroke="#DA0007" stroke-width="2.6" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M148.8 13.4 Q147.4 26.1 149.0 38.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M131.1 38.3 Q143.8 27.0 152.8 15.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M176.1 15.0 Q175.0 27.1 177.1 39.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M181.4 13.3 Q182.2 26.2 182.5 39.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M185.6 15.3 Q185.9 28.2 185.4 41.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M190.4 12.7 Q189.6 27.0 190.9 41.3" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M173.1 38.9 Q182.8 28.0 195.2 15.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M217.4 13.2 Q218.5 26.7 217.7 40.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M222.7 15.2 Q221.1 27.2 222.1 39.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M227.9 12.8 Q227.5 25.9 228.1 39.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M232.5 13.6 Q234.0 27.4 232.9 41.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M215.8 38.2 Q224.2 28.1 236.4 14.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M260.3 15.3 Q260.7 27.0 260.2 38.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M265.3 13.5 Q264.0 27.4 265.4 41.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M270.3 15.1 Q271.0 27.9 271.0 40.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M275.6 13.6 Q276.9 27.1 276.5 40.5" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M257.4 38.8 Q269.0 27.0 279.6 16.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M8.1 52.3 Q8.6 64.6 9.3 76.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M13.5 52.6 Q14.3 65.2 13.7 77.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M17.9 52.9 Q18.7 64.9 16.8 76.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M23.1 51.9 Q23.8 64.6 23.1 77.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M5.7 77.2 Q15.4 65.6 26.6 52.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M49.6 51.1 Q50.1 65.1 49.4 79.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M55.5 51.5 Q54.6 65.0 55.4 78.5" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M60.4 53.2 Q60.1 66.1 60.6 79.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M64.7 51.0 Q65.8 64.5 65.6 78.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M47.8 77.3 Q58.0 64.3 68.6 53.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M91.6 51.8 Q91.6 65.1 91.2 78.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M97.5 53.3 Q96.1 65.6 96.4 77.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M102.5 50.7 Q102.7 64.7 102.1 78.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M107.4 50.7 Q107.3 63.8 106.3 77.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M90.0 75.3 Q100.7 63.8 110.4 52.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M134.2 52.4 Q135.6 65.6 134.6 78.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M138.6 51.9 Q137.0 64.5 138.5 77.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M144.3 51.1 Q143.8 64.2 144.8 77.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M149.0 52.3 Q148.7 65.5 149.7 78.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M132.1 74.8 Q141.4 64.5 153.7 54.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M176.2 53.1 Q176.4 65.4 177.1 77.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M181.4 53.2 Q181.9 65.6 180.7 77.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M186.3 52.9 Q187.0 65.6 185.6 78.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M191.6 53.3 Q191.7 66.3 192.3 79.3" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M173.2 77.1 Q182.7 65.1 195.6 53.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M218.1 52.8 Q216.6 65.4 218.8 78.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M222.4 52.8 Q221.9 65.0 223.1 77.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M227.5 51.0 Q228.2 64.5 228.3 78.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk tk--r" pathLength="1" d="M233.3 53.2 Q234.7 65.6 232.3 78.0" stroke="#DA0007" stroke-width="2.6" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M215.1 76.1 Q226.4 65.4 236.7 54.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M260.5 52.2 Q260.1 64.8 261.3 77.5" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M265.6 51.2 Q267.1 65.1 265.6 79.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M270.1 51.2 Q270.1 64.6 270.4 78.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M274.3 53.3 Q274.0 65.7 275.1 78.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M257.6 76.0 Q268.6 64.0 279.3 52.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M8.6 91.2 Q8.6 103.3 7.7 115.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M12.9 90.9 Q12.8 104.0 12.5 117.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk tk--r" pathLength="1" d="M106.4 127.4 Q106.8 140.6 105.4 153.8" stroke="#DA0007" stroke-width="2.6" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M89.6 150.8 Q100.2 141.2 110.3 130.5" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M133.8 127.9 Q133.3 140.6 134.4 153.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M139.5 126.8 Q140.5 139.9 139.8 152.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M144.4 127.2 Q143.6 140.5 145.1 153.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M148.8 128.4 Q148.3 141.9 148.9 155.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M131.9 153.2 Q140.8 142.9 152.9 129.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M175.4 126.8 Q175.4 140.5 175.9 154.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M180.7 128.8 Q179.8 140.8 181.1 152.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M185.4 127.5 Q186.0 141.0 184.9 154.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M190.5 127.6 Q190.1 141.1 189.6 154.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M173.8 152.2 Q186.4 141.5 195.7 131.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M218.4 127.5 Q218.1 140.5 219.5 153.5" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M223.6 127.3 Q223.1 140.5 223.2 153.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M227.9 127.7 Q228.1 140.4 228.6 153.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M233.1 128.9 Q232.0 141.6 233.7 154.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M216.1 151.4 Q226.3 141.0 236.2 130.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M260.7 128.4 Q259.3 141.6 260.8 154.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M265.4 126.8 Q266.2 139.8 266.4 152.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M269.4 128.4 Q270.2 140.7 269.8 153.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M274.6 127.2 Q274.7 141.0 275.3 154.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M257.3 151.5 Q268.5 141.2 279.7 130.5" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
+          <p class="fan__cap">Three replies. Grey is silence.</p>
         </div>
-
-        <div class="signalCard" style="background:#000;padding:52px 48px;position:relative;color:#fff">
-          <div
-            class="signalLabel"
-            style="position:absolute;top:24px;left:28px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(218,0,7,.6)"
-          >
-            With tribera
-          </div>
-
-          <div style="margin-top:16px;display:flex;align-items:baseline;gap:12px;margin-bottom:28px">
-            <div
-              id="signalScore"
-              data-target="94"
-              style="font-size:72px;
-            font-weight:700;
-            color:#DA0007;
-            letter-spacing:-.06em;
-            line-height:1"
-            >
-              0
-            </div>
-
-            <div style="display:flex;flex-direction:column;gap:2px">
-              <div
-                style="font-size:11px;font-weight:600;color:rgba(255,255,255,.4);letter-spacing:1px;text-transform:uppercase"
-              >
-                Signal Score
-              </div>
-              <div style="font-size:11px;color:rgba(218,0,7,.8);font-weight:600">Top 8% in domain</div>
-            </div>
-          </div>
-
-          <div style="display:flex;flex-direction:column;gap:18px">
-            <div>
-              <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-                <span style="font-size:12px;font-weight:600;color:rgba(255,255,255,.6)">Architecture Thinking</span>
-                <span style="font-size:12px;font-weight:700;color:#DA0007">96</span>
-              </div>
-              <div style="height:2px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden">
-                <div
-                  class="fillBar"
-                  data-width="96"
-                  style="height:100%;
-              width:0%;
-              background:#DA0007;
-              transition:width 1.2s cubic-bezier(.4,0,.2,1)"
-                >
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-                <span style="font-size:12px;font-weight:600;color:rgba(255,255,255,.6)">Systems Design</span>
-                <span style="font-size:12px;font-weight:700;color:#DA0007">91</span>
-              </div>
-              <div style="height:2px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden">
-                <div
-                  class="fillBar"
-                  data-width="91"
-                  style="height:100%;
-              width:0%;
-              background:#DA0007;
-              transition:width 1.2s cubic-bezier(.4,0,.2,1)"
-                >
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-                <span style="font-size:12px;font-weight:600;color:rgba(255,255,255,.6)">Code Quality</span>
-                <span style="font-size:12px;font-weight:700;color:#DA0007">95</span>
-              </div>
-              <div style="height:2px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden">
-                <div
-                  class="fillBar"
-                  data-width="95"
-                  style="height:100%;
-              width:0%;
-              background:#DA0007;
-              transition:width 1.2s cubic-bezier(.4,0,.2,1)"
-                >
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-                <span style="font-size:12px;font-weight:600;color:rgba(255,255,255,.6)">Communication</span>
-                <span style="font-size:12px;font-weight:700;color:#DA0007">89</span>
-              </div>
-              <div style="height:2px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden">
-                <div
-                  class="fillBar"
-                  data-width="89"
-                  style="height:100%;
-              width:0%;
-              background:#DA0007;
-              transition:width 1.2s cubic-bezier(.4,0,.2,1)"
-                >
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            style="margin-top:28px;padding:18px 20px;background:rgba(218,0,7,.08);border-radius:10px;border-left:2px solid #DA0007"
-          >
-            <div style="font-size:28px;font-weight:700;color:#fff;letter-spacing:-.04em;margin-bottom:4px">3</div>
-            <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.5">
-              Companies requested Arjun<br />
-              within 48 hours of going live.
-            </div>
-          </div>
+        <div>
+          <p class="big__k">What a CV can carry, and what it can't</p>
+          <p class="big__t">A CV describes what you were near.<br><em>A transcript shows what you decided.</em></p>
+          <p class="big__d">Every line on a CV is a claim with no working shown. Thirty minutes of follow-up
+          questions is the cheapest way anyone has found to tell the two apart.</p>
+          <div class="ba"><div class="ba__r"><span class="ba__k">On the CV</span><p class="ba__v">Built microservices handling two million requests a day.</p></div><div class="ba__r"><span class="ba__k">What that shows</span><p class="ba__v">That he can write a sentence about microservices.</p></div><div class="ba__r"><span class="ba__k">On the transcript</span><p class="ba__v">The trade-off he rejected, why he rejected it, and what it cost him six months later.</p></div><div class="ba__r ba__r--now"><span class="ba__k">What that shows</span><p class="ba__v">That he made the call — and knows what it cost.</p></div></div>
         </div>
       </div>
 
-      <div id="signalQuote" style="text-align:center;margin-top:72px">
-        <div
-          style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(0,0,0,.4);margin-bottom:20px"
-        >
-          Arjun Mehta · Senior Backend Engineer → Goldman Sachs
+      <p class="cases__ft" style="color:var(--grey);max-width:70ch">This is why the teams that asked for him
+      didn't need the CV. <b style="color:var(--ink)">They had already read the part a CV leaves out.</b></p>
+    </div></section>
+
+    <!-- ══ SCORE ══ -->
+    <section class="lab band" id="score"><div class="wrap">
+      <div class="shead">
+        <div>
+          <p class="eyebrow" data-rv>The same you, four different bars</p>
+          <h2 class="h2" data-rv style="--d:60ms">Change the team. Watch your score move.</h2>
+        </div>
+        <p class="lab__dek" data-rv style="--d:100ms">One interview, six dimensions, one set of answers. Every team
+        weights them differently — <b>so you're not a number — you're a different number to each of them.</b>
+        Pick a team and see where you land.</p>
+      </div>
+
+      <div class="score2" data-rv style="--d:140ms">
+        <div class="vcard">
+          <div class="vcard__hd">
+            <div><p class="vcard__nm">A. Mehta</p>
+              <p class="vcard__sub">Senior backend · 6 yrs · sample profile</p></div>
+            <span class="vcard__band" id="sBand">Top of their list</span>
+          </div>
+          <div class="vcard__big"><b id="sScore">91.1</b><i>/ 100</i></div>
+          <div class="vcard__track">
+            <span class="vcard__z1"></span><span class="vcard__z2"></span>
+            <span class="vcard__pin" id="sPin"></span>
+          </div>
+          <div class="vcard__ax"><span>70</span><span>85 · STRONG · 90 · TOP DECILE</span><span>100</span></div>
+          <div class="vms">{allDimensions.map(([label, value], i) => (
+            <div class="vm" id={`vm${i}`}><span class="vm__n">{label}</span><span class="vm__b"><span class="vm__f" style={`width:${value}%`}></span></span><span class="vm__v">{value}</span></div>
+          ))}</div>
+          <p class="vcard__ft" id="sNote"></p>
         </div>
 
-        <div
-          style="font-size:clamp(18px,3.5vw,24px);font-weight:500;color:#000;line-height:1.6;letter-spacing:-.02em;max-width:700px;margin:0 auto"
-        >
-          "The advisor had already read my GitHub. First question was about a design decision I made in 2022. That's
-          when I knew this was different."
+        <div>
+          <p class="score2__k">Whose bar are we using?</p>
+          <div class="pres2">{scorePresets.map((p, i) => (
+            <button class={`pre2${i === 0 ? ' on' : ''}`} data-i={i} type="button">{p.name}</button>
+          ))}</div>
+          <div class="wrs">{allDimensions.map(([label], i) => (
+            <div class="wr" id={`wr${i}`}><span class="wr__n">{label}</span><span class="wr__b"><span class="wr__f" id={`wf${i}`}></span></span><span class="wr__v" id={`wv${i}`}>0%</span></div>
+          ))}</div>
+          <p class="wrs__ft">Your scores never change. <b>Only the weighting does</b> — and that is the whole
+          reason applying to forty teams was never going to tell you anything.</p>
         </div>
       </div>
-    </div>
-  </section>
-  <script is:inline>
-    function setupSignalAnimation() {
-      const section = document.querySelector('#signalSection');
-      if (!(section instanceof HTMLElement)) return;
-      if (section.dataset.signalBound === 'true') return;
-      section.dataset.signalBound = 'true';
 
-      const scoreEl = section.querySelector('#signalScore');
-      const bars = section.querySelectorAll('.fillBar');
-      const signalCards = Array.from(section.querySelectorAll('.signalCard'));
-      const animatedCard = signalCards[1];
+      <p class="lab__foot2" data-rv>You can't know whose bar you fit by applying.
+        <em>You can find out by being measured once.</em></p>
+    </div></section>
 
-      if (!scoreEl) return;
+    <!-- ══ THIRTY ══ -->
+    <section class="band" id="thirty"><div class="wrap">
+      <div class="shead">
+        <div>
+          <p class="eyebrow" data-rv>The thirty minutes</p>
+          <h2 class="h2" data-rv style="--d:60ms">Every question comes off your own CV.</h2>
+        </div>
+        <p class="dek" data-rv style="--d:100ms">Not a script, and not a quiz. The engine reads what you wrote
+        and turns each claim into something only the person who did it could answer.
+        <b>Then someone who has run what you run asks it, and follows up where the answer stays general.</b></p>
+      </div>
 
-      let counter = null;
-      let barTimeouts = [];
+      <div class="qps" data-rv style="--d:140ms">{questions.map(([evidence, question]) => (
+        <div class="qp"><div class="qp__l"><span class="qp__k">On your CV</span><p class="qp__v">{evidence}</p></div><span class="qp__arrow" aria-hidden="true">→</span><div class="qp__r"><span class="qp__k qp__k--r">What you get asked</span><p class="qp__q">{question}</p></div></div>
+      ))}</div>
 
-      const reset = () => {
-        if (counter) {
-          window.clearInterval(counter);
-          counter = null;
-        }
+      <div class="qnote" data-rv>
+        <div><p class="qnote__k">Thirty minutes, once</p>
+          <p class="qnote__v">Recorded and transcribed. It travels to every team that asks for you — you never
+          answer the same question twice.</p></div>
+        <div><p class="qnote__k">A peer, not a panel</p>
+          <p class="qnote__v">The expert interviewing you has run the systems you're describing. That is why
+          the follow-up lands.</p></div>
+      </div>
 
-        barTimeouts.forEach((timeoutId) => window.clearTimeout(timeoutId));
-        barTimeouts = [];
+      <p class="fn__line" data-rv>Most screens test whether you can describe it.<br>This one tests
+      <em>whether you decided it</em>.</p>
+    </div></section>
 
-        scoreEl.textContent = '0';
-        bars.forEach((bar) => {
-          if (!(bar instanceof HTMLElement)) return;
-          bar.style.width = '0%';
+    <!-- ══ THEM ══ -->
+    <section class="band band--w" id="them"><div class="wrap">
+      <div class="shead">
+        <div>
+          <p class="eyebrow eyebrow--red" data-rv>The other half</p>
+          <h2 class="h2" data-rv style="--d:60ms">We check them too, before you meet them.</h2>
+        </div>
+        <p class="dek" data-rv style="--d:100ms">Every job board asks you to prove yourself to a company that
+        has proved nothing to you. <b>A request only reaches you if the team on the other end clears its own
+        set of checks.</b></p>
+      </div>
+      <div class="them">{teamChecks.map(([title, copy, value], i) => (
+        <div class={`them__r${i === 4 ? ' them__r--flag' : ''}`}><p class="them__k">{title}</p><p class="them__d">{copy}</p><span class="them__v">{value}</span></div>
+      ))}</div>
+      <div class="outc">
+        <p class="outc__k">And when a check doesn't clear</p>
+        <div class="outc__g">{outcomes.map(([label, css, title, copy]) => (
+          <div class={`outc__i outc__i--${css}`}><span class="outc__s">{label}</span>
+            <p class="outc__t">{title}</p>
+            <p class="outc__d">{copy}</p></div>
+        ))}</div>
+      </div>
+      <p class="cases__ft" style="color:var(--grey)">When something doesn't clear, you still see the request —
+      <b style="color:var(--ink)">with the flag attached and the reason written out.</b> You decide whether it
+      matters. We don't decide that for you.</p>
+    </div></section>
+
+    <!-- ══ CONTROLS ══ -->
+    <section class="trust band" id="controls">
+      <div class="wrap">
+        <div class="shead">
+          <div>
+            <p class="eyebrow" data-rv>Your controls</p>
+            <h2 class="h2" data-rv style="--d:60ms">Your employer will never know you were here.</h2>
+          </div>
+          <p class="trust__dek" data-rv style="--d:100ms">Looking while employed is the normal case, not the
+          exception. <b>These are switches, not a policy page</b> — try them.</p>
+        </div>
+        <div class="ctrls" data-rv style="--d:140ms">{controls.map(([title, copy, status, enabled]) => (
+          <button class={`ctl${enabled ? ' on' : ''}`} type="button" aria-pressed={String(enabled)}><span class="ctl__sw"></span><span class="ctl__body"><span class="ctl__t">{title}</span><span class="ctl__d">{copy}</span><span class="ctl__st">{status}</span></span></button>
+        ))}</div>
+        <div class="freeb" data-rv>
+          <div><p class="freeb__k">It costs you nothing</p>
+            <p class="freeb__v">Not now, not when you're placed, not ever. Companies pay us when they hire.
+            <b>If anyone in this industry asks you for money, walk.</b></p></div>
+          <div><p class="freeb__k">Who it's for</p>
+            <p class="freeb__v">Mid-level upward, across engineering, data, infrastructure, finance,
+            operations and leadership. If we don't run mandates in your area yet, we'll tell you that on
+            day one rather than sit on your CV.</p></div>
+        </div>
+        <p class="trust__ft" data-rv>Consent is captured before anything is evaluated, your data sits in India,
+        and you can ask for all of it back or deleted at any point. Transcripts are held on a defined clock and
+        then purged.</p>
+      </div>
+    </section>
+
+    <!-- ══ WHEN ══ -->
+    <section class="wrap band" id="when">
+      <div class="shead">
+        <div>
+          <p class="eyebrow eyebrow--red" data-rv>What happens, and when</p>
+          <h2 class="h2" data-rv style="--d:60ms">No black boxes. You always know where you are.</h2>
+        </div>
+        <p class="dek" data-rv style="--d:100ms">And if we can't help, <b>we tell you that instead of going
+        quiet.</b> Silence isn't a process, and it's the single thing people hate most about looking.</p>
+      </div>
+      <div class="tl2__g" data-rv style="--d:140ms">{timeline.map(([time, title, copy], i) => (
+        <div class="tl2"><span class={`tl2__bar`}></span><p class="tl2__d">{time}</p><p class="tl2__t">{title}</p><p class="tl2__p">{copy}</p></div>
+      ))}</div>
+      <div class="cstat" data-rv>{candidatesStats.map(([num, suffix, desc], i) => (
+        <div class="cstat__i"><p class="cstat__n">{num}<i>{suffix}</i></p>
+          <p class="cstat__d">{desc}</p></div>
+      ))}</div>
+      <p class="cstat__ft" data-rv>Which is the part nobody tells you when you're applying:
+      <b>the hard bit was never the interview. It was getting to one that counted.</b></p>
+    </section>
+
+    <!-- ══ VOICES ══ -->
+    <section class="band band--w" id="voices">
+      <div class="wrap">
+        <div class="shead">
+          <div>
+            <p class="eyebrow eyebrow--red" data-rv>In their words</p>
+            <h2 class="h2" data-rv style="--d:60ms">What people say afterwards.</h2>
+          </div>
+          <p class="dek" data-rv style="--d:100ms">Roles and company types are real. Names are withheld, because
+          most of these people were employed at the time — <b>which is rather the point.</b></p>
+        </div>
+      </div>
+      <div class="mq" data-rv style="--d:140ms"><div class="mq__t">{[...testimonials, ...testimonials].map(([quote, role, company]) => (
+        <figure class="qc qc--cd"><span class="qc__tag">Candidate</span><blockquote class="qc__q">{quote}</blockquote><figcaption class="qc__a"><b>{role}</b><span>{company}</span></figcaption></figure>
+      ))}</div></div>
+    </section>
+
+    <!-- ══ APPLY ══ -->
+    <section class="cand band" id="apply"><div class="wrap">
+      <div class="apply">
+        <p class="apply__k">Start here</p>
+        <p class="apply__h">One conversation. Then you stop applying.</p>
+        <p class="apply__s">Leave your email and we'll pick it up on the next screen — your name and CV, about
+        a minute. <b>We reply within a day either way</b>, and if we can't help we'll say so rather than go
+        quiet.</p>
+        <form class="apply__form" action="/candidates/start" method="get">
+          <div class="apply__row apply__row--2">
+            <input class="apply__mail" type="email" name="email" required placeholder="your@email.com"
+                   aria-label="Your email address">
+            <button class="apply__go" type="submit">Continue<span class="apply__ar">→</span></button>
+          </div>
+        </form>
+        <p class="apply__fine">No account needed · <b>one minute, two fields</b> · anonymous from the first
+        second · your email is only ever used to reply</p>
+      </div>
+
+      <p class="human" data-rv>We built this because we'd all been on your side of the table,
+      <em>and we remembered how it felt</em>.</p>
+    </div></section>
+
+    <!-- ══ CLOSE ══ -->
+    <section class="wrap band close" id="close">
+      <p class="eyebrow eyebrow--red" data-rv>Two doors</p>
+      <h2 class="h2" data-rv style="max-width:13ch">Two doors.<br>Same room.</h2>
+      <p class="dek" data-rv style="--d:60ms">You're looking, someone else is hiring, and the whole job is
+      <b>putting the two who should be in a conversation into one</b>. Tell us which side you're on.</p>
+      <div class="doors" data-rv style="--d:110ms">
+        <div class="door">
+          <p class="door__k">If you're looking</p>
+          <p class="door__t">One conversation, then teams come to you.</p>
+          <p class="door__d">Thirty minutes with someone who has done your job. Anonymous until you decide
+          otherwise.</p>
+          <p class="door__next"><span>Next</span> Fifteen minutes to set up. An expert calls within a week,
+          and you keep the score whatever happens after that.</p>
+          <a href="#apply" class="btn btn--dark">Create your profile</a></div>
+        <div class="door">
+          <p class="door__k">If you're hiring</p>
+          <p class="door__t">Three names you'd take any of.</p>
+          <p class="door__d">A hundred signals, a senior expert on each shortlisted person, and the reasoning
+          behind every rank.</p>
+          <p class="door__next"><span>Next</span> A 45-minute intake call. Three names back inside 36 hours,
+          each scored against a bar we set with you.</p>
+          <a href="/" class="btn btn--ghost">See how one role ran</a></div>
+      </div>
+
+      <p class="bbb2" data-rv><span>Belong</span><i></i><span>Build</span><i></i><span>Become</span></p>
+      <p class="bbb2__s" data-rv>Tribe + Era. A hire only works if both sides were right about each other.</p>
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer class="reference-footer">
+      <div class="reference-footer__inner">
+        <div class="reference-footer__top">
+          <div class="reference-footer__brand"><a href="/" aria-label="Tribera home"><Logo variant="footer" /></a><p><strong>AI reads the signal. Senior experts add the judgment. You make the call.</strong> The bar is yours, and every candidate is held to the same one.</p><span>Tribe + Era</span><small><em>Belong</em> · Build · Become</small><div><a href="https://linkedin.com/company/triberaai">LinkedIn</a><a href="mailto:hello@tribera.ai">hello@tribera.ai</a></div></div>
+          <nav><b>For hiring teams</b><a href="/#how-it-works">How it works</a><a href="/#the-bar">The bar</a><a href="/#guarantee">The guarantee</a><a href="/industries">Industries</a><a href="/functions">Functions</a></nav>
+          <nav><b>For candidates</b><a href="/candidates">Create your profile</a><a href="/candidates">How it works</a><a href="/roles">Open roles</a><a href="/candidates#privacy">Privacy controls</a></nav>
+          <nav><b>Company</b><a href="/about">About</a><a href="/blog">Blog</a><a href="/careers">Careers</a><a href="/contact">Contact</a><a href="https://app.tribera.ai/auth/login">Log in</a></nav>
+          <nav><b>Legal</b><a href="/security">Security</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a><a href="/contact">Data processing</a></nav>
+        </div><div class="reference-footer__bar"><span>&copy; 2026 Tribera · Eragina Digital Solutions Private Limited</span><span>Bengaluru</span></div>
+      </div>
+    </footer>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* ══ CARD FLIP ══ */
+  var flip=document.getElementById('flip'),
+      tA=document.getElementById('tabA'), tB=document.getElementById('tabB'),
+      fA=document.getElementById('faceA'), fB=document.getElementById('faceB'), took=false;
+  function face(b){
+    if(!flip) return;
+    flip.classList.toggle('is-b', b);
+    var cardWrap=document.querySelector('.hero__card');
+    if(cardWrap) cardWrap.classList.toggle('is-flipped', b);
+    tA.classList.toggle('is', !b); tB.classList.toggle('is', b);
+    tA.setAttribute('aria-selected', String(!b)); tB.setAttribute('aria-selected', String(b));
+    fA.setAttribute('aria-hidden', String(b)); fB.setAttribute('aria-hidden', String(!b));
+  }
+  if(flip){
+    tA.addEventListener('click',function(){took=true;face(false);});
+    tB.addEventListener('click',function(){took=true;face(true);});
+    flip.addEventListener('click',function(){took=true;face(!flip.classList.contains('is-b'));});
+    if(!reduce && 'IntersectionObserver' in window){
+      new IntersectionObserver(function(es,ob){
+        es.forEach(function(e){
+          if(!e.isIntersecting) return; ob.disconnect();
+          setTimeout(function(){ if(!took) face(true); }, 2600);
+          setTimeout(function(){ if(!took) face(false); }, 5200);
         });
-      };
+      },{threshold:.4}).observe(flip);
+    }
+  }
 
-      const animate = () => {
-        if (counter) {
-          window.clearInterval(counter);
-          counter = null;
-        }
-
-        barTimeouts.forEach((timeoutId) => window.clearTimeout(timeoutId));
-        barTimeouts = [];
-
-        const target = Number(scoreEl.dataset.target);
-        const countConfig = window.__triberaCountAnimationConfig || { durationMs: 1200, steps: 72 };
-        let current = 0;
-        const increment = target / countConfig.steps;
-
-        scoreEl.textContent = '0';
-
-        counter = window.setInterval(() => {
-          current += increment;
-
-          if (current >= target) {
-            scoreEl.textContent = String(target);
-            window.clearInterval(counter);
-            counter = null;
-          } else {
-            scoreEl.textContent = String(Math.floor(current));
-          }
-        }, 15);
-
-        bars.forEach((bar, i) => {
-          if (!(bar instanceof HTMLElement)) return;
-          const width = bar.dataset.width;
-          if (!width) return;
-
-          const timeoutId = window.setTimeout(() => {
-            bar.style.width = `${width}%`;
-          }, i * 150);
-          barTimeouts.push(timeoutId);
+  /* ══ CARD TILT ══ */
+  var cardWrap=document.querySelector('.hero__card'), tilt=document.getElementById('tilt');
+  if(cardWrap && tilt && !reduce && matchMedia('(hover:hover) and (pointer:fine)').matches){
+    var raf=null;
+    cardWrap.addEventListener('pointermove',function(e){
+      if(raf) return;
+      raf=requestAnimationFrame(function(){
+        raf=null;
+        var r=cardWrap.getBoundingClientRect(),
+            px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
+        tilt.classList.add('live');
+        tilt.style.setProperty('--ry',((px-.5)*11).toFixed(2)+'deg');
+        tilt.style.setProperty('--rx',((.5-py)*8).toFixed(2)+'deg');
+        cardWrap.querySelectorAll('.face').forEach(function(f){
+          f.style.setProperty('--mx',(px*100).toFixed(1)+'%');
+          f.style.setProperty('--my',(py*100).toFixed(1)+'%');
         });
-      };
-
-      if (typeof section.__signalTriggerCleanup === 'function') {
-        section.__signalTriggerCleanup();
-      }
-
-      reset();
-      section.__signalTriggerCleanup = window.__triberaDirectionalTrigger({
-        element: animatedCard instanceof HTMLElement ? animatedCard : section,
-        onEnter: animate,
-        onExit: reset,
       });
+    });
+    cardWrap.addEventListener('pointerleave',function(){
+      tilt.classList.remove('live');
+      tilt.style.setProperty('--ry','0deg'); tilt.style.setProperty('--rx','0deg');
+    });
+  }
+
+  /* ══ SCORE CALCULATOR ══ */
+  (function(){
+    var D=[{"n": "Architecture thinking", "v": 96}, {"n": "Systems design", "v": 91}, {"n": "Code quality", "v": 95}, {"n": "Communication", "v": 89}, {"n": "Ops and on-call", "v": 74}, {"n": "Product sense", "v": 68}];
+    var R=[{"id": "consumer", "nm": "Consumer scale", "w": [30, 30, 15, 15, 10, 0], "note": "Scale and throughput. Architecture and systems carry two-thirds of their bar — and they barely look at product."}, {"id": "fintech", "nm": "Fintech platform", "w": [25, 25, 25, 10, 10, 5], "note": "Correctness first. Depth and code discipline weighted evenly, communication low, product almost nil."}, {"id": "infra", "nm": "Infrastructure / SRE", "w": [15, 30, 15, 10, 30, 0], "note": "Who carries the pager. Ops experience is weighted as heavily as systems design — the one place you scored 74."}, {"id": "product", "nm": "Early-stage product", "w": [15, 15, 10, 25, 5, 30], "note": "Breadth and judgment. They weight product sense above everything you scored highest on."}];
+    var pres=document.querySelectorAll('.pre2');
+    var elS=document.getElementById('sScore'), elB=document.getElementById('sBand'),
+        elP=document.getElementById('sPin'), elN=document.getElementById('sNote');
+    if(!pres.length||!elS) return;
+    var shown=0, raf=null;
+    function paint(i){
+      var r=R[i], tot=r.w.reduce(function(a,b){return a+b;},0);
+      var score=D.reduce(function(a,d,j){return a+d.v*r.w[j];},0)/(tot||1);
+      var mx=Math.max.apply(null,r.w);
+      pres.forEach(function(b,j){ b.classList.toggle('on',j===i); });
+      D.forEach(function(d,j){
+        var wr=document.getElementById('wr'+j), vm=document.getElementById('vm'+j);
+        document.getElementById('wf'+j).style.width=(r.w[j]/mx*100)+'%';
+        document.getElementById('wv'+j).textContent=r.w[j]+'%';
+        wr.classList.toggle('zero', r.w[j]===0);
+        wr.classList.toggle('top', r.w[j]===mx);
+        vm.classList.toggle('dim2', r.w[j]<=5);
+        vm.classList.toggle('key', r.w[j]===mx);
+      });
+      elP.style.left=Math.max(1,Math.min(99,(score-70)/30*100))+'%';
+      var band = score>=90 ? ['Top of their list',''] :
+                 score>=86 ? ['Strongly in range','mid'] : ['In range, not top','low'];
+      elB.textContent=band[0];
+      elB.className='vcard__band '+ (band[1]===''?'':band[1]==='mid'?'mid':'low');
+      elN.textContent=r.note;
+      cancelAnimationFrame(raf);
+      (function step(){
+        var diff=score-shown;
+        if(Math.abs(diff)<0.02){ shown=score; elS.textContent=score.toFixed(1); return; }
+        shown+=diff*0.22; elS.textContent=shown.toFixed(1);
+        raf=requestAnimationFrame(step);
+      })();
     }
+    pres.forEach(function(b,i){ b.addEventListener('click',function(){paint(i);}); });
+    paint(0);
+  })();
 
-    /* FIRST LOAD */
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-      setupSignalAnimation();
-    } else {
-      document.addEventListener('DOMContentLoaded', setupSignalAnimation);
-    }
+  /* ══ CONTROLS SWITCHES ══ */
+  document.querySelectorAll('.ctl').forEach(function(b){
+    b.addEventListener('click',function(){
+      var on=b.classList.toggle('on');
+      b.setAttribute('aria-pressed', String(on));
+      var st=b.querySelector('.ctl__st');
+      if(!st) return;
+      var pair=st.dataset.pair || st.textContent;
+      st.dataset.pair=pair;
+      var map={'Hidden':'Visible','Visible':'Hidden',
+               '3 companies blocked':'No blocks','No blocks':'3 companies blocked',
+               'All requests routed':'Direct contact allowed','Direct contact allowed':'All requests routed',
+               'Profile live':'Profile paused','Profile paused':'Profile live'};
+      st.textContent = map[st.textContent] || st.textContent;
+    });
+  });
 
-    /* ASTRO NAVIGATION SUPPORT */
-    document.addEventListener('astro:page-load', setupSignalAnimation);
-  </script>
+  /* ══ REVEAL ON SCROLL ══ */
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.14,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('[data-rv]').forEach(function(el){io.observe(el);});
 
-  <style>
-    #signalSection {
-      padding: clamp(72px, 10vw, 140px) clamp(16px, 4.5vw, 48px) !important;
-    }
+  /* ══ TALLY COUNTER ══ */
+  var fan=document.querySelector('.fan__side'), tN=document.getElementById('tallyN');
+  if(fan && !reduce){
+    new IntersectionObserver(function(es,ob){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        ob.disconnect();
+        fan.parentElement.classList.add('go');
+        if(!tN) return;
+        var t0=null, DUR=1800;
+        tN.textContent='0';
+        requestAnimationFrame(function step(ts){
+          if(t0===null) t0=ts;
+          var u=Math.min((ts-t0)/DUR,1);
+          tN.textContent=Math.round(Math.pow(u,1/0.62)*140);
+          if(u<1) requestAnimationFrame(step); else tN.textContent='140';
+        });
+      });
+    },{threshold:.35}).observe(fan);
+  }
+})();
+</script>
 
-    #signalContainer {
-      width: 100%;
-    }
+<style is:global>
+*,*::before,*::after{box-sizing:border-box}
+body{overflow-x:hidden}
+</style>
+<style>
+:root{
+  --char:#131313;--char2:#1C1C1B;--char3:#282826;--cline:#2E2E2C;
+  --paper:#F2F2F0;--warm:#EFEDE8;--card:#FFF;
+  --ink:#111110;--ink2:#3B3B39;--grey:#6B6B67;--faint:#9C9C97;--hair:#E3E3DF;
+  --onc:#F3F3F0;--onc2:#9B9B95;--onc3:#6E6E68;
+  --red:#DA0007;--grn:#3FBE7C;
+  --display:"Figtree",-apple-system,sans-serif;--ui:"Inter Tight",-apple-system,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);--wrap:1280px;--gut:clamp(20px,4.5vw,48px);
+  --spring:cubic-bezier(.34,1.42,.64,1);
+}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font-family:var(--ui);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;margin:0}
 
-    @media (max-width: 900px) {
-      #signalGrid {
-        grid-template-columns: 1fr !important;
-      }
 
-      .signalCard {
-        padding: 38px 24px !important;
-      }
+a{color:inherit}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gut)}
+.band{padding-block:clamp(52px,6vw,92px)}
+.band--w{background:var(--card)}
+.band--t{padding-block:clamp(40px,4.6vw,68px)}
 
-      #signalQuote {
-        margin-top: 48px !important;
-      }
-    }
+.shead{display:grid;gap:16px;margin-bottom:clamp(30px,3.6vw,52px)}
+@media(min-width:900px){
+  .shead{grid-template-columns:1.1fr .9fr;gap:clamp(36px,4.5vw,80px);align-items:end}
+  .shead>:last-child{padding-bottom:6px}
+}
+.shead .dek,.shead .fn__dek,.shead .buy__dek,.shead .cand__lede{margin-top:0;max-width:44ch}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);margin:0 0 24px}
+.eyebrow--red{color:var(--red)}
+.h1{font-family:var(--display);font-weight:800;font-size:clamp(38px,6.2vw,78px);line-height:.97;letter-spacing:-.045em;margin:0}
+.h2{font-family:var(--display);font-weight:700;font-size:clamp(29px,4.2vw,52px);line-height:1.04;letter-spacing:-.04em;margin:0;max-width:16ch}
+.dek{font-size:clamp(16px,1.5vw,18.5px);line-height:1.6;color:var(--grey);max-width:56ch;margin:18px 0 0}
+.dek b{color:var(--ink);font-weight:600}
+[data-rv]{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0ms)}
+[data-rv].in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+  [data-rv],[data-rv].in{opacity:1;transform:none;transition:none}
+  .sq{transition:none!important}
+}
 
-    @media (max-width: 640px) {
-      .signalLabel {
-        top: 18px !important;
-        left: 20px !important;
-      }
+.btn{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;text-decoration:none;padding:15px 26px;border-radius:999px;border:1px solid transparent;transition:transform .18s var(--ease),background .2s,border-color .2s,color .2s,box-shadow .25s;cursor:pointer;line-height:1}
+.btn:hover{transform:translateY(-1px)}
+.btn--solid,.btn--dark{box-shadow:0 2px 14px rgba(0,0,0,.14)}
+.btn--dark:hover,.btn--solid:hover{box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.btn--light{background:var(--onc);color:var(--char)}
+.btn--dark{background:var(--ink);color:#fff}
+.btn--ghost{border-color:#D2D2CD;color:var(--ink)}
+.btn--ghost:hover{border-color:var(--ink);background:transparent}
+.btn--wire{border-color:rgba(255,255,255,.3);color:#fff}
+.btn--wire:hover{border-color:#fff;background:transparent}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
 
-      #signalScore {
-        font-size: 56px !important;
-      }
+.btn::after{content:"\2192";font-size:14px;opacity:0;width:0;margin-left:-10px;transition:opacity .22s var(--ease),width .22s var(--ease),margin .22s var(--ease)}
+.btn:hover::after{opacity:1;width:13px;margin-left:0}
+.btn--ghost::after,.btn--wire::after{display:none}
 
-      #signalSubtext {
-        font-size: 14px !important;
-      }
-    }
-  </style>
+/* ══ HERO ══ */
+.hero{background:var(--char);color:var(--onc);padding-block:clamp(44px,5.6vw,80px) 0}
+.hero .eyebrow{color:var(--onc3);margin-bottom:16px}
+.hero h1{color:#fff}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero__top{display:grid;gap:clamp(26px,3vw,44px)}
+@media(min-width:1000px){.hero__top{grid-template-columns:.9fr 1.1fr;align-items:center;gap:clamp(30px,3.4vw,52px)}}
+.hero h1{max-width:18ch;font-size:clamp(36px,4.6vw,62px)}
+@media(min-width:1000px){.hero h1{max-width:none}}
+.hero__p{font-size:clamp(15.5px,1.45vw,17.5px);line-height:1.6;color:var(--onc2);max-width:46ch;margin:0}
+.hero__p+.hero__p{margin-top:14px}
+.hero__p b{color:#fff;font-weight:600}
 
-  <section class="bg-black text-white py-20 md:py-28">
-    <div class="text-center mb-10">
-      <p class="text-[10px] tracking-[0.3em] text-[#da0007] uppercase mb-3">WHY CANDIDATES CHOOSE TRIBERA</p>
+.hero__card{perspective:1600px;position:relative}
+.hero__card::before{content:"";position:absolute;inset:-14% -8% -18%;pointer-events:none;background:radial-gradient(58% 52% at 62% 34%,rgba(218,0,7,.14),transparent 70%);filter:blur(28px);opacity:.55;transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.hero__card.is-flipped::before{opacity:.85;transform:translateX(-6%)}
+.tilt{transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s var(--ease);will-change:transform}
+.tilt.live{transition:transform .12s linear}
+.ftabs{display:inline-flex;gap:2px;padding:3px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--cline);margin-bottom:16px}
+.ftab{font-family:var(--ui);font-size:12.5px;font-weight:600;padding:7px 15px;border:0;border-radius:999px;background:transparent;color:var(--onc2);cursor:pointer;transition:background .25s var(--ease),color .25s var(--ease)}
+.ftab.is{background:var(--onc);color:var(--char)}
+.ftab:not(.is):hover{color:#fff}
+.flip{position:relative;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transition:transform .9s cubic-bezier(.22,.85,.24,1);cursor:pointer}
+.flip.is-b{transform:rotateY(180deg)}
+.face{position:relative;border-radius:20px;overflow:hidden;background:linear-gradient(158deg,#232320 0%,#1A1A18 42%,#141413 100%);border:1px solid #33332E;box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 -1px 0 rgba(0,0,0,.5) inset,0 30px 70px rgba(0,0,0,.5),0 4px 14px rgba(0,0,0,.35);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.face::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:4;background:radial-gradient(420px circle at var(--mx,70%) var(--my,0%),rgba(255,255,255,.09),rgba(255,255,255,.03) 32%,transparent 58%);opacity:0;transition:opacity .45s var(--ease)}
+.hero__card:hover .face::after{opacity:1}
+.face__glint{position:absolute;top:0;left:8%;right:8%;height:1px;z-index:5;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent)}
+.face--b{position:absolute;inset:0;transform:rotateY(180deg)}
+.face__hd{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid var(--cline);font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--onc3)}
+.face--b .face__hd{color:var(--red)}
+.side{padding:clamp(17px,1.9vw,24px)}
+.side__hd{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:15px}
+.side__nm{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.028em;margin:0;color:#fff}
+.side__sub{font-size:12.5px;color:var(--onc3);margin:5px 0 0}
+.side__sub b{color:var(--grn);font-weight:600}
+.rank{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--red)}
+.vrd{margin:16px 0 6px;padding:13px 15px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018));border:1px solid rgba(255,255,255,.09)}
+.vrd__k{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--onc3);margin:0 0 8px}
+.vrd__t{font-family:var(--display);font-weight:700;font-size:clamp(15.5px,1.45vw,18px);line-height:1.3;letter-spacing:-.022em;color:#fff;margin:0}
+.scr{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex:none;min-width:112px}
+.scr__n{display:flex;align-items:baseline;gap:3px}
+.scr b{font-family:var(--mono);font-weight:700;font-size:28px;letter-spacing:-.045em;color:#fff;line-height:1}
+.scr i{font-family:var(--mono);font-style:normal;font-size:11px;color:var(--onc3)}
+.scale{position:relative;display:block;width:100%;height:4px;border-radius:2px;background:rgba(255,255,255,.1);margin-top:3px;overflow:visible}
+.scale__sel{position:absolute;left:68%;right:0;top:0;bottom:0;border-radius:0 2px 2px 0;background:rgba(63,190,124,.4)}
+.scale__pin{position:absolute;left:84%;top:-3px;width:2px;height:10px;border-radius:1px;background:var(--grn);box-shadow:0 0 8px rgba(63,190,124,.8)}
+.scale__k{font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;color:var(--onc3)}
+.pill{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.16em;padding:8px 13px;border-radius:8px;color:var(--grn);white-space:nowrap;background:linear-gradient(180deg,rgba(63,190,124,.2),rgba(63,190,124,.08));border:1px solid rgba(63,190,124,.42);box-shadow:0 0 22px rgba(63,190,124,.18),0 1px 0 rgba(255,255,255,.08) inset}
+.notes{margin-top:13px;border-top:1px solid var(--cline);padding-top:12px;display:grid;gap:9px}
+.note{display:grid;grid-template-columns:58px 1fr;gap:12px;align-items:baseline}
+.note__k{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--onc3)}
+.note--warn .note__k{color:#E8A33D}
+.note__v{font-size:12.5px;line-height:1.45;color:var(--onc2);margin:0}
+.note--warn .note__v{color:#DAD4C7}
+.face__ft{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:11px 20px;border-top:1px solid var(--cline);background:rgba(0,0,0,.24);font-size:12px;color:var(--onc3)}
+.lg{display:flex;gap:14px;font-family:var(--mono);font-size:10px;letter-spacing:.12em}
+.lg i{font-style:normal;display:inline-flex;align-items:center;gap:5px}
+.lg i::before{content:"";width:7px;height:7px;border-radius:2px;background:currentColor}
+.lg--g{color:var(--grn)}
+.lg--y{color:#9B9B95}
+.lg--r{color:#E0484E}
 
-      <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] text-white leading-[1.1] font-[700]">
-        From strong signal<br />
-        to serious offers.
-      </h2>
+.logos{border-top:1px solid var(--cline);padding-block:20px;margin-top:clamp(28px,3.4vw,46px);display:grid;gap:14px;align-items:baseline}
+@media(min-width:820px){.logos{grid-template-columns:150px 1fr;gap:0 30px}}
+.logos__l{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--onc3);margin:0}
+.logos__vp{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.logos__tk{display:flex;align-items:center;gap:34px;width:max-content;animation:logoscroll 78s linear infinite}
+.logos__vp:hover .logos__tk{animation-play-state:paused}
+@keyframes logoscroll{to{transform:translateX(calc(-50% - 17px))}}
+.logos__dup{display:contents}
+.logos__tk span{font-family:var(--display);font-weight:600;font-size:14.5px;color:#5C5C57;white-space:nowrap;transition:color .25s var(--ease);cursor:default}
+.logos__tk span:hover{color:#B4B4AD}
+@media(prefers-reduced-motion:reduce){.logos__vp{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.logos__tk{animation:none}}
 
-      <p class="mt-4 mx-auto max-w-2xl text-[15px] sm:text-[16px] leading-relaxed text-white/50">
-        Less noise, better fit, and faster decisions at every stage of your search.
-      </p>
-    </div>
+/* ══ TALLY ══ */
+.big{display:grid;gap:clamp(26px,3vw,44px)}
+@media(min-width:900px){.big{grid-template-columns:1.05fr .95fr;align-items:center}}
+.big__k{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin:0 0 10px}
+.big__t{font-family:var(--display);font-weight:700;font-size:clamp(22px,2.6vw,32px);line-height:1.2;letter-spacing:-.032em;margin:0 0 8px}
+.big__t em{font-style:normal;color:var(--red)}
+.big__d{font-size:14.5px;line-height:1.55;color:var(--grey);margin:0}
+.ba{display:grid;gap:0;border-top:1px solid var(--hair);margin-top:22px}
+.ba__r{display:grid;grid-template-columns:112px 1fr;gap:18px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--hair)}
+.ba__k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.ba__r--now .ba__k{color:var(--red)}
+.ba__v{font-size:15px;line-height:1.45;color:var(--grey);margin:0}
+.ba__r--now .ba__v{color:var(--ink);font-family:var(--display);font-weight:600;font-size:16.5px;letter-spacing:-.02em}
 
-    <div class="max-w-6xl mx-auto px-6">
-      <div
-        class="grid lg:grid-cols-3
-                rounded-3xl overflow-visible lg:overflow-hidden
-                border border-white/5
-                bg-gradient-to-b from-[#0f0f0f] to-[#0a0a0a]"
-      >
-        {
-          [
-            {
-              num: '1',
-              title: 'Get evaluated with depth',
-              desc: 'A focused advisor interview surfaces real technical judgment, not just keyword matching.',
-              stat: '30',
-              statText: 'min advisor deep-dive session.',
-            },
-            {
-              num: '2',
-              title: 'Build a trusted signal profile',
-              desc: 'AI and advisors convert your interview into a clear, credible score companies can act on quickly.',
-              stat: '100+',
-              statText: 'signals. AI scored. Human verified.',
-            },
-            {
-              num: '3',
-              title: 'Speak only with serious teams',
-              desc: 'Requests come from teams closer to decision-making, so your time goes into conversations that matter.',
-              stat: '85%',
-              statText: 'offer rate after company interview.',
-            },
-          ].map((card, index) => (
-            <div
-              class:list={[
-                'group relative rounded-[18px] border border-white/8 bg-white/[0.015] px-6 sm:px-8 lg:px-12 py-6 sm:py-8 transition-all duration-500 hover:bg-[#121212]',
-                index > 0 ? 'mt-3 lg:mt-0' : '',
-                'lg:border-r lg:last:border-r-0 border-white/5',
-              ]}
-            >
-              <div
-                class={`
-              absolute top-4 left-4 sm:top-6 sm:left-10
-              text-[36px] sm:text-[50px] lg:text-[50px] font-[700] leading-none text-[#da0007]
-              pointer-events-none select-none
-              transition-all duration-500
-              group-hover:text-[#da0007]
-          `}
-              >
-                {card.num}
-              </div>
+.cases__ft{font-size:13.5px;line-height:1.55;margin:20px 0 0;max-width:64ch}
+.cases__ft b{font-weight:600}
 
-              <div class="relative z-10 pt-12 sm:pt-16">
-                <h3 class="text-[17px] font-[550] mb-2 transition-all duration-300 text-white group-hover:text-[#da0007]">
-                  {card.title}
-                </h3>
+.fan__side--own .fan__was{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 20px}
+.fan__cap{font-size:14.5px;line-height:1.55;color:var(--grey);margin:auto 0 0;padding-top:20px}
+.fan__cap b{color:var(--ink);font-family:var(--display);font-weight:700;font-size:16.5px;letter-spacing:-.022em;display:block;margin-bottom:6px}
 
-                <p class="text-white/70 text-[12px] font-[400] leading-relaxed mb-4">{card.desc}</p>
+.tally{width:100%;max-width:340px;height:auto;display:block;overflow:visible}
+.tk{stroke:#BDB8AC;stroke-width:1.5;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:0}
+.tk--r{stroke:var(--red);stroke-width:2.4}
+.go .tk{stroke-dashoffset:1;animation:draw .26s ease-out var(--d) forwards}
+.go .tk--r{animation-duration:.42s}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media(prefers-reduced-motion:reduce){.go .tk{animation:none;stroke-dashoffset:0}}
 
-                <div class="border-t border-white/10 pt-3 mt-5">
-                  <p class="text-[12px] font-[400] text-white/70">
-                    <span class="text-[30px] font-[700] text-white transition-all duration-500 group-hover:text-[#da0007]">
-                      {card.stat}
-                    </span>
+/* ══ SCORE ══ */
+.lab{background:var(--char);color:var(--onc)}
+.lab .eyebrow{color:var(--red)}
+.lab h2{color:#fff}
+.lab__dek{font-size:clamp(16px,1.5vw,18.5px);line-height:1.6;color:var(--onc2);max-width:44ch;margin:0}
+.lab .dek{color:var(--onc2)}
+.lab .dek b{color:#fff}
+.lab .shead h2{color:#fff}
 
-                    <span class="ml-1 text-white/70 text-[12px] font-[400]">{card.statText}</span>
-                  </p>
-                </div>
+.score2{display:grid;gap:clamp(24px,3vw,44px)}
+@media(min-width:980px){.score2{grid-template-columns:.92fr 1.08fr;align-items:start}}
+.vcard{background:linear-gradient(158deg,#232320,#1A1A18 46%,#141413);border:1px solid #33332E;border-radius:18px;padding:clamp(20px,2.2vw,28px);box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 24px 56px rgba(0,0,0,.45)}
+.vcard__hd{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.vcard__nm{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.028em;margin:0;color:#fff}
+.vcard__sub{font-size:12.5px;color:var(--onc3);margin:5px 0 0}
+.vcard__band{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:7px 11px;border-radius:7px;white-space:nowrap;flex:none;background:linear-gradient(180deg,rgba(63,190,124,.2),rgba(63,190,124,.08));color:var(--grn);border:1px solid rgba(63,190,124,.42);box-shadow:0 0 22px rgba(63,190,124,.18)}
+.vcard__band.mid{background:rgba(255,255,255,.07);color:#C9C9C3;border-color:rgba(255,255,255,.2);box-shadow:none}
+.vcard__band.low{background:rgba(232,163,61,.14);color:#E8A33D;border-color:rgba(232,163,61,.42);box-shadow:none}
+.vcard__big{display:flex;align-items:baseline;gap:6px;margin:18px 0 0}
+.vcard__big b{font-family:var(--mono);font-weight:700;font-size:clamp(40px,5vw,58px);letter-spacing:-.05em;line-height:1;color:#fff;font-variant-numeric:tabular-nums}
+.vcard__big i{font-family:var(--mono);font-style:normal;font-size:13px;color:var(--onc3)}
+.vcard__track{position:relative;height:6px;border-radius:3px;background:rgba(255,255,255,.08);margin:16px 0 6px}
+.vcard__z1{position:absolute;left:50%;width:16.7%;top:0;bottom:0;background:rgba(255,255,255,.13)}
+.vcard__z2{position:absolute;left:66.7%;right:0;top:0;bottom:0;border-radius:0 3px 3px 0;background:rgba(63,190,124,.32)}
+.vcard__pin{position:absolute;top:-4px;width:3px;height:14px;border-radius:2px;background:#fff;box-shadow:0 0 10px rgba(255,255,255,.7);transition:left .55s var(--ease)}
+.vcard__ax{display:flex;justify-content:space-between;font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;color:var(--onc3)}
+.vms{display:grid;margin-top:18px;border-top:1px solid var(--cline)}
+.vm{display:grid;grid-template-columns:1fr 84px 34px;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.055)}
+.vm__n{font-size:13.5px;color:var(--onc2)}
+.vm__b{height:5px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden}
+.vm__f{display:block;height:100%;border-radius:3px;background:#C9C9C2}
+.vm__v{font-family:var(--mono);font-size:12.5px;font-weight:700;color:#fff;text-align:right}
+.vm.dim2{opacity:.34}
+.vm.key .vm__f{background:var(--red)}
+.vm.key .vm__v{color:var(--red)}
+.vcard__ft{font-size:13px;line-height:1.5;color:var(--onc3);margin:14px 0 0;padding-top:13px;border-top:1px solid var(--cline);min-height:calc(3 * 1.5em)}
 
-                {index !== 2 && <div class="mt-5 h-px bg-white/12 lg:hidden" />}
-              </div>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+.score2__k{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--onc3);margin:0 0 14px}
+.pres2{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.pre2{font-family:var(--ui);font-size:13px;font-weight:600;padding:9px 15px;border-radius:999px;border:1px solid var(--cline);background:transparent;color:var(--onc2);cursor:pointer;transition:background .22s var(--ease),color .22s,border-color .22s,transform .2s var(--spring)}
+.pre2:hover{border-color:#4A4A44;color:#fff}
+.pre2.on{background:var(--onc);color:var(--char);border-color:var(--onc)}
+.wrs{display:grid;border-top:1px solid var(--cline)}
+.wr{display:grid;grid-template-columns:1fr 1fr 46px;gap:14px;align-items:center;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.055)}
+.wr__n{font-size:14px;color:var(--onc2)}
+.wr__b{height:6px;border-radius:3px;background:rgba(255,255,255,.09);overflow:hidden}
+.wr__f{display:block;height:100%;border-radius:3px;background:#6E6A61;width:0;transition:width .55s var(--ease)}
+.wr__v{font-family:var(--mono);font-size:12.5px;color:#fff;text-align:right;font-variant-numeric:tabular-nums}
+.wr.zero{opacity:.38}
+.wr.top .wr__f{background:var(--red)}
+.wr.top .wr__n{color:#fff;font-weight:600}
+.wr.top .wr__v{color:var(--red)}
+.wrs__ft{font-size:13.5px;line-height:1.55;color:var(--onc3);margin:16px 0 0;padding-top:14px;border-top:1px solid var(--cline)}
+.wrs__ft b{color:#fff;font-weight:600}
+.lab__foot2{font-family:var(--display);font-weight:700;font-size:clamp(19px,2.4vw,30px);line-height:1.25;letter-spacing:-.032em;color:#fff;margin:clamp(30px,3.6vw,48px) 0 0;max-width:30ch}
+.lab__foot2 em{font-style:normal;color:var(--red)}
 
-  <section id="why-tribera" class="bg-[#f5f5f5] py-16 md:py-20">
-    <div class="text-center mb-10">
-      <p class="text-[10px] tracking-[0.2em] font-[700] text-[#da0007] uppercase mb-3">HOW IT WORKS</p>
+/* ══ THIRTY ══ */
+#thirty .eyebrow{color:var(--faint)}
+#thirty .fn__line{font-family:var(--display);font-weight:700;font-size:clamp(19px,2.4vw,30px);line-height:1.25;letter-spacing:-.032em;margin:clamp(26px,3vw,40px) 0 0;max-width:26ch}
+#thirty .fn__line em{font-style:normal;color:var(--red)}
+.qps{display:grid;gap:12px;margin-top:clamp(26px,3vw,42px)}
+.qp{display:grid;gap:10px 20px;padding:clamp(16px,1.9vw,22px);border:1px solid var(--hair);border-radius:14px;background:var(--card);align-items:center;transition:opacity .28s var(--ease),border-color .25s var(--ease),transform .28s var(--spring),box-shadow .28s var(--ease)}
+@media(min-width:820px){.qp{grid-template-columns:1fr 28px 1.15fr}}
+.qps:hover .qp{opacity:.5}
+.qps:hover .qp:hover{opacity:1;transform:translateY(-3px);border-color:#D8D4CA;box-shadow:0 10px 28px rgba(0,0,0,.06)}
+.qp__k{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);display:block;margin-bottom:6px}
+.qp__k--r{color:var(--red)}
+.qp__v{font-size:14.5px;line-height:1.45;color:var(--faint);margin:0;text-decoration:line-through;text-decoration-color:#DCD8CE;text-decoration-thickness:1px}
+.qp__q{font-family:var(--display);font-weight:700;font-size:clamp(15.5px,1.7vw,18px);line-height:1.35;letter-spacing:-.022em;color:var(--ink);margin:0}
+.qp__arrow{font-family:var(--mono);font-size:15px;color:var(--red);text-align:center;transition:transform .3s var(--spring)}
+.qp:hover .qp__arrow{transform:translateX(3px)}
+@media(max-width:819px){.qp__arrow{display:none}}
+.qnote{display:grid;gap:16px 40px;margin-top:clamp(24px,2.8vw,36px);padding-top:clamp(18px,2.2vw,26px);border-top:1px solid var(--hair)}
+@media(min-width:760px){.qnote{grid-template-columns:repeat(2,1fr)}}
+.qnote__k{font-family:var(--display);font-weight:700;font-size:15.5px;letter-spacing:-.02em;margin:0 0 5px;position:relative;padding-left:20px}
+.qnote__k::before{content:"";position:absolute;left:0;top:.44em;width:8px;height:8px;border-radius:50%;background:var(--red)}
+.qnote__v{font-size:13.5px;line-height:1.5;color:var(--grey);margin:0;padding-left:20px}
 
-      <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] leading-[1.1] font-[700] text-black">
-        Three steps to your next role<span class="hidden sm:inline"> </span><br class="hidden sm:block" />
-      </h2>
+/* ══ THEM ══ */
+.them{display:grid;gap:0;border-top:1px solid var(--hair);margin-top:clamp(24px,2.8vw,38px)}
+.them__r{display:grid;gap:6px 24px;padding:16px 12px;margin-inline:-12px;border-radius:9px;border-bottom:1px solid var(--hair);transition:background .22s var(--ease)}
+@media(min-width:820px){.them__r{grid-template-columns:230px 1fr auto;align-items:baseline}}
+.them__r:hover{background:rgba(0,0,0,.03)}
+.them__k{font-family:var(--display);font-weight:700;font-size:15.5px;letter-spacing:-.02em;margin:0}
+.them__d{font-size:14px;line-height:1.5;color:var(--grey);margin:0}
+.them__v{font-family:var(--mono);font-size:12.5px;color:var(--ink);white-space:nowrap}
+.them__r--flag .them__v{color:#B8860B}
 
-      <p class="mt-4 mx-auto max-w-2xl text-[15px] sm:text-[16px] leading-relaxed text-black/50">
-        Transparent, fast, and designed around your time.
-      </p>
-    </div>
+.outc{margin-top:clamp(26px,3vw,40px);padding-top:clamp(20px,2.4vw,28px);border-top:1px solid var(--hair)}
+.outc__k{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin:0 0 16px}
+.outc__g{display:grid;gap:14px}
+@media(min-width:820px){.outc__g{grid-template-columns:repeat(3,1fr);gap:18px}}
+.outc__i{padding:20px 18px 18px;border:1px solid var(--hair);border-top-width:2px;border-radius:2px 2px 14px 14px;background:var(--card);transition:opacity .28s var(--ease),transform .28s var(--spring),box-shadow .28s var(--ease)}
+.outc__g:hover .outc__i{opacity:.58}
+.outc__g:hover .outc__i:hover{opacity:1;transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,.06)}
+.outc__i--ok{border-top-color:#B9B5AB}
+.outc__i--fl{border-top-color:#C9A46A}
+.outc__i--no{border-top-color:var(--red)}
+.outc__s{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:5px 9px;border-radius:5px;display:inline-block;margin-bottom:13px;background:transparent;border:1px solid}
+.outc__i--ok .outc__s{color:var(--grey);border-color:#DCD8CE}
+.outc__i--fl .outc__s{color:#8A6216;border-color:rgba(232,163,61,.5)}
+.outc__i--no .outc__s{color:var(--red);border-color:rgba(218,0,7,.45)}
+.outc__t{font-family:var(--display);font-weight:700;font-size:15.5px;letter-spacing:-.02em;margin:0 0 6px}
+.outc__d{font-size:13.5px;line-height:1.5;color:var(--grey);margin:0}
 
-    <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-6">
-      {
-        [
-          {
-            tag: '15 MINUTES',
-            num: '1',
-            title: 'Create your profile',
-            points: [
-              [
-                'GITHUB INTEGRATION',
-                'Connect your repos — we read code quality, commit patterns, architecture decisions',
-              ],
-              ['TECH PREFERENCES', 'Stack, remote preference, compensation expectations'],
-              ['PRIVACY CONTROLS', 'Anonymous by default. Block specific companies'],
-            ],
-          },
-          {
-            tag: 'HUMAN + AI',
-            num: '2',
-            title: 'Advisors interview you',
-            points: [
-              [
-                '30-MIN DEEP DIVE',
-                'A senior tribera advisor interviews you — architecture questions, real scenarios, genuine technical assessment',
-              ],
-              [
-                'AI SCORES THE CONVERSATION',
-                'Every answer is scored for technical depth, clarity, and culture signals — objectively',
-              ],
-              ['YOU GET YOUR SCORE', 'Transparent breakdown of where you stand — and what would make you stronger'],
-            ],
-          },
-          {
-            tag: 'INBOUND ONLY',
-            num: '3',
-            title: 'High-intent teams reach out',
-            points: [
-              [
-                'YOUR SCORE GOES LIVE',
-                'Verified companies see your score and profile. They request you directly — no cold applying',
-              ],
-              [
-                '3:1 RATIO GUARANTEED*',
-                'Companies on tribera interview 3 candidates and hire 1. If they request you, they mean it',
-              ],
-              ['FAST TO OFFER', 'Most candidates on tribera receive an offer within 3 weeks of profile going live'],
-            ],
-          },
-        ].map((card) => (
-          <div
-            class="
-        group relative
-        overflow-hidden
-        rounded-2xl
-        bg-white
-        p-7
-        border border-slate-200
-        transition-all duration-500
-        hover:border-[#da0007]/20
-        hover:shadow-[0_20px_60px_rgba(218,0,7,0.15)]
-      "
-          >
-            <div class="absolute top-0 left-0 h-[3px] w-0 bg-[#da0007] transition-all duration-700 group-hover:w-full" />
+/* ══ CONTROLS ══ */
+.trust{background:var(--char);color:var(--onc)}
+.trust .eyebrow{color:var(--red)}
+.trust h2{color:#fff}
+.trust__dek{font-size:clamp(16px,1.5vw,18.5px);line-height:1.6;color:var(--onc2);max-width:44ch;margin:0}
+.trust__dek b{color:#fff;font-weight:600}
+.trust .dek{color:var(--onc2)}
+.trust .dek b{color:#fff}
+.trust .shead h2{color:#fff}
 
-            <span class="inline-block text-[10px] tracking-[0.1em] bg-[#da0007]/10 text-[#da0007] px-2 py-1 rounded-sm font-[700]">
-              {card.tag}
-            </span>
+.ctrls{display:grid;gap:12px;margin-top:clamp(28px,3.2vw,42px)}
+@media(min-width:760px){.ctrls{grid-template-columns:repeat(2,1fr);gap:14px 20px}}
+.ctl{display:grid;grid-template-columns:46px 1fr;gap:16px;align-items:start;width:100%;padding:18px;border:1px solid var(--cline);border-radius:14px;cursor:pointer;text-align:left;font:inherit;color:inherit;background:rgba(255,255,255,.012);transition:border-color .25s var(--ease),background .25s var(--ease),transform .2s var(--spring)}
+.ctl:hover{border-color:#45453F;background:rgba(255,255,255,.03)}
+.ctl__sw{display:block;width:46px;height:26px;border-radius:999px;background:rgba(255,255,255,.14);position:relative;flex:none;margin-top:2px;transition:background .3s var(--ease)}
+.ctl__sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .34s var(--spring)}
+.ctl.on .ctl__sw{background:var(--red)}
+.ctl.on .ctl__sw::after{transform:translateX(20px)}
+.ctl__body{display:block}
+.ctl__t{display:block;font-family:var(--display);font-weight:700;font-size:15.5px;letter-spacing:-.02em;color:#fff;margin:0 0 5px;line-height:1.25}
+.ctl__d{display:block;font-size:13.5px;line-height:1.5;color:var(--onc3);margin:0}
+.ctl__st{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--onc3);margin:10px 0 0;padding-top:9px;border-top:1px solid rgba(255,255,255,.07);transition:color .25s}
+.ctl.on .ctl__st{color:var(--red)}
+.freeb{display:grid;gap:20px 40px;margin-top:clamp(26px,3vw,40px);padding-top:clamp(20px,2.4vw,28px);border-top:1px solid var(--cline)}
+@media(min-width:760px){.freeb{grid-template-columns:repeat(2,1fr)}}
+.freeb__k{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.022em;color:#fff;margin:0 0 6px;position:relative;padding-left:20px}
+.freeb__k::before{content:"";position:absolute;left:0;top:.42em;width:8px;height:8px;border-radius:50%;background:var(--red)}
+.freeb__v{font-size:14px;line-height:1.55;color:var(--onc2);margin:0;padding-left:20px}
+.freeb__v b{color:#fff;font-weight:600}
 
-            <div
-              class="
-          mt-4 text-[40px] sm:text-[50px] font-[600]
-          text-[#da0007] group-hover:translate-x-[-6px]
+/* ══ WHEN ══ */
+.tl2__g{display:grid;gap:22px 24px}
+@media(min-width:720px){.tl2__g{grid-template-columns:repeat(4,1fr);gap:0 22px}}
+.tl2{display:grid;gap:7px;align-content:start}
+.tl2__bar{display:block;height:4px;border-radius:2px;background:#DDDAD2;margin-bottom:8px}
+.tl2:last-child .tl2__bar{background:var(--red)}
+.tl2__d{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);margin:0}
+.tl2__d i{font-style:normal;color:var(--faint)}
+.tl2:last-child .tl2__d{color:var(--red)}
+.tl2__t{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.022em;margin:0}
+.tl2__p{font-size:13.5px;line-height:1.45;color:var(--grey);margin:0}
+.cstat{display:grid;gap:20px 32px;margin-top:clamp(28px,3.2vw,44px);padding-top:clamp(20px,2.4vw,28px);border-top:1px solid var(--hair)}
+@media(min-width:700px){.cstat{grid-template-columns:repeat(3,1fr)}}
+.cstat__n{font-family:var(--mono);font-weight:700;font-size:clamp(34px,4vw,48px);letter-spacing:-.05em;line-height:1;margin:0 0 8px;color:var(--ink)}
+.cstat__i:first-child .cstat__n{color:var(--red)}
+.cstat__n i{font-family:var(--ui);font-style:normal;font-size:13px;font-weight:400;color:var(--faint);margin-left:5px;letter-spacing:0}
+.cstat__d{font-size:13.5px;line-height:1.5;color:var(--grey);margin:0;max-width:30ch}
+.cstat__i{transition:opacity .28s var(--ease),transform .28s var(--spring)}
+.cstat:hover .cstat__i{opacity:.5}
+.cstat:hover .cstat__i:hover{opacity:1;transform:translateY(-2px)}
+.cstat__ft{font-size:14.5px;line-height:1.6;color:var(--grey);margin:clamp(18px,2vw,26px) 0 0;max-width:64ch}
+.cstat__ft b{color:var(--ink);font-weight:600}
 
-          transition duration-300
-        "
-            >
-              {card.num}
-            </div>
+/* ══ VOICES ══ */
+.mq{overflow:hidden;margin-top:clamp(30px,3.6vw,46px);-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.mq__t{display:flex;gap:16px;width:max-content;padding-inline:var(--gut);animation:mqrun 68s linear infinite}
+.mq:hover .mq__t{animation-play-state:paused}
+@keyframes mqrun{to{transform:translateX(calc(-50% - 8px))}}
+.qc{flex:none;width:330px;margin:0;background:#F4F4F2;border:1px solid #E9E9E5;border-radius:14px;padding:20px 20px 18px;display:flex;flex-direction:column;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s}
+.qc:hover{transform:translateY(-3px);background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.07)}
+.qc__tag{align-self:flex-start;font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:5px 9px;border-radius:5px;margin-bottom:14px;background:transparent;color:var(--red);border:1px solid rgba(218,0,7,.42)}
+.qc__q{font-size:15px;line-height:1.5;color:var(--ink2);margin:0 0 auto;font-family:var(--display);font-weight:500;letter-spacing:-.012em}
+.qc__a{margin-top:18px;padding-top:14px;border-top:1px solid #E4E4DE;display:grid;gap:2px}
+.qc__a b{font-size:13.5px;font-weight:600;color:var(--ink)}
+.qc__a span{font-size:12.5px;color:var(--grey)}
+@media (prefers-reduced-motion:reduce){.mq{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.mq__t{animation:none}}
 
-            <h3
-              class="
-          mt-2 mb-6 text-[22px] sm:text-[25px] font-[700] text-black
+/* ══ APPLY ══ */
+.cand{background:var(--warm)}
+.cand .eyebrow{color:var(--red)}
+.apply{margin-top:clamp(38px,4.6vw,60px);background:var(--char);border-radius:20px;padding:clamp(26px,3.4vw,44px);color:var(--onc)}
+.apply__k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin:0 0 14px}
+.apply__h{font-family:var(--display);font-weight:700;font-size:clamp(23px,2.9vw,36px);line-height:1.1;letter-spacing:-.034em;color:#fff;margin:0;max-width:20ch}
+.apply__s{font-size:15.5px;line-height:1.55;color:var(--onc2);margin:14px 0 0;max-width:48ch}
+.apply__s b{color:#fff;font-weight:600}
+.apply__form{display:grid;gap:10px;margin-top:clamp(22px,2.6vw,30px)}
+.apply__row{display:flex;flex-wrap:wrap;gap:10px}
+.apply__row--2{align-items:stretch}
+.apply__mail{flex:1;min-width:220px;background:transparent;border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:14px 20px;color:#fff;font-family:var(--ui);font-size:15px;outline:none;transition:border-color .2s,box-shadow .2s,transform .3s var(--spring)}
+.apply__mail::placeholder{color:var(--onc3)}
+.apply__mail:focus{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.08);transform:translateY(-1px)}
+.apply__go{padding:15px 28px;display:inline-flex;align-items:center;gap:9px;border-radius:999px;border:0;background:var(--red);color:#fff;font-family:var(--ui);font-weight:600;font-size:15px;cursor:pointer;white-space:nowrap;transition:transform .18s var(--ease),background .2s}
+.apply__go:hover{transform:translateY(-1px);background:#C10006}
+.apply__fine{font-size:13px;color:var(--onc3);margin:18px 0 0}
+.apply__fine b{color:var(--onc);font-weight:600}
+.human{font-family:var(--display);font-weight:700;font-size:clamp(19px,2.5vw,31px);line-height:1.22;letter-spacing:-.032em;margin:clamp(36px,4.2vw,56px) 0 0;max-width:26ch}
+.human em{font-style:normal;color:var(--red)}
 
-        "
-            >
-              {card.title}
-            </h3>
+/* ══ CLOSE ══ */
+.doors{display:grid;gap:18px;margin-top:clamp(36px,4.4vw,56px)}
+@media(min-width:760px){.doors{grid-template-columns:repeat(2,1fr)}}
+.door{background:var(--card);border-radius:18px;padding:clamp(26px,3.2vw,40px);box-shadow:0 2px 24px rgba(0,0,0,.05);display:flex;flex-direction:column;transition:box-shadow .3s,transform .3s var(--ease)}
+.door:hover{box-shadow:0 12px 40px rgba(0,0,0,.09);transform:translateY(-2px)}
+.door p{color:var(--grey);font-size:15.5px;line-height:1.6;margin:12px 0 0;flex:1}
+.door p b{color:var(--ink);font-weight:600}
+.door__t{font-family:var(--display);font-weight:700;font-size:clamp(17px,2vw,22px);letter-spacing:-.028em;color:var(--ink);margin:0}
+.door .btn{align-self:flex-start;margin-top:24px}
+.bbb2{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px;margin:clamp(48px,5.5vw,76px) 0 0;padding-top:clamp(30px,3.4vw,44px);border-top:1px solid var(--hair)}
+.bbb2 span{font-family:var(--display);font-weight:800;font-size:clamp(20px,2.4vw,30px);letter-spacing:-.038em;color:var(--ink)}
+.bbb2 span:first-child{color:var(--red)}
+.bbb2 i{display:block;width:5px;height:5px;border-radius:50%;background:#CFCBC1}
+.bbb2__s{text-align:center;font-size:14px;line-height:1.55;color:var(--grey);margin:14px auto 0;max-width:44ch}
 
-            <div class="space-y-6">
-              {card.points.map(([label, desc], i) => (
-                <div
-                  class="
-      transition-all duration-300
-      hover:translate-x-2
-      cursor-pointer
-    "
-                >
-                  <p
-                    class="
-        text-[11px]
-        tracking-[0.1em]
-        font-semibold
-        uppercase
-        text-[#da0007]
-        transition-colors duration-300
+/* ══ TALLY — specific ══ */
+.fan__side--own .fan__was{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 20px}
+.tally--big{width:100%;max-width:330px;height:auto}
 
-      "
-                  >
-                    {label}
-                  </p>
+/* ══ MTR2 — card bars ══ */
+.mtr2{display:grid;gap:0;margin-top:14px;border-top:1px solid var(--cline)}
+.mtr2__r{display:grid;grid-template-columns:1fr 74px 34px;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.mtr2__r--low .mtr2__n{color:var(--red)}.mtr2__r--low .mtr2__f{background:var(--red)}.mtr2__r--low .mtr2__v{color:var(--red)}
+.mtr2__n{font-size:13px;color:var(--onc2)}
+.mtr2__b{height:4px;border-radius:2px;background:rgba(255,255,255,.1);overflow:hidden}
+.mtr2__f{display:block;height:100%;border-radius:2px;background:#C9C9C2}
+.mtr2__v{font-family:var(--mono);font-size:12px;color:#fff;text-align:right}
+.tiles__cap{font-size:11.5px;line-height:1.4;color:var(--onc3);margin:9px 0 0}
 
-                  <p
-                    class="
-        mt-1
-        text-[13px]
-        text-black/70
-        leading-relaxed
-        transition-colors duration-300
-        hover:text-black
-      "
-                  >
-                    {desc}
-                  </p>
+/* ══ sig list ══ */
+.sig__list{display:grid;margin-top:14px;border-top:1px solid var(--cline)}
+.sig__r{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.sig__k2{font-size:13px;color:var(--onc2)}
+.sig__v{font-family:var(--mono);font-size:11.5px;color:#fff;text-align:right}
 
-                  {i !== card.points.length - 1 && <div class="mt-4 h-px bg-slate-200" />}
-                </div>
-              ))}
-            </div>
-          </div>
-        ))
-      }
-    </div>
-  </section>
+/* ══ verd band inside hero card ══ */
+.verd__band{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.16em;padding:8px 13px;border-radius:8px;white-space:nowrap}
+.b-sel{color:var(--grn);background:linear-gradient(180deg,rgba(63,190,124,.2),rgba(63,190,124,.08));border:1px solid rgba(63,190,124,.42);box-shadow:0 0 22px rgba(63,190,124,.18)}
 
-  <section class="bg-black text-white py-16 md:py-20">
-    <div class="max-w-7xl mx-auto px-8 lg:px-12">
-      <div
-        class="grid gap-12 lg:grid-cols-[minmax(360px,1.05fr)_minmax(0,1.75fr)] xl:grid-cols-[minmax(400px,1fr)_minmax(0,1.9fr)] lg:gap-14 items-start"
-      >
-        <div class="lg:pr-8 xl:pr-10">
-          <p class="text-[11px] tracking-[0.2em] text-[#da0007] uppercase mb-2">BUILT FOR WORKING PROFESSIONALS</p>
-
-          <h3 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] max-w-[11ch]">
-            Your employer will never know you're here.
-          </h3>
-        </div>
-
-        <div class="grid gap-8 md:grid-cols-3 lg:gap-10 xl:gap-12 lg:items-start lg:self-center">
-          {
-            [
-              {
-                title: 'Anonymous by default',
-                desc: 'Your profile is hidden until you choose to go live. Block any company by name.',
-              },
-              {
-                title: 'You control every contact',
-                desc: 'Companies cannot message you directly. Every request goes through tribera first.',
-              },
-              {
-                title: 'Pause or archive instantly',
-                desc: "Got an offer? One click makes your profile invisible. Reactivate when you're ready to look again.",
-              },
-            ].map((item) => (
-              <div class="group flex gap-4 items-start">
-                <div class="w-[2px] min-h-[42px] bg-white/10 transition-all duration-300 group-hover:bg-[#da0007]" />
-
-                <div class="max-w-none">
-                  <h4 class="text-[14px] font-[700] mb-1">{item.title}</h4>
-
-                  <p class="text-white/40 text-[14px] leading-relaxed">{item.desc}</p>
-                </div>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="screening" class="bg-white py-16 md:py-20">
-    <div class="max-w-3xl mx-auto px-5">
-      <div class="grid md:grid-cols-3 text-center gap-10">
-        {
-          [
-            { value: '50k+', label: 'Professionals verified' },
-            { value: '85%', label: 'Offer rate after final interview' },
-            { value: '3 Weeks', label: 'Average time to offer' },
-          ].map((item) => (
-            <div>
-              <div class="text-[38px] sm:text-[50px] font-[700] hover:text-[#da0007] transition duration-300 hover:scale-105 text-black tracking-tight">
-                {item.value}
-              </div>
-
-              <p class="mt-2 text-[13px] text-black/50">{item.label}</p>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section id="interview" class="bg-[#f3f3f3] py-16 md:py-20">
-    <div class="text-center mb-16 px-6">
-      <p class="text-[10px] sm:text-[11px]
-    tracking-[0.2em]
-    font-semibold
-    text-[#da0007]
-    uppercase
-    mb-5">
-        WHAT TO EXPECT
-      </p>
-
-      <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.1] tracking-[-0.02em] text-black">
-        From profile to offer.<br />
-        Here's the timeline.
-      </h2>
-
-      <p class="mt-5 mx-auto max-w-2xl text-[15px] sm:text-[16px] leading-relaxed text-black/50">
-        No black boxes. No ghosting. You know exactly where you are at every step.
-      </p>
-    </div>
-
-    <div class="relative max-w-[1300px] mx-auto px-4 sm:px-8">
-      <div class="absolute top-[44px] left-[60px] right-[60px] h-px bg-[#da0007] hidden md:block"></div>
-
-      <div
-        id="timelineProgress"
-        class="absolute top-[44px] left-[60px] h-px bg-gradient-to-r from-[#da0007] to-[#da0007]/70 origin-left scale-x-0 transition-transform duration-[2400ms] ease-[cubic-bezier(.4,0,.2,1)] hidden md:block"
-        style="right:60px"
-      >
-      </div>
-
-      <div
-        id="timelineDot"
-        class="absolute top-[44px] left-[60px] w-[8px] h-[8px] -mt-[4px] rounded-full bg-[#da0007]
-      shadow-[0_0_12px_rgba(218,0,7,.8),0_0_6px_rgba(218,0,7,1)]
-      opacity-0 transition-all duration-[2400ms] ease-[cubic-bezier(.4,0,.2,1)] hidden md:block"
-      >
-      </div>
-
-      <div class="grid md:grid-cols-4 gap-4 relative">
-        {
-          [
-            {
-              tag: 'DAY 1 · 15 MIN',
-              title: 'Create your profile',
-              desc: 'Connect GitHub, set preferences, control visibility.',
-            },
-            {
-              tag: 'DAY 3–5 · 30 MIN',
-              title: 'Advisor interviews you',
-              desc: 'Senior advisor schedules a call. Real questions, honest assessment.',
-            },
-            {
-              tag: 'DAY 7+ · INBOUND',
-              title: 'High-intent teams reach out',
-              desc: 'Verified score goes live. Hiring teams request conversations.',
-            },
-            {
-              tag: '3 WKS AVG · OFFER',
-              title: 'You decide',
-              desc: "Accept what fits. Decline what doesn't. Avg. 1.8 offers per candidate.",
-            },
-          ].map((card, i) => (
-            <div
-              class="
-          bg-white
-          border border-black/10
-          rounded-[16px]
-          px-6 py-8
-          transition-all duration-300
-
-          hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)]
-        "
-            >
-              {i === 3 ? (
-                <div
-                  class="
-    w-[28px] h-[28px] mb-3
-    rounded-full
-    flex items-center justify-center
-    bg-[#da0007]/15
-  "
-                >
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#DA0007"
-                    stroke-width="2.8"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                </div>
-              ) : (
-                <div
-                  class="
-    w-[28px] h-[28px] mb-3
-    rounded-full border border-[#da0007]/30
-    flex items-center justify-center
-    bg-[#da0007]/10
-  "
-                >
-                  <div class="w-[9px] h-[9px] rounded-full bg-[#da0007] dot-fade" />
-                </div>
-              )}
-
-              <p class="text-[10px] tracking-[0.3em] font-semibold text-[#da0007]/60 uppercase mb-3">{card.tag}</p>
-
-              <h3 class="text-[18px] font-[600] text-black tracking-[-0.02em] leading-[1.3] mb-2">{card.title}</h3>
-
-              <p class="text-[14px] text-black/50 leading-[1.65]">{card.desc}</p>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <style>
-    @keyframes dotFade {
-      0% {
-        opacity: 0.3;
-        transform: scale(0.9);
-      }
-      50% {
-        opacity: 1;
-        transform: scale(1.15);
-      }
-      100% {
-        opacity: 0.3;
-        transform: scale(0.9);
-      }
-    }
-
-    .dot-fade {
-      animation: dotFade 2s ease-in-out infinite;
-    }
-  </style>
-
-  <section id="customer-stories" class="py-16 md:py-20 bg-black overflow-hidden">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
-      <div class="mb-10 sm:mb-14 text-center px-4">
-        <a
-          href="/candidates#customer-stories"
-          class="text-[#da0007]
-          text-[12px] sm:text-[14px]
-          tracking-[0.2em]
-          uppercase
-          transition duration-500 ease-out
-          hover:-translate-y-1"
-        >
-          Customer Stories
-        </a>
-
-        <h2
-          class="mt-2 text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] text-white transition duration-500 ease-out hover:-translate-y-1"
-        >
-          What candidates say
-        </h2>
-      </div>
-
-      <div
-        class="customer-marquee relative left-1/2 w-[100dvw] -translate-x-1/2 overflow-hidden pt-3 -mt-3"
-        data-customer-marquee
-      >
-        <div class="customer-marquee-track flex w-max gap-4 sm:gap-6" style="--customer-marquee-duration: 70s">
-          {
-            [0, 1].map((groupIndex) => (
-              <div
-                class="customer-marquee-group flex shrink-0 gap-4 sm:gap-6"
-                aria-hidden={groupIndex === 1 ? 'true' : 'false'}
-              >
-                {customerstories.map((t) => (
-                  <div
-                    class="
-        group relative shrink-0
-        w-[260px]
-        sm:w-[300px]
-        md:w-[340px]
-        rounded-xl
-        p-5 sm:p-6
-        border border-white/10
-        bg-white/5
-        transition-all duration-500 ease-out
-        hover:border-[#da0007]/40
-        hover:-translate-y-2
-        hover:shadow-[0_15px_40px_rgba(0,0,0,0.4)]
-        flex flex-col
-      "
-                  >
-                    <div class="flex gap-1 mb-5 text-[#da0007]">
-                      {Array(5)
-                        .fill(0)
-                        .map((_, idx) => (
-                          <Icon data-index={idx} name="tabler:star-filled" class="w-4 h-4 sm:w-5 sm:h-5" />
-                        ))}
-                    </div>
-
-                    <p
-                      class="
-        text-[13px]
-        sm:text-[14px]
-        leading-relaxed
-        text-white/70
-        mb-6
-        flex-grow
-      "
-                    >
-                      {t.quote}
-                    </p>
-
-                    <div class="mt-4">
-                      <div class="w-[40px] h-[2px] bg-[#da0007]/60 rounded-full mb-3" />
-
-                      <div
-                        class="
-          text-[14px] sm:text-[15px]
-          font-semibold
-          text-white
-          group-hover:text-[#da0007]
-          transition duration-300
-        "
-                      >
-                        {t.name}
-                      </div>
-
-                      <div class="text-[12px] sm:text-[13px] text-white/60">{t.company}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ))
-          }
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="get-discovered" class="bg-[#f3f3f3] py-20 md:py-28">
-    <div class="max-w-[900px] mx-auto text-center px-6">
-      <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] tracking-[-0.02em] text-black">
-        Your next role is <br />
-        already looking for you.
-      </h2>
-
-      <p class="mt-6 max-w-2xl mx-auto text-[15px] sm:text-[16px] leading-relaxed text-black/50">
-        Create your profile in 15 minutes. Get a clear technical signal, and spend your time on relevant conversations
-        with serious teams.
-      </p>
-
-      <div class="mt-12">
-        <button
-          type="button"
-          data-form-intent="candidate"
-          data-form-source="candidates_bottom_cta"
-          class="px-6 py-3 rounded-full w-full sm:w-auto
-         tribera-primary-button font-semibold text-[15px]"
-        >
-          Create Your Profile →
-        </button>
-      </div>
-    </div>
-  </section>
-</Layout>
+/* ══ FOOTER — matching landing page ══ */
+.reference-footer{background:#131313;color:#aaa;font-family:var(--ui)}.reference-footer__inner{max-width:var(--wrap);margin:auto;padding-inline:var(--gut)}.reference-footer__top{display:grid;gap:32px;padding:55px 0 45px}.reference-footer__brand>a{display:inline-flex}.reference-footer__brand p{max-width:285px;margin:21px 0;color:#999;font-size:13px;line-height:1.6}.reference-footer__brand strong{color:#eaeae6}.reference-footer__brand>span{display:block;color:var(--red);font:11px var(--mono);letter-spacing:.14em;text-transform:uppercase}.reference-footer__brand small{display:block;margin-top:5px;font-size:12px}.reference-footer__brand small em{color:#eee;font-style:normal}.reference-footer__brand div{display:flex;gap:15px;margin-top:20px}.reference-footer a{color:#999;text-decoration:none}.reference-footer a:hover{color:#fff}.reference-footer nav{display:grid;align-content:start;gap:9px}.reference-footer nav b{margin-bottom:5px;color:#e5e5e1;font-size:12px}.reference-footer nav a{font-size:13px}.reference-footer__bar{display:flex;justify-content:space-between;gap:20px;padding:17px 0;border-top:1px solid #30302d;color:#73736e;font-size:11px}@media(min-width:700px){.reference-footer__top{grid-template-columns:2fr repeat(4,1fr)}}@media(max-width:699px){.reference-footer__bar{flex-direction:column}.reference-footer__top{grid-template-columns:repeat(2,1fr)}.reference-footer__brand{grid-column:1/-1}}
+</style>

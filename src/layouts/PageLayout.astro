@@ -14,7 +14,7 @@ const { metadata } = Astro.props;
     <Header {...headerData} isSticky showToggleTheme />
   </slot>
 
-  <main class="w-full overflow-x-hidden">
+  <main class="w-full overflow-x-clip">
     <slot />
   </main>
 
