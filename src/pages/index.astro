@@ -1608,6 +1608,7 @@ a {
 }
 .btn:hover {
   transform: translateY(-1px);
+  background: none;
 }
 .btn--solid,
 .btn--dark {
@@ -1616,6 +1617,10 @@ a {
 .btn--dark:hover,
 .btn--solid:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  background: var(--ink);
+}
+.btn--light:hover {
+  background: var(--onc);
 }
 .btn::after {
   content: "→";

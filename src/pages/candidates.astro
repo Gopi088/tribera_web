@@ -636,9 +636,10 @@ a{color:inherit}
 }
 
 .btn{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;text-decoration:none;padding:15px 26px;border-radius:999px;border:1px solid transparent;transition:transform .18s var(--ease),background .2s,border-color .2s,color .2s,box-shadow .25s;cursor:pointer;line-height:1}
-.btn:hover{transform:translateY(-1px)}
+.btn:hover{transform:translateY(-1px);background:none}
 .btn--solid,.btn--dark{box-shadow:0 2px 14px rgba(0,0,0,.14)}
-.btn--dark:hover,.btn--solid:hover{box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.btn--dark:hover,.btn--solid:hover{box-shadow:0 8px 24px rgba(0,0,0,.2);background:var(--ink)}
+.btn--light:hover{background:var(--onc)}
 .btn--light{background:var(--onc);color:var(--char)}
 .btn--dark{background:var(--ink);color:#fff}
 .btn--ghost{border-color:#D2D2CD;color:var(--ink)}
