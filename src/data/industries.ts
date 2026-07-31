@@ -1,1000 +1,1081 @@
-export interface HiringChallenge {
-  title: string;
-  desc: string;
-  tag?: string;
-  items?: string[];
+export const industriesData = {
+  "dimensions": [
+    "Core depth",
+    "Systems design",
+    "Controls and risk",
+    "Delivery speed",
+    "Documentation",
+    "Stakeholder handling"
+  ],
+  "sectors": [
+    {
+      "slug": "banking-financial-services",
+      "name": "Banking & financial services",
+      "tagline": "Three vetted people for roles where the wrong hire costs more than a quarter.",
+      "weights": {
+        "Core depth": 20,
+        "Systems design": 14,
+        "Controls and risk": 30,
+        "Delivery speed": 10,
+        "Documentation": 18,
+        "Stakeholder handling": 8
+      }
+    },
+    {
+      "slug": "enterprise-technology",
+      "name": "Enterprise technology",
+      "tagline": "Engineering and product people who have actually put something into production and lived with it afterwards.",
+      "weights": {
+        "Core depth": 26,
+        "Systems design": 26,
+        "Controls and risk": 10,
+        "Delivery speed": 20,
+        "Documentation": 10,
+        "Stakeholder handling": 8
+      },
+      "misses": [
+        {
+          "title": "Shipped, or adjacent to shipped",
+          "label": "A CV cannot tell them apart",
+          "body": "Everyone on a delivery team appears on the delivery. The person who made the call and the person who attended the meeting write the same bullet point.",
+          "tell": "Where it shows up: what they had to give up to ship on the date they shipped."
+        },
+        {
+          "title": "Scale that was inherited",
+          "label": "Numbers travel without their owners",
+          "body": "Two million requests a day is a property of the system, not of the engineer. Plenty of people have worked near large systems without ever having changed one under load.",
+          "tell": "Where it shows up: what broke first, and what they were watching when it did."
+        },
+        {
+          "title": "Architecture opinions with no scar tissue",
+          "label": "Everyone can name the pattern",
+          "body": "Reading about event-driven design and having run a double-write migration for six months are different things that interview identically.",
+          "tell": "Where it shows up: the migration that took longer than planned, and the month it went wrong."
+        }
+      ],
+      "questions": [
+        {
+          "q": "Tell me about something you shipped that you would build differently now.",
+          "thin": "“We would probably pick a different framework.”",
+          "listeningFor": "What they underestimated, and whether the regret is technical or organisational. Strong answers name a decision, not a tool."
+        },
+        {
+          "q": "Walk me through a migration that took longer than planned.",
+          "thin": "“Scope crept and we had upstream dependencies.”",
+          "listeningFor": "The double-write period — how long they ran both systems and what they used to decide it was safe to cut over. Anyone who has done one talks about this unprompted."
+        },
+        {
+          "q": "Who disagreed with your architecture, and what happened?",
+          "thin": "“We aligned on a hybrid approach.”",
+          "listeningFor": "Whether they can state the other person's case properly. If they cannot put it fairly, they never understood it, and the compromise was just fatigue."
+        }
+      ],
+      "roles": [
+        {
+          "family": "Backend & platform",
+          "levels": "Mid to principal"
+        },
+        {
+          "family": "Infrastructure & SRE",
+          "levels": "Engineer to head"
+        },
+        {
+          "family": "Frontend & mobile",
+          "levels": "Mid to lead"
+        },
+        {
+          "family": "Engineering management",
+          "levels": "EM to director"
+        },
+        {
+          "family": "Product management",
+          "levels": "PM to group PM"
+        },
+        {
+          "family": "QA & release",
+          "levels": "Lead to head of quality"
+        },
+        {
+          "family": "Cloud & platform",
+          "levels": "Architect to principal"
+        },
+        {
+          "family": "Solutions & presales",
+          "levels": "Lead to director"
+        }
+      ],
+      "bench": [
+        "Backend and platform, 11 yrs",
+        "SRE and infrastructure, 13 yrs",
+        "Engineering leadership, 14 yrs",
+        "Release and quality, 11 yrs"
+      ],
+      "faq": [
+        {
+          "q": "Do you cover platform as well as product engineering?",
+          "a": "Both, and we weight them differently. A platform hire gets systems design and operational ownership weighted higher; a product engineer gets shipping cadence and stakeholder handling. Same six dimensions, different shape."
+        }
+      ]
+    },
+    {
+      "slug": "product-saas",
+      "name": "Product & SaaS",
+      "tagline": "The difference shows in what they killed, what they refused, and what they were wrong about.",
+      "weights": {
+        "Core depth": 22,
+        "Systems design": 18,
+        "Controls and risk": 6,
+        "Delivery speed": 20,
+        "Documentation": 8,
+        "Stakeholder handling": 26
+      },
+      "misses": [
+        {
+          "title": "Judgment, versus process fluency",
+          "label": "Frameworks are easy to learn",
+          "body": "RICE, JTBD and a tidy roadmap can all be recited by someone who has never made an unpopular call. The vocabulary is not the skill.",
+          "tell": "Where it shows up: the feature they argued against that shipped anyway, and what happened next."
+        },
+        {
+          "title": "Ownership of outcomes, not launches",
+          "label": "Everyone launched something",
+          "body": "A launch is a date. An outcome is what the number did ninety days later, and whether anyone went back to look.",
+          "tell": "Where it shows up: what they measured after, and what they did when it disappointed."
+        },
+        {
+          "title": "The ability to say no",
+          "label": "Roadmaps are full of yes",
+          "body": "Product judgment shows in refusal far more than in prioritisation. Anyone can rank a backlog; few can tell a large customer no and keep them.",
+          "tell": "Where it shows up: what they said to the customer, in the words they used."
+        }
+      ],
+      "questions": [
+        {
+          "q": "Tell me about a feature you argued against that shipped anyway.",
+          "thin": "“I raised my concerns, and the team decided to move forward.”",
+          "listeningFor": "What happened afterwards — and whether they are willing to say they turned out to be wrong. A product person who has never been wrong in public has not been in enough rooms."
+        },
+        {
+          "q": "What did you kill, and how did you know it was time?",
+          "thin": "“We sunset a feature with low usage.”",
+          "listeningFor": "The number they looked at, the number they deliberately ignored, and who they had to convince. Killing things is a political act before it is an analytical one."
+        },
+        {
+          "q": "Describe something customers asked for that you did not build.",
+          "thin": "“We prioritised based on impact and effort.”",
+          "listeningFor": "What they actually said to the customer. The refusal is where product taste lives; the roadmap is just its output."
+        }
+      ],
+      "roles": [
+        {
+          "family": "Product management",
+          "levels": "PM to CPO"
+        },
+        {
+          "family": "Product design",
+          "levels": "Designer to head of design"
+        },
+        {
+          "family": "Growth & lifecycle",
+          "levels": "Manager to head"
+        },
+        {
+          "family": "Product marketing",
+          "levels": "PMM to director"
+        },
+        {
+          "family": "Product analytics",
+          "levels": "Analyst to lead"
+        },
+        {
+          "family": "Customer success",
+          "levels": "Manager to VP"
+        },
+        {
+          "family": "Sales & partnerships",
+          "levels": "AE to VP"
+        },
+        {
+          "family": "Revenue operations",
+          "levels": "Manager to director"
+        }
+      ],
+      "bench": [
+        "Product leadership, 12 yrs",
+        "Product design, 10 yrs",
+        "Growth and lifecycle, 11 yrs",
+        "B2B SaaS product, 13 yrs"
+      ],
+      "faq": [
+        {
+          "q": "Can you assess product sense, or only experience?",
+          "a": "Product sense is the hardest thing on this list to test and the easiest to fake, which is why we test it with hindsight rather than hypotheticals. Not “how would you prioritise this” — “what did you get wrong, and when did you know”."
+        }
+      ]
+    },
+    {
+      "slug": "ai-data",
+      "name": "AI & data",
+      "tagline": "Building the model is the easy half. The people worth hiring are the ones who watched it afterwards.",
+      "weights": {
+        "Core depth": 30,
+        "Systems design": 26,
+        "Controls and risk": 10,
+        "Delivery speed": 16,
+        "Documentation": 10,
+        "Stakeholder handling": 8
+      },
+      "misses": [
+        {
+          "title": "Notebooks versus production",
+          "label": "Both look like machine learning",
+          "body": "A strong offline result and a system serving real traffic are different disciplines. Many excellent modellers have never owned anything that woke them up at night.",
+          "tell": "Where it shows up: what the model did in production that it never did in evaluation."
+        },
+        {
+          "title": "Data quality, discovered late",
+          "label": "Everyone says data is messy",
+          "body": "The useful question is not whether they have seen bad data. It is how they found out, and how long it had been wrong before anyone noticed.",
+          "tell": "Where it shows up: the detection, not the fix."
+        },
+        {
+          "title": "Knowing when not to ship",
+          "label": "Model metrics are not a decision",
+          "body": "An F1 score is not a business threshold. People who have shipped ML into a real process can tell you the number the business cared about and who set it.",
+          "tell": "Where it shows up: a model they decided was not worth shipping."
+        }
+      ],
+      "questions": [
+        {
+          "q": "What did the model do in production that it never did in evaluation?",
+          "thin": "“We saw some drift and retrained on fresher data.”",
+          "listeningFor": "What they were monitoring before it happened, and whether the threshold was set in advance or discovered through a complaint. The monitoring is the answer; the retrain is housekeeping."
+        },
+        {
+          "q": "Tell me about a data quality problem you found late.",
+          "thin": "“We had an upstream schema change that broke a pipeline.”",
+          "listeningFor": "How they found it, and what they changed so that class of problem surfaced sooner next time. Anyone can fix a break; few close the detection gap."
+        },
+        {
+          "q": "When did you decide a model was not worth shipping?",
+          "thin": "“The metrics were not strong enough.”",
+          "listeningFor": "The business threshold and who set it. People who have only worked offline quote model metrics; people who have shipped quote the number someone else cared about."
+        }
+      ],
+      "roles": [
+        {
+          "family": "Machine learning engineering",
+          "levels": "Mid to principal"
+        },
+        {
+          "family": "Data engineering",
+          "levels": "Engineer to head"
+        },
+        {
+          "family": "Data science",
+          "levels": "Scientist to lead"
+        },
+        {
+          "family": "MLOps & platform",
+          "levels": "Engineer to lead"
+        },
+        {
+          "family": "Analytics engineering",
+          "levels": "Analyst to head"
+        },
+        {
+          "family": "Applied research",
+          "levels": "Researcher to director"
+        },
+        {
+          "family": "LLM & agent engineering",
+          "levels": "Engineer to principal"
+        },
+        {
+          "family": "AI product management",
+          "levels": "PM to head"
+        }
+      ],
+      "bench": [
+        "ML engineering, 9 yrs",
+        "Data platform and pipelines, 12 yrs",
+        "Applied science, 11 yrs",
+        "Analytics leadership, 13 yrs"
+      ],
+      "faq": [
+        {
+          "q": "How do you assess research versus applied roles?",
+          "a": "Differently, and we say which at intake. Research weighting leans on depth and written reasoning; applied leans on production ownership and measurement. Hiring one against the other's bar is the most common mistake we see in this space."
+        }
+      ]
+    },
+    {
+      "slug": "cybersecurity",
+      "name": "Cybersecurity",
+      "tagline": "Certificates are a floor. What matters is what they did in the first twenty minutes.",
+      "weights": {
+        "Core depth": 24,
+        "Systems design": 16,
+        "Controls and risk": 32,
+        "Delivery speed": 12,
+        "Documentation": 10,
+        "Stakeholder handling": 6
+      },
+      "misses": [
+        {
+          "title": "Certifications versus incidents",
+          "label": "One is much easier to acquire",
+          "body": "A wall of acronyms tells you someone can pass an exam. It tells you nothing about how they behave at two in the morning with an unclear blast radius.",
+          "tell": "Where it shows up: the last bridge call they were actually on."
+        },
+        {
+          "title": "Risk decisions, not risk registers",
+          "label": "Everyone maintains a register",
+          "body": "Security work is a budget problem before it is a technical one. The real signal is what they chose to leave unprotected and how they defended that.",
+          "tell": "Where it shows up: what they left unpatched, and who signed the risk off."
+        },
+        {
+          "title": "Removing controls, not only adding them",
+          "label": "Adding is always safe",
+          "body": "Anyone can propose more controls. Knowing which ones no longer earn their operational cost requires having actually run them.",
+          "tell": "Where it shows up: a control they took away, and what it had been protecting against."
+        }
+      ],
+      "questions": [
+        {
+          "q": "Walk me through the last incident you were on the bridge for.",
+          "thin": "“We followed the incident response playbook and contained it.”",
+          "listeningFor": "What time they got the call, what they did in the first twenty minutes, and what they got wrong. This is the question certifications do not survive."
+        },
+        {
+          "q": "What did you have to leave unpatched, and how did you decide?",
+          "thin": "“We prioritised remediation by CVSS score.”",
+          "listeningFor": "The compensating control and the name of the person who accepted the residual risk. Security maturity is visible in how comfortably they discuss what they chose not to fix."
+        },
+        {
+          "q": "Tell me about a control you removed.",
+          "thin": "“We streamlined some legacy processes.”",
+          "listeningFor": "What it was protecting against and why that changed. People who have only ever added controls have never had to operate them at 3am."
+        }
+      ],
+      "roles": [
+        {
+          "family": "Security engineering",
+          "levels": "Mid to principal"
+        },
+        {
+          "family": "Detection & response",
+          "levels": "Analyst to head"
+        },
+        {
+          "family": "Application security",
+          "levels": "Engineer to lead"
+        },
+        {
+          "family": "GRC & assurance",
+          "levels": "Analyst to head"
+        },
+        {
+          "family": "Cloud & infrastructure security",
+          "levels": "Engineer to architect"
+        },
+        {
+          "family": "Security leadership",
+          "levels": "Manager to CISO"
+        },
+        {
+          "family": "Identity & access management",
+          "levels": "Analyst to head"
+        },
+        {
+          "family": "Threat intelligence",
+          "levels": "Analyst to director"
+        }
+      ],
+      "bench": [
+        "Detection and response, 14 yrs",
+        "Application security, 12 yrs",
+        "Cloud security architecture, 13 yrs",
+        "GRC and audit, 15 yrs"
+      ],
+      "faq": [
+        {
+          "q": "Do you cover both technical and governance roles?",
+          "a": "Yes, and they are almost opposite shapes. A detection engineer is weighted on incident behaviour and systems depth; a GRC lead on documentation, stakeholder handling and regulatory judgment. Running one against the other's rubric is how good people get rejected."
+        }
+      ]
+    },
+    {
+      "slug": "healthcare-life-sciences",
+      "name": "Healthcare & life sciences",
+      "tagline": "Clinical, regulatory and commercial, and the ability to hold all three when they disagree.",
+      "weights": {
+        "Core depth": 18,
+        "Systems design": 12,
+        "Controls and risk": 30,
+        "Delivery speed": 10,
+        "Documentation": 22,
+        "Stakeholder handling": 8
+      },
+      "misses": [
+        {
+          "title": "Regulatory judgment, not recall",
+          "label": "Guidance is public",
+          "body": "Anyone can quote the guidance. The people worth hiring are the ones who have had to act where the guidance genuinely did not say.",
+          "tell": "Where it shows up: a decision made in an ambiguity, and what they recommended before escalating."
+        },
+        {
+          "title": "Documentation as a discipline",
+          "label": "Everyone claims to be rigorous",
+          "body": "In this sector the record is the work. What was written down, when, and by whom is the difference between a finding and a citation.",
+          "tell": "Where it shows up: a deviation they handled, and how quickly it was documented."
+        },
+        {
+          "title": "The patient, at speed",
+          "label": "Timelines and evidence disagree often",
+          "body": "Commercial pressure is real and constant. The question is what they were prepared to lose to hold a position.",
+          "tell": "Where it shows up: what happened when the clinical evidence and the launch date pulled apart."
+        }
+      ],
+      "questions": [
+        {
+          "q": "Describe a time the clinical evidence and the timeline disagreed.",
+          "thin": "“We escalated it to the steering committee for a decision.”",
+          "listeningFor": "What they recommended before the escalation. Judgment lives in the position taken, not in the process followed to take it upward."
+        },
+        {
+          "q": "What went into a submission that you were uncomfortable with?",
+          "thin": "“Everything we submitted was compliant with the applicable guidance.”",
+          "listeningFor": "Whether they can name one genuine ambiguity. Nobody who has actually worked in this space believes the guidance covers everything."
+        },
+        {
+          "q": "Tell me about a protocol deviation you handled.",
+          "thin": "“It was documented and reported in line with our SOP.”",
+          "listeningFor": "What the impact assessment concluded and who they told first. The sequence of those two things says a great deal about how they operate."
+        }
+      ],
+      "roles": [
+        {
+          "family": "Clinical operations",
+          "levels": "CRA to director"
+        },
+        {
+          "family": "Regulatory affairs",
+          "levels": "Associate to head"
+        },
+        {
+          "family": "Quality & compliance",
+          "levels": "Specialist to head of QA"
+        },
+        {
+          "family": "Medical affairs",
+          "levels": "MSL to director"
+        },
+        {
+          "family": "Health economics",
+          "levels": "Analyst to lead"
+        },
+        {
+          "family": "Commercial & market access",
+          "levels": "Manager to head"
+        },
+        {
+          "family": "Biostatistics & data",
+          "levels": "Statistician to head"
+        },
+        {
+          "family": "Patient services & access",
+          "levels": "Manager to director"
+        }
+      ],
+      "bench": [
+        "Clinical operations, 14 yrs",
+        "Regulatory affairs, 15 yrs",
+        "Quality and compliance, 13 yrs",
+        "Medical and commercial, 12 yrs"
+      ],
+      "faq": [
+        {
+          "q": "Do you hire for regulated roles outside India?",
+          "a": "Yes. We run mandates for teams hiring into India and for India-based teams hiring into other jurisdictions. Where the regulatory regime differs, the interviewer differs — we do not assess EU MDR experience with someone who has only worked to CDSCO."
+        }
+      ]
+    },
+    {
+      "slug": "pharmaceutical",
+      "name": "Pharmaceutical",
+      "tagline": "Precision is the whole job, and precision under uncertainty is the part that cannot be taught quickly.",
+      "weights": {
+        "Core depth": 16,
+        "Systems design": 10,
+        "Controls and risk": 34,
+        "Delivery speed": 8,
+        "Documentation": 24,
+        "Stakeholder handling": 8
+      },
+      "misses": [
+        {
+          "title": "Behaviour in the interval",
+          "label": "Before the cause was known",
+          "body": "Every investigation eventually finds a cause. What separates people is what they did in the days before anyone knew what they were looking at.",
+          "tell": "Where it shows up: a result they could not explain, and what they did that week."
+        },
+        {
+          "title": "Comfort with an inconclusive close",
+          "label": "Phase one closes a lot of investigations",
+          "body": "Some people are entirely comfortable with that and some are not. The uncomfortable ones are usually the ones who have seen it come back.",
+          "tell": "Where it shows up: an OOS investigation that closed early, and whether they were happy with it."
+        },
+        {
+          "title": "Pushback with something at stake",
+          "label": "Everyone says they raised concerns",
+          "body": "Raising a concern in an email is not the same as holding a position that costs you something. The second one is rarer and much more useful.",
+          "tell": "Where it shows up: a timeline they pushed back on, and what it cost them."
+        }
+      ],
+      "questions": [
+        {
+          "q": "Tell me about a result you could not explain.",
+          "thin": "“We investigated and traced it to an assay issue.”",
+          "listeningFor": "What they did in the interval before the cause was known — stopped, flagged, or carried on. The interval is the answer; the root cause is just the ending."
+        },
+        {
+          "q": "Describe an out-of-specification investigation you led.",
+          "thin": "“We followed the two-phase process and it closed at phase one.”",
+          "listeningFor": "Whether they were comfortable with that close, and why. Most people who have run several are not entirely comfortable, and can tell you precisely why not."
+        },
+        {
+          "q": "When did you push back on a timeline?",
+          "thin": "“I raised it with the programme lead and we adjusted.”",
+          "listeningFor": "What they were prepared to lose. A pushback with nothing at stake is a note in a meeting, not a position."
+        }
+      ],
+      "roles": [
+        {
+          "family": "Quality assurance",
+          "levels": "Specialist to head"
+        },
+        {
+          "family": "Manufacturing & MSAT",
+          "levels": "Engineer to lead"
+        },
+        {
+          "family": "Regulatory CMC",
+          "levels": "Associate to director"
+        },
+        {
+          "family": "Analytical development",
+          "levels": "Scientist to head"
+        },
+        {
+          "family": "Supply chain & serialisation",
+          "levels": "Manager to head"
+        },
+        {
+          "family": "Process engineering",
+          "levels": "Engineer to principal"
+        },
+        {
+          "family": "Clinical development",
+          "levels": "CRA to director"
+        },
+        {
+          "family": "Pharmacovigilance",
+          "levels": "Associate to head"
+        }
+      ],
+      "bench": [
+        "Quality assurance and audit, 15 yrs",
+        "Manufacturing and MSAT, 13 yrs",
+        "Regulatory CMC, 14 yrs",
+        "Analytical development, 12 yrs"
+      ],
+      "faq": [
+        {
+          "q": "How do you handle mandates that need site-specific experience?",
+          "a": "We say so at intake if the pool is genuinely thin, rather than sending three people who are close. Sterile fill-finish and oral solids are not interchangeable, and pretending otherwise wastes a month of your time and ours."
+        }
+      ]
+    },
+    {
+      "slug": "manufacturing",
+      "name": "Manufacturing",
+      "tagline": "Operations, engineering and quality leaders who have run plants rather than reported on them.",
+      "weights": {
+        "Core depth": 22,
+        "Systems design": 14,
+        "Controls and risk": 22,
+        "Delivery speed": 18,
+        "Documentation": 14,
+        "Stakeholder handling": 10
+      },
+      "misses": [
+        {
+          "title": "Floor time versus plan time",
+          "label": "Both appear as operations experience",
+          "body": "Someone who has stood on a line at three in the morning talks about it differently from someone who has managed the schedule for one. The CV cannot separate them.",
+          "tell": "Where it shows up: what they changed that the plan did not call for."
+        },
+        {
+          "title": "Escapes, not just RCAs",
+          "label": "Everyone has run a root cause analysis",
+          "body": "The interesting question is how far a defect travelled before it was caught, and what the containment actually cost.",
+          "tell": "Where it shows up: a quality escape that reached a customer."
+        },
+        {
+          "title": "Recovering a shutdown",
+          "label": "Nothing runs to schedule",
+          "body": "Planned maintenance always overruns somewhere. The skill is what they chose to cut to bring it back, and who they had to tell.",
+          "tell": "Where it shows up: what overran, and what they dropped to recover."
+        }
+      ],
+      "questions": [
+        {
+          "q": "What did you change on the line that the plan did not call for?",
+          "thin": "“We optimised process flow to improve throughput.”",
+          "listeningFor": "Who on the floor told them it was wrong, and whether they listened the first time they were told. Most plant improvements start as someone being ignored."
+        },
+        {
+          "q": "Tell me about a quality escape.",
+          "thin": "“We completed a root cause analysis and implemented corrective actions.”",
+          "listeningFor": "How far it travelled before it was caught and what containment cost. Everyone runs an RCA; not everyone has had to make the call to a customer."
+        },
+        {
+          "q": "Describe a shutdown you ran.",
+          "thin": "“We planned it thoroughly and executed to schedule.”",
+          "listeningFor": "What overran and what they cut to recover. Nothing of that size runs to plan, and the recovery decisions are the whole skill."
+        }
+      ],
+      "roles": [
+        {
+          "family": "Plant & production",
+          "levels": "Manager to plant head"
+        },
+        {
+          "family": "Quality & EHS",
+          "levels": "Lead to head"
+        },
+        {
+          "family": "Maintenance & reliability",
+          "levels": "Engineer to manager"
+        },
+        {
+          "family": "Industrial engineering",
+          "levels": "Engineer to lead"
+        },
+        {
+          "family": "Supply chain & planning",
+          "levels": "Manager to head"
+        },
+        {
+          "family": "Operations leadership",
+          "levels": "Head to COO"
+        },
+        {
+          "family": "Automation & controls",
+          "levels": "Engineer to manager"
+        },
+        {
+          "family": "Procurement & vendor management",
+          "levels": "Manager to head"
+        }
+      ],
+      "bench": [
+        "Plant operations, 14 yrs",
+        "Quality and EHS, 13 yrs",
+        "Maintenance and reliability, 12 yrs",
+        "Supply chain, 14 yrs"
+      ],
+      "faq": [
+        {
+          "q": "Do you cover discrete and process manufacturing?",
+          "a": "Both, with different interviewers. The failure modes are not alike — a batch process person and a discrete assembly person will each struggle with the other's questions, and neither struggle tells you anything useful."
+        }
+      ]
+    },
+    {
+      "slug": "industrial-engineering",
+      "name": "Industrial & engineering",
+      "tagline": "Technical depth for work that gets built once and has to be right.",
+      "weights": {
+        "Core depth": 24,
+        "Systems design": 18,
+        "Controls and risk": 18,
+        "Delivery speed": 18,
+        "Documentation": 14,
+        "Stakeholder handling": 8
+      },
+      "misses": [
+        {
+          "title": "Accountability versus involvement",
+          "label": "Project teams are large",
+          "body": "Everyone on a capital project can describe the capital project. Far fewer signed something and carried it.",
+          "tell": "Where it shows up: what they signed off that they were not entirely sure about."
+        },
+        {
+          "title": "The decision behind the delay",
+          "label": "Overruns are always explained late",
+          "body": "External factors are real and are also the easiest available answer. The decision that caused the slip almost always happened months earlier.",
+          "tell": "Where it shows up: what they would do differently in month two, not month nine."
+        },
+        {
+          "title": "Change during construction",
+          "label": "Drawings change; costs move",
+          "body": "A revision is a document. The interesting part is the commercial conversation that followed and who absorbed it.",
+          "tell": "Where it shows up: a design change mid-build, and how that conversation went."
+        }
+      ],
+      "questions": [
+        {
+          "q": "Tell me about a project that overran.",
+          "thin": "“There were external dependencies and some weather impact.”",
+          "listeningFor": "The decision they made in month two that they would make differently. Overruns are almost always caused earlier than they are noticed."
+        },
+        {
+          "q": "What did you sign off that you were not entirely sure about?",
+          "thin": "“Everything went through the formal approval process.”",
+          "listeningFor": "Whether they can name one. Engineers who have carried real accountability all have an answer, and usually remember it clearly."
+        },
+        {
+          "q": "Describe a design change during construction.",
+          "thin": "“We issued a revision and updated the drawings.”",
+          "listeningFor": "What it cost, who ended up paying for it, and how that conversation went. The technical change is rarely the hard part."
+        }
+      ],
+      "roles": [
+        {
+          "family": "Project & construction management",
+          "levels": "Manager to director"
+        },
+        {
+          "family": "Design engineering",
+          "levels": "Engineer to principal"
+        },
+        {
+          "family": "Commissioning & startup",
+          "levels": "Engineer to lead"
+        },
+        {
+          "family": "EHS & compliance",
+          "levels": "Lead to head"
+        },
+        {
+          "family": "Procurement & contracts",
+          "levels": "Manager to head"
+        },
+        {
+          "family": "Engineering leadership",
+          "levels": "Head to VP"
+        },
+        {
+          "family": "Controls & instrumentation",
+          "levels": "Engineer to lead"
+        },
+        {
+          "family": "Operations & maintenance",
+          "levels": "Manager to head"
+        }
+      ],
+      "bench": [
+        "Project and construction, 15 yrs",
+        "Design engineering, 13 yrs",
+        "Commissioning, 12 yrs",
+        "Contracts and procurement, 14 yrs"
+      ],
+      "faq": [
+        {
+          "q": "Can you hire for site-based and EPC roles?",
+          "a": "Yes. Site postings need a different conversation about mobility and family circumstances, which we have early rather than at offer stage — it is the most common reason otherwise-good processes collapse in week four."
+        }
+      ]
+    },
+    {
+      "slug": "global-capability-centers",
+      "name": "Global capability centres",
+      "tagline": "Built for GCCs scaling in India, where the difference between a delivery centre and a capability centre is decision rights.",
+      "weights": {
+        "Core depth": 22,
+        "Systems design": 18,
+        "Controls and risk": 12,
+        "Delivery speed": 20,
+        "Documentation": 10,
+        "Stakeholder handling": 18
+      },
+      "misses": [
+        {
+          "title": "Decision rights, not headcount",
+          "label": "Both look like seniority",
+          "body": "Someone can run a team of forty and never have owned a decision the parent did not pre-approve. The title is identical either way.",
+          "tell": "Where it shows up: a decision that was genuinely theirs."
+        },
+        {
+          "title": "Working the gap, not surviving it",
+          "label": "Everyone mentions overlap hours",
+          "body": "Timezone problems are usually ownership problems wearing a clock. The people worth hiring moved the work rather than adding calls.",
+          "tell": "Where it shows up: a handover that kept failing, and what they changed."
+        },
+        {
+          "title": "Influence without authority",
+          "label": "Matrix reporting hides a lot",
+          "body": "In a GCC most of the important work happens across a line the org chart does not show. Stakeholder handling is weighted heavily here for that reason.",
+          "tell": "Where it shows up: something the parent got wrong about this market, and what changed."
+        }
+      ],
+      "questions": [
+        {
+          "q": "Who owned that decision — here or the parent?",
+          "thin": "“It was a collaborative decision across both teams.”",
+          "listeningFor": "Whether they can name one decision that was genuinely theirs. GCC seniority is almost entirely a question about decision rights."
+        },
+        {
+          "q": "Tell me about something the parent organisation got wrong about your market.",
+          "thin": "“There were some cultural differences to work through.”",
+          "listeningFor": "What they did about it and whether anything actually changed. This is the clearest line between a delivery centre and a capability centre."
+        },
+        {
+          "q": "How did you handle a handover that kept failing?",
+          "thin": "“We improved documentation and increased overlap hours.”",
+          "listeningFor": "Whether they moved the work or moved the people. Adding calls is what you do when you cannot move ownership."
+        }
+      ],
+      "roles": [
+        {
+          "family": "Engineering & platform",
+          "levels": "Mid to director"
+        },
+        {
+          "family": "Data & analytics",
+          "levels": "Analyst to head"
+        },
+        {
+          "family": "Product & design",
+          "levels": "PM to head of product"
+        },
+        {
+          "family": "Finance & shared services",
+          "levels": "Manager to head"
+        },
+        {
+          "family": "GCC leadership",
+          "levels": "Head to site leader"
+        },
+        {
+          "family": "Transformation & PMO",
+          "levels": "Manager to director"
+        },
+        {
+          "family": "HR & talent",
+          "levels": "Manager to head"
+        },
+        {
+          "family": "Legal & risk",
+          "levels": "Manager to head"
+        }
+      ],
+      "bench": [
+        "GCC build-out and leadership, 18 yrs",
+        "Engineering leadership, 14 yrs",
+        "Finance and shared services, 15 yrs",
+        "Transformation, 13 yrs"
+      ],
+      "faq": [
+        {
+          "q": "Do you help with early-stage GCC build-outs?",
+          "a": "Yes, and the first ten hires are a different exercise from the next hundred. Early build-out weights decision rights and ambiguity tolerance far above domain depth, because the people you hire first will define what the centre is allowed to own."
+        }
+      ]
+    },
+    {
+      "slug": "consumer-digital-commerce",
+      "name": "Consumer & digital commerce",
+      "tagline": "Where speed, judgment and commercial instinct all have to survive in the same person.",
+      "weights": {
+        "Core depth": 30,
+        "Systems design": 24,
+        "Controls and risk": 8,
+        "Delivery speed": 22,
+        "Documentation": 6,
+        "Stakeholder handling": 10
+      },
+      "misses": [
+        {
+          "title": "Taste that can be defended",
+          "label": "Portfolios all look good",
+          "body": "Anyone can show you something attractive. Far fewer can tell you why it is right for that customer at that moment without reaching for a conversion number.",
+          "tell": "Where it shows up: something they shipped and why, in craft terms as well as commercial ones."
+        },
+        {
+          "title": "Failure they can be specific about",
+          "label": "Everyone learned a lot",
+          "body": "The useful signal is the assumption that turned out to be wrong and how quickly they found out.",
+          "tell": "Where it shows up: a launch that did not work."
+        },
+        {
+          "title": "The speed trade, made consciously",
+          "label": "Fast is the default here",
+          "body": "Everyone in this sector ships quickly. The question is whether they know what it cost and whether they would take the same trade again.",
+          "tell": "Where it shows up: a time speed cost them quality."
+        }
+      ],
+      "questions": [
+        {
+          "q": "Show me something you shipped that you are proud of, and tell me why.",
+          "thin": "“It drove a significant lift in conversion.”",
+          "listeningFor": "Whether they can talk about the craft as well as the number. Taste that can only be defended with a metric is not taste, it is a report."
+        },
+        {
+          "q": "What did you launch that failed?",
+          "thin": "“We learned a lot from it and applied it later.”",
+          "listeningFor": "The specific assumption that was wrong and how quickly they knew. Vagueness here usually means they were not close enough to it."
+        },
+        {
+          "q": "Tell me about a time speed cost you quality.",
+          "thin": "“We shipped fast and iterated after.”",
+          "listeningFor": "What broke, who noticed first, and whether they would take the same trade again. The last part is the one that separates judgment from habit."
+        }
+      ],
+      "roles": [
+        {
+          "family": "Product & growth",
+          "levels": "PM to head"
+        },
+        {
+          "family": "Engineering",
+          "levels": "Mid to principal"
+        },
+        {
+          "family": "Design & brand",
+          "levels": "Designer to head"
+        },
+        {
+          "family": "Category & merchandising",
+          "levels": "Manager to head"
+        },
+        {
+          "family": "Performance marketing",
+          "levels": "Manager to director"
+        },
+        {
+          "family": "Supply chain & fulfilment",
+          "levels": "Manager to head"
+        },
+        {
+          "family": "Consumer insights & research",
+          "levels": "Analyst to head"
+        },
+        {
+          "family": "Loyalty & CRM",
+          "levels": "Manager to head"
+        }
+      ],
+      "bench": [
+        "Consumer product, 11 yrs",
+        "Commerce engineering, 12 yrs",
+        "Brand and design, 10 yrs",
+        "Category and merchandising, 13 yrs"
+      ],
+      "faq": [
+        {
+          "q": "Do you hire for D2C as well as marketplace businesses?",
+          "a": "Yes, and we weight them differently. Marketplace roles lean on systems thinking and supply liquidity; D2C leans on brand judgment and margin discipline. People are rarely equally strong at both and we would rather say which is which."
+        }
+      ]
+    },
+    {
+      "slug": "private-equity-portfolio",
+      "name": "Private equity portfolio",
+      "tagline": "Value-creation timelines are real and short. Hiring has to move faster than they do.",
+      "weights": {
+        "Core depth": 20,
+        "Systems design": 14,
+        "Controls and risk": 10,
+        "Delivery speed": 32,
+        "Documentation": 8,
+        "Stakeholder handling": 16
+      },
+      "misses": [
+        {
+          "title": "The first ninety days",
+          "label": "Everyone says they listened",
+          "body": "Ninety days is a quarter of the thesis. Someone who spent it understanding the business has spent a meaningful part of the hold period not acting.",
+          "tell": "Where it shows up: something specific and dated that they changed early."
+        },
+        {
+          "title": "Deciding without enough",
+          "label": "Information never arrives in time",
+          "body": "Portfolio operating roles are a sequence of decisions made on partial information. Speed is either a developed skill or it is recklessness, and the two interview similarly.",
+          "tell": "Where it shows up: a decision made early, and what they would have needed to be sure."
+        },
+        {
+          "title": "Disagreeing with the sponsor",
+          "label": "Alignment is the usual answer",
+          "body": "Operators who have never pushed back on a board have not been properly tested. The useful signal is what they protected and how it went.",
+          "tell": "Where it shows up: something the sponsor wanted that they resisted."
+        }
+      ],
+      "questions": [
+        {
+          "q": "What did you change in your first ninety days?",
+          "thin": "“I spent the time understanding the business and building relationships.”",
+          "listeningFor": "Something specific and dated. Ninety days is a quarter of the thesis, and a full quarter of listening is a decision in itself."
+        },
+        {
+          "q": "Tell me about a decision you made without enough information.",
+          "thin": "“I gathered what input I could and made a judgment call.”",
+          "listeningFor": "What they would have needed to be certain, and why they did not wait for it. That gap is where speed either becomes a skill or becomes luck."
+        },
+        {
+          "q": "What did the sponsor want that you pushed back on?",
+          "thin": "“We aligned on priorities pretty quickly.”",
+          "listeningFor": "The thing they protected. Operators who have never disagreed with a board have not been in a hard enough room yet."
+        }
+      ],
+      "roles": [
+        {
+          "family": "Portfolio leadership",
+          "levels": "Head to CEO"
+        },
+        {
+          "family": "Finance & FP&A",
+          "levels": "Controller to CFO"
+        },
+        {
+          "family": "Commercial & revenue",
+          "levels": "Head to CRO"
+        },
+        {
+          "family": "Operations & transformation",
+          "levels": "Director to COO"
+        },
+        {
+          "family": "Technology leadership",
+          "levels": "Head to CTO"
+        },
+        {
+          "family": "Value creation & PMO",
+          "levels": "Manager to director"
+        },
+        {
+          "family": "Investor relations & fundraising",
+          "levels": "Associate to director"
+        },
+        {
+          "family": "M&A and integration",
+          "levels": "Manager to director"
+        }
+      ],
+      "bench": [
+        "Portfolio operating leadership, 18 yrs",
+        "Finance transformation, 15 yrs",
+        "Commercial leadership, 14 yrs",
+        "Operations and PMO, 13 yrs"
+      ],
+      "faq": [
+        {
+          "q": "How fast can you actually move on a portfolio mandate?",
+          "a": "First three names inside 36 hours of a confirmed brief, and we hold that in this sector specifically because the hold period does not pause while a search runs. What we will not do is send three people faster by lowering the bar — that is the failure mode this whole model exists to avoid."
+        }
+      ]
+    }
+  ]
 }
-
-export interface RoleItem {
-  title: string;
-  level: string;
-}
-
-export interface FAQ {
-  q: string;
-  a: string;
-}
-
-export interface Industry {
-  slug: string;
-  title: string;
-  subtitle: string;
-  overview: string;
-  badge: string;
-  icon: string;
-  seoTitle: string;
-  seoDescription: string;
-  advisorLabel?: string;
-  hiringChallenges: HiringChallenge[];
-  rolesWeHire: RoleItem[];
-  whyTribera: { title: string; desc: string }[];
-  faqs: FAQ[];
-  ctaHeadline: string;
-  ctaSubtext: string;
-}
-
-export const industries: Industry[] = [
-  {
-    slug: `banking-financial-services`,
-    title: `Banking & Financial Services`,
-    subtitle: `Three vetted candidates in 36 hours — for roles where the wrong hire costs more than a quarter.`,
-    badge: `Financial Services`,
-    icon: `tabler:building-bank`,
-    seoTitle: `Banking & Financial Services Hiring — tribera`,
-    seoDescription: `AI-validated, advisor-interviewed banking and financial services candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `BFSI hiring demands more than a matched resume. Regulatory literacy, risk awareness, and domain depth are non-negotiable — and impossible to verify from a CV alone. Tribera advisors have operated inside banks, NBFCs, asset managers, and fintech businesses. They know what a strong credit analyst actually looks like in an interview, what a payments product manager needs to navigate, and which engineering candidates genuinely understand financial infrastructure. AI handles the screening volume. Advisors handle the judgment. You get three candidates you can actually hire.`,
-    hiringChallenges: [
-      {
-        tag: `COMPLIANCE`,
-        title: `Compliance-fit is invisible on paper`,
-        desc: `Risk appetite, regulatory awareness, and audit mindset cannot be inferred from job titles. Tribera advisors probe for these directly.`,
-        items: [`Risk appetite probed directly`, `Regulatory awareness verified`, `Audit mindset assessed`, `Compliance blindspots flagged`],
-      },
-      {
-        tag: `FINTECH DEPTH`,
-        title: `Technical talent without domain context`,
-        desc: `Engineering candidates in BFSI need fintech-specific depth — core banking integrations, payment rails, data residency. Generic tech interviews miss this entirely.`,
-        items: [`Core banking integrations tested`, `Payment rails fluency checked`, `Data residency awareness probed`, `Domain-specific tech screening`],
-      },
-      {
-        tag: `SPEED`,
-        title: `Long interview cycles damaging offer acceptance`,
-        desc: `Top BFSI talent holds multiple offers simultaneously. Slow pipelines lose them. Tribera's 36-hour shortlist is designed for this reality.`,
-        items: [`36-hour first shortlist`, `Built for competing offers`, `Parallel pipeline management`, `Offer-acceptance risk reduced`],
-      },
-      {
-        tag: `CALIBRATION`,
-        title: `Seniority inflation across resumes`,
-        desc: `AVP and VP titles vary wildly across institutions. Our advisors calibrate candidates against real accountability — not designations.`,
-        items: [`Titles checked against scope`, `Real accountability verified`, `Cross-institution benchmarking`, `Designation inflation flagged`],
-      },
-    ],
-    rolesWeHire: [
-      { title: `Engineering & Technology`, level: `Mid to Senior` },
-      { title: `Risk & Compliance`, level: `Analyst to VP` },
-      { title: `Product Management`, level: `PM to Group PM` },
-      { title: `Data & Analytics`, level: `Analyst to Head of Data` },
-      { title: `Investment & Wealth Management`, level: `Associate to Director` },
-      { title: `Operations & Process`, level: `Lead to COO` },
-      { title: `Fintech & Payments`, level: `IC to Platform Lead` },
-      { title: `Finance & FP&A`, level: `Manager to CFO` },
-    ],
-    whyTribera: [
-      {
-        title: `Domain advisors, not generalist recruiters`,
-        desc: `Every interview is conducted by a Tribera advisor with hands-on BFSI experience — someone who can challenge a candidate on trade lifecycle, credit modelling, or core banking architecture without briefing notes.`,
-      },
-      {
-        title: `AI that understands regulatory context`,
-        desc: `Our signal models are trained on BFSI-specific competency patterns — flagging risk gaps and compliance blindspots before a human hour is spent.`,
-      },
-      {
-        title: `1:3 selection guarantee`,
-        desc: `Interview three Tribera candidates and expect to hire at least one. We absorb the pipeline risk. You absorb none.`,
-      },
-      {
-        title: `Speed that matches offer velocity`,
-        desc: `From role brief to three hire-ready candidates in 36 hours. Built for markets where strong candidates disappear within a week.`,
-      },
-    ],
-    faqs: [
-      {
-        q: `Do your advisors have actual BFSI backgrounds?`,
-        a: `Yes. Every industry interview at Tribera is conducted by an advisor who has operated in that space — not someone who has recruited for it. For BFSI roles, that means people who have managed credit portfolios, built payment infrastructure, or led risk functions.`,
-      },
-      {
-        q: `Can you hire for both business and technology roles?`,
-        a: `Absolutely. We cover the full spectrum — from core banking engineers and data platform leads to risk officers, investment analysts, and CFOs.`,
-      },
-      {
-        q: `How do you handle confidential or sensitive mandates?`,
-        a: `All mandates are handled with strict confidentiality protocols. Candidate outreach is conducted discreetly, and role details are shared only with qualified, shortlisted candidates under NDA where required.`,
-      },
-      {
-        q: `What is your typical time-to-offer for BFSI roles?`,
-        a: `First shortlist within 36 hours of role confirmation. Most clients close within two to three weeks of receiving the shortlist — significantly faster than the four-to-six week average for BFSI roles in India.`,
-      },
-    ],
-    ctaHeadline: `Ready to hire for Banking & Financial Services?`,
-    ctaSubtext:
-      `Tell us the role. Three advisor-interviewed, AI-validated candidates in your inbox within 36 hours.`,
-  },
-  {
-    slug: `enterprise-technology`,
-    title: `Enterprise Technology`,
-    subtitle: `Engineering and product talent that ships — not just candidates who clear a screen.`,
-    badge: `Enterprise Technology`,
-    icon: `tabler:cpu`,
-    seoTitle: `Enterprise Technology Hiring — tribera`,
-    seoDescription: `AI-validated, advisor-interviewed enterprise technology candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `Enterprise technology companies face a paradox: the market is flooded with candidates, yet finding someone with genuine depth — the kind that compounds over time — is harder than ever. Tribera's AI eliminates noise at scale, validating GitHub activity, architecture judgement, and system design thinking before a single human hour is spent. Advisors with technology backgrounds conduct the shortlist interviews. The result is three candidates your engineering managers will actually want to talk to.`,
-    hiringChallenges: [
-      {
-        tag: `SIGNAL VALIDATION`,
-        title: `Resume embellishment at scale`,
-        desc: `Enterprise technology hiring is saturated with inflated profiles. Our AI cross-validates what candidates claim against what they have actually built — GitHub, Stack Overflow, project depth.`,
-        items: [`GitHub activity cross-checked`, `Stack Overflow contributions verified`, `Project depth validated`, `Claims matched to evidence`],
-      },
-      {
-        tag: `BANDWIDTH`,
-        title: `Technical screening consuming engineering bandwidth`,
-        desc: `Engineering managers are the most expensive people in the room to run interviews. Tribera absorbs the discovery and first-pass evaluation entirely.`,
-        items: [`Discovery handled end-to-end`, `First-pass evaluation absorbed`, `Engineering time protected`, `Only qualified profiles surface`],
-      },
-      {
-        tag: `CALIBRATION`,
-        title: `Seniority misalignment`,
-        desc: `A Staff Engineer at one company is a mid-level contributor at another. Our advisors calibrate against real scope of impact, not titles.`,
-        items: [`Scope of impact assessed`, `Title inflation discounted`, `Cross-company benchmarking`, `Real ownership verified`],
-      },
-      {
-        tag: `CULTURE FIT`,
-        title: `Attrition driven by wrong culture signals`,
-        desc: `Our behavioural scoring captures communication style, autonomy preference, and team integration likelihood — reducing 90-day attrition significantly.`,
-        items: [`Communication style scored`, `Autonomy preference mapped`, `Team integration modelled`, `90-day attrition reduced`],
-      },
-    ],
-    rolesWeHire: [
-      { title: `Software Engineering`, level: `Mid to Principal` },
-      { title: `Platform & Infrastructure`, level: `SRE to VP Infra` },
-      { title: `Product Management`, level: `PM to CPO` },
-      { title: `Data Engineering & ML`, level: `Engineer to Director` },
-      { title: `Engineering Management`, level: `EM to CTO` },
-      { title: `Solution Architecture`, level: `Architect to Chief Architect` },
-      { title: `QA & Reliability`, level: `SDET to Head of Quality` },
-      { title: `Security Engineering`, level: `AppSec to CISO` },
-    ],
-    whyTribera: [
-      {
-        title: `AI validates before advisors interview`,
-        desc: `Every candidate is screened across 100+ signals — technical depth, project validity, system design thinking — before a Tribera advisor spends a minute with them.`,
-      },
-      {
-        title: `Engineering advisors, not recruiters`,
-        desc: `Shortlist interviews are run by advisors who have shipped products and led engineering teams. They ask the questions your hiring managers would ask.`,
-      },
-      {
-        title: `Compounding intelligence`,
-        desc: `Every hire sharpens our model for your specific engineering culture. By hire five, we know your bar better than most internal TA teams.`,
-      },
-      {
-        title: `36-hour first shortlist`,
-        desc: `Role brief to three interview-ready candidates in 36 hours. No week-long sourcing cycles before you see a single name.`,
-      },
-    ],
-    faqs: [
-      {
-        q: `Can you hire for niche technology stacks?`,
-        a: `Yes. We have sourced for Rust, Go, Elixir, and proprietary enterprise stacks. Our AI searches beyond job boards — reaching passive talent on GitHub, open source projects, and specialised communities.`,
-      },
-      {
-        q: `How do you assess architecture and system design?`,
-        a: `Our technology advisors conduct scenario-based architecture discussions — real tradeoffs, not trivia. Candidates are scored on depth of reasoning, not correct answers.`,
-      },
-      {
-        q: `Do you work with startups or only large enterprises?`,
-        a: `Both. We calibrate the role brief and candidate bar to your specific context — a Series B startup and a 10,000-person enterprise need fundamentally different candidates for the same job title.`,
-      },
-      {
-        q: `What if the first shortlist doesn't result in a hire?`,
-        a: `Our 1:3 guarantee means we replace and continue until you hire. We treat a missed shortlist as our problem to fix, not a billing milestone.`,
-      },
-    ],
-    ctaHeadline: `Ready to hire engineering talent that ships?`,
-    ctaSubtext: `Three advisor-interviewed, AI-validated candidates in 36 hours.`,
-  },
-  {
-    slug: `product-saas`,
-    title: `Product & SaaS`,
-    subtitle: `Product thinkers. Not just product managers.`,
-    badge: `Product & SaaS`,
-    icon: `tabler:layout-kanban`,
-    seoTitle: `Product & SaaS Hiring — tribera`,
-    seoDescription: `AI-validated, advisor-interviewed product and SaaS candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `Hiring for product roles in a SaaS business is deceptively hard. Every candidate has the vocabulary. Very few have the judgment. Tribera advisors have built and shipped products — they can tell the difference between someone who attended roadmap reviews and someone who defined product strategy under real commercial pressure. Add AI validation of signal depth and a 1:3 selection guarantee, and you stop interviewing to discover — you start interviewing to decide.`,
-    hiringChallenges: [
-      {
-        tag: `JUDGMENT`,
-        title: `Product vocabulary ≠ product thinking`,
-        desc: `Every candidate talks about metrics, user research, and roadmap trade-offs. Our advisors probe for the judgment behind the language.`,
-        items: [`Metrics fluency probed`, `Roadmap reasoning tested`, `Trade-off judgment surfaced`, `Vocabulary vs substance separated`],
-      },
-      {
-        tag: `CUSTOMER BALANCE`,
-        title: `Customer-centricity that doesn't scale`,
-        desc: `SaaS businesses need PMs who can balance customer voice with business model constraints. Generic behavioural interviews don't surface this.`,
-        items: [`Customer voice weighed`, `Business constraints considered`, `Scenario-based scoring`, `Behavioural theatre avoided`],
-      },
-      {
-        tag: `TECHNICAL FLUENCY`,
-        title: `Engineering collaboration depth`,
-        desc: `The best SaaS PMs are technical enough to challenge architecture decisions without overstepping. Tribera assesses this specifically.`,
-        items: [`Architecture literacy checked`, `Engineering credibility tested`, `Collaboration style assessed`, `Overstep risk flagged`],
-      },
-      {
-        tag: `STAGE FIT`,
-        title: `Growth-stage vs scale-stage mismatch`,
-        desc: `A PM who excels in a scrappy Series A environment may fail in a structured Series C. We calibrate for your current operating context.`,
-        items: [`Operating context matched`, `Series A vs C calibrated`, `Structure tolerance assessed`, `Stage-specific scoring`],
-      },
-    ],
-    rolesWeHire: [
-      { title: `Product Management`, level: `APM to CPO` },
-      { title: `Growth & Monetisation`, level: `Growth PM to VP Growth` },
-      { title: `Platform Product`, level: `PM to Group PM` },
-      { title: `Product Analytics`, level: `Analyst to Director` },
-      { title: `Product Design`, level: `Designer to Head of Design` },
-      { title: `Customer Success`, level: `CSM to VP CS` },
-      { title: `Revenue Operations`, level: `Ops Lead to CRO` },
-      { title: `Technical Product`, level: `TPM to VP Engineering` },
-    ],
-    whyTribera: [
-      {
-        title: `Advisors who have shipped product`,
-        desc: `Product interviews at Tribera are run by advisors who have defined roadmaps, argued with engineering leads, and presented to boards. They know what good looks like.`,
-      },
-      {
-        title: `Scenario-based evaluation, not behavioural theatre`,
-        desc: `We give candidates real product problems from your context — not generic case studies. The response quality tells us everything.`,
-      },
-      {
-        title: `Signal beyond the resume`,
-        desc: `We validate product thinking through public writing, conference talks, community contributions, and advisory roles — not just previous employer brands.`,
-      },
-      {
-        title: `1:3 guarantee, no exceptions`,
-        desc: `Interview three Tribera candidates. Hire at least one. If not, we rebuild the shortlist and continue — at no additional cost.`,
-      },
-    ],
-    faqs: [
-      {
-        q: `Can you hire for B2B and B2C product roles?`,
-        a: `Yes. We calibrate the evaluation framework to the specific product context — B2B SaaS, consumer apps, developer tools, and marketplace products all require different judgment profiles.`,
-      },
-      {
-        q: `How do you assess strategic vs execution product managers?`,
-        a: `Our advisors probe specifically for this split during the interview — distinguishing candidates who define strategy from those who execute it. Most mandates require both, and we surface which dimension is stronger.`,
-      },
-      {
-        q: `Do you hire for design leadership as well?`,
-        a: `Yes. We hire product designers, UX leads, and design directors — with the same advisor-interview and AI-validation framework applied to design portfolio depth and system thinking.`,
-      },
-    ],
-    ctaHeadline: `Ready to hire product talent that ships?`,
-    ctaSubtext: `From role brief to three interview-ready candidates in 36 hours.`,
-  },
-  {
-    slug: `ai-data`,
-    title: `AI & Data`,
-    subtitle: `Signal over noise — for the people who build AI and data systems.`,
-    badge: `AI & Data`,
-    icon: `tabler:brain`,
-    seoTitle: `AI & Data Hiring — tribera`,
-    seoDescription: `AI-validated, advisor-interviewed AI and data candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `AI and data hiring is the most credentialing-inflated segment in the market. The proliferation of certifications, Kaggle rankings, and LLM wrapper projects makes it nearly impossible to distinguish genuine depth from well-presented surface knowledge. Tribera's AI validation cross-references research contributions, open source activity, and real production system experience before a single advisory interview begins. The result is a shortlist of three candidates who have actually built at the depth you require.`,
-    hiringChallenges: [
-      {
-        tag: `CREDENTIAL CHECK`,
-        title: `Credential inflation is severe`,
-        desc: `Everyone has a deep learning certification. Our AI validates production ML system experience, not course completions.`,
-        items: [`Production ML experience verified`, `Course completions discounted`, `Research contributions cross-checked`, `Real depth surfaced`],
-      },
-      {
-        tag: `RESEARCH VS APPLIED`,
-        title: `Research vs applied depth mismatch`,
-        desc: `Academic ML talent often struggles in applied engineering contexts. We assess for both dimensions and surface which profile your role actually requires.`,
-        items: [`Both dimensions assessed`, `Applied engineering tested`, `Academic depth verified`, `Profile fit surfaced`],
-      },
-      {
-        tag: `ARCHITECTURE JUDGMENT`,
-        title: `Rapidly evolving tooling landscape`,
-        desc: `Data stack choices made 18 months ago are already obsolete. Our advisors probe architectural judgment — the ability to choose tools wisely — not just familiarity with the current stack.`,
-        items: [`Tool-choice reasoning probed`, `Stack-agnostic evaluation`, `Adaptability assessed`, `Obsolescence risk avoided`],
-      },
-      {
-        tag: `GOVERNANCE`,
-        title: `Data quality and governance blindspots`,
-        desc: `Strong data engineers often have weak data governance instincts. We surface this explicitly in every shortlist evaluation.`,
-        items: [`Data quality instincts checked`, `Governance discipline probed`, `Blindspots surfaced explicitly`, `Compliance awareness verified`],
-      },
-    ],
-    rolesWeHire: [
-      { title: `Machine Learning Engineering`, level: `MLE to Principal MLE` },
-      { title: `AI Research & Applied Science`, level: `Researcher to Director` },
-      { title: `Data Engineering`, level: `DE to Principal DE` },
-      { title: `Data Science`, level: `DS to Head of Data Science` },
-      { title: `Analytics Engineering`, level: `AE to Analytics Lead` },
-      { title: `LLM / GenAI Engineering`, level: `Engineer to AI Platform Lead` },
-      { title: `Data Platform & Infrastructure`, level: `Platform Eng to VP Data` },
-      { title: `Head of AI / CDO`, level: `Director to C-Suite` },
-    ],
-    whyTribera: [
-      {
-        title: `Technical depth validation before advisory interviews`,
-        desc: `AI cross-validates open source contributions, research publications, GitHub activity, and production system evidence before any human time is committed.`,
-      },
-      {
-        title: `Applied AI advisors, not generalist interviewers`,
-        desc: `Shortlist interviews are run by advisors who have built ML systems in production, managed data platform migrations, and led AI teams at scale.`,
-      },
-      {
-        title: `Stack-agnostic evaluation framework`,
-        desc: `We assess fundamental ML and data engineering judgment — not familiarity with your current tooling. Strong candidates adapt. We find the ones who do.`,
-      },
-      {
-        title: `Speed to shortlist that matches a hot market`,
-        desc: `AI and data talent disappears fast. 36 hours from role brief to three vetted candidates keeps you competitive against offers already in flight.`,
-      },
-    ],
-    faqs: [
-      {
-        q: `Can you hire LLM and GenAI specialists specifically?`,
-        a: `Yes. We have advisors with direct LLM application development and fine-tuning experience. We distinguish candidates with genuine applied AI depth from those who have built GPT wrappers.`,
-      },
-      {
-        q: `How do you assess candidates at the researcher vs engineer boundary?`,
-        a: `We probe for both dimensions explicitly — research rigour (experimental design, statistical validity) and engineering discipline (system reliability, latency, cost) — and surface which is dominant.`,
-      },
-      {
-        q: `Do you cover data governance and platform engineering roles?`,
-        a: `Yes. Data governance, data quality, metadata management, and platform engineering are distinct competency profiles. We hire across all of them.`,
-      },
-    ],
-    ctaHeadline: `Ready to hire AI and data talent with real depth?`,
-    ctaSubtext: `Three advisor-interviewed, AI-validated candidates in 36 hours.`,
-  },
-  {
-    slug: `cybersecurity`,
-    title: `Cybersecurity`,
-    subtitle: `The people who protect what matters — validated before they reach your interview room.`,
-    badge: `Cybersecurity`,
-    icon: `tabler:shield-lock`,
-    seoTitle: `Cybersecurity Hiring — tribera`,
-    seoDescription: `AI-validated, advisor-interviewed cybersecurity candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `Security hiring has two failure modes: hiring someone with certifications but no operational depth, or running a process so slow that strong candidates accept elsewhere. Tribera eliminates both. Our AI validates real incident response experience, architecture depth, and threat modelling capability. Advisory interviews probe the decision-making that can't be certified. The shortlist you receive is three candidates who are genuinely ready — not three candidates who passed a keyword screen.`,
-    hiringChallenges: [
-      {
-        tag: `OPERATIONAL DEPTH`,
-        title: `Certification ≠ operational capability`,
-        desc: `CISSP, CISM, and CEH are table stakes. Tribera evaluates real incident response history, threat modelling depth, and architecture decision quality.`,
-        items: [`Incident response history checked`, `Threat modelling depth tested`, `Architecture decisions probed`, `Certifications treated as baseline`],
-      },
-      {
-        tag: `GRC VS TECHNICAL`,
-        title: `GRC vs technical security misalignment`,
-        desc: `Organisations frequently conflate governance, risk, and compliance roles with hands-on security engineering. We separate these sharply in every mandate.`,
-        items: [`Governance roles separated`, `Hands-on engineering verified`, `Mandate-specific calibration`, `Role clarity enforced`],
-      },
-      {
-        tag: `THREAT CONTEXT`,
-        title: `Security talent with no industry context`,
-        desc: `A BFSI security hire requires different depth than a SaaS AppSec hire. Our advisors evaluate candidates against your specific threat model and compliance landscape.`,
-        items: [`Sector-specific threat model`, `Compliance landscape matched`, `BFSI vs SaaS calibrated`, `Context-aware evaluation`],
-      },
-      {
-        tag: `DISCREET SOURCING`,
-        title: `Confidentiality requirements in sourcing`,
-        desc: `Security roles often cannot be publicly advertised. Tribera's passive-talent network and discreet outreach protocols are built for this.`,
-        items: [`Passive-talent network used`, `Outreach kept confidential`, `No public postings`, `Candidate identity protected`],
-      },
-    ],
-    rolesWeHire: [
-      { title: `Application Security`, level: `AppSec Engineer to Head of AppSec` },
-      { title: `SOC & Incident Response`, level: `Analyst to SOC Director` },
-      { title: `Cloud Security`, level: `Engineer to Cloud Security Lead` },
-      { title: `GRC & Compliance`, level: `Analyst to CISO` },
-      { title: `Penetration Testing`, level: `Pentester to Red Team Lead` },
-      { title: `Security Architecture`, level: `Architect to Chief Security Architect` },
-      { title: `DevSecOps`, level: `Engineer to VP Security Engineering` },
-      { title: `CISO & Security Leadership`, level: `Director to C-Suite` },
-    ],
-    whyTribera: [
-      {
-        title: `Security advisors with practitioner backgrounds`,
-        desc: `Shortlist interviews are conducted by advisors who have led SOC teams, architected zero-trust environments, and managed real incidents — not generalists with a security checklist.`,
-      },
-      {
-        title: `Discreet sourcing for sensitive mandates`,
-        desc: `Security leadership roles are often confidential. Our outreach is conducted through trusted passive-talent relationships, not public job postings.`,
-      },
-      {
-        title: `Threat-model calibration per engagement`,
-        desc: `We calibrate what "strong" looks like against your specific threat surface — regulated financial infrastructure, consumer data at scale, and SaaS API security each require different depth.`,
-      },
-      {
-        title: `1:3 guarantee with real accountability`,
-        desc: `Interview three candidates. Hire at least one. We stand behind the shortlist quality with a formal guarantee.`,
-      },
-    ],
-    faqs: [
-      {
-        q: `Can you hire for both technical and leadership security roles simultaneously?`,
-        a: `Yes. We run parallel tracks for IC security engineering roles and CISO-level leadership searches. The evaluation framework is distinct for each.`,
-      },
-      {
-        q: `How do you handle confidential searches for security leadership?`,
-        a: `We conduct all outreach through direct, discreet relationships — no job boards, no aggregators. Candidate identity is protected until both parties consent to share details.`,
-      },
-    ],
-    ctaHeadline: `Ready to build your security team?`,
-    ctaSubtext: `Three advisor-interviewed, AI-validated security candidates in 36 hours.`,
-  },
-  {
-    slug: `healthcare-life-sciences`,
-    title: `Healthcare & Life Sciences`,
-    subtitle: `Talent that understands the stakes — clinical, regulatory, and commercial.`,
-    badge: `Healthcare & Life Sciences`,
-    icon: `tabler:heart-rate-monitor`,
-    seoTitle: `Healthcare & Life Sciences Hiring — tribera`,
-    seoDescription: `AI-validated, advisor-interviewed healthcare and life sciences candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `Healthcare and life sciences hiring sits at the intersection of deep scientific knowledge, regulatory complexity, and commercial pressure. Finding candidates who hold all three is rare — and verifying them through a traditional hiring process is slow and unreliable. Tribera advisors have operated inside pharma, MedTech, diagnostics, and digital health businesses. They run interviews that probe regulatory awareness, clinical domain understanding, and commercial acuity simultaneously — delivering shortlists that would take internal teams weeks to assemble.`,
-    hiringChallenges: [
-      {
-        tag: `REGULATORY DEPTH`,
-        title: `Regulatory literacy is non-negotiable`,
-        desc: `From CDSCO to FDA and ISO 13485, the regulatory landscape varies by product category and geography. Our advisors probe for real familiarity — not just label awareness.`,
-        items: [`CDSCO and FDA probed`, `ISO 13485 familiarity checked`, `Geography-specific calibration`, `Label awareness rejected`],
-      },
-      {
-        tag: `SCIENCE + COMMERCE`,
-        title: `Scientific depth vs commercial translation`,
-        desc: `The strongest healthcare hires combine domain credibility with commercial instinct. We surface both dimensions explicitly in every shortlist.`,
-        items: [`Domain credibility verified`, `Commercial instinct tested`, `Both dimensions scored`, `KOL-ready fluency checked`],
-      },
-      {
-        tag: `SPEED`,
-        title: `Long validation cycles creating offer risk`,
-        desc: `Healthcare leadership candidates often require extended due diligence. Tribera's process compresses discovery without compromising depth.`,
-        items: [`Discovery cycle compressed`, `Depth not compromised`, `36-hour shortlist`, `Offer risk reduced`],
-      },
-      {
-        tag: `DIGITAL HEALTH`,
-        title: `Digital health talent straddling two worlds`,
-        desc: `Digital health roles require candidates who are literate in both clinical workflow and technology architecture. Generic interviews miss this intersection entirely.`,
-        items: [`Clinical workflow literacy`, `Technology architecture fluency`, `Intersection assessed directly`, `Generic screens bypassed`],
-      },
-    ],
-    rolesWeHire: [
-      { title: `Medical Affairs & Clinical`, level: `MSL to CMO` },
-      { title: `Regulatory Affairs`, level: `RA Specialist to VP RA` },
-      { title: `R&D & Scientific Leadership`, level: `Scientist to CSO` },
-      { title: `Commercial & Market Access`, level: `Manager to CCO` },
-      { title: `Quality & Compliance`, level: `QA Lead to VP Quality` },
-      { title: `Digital Health & Health Tech`, level: `PM to CTO` },
-      { title: `Supply Chain & Manufacturing`, level: `Lead to COO` },
-      { title: `Pharmacovigilance`, level: `PV Analyst to Global Head` },
-    ],
-    whyTribera: [
-      {
-        title: `Domain advisors with healthcare backgrounds`,
-        desc: `Every shortlist interview for a healthcare or life sciences role is run by an advisor who has held clinical, regulatory, or commercial roles in the sector.`,
-      },
-      {
-        title: `Regulatory landscape calibration`,
-        desc: `We map candidate knowledge to your specific regulatory context — Indian CDSCO requirements, international ISO certifications, or FDA submissions — and score accordingly.`,
-      },
-      {
-        title: `Passive talent access in a small world`,
-        desc: `Senior healthcare talent rarely responds to job boards. Tribera's direct relationships and trusted network access the candidates who are not actively looking.`,
-      },
-      {
-        title: `1:3 guarantee with replacement commitment`,
-        desc: `If three interviews don't produce a hire, we replace and continue — at no additional cost — until you close the role.`,
-      },
-    ],
-    faqs: [
-      {
-        q: `Do you hire for both MedTech and pharmaceutical mandates?`,
-        a: `Yes. These require distinct competency profiles — device development vs drug development, CE marking vs CDSCO submissions — and we calibrate our advisory interviews accordingly.`,
-      },
-      {
-        q: `Can you hire clinical and non-clinical roles in parallel?`,
-        a: `Yes. We run parallel tracks with distinct advisor teams for clinical functions (medical affairs, clinical operations, PV) and non-clinical functions (commercial, supply chain, digital health technology).`,
-      },
-    ],
-    ctaHeadline: `Ready to hire for Healthcare & Life Sciences?`,
-    ctaSubtext: `Three advisor-interviewed, AI-validated candidates in 36 hours.`,
-  },
-  {
-    slug: `pharmaceutical`,
-    title: `Pharmaceutical`,
-    subtitle: `Precision hiring for an industry where accuracy is everything.`,
-    badge: `Pharmaceutical`,
-    icon: `tabler:pill`,
-    seoTitle: `Pharmaceutical Hiring — tribera`,
-    seoDescription: `AI-validated, advisor-interviewed pharmaceutical candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `Pharmaceutical companies are expanding R&D pipelines, scaling manufacturing operations, and building commercial capabilities simultaneously. Each track demands a different depth of expertise — and a hiring process that can accurately distinguish it. Tribera advisors have pharma-specific domain experience. They probe for the regulatory depth, scientific rigour, and commercial judgement that separates a truly strong pharma hire from a credentialed generalist.`,
-    hiringChallenges: [
-      {
-        tag: `GMP DEPTH`,
-        title: `GMP and regulatory compliance depth is hard to verify`,
-        desc: `Manufacturing and quality candidates often list GMP compliance experience. Our advisors probe for real process understanding — deviation management, CAPA design, audit experience.`,
-        items: [`Deviation management probed`, `CAPA design tested`, `Audit experience verified`, `Process understanding checked`],
-      },
-      {
-        tag: `LIFECYCLE FIT`,
-        title: `Drug development lifecycle knowledge varies enormously`,
-        desc: `A Phase 1 trial manager and a Phase 3 NDA submission specialist are different roles requiring very different experience. We calibrate the brief and the evaluation to your exact lifecycle stage.`,
-        items: [`Phase-specific calibration`, `Trial-stage experience matched`, `Brief tailored to pipeline`, `Lifecycle mismatch avoided`],
-      },
-      {
-        tag: `SCIENTIFIC FLUENCY`,
-        title: `Commercial teams without scientific fluency`,
-        desc: `The strongest pharma commercial hires can walk the science conversation with KOLs. Our advisors assess scientific literacy even for commercial mandates.`,
-        items: [`KOL conversation readiness`, `Science literacy assessed`, `Commercial mandates included`, `Fluency tested directly`],
-      },
-      {
-        tag: `MARKET MAPPING`,
-        title: `Cross-market regulatory experience is rare`,
-        desc: `A candidate with deep FDA submission experience may lack EMA or emerging-market exposure. We map regulatory experience to your specific market footprint.`,
-        items: [`FDA vs EMA mapped`, `Emerging-market exposure checked`, `Footprint-specific calibration`, `Regulatory gaps surfaced`],
-      },
-    ],
-    rolesWeHire: [
-      { title: `Regulatory Affairs`, level: `RA Executive to Global Head` },
-      { title: `Clinical Development`, level: `CRA to VP Clinical` },
-      { title: `Medical Affairs & MSL`, level: `MSL to CMO` },
-      { title: `R&D & Drug Discovery`, level: `Scientist to CSO` },
-      { title: `Quality Assurance & QC`, level: `QA Lead to VP Quality` },
-      { title: `Manufacturing & Operations`, level: `Production Lead to COO` },
-      { title: `Commercial & Sales`, level: `Territory Manager to CCO` },
-      { title: `Pharmacovigilance`, level: `Drug Safety Analyst to Global Head PV` },
-    ],
-    whyTribera: [
-      {
-        title: `Pharma advisors with industry tenure`,
-        desc: `Interviews are conducted by advisors who have held regulatory, clinical, commercial, or manufacturing roles inside pharmaceutical organisations.`,
-      },
-      {
-        title: `Lifecycle-calibrated evaluation`,
-        desc: `We tailor the interview framework to your exact pipeline stage — early discovery, clinical development, regulatory submission, or post-market surveillance.`,
-      },
-      {
-        title: `36-hour shortlist speed`,
-        desc: `From brief to three hire-ready candidates in 36 hours. Designed for mandates where pipeline delays compound into commercial loss.`,
-      },
-      {
-        title: `1:3 hiring guarantee`,
-        desc: `Interview three candidates and expect to make at least one offer. We stand behind the shortlist with a formal replacement commitment.`,
-      },
-    ],
-    faqs: [
-      {
-        q: `Do you cover both innovator and generic pharma?`,
-        a: `Yes. Innovator companies require different depth profiles to generics — particularly in regulatory strategy and clinical development. We calibrate our advisory framework to your specific business model.`,
-      },
-      {
-        q: `Can you source globally or only in India?`,
-        a: `We source primarily across India and the Indian diaspora network internationally. For global mandates in regulated markets, we coordinate with trusted regional partners.`,
-      },
-    ],
-    ctaHeadline: `Ready to hire for Pharmaceutical?`,
-    ctaSubtext: `Three advisor-interviewed, AI-validated candidates in 36 hours.`,
-  },
-  {
-    slug: `manufacturing`,
-    title: `Manufacturing`,
-    subtitle: `Operations, engineering, and quality leaders who run plants — not just describe them.`,
-    badge: `Manufacturing`,
-    icon: `tabler:settings-2`,
-    seoTitle: `Manufacturing Hiring — tribera`,
-    seoDescription: `AI-validated, advisor-interviewed manufacturing candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `Manufacturing hiring has a credibility problem. Plant experience is easy to claim and hard to verify in a standard interview. Tribera advisors have run manufacturing operations, led quality teams, and owned production P&Ls. They ask the questions that separate genuine operational depth from well-rehearsed answers — and the AI validation layer cross-references industry certifications, project scale, and productivity outcomes before any advisory time is committed.`,
-    hiringChallenges: [
-      {
-        tag: `TITLE CALIBRATION`,
-        title: `Operational depth vs title inflation`,
-        desc: `Plant Manager and General Manager titles vary enormously in scope. We calibrate every candidate against real headcount, throughput, and P&L accountability.`,
-        items: [`Headcount scope verified`, `Throughput accountability checked`, `P&L ownership confirmed`, `Title inflation discounted`],
-      },
-      {
-        tag: `SYSTEMS DEPTH`,
-        title: `Process knowledge without manufacturing systems depth`,
-        desc: `Strong candidates understand both the physical process and the ERP and MES systems that run it. We assess both layers.`,
-        items: [`ERP fluency assessed`, `MES literacy checked`, `Physical process understood`, `Both layers evaluated`],
-      },
-      {
-        tag: `TRANSFORMATION PROOF`,
-        title: `Lean and Six Sigma credentials without implementation evidence`,
-        desc: `Certifications are common. Real transformation evidence is rare. Our advisors probe for actual DMAIC projects, cost-saving outcomes, and sustained OEE improvement.`,
-        items: [`DMAIC projects verified`, `Cost-saving outcomes checked`, `OEE improvement confirmed`, `Certifications treated as baseline`],
-      },
-      {
-        tag: `SAFETY CULTURE`,
-        title: `Safety culture fit`,
-        desc: `EHS mindset and safety-first leadership are non-negotiable in manufacturing. We assess for this specifically — it doesn't surface in a standard competency interview.`,
-        items: [`EHS mindset assessed`, `Safety-first leadership probed`, `Non-negotiable scoring`, `Surfaced beyond competency interview`],
-      },
-    ],
-    rolesWeHire: [
-      { title: `Plant & Operations Management`, level: `Plant Head to COO` },
-      { title: `Quality Assurance & QC`, level: `QC Engineer to VP Quality` },
-      { title: `Supply Chain & Procurement`, level: `Buyer to Chief Supply Chain Officer` },
-      { title: `Manufacturing Engineering`, level: `Process Engineer to Director` },
-      { title: `EHS & Safety`, level: `Safety Officer to Head of EHS` },
-      { title: `Maintenance & Reliability`, level: `Maintenance Lead to VP Asset Management` },
-      { title: `Production Planning & Control`, level: `Planner to Head of PPC` },
-      { title: `Technology & Automation`, level: `Automation Engineer to CTO` },
-    ],
-    whyTribera: [
-      {
-        title: `Manufacturing practitioners as advisors`,
-        desc: `Advisory interviews are run by people who have managed plant operations, led Lean transformations, and owned manufacturing P&Ls — not generalist interviewers.`,
-      },
-      {
-        title: `Outcome-based evaluation`,
-        desc: `We probe for specific outcomes — OEE improvement percentages, scrap reduction achievements, downtime statistics — not just process familiarity.`,
-      },
-      {
-        title: `Plant-context calibration`,
-        desc: `Discrete, process, automotive, FMCG, and pharmaceutical manufacturing each require different competency profiles. We tailor the brief accordingly.`,
-      },
-      {
-        title: `1:3 guarantee with real accountability`,
-        desc: `Three candidates. At least one hire. We rebuild and continue until you close — at no additional cost.`,
-      },
-    ],
-    faqs: [
-      {
-        q: `Do you hire for Industry 4.0 and smart manufacturing roles?`,
-        a: `Yes. Digital manufacturing, IIoT implementation, MES integration, and automation engineering are distinct roles we hire for regularly, with advisors who hold both manufacturing and technology depth.`,
-      },
-      {
-        q: `Can you source talent for remote or tier-2 plant locations?`,
-        a: `Yes. Our network includes manufacturing professionals who have operated in tier-2 and tier-3 locations across India. Relocation willingness and location-specific experience are factored into the brief.`,
-      },
-    ],
-    ctaHeadline: `Ready to hire for Manufacturing?`,
-    ctaSubtext: `Three advisor-interviewed, AI-validated candidates in 36 hours.`,
-  },
-  {
-    slug: `industrial-engineering`,
-    title: `Industrial & Engineering`,
-    subtitle: `Technical depth for the projects that build the physical world.`,
-    badge: `Industrial & Engineering`,
-    icon: `tabler:tool`,
-    seoTitle: `Industrial & Engineering Hiring — tribera`,
-    seoDescription: `AI-validated, advisor-interviewed industrial and engineering candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `Industrial and engineering projects demand candidates who combine deep technical knowledge with the ability to deliver under real constraints — budget, timeline, regulation, and physics. Tribera advisors have managed large engineering projects, led multi-discipline teams, and navigated client delivery environments. They probe for the depth of experience that portfolio documents and certifications cannot convey — and the AI layer validates project scale, technical scope, and delivery outcomes before the first advisory conversation begins.`,
-    hiringChallenges: [
-      {
-        tag: `SCALE VERIFICATION`,
-        title: `Project scale misrepresentation`,
-        desc: `Engineering candidates routinely inflate project scope and leadership contribution. Our AI cross-references employer data, project timelines, and team sizes before advisory interviews.`,
-        items: [`Employer data cross-checked`, `Project timelines validated`, `Team size confirmed`, `Scope inflation flagged`],
-      },
-      {
-        tag: `MULTI-DISCIPLINE`,
-        title: `Multi-discipline coordination experience`,
-        desc: `Senior engineering roles require coordination across civil, mechanical, electrical, and instrumentation disciplines. We assess for this explicitly.`,
-        items: [`Civil and mechanical checked`, `Electrical coordination assessed`, `Instrumentation fluency tested`, `Cross-team leadership verified`],
-      },
-      {
-        tag: `DELIVERY DEPTH`,
-        title: `Client-facing delivery depth`,
-        desc: `Engineering services candidates need commercial awareness alongside technical competence. Our advisors probe for both.`,
-        items: [`Commercial awareness tested`, `Technical competence checked`, `Client-facing scenarios probed`, `Both dimensions scored`],
-      },
-      {
-        tag: `NICHE CALIBRATION`,
-        title: `Niche domain expertise is hard to benchmark`,
-        desc: `From structural steel detailing to HV substation design, niche engineering domains lack standard skill taxonomies. Our advisors calibrate against your actual project requirements.`,
-        items: [`Project-specific benchmarking`, `Standard taxonomies bypassed`, `Actual requirements matched`, `Domain depth verified`],
-      },
-    ],
-    rolesWeHire: [
-      { title: `Project & Programme Management`, level: `PM to Head of Projects` },
-      { title: `Civil & Structural Engineering`, level: `Engineer to Principal` },
-      { title: `Mechanical Engineering`, level: `Design Engineer to Chief Engineer` },
-      { title: `Electrical & Instrumentation`, level: `E&I Engineer to Director` },
-      { title: `HSE Leadership`, level: `Safety Lead to Group HSE Head` },
-      { title: `Procurement & Contracts`, level: `Contracts Manager to VP Procurement` },
-      { title: `Operations & Maintenance`, level: `O&M Lead to VP Operations` },
-      { title: `Consulting & Advisory`, level: `Senior Consultant to Partner` },
-    ],
-    whyTribera: [
-      {
-        title: `Engineering practitioners as interviewers`,
-        desc: `Advisory interviews are conducted by people who have managed multimillion-dollar projects and led large engineering teams — not generalist recruiters reading from a competency framework.`,
-      },
-      {
-        title: `Delivery-outcome calibration`,
-        desc: `We ask for specific delivery outcomes — commissioning milestones hit, cost variance managed, change order volume controlled. Generalities don't pass our interview.`,
-      },
-      {
-        title: `36-hour shortlists for project-critical mandates`,
-        desc: `Engineering projects don't wait. From role brief to three vetted candidates in 36 hours.`,
-      },
-      {
-        title: `1:3 selection guarantee`,
-        desc: `Interview three. Hire one. We rebuild and continue until you do.`,
-      },
-    ],
-    faqs: [
-      {
-        q: `Do you hire for EPC project roles specifically?`,
-        a: `Yes. EPC project delivery — including project controls, commissioning, procurement, and multi-discipline engineering leadership — is a core hiring area for us.`,
-      },
-    ],
-    ctaHeadline: `Ready to hire for Industrial & Engineering?`,
-    ctaSubtext: `Three advisor-interviewed, AI-validated candidates in 36 hours.`,
-  },
-  {
-    slug: `global-capability-centers`,
-    title: `Global Capability Centers`,
-    subtitle: `Built for GCCs scaling in India — where speed, calibre, and cultural alignment all matter.`,
-    badge: `GCC`,
-    icon: `tabler:building-skyscraper`,
-    seoTitle: `Global Capability Centers Hiring — tribera`,
-    seoDescription: `AI-validated, advisor-interviewed global capability center candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `India's GCC ecosystem is scaling at a pace that most hiring models can't keep up with. Tribera was built partly in response to this reality. Our advisory team includes people who have led GCC capability builds — they understand the matrix reporting structures, the parent-company calibration requirements, and the cultural alignment nuance that separates a hire who thrives in a GCC from one who churns within six months. The result is a shortlist designed not just for the role, but for the specific GCC context.`,
-    hiringChallenges: [
-      {
-        tag: `MATRIX FLUENCY`,
-        title: `Matrix structure alignment is invisible in interviews`,
-        desc: `GCC roles require candidates who can navigate parent-company relationships, dotted-line accountability, and global stakeholder management. Standard interviews don't surface this.`,
-        items: [`Parent-company navigation checked`, `Dotted-line accountability probed`, `Global stakeholder management tested`, `Standard interviews bypassed`],
-      },
-      {
-        tag: `GLOBAL CALIBRATION`,
-        title: `Calibration with global standards in an Indian market`,
-        desc: `Parent companies often have specific benchmarks from their home markets. Tribera helps bridge the calibration gap — translating global role expectations into India-market realities.`,
-        items: [`Home-market benchmarks mapped`, `India-market realities bridged`, `Expectation translation applied`, `Gap-specific scoring`],
-      },
-      {
-        tag: `BUILD CAPABILITY`,
-        title: `Centre of Excellence build-out capability`,
-        desc: `Many GCC mandates require people who can build a function from scratch — not just run an established team. We assess for this explicitly.`,
-        items: [`Zero-to-one capability checked`, `Function build-out assessed`, `Not just team running`, `Explicit evaluation applied`],
-      },
-      {
-        tag: `RETENTION RISK`,
-        title: `Retention in a competitive Bengaluru / Hyderabad / Pune market`,
-        desc: `GCC talent in India's tech hubs is aggressively courted. Our 12-month retention scoring and joining-probability modelling reduce the risk of a hire who accepts and reverses.`,
-        items: [`Joining-probability modelled`, `12-month retention scored`, `Competitive-market risk flagged`, `Reversal risk reduced`],
-      },
-    ],
-    rolesWeHire: [
-      { title: `Engineering & Technology Leadership`, level: `Tech Lead to VP Engineering` },
-      { title: `COE & Capability Build Leadership`, level: `Centre Head to Managing Director` },
-      { title: `Data & Analytics`, level: `Engineer to Head of Data` },
-      { title: `Finance & FP&A`, level: `Analyst to CFO India` },
-      { title: `Operations & Shared Services`, level: `Lead to COO` },
-      { title: `HR & Talent`, level: `HRBP to Chief People Officer India` },
-      { title: `Legal & Compliance`, level: `Counsel to General Counsel India` },
-      { title: `Product & Programme Management`, level: `PM to Group PM` },
-    ],
-    whyTribera: [
-      {
-        title: `GCC-specific advisory context`,
-        desc: `Interviews are conducted by advisors who have built and led GCC teams — they understand the nuances of parent-company calibration, Indian market dynamics, and retention risk.`,
-      },
-      {
-        title: `Retention scoring built into every shortlist`,
-        desc: `Our AI models joining probability and 12-month retention likelihood — specifically calibrated for GCC employment contexts in India's competitive tech talent markets.`,
-      },
-      {
-        title: `Speed at GCC scale`,
-        desc: `GCCs hire in volume. Tribera's 36-hour shortlist model is designed to run in parallel across multiple simultaneous mandates without quality degradation.`,
-      },
-      {
-        title: `1:3 guarantee across every mandate`,
-        desc: `The guarantee applies to every role — regardless of seniority, function, or volume. Interview three, hire one, or we continue at no additional cost.`,
-      },
-    ],
-    faqs: [
-      {
-        q: `Do you work with first-time GCC setups or only established ones?`,
-        a: `Both. For first-time setups, we focus on foundational leadership hires — people who can build culture, establish processes, and translate parent-company expectations into Indian market reality. For established GCCs, we focus on scale and specialisation.`,
-      },
-      {
-        q: `Can you hire across Bengaluru, Hyderabad, Pune, and Chennai simultaneously?`,
-        a: `Yes. We have active talent networks and advisory presence across all four major GCC hubs. Multi-city parallel hiring is a core capability.`,
-      },
-      {
-        q: `Do you have experience with US, European, and APAC parent companies?`,
-        a: `Yes. We regularly calibrate GCC mandates against US, UK, European, Australian, and Singapore parent-company standards. The cultural translation and calibration work is part of every engagement.`,
-      },
-    ],
-    ctaHeadline: `Ready to scale your GCC?`,
-    ctaSubtext: `Three advisor-interviewed, AI-validated candidates in 36 hours — built for GCC speed.`,
-  },
-  {
-    slug: `consumer-digital-commerce`,
-    title: `Consumer & Digital Commerce`,
-    subtitle: `For businesses where speed, taste, and commercial instinct all have to coexist.`,
-    badge: `Consumer & Digital Commerce`,
-    icon: `tabler:shopping-bag`,
-    seoTitle: `Consumer & Digital Commerce Hiring — tribera`,
-    seoDescription: `AI-validated, advisor-interviewed consumer and digital commerce candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    advisorLabel: `Consumer-Sector Advisor Interviews`,
-    overview:
-      `Consumer businesses move fast, run under margin pressure, and need people who hold brand instinct and data fluency at once. Each of the four below is assessed explicitly in the advisor interview and scored independently of the resume.`,
-    hiringChallenges: [
-      {
-        tag: `THE BLEND`,
-        title: `Brand instinct meets data rigour`,
-        desc: `The strongest consumer hires hold both. Our advisors probe the intersection directly — can this person read a trend, then check it against the numbers without flinching when the numbers disagree.`,
-        items: [`Commercial acumen scored explicitly`, `P&L fluency validated in interview`, `Trend reading tested with scenarios`, `Data-override judgment probed`],
-      },
-      {
-        tag: `OMNICHANNEL`,
-        title: `Multi-channel operating depth`,
-        desc: `D2C, marketplaces and physical retail run at once, on different clocks. We assess multi-channel experience rather than inferring it from a job title.`,
-        items: [`Marketplace vs D2C experience split`, `Quick commerce tempo assessed`, `Retail operations depth verified`, `Channel P&L ownership confirmed`],
-      },
-      {
-        tag: `CATEGORY`,
-        title: `Category-specific judgment`,
-        desc: `Category leadership needs commercial acumen and consumer insight together. A standard product or commercial screen misses the category judgment entirely.`,
-        items: [`Category economics understanding`, `Assortment and margin reasoning`, `Consumer insight application`, `Competitive response thinking`],
-      },
-      {
-        tag: `SCALE STAGE`,
-        title: `Startup-to-scale transition`,
-        desc: `Scaling businesses need people who can build systems without losing customer empathy. We calibrate for the transition itself, not for experience at either end.`,
-        items: [`Systems-building evidence`, `Customer empathy at scale`, `Team-building track record`, `Ambiguity tolerance scored`],
-      },
-    ],
-    rolesWeHire: [
-      { title: `Category Management`, level: `Category Lead to CMO` },
-      { title: `Digital & Performance Marketing`, level: `Manager to VP Growth` },
-      { title: `Brand Management`, level: `Brand Manager to Chief Brand Officer` },
-      { title: `E-commerce & D2C Operations`, level: `Lead to Head of D2C` },
-      { title: `Supply Chain & Logistics`, level: `Lead to Chief Supply Chain Officer` },
-      { title: `Customer Experience`, level: `CX Lead to VP Customer` },
-      { title: `Retail Operations`, level: `Area Manager to Head of Retail` },
-      { title: `Commercial & Sales`, level: `Key Account Lead to CCO` },
-    ],
-    whyTribera: [
-      {
-        title: `Consumer advisors with brand and commercial experience`,
-        desc: `Advisory interviews are run by people who have managed P&Ls, led brand teams, and built growth functions in consumer and D2C businesses.`,
-      },
-      {
-        title: `Data-brand balance assessment`,
-        desc: `We probe explicitly for the combination of commercial instinct and data literacy that defines the best consumer talent.`,
-      },
-      {
-        title: `Passive talent access in a relationship-driven market`,
-        desc: `The best consumer talent rarely applies to jobs. Tribera's direct relationships and trusted network reach candidates who are not in the active market.`,
-      },
-      {
-        title: `1:3 guarantee, full stop`,
-        desc: `Three candidates. At least one hire. We rebuild and continue until you close.`,
-      },
-    ],
-    faqs: [
-      {
-        q: `Do you hire for traditional retail and D2C simultaneously?`,
-        a: `Yes. These require distinct candidate profiles — traditional retail rewards category management depth and distributor relationship skills; D2C rewards growth marketing fluency and digital operations agility. We calibrate separately.`,
-      },
-      {
-        q: `Can you hire for quick commerce and marketplace-first businesses?`,
-        a: `Yes. Quick commerce, marketplace-led D2C, and hybrid omnichannel models all have distinct operational needs. We have advisors who have operated across each.`,
-      },
-    ],
-    ctaHeadline: `Ready to hire for Consumer & Digital Commerce?`,
-    ctaSubtext: `Three advisor-interviewed, AI-validated candidates in 36 hours.`,
-  },
-  {
-    slug: `private-equity-portfolio`,
-    title: `Private Equity Portfolio Companies`,
-    subtitle: `Value creation timelines are real. Your hiring process needs to be faster than they are.`,
-    badge: `Private Equity`,
-    icon: `tabler:chart-line`,
-    seoTitle: `Private Equity Portfolio Companies Hiring — tribera`,
-    seoDescription: `AI-validated, advisor-interviewed private equity portfolio candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `PE-backed companies have a different hiring calculus. Every key hire either accelerates or compresses the value creation timeline. Mistakes are expensive not just in salary cost but in board credibility, team momentum, and exit readiness. Tribera advisors understand how PE-portfolio businesses operate — the governance structures, the 100-day plan pressure, the performance accountability that comes with institutional ownership. Every shortlist is calibrated not just for role fit but for the specific PE context the candidate will be walking into.`,
-    hiringChallenges: [
-      {
-        tag: `PE CONTEXT`,
-        title: `PE-context literacy is non-negotiable`,
-        desc: `Candidates need to understand board accountability, investor reporting, and value creation pressure from day one. Our advisors assess PE-context readiness specifically.`,
-        items: [`Board accountability checked`, `Investor reporting fluency`, `Value-creation pressure tested`, `Day-one readiness verified`],
-      },
-      {
-        tag: `SPEED`,
-        title: `Speed of mandate is driven by value creation milestones`,
-        desc: `A 100-day plan doesn't wait for a 12-week search. Tribera's 36-hour shortlist is built for PE-timeline urgency.`,
-        items: [`100-day plan alignment`, `36-hour shortlist built`, `No 12-week search wait`, `Milestone-driven urgency`],
-      },
-      {
-        tag: `TEAM CHEMISTRY`,
-        title: `Leadership team chemistry at transformation speed`,
-        desc: `PE portfolio hires often join leadership teams mid-transformation. Cultural and interpersonal alignment is as important as functional competence.`,
-        items: [`Cultural alignment assessed`, `Interpersonal fit probed`, `Mid-transformation readiness`, `Functional competence matched`],
-      },
-      {
-        tag: `EXIT READINESS`,
-        title: `Exit-readiness calibration`,
-        desc: `Candidates need the ability to build processes that will hold up to due diligence — not just run operations today. We probe for this forward-looking capability.`,
-        items: [`Due-diligence-ready processes`, `Forward-looking capability probed`, `Not just current operations`, `Build-to-hold-up tested`],
-      },
-    ],
-    rolesWeHire: [
-      { title: `CEO & MD`, level: `Turnaround to Scale leadership` },
-      { title: `CFO & Finance Leadership`, level: `Controller to CFO` },
-      { title: `COO & Operations Leadership`, level: `VP Ops to COO` },
-      { title: `CTO & Technology Leadership`, level: `VP Tech to CTO` },
-      { title: `Commercial & Revenue Leadership`, level: `VP Sales to CRO / CCO` },
-      { title: `Human Resources Leadership`, level: `CHRO to Chief People Officer` },
-      { title: `Strategy & M&A`, level: `Strategy Lead to Chief Strategy Officer` },
-      { title: `Transformation & PMO`, level: `Programme Director to COO` },
-    ],
-    whyTribera: [
-      {
-        title: `Advisors with PE and portfolio company experience`,
-        desc: `Interviews are conducted by advisors who have held C-suite and senior leadership roles inside PE-backed businesses. They understand the context the candidate is walking into.`,
-      },
-      {
-        title: `Value creation calibration at every level`,
-        desc: `We brief every advisory interview around the specific value creation thesis of the portfolio — not a generic role description. Candidates are assessed against the actual transformation agenda.`,
-      },
-      {
-        title: `Speed that respects PE timelines`,
-        desc: `36-hour first shortlist. Designed for investment theses that don't have room for a twelve-week executive search.`,
-      },
-      {
-        title: `1:3 guarantee with C-suite accountability`,
-        desc: `The guarantee applies to senior leadership mandates too. Interview three, hire one — or we rebuild and continue.`,
-      },
-    ],
-    faqs: [
-      {
-        q: `Do you work directly with the PE fund or with the portfolio company?`,
-        a: `Both structures work. We onboard mandates through either the fund's talent team or the portfolio company's leadership — typically whoever is driving the hiring process on the ground.`,
-      },
-      {
-        q: `How do you manage confidentiality for CEO and CFO searches?`,
-        a: `All senior leadership searches are conducted under strict NDA. Candidate identity and role context are protected through every stage of the process.`,
-      },
-      {
-        q: `Can you work across multiple portfolio companies simultaneously?`,
-        a: `Yes. We structure multi-portfolio engagements with dedicated advisory teams per company to avoid conflict and maintain quality across each mandate.`,
-      },
-    ],
-    ctaHeadline: `Ready to hire for your portfolio company?`,
-    ctaSubtext: `Three advisor-interviewed, AI-validated candidates in 36 hours — built for PE timelines.`,
-  },
-];
-
-export const findIndustryBySlug = (slug: string): Industry | undefined =>
-  industries.find((i) => i.slug === slug);
-
-export const getStaticPathsIndustries = () =>
-  industries.map((industry) => ({
-    params: { slug: industry.slug },
-    props: { industry },
-  }));

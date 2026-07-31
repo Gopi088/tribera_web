@@ -1,19 +1,56 @@
 ---
-import Logo from '~/components/Logo.astro';
+const year = new Date().getFullYear();
 ---
 
-<footer class="reference-footer">
-  <div class="reference-footer__inner">
-    <div class="reference-footer__top">
-      <div class="reference-footer__brand"><a href="/" aria-label="Tribera home"><Logo variant="footer" /></a><p><strong>AI reads the signal. Senior experts add the judgment. You make the call.</strong> The bar is yours, and every candidate is held to the same one.</p><span>Tribe + Era</span><small><em>Belong</em> · Build · Become</small><div><a href="https://linkedin.com/company/triberaai">LinkedIn</a><a href="mailto:hello@tribera.ai">hello@tribera.ai</a></div></div>
-      <nav><b>For hiring teams</b><a href="/#how-it-works">How it works</a><a href="/#the-bar">The bar</a><a href="/#guarantee">The guarantee</a><a href="/industries">Industries</a><a href="/functions">Functions</a></nav>
-      <nav><b>For candidates</b><a href="/candidates">Create your profile</a><a href="/candidates">How it works</a><a href="/roles">Open roles</a><a href="/candidates#privacy">Privacy controls</a></nav>
-      <nav><b>Company</b><a href="/about">About</a><a href="/blog">Blog</a><a href="/careers">Careers</a><a href="/contact">Contact</a><a href="https://app.tribera.ai/auth/login">Log in</a></nav>
-      <nav><b>Legal</b><a href="/security">Security</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a><a href="/contact">Data processing</a></nav>
-    </div><div class="reference-footer__bar"><span>© {new Date().getFullYear()} Tribera · Eragina Digital Solutions Private Limited</span><span>Bengaluru</span></div>
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft__top">
+      <div class="ft__brand">
+        <a class="logo" href="#top" style="font-size:22px">tribera<i>.</i></a>
+        <p class="ft__line"><b>AI reads the signal. Senior experts add the judgment. You make the call.</b> The bar is yours, and every candidate is held to the same one.</p>
+        <p class="ft__tribe">Tribe + Era</p>
+        <p class="ft__bbb"><em>Belong</em><i></i>Build<i></i>Become</p>
+        <div class="ft__social">
+          <a href="https://linkedin.com/company/triberaai">LinkedIn</a>
+          <a href="mailto:hello@tribera.ai">hello@tribera.ai</a>
+        </div>
+      </div>
+      <nav class="ft__col" aria-label="For hiring teams">
+        <p class="ft__ttl">For hiring teams</p>
+        <a href="#run">How it works</a>
+        <a href="#lab">The bar</a>
+        <a href="#guarantee">The guarantee</a>
+        <a href="#guarantee">Plans</a>
+        <a href="/industries">Industries</a>
+        <a href="/functions">Functions</a>
+      </nav>
+      <nav class="ft__col" aria-label="For candidates">
+        <p class="ft__ttl">For candidates</p>
+        <a href="#apply">Create your profile</a>
+        <a href="/candidates">How it works</a>
+        <a href="/roles">Open roles</a>
+        <a href="/candidates#privacy">Privacy controls</a>
+      </nav>
+      <nav class="ft__col" aria-label="Company">
+        <p class="ft__ttl">Company</p>
+        <a href="/about">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/careers">Careers</a>
+        <a href="/contact">Contact</a>
+        <a href="https://app.tribera.ai/auth/login">Log in</a>
+      </nav>
+      <nav class="ft__col" aria-label="Legal">
+        <p class="ft__ttl">Legal</p>
+        <a href="#trust">Trust &amp; compliance</a>
+        <a href="/security">Security</a>
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/dpa">Data processing</a>
+      </nav>
+    </div>
+    <div class="ft__bar">
+      <span>&copy; {year} Tribera &middot; Eragina Digital Solutions Private Limited</span>
+      <span class="ft__made">Bengaluru</span>
+    </div>
   </div>
 </footer>
-
-<style>
-  .reference-footer{background:#131313;color:#aaa;font-family:var(--font-sans,Inter,sans-serif)}.reference-footer__inner{max-width:1280px;margin:auto;padding-inline:clamp(20px,4.5vw,48px)}.reference-footer__top{display:grid;gap:32px;padding:55px 0 45px}.reference-footer__brand>a{display:inline-flex}.reference-footer__brand p{max-width:285px;margin:21px 0;color:#999;font-size:13px;line-height:1.6}.reference-footer__brand strong{color:#eaeae6}.reference-footer__brand>span{display:block;color:#da0007;font:11px ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase}.reference-footer__brand small{display:block;margin-top:5px;font-size:12px}.reference-footer__brand small em{color:#eee;font-style:normal}.reference-footer__brand div{display:flex;gap:15px;margin-top:20px}.reference-footer a{color:#999;text-decoration:none}.reference-footer a:hover{color:#fff}.reference-footer nav{display:grid;align-content:start;gap:9px}.reference-footer nav b{margin-bottom:5px;color:#e5e5e1;font-size:12px}.reference-footer nav a{font-size:13px}.reference-footer__bar{display:flex;justify-content:space-between;gap:20px;padding:17px 0;border-top:1px solid #30302d;color:#73736e;font-size:11px}@media(min-width:700px){.reference-footer__top{grid-template-columns:2fr repeat(4,1fr)}}@media(max-width:699px){.reference-footer__bar{flex-direction:column}.reference-footer__top{grid-template-columns:repeat(2,1fr)}.reference-footer__brand{grid-column:1/-1}}
-</style>

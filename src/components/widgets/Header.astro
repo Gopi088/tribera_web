@@ -1,35 +1,94 @@
 ---
-import Logo from '~/components/Logo.astro';
-const isCandidateRoute = Astro.url.pathname.startsWith('/candidates');
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isCandidateRoute = path.startsWith('/candidates');
 const ctaHref = isCandidateRoute ? '/candidates#apply' : '#close';
 const ctaLabel = isCandidateRoute ? 'Create profile' : 'Talk to us';
+const isHome = path === '/';
+const isCandidatesPage = path.startsWith('/candidates');
+const isServicesPage = path === '/services';
+const isBlogPage = path === '/blog' || path.startsWith('/blog/');
+const isAboutPage = path === '/about';
+const isContactPage = path === '/contact';
+const isCareersPage = path === '/careers';
+const isIndustriesPage = path.startsWith('/industries') || path.startsWith('/functions');
 ---
 
-<header class="site-nav" id="header">
-  <div class="site-nav__inner">
-    <a href="/" aria-label="Tribera home" class="flex flex-none"><Logo variant="header" /></a>
-    <nav class="site-nav__switch" aria-label="Audience">
-      <a href="/" class:list={[Astro.url.pathname === '/' && 'is-active']}>I’m hiring</a>
-      <a href="/candidates" class:list={[Astro.url.pathname.startsWith('/candidates') && 'is-active']}>I’m looking</a>
-    </nav>
-    <nav class="site-nav__links" aria-label="Main navigation">
-      <details><summary>Coverage <i></i></summary><div class="site-nav__menu"><b>Industries</b><a href="/industries">All industries</a><a href="/industries/banking-financial-services">Financial services</a><a href="/industries/enterprise-technology">Enterprise technology</a><b>Functions</b><a href="/functions">All functions</a><a href="/functions/engineering">Engineering</a><a href="/functions/data">Data &amp; analytics</a></div></details>
-      <a href="/services">Services</a><a href="/blog">Blog</a><a href="/about">About</a><a href="/contact">Contact</a>
-    </nav>
-    <div class="site-nav__end"><a class="site-nav__login" href="https://app.tribera.ai/auth/login">Log in</a><a class="site-nav__cta" href={ctaHref} data-form-intent={!isCandidateRoute ? 'demo' : undefined} data-form-source={!isCandidateRoute ? 'header' : undefined}>{ctaLabel}</a><button class="site-nav__toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button></div>
+<nav class="nav" id="nav"><div class="wrap nav__in">
+  <a class="logo" href="/">tribera<i>.</i></a>
+  <span class="nav__sw">
+    <a href="/" class:list={[isHome && 'is']}>I'm hiring</a>
+    <a href="/candidates" class:list={[isCandidatesPage && 'is']}>I'm looking</a>
+  </span>
+  <span class="nav__links"><span class="dd">
+    <button class="dd__t" aria-expanded="false" aria-haspopup="true">Coverage<i></i></button>
+    <span class="dd__p" role="menu">
+      <span class="dd__g">
+        <span class="dd__c"><p class="dd__k">Industries</p><a href="/industries/banking-financial-services">Banking &amp; financial services</a><a href="/industries/enterprise-technology">Enterprise technology</a><a href="/industries/product-saas">Product &amp; SaaS</a><a href="/industries/ai-data">AI &amp; data</a><a href="/industries/cybersecurity">Cybersecurity</a><a href="/industries/healthcare-life-sciences">Healthcare &amp; life sciences</a><a href="/industries/pharmaceutical">Pharmaceutical</a><a href="/industries/manufacturing">Manufacturing</a><a href="/industries/industrial-engineering">Industrial &amp; engineering</a><a href="/industries/global-capability-centres">Global capability centres</a><a href="/industries/consumer-digital-commerce">Consumer &amp; digital commerce</a><a href="/industries/private-equity-portfolio">Private equity portfolio</a></span>
+        <span class="dd__c"><p class="dd__k">Functions</p><a href="/functions/engineering-platform">Engineering &amp; platform</a><a href="/functions/data-analytics">Data &amp; analytics</a><a href="/functions/infrastructure-sre">Infrastructure &amp; SRE</a><a href="/functions/security">Security</a><a href="/functions/finance-risk">Finance &amp; risk</a><a href="/functions/product-design">Product &amp; design</a><a href="/functions/operations">Operations</a><a href="/functions/leadership">Leadership</a></span>
+      </span>
+      <span class="dd__f">Not listed? <a href="/contact">Ask us</a> — we say no when it is not our ground.</span>
+    </span>
+  </span><a class="nav__l" href="/services" aria-current={isServicesPage ? 'page' : undefined}>Services</a><a class="nav__l" href="/blog" aria-current={isBlogPage ? 'page' : undefined}>Blog</a><a class="nav__l" href="/about" aria-current={isAboutPage ? 'page' : undefined}>About</a><a class="nav__l" href="/contact" aria-current={isContactPage ? 'page' : undefined}>Contact</a></span>
+  <span class="nav__end">
+    <a class="nav__login" href="https://app.tribera.ai/auth/login">Log in</a>
+    <a href={ctaHref} class="btn btn--light nav__cta" data-form-intent={!isCandidateRoute ? 'demo' : undefined} data-form-source={!isCandidateRoute ? 'header' : undefined}>{ctaLabel}</a>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navp">
+      <span></span><span></span><span></span>
+    </button>
+  </span>
+</div>
+<div class="navp" id="navp"><div class="wrap navp__in">
+  <p class="navp__k">Company</p>
+  <a href="/services" aria-current={isServicesPage ? 'page' : undefined}>Services</a><a href="/blog" aria-current={isBlogPage ? 'page' : undefined}>Blog</a><a href="/about" aria-current={isAboutPage ? 'page' : undefined}>About</a><a href="/contact" aria-current={isContactPage ? 'page' : undefined}>Contact</a>
+  <a href="/careers" aria-current={isCareersPage ? 'page' : undefined}>Careers</a>
+  <a href="/industries" aria-current={isIndustriesPage ? 'page' : undefined}>Industries &amp; functions</a>
+  <a href="https://app.tribera.ai/auth/login">Log in</a>
+  <div class="navp__cta">
+    <a href={ctaHref} class="btn btn--light">{ctaLabel}</a>
   </div>
-  <div class="site-nav__mobile" hidden>
-    <a href="/industries">Coverage</a><a href="/services">Services</a><a href="/blog">Blog</a><a href="/about">About</a><a href="/contact">Contact</a><a href="/careers">Careers</a><a href="https://app.tribera.ai/auth/login">Log in</a><a href={ctaHref}>{ctaLabel}</a>
-  </div>
-</header>
+</div></div></nav>
 
 <script>
-  const header = document.querySelector('.site-nav');
-  const toggle = header?.querySelector('.site-nav__toggle');
-  const mobile = header?.querySelector('.site-nav__mobile');
-  toggle?.addEventListener('click', () => { const open = toggle.getAttribute('aria-expanded') === 'true'; toggle.setAttribute('aria-expanded', String(!open)); mobile.hidden = open; });
+  (function(){
+    var nav=document.getElementById('nav'), b=nav?.querySelector('.burger'),
+        p=document.getElementById('navp');
+    if(nav){
+      var tick=function(){ nav.classList.toggle('stuck', scrollY>8); };
+      addEventListener('scroll',tick,{passive:true}); tick();
+    }
+    if(b&&p){
+      b.addEventListener('click',function(){
+        var open=p.classList.toggle('open');
+        b.classList.toggle('on',open);
+        b.setAttribute('aria-expanded',String(open));
+      });
+      p.addEventListener('click',function(e){ if(e.target.tagName==='A'){
+        p.classList.remove('open'); b.classList.remove('on'); b.setAttribute('aria-expanded','false'); }});
+      addEventListener('keydown',function(e){ if(e.key==='Escape'&&p.classList.contains('open')){
+        p.classList.remove('open'); b.classList.remove('on'); b.setAttribute('aria-expanded','false'); }});
+    }
+    var dds=[].slice.call(document.querySelectorAll('.dd'));
+    if(!dds.length) return;
+    function shut(except){ dds.forEach(function(d){
+      if(d!==except){ d.classList.remove('open');
+        var t=d.querySelector('.dd__t'); if(t) t.setAttribute('aria-expanded','false'); } }); }
+    dds.forEach(function(d){
+      var t=d.querySelector('.dd__t'), timer;
+      t.addEventListener('click',function(e){
+        e.preventDefault();
+        var open=!d.classList.contains('open');
+        shut(d); d.classList.toggle('open',open); t.setAttribute('aria-expanded',String(open));
+      });
+      d.addEventListener('mouseenter',function(){
+        clearTimeout(timer); shut(d); d.classList.add('open'); t.setAttribute('aria-expanded','true'); });
+      d.addEventListener('mouseleave',function(){
+        timer=setTimeout(function(){ d.classList.remove('open');
+          t.setAttribute('aria-expanded','false'); },140); });
+      d.addEventListener('focusout',function(e){
+        if(!d.contains(e.relatedTarget)){ d.classList.remove('open');
+          t.setAttribute('aria-expanded','false'); } });
+    });
+    addEventListener('keydown',function(e){ if(e.key==='Escape') shut(null); });
+    document.addEventListener('click',function(e){ if(!e.target.closest('.dd')) shut(null); });
+  })();
 </script>
-
-<style>
-  .site-nav{position:sticky;top:0;z-index:50;background:rgba(19,19,19,.94);color:#f3f3f0;border-bottom:1px solid rgba(255,255,255,.09);font-family:var(--font-sans,Inter,sans-serif)}.site-nav__inner{display:flex;align-items:center;gap:18px;max-width:1280px;margin:auto;padding:12px clamp(20px,4.5vw,48px);box-sizing:border-box}.site-nav__switch{display:flex;gap:3px;padding:3px;border:1px solid rgba(255,255,255,.08);border-radius:999px;background:rgba(255,255,255,.07)}.site-nav__switch a{padding:7px 14px;border-radius:99px;color:#6e6e68;text-decoration:none;font-size:13px;font-weight:600}.site-nav__switch a.is-active{background:#f3f3f0;color:#131313}.site-nav__switch a:not(.is-active):hover{background:transparent;color:#fff}.site-nav__links{display:flex;align-items:center;gap:0;margin-left:auto}.site-nav__links>a,.site-nav__links summary,.site-nav__login{padding:8px 10px;color:#9b9b95;text-decoration:none;font-size:13px;cursor:pointer;list-style:none;white-space:nowrap;border-radius:8px}.site-nav__links>a:hover,.site-nav__links summary:hover,.site-nav__login:hover{color:#fff;background:rgba(255,255,255,.05)}.site-nav__links summary::-webkit-details-marker{display:none}.site-nav__links details{position:relative}.site-nav__links summary i{display:inline-block;width:6px;height:6px;margin:0 0 3px 6px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg)}.site-nav__menu{position:absolute;top:38px;left:-13px;width:210px;padding:12px;border:1px solid #393936;border-radius:10px;background:#20201e;box-shadow:0 18px 35px rgba(0,0,0,.35)}.site-nav__menu b{display:block;margin:4px 7px 8px;color:#da0007;font-size:10px;letter-spacing:.12em;text-transform:uppercase}.site-nav__menu a{display:block;padding:6px 7px;color:#bbb;text-decoration:none;font-size:12px}.site-nav__menu a:hover{color:#fff;background:#30302e;border-radius:5px}.site-nav__end{display:flex;align-items:center;gap:10px}.site-nav__cta{padding:9px 18px;border-radius:99px;background:#f3f3f0;color:#151515;text-decoration:none;font-size:13px;font-weight:700;box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 5px 18px rgba(0,0,0,.16);transition:transform .18s,box-shadow .2s}.site-nav__cta:hover{transform:translateY(-1px);box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 9px 24px rgba(0,0,0,.23)}.site-nav__toggle{display:none;padding:6px;border:0;background:none;color:#fff}.site-nav__toggle span{display:block;width:20px;height:1px;margin:5px;background:currentColor}.site-nav__mobile{padding:8px clamp(20px,4.5vw,48px) 18px;border-top:1px solid #2e2e2c}.site-nav__mobile a{display:block;padding:8px 0;color:#b7b7b1;text-decoration:none;font-size:14px}@media(max-width:1080px){.site-nav__links{display:none}.site-nav__toggle{display:block}.site-nav__login{display:none}}@media(max-width:620px){.site-nav__switch{display:none}.site-nav__inner{padding-block:10px}.site-nav__cta{padding:8px 11px}}
-</style>
