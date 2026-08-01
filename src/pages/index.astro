@@ -7833,18 +7833,6 @@ li,
     sw = [].slice.call(document.querySelectorAll('.nav__sw a')),
     bar = document.getElementById('stickcta'),
     applyBox = document.getElementById('apply');
-  if (cand && sw.length) {
-    new IntersectionObserver(
-      function (es) {
-        es.forEach(function (e) {
-          var inCand = e.isIntersecting;
-          sw[0].classList.toggle('is', !inCand);
-          sw[1].classList.toggle('is', inCand);
-        });
-      },
-      { threshold: 0.18 },
-    ).observe(cand);
-  }
 
   /* sticky apply bar: only while the candidate section is on screen,
      and never on top of the apply card itself */

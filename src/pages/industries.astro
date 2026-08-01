@@ -2167,15 +2167,7 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
       sw=[].slice.call(document.querySelectorAll('.nav__sw a')),
       bar=document.getElementById('stickcta'),
       applyBox=document.getElementById('apply');
-  if(cand && sw.length){
-    new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        var inCand=e.isIntersecting;
-        sw[0].classList.toggle('is',!inCand);
-        sw[1].classList.toggle('is',inCand);
-      });
-    },{threshold:.18}).observe(cand);
-  }
+  var onCandPage=sw.length>1&&(function(){try{return location.pathname.replace(/\/+$/,'')===new URL(sw[1].getAttribute('href')||'/',location.href).pathname.replace(/\/+$/,'');}catch(e){return false;}})();
 
   /* sticky apply bar: only while the candidate section is on screen,
      and never on top of the apply card itself */
