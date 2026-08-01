@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -8,7 +7,8 @@
 <meta name="description" content="Time-to-hire measures your speed. Interview-to-hire measures your aim. What 200,000 scored interviews taught us — and the thing we had backwards for two years.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=block" />
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=block" rel="stylesheet">
 <style is:global>
 :root{
   --char:#131313;--char2:#1C1C1B;--char3:#282826;--cline:#2E2E2C;
@@ -2274,7 +2274,7 @@ from the same blank page as the first.</p>
     var nav=document.getElementById('nav'), b=document.querySelector('.burger'),
         p=document.getElementById('navp');
     if(nav){
-      var tick=function(){ nav.classList.toggle('stuck', scrollY>8); };
+      var tick=function(){ if(scrollY>20){ nav.classList.add('stuck'); } else if(scrollY<=2){ nav.classList.remove('stuck'); } };
       addEventListener('scroll',tick,{passive:true}); tick();
     }
     if(b&&p){

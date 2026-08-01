@@ -3619,7 +3619,7 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
     var nav=document.getElementById('nav'), b=document.querySelector('.burger'),
         p=document.getElementById('navp');
     if(nav){
-      var tick=function(){ nav.classList.toggle('stuck', scrollY>8); };
+      var tick=function(){ if(scrollY>20){ nav.classList.add('stuck'); } else if(scrollY<=2){ nav.classList.remove('stuck'); } };
       addEventListener('scroll',tick,{passive:true}); tick();
     }
     if(b&&p){

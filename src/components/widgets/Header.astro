@@ -53,7 +53,7 @@ const isIndustriesPage = path.startsWith('/industries') || path.startsWith('/fun
     var nav=document.getElementById('nav'), b=nav?.querySelector('.burger'),
         p=document.getElementById('navp');
     if(nav){
-      var tick=function(){ nav.classList.toggle('stuck', scrollY>8); };
+      var tick=function(){ if(scrollY>20){ nav.classList.add('stuck'); } else if(scrollY<=2){ nav.classList.remove('stuck'); } };
       addEventListener('scroll',tick,{passive:true}); tick();
     }
     if(b&&p){
