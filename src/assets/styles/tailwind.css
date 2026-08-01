@@ -1220,3 +1220,162 @@ html {
   line-height: 1.4;
   color: var(--onc3);
 }
+
+/* ---- tribera shared footer (matches index/candidates) ---- */
+.ft {
+  background: var(--char);
+  color: var(--onc3);
+  padding-block: clamp(48px, 5.5vw, 76px) 32px;
+  font-size: 14px;
+}
+.ft__top {
+  display: grid;
+  gap: clamp(30px, 3.4vw, 44px);
+}
+@media (min-width: 760px) {
+  .ft__top {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1020px) {
+  .ft__top {
+    grid-template-columns: 1.5fr repeat(4, 0.9fr);
+    gap: clamp(24px, 2.6vw, 44px);
+  }
+}
+.ft__brand .logo {
+  color: var(--onc);
+}
+.ft__line {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--onc3);
+  margin: 16px 0 0;
+  max-width: 36ch;
+}
+.ft__line b {
+  color: var(--onc);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+.ft__tribe {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin: 16px 0 0;
+}
+.ft__bbb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  color: var(--onc2);
+  margin: 7px 0 0;
+}
+.ft__bbb em {
+  font-style: normal;
+  color: var(--red);
+}
+.ft__bbb i {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #4a4a44;
+  flex: none;
+}
+.ft__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 20px;
+}
+.ft__social a {
+  font-size: 13.5px;
+  color: var(--onc2);
+  text-decoration: none;
+  border-bottom: 1px solid var(--cline);
+  padding-bottom: 3px;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+.ft__social a:hover {
+  color: #fff;
+  border-color: var(--onc2);
+}
+.ft__col {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  align-items: flex-start;
+}
+.ft__ttl {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin: 0 0 5px;
+}
+.ft__col a {
+  font-size: 14px;
+  color: var(--onc2);
+  text-decoration: none;
+  transition:
+    color 0.2s,
+    transform 0.2s;
+}
+.ft__col a:hover {
+  color: #fff;
+  transform: translateX(2px);
+}
+.ft__bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: clamp(36px, 4vw, 56px);
+  padding-top: 22px;
+  border-top: 1px solid var(--cline);
+  font-size: 12.5px;
+  color: var(--onc3);
+}
+.ft__made {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.ft__col a,
+.ft__social a {
+  position: relative;
+}
+.ft__col a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -3px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+  transition: right 0.34s var(--spring);
+}
+.ft__col a:hover::after {
+  right: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ft__col a::after {
+    transition: none;
+  }
+}

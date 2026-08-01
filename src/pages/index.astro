@@ -904,15 +904,15 @@ const doors = [
       <div class="vol" data-rv style="--d:170ms">
         <p class="vol__k">How many hires a year?</p>
         <div class="vol__ax" role="tablist" aria-label="Engagement volume">
-          <button class="vseg" role="tab" data-i="0" aria-selected="false"><span></span><i>10–50</i></button>
-          <button class="vseg is" role="tab" data-i="1" aria-selected="true"><span></span><i>50–200</i></button>
-          <button class="vseg" role="tab" data-i="2" aria-selected="false"><span></span><i>200–500+</i></button>
+         <button class="vseg" role="tab" data-i="0" aria-selected="false"><span></span><i>10 - 50</i></button>
+         <button class="vseg is" role="tab" data-i="1" aria-selected="true"><span></span><i>50 - 200</i></button>
+         <button class="vseg" role="tab" data-i="2" aria-selected="false"><span></span><i>200 - 500+</i></button>
         </div>
 
         <div class="vol__out" id="volOut">
           <div class="vol__l">
             <p class="vol__nm" id="volNm">Scale</p>
-            <p class="vol__v" id="volV">50–200 <span>hires a year</span></p>
+            <p class="vol__v" id="volV">50 - 200 <span>hires a year</span></p>
             <p class="vol__d" id="volD">
               Several functions running at once, with one bar carried across all of them.
             </p>
@@ -2679,7 +2679,7 @@ a {
 .sq {
   position: relative;
   aspect-ratio: 1/1;
-  border-radius: 2px;
+  border-radius: 19%;
   background: #3a3a37;
   transition:
     opacity 0.45s var(--ease),
@@ -2703,7 +2703,7 @@ a {
   box-shadow: 0 0 0 1px rgba(218, 0, 7, 0.5);
 }
 .sq.out {
-  opacity: 0.17;
+  opacity: 0.34;
   transform: scale(0.66);
 }
 .sq.g5.out {
@@ -5135,9 +5135,6 @@ a {
   color: #fff;
   font-weight: 600;
 }
-.tr2__l li:has(b)::before {
-  background: var(--red);
-}
 .qa {
   margin-top: clamp(30px, 3.6vw, 46px);
   padding-left: 22px;
@@ -5280,6 +5277,7 @@ a {
 .mq {
   overflow: hidden;
   margin-top: clamp(30px, 3.6vw, 46px);
+  padding-top: clamp(10px, 1.4vw, 18px);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
 }
@@ -7186,7 +7184,7 @@ li,
     var V = [
       {
         nm: 'Project-based',
-        v: '10–50',
+        v: '10 - 50',
         d: 'One role you\u2019re stuck on, or a burst of them — permanent, contract or executive.',
         p: [
           'Per hire, 15–20%',
@@ -7196,7 +7194,7 @@ li,
       },
       {
         nm: 'Scale',
-        v: '50–200',
+        v: '50 - 200',
         d: 'Several functions running at once, with one bar carried across all of them.',
         p: [
           'Volume rate per hire',
@@ -7206,7 +7204,7 @@ li,
       },
       {
         nm: 'Full RPO',
-        v: '200–500+',
+        v: '200 - 500+',
         d: 'Your whole talent function, run alongside your team rather than outside it.',
         p: [
           'Experts embedded in your team',
@@ -7547,9 +7545,33 @@ li,
     sqs = [];
   if (grid) {
     var html = '';
+    /* Texture, at a size that can carry it.
+       No size or offset jitter: .sq.out already uses scale(.66) to show who
+       dropped, so varying cell width fights an existing signal and reads as a
+       fault. Only tone and corner vary, and both stay inside a band narrow
+       enough that a lit cell never looks like a broken one.
+       Opacity and transform are untouched. Red is never jittered. */
+    var TIER = { 1: '#3B3B36', 2: '#57574F', 3: '#85857C', 4: '#D6D6CF' };
+    var _s = 20240627;
+    var _r = function () {
+      _s = (_s * 1103515245 + 12345) & 0x7fffffff;
+      return _s / 0x7fffffff;
+    };
+    var _j = function (hex, f) {
+      var n = parseInt(hex.slice(1), 16),
+        o = '#';
+      [(n >> 16) & 255, (n >> 8) & 255, n & 255].forEach(function (c) {
+        var v = Math.max(0, Math.min(255, Math.round(c * f)));
+        o += ('0' + v.toString(16)).slice(-2);
+      });
+      return o;
+    };
     GROUPS.forEach(function (g) {
-      for (var i = 0; i < g[0]; i++)
-        html += '<span class="sq g' + g[1] + '" data-drop="' + g[1] + '"></span>';
+      for (var i = 0; i < g[0]; i++) {
+        var st = 'border-radius:' + (17 + _r() * 5).toFixed(1) + '%';
+        if (g[1] < 5) st += ';background:' + _j(TIER[g[1]], 0.88 + _r() * 0.24);
+        html += '<span class="sq g' + g[1] + '" data-drop="' + g[1] + '" style="' + st + '"></span>';
+      }
     });
     grid.innerHTML = html;
     sqs = [].slice.call(grid.children);
