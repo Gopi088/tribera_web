@@ -2,6 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("/fonts/figtree-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+  src: url("/fonts/figtree-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url("/fonts/figtree-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url("/fonts/figtree-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 800;
+  font-display: block;
+  src: url("/fonts/figtree-800.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter Tight";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("/fonts/inter-tight-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter Tight";
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+  src: url("/fonts/inter-tight-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter Tight";
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url("/fonts/inter-tight-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("/fonts/jetbrains-mono-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+  src: url("/fonts/jetbrains-mono-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url("/fonts/jetbrains-mono-700.woff2") format("woff2");
+}
+
 @layer utilities {
   .bg-page {
     background-color: var(--aw-color-bg-page);
@@ -673,6 +751,7 @@
 }
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 @keyframes floatCard {
@@ -810,6 +889,7 @@ html {
   text-decoration: none;
   flex: none;
   line-height: 1;
+  width: 67px;
 }
 .nav .logo i {
   display: inline-block;
@@ -833,11 +913,14 @@ html {
   font-family: var(--ui);
   font-size: 13px;
   font-weight: 600;
-  padding: 7px 15px;
+  width: 98px;
+  padding: 7px 0;
+  text-align: center;
   border-radius: 999px;
   color: var(--onc3);
   text-decoration: none;
   white-space: nowrap;
+  overflow: hidden;
   transition: background 0.3s var(--spring), color 0.22s, transform 0.2s var(--spring);
 }
 .nav__sw a:hover {
@@ -1056,7 +1139,8 @@ html {
     gap: 8px;
   }
   .nav__sw a {
-    padding: 6px 9px;
+    width: 84px;
+    padding: 6px 0;
     font-size: 12px;
   }
 }
