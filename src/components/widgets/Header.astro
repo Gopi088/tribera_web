@@ -38,7 +38,10 @@ const isIndustriesPage = path.startsWith('/industries') || path.startsWith('/fun
   </span>
 </div>
 <div class="navp" id="navp"><div class="wrap navp__in">
-  <button class="navp__t" type="button" aria-expanded="false" aria-controls="navp-cov" aria-current={isIndustriesPage ? 'page' : undefined}>Coverage<i></i></button>
+  <div class="navp__coverage">
+    <a class="navp__coverage-link" href="/industries" aria-current={isIndustriesPage ? 'page' : undefined}>Coverage</a>
+    <button class="navp__t" type="button" aria-label="Expand Coverage" aria-expanded="false" aria-controls="navp-cov"><i></i></button>
+  </div>
   <div class="navp__cov" id="navp-cov">
   <span class="navp__cols">
     <span class="navp__c">
@@ -105,7 +108,7 @@ const isIndustriesPage = path.startsWith('/industries') || path.startsWith('/fun
       b.addEventListener('click',function(){
         setNav(!p.classList.contains('open'));
       });
-      p.addEventListener('click',function(e){ if(e.target.tagName==='A') setNav(false); });
+      p.addEventListener('click',function(e){ if(e.target.tagName==='A'||e.target===p) setNav(false); });
       addEventListener('keydown',function(e){ if(e.key==='Escape'&&p.classList.contains('open')) setNav(false); });
     }
     var t=document.querySelector('.navp__t'), c=document.getElementById('navp-cov');

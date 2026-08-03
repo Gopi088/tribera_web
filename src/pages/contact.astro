@@ -1280,6 +1280,9 @@ html.nlock{overflow:hidden}
   .hero__top{min-height:0;align-content:start}
   .hero__top>*{min-width:0}
   .hero__card{width:100%;max-width:100%}
+  /* The contact hero is the first content visitors need. Keep it visible on
+     touch layouts instead of depending on an intersection callback. */
+  .hero [data-rv],.hero [data-rv].in{opacity:1;transform:none}
 }
 @media(max-width:699px){
   .hero__top{gap:32px}
@@ -1319,7 +1322,7 @@ html.nlock{overflow:hidden}
   </span>
 </div>
 <div class="navp" id="navp"><div class="wrap navp__in">
-  <button class="navp__t" type="button" aria-expanded="false" aria-controls="navp-cov">Coverage<i></i></button>
+  <div class="navp__coverage"><a class="navp__coverage-link" href="/industries">Coverage</a><button class="navp__t" type="button" aria-label="Expand Coverage" aria-expanded="false" aria-controls="navp-cov"><i></i></button></div>
   <div class="navp__cov" id="navp-cov">
   <span class="navp__cols">
     <span class="navp__c">
@@ -2008,7 +2011,7 @@ html.nlock{overflow:hidden}
       b.addEventListener('click',function(){
         setNav(!p.classList.contains('open'));
       });
-      p.addEventListener('click',function(e){ if(e.target.tagName==='A') setNav(false); });
+      p.addEventListener('click',function(e){ if(e.target.tagName==='A'||e.target===p) setNav(false); });
       addEventListener('keydown',function(e){ if(e.key==='Escape'&&p.classList.contains('open')) setNav(false); });
     }
   })();

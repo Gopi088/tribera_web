@@ -117,6 +117,41 @@ import '@fontsource-variable/inter';
     transform: translateY(-1px);
   }
 
+  /* The mobile Coverage label opens the overview; its adjacent control only expands the submenu. */
+  html body .nav__l.dd__t[aria-current='page']::after {
+    display: none !important;
+  }
+
+  html body .navp__coverage {
+    display: flex;
+    align-items: center;
+  }
+
+  html body .navp a.navp__coverage-link {
+    display: block;
+    flex: 1 1 auto;
+    padding: 7px 0;
+    color: var(--onc2, #a8a8a2);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.25;
+    text-decoration: none;
+  }
+
+  html body .navp a.navp__coverage-link:hover,
+  html body .navp a.navp__coverage-link[aria-current='page'] {
+    color: #fff;
+  }
+
+  html body .navp__coverage .navp__t {
+    width: auto;
+    padding: 7px 6px 7px 14px;
+  }
+
+  html body .navp__coverage .navp__t i {
+    margin-right: 0;
+  }
+
   :root {
     --tribera-blog-display: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
     --tribera-blog-body: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;

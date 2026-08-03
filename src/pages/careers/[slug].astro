@@ -1535,13 +1535,6 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
 .navp__k{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--onc3);margin:16px 0 6px}
 .navp__k:first-child{margin-top:0}
-.navp a{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.026em;
-  color:var(--onc2);text-decoration:none;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.06);
-  transition:color .2s,padding-left .24s var(--ease)}
-.navp a:hover{color:#fff;padding-left:6px}
-.navp a[aria-current="page"]{color:#fff}
-.navp a[aria-current="page"]::before{content:"";display:inline-block;width:6px;height:6px;
-  border-radius:50%;background:var(--red);margin-right:9px;vertical-align:middle}
 .navp__cta{margin-top:18px;display:grid;gap:9px}
 .navp__cta .btn{justify-content:center}
 @media(max-width:380px){
@@ -2989,7 +2982,7 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
   </span>
 </div>
 <div class="navp" id="navp"><div class="wrap navp__in">
-  <button class="navp__t" type="button" aria-expanded="false" aria-controls="navp-cov">Coverage<i></i></button>
+  <div class="navp__coverage"><a class="navp__coverage-link" href="/industries">Coverage</a><button class="navp__t" type="button" aria-label="Expand Coverage" aria-expanded="false" aria-controls="navp-cov"><i></i></button></div>
   <div class="navp__cov" id="navp-cov">
   <span class="navp__cols">
     <span class="navp__c">
@@ -3651,7 +3644,7 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
       b.addEventListener('click',function(){
         setNav(!p.classList.contains('open'));
       });
-      p.addEventListener('click',function(e){ if(e.target.tagName==='A') setNav(false); });
+      p.addEventListener('click',function(e){ if(e.target.tagName==='A'||e.target===p) setNav(false); });
       addEventListener('keydown',function(e){ if(e.key==='Escape'&&p.classList.contains('open')) setNav(false); });
     }
   })();
