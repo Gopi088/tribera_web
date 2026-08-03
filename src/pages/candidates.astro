@@ -2471,7 +2471,7 @@ a {
   font-size: 13.5px;
   line-height: 1.55;
   color: var(--onc3);
-  margin: 20px 0 0;
+  margin: clamp(26px, 3vw, 36px) 0 0;
   max-width: 64ch;
 }
 .cases__ft b {
@@ -5312,7 +5312,7 @@ a {
 
 /* ══ SECTION RHYTHM — the header owns the gap below it ══ */
 .shead {
-  margin-bottom: clamp(30px, 3.6vw, 52px);
+  margin-bottom: clamp(50px, 5.8vw, 88px);
 }
 .shead + * {
   margin-top: 0;
@@ -7239,19 +7239,19 @@ li,
 }
 
 .burger {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 0;
   background: transparent;
   cursor: pointer;
   flex: none;
-  transition:
-    background 0.22s,
-    border-color 0.22s,
-    transform 0.2s var(--spring);
+  transition: background 0.2s;
 }
 @media (min-width: 1080px) {
   .burger {
@@ -7259,27 +7259,29 @@ li,
   }
 }
 .burger:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.05);
 }
 .burger:active {
   transform: scale(0.94);
 }
 .burger span {
   display: block;
-  width: 16px;
-  height: 1.6px;
+  width: 24px;
+  height: 2px;
   border-radius: 1px;
-  background: var(--onc);
-  transition:
-    transform 0.32s var(--spring),
-    opacity 0.2s;
-}
-.burger span + span {
-  margin-top: 4.5px;
+  background: #fff;
+  transition: background 0.2s;
 }
 
 .navp {
   display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: calc(100dvh - 100%);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(19, 19, 19, 0.98);
   backdrop-filter: blur(14px);
@@ -7532,6 +7534,30 @@ li,
   font-size: 12px;
   line-height: 1.4;
   color: var(--onc3);
+}
+/* Responsive layout safeguards: preserve the desktop composition and make the
+   profile flow, controls, and testimonial rail work naturally on touch screens. */
+@media (max-width: 999px) {
+  .hero { padding-top: 42px; }
+  .hero__top { min-height: 0; align-content: start; }
+  .hero__top > * { min-width: 0; }
+  .hero__card { width: 100%; max-width: 100%; }
+}
+@media (max-width: 699px) {
+  .hero__top { gap: 32px; }
+  .hero__copy .btns { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .hero__copy .btns .btn { justify-content: center; min-height: 48px; width: 100%; }
+  .mq { overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; touch-action: pan-x; -webkit-mask-image: none; mask-image: none; scrollbar-width: none; }
+  .mq::-webkit-scrollbar { display: none; }
+  .mq__t { animation: none; padding-inline: var(--gut); }
+  .qc { width: min(82vw, 330px); scroll-snap-align: start; }
+  .stickcta { padding-bottom: env(safe-area-inset-bottom); }
+  .stickcta__in { min-height: 64px; padding-block: 10px; }
+  .stickcta .btn { flex: none; min-height: 44px; white-space: nowrap; }
+}
+@media (max-width: 390px) {
+  .stickcta__in { gap: 8px; }
+  .stickcta .btn { padding-inline: 15px; font-size: 13px; }
 }
 </style>
 

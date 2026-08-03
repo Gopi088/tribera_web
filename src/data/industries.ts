@@ -790,7 +790,7 @@ export const industriesData = {
       ]
     },
     {
-      "slug": "global-capability-centers",
+      "slug": "global-capability-centres",
       "name": "Global capability centres",
       "tagline": "Built for GCCs scaling in India, where the difference between a delivery centre and a capability centre is decision rights.",
       "weights": {

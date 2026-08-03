@@ -1141,7 +1141,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){.stickcta{transition:none}}
 
 /* ══ SECTION RHYTHM — the header owns the gap below it ══ */
-.shead{margin-bottom:clamp(30px,3.6vw,52px)}
+.shead{margin-bottom:clamp(50px,5.8vw,88px)}
 .shead + *{margin-top:0}
 .shead + .ramp{margin-top:0}
 
@@ -1399,7 +1399,7 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
 .ahead h1{font-family:var(--display);font-weight:800;font-size:clamp(32px,5vw,60px);
   line-height:1.06;letter-spacing:-.045em;color:#fff;margin:0;max-width:20ch;text-wrap:balance}
 .ahead__sub{font-size:clamp(17px,1.9vw,22px);line-height:1.45;color:var(--onc2);
-  margin:clamp(16px,1.8vw,22px) 0 0;max-width:44ch}
+  margin:clamp(22px,2.2vw,28px) 0 0;max-width:44ch}
 .ahead__by{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;
   margin:clamp(26px,3vw,38px) 0 0;padding-top:clamp(18px,2.2vw,24px);border-top:1px solid var(--cline)}
 .ahead__ph{width:38px;height:38px;border-radius:50%;background-color:#E7E5DE;background-size:112%;
@@ -1509,38 +1509,37 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
 .nav__cta{padding:9px 18px!important;font-size:14px}
 @media(max-width:719px){.nav__cta{display:none}}
 
-.burger{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;
-  border:1px solid rgba(255,255,255,.14);background:transparent;cursor:pointer;flex:none;
-  transition:background .22s,border-color .22s,transform .2s var(--spring)}
+.burger{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:36px;height:36px;border-radius:6px;border:0;background:transparent;cursor:pointer;flex:none;transition:background .2s}
 @media(min-width:1080px){.burger{display:none}}
-.burger:hover{background:rgba(255,255,255,.06)}
+.burger:hover{background:rgba(255,255,255,.05)}
 .burger:active{transform:scale(.94)}
-.burger span{display:block;width:16px;height:1.6px;border-radius:1px;background:var(--onc);
-  transition:transform .32s var(--spring),opacity .2s}
-.burger span+span{margin-top:4.5px}
-.burger.on span:nth-child(1){transform:translateY(3.1px) rotate(45deg)}
-.burger.on span:nth-child(2){transform:translateY(-3.1px) rotate(-45deg)}
+.burger span{display:block;width:24px;height:2px;border-radius:1px;background:#fff;transition:background .2s}
 
-.navp{display:none;border-top:1px solid rgba(255,255,255,.08);
-  background:rgba(19,19,19,.98);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+html.nlock{overflow:hidden}
+.navp{display:none;position:absolute;top:100%;left:0;right:0;max-height:calc(100dvh - 100%);overflow-y:auto;-webkit-overflow-scrolling:touch;border-top:1px solid rgba(255,255,255,.08);background:rgba(19,19,19,.98);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .navp.open{display:block;animation:npIn .3s var(--ease) both}
 @keyframes npIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 @media(min-width:1080px){.navp{display:none!important}}
-.navp__in{padding-block:20px 26px;display:grid;gap:4px}
+.navp__in{padding-block:20px 26px;display:grid;gap:2px}
 .navp__k{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--onc3);margin:14px 0 8px}
+  color:var(--onc3);margin:16px 0 6px}
 .navp__k:first-child{margin-top:0}
 /* every row carries the slot, so nothing shifts and the mark reads as a system */
-.navp a:not(.btn){display:flex;align-items:center;gap:11px;
-  font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.026em;
-  color:var(--onc2);text-decoration:none;padding:11px 0;
-  border-bottom:1px solid rgba(255,255,255,.06);transition:color .2s var(--ease)}
-.navp a:not(.btn)::before{content:"";width:6px;height:6px;border-radius:50%;flex:none;
-  background:transparent;transform:scale(.6);
-  transition:background .22s var(--ease),transform .28s var(--spring)}
+.navp a:not(.btn){display:block;font-size:13px;font-weight:500;color:var(--onc2);text-decoration:none;padding:7px 0;transition:color .2s var(--ease)}
 .navp a:not(.btn):hover{color:#fff}
-.navp a:not(.btn):hover::before{background:rgba(255,255,255,.3);transform:scale(1)}
+.navp a[aria-current="page"]{color:#fff}
+.navp__login{color:var(--red)!important;font-weight:600}
+.navp__t{display:flex;align-items:center;justify-content:space-between;width:100%;padding:7px 0;background:none;border:0;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;color:var(--onc2);text-align:left;transition:color .2s var(--ease)}
+.navp__t:hover{color:#fff}
+.navp__t i{width:8px;height:8px;border-right:1.5px solid var(--onc3);border-bottom:1.5px solid var(--onc3);transform:rotate(45deg);transition:transform .25s var(--ease);margin-right:6px;flex:none}
+.navp__t[aria-expanded="true"] i{transform:rotate(-135deg)}
+.navp__cov{display:none;padding:2px 0 8px 12px;border-left:1px solid rgba(255,255,255,.08)}
+.navp__cov.open{display:block}
+.navp__cols{display:grid;gap:0}
+@media(min-width:520px){.navp__cols{grid-template-columns:1fr 1fr;column-gap:28px}}
+.navp__c .navp__k{margin-top:12px}
+.navp__cols .navp__c:first-child .navp__k{margin-top:0}
+@media(min-width:520px){.navp__cols .navp__c+.navp__c .navp__k{margin-top:0}}
 .navp a[aria-current="page"]{color:#fff}
 .navp a[aria-current="page"]::before{background:var(--red);transform:scale(1)}
 /* the panel CTAs keep their own colours */
@@ -1584,6 +1583,8 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
 .dd__p--sm b{display:block;font-family:var(--display);font-weight:700;font-size:14.5px;
   letter-spacing:-.02em;color:#fff;margin-bottom:3px}
 .dd__p--sm span{display:block;font-size:12px;line-height:1.4;color:var(--onc3)}
+.dd__t[aria-current="page"]{color:#fff;background:rgba(255,255,255,.05)}
+.navp__t[aria-current="page"]{color:#fff}
 </style><style is:global>#byPh{background-image:url(data:image/png;base64,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)}</style>
 </head>
 <body>
@@ -1594,7 +1595,7 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
     <a href="/candidates" class="is">I'm looking</a>
   </span>
   <span class="nav__links"><span class="dd">
-    <button class="dd__t" aria-expanded="false" aria-haspopup="true">Coverage<i></i></button>
+    <a href="/industries" class="dd__t">Coverage<i></i></a>
     <span class="dd__p" role="menu">
       <span class="dd__g">
         <span class="dd__c"><p class="dd__k">Industries</p><a href="/industries/banking-financial-services">Banking & financial services</a><a href="/industries/enterprise-technology">Enterprise technology</a><a href="/industries/product-saas">Product & SaaS</a><a href="/industries/ai-data">AI & data</a><a href="/industries/cybersecurity">Cybersecurity</a><a href="/industries/healthcare-life-sciences">Healthcare & life sciences</a><a href="/industries/pharmaceutical">Pharmaceutical</a><a href="/industries/manufacturing">Manufacturing</a><a href="/industries/industrial-engineering">Industrial & engineering</a><a href="/industries/global-capability-centres">Global capability centres</a><a href="/industries/consumer-digital-commerce">Consumer & digital commerce</a><a href="/industries/private-equity-portfolio">Private equity portfolio</a></span>
@@ -1608,18 +1609,31 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
     <a class="nav__login" href="https://app.tribera.ai/auth/login">Log in</a>
     <a href="/candidates" class="btn btn--light nav__cta">Create profile</a>
     <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="navp">
-      <span></span><span></span></button>
+      <span></span><span></span><span></span></button>
   </span>
 </div>
 <div class="navp" id="navp"><div class="wrap navp__in">
-  <p class="navp__k">Which side are you on</p>
+<p class="navp__k">Which side are you on</p>
   <a href="/">For hiring teams</a>
-  <a href="/candidates">For candidates</a>
+  <button class="navp__t" type="button" aria-expanded="false" aria-controls="navp-cov">Coverage<i></i></button>
+  <div class="navp__cov" id="navp-cov">
+  <span class="navp__cols">
+    <span class="navp__c">
+      <p class="navp__k">Industries</p>
+      <a href="/industries/banking-financial-services">Banking &amp; financial services</a><a href="/industries/enterprise-technology">Enterprise technology</a><a href="/industries/product-saas">Product &amp; SaaS</a><a href="/industries/ai-data">AI &amp; data</a><a href="/industries/cybersecurity">Cybersecurity</a><a href="/industries/healthcare-life-sciences">Healthcare &amp; life sciences</a><a href="/industries/pharmaceutical">Pharmaceutical</a><a href="/industries/manufacturing">Manufacturing</a><a href="/industries/industrial-engineering">Industrial &amp; engineering</a><a href="/industries/global-capability-centres">Global capability centres</a><a href="/industries/consumer-digital-commerce">Consumer &amp; digital commerce</a><a href="/industries/private-equity-portfolio">Private equity portfolio</a>
+    </span>
+    <span class="navp__c">
+      <p class="navp__k">Functions</p>
+      <a href="/functions/engineering-platform">Engineering &amp; platform</a><a href="/functions/data-analytics">Data &amp; analytics</a><a href="/functions/infrastructure-sre">Infrastructure &amp; SRE</a><a href="/functions/security">Security</a><a href="/functions/finance-risk">Finance &amp; risk</a><a href="/functions/product-design">Product &amp; design</a><a href="/functions/operations">Operations</a><a href="/functions/leadership">Leadership</a>
+    </span>
+  </span>
+  </div>
   <p class="navp__k">Company</p>
   <a href="/services">Services</a><a href="/blog" aria-current="page">Blog</a><a href="/about">About</a><a href="/contact">Contact</a>
   <a href="/careers">Careers</a>
-  <a href="/industries">Industries &amp; functions</a>
-  <a href="https://app.tribera.ai/auth/login">Log in</a>
+  
+  
+  <a href="https://app.tribera.ai/auth/login" class="navp__login">Log in</a>
   <div class="navp__cta">
     <a href="/candidates" class="btn btn--light">Create profile</a>
       </div>
@@ -2258,17 +2272,31 @@ should reflect who has more to lose, and almost none of them do.</p>
       addEventListener('scroll',tick,{passive:true}); tick();
     }
     if(b&&p){
-      b.addEventListener('click',function(){
-        var open=p.classList.toggle('open');
-        b.classList.toggle('on',open);
+      function setNav(open){
+        p.classList.toggle('open',open); b.classList.toggle('on',open);
+        if(open){
+          p.style.top=(nav.offsetHeight)+'px';
+          var y=window.scrollY; document.body.dataset.sy=y;
+          document.body.style.position='fixed'; document.body.style.width='100%';
+          document.body.style.top='-'+y+'px'; document.body.style.left='0'; document.body.style.right='0';
+        } else {
+          var sy=Number(document.body.dataset.sy||0);
+          document.body.style.position=''; document.body.style.width='';
+          document.body.style.top=''; document.body.style.left=''; document.body.style.right='';
+          window.scrollTo(0,sy); delete document.body.dataset.sy;
+        }
         b.setAttribute('aria-expanded',String(open));
+      }
+      b.addEventListener('click',function(){
+        setNav(!p.classList.contains('open'));
       });
-      p.addEventListener('click',function(e){ if(e.target.tagName==='A'){
-        p.classList.remove('open'); b.classList.remove('on'); b.setAttribute('aria-expanded','false'); }});
-      addEventListener('keydown',function(e){ if(e.key==='Escape'&&p.classList.contains('open')){
-        p.classList.remove('open'); b.classList.remove('on'); b.setAttribute('aria-expanded','false'); }});
+      p.addEventListener('click',function(e){ if(e.target.tagName==='A') setNav(false); });
+      addEventListener('keydown',function(e){ if(e.key==='Escape'&&p.classList.contains('open')) setNav(false); });
     }
   })();
+    var t=document.querySelector('.navp__t'), c=document.getElementById('navp-cov');
+    if(t&&c){ t.addEventListener('click',function(){
+      var o=c.classList.toggle('open'); t.setAttribute('aria-expanded',String(o)); }); }
 
   /* ══ dropdowns: hover on pointer, click and keys everywhere ══ */
   (function(){
@@ -2280,6 +2308,7 @@ should reflect who has more to lose, and almost none of them do.</p>
     dds.forEach(function(d){
       var t=d.querySelector('.dd__t'), timer;
       t.addEventListener('click',function(e){
+        if(t.tagName==="A") return;
         e.preventDefault();
         var open=!d.classList.contains('open');
         shut(d); d.classList.toggle('open',open); t.setAttribute('aria-expanded',String(open));
@@ -2295,6 +2324,26 @@ should reflect who has more to lose, and almost none of them do.</p>
     });
     addEventListener('keydown',function(e){ if(e.key==='Escape') shut(null); });
     document.addEventListener('click',function(e){ if(!e.target.closest('.dd')) shut(null); });
+  })();
+  /* ══ active nav reflects the current page ══ */
+  (function(){
+    var p=location.pathname.replace(/\/+$/,'')||'/';
+    function mark(sel,on){ var a=document.querySelector(sel); if(a&&on) a.setAttribute('aria-current','page'); }
+    function markIs(sel,on){ var a=document.querySelector(sel); if(a&&on) a.classList.add('is'); }
+    markIs('.nav__sw a[href="/"]', p==='/');
+    markIs('.nav__sw a[href="/candidates"]', p.indexOf('/candidates')===0);
+    mark('.nav__l[href="/services"]', p==='/services');
+    mark('.nav__l[href="/blog"]', p==='/blog'||p.indexOf('/blog/')===0);
+    mark('.nav__l[href="/about"]', p==='/about');
+    mark('.nav__l[href="/contact"]', p==='/contact');
+    var cov=p.indexOf('/industries')===0||p.indexOf('/functions')===0;
+    mark('.dd__t',cov); mark('.navp__t',cov);
+    mark('.navp a[href="/"]', p==='/');
+    mark('.navp a[href="/services"]', p==='/services');
+    mark('.navp a[href="/blog"]', p==='/blog'||p.indexOf('/blog/')===0);
+    mark('.navp a[href="/about"]', p==='/about');
+    mark('.navp a[href="/contact"]', p==='/contact');
+    mark('.navp a[href="/careers"]', p==='/careers'||p.indexOf('/careers/')===0);
   })();
 </script>
 </body>

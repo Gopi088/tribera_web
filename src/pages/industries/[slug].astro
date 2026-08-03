@@ -1,10 +1,21 @@
+---
+import { getStaticPathsIndustries } from '~/data/industry-pages';
+import type { IndustryPageData } from '~/data/industry-pages';
+
+export const prerender = true;
+
+export const getStaticPaths = getStaticPathsIndustries;
+
+const { industry } = Astro.props as { industry: IndustryPageData };
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Manufacturing hiring — tribera</title>
-<meta name="description" content="Operations, engineering and quality leaders who have run plants rather than reported on them. Three people, all hireable, inside 36 hours.">
+<title>{industry.title}</title>
+<meta name="description" content={industry.description}>
     <link rel="preload" href="/fonts/figtree-800.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/inter-tight-600.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/figtree-400.woff2" as="font" type="font/woff2" crossorigin />
@@ -64,7 +75,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
   line-height:1.04;letter-spacing:-.04em;margin:0;max-width:16ch}
 .h3{font-family:var(--display);font-weight:700;font-size:clamp(20px,2.2vw,28px);
   line-height:1.14;letter-spacing:-.03em;margin:0}
-.dek{font-size:clamp(16px,1.5vw,18.5px);line-height:1.6;color:var(--grey);max-width:56ch;margin:18px 0 0}
+.dek{font-size:clamp(16px,1.5vw,18.5px);line-height:1.6;color:var(--grey);max-width:56ch;margin:clamp(24px,2.8vw,32px) 0 0}
 .dek b{color:var(--ink);font-weight:600}
 [data-rv]{opacity:0;transform:translateY(18px);
   transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0ms)}
@@ -480,7 +491,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .b-grey{color:#C9C9C3;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2)}
 .b-rej{color:#E0484E;background:rgba(224,72,78,.12);border:1px solid rgba(224,72,78,.4);
   box-shadow:0 0 22px rgba(224,72,78,.16)}
-.verd__big{display:flex;align-items:baseline;gap:6px;margin:18px 0 0}
+.verd__big{display:flex;align-items:baseline;gap:6px;margin:clamp(24px,2.8vw,32px) 0 0}
 .verd__big b{font-family:var(--mono);font-weight:700;font-size:clamp(42px,5vw,60px);
   letter-spacing:-.05em;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
 .verd__big i{font-family:var(--mono);font-style:normal;font-size:13px;color:var(--onc3)}
@@ -697,7 +708,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .plan__d{font-size:14.5px;line-height:1.5;color:var(--grey);margin:0;max-width:30ch}
 .plans__ft{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline;
   justify-content:space-between;font-size:13.5px;color:var(--grey);
-  margin:18px 0 0;padding-top:14px;border-top:1px solid var(--hair)}
+  margin:clamp(24px,2.8vw,32px) 0 0;padding-top:14px;border-top:1px solid var(--hair)}
 .plans__ft b{color:var(--ink);font-weight:600}
 .plans__ft a{color:var(--red);text-decoration:none;border-bottom:1px solid rgba(218,0,7,.35);
   padding-bottom:2px;transition:border-color .2s}
@@ -1127,7 +1138,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
   font-family:var(--ui);font-weight:600;font-size:15px;cursor:pointer;white-space:nowrap;
   transition:transform .18s var(--ease),background .2s}
 .apply__go:hover{transform:translateY(-1px);background:#C10006}
-.apply__fine{font-size:13px;color:var(--onc3);margin:18px 0 0}
+.apply__fine{font-size:13px;color:var(--onc3);margin:clamp(24px,2.8vw,32px) 0 0}
 .apply__fine b{color:var(--onc);font-weight:600}
 
 /* ══ sticky candidate CTA ══ */
@@ -1142,7 +1153,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){.stickcta{transition:none}}
 
 /* ══ SECTION RHYTHM — the header owns the gap below it ══ */
-.shead{margin-bottom:clamp(30px,3.6vw,52px)}
+.shead{margin-bottom:clamp(50px,5.8vw,88px)}
 .shead + *{margin-top:0}
 .shead + .ramp{margin-top:0}
 
@@ -1508,27 +1519,20 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
 .nav__cta{padding:9px 18px!important;font-size:14px}
 @media(max-width:719px){.nav__cta{display:none}}
 
-.burger{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;
-  border:1px solid rgba(255,255,255,.14);background:transparent;cursor:pointer;flex:none;
-  transition:background .22s,border-color .22s,transform .2s var(--spring)}
+.burger{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:36px;height:36px;border-radius:6px;border:0;background:transparent;cursor:pointer;flex:none;transition:background .2s}
 @media(min-width:1080px){.burger{display:none}}
-.burger:hover{background:rgba(255,255,255,.06)}
+.burger:hover{background:rgba(255,255,255,.05)}
 .burger:active{transform:scale(.94)}
-.burger span{display:block;width:16px;height:1.6px;border-radius:1px;background:var(--onc);
-  transition:transform .32s var(--spring),opacity .2s}
-.burger span+span{margin-top:4.5px}
-.burger.on span:nth-child(1){transform:translateY(3.1px) rotate(45deg)}
-.burger.on span:nth-child(2){transform:translateY(-3.1px) rotate(-45deg)}
+.burger span{display:block;width:24px;height:2px;border-radius:1px;background:#fff;transition:background .2s}
 
-.navp{display:none;border-top:1px solid rgba(255,255,255,.08);
-  background:rgba(19,19,19,.98);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+html.nlock{overflow:hidden}
+.navp{display:none;position:absolute;top:100%;left:0;right:0;max-height:calc(100dvh - 100%);overflow-y:auto;-webkit-overflow-scrolling:touch;border-top:1px solid rgba(255,255,255,.08);background:rgba(19,19,19,.98);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .navp.open{display:block;animation:npIn .3s var(--ease) both}
 @keyframes npIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 @media(min-width:1080px){.navp{display:none!important}}
-.navp__in{padding-block:20px 26px;display:grid;gap:4px}
+.navp__in{padding-block:20px 26px;display:grid;gap:2px}
 .navp__k{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--onc3);margin:14px 0 8px}
+  color:var(--onc3);margin:16px 0 6px}
 .navp__k:first-child{margin-top:0}
 .navp a{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.026em;
   color:var(--onc2);text-decoration:none;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.06);
@@ -1545,7 +1549,7 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
 @media(min-width:1080px){.dd{display:inline-block}}
 .dd__t{display:inline-flex;align-items:center;gap:6px;font-family:var(--ui);font-size:14px;
   color:var(--onc2);background:transparent;border:0;cursor:pointer;padding:8px 12px;
-  border-radius:8px;transition:color .22s,background .22s}
+  border-radius:8px;text-decoration:none!important;text-decoration-line:none!important;border-bottom:0!important;transition:color .22s,background .22s}
 .dd__t:hover,.dd.open .dd__t{color:#fff;background:rgba(255,255,255,.05)}
 .dd__t--q{font-size:13.5px;color:var(--onc3);padding:8px 6px}
 .dd__t i{width:7px;height:7px;border-right:1.4px solid currentColor;border-bottom:1.4px solid currentColor;
@@ -1576,15 +1580,21 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
   letter-spacing:-.02em;color:#fff;margin-bottom:3px}
 .dd__p--sm span{display:block;font-size:12px;line-height:1.4;color:var(--onc3)}
 
-.navp a:not(.btn){display:flex;align-items:center;gap:11px;
-  font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.026em;
-  color:var(--onc2);text-decoration:none;padding:11px 0;
-  border-bottom:1px solid rgba(255,255,255,.06);transition:color .2s var(--ease)}
-.navp a:not(.btn)::before{content:"";width:6px;height:6px;border-radius:50%;flex:none;
-  background:transparent;transform:scale(.6);
-  transition:background .22s var(--ease),transform .28s var(--spring)}
+.navp a:not(.btn){display:block;font-size:13px;font-weight:500;color:var(--onc2);text-decoration:none;padding:7px 0;transition:color .2s var(--ease)}
 .navp a:not(.btn):hover{color:#fff}
-.navp a:not(.btn):hover::before{background:rgba(255,255,255,.3);transform:scale(1)}
+.navp a[aria-current="page"]{color:#fff}
+.navp__login{color:var(--red)!important;font-weight:600}
+.navp__t{display:flex;align-items:center;justify-content:space-between;width:100%;padding:7px 0;background:none;border:0;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;color:var(--onc2);text-align:left;transition:color .2s var(--ease)}
+.navp__t:hover{color:#fff}
+.navp__t i{width:8px;height:8px;border-right:1.5px solid var(--onc3);border-bottom:1.5px solid var(--onc3);transform:rotate(45deg);transition:transform .25s var(--ease);margin-right:6px;flex:none}
+.navp__t[aria-expanded="true"] i{transform:rotate(-135deg)}
+.navp__cov{display:none;padding:2px 0 8px 12px;border-left:1px solid rgba(255,255,255,.08)}
+.navp__cov.open{display:block}
+.navp__cols{display:grid;gap:0}
+@media(min-width:520px){.navp__cols{grid-template-columns:1fr 1fr;column-gap:28px}}
+.navp__c .navp__k{margin-top:12px}
+.navp__cols .navp__c:first-child .navp__k{margin-top:0}
+@media(min-width:520px){.navp__cols .navp__c+.navp__c .navp__k{margin-top:0}}
 .navp a[aria-current="page"]{color:#fff}
 .navp a[aria-current="page"]::before{background:var(--red);transform:scale(1)}
 .navp .btn{color:var(--char)}
@@ -1652,7 +1662,7 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
 .rle:hover{background:#FAFAF8}
 .rle__n{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:-.02em;margin:0}
 .rle__l{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin:5px 0 0}
-.rles__ft{font-size:14px;color:var(--grey);margin:18px 0 0}
+.rles__ft{font-size:14px;color:var(--grey);margin:clamp(24px,2.8vw,32px) 0 0}
 .rles__ft a{color:var(--red);text-decoration:none;border-bottom:1px solid rgba(218,0,7,.35)}
 .rles__ft a:hover{border-color:var(--red)}
 
@@ -1663,17 +1673,19 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
 .qas--l .qa2__q:hover{color:var(--grey)}
 .qas--l .qa2__a{color:var(--grey)}
 .close.fn h2{color:#fff}
+.navp__t[aria-current="page"]{color:#fff}
+.navp__t[aria-current="page"]{color:#fff}
 </style>
 </head>
 <body>
 <nav class="nav" id="nav"><div class="wrap nav__in">
   <a class="logo" href="/" data-astro-reload>tribera<i>.</i></a>
   <span class="nav__sw">
-    <a href="/" class="is">I'm hiring</a>
+    <a href="/">I'm hiring</a>
     <a href="/candidates">I'm looking</a>
   </span>
   <span class="nav__links"><span class="dd">
-    <button class="dd__t" aria-expanded="false" aria-haspopup="true">Coverage<i></i></button>
+    <a href="/industries" class="nav__l dd__t" aria-current="page">Coverage<i></i></a>
     <span class="dd__p" role="menu">
       <span class="dd__g">
         <span class="dd__c"><p class="dd__k">Industries</p><a href="/industries/banking-financial-services">Banking & financial services</a><a href="/industries/enterprise-technology">Enterprise technology</a><a href="/industries/product-saas">Product & SaaS</a><a href="/industries/ai-data">AI & data</a><a href="/industries/cybersecurity">Cybersecurity</a><a href="/industries/healthcare-life-sciences">Healthcare & life sciences</a><a href="/industries/pharmaceutical">Pharmaceutical</a><a href="/industries/manufacturing">Manufacturing</a><a href="/industries/industrial-engineering">Industrial & engineering</a><a href="/industries/global-capability-centres">Global capability centres</a><a href="/industries/consumer-digital-commerce">Consumer & digital commerce</a><a href="/industries/private-equity-portfolio">Private equity portfolio</a></span>
@@ -1687,18 +1699,31 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
     <a class="nav__login" href="https://app.tribera.ai/auth/login">Log in</a>
     <a href="/contact" class="btn btn--light nav__cta">Talk to us</a>
     <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="navp">
-      <span></span><span></span></button>
+      <span></span><span></span><span></span></button>
   </span>
 </div>
 <div class="navp" id="navp"><div class="wrap navp__in">
-  <p class="navp__k">Which side are you on</p>
-  <a href="/" aria-current="page">For hiring teams</a>
-  <a href="/candidates">For candidates</a>
+<p class="navp__k">Which side are you on</p>
+  <a href="/">For hiring teams</a>
+  <button class="navp__t" type="button" aria-expanded="false" aria-controls="navp-cov">Coverage<i></i></button>
+  <div class="navp__cov" id="navp-cov">
+  <span class="navp__cols">
+    <span class="navp__c">
+      <p class="navp__k">Industries</p>
+      <a href="/industries/banking-financial-services">Banking &amp; financial services</a><a href="/industries/enterprise-technology">Enterprise technology</a><a href="/industries/product-saas">Product &amp; SaaS</a><a href="/industries/ai-data">AI &amp; data</a><a href="/industries/cybersecurity">Cybersecurity</a><a href="/industries/healthcare-life-sciences">Healthcare &amp; life sciences</a><a href="/industries/pharmaceutical">Pharmaceutical</a><a href="/industries/manufacturing">Manufacturing</a><a href="/industries/industrial-engineering">Industrial &amp; engineering</a><a href="/industries/global-capability-centres">Global capability centres</a><a href="/industries/consumer-digital-commerce">Consumer &amp; digital commerce</a><a href="/industries/private-equity-portfolio">Private equity portfolio</a>
+    </span>
+    <span class="navp__c">
+      <p class="navp__k">Functions</p>
+      <a href="/functions/engineering-platform">Engineering &amp; platform</a><a href="/functions/data-analytics">Data &amp; analytics</a><a href="/functions/infrastructure-sre">Infrastructure &amp; SRE</a><a href="/functions/security">Security</a><a href="/functions/finance-risk">Finance &amp; risk</a><a href="/functions/product-design">Product &amp; design</a><a href="/functions/operations">Operations</a><a href="/functions/leadership">Leadership</a>
+    </span>
+  </span>
+  </div>
   <p class="navp__k">Company</p>
   <a href="/services">Services</a><a href="/blog">Blog</a><a href="/about">About</a><a href="/contact">Contact</a>
   <a href="/careers">Careers</a>
-  <a href="/industries">Industries &amp; functions</a>
-  <a href="https://app.tribera.ai/auth/login">Log in</a>
+  
+  
+  <a href="https://app.tribera.ai/auth/login" class="navp__login">Log in</a>
   <div class="navp__cta">
     <a href="#close" class="btn btn--light">Talk to us</a>
       </div>
@@ -1707,11 +1732,11 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
   <div class="wrap">
     <div class="hero__top">
       <div class="hero__copy">
-        <p class="eyebrow" data-rv>Manufacturing</p>
-        <h1 class="h1" data-rv style="--d:60ms">We hire on <em>time on the floor, not time in the plan</em>.</h1>
-        <p class="hero__p" data-rv style="--d:110ms">Operations, engineering and quality leaders who have run plants rather than reported on them.</p>
-        <p class="hero__p" data-rv style="--d:150ms">Three people, all hireable, inside 36 hours —
-        <b>assessed by someone who has held the job, not someone who has recruited for it.</b></p>
+        <p class="eyebrow" data-rv>{industry.heroEyebrow}</p>
+        <h1 class="h1" data-rv style="--d:60ms" set:html={industry.heroH1}></h1>
+        {industry.heroPs.map((p, i) => (
+          <p class="hero__p" data-rv style={`--d:${110 + i * 40}ms`} set:html={p}></p>
+        ))}
         <div class="btns" data-rv style="--d:190ms">
           <a href="/contact" class="btn btn--light">Brief a role</a>
           <a href="#asks" class="btn btn--wire">See what we ask</a>
@@ -1720,9 +1745,12 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
       <div class="hero__card" data-rv style="--d:150ms">
         <p class="feat__k">The bar in this sector</p>
         <div class="cmpw"><span class="feat__glint"></span>
-          <div class="cmpw__g"><div class="bw key"><span class="bw__n">Core depth</span><span class="bw__b"><span class="bw__f" style="--w:100%"></span></span><span class="bw__v">22%</span></div><div class="bw"><span class="bw__n">Systems design</span><span class="bw__b"><span class="bw__f" style="--w:64%"></span></span><span class="bw__v">14%</span></div><div class="bw"><span class="bw__n">Controls and risk</span><span class="bw__b"><span class="bw__f" style="--w:100%"></span></span><span class="bw__v">22%</span></div><div class="bw"><span class="bw__n">Delivery speed</span><span class="bw__b"><span class="bw__f" style="--w:82%"></span></span><span class="bw__v">18%</span></div><div class="bw"><span class="bw__n">Documentation</span><span class="bw__b"><span class="bw__f" style="--w:64%"></span></span><span class="bw__v">14%</span></div><div class="bw"><span class="bw__n">Stakeholder handling</span><span class="bw__b"><span class="bw__f" style="--w:45%"></span></span><span class="bw__v">10%</span></div></div>
-          <p class="cmpw__ft"><b>Core depth carries 22%</b> here. Same six dimensions in every sector;
-          only the shape changes — and the shape is set with you at intake.</p>
+          <div class="cmpw__g">
+            {industry.bars.map((b) => (
+              <div class:list={['bw', { key: b.key }]}><span class="bw__n">{b.n}</span><span class="bw__b"><span class="bw__f" style={`--w:${b.w}%`}></span></span><span class="bw__v">{b.v}</span></div>
+            ))}
+          </div>
+          <p class="cmpw__ft" set:html={industry.barsFt}></p>
         </div>
       </div>
     </div>
@@ -1732,12 +1760,13 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
 <section class="band band--w" id="misses"><div class="wrap">
   <div class="shead">
     <div><p class="eyebrow eyebrow--red" data-rv>Where a generic screen breaks</p>
-      <h2 class="h2" data-rv style="--d:60ms">Things a CV cannot tell you.</h2></div>
+      <h2 class="h2" data-rv style="--d:60ms">{industry.missH2}</h2></div>
     <p class="dek" data-rv style="--d:100ms">None of these are exotic. <b>They are simply invisible to
     anyone assessing from outside the sector</b>, which is most of the people doing the assessing.</p>
   </div>
-  <div class="miss" data-rv style="--d:140ms"><div class="mis"><span class="mis__n">01</span><div><p class="mis__t">Floor time versus plan time</p><p class="mis__k">Both appear as operations experience</p><p class="mis__x">Someone who has stood on a line at three in the morning talks about it differently from someone who has managed the schedule for one. The CV cannot separate them.</p><p class="mis__w">Where it shows up: what they changed that the plan did not call for.</p></div></div><div class="mis"><span class="mis__n">02</span><div><p class="mis__t">Escapes, not just RCAs</p><p class="mis__k">Everyone has run a root cause analysis</p><p class="mis__x">The interesting question is how far a defect travelled before it was caught, and what the containment actually cost.</p><p class="mis__w">Where it shows up: a quality escape that reached a customer.</p></div></div><div class="mis"><span class="mis__n">03</span><div><p class="mis__t">Recovering a shutdown</p><p class="mis__k">Nothing runs to schedule</p><p class="mis__x">Planned maintenance always overruns somewhere. The skill is what they chose to cut to bring it back, and who they had to tell.</p><p class="mis__w">Where it shows up: what overran, and what they dropped to recover.</p></div></div></div>
-</div></section>
+  <div class="miss" data-rv style="--d:140ms">{industry.misses.map((miss) => (
+    <div class="mis"><span class="mis__n">{miss.n}</span><div><p class="mis__t">{miss.t}</p><p class="mis__k">{miss.k}</p><p class="mis__x">{miss.x}</p><p class="mis__w">{miss.w}</p></div></div>
+  ))}</div></div></section>
 
 <section class="wrap band" id="asks">
   <div class="shead">
@@ -1746,10 +1775,10 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
     <p class="dek" data-rv style="--d:100ms">Every question comes off the candidate's own CV, so these are
     shapes rather than a script. <b>The second column is the part a generic interviewer cannot supply.</b></p>
   </div>
-  <div class="qqs" data-rv style="--d:140ms"><div class="qq"><p class="qq__q"><span>Q1</span>What did you change on the line that the plan did not call for?</p><div class="qq__g"><div class="qq__b qq__b--weak"><span class="qq__k">A thin answer</span><p class="qq__v">“We optimised process flow to improve throughput.”</p></div><div class="qq__b qq__b--for"><span class="qq__k">What the expert is listening for</span><p class="qq__v">Who on the floor told them it was wrong, and whether they listened the first time they were told. Most plant improvements start as someone being ignored.</p></div></div></div><div class="qq"><p class="qq__q"><span>Q2</span>Tell me about a quality escape.</p><div class="qq__g"><div class="qq__b qq__b--weak"><span class="qq__k">A thin answer</span><p class="qq__v">“We completed a root cause analysis and implemented corrective actions.”</p></div><div class="qq__b qq__b--for"><span class="qq__k">What the expert is listening for</span><p class="qq__v">How far it travelled before it was caught and what containment cost. Everyone runs an RCA; not everyone has had to make the call to a customer.</p></div></div></div><div class="qq"><p class="qq__q"><span>Q3</span>Describe a shutdown you ran.</p><div class="qq__g"><div class="qq__b qq__b--weak"><span class="qq__k">A thin answer</span><p class="qq__v">“We planned it thoroughly and executed to schedule.”</p></div><div class="qq__b qq__b--for"><span class="qq__k">What the expert is listening for</span><p class="qq__v">What overran and what they cut to recover. Nothing of that size runs to plan, and the recovery decisions are the whole skill.</p></div></div></div></div>
-  <p class="cases__ft" style="color:var(--grey);max-width:72ch">A correct answer with no reasoning behind it
-  is not evidence of anything. <b style="color:var(--ink)">That sentence is written into the method, and
-  this is the sector where it earns its keep.</b></p>
+  <div class="qqs" data-rv style="--d:140ms">{industry.qqs.map((qq, i) => (
+    <div class="qq"><p class="qq__q"><span>Q{i + 1}</span>{qq.q}</p><div class="qq__g"><div class="qq__b qq__b--weak"><span class="qq__k">{qq.thinT}</span><p class="qq__v">{qq.thin}</p></div><div class="qq__b qq__b--for"><span class="qq__k">{qq.forT}</span><p class="qq__v">{qq.for}</p></div></div></div>
+  ))}</div>
+  <p class="cases__ft" style="color:var(--grey);max-width:72ch" set:html={industry.casesFt}></p>
 </section>
 
 <section class="band band--w" id="roles"><div class="wrap">
@@ -1759,7 +1788,9 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
     <p class="dek" data-rv style="--d:100ms">Interview three, hire one — <b>and if none of the three fit,
     we restart at no cost.</b></p>
   </div>
-  <div class="rles" data-rv style="--d:140ms"><div class="rle"><p class="rle__n">Plant &amp; production</p><p class="rle__l">Manager to plant head</p></div><div class="rle"><p class="rle__n">Quality &amp; EHS</p><p class="rle__l">Lead to head</p></div><div class="rle"><p class="rle__n">Maintenance &amp; reliability</p><p class="rle__l">Engineer to manager</p></div><div class="rle"><p class="rle__n">Industrial engineering</p><p class="rle__l">Engineer to lead</p></div><div class="rle"><p class="rle__n">Supply chain &amp; planning</p><p class="rle__l">Manager to head</p></div><div class="rle"><p class="rle__n">Operations leadership</p><p class="rle__l">Head to COO</p></div><div class="rle"><p class="rle__n">Automation & controls</p><p class="rle__l">Engineer to manager</p></div><div class="rle"><p class="rle__n">Procurement & vendor management</p><p class="rle__l">Manager to head</p></div></div>
+  <div class="rles" data-rv style="--d:140ms">{industry.roles.map((r) => (
+    <div class="rle"><p class="rle__n">{r.n}</p><p class="rle__l">{r.l}</p></div>
+  ))}</div>
   <p class="rles__ft" data-rv>Not seeing yours? <a href="/contact">Tell us what you're hiring for</a> —
   we will say honestly whether it is our ground.</p>
 </div></section>
@@ -1773,7 +1804,11 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
     they have actually worked.</p>
   </div>
   <div class="tr2" data-rv style="--d:140ms">
-    <div class="tr2__c"><p class="tr2__k">On this bench</p><ul class="tr2__l"><li>Plant operations, 14 yrs</li><li>Quality and EHS, 13 yrs</li><li>Maintenance and reliability, 12 yrs</li><li>Supply chain, 14 yrs</li></ul></div>
+    {industry.benchT ? (
+      <div class="tr2__c"><p class="tr2__k">{industry.benchT}</p><ul class="tr2__l">{industry.bench.map((b) => <li>{b}</li>)}</ul></div>
+    ) : (
+      <ul class="tr2__l">{industry.bench.map((b) => <li>{b}</li>)}</ul>
+    )}
     <div class="tr2__c"><p class="tr2__k">What that changes</p><ul class="tr2__l">
       <li>The follow-up lands, because they know where the answer usually thins</li>
       <li>Titles get read against scope, not against a salary band</li>
@@ -1781,8 +1816,7 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
       <li>The write-up is in the language your hiring manager already uses</li>
     </ul></div>
   </div>
-  <p class="trust__ft" data-rv>Outcomes come back to the expert who ran the interview — who got hired, who
-  was still there a year later. It is the only feedback loop in hiring worth anything.</p>
+  <p class="trust__ft" data-rv set:html={industry.trustFt}></p>
 </div></section>
 
 <section class="wrap band" id="faq">
@@ -1792,15 +1826,15 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
     <p class="dek" data-rv style="--d:100ms">Answered here so the first call can be about your role rather
     than about us.</p>
   </div>
-  <div class="qas qas--l" data-rv style="--d:140ms"><details class="qa2"><summary class="qa2__q">Do your experts actually have backgrounds in this sector?<i></i></summary><p class="qa2__a">Yes, and the distinction we hold to is this: every interview is run by someone who has operated in the space, not someone who has recruited for it. They only interview on ground they have actually worked.</p></details><details class="qa2"><summary class="qa2__q">Do you cover discrete and process manufacturing?<i></i></summary><p class="qa2__a">Both, with different interviewers. The failure modes are not alike — a batch process person and a discrete assembly person will each struggle with the other's questions, and neither struggle tells you anything useful.</p></details><details class="qa2"><summary class="qa2__q">What is a realistic time to offer?<i></i></summary><p class="qa2__a">First three names inside 36 hours of the brief being confirmed. Most teams close two to three weeks after that. If we cannot hit that on your mandate we will say so before you sign anything.</p></details></div>
+  <div class="qas qas--l" data-rv style="--d:140ms">{industry.faqs.map((f) => (
+    <details class="qa2"><summary class="qa2__q">{f.q}<i></i></summary><p class="qa2__a">{f.a}</p></details>
+  ))}</div>
 </section>
 
 <section class="fn band close" id="close"><div class="wrap">
   <p class="eyebrow" data-rv>Start here</p>
   <h2 class="h2" data-rv style="max-width:17ch;color:#fff">Tell us the role. Three names in 36 hours.</h2>
-  <p class="fn__dek" data-rv style="--d:60ms">A 45-minute intake call sets the bar with you — including how
-  hard core depth should lean for this particular seat.
-  <b>Then three people you would take any of.</b></p>
+  <p class="fn__dek" data-rv style="--d:60ms" set:html={industry.closeDek}></p>
   <div class="btns" data-rv style="--d:110ms">
     <a href="/contact" class="btn btn--light">Brief a role</a>
     <a href="/industries" class="btn btn--wire">Other sectors</a>
@@ -2282,7 +2316,7 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
 
   /* ══ INDUSTRIES: the same six dimensions, any two sectors ══ */
   (function(){
-    var W={"consumer-digital-commerce": {"n": "Consumer & digital commerce", "w": [30, 24, 8, 22, 6, 10]}, "banking-financial-services": {"n": "Banking & financial services", "w": [20, 14, 30, 10, 18, 8]}, "enterprise-technology": {"n": "Enterprise technology", "w": [26, 26, 10, 20, 10, 8]}, "product-saas": {"n": "Product & SaaS", "w": [22, 18, 6, 20, 8, 26]}, "ai-data": {"n": "AI & data", "w": [30, 26, 10, 16, 10, 8]}, "cybersecurity": {"n": "Cybersecurity", "w": [24, 16, 32, 12, 10, 6]}, "healthcare-life-sciences": {"n": "Healthcare & life sciences", "w": [18, 12, 30, 10, 22, 8]}, "pharmaceutical": {"n": "Pharmaceutical", "w": [16, 10, 34, 8, 24, 8]}, "manufacturing": {"n": "Manufacturing", "w": [22, 14, 22, 18, 14, 10]}, "industrial-engineering": {"n": "Industrial & engineering", "w": [24, 18, 18, 18, 14, 8]}, "global-capability-centers": {"n": "Global capability centres", "w": [22, 18, 12, 20, 10, 18]}, "private-equity-portfolio": {"n": "Private equity portfolio", "w": [20, 14, 10, 32, 8, 16]}};
+    var W={"consumer-digital-commerce": {"n": "Consumer & digital commerce", "w": [30, 24, 8, 22, 6, 10]}, "banking-financial-services": {"n": "Banking & financial services", "w": [20, 14, 30, 10, 18, 8]}, "enterprise-technology": {"n": "Enterprise technology", "w": [26, 26, 10, 20, 10, 8]}, "product-saas": {"n": "Product & SaaS", "w": [22, 18, 6, 20, 8, 26]}, "ai-data": {"n": "AI & data", "w": [30, 26, 10, 16, 10, 8]}, "cybersecurity": {"n": "Cybersecurity", "w": [24, 16, 32, 12, 10, 6]}, "healthcare-life-sciences": {"n": "Healthcare & life sciences", "w": [18, 12, 30, 10, 22, 8]}, "pharmaceutical": {"n": "Pharmaceutical", "w": [16, 10, 34, 8, 24, 8]}, "manufacturing": {"n": "Manufacturing", "w": [22, 14, 22, 18, 14, 10]}, "industrial-engineering": {"n": "Industrial & engineering", "w": [24, 18, 18, 18, 14, 8]}, "global-capability-centres": {"n": "Global capability centres", "w": [22, 18, 12, 20, 10, 18]}, "private-equity-portfolio": {"n": "Private equity portfolio", "w": [20, 14, 10, 32, 8, 16]}};
     var D=["Core depth", "Systems design", "Controls and risk", "Delivery speed", "Documentation", "Stakeholder handling"];
     var a=document.getElementById('secA'), b=document.getElementById('secB'),
         ft=document.getElementById('cmpFt');
@@ -2315,17 +2349,31 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
       addEventListener('scroll',tick,{passive:true}); tick();
     }
     if(b&&p){
-      b.addEventListener('click',function(){
-        var open=p.classList.toggle('open');
-        b.classList.toggle('on',open);
+      function setNav(open){
+        p.classList.toggle('open',open); b.classList.toggle('on',open);
+        if(open){
+          p.style.top=(nav.offsetHeight)+'px';
+          var y=window.scrollY; document.body.dataset.sy=y;
+          document.body.style.position='fixed'; document.body.style.width='100%';
+          document.body.style.top='-'+y+'px'; document.body.style.left='0'; document.body.style.right='0';
+        } else {
+          var sy=Number(document.body.dataset.sy||0);
+          document.body.style.position=''; document.body.style.width='';
+          document.body.style.top=''; document.body.style.left=''; document.body.style.right='';
+          window.scrollTo(0,sy); delete document.body.dataset.sy;
+        }
         b.setAttribute('aria-expanded',String(open));
+      }
+      b.addEventListener('click',function(){
+        setNav(!p.classList.contains('open'));
       });
-      p.addEventListener('click',function(e){ if(e.target.tagName==='A'){
-        p.classList.remove('open'); b.classList.remove('on'); b.setAttribute('aria-expanded','false'); }});
-      addEventListener('keydown',function(e){ if(e.key==='Escape'&&p.classList.contains('open')){
-        p.classList.remove('open'); b.classList.remove('on'); b.setAttribute('aria-expanded','false'); }});
+      p.addEventListener('click',function(e){ if(e.target.tagName==='A') setNav(false); });
+      addEventListener('keydown',function(e){ if(e.key==='Escape'&&p.classList.contains('open')) setNav(false); });
     }
   })();
+    var t=document.querySelector('.navp__t'), c=document.getElementById('navp-cov');
+    if(t&&c){ t.addEventListener('click',function(){
+      var o=c.classList.toggle('open'); t.setAttribute('aria-expanded',String(o)); }); }
 
   /* ══ dropdowns: hover on pointer, click and keys everywhere ══ */
   (function(){
@@ -2337,7 +2385,10 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
     dds.forEach(function(d){
       var t=d.querySelector('.dd__t'), timer;
       t.addEventListener('click',function(e){
-        location.href='/industries';
+        if(t.tagName==="A") return;
+        e.preventDefault();
+        var open=!d.classList.contains('open');
+        shut(d); d.classList.toggle('open',open); t.setAttribute('aria-expanded',String(open));
       });
       d.addEventListener('mouseenter',function(){
         clearTimeout(timer); shut(d); d.classList.add('open'); t.setAttribute('aria-expanded','true'); });
@@ -2350,6 +2401,26 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
     });
     addEventListener('keydown',function(e){ if(e.key==='Escape') shut(null); });
     document.addEventListener('click',function(e){ if(!e.target.closest('.dd')) shut(null); });
+  })();
+  /* ══ active nav reflects the current page ══ */
+  (function(){
+    var p=location.pathname.replace(/\/+$/,'')||'/';
+    function mark(sel,on){ var a=document.querySelector(sel); if(a&&on) a.setAttribute('aria-current','page'); }
+    function markIs(sel,on){ var a=document.querySelector(sel); if(a&&on) a.classList.add('is'); }
+    markIs('.nav__sw a[href="/"]', p==='/');
+    markIs('.nav__sw a[href="/candidates"]', p.indexOf('/candidates')===0);
+    mark('.nav__l[href="/services"]', p==='/services');
+    mark('.nav__l[href="/blog"]', p==='/blog'||p.indexOf('/blog/')===0);
+    mark('.nav__l[href="/about"]', p==='/about');
+    mark('.nav__l[href="/contact"]', p==='/contact');
+    var cov=p.indexOf('/industries')===0||p.indexOf('/functions')===0;
+    mark('.dd__t',cov); mark('.navp__t',cov);
+    mark('.navp a[href="/"]', p==='/');
+    mark('.navp a[href="/services"]', p==='/services');
+    mark('.navp a[href="/blog"]', p==='/blog'||p.indexOf('/blog/')===0);
+    mark('.navp a[href="/about"]', p==='/about');
+    mark('.navp a[href="/contact"]', p==='/contact');
+    mark('.navp a[href="/careers"]', p==='/careers'||p.indexOf('/careers/')===0);
   })();
 </script>
 </body>

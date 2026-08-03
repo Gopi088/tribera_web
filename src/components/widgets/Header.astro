@@ -16,11 +16,11 @@ const isIndustriesPage = path.startsWith('/industries') || path.startsWith('/fun
 <nav class="nav" id="nav"><div class="wrap nav__in">
   <a class="logo" href="/" data-astro-reload>tribera<i>.</i></a>
   <span class="nav__sw">
-    <a href="/" class:list={[isHome && 'is']}>I'm hiring</a>
-    <a href="/candidates" class:list={[isCandidatesPage && 'is']}>I'm looking</a>
+    <a href="/" class={isHome ? 'is' : undefined}>I'm hiring</a>
+    <a href="/candidates" class={isCandidatesPage ? 'is' : undefined}>I'm looking</a>
   </span>
   <span class="nav__links"><span class="dd">
-    <button class="dd__t" aria-expanded="false" aria-haspopup="true">Coverage<i></i></button>
+    <a href="/industries" class="nav__l dd__t" aria-current={isIndustriesPage ? 'page' : undefined}>Coverage<i></i></a>
     <span class="dd__p" role="menu">
       <span class="dd__g">
         <span class="dd__c"><p class="dd__k">Industries</p><a href="/industries/banking-financial-services">Banking &amp; financial services</a><a href="/industries/enterprise-technology">Enterprise technology</a><a href="/industries/product-saas">Product &amp; SaaS</a><a href="/industries/ai-data">AI &amp; data</a><a href="/industries/cybersecurity">Cybersecurity</a><a href="/industries/healthcare-life-sciences">Healthcare &amp; life sciences</a><a href="/industries/pharmaceutical">Pharmaceutical</a><a href="/industries/manufacturing">Manufacturing</a><a href="/industries/industrial-engineering">Industrial &amp; engineering</a><a href="/industries/global-capability-centres">Global capability centres</a><a href="/industries/consumer-digital-commerce">Consumer &amp; digital commerce</a><a href="/industries/private-equity-portfolio">Private equity portfolio</a></span>
@@ -38,11 +38,41 @@ const isIndustriesPage = path.startsWith('/industries') || path.startsWith('/fun
   </span>
 </div>
 <div class="navp" id="navp"><div class="wrap navp__in">
+  <button class="navp__t" type="button" aria-expanded="false" aria-controls="navp-cov" aria-current={isIndustriesPage ? 'page' : undefined}>Coverage<i></i></button>
+  <div class="navp__cov" id="navp-cov">
+  <span class="navp__cols">
+    <span class="navp__c">
+      <p class="navp__k">Industries</p>
+      <a href="/industries/banking-financial-services">Banking &amp; financial services</a>
+      <a href="/industries/enterprise-technology">Enterprise technology</a>
+      <a href="/industries/product-saas">Product &amp; SaaS</a>
+      <a href="/industries/ai-data">AI &amp; data</a>
+      <a href="/industries/cybersecurity">Cybersecurity</a>
+      <a href="/industries/healthcare-life-sciences">Healthcare &amp; life sciences</a>
+      <a href="/industries/pharmaceutical">Pharmaceutical</a>
+      <a href="/industries/manufacturing">Manufacturing</a>
+      <a href="/industries/industrial-engineering">Industrial &amp; engineering</a>
+      <a href="/industries/global-capability-centres">Global capability centres</a>
+      <a href="/industries/consumer-digital-commerce">Consumer &amp; digital commerce</a>
+      <a href="/industries/private-equity-portfolio">Private equity portfolio</a>
+    </span>
+    <span class="navp__c">
+      <p class="navp__k">Functions</p>
+      <a href="/functions/engineering-platform">Engineering &amp; platform</a>
+      <a href="/functions/data-analytics">Data &amp; analytics</a>
+      <a href="/functions/infrastructure-sre">Infrastructure &amp; SRE</a>
+      <a href="/functions/security">Security</a>
+      <a href="/functions/finance-risk">Finance &amp; risk</a>
+      <a href="/functions/product-design">Product &amp; design</a>
+      <a href="/functions/operations">Operations</a>
+      <a href="/functions/leadership">Leadership</a>
+    </span>
+  </span>
+  </div>
   <p class="navp__k">Company</p>
   <a href="/services" aria-current={isServicesPage ? 'page' : undefined}>Services</a><a href="/blog" aria-current={isBlogPage ? 'page' : undefined}>Blog</a><a href="/about" aria-current={isAboutPage ? 'page' : undefined}>About</a><a href="/contact" aria-current={isContactPage ? 'page' : undefined}>Contact</a>
   <a href="/careers" aria-current={isCareersPage ? 'page' : undefined}>Careers</a>
-  <a href="/industries" aria-current={isIndustriesPage ? 'page' : undefined}>Industries &amp; functions</a>
-  <a href="https://app.tribera.ai/auth/login">Log in</a>
+  <a href="https://app.tribera.ai/auth/login" class="navp__login">Log in</a>
   <div class="navp__cta">
     <a href={ctaHref} class="btn btn--light">{ctaLabel}</a>
   </div>
@@ -57,16 +87,30 @@ const isIndustriesPage = path.startsWith('/industries') || path.startsWith('/fun
       addEventListener('scroll',tick,{passive:true}); tick();
     }
     if(b&&p){
-      b.addEventListener('click',function(){
-        var open=p.classList.toggle('open');
-        b.classList.toggle('on',open);
+      function setNav(open){
+        p.classList.toggle('open',open); b.classList.toggle('on',open);
+        if(open){
+          p.style.top=(nav.offsetHeight)+'px';
+          var y=window.scrollY; document.body.dataset.sy=y;
+          document.body.style.position='fixed'; document.body.style.width='100%';
+          document.body.style.top='-'+y+'px'; document.body.style.left='0'; document.body.style.right='0';
+        } else {
+          var sy=Number(document.body.dataset.sy||0);
+          document.body.style.position=''; document.body.style.width='';
+          document.body.style.top=''; document.body.style.left=''; document.body.style.right='';
+          window.scrollTo(0,sy); delete document.body.dataset.sy;
+        }
         b.setAttribute('aria-expanded',String(open));
+      }
+      b.addEventListener('click',function(){
+        setNav(!p.classList.contains('open'));
       });
-      p.addEventListener('click',function(e){ if(e.target.tagName==='A'){
-        p.classList.remove('open'); b.classList.remove('on'); b.setAttribute('aria-expanded','false'); }});
-      addEventListener('keydown',function(e){ if(e.key==='Escape'&&p.classList.contains('open')){
-        p.classList.remove('open'); b.classList.remove('on'); b.setAttribute('aria-expanded','false'); }});
+      p.addEventListener('click',function(e){ if(e.target.tagName==='A') setNav(false); });
+      addEventListener('keydown',function(e){ if(e.key==='Escape'&&p.classList.contains('open')) setNav(false); });
     }
+    var t=document.querySelector('.navp__t'), c=document.getElementById('navp-cov');
+    if(t&&c){ t.addEventListener('click',function(){
+      var o=c.classList.toggle('open'); t.setAttribute('aria-expanded',String(o)); }); }
     var dds=[].slice.call(document.querySelectorAll('.dd'));
     if(!dds.length) return;
     function shut(except){ dds.forEach(function(d){
@@ -74,11 +118,12 @@ const isIndustriesPage = path.startsWith('/industries') || path.startsWith('/fun
         var t=d.querySelector('.dd__t'); if(t) t.setAttribute('aria-expanded','false'); } }); }
     dds.forEach(function(d){
       var t=d.querySelector('.dd__t'), timer;
-      t.addEventListener('click',function(e){
-        e.preventDefault();
-        var open=!d.classList.contains('open');
-        shut(d); d.classList.toggle('open',open); t.setAttribute('aria-expanded',String(open));
-      });
+       t.addEventListener('click',function(e){
+         if(t.tagName==='A') return;
+         e.preventDefault();
+         var open=!d.classList.contains('open');
+         shut(d); d.classList.toggle('open',open); t.setAttribute('aria-expanded',String(open));
+       });
       d.addEventListener('mouseenter',function(){
         clearTimeout(timer); shut(d); d.classList.add('open'); t.setAttribute('aria-expanded','true'); });
       d.addEventListener('mouseleave',function(){

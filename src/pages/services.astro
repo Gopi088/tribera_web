@@ -1142,7 +1142,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){.stickcta{transition:none}}
 
 /* ══ SECTION RHYTHM — the header owns the gap below it ══ */
-.shead{margin-bottom:clamp(30px,3.6vw,52px)}
+.shead{margin-bottom:clamp(50px,5.8vw,88px)}
 .shead + *{margin-top:0}
 .shead + .ramp{margin-top:0}
 
@@ -1508,25 +1508,20 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
 .nav__cta{padding:9px 18px!important;font-size:14px}
 @media(max-width:719px){.nav__cta{display:none}}
 
-.burger{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;
-  border:1px solid rgba(255,255,255,.14);background:transparent;cursor:pointer;flex:none;
-  transition:background .22s,border-color .22s,transform .2s var(--spring)}
+.burger{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:36px;height:36px;border-radius:6px;border:0;background:transparent;cursor:pointer;flex:none;transition:background .2s}
 @media(min-width:1080px){.burger{display:none}}
-.burger:hover{background:rgba(255,255,255,.06)}
+.burger:hover{background:rgba(255,255,255,.05)}
 .burger:active{transform:scale(.94)}
-.burger span{display:block;width:16px;height:1.6px;border-radius:1px;background:var(--onc);
-  transition:transform .32s var(--spring),opacity .2s}
-.burger span+span{margin-top:4.5px}
+.burger span{display:block;width:24px;height:2px;border-radius:1px;background:#fff;transition:background .2s}
 
-.navp{display:none;border-top:1px solid rgba(255,255,255,.08);
-  background:rgba(19,19,19,.98);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+html.nlock{overflow:hidden}
+.navp{display:none;position:absolute;top:100%;left:0;right:0;max-height:calc(100dvh - 100%);overflow-y:auto;-webkit-overflow-scrolling:touch;border-top:1px solid rgba(255,255,255,.08);background:rgba(19,19,19,.98);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .navp.open{display:block;animation:npIn .3s var(--ease) both}
 @keyframes npIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 @media(min-width:1080px){.navp{display:none!important}}
-.navp__in{padding-block:20px 26px;display:grid;gap:4px}
+.navp__in{padding-block:20px 26px;display:grid;gap:2px}
 .navp__k{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--onc3);margin:14px 0 8px}
+  color:var(--onc3);margin:16px 0 6px}
 .navp__k:first-child{margin-top:0}
 .navp a{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.026em;
   color:var(--onc2);text-decoration:none;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.06);
@@ -1578,15 +1573,21 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
   letter-spacing:-.02em;color:#fff;margin-bottom:3px}
 .dd__p--sm span{display:block;font-size:12px;line-height:1.4;color:var(--onc3)}
 
-.navp a:not(.btn){display:flex;align-items:center;gap:11px;
-  font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.026em;
-  color:var(--onc2);text-decoration:none;padding:11px 0;
-  border-bottom:1px solid rgba(255,255,255,.06);transition:color .2s var(--ease)}
-.navp a:not(.btn)::before{content:"";width:6px;height:6px;border-radius:50%;flex:none;
-  background:transparent;transform:scale(.6);
-  transition:background .22s var(--ease),transform .28s var(--spring)}
+.navp a:not(.btn){display:block;font-size:13px;font-weight:500;color:var(--onc2);text-decoration:none;padding:7px 0;transition:color .2s var(--ease)}
 .navp a:not(.btn):hover{color:#fff}
-.navp a:not(.btn):hover::before{background:rgba(255,255,255,.3);transform:scale(1)}
+.navp a[aria-current="page"]{color:#fff}
+.navp__login{color:var(--red)!important;font-weight:600}
+.navp__t{display:flex;align-items:center;justify-content:space-between;width:100%;padding:7px 0;background:none;border:0;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;color:var(--onc2);text-align:left;transition:color .2s var(--ease)}
+.navp__t:hover{color:#fff}
+.navp__t i{width:8px;height:8px;border-right:1.5px solid var(--onc3);border-bottom:1.5px solid var(--onc3);transform:rotate(45deg);transition:transform .25s var(--ease);margin-right:6px;flex:none}
+.navp__t[aria-expanded="true"] i{transform:rotate(-135deg)}
+.navp__cov{display:none;padding:2px 0 8px 12px;border-left:1px solid rgba(255,255,255,.08)}
+.navp__cov.open{display:block}
+.navp__cols{display:grid;gap:0}
+@media(min-width:520px){.navp__cols{grid-template-columns:1fr 1fr;column-gap:28px}}
+.navp__c .navp__k{margin-top:12px}
+.navp__cols .navp__c:first-child .navp__k{margin-top:0}
+@media(min-width:520px){.navp__cols .navp__c+.navp__c .navp__k{margin-top:0}}
 .navp a[aria-current="page"]{color:#fff}
 .navp a[aria-current="page"]::before{background:var(--red);transform:scale(1)}
 .navp .btn{color:var(--char)}
@@ -2778,17 +2779,20 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
 .nine__key i{width:12px;height:20px;border-radius:2px;flex:none}
 .k1--doc{background:transparent;border:1.4px solid #B8B4AA}
 .k2--per{background:var(--red);border:0}
+.navp__t[aria-current="page"]{color:#fff}
+.dd__t[aria-current="page"]{color:#fff;background:rgba(255,255,255,.05)}
+.navp__t[aria-current="page"]{color:#fff}
 </style>
 </head>
 <body>
 <nav class="nav" id="nav"><div class="wrap nav__in">
   <a class="logo" href="/" data-astro-reload>tribera<i>.</i></a>
   <span class="nav__sw">
-    <a href="/" class="is">I'm hiring</a>
+    <a href="/">I'm hiring</a>
     <a href="/candidates">I'm looking</a>
   </span>
   <span class="nav__links"><span class="dd">
-    <button class="dd__t" aria-expanded="false" aria-haspopup="true">Coverage<i></i></button>
+    <a href="/industries" class="dd__t">Coverage<i></i></a>
     <span class="dd__p" role="menu">
       <span class="dd__g">
         <span class="dd__c"><p class="dd__k">Industries</p><a href="/industries/banking-financial-services">Banking & financial services</a><a href="/industries/enterprise-technology">Enterprise technology</a><a href="/industries/product-saas">Product & SaaS</a><a href="/industries/ai-data">AI & data</a><a href="/industries/cybersecurity">Cybersecurity</a><a href="/industries/healthcare-life-sciences">Healthcare & life sciences</a><a href="/industries/pharmaceutical">Pharmaceutical</a><a href="/industries/manufacturing">Manufacturing</a><a href="/industries/industrial-engineering">Industrial & engineering</a><a href="/industries/global-capability-centres">Global capability centres</a><a href="/industries/consumer-digital-commerce">Consumer & digital commerce</a><a href="/industries/private-equity-portfolio">Private equity portfolio</a></span>
@@ -2806,11 +2810,25 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
   </span>
 </div>
 <div class="navp" id="navp"><div class="wrap navp__in">
+  <button class="navp__t" type="button" aria-expanded="false" aria-controls="navp-cov">Coverage<i></i></button>
+  <div class="navp__cov" id="navp-cov">
+  <span class="navp__cols">
+    <span class="navp__c">
+      <p class="navp__k">Industries</p>
+      <a href="/industries/banking-financial-services">Banking &amp; financial services</a><a href="/industries/enterprise-technology">Enterprise technology</a><a href="/industries/product-saas">Product &amp; SaaS</a><a href="/industries/ai-data">AI &amp; data</a><a href="/industries/cybersecurity">Cybersecurity</a><a href="/industries/healthcare-life-sciences">Healthcare &amp; life sciences</a><a href="/industries/pharmaceutical">Pharmaceutical</a><a href="/industries/manufacturing">Manufacturing</a><a href="/industries/industrial-engineering">Industrial &amp; engineering</a><a href="/industries/global-capability-centres">Global capability centres</a><a href="/industries/consumer-digital-commerce">Consumer &amp; digital commerce</a><a href="/industries/private-equity-portfolio">Private equity portfolio</a>
+    </span>
+    <span class="navp__c">
+      <p class="navp__k">Functions</p>
+      <a href="/functions/engineering-platform">Engineering &amp; platform</a><a href="/functions/data-analytics">Data &amp; analytics</a><a href="/functions/infrastructure-sre">Infrastructure &amp; SRE</a><a href="/functions/security">Security</a><a href="/functions/finance-risk">Finance &amp; risk</a><a href="/functions/product-design">Product &amp; design</a><a href="/functions/operations">Operations</a><a href="/functions/leadership">Leadership</a>
+    </span>
+  </span>
+  </div>
   <p class="navp__k">Company</p>
   <a href="/services" aria-current="page">Services</a><a href="/blog">Blog</a><a href="/about">About</a><a href="/contact">Contact</a>
   <a href="/careers">Careers</a>
-  <a href="/industries">Industries &amp; functions</a>
-  <a href="https://app.tribera.ai/auth/login">Log in</a>
+  
+  
+  <a href="https://app.tribera.ai/auth/login" class="navp__login">Log in</a>
   <div class="navp__cta">
     <a href="#close" class="btn btn--light">Talk to us</a>
       </div>
@@ -3425,7 +3443,7 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
 
   /* ══ INDUSTRIES: the same six dimensions, any two sectors ══ */
   (function(){
-    var W={"consumer-digital-commerce": {"n": "Consumer & digital commerce", "w": [30, 24, 8, 22, 6, 10]}, "banking-financial-services": {"n": "Banking & financial services", "w": [20, 14, 30, 10, 18, 8]}, "enterprise-technology": {"n": "Enterprise technology", "w": [26, 26, 10, 20, 10, 8]}, "product-saas": {"n": "Product & SaaS", "w": [22, 18, 6, 20, 8, 26]}, "ai-data": {"n": "AI & data", "w": [30, 26, 10, 16, 10, 8]}, "cybersecurity": {"n": "Cybersecurity", "w": [24, 16, 32, 12, 10, 6]}, "healthcare-life-sciences": {"n": "Healthcare & life sciences", "w": [18, 12, 30, 10, 22, 8]}, "pharmaceutical": {"n": "Pharmaceutical", "w": [16, 10, 34, 8, 24, 8]}, "manufacturing": {"n": "Manufacturing", "w": [22, 14, 22, 18, 14, 10]}, "industrial-engineering": {"n": "Industrial & engineering", "w": [24, 18, 18, 18, 14, 8]}, "global-capability-centers": {"n": "Global capability centres", "w": [22, 18, 12, 20, 10, 18]}, "private-equity-portfolio": {"n": "Private equity portfolio", "w": [20, 14, 10, 32, 8, 16]}};
+    var W={"consumer-digital-commerce": {"n": "Consumer & digital commerce", "w": [30, 24, 8, 22, 6, 10]}, "banking-financial-services": {"n": "Banking & financial services", "w": [20, 14, 30, 10, 18, 8]}, "enterprise-technology": {"n": "Enterprise technology", "w": [26, 26, 10, 20, 10, 8]}, "product-saas": {"n": "Product & SaaS", "w": [22, 18, 6, 20, 8, 26]}, "ai-data": {"n": "AI & data", "w": [30, 26, 10, 16, 10, 8]}, "cybersecurity": {"n": "Cybersecurity", "w": [24, 16, 32, 12, 10, 6]}, "healthcare-life-sciences": {"n": "Healthcare & life sciences", "w": [18, 12, 30, 10, 22, 8]}, "pharmaceutical": {"n": "Pharmaceutical", "w": [16, 10, 34, 8, 24, 8]}, "manufacturing": {"n": "Manufacturing", "w": [22, 14, 22, 18, 14, 10]}, "industrial-engineering": {"n": "Industrial & engineering", "w": [24, 18, 18, 18, 14, 8]}, "global-capability-centres": {"n": "Global capability centres", "w": [22, 18, 12, 20, 10, 18]}, "private-equity-portfolio": {"n": "Private equity portfolio", "w": [20, 14, 10, 32, 8, 16]}};
     var D=["Core depth", "Systems design", "Controls and risk", "Delivery speed", "Documentation", "Stakeholder handling"];
     var a=document.getElementById('secA'), b=document.getElementById('secB'),
         ft=document.getElementById('cmpFt');
@@ -3458,17 +3476,31 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
       addEventListener('scroll',tick,{passive:true}); tick();
     }
     if(b&&p){
-      b.addEventListener('click',function(){
-        var open=p.classList.toggle('open');
-        b.classList.toggle('on',open);
+      function setNav(open){
+        p.classList.toggle('open',open); b.classList.toggle('on',open);
+        if(open){
+          p.style.top=(nav.offsetHeight)+'px';
+          var y=window.scrollY; document.body.dataset.sy=y;
+          document.body.style.position='fixed'; document.body.style.width='100%';
+          document.body.style.top='-'+y+'px'; document.body.style.left='0'; document.body.style.right='0';
+        } else {
+          var sy=Number(document.body.dataset.sy||0);
+          document.body.style.position=''; document.body.style.width='';
+          document.body.style.top=''; document.body.style.left=''; document.body.style.right='';
+          window.scrollTo(0,sy); delete document.body.dataset.sy;
+        }
         b.setAttribute('aria-expanded',String(open));
+      }
+      b.addEventListener('click',function(){
+        setNav(!p.classList.contains('open'));
       });
-      p.addEventListener('click',function(e){ if(e.target.tagName==='A'){
-        p.classList.remove('open'); b.classList.remove('on'); b.setAttribute('aria-expanded','false'); }});
-      addEventListener('keydown',function(e){ if(e.key==='Escape'&&p.classList.contains('open')){
-        p.classList.remove('open'); b.classList.remove('on'); b.setAttribute('aria-expanded','false'); }});
+      p.addEventListener('click',function(e){ if(e.target.tagName==='A') setNav(false); });
+      addEventListener('keydown',function(e){ if(e.key==='Escape'&&p.classList.contains('open')) setNav(false); });
     }
   })();
+    var t=document.querySelector('.navp__t'), c=document.getElementById('navp-cov');
+    if(t&&c){ t.addEventListener('click',function(){
+      var o=c.classList.toggle('open'); t.setAttribute('aria-expanded',String(o)); }); }
 
   /* ══ dropdowns: hover on pointer, click and keys everywhere ══ */
   (function(){
@@ -3480,6 +3512,7 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
     dds.forEach(function(d){
       var t=d.querySelector('.dd__t'), timer;
       t.addEventListener('click',function(e){
+        if(t.tagName==="A") return;
         e.preventDefault();
         var open=!d.classList.contains('open');
         shut(d); d.classList.toggle('open',open); t.setAttribute('aria-expanded',String(open));
@@ -3623,6 +3656,26 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
       var open=hd.parentElement.classList.toggle('op');
       hd.setAttribute('aria-expanded', String(open));
     });
+  })();
+  /* ══ active nav reflects the current page ══ */
+  (function(){
+    var p=location.pathname.replace(/\/+$/,'')||'/';
+    function mark(sel,on){ var a=document.querySelector(sel); if(a&&on) a.setAttribute('aria-current','page'); }
+    function markIs(sel,on){ var a=document.querySelector(sel); if(a&&on) a.classList.add('is'); }
+    markIs('.nav__sw a[href="/"]', p==='/');
+    markIs('.nav__sw a[href="/candidates"]', p.indexOf('/candidates')===0);
+    mark('.nav__l[href="/services"]', p==='/services');
+    mark('.nav__l[href="/blog"]', p==='/blog'||p.indexOf('/blog/')===0);
+    mark('.nav__l[href="/about"]', p==='/about');
+    mark('.nav__l[href="/contact"]', p==='/contact');
+    var cov=p.indexOf('/industries')===0||p.indexOf('/functions')===0;
+    mark('.dd__t',cov); mark('.navp__t',cov);
+    mark('.navp a[href="/"]', p==='/');
+    mark('.navp a[href="/services"]', p==='/services');
+    mark('.navp a[href="/blog"]', p==='/blog'||p.indexOf('/blog/')===0);
+    mark('.navp a[href="/about"]', p==='/about');
+    mark('.navp a[href="/contact"]', p==='/contact');
+    mark('.navp a[href="/careers"]', p==='/careers'||p.indexOf('/careers/')===0);
   })();
 </script>
 </body>
