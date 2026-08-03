@@ -1270,7 +1270,7 @@ a {
   .hero__top {
     grid-template-columns: 0.9fr 1.1fr;
     align-items: center;
-    gap: clamp(30px, 3.4vw, 52px);
+    gap: clamp(44px, 5.5vw, 92px);
   }
 }
 .hero__copy .btns {
@@ -1307,6 +1307,10 @@ a {
 .hero__card {
   perspective: 1600px;
   position: relative;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
 }
 /* ambient light behind the object */
 .hero__card::before {
@@ -7857,7 +7861,7 @@ li,
     fA.setAttribute('aria-hidden', String(b));
     fB.setAttribute('aria-hidden', String(!b));
   }
-  if (flip) {
+  if (flip && cardWrap) {
     tA.addEventListener('click', function () {
       took = true;
       face(false);
@@ -7866,7 +7870,8 @@ li,
       took = true;
       face(true);
     });
-    flip.addEventListener('click', function () {
+    cardWrap.addEventListener('click', function (e) {
+      if (e.target.closest('.ftab')) return;
       took = true;
       face(!flip.classList.contains('is-b'));
     });

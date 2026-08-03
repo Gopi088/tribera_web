@@ -112,7 +112,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .hero h1{color:#fff}.hero h1 em{font-style:normal;color:var(--red)}
 .hero__top{display:grid;gap:clamp(26px,3vw,44px)}
 @media(min-width:1000px){.hero__top{grid-template-columns:.9fr 1.1fr;align-items:center;
-  gap:clamp(30px,3.4vw,52px)}}
+  gap:clamp(44px,5.5vw,92px)}}
 .hero__copy .btns{margin-top:26px}
 .hero .eyebrow{margin-bottom:16px}
 .hero h1{max-width:18ch;font-size:clamp(36px,4.6vw,62px)}
@@ -122,7 +122,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .hero__p b{color:#fff;font-weight:600}
 
 /* two-sided Decision Package */
-.hero__card{perspective:1600px;position:relative}
+.hero__card{perspective:1600px;position:relative;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;cursor:pointer}
 /* ambient light behind the object */
 .hero__card::before{content:"";position:absolute;inset:-14% -8% -18%;pointer-events:none;
   background:radial-gradient(58% 52% at 62% 34%,rgba(218,0,7,.14),transparent 70%);
@@ -2019,10 +2019,10 @@ should reflect who has more to lose, and almost none of them do.</p>
     tA.setAttribute('aria-selected', String(!b)); tB.setAttribute('aria-selected', String(b));
     fA.setAttribute('aria-hidden', String(b)); fB.setAttribute('aria-hidden', String(!b));
   }
-  if(flip){
+  if(flip&&cardWrap){
     tA.addEventListener('click',function(){took=true;face(false);});
     tB.addEventListener('click',function(){took=true;face(true);});
-    flip.addEventListener('click',function(){took=true;face(!flip.classList.contains('is-b'));});
+    cardWrap.addEventListener('click',function(e){if(e.target.closest('.ftab'))return;took=true;face(!flip.classList.contains('is-b'));});
     if(!reduce && 'IntersectionObserver' in window){
       new IntersectionObserver(function(es,ob){
         es.forEach(function(e){

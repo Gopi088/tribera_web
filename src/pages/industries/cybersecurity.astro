@@ -113,7 +113,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .hero__top{display:grid;gap:clamp(26px,3vw,44px);align-content:center;min-height:1576px}@media(min-width:330px){.hero__top{min-height:1496px}}@media(min-width:340px){.hero__top{min-height:1476px}}@media(min-width:360px){.hero__top{min-height:1461px}}@media(min-width:375px){.hero__top{min-height:1401px}}@media(min-width:390px){.hero__top{min-height:1321px}}@media(min-width:400px){.hero__top{min-height:1301px}}@media(min-width:420px){.hero__top{min-height:1286px}}@media(min-width:440px){.hero__top{min-height:1266px}}@media(min-width:460px){.hero__top{min-height:1216px}}@media(min-width:500px){.hero__top{min-height:1176px}}@media(min-width:550px){.hero__top{min-height:1161px}}@media(min-width:700px){.hero__top{min-height:1121px}}@media(min-width:800px){.hero__top{min-height:1126px}}@media(min-width:900px){.hero__top{min-height:1104px}}@media(min-width:1000px){.hero__top{min-height:727px}}@media(min-width:1100px){.hero__top{min-height:741px}}@media(min-width:1200px){.hero__top{min-height:749px}}@media(min-width:1240px){.hero__top{min-height:759px}}
 .hero__top{display:grid;gap:clamp(26px,3vw,44px);align-content:center;min-height:1576px}@media(min-width:330px){.hero__top{min-height:1496px}}@media(min-width:340px){.hero__top{min-height:1476px}}@media(min-width:360px){.hero__top{min-height:1461px}}@media(min-width:375px){.hero__top{min-height:1401px}}@media(min-width:390px){.hero__top{min-height:1321px}}@media(min-width:400px){.hero__top{min-height:1301px}}@media(min-width:420px){.hero__top{min-height:1286px}}@media(min-width:440px){.hero__top{min-height:1266px}}@media(min-width:460px){.hero__top{min-height:1216px}}@media(min-width:500px){.hero__top{min-height:1176px}}@media(min-width:550px){.hero__top{min-height:1161px}}@media(min-width:700px){.hero__top{min-height:1121px}}@media(min-width:800px){.hero__top{min-height:1126px}}@media(min-width:900px){.hero__top{min-height:1104px}}@media(min-width:1000px){.hero__top{min-height:727px}}@media(min-width:1100px){.hero__top{min-height:741px}}@media(min-width:1200px){.hero__top{min-height:749px}}@media(min-width:1240px){.hero__top{min-height:759px}}
 @media(min-width:1000px){.hero__top{grid-template-columns:.9fr 1.1fr;align-items:center;
-  gap:clamp(30px,3.4vw,52px)}}
+  gap:clamp(44px,5.5vw,92px)}}
 .hero__copy .btns{margin-top:26px}
 .hero .eyebrow{margin-bottom:16px}
 .hero h1{max-width:18ch;font-size:clamp(36px,4.6vw,62px)}
@@ -2062,10 +2062,10 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
     tA.setAttribute('aria-selected', String(!b)); tB.setAttribute('aria-selected', String(b));
     fA.setAttribute('aria-hidden', String(b)); fB.setAttribute('aria-hidden', String(!b));
   }
-  if(flip){
+  if(flip&&cardWrap){
     tA.addEventListener('click',function(){took=true;face(false);});
     tB.addEventListener('click',function(){took=true;face(true);});
-    flip.addEventListener('click',function(){took=true;face(!flip.classList.contains('is-b'));});
+    cardWrap.addEventListener('click',function(e){if(e.target.closest('.ftab'))return;took=true;face(!flip.classList.contains('is-b'));});
     if(!reduce && 'IntersectionObserver' in window){
       new IntersectionObserver(function(es,ob){
         es.forEach(function(e){
