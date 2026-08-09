@@ -1,0 +1,52 @@
+---
+import { findCategories, findTags } from '~/utils/blog';
+import { getBlogPermalink, getPermalink } from '~/utils/permalinks';
+
+export interface Props {
+  activeType?: 'all' | 'category' | 'tag';
+  activeSlug?: string;
+}
+
+const { activeType = 'all', activeSlug = '' } = Astro.props;
+
+const categories = await findCategories();
+const tags = await findTags();
+
+const filters = [
+  ...categories.slice(0, 5).map((category) => ({
+    label: category.title,
+    slug: category.slug,
+    type: 'category' as const,
+    href: getPermalink(category.slug, 'category'),
+  })),
+  ...tags
+    .filter((tag) => tag.slug !== 'tribera' && !categories.some((category) => category.slug === tag.slug))
+    .slice(0, 2)
+    .map((tag) => ({
+      label: tag.title,
+      slug: tag.slug,
+      type: 'tag' as const,
+      href: getPermalink(tag.slug, 'tag'),
+    })),
+];
+---
+
+<div class="mt-8 flex flex-wrap items-center justify-center gap-3 blog-display">
+  <a
+    href={getBlogPermalink()}
+    class={`px-4 py-2 rounded-full text-[13px] font-semibold transition-colors duration-200 ${activeType === 'all' ? 'bg-[#da0007] text-white' : 'border border-white/15 bg-white/5 text-white/70 hover:border-[#da0007]/40 hover:text-white'}`}
+  >
+    All
+  </a>
+
+  {
+    filters.map((filter) => (
+      <a
+        href={filter.href}
+        class={`px-4 py-2 rounded-full text-[13px] transition-colors duration-200 ${activeType === filter.type && activeSlug === filter.slug ? 'bg-[#da0007] text-white font-semibold' : 'border border-white/15 bg-white/5 text-white/70 hover:border-[#da0007]/40 hover:text-white'}`}
+      >
+        {filter.label}
+      </a>
+    ))
+  }
+</div>

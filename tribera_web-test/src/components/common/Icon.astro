@@ -1,0 +1,51 @@
+---
+import flatColorIcons from '@iconify-json/flat-color-icons/icons.json';
+import tablerIcons from '@iconify-json/tabler/icons.json';
+
+type IconCollection = {
+  width?: number;
+  height?: number;
+  icons: Record<string, { body: string; width?: number; height?: number }>;
+};
+
+const collections: Record<string, IconCollection> = {
+  tabler: tablerIcons,
+  'flat-color-icons': flatColorIcons,
+};
+
+const {
+  name,
+  class: className,
+  title,
+  ...rest
+} = Astro.props as {
+  name: string;
+  class?: string;
+  title?: string;
+  [key: string]: unknown;
+};
+
+const [prefix, iconName] = String(name ?? '').split(':');
+const collection = prefix ? collections[prefix] : undefined;
+const icon = iconName ? collection?.icons?.[iconName] : undefined;
+
+if (!collection || !icon) {
+  throw new Error(`Unknown icon "${name}".`);
+}
+
+const width = icon.width ?? collection.width ?? 24;
+const height = icon.height ?? collection.height ?? 24;
+const ariaHidden = title ? undefined : 'true';
+---
+
+<svg
+  {...rest}
+  astro-icon
+  class={className}
+  viewBox={`0 0 ${width} ${height}`}
+  xmlns="http://www.w3.org/2000/svg"
+  role={title ? 'img' : 'presentation'}
+  aria-hidden={ariaHidden}
+  focusable="false"
+  set:html={title ? `<title>${title}</title>${icon.body}` : icon.body}
+/>

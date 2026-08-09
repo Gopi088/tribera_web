@@ -1,0 +1,924 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+// Step 2 of the candidate flow — the "next screen" promised by the Start-here
+// card on /candidates: name + CV, one minute, then we take it from here.
+// Email comes along from step 1 via ?email= (readonly), or can be typed here.
+const metadata = {
+  title: 'tribera — your profile, in one minute',
+  description:
+    'The last two fields: your name and your CV. We reply within a day either way.',
+  ignoreTitleTemplate: true,
+};
+import ContactSalesModal from '../../components/ContactSalesModal.astro';
+---
+
+<link rel="preload" href="/fonts/figtree-800.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/inter-tight-600.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/figtree-400.woff2" as="font" type="font/woff2" crossorigin />
+
+<Layout metadata={metadata}>
+  <main class="tribera-start">
+    <header class="hero" id="top">
+      <div class="wrap">
+        <a class="start__back" href="/candidates"><span aria-hidden="true">&larr;</span> Back to how it works</a>
+
+        <div class="hero__top">
+          <div class="hero__copy">
+            <p class="eyebrow" data-rv>Almost there</p>
+            <h1 class="h1" data-rv style="--d:60ms">Your profile, <em>one minute away</em>.</h1>
+            <p class="hero__p" data-rv style="--d:110ms">
+              We already have your email from the previous screen. The last of it is here —
+              <b>your name and your CV</b>.
+            </p>
+            <p class="hero__p" data-rv style="--d:150ms">
+              <b>We reply within a day either way</b>, and if we can't help we'll say so rather than go
+              quiet.
+            </p>
+          </div>
+
+          <div class="apply" data-rv style="--d:190ms">
+            <p class="start__steps" role="list" aria-label="Progress">
+              <span role="listitem" class="is-done">1 <i aria-hidden="true">&middot;</i> Email &#10003;</span>
+              <span role="listitem" class="is-now">2 <i aria-hidden="true">&middot;</i> Profile</span>
+            </p>
+            <p class="apply__k">One minute</p>
+            <p class="apply__h">Two fields. <span class="accent">Then we take it from here.</span></p>
+            <p class="apply__s">
+              Name and CV, and we'll pick everything up on this screen.
+              <b>We reply within a day either way</b>, and if we can't help we'll say so rather than go quiet.
+            </p>
+
+            <form class="apply__form" id="profileForm" action="/.netlify/functions/candidate-profile" method="POST" enctype="multipart/form-data">
+              <input type="hidden" name="form_loaded_at" value="" data-form-loaded-at />
+              <input type="checkbox" name="botcheck" class="hp" tabindex="-1" aria-hidden="true" />
+
+              <div class="apply__row apply__row--2">
+                <div class="apply__field">
+                  <input
+                    class="apply__mail"
+                    type="email"
+                    id="emailInput"
+                    name="email"
+                    required
+                    autocomplete="email"
+                    placeholder="your@email.com"
+                    aria-label="Your email address"
+                  />
+                  <span class="step-tag" id="emailTag">1 / 2</span>
+                </div>
+              </div>
+
+              <div class="apply__row apply__row--2">
+                <div class="apply__field">
+                  <input
+                    class="apply__mail"
+                    type="text"
+                    name="name"
+                    required
+                    autocomplete="name"
+                    placeholder="Your name"
+                    aria-label="Your name"
+                  />
+                  <span class="step-tag">2 / 2</span>
+                </div>
+              </div>
+
+              <label class="drop" id="cvDrop" for="cvInput">
+                <input type="file" id="cvInput" name="resume" accept=".pdf,.doc,.docx" />
+                <span class="drop__k" id="dropK">Drop your CV here, or <b>click to browse</b></span>
+                <span class="drop__s">PDF, DOC or DOCX &middot; up to 10 MB</span>
+                <span class="drop__n" id="cvName"></span>
+              </label>
+
+              <div class="apply__row apply__row--cta">
+                <button type="submit" class="apply__go apply__go--wide" id="submitBtn" disabled>
+                  Submit profile
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </button>
+              </div>
+
+              <p class="apply__fine">
+                No account needed &middot; <b>one minute, two fields</b> &middot; anonymous from the first
+                second &middot; your email is only ever used to reply
+              </p>
+              <p class="start__err hidden" id="startErr"></p>
+            </form>
+
+            <div class="start__ok hidden" id="startOk">
+              <span class="start__okic">&#10003;</span>
+              <p class="apply__h">We got it.</p>
+              <p class="apply__s">
+                Your profile is with us. <b>We reply within a day either way</b> — if we can't help, we'll
+                say so rather than go quiet.
+              </p>
+              <a href="/candidates" class="btn btn--wire">Back to how it works</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══ WHAT HAPPENS NEXT ═══ -->
+    <section class="wrap band band--w" id="next">
+      <div class="shead">
+        <div>
+          <p class="eyebrow eyebrow--red" data-rv>What happens next</p>
+          <h2 class="h2" data-rv>From here, it's mostly us.</h2>
+        </div>
+        <p class="dek" data-rv style="--d:60ms">
+          You're done. The rest of the work happens on our side —
+          <b>you keep the score, whatever happens after that</b>.
+        </p>
+      </div>
+      <div class="tl2__g" data-rv style="--d:110ms">
+        <div class="tl2">
+          <span class="tl2__bar"></span>
+          <p class="tl2__d">Today <i>&middot;</i> 2 min</p>
+          <p class="tl2__t">Your profile goes live</p>
+          <p class="tl2__p">Anonymous from the first second. Stack, preferences, and who you want blocked.</p>
+        </div>
+        <div class="tl2">
+          <span class="tl2__bar"></span>
+          <p class="tl2__d">Day 3&ndash;5 <i>&middot;</i> 30 min</p>
+          <p class="tl2__t">An expert interviews you</p>
+          <p class="tl2__p">Someone who has done your job. Recorded, and you get the score.</p>
+        </div>
+        <div class="tl2">
+          <span class="tl2__bar"></span>
+          <p class="tl2__d">Day 7+ <i>&middot;</i> inbound</p>
+          <p class="tl2__t">Teams come to you</p>
+          <p class="tl2__p">Your profile goes live to teams that cleared our checks. No cold applying.</p>
+        </div>
+        <div class="tl2">
+          <span class="tl2__bar"></span>
+          <p class="tl2__d">~3 weeks <i>&middot;</i> offer</p>
+          <p class="tl2__t">You decide</p>
+          <p class="tl2__p">Accept what fits, decline what doesn't. Most people see more than one.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style is:global>
+:root {
+  --char: #131313;
+  --char2: #1c1c1b;
+  --char3: #282826;
+  --cline: #2e2e2c;
+  --paper: #f2f2f0;
+  --warm: #efede8;
+  --card: #fff;
+  --ink: #111110;
+  --ink2: #3b3b39;
+  --grey: #6b6b67;
+  --faint: #9c9c97;
+  --hair: #e3e3df;
+  --onc: #f3f3f0;
+  --onc2: #9b9b95;
+  --onc3: #6e6e68;
+  --red: #da0007;
+  --grn: #3fbe7c;
+  --display: "Figtree", -apple-system, sans-serif;
+  --ui: "Inter Tight", -apple-system, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --spring: cubic-bezier(0.34, 1.42, 0.64, 1);
+  --wrap: 1280px;
+  --gut: clamp(20px, 4.5vw, 48px);
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--ui);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a {
+  color: inherit;
+}
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+.wrap {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gut);
+}
+.hidden {
+  display: none !important;
+}
+
+/* ══ HERO — same treatment as the candidates hero ══ */
+.hero {
+  background: var(--char);
+  color: var(--onc);
+  padding-block: clamp(44px, 5.6vw, 80px);
+}
+.hero .eyebrow {
+  color: var(--onc3);
+  margin-bottom: 16px;
+}
+.hero h1 {
+  color: #fff;
+  max-width: 18ch;
+  font-size: clamp(36px, 4.6vw, 62px);
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--red);
+}
+.hero__top {
+  display: grid;
+  gap: clamp(30px, 4vw, 56px);
+  align-content: center;
+  min-height: clamp(520px, calc(100vh - 140px), 860px);
+}
+@media (min-width: 1000px) {
+  .hero__top {
+    grid-template-columns: 0.92fr 1.08fr;
+    align-items: center;
+    gap: clamp(44px, 5.5vw, 92px);
+  }
+}
+.hero__p {
+  font-size: clamp(15.5px, 1.45vw, 17.5px);
+  line-height: 1.6;
+  color: var(--onc2);
+  max-width: 46ch;
+  margin: 0;
+}
+.hero__p + .hero__p {
+  margin-top: 14px;
+}
+.hero__p b {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ══ band / section headings ══ */
+.band {
+  padding-block: clamp(56px, 6.4vw, 92px);
+}
+.band--w {
+  background: var(--card);
+}
+.shead {
+  display: grid;
+  gap: 16px;
+  text-align: center;
+  justify-items: center;
+}
+.shead .dek {
+  margin-top: 0;
+  margin-inline: auto;
+  max-width: 44ch;
+}
+.shead .dek b {
+  color: var(--ink);
+  font-weight: 600;
+}
+.h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(29px, 4.2vw, 52px);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  margin: 0;
+  max-width: 16ch;
+}
+.dek {
+  font-size: clamp(16px, 1.5vw, 18.5px);
+  line-height: 1.6;
+  color: var(--grey);
+  max-width: 56ch;
+  margin: 18px 0 0;
+}
+.dek b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ══ timeline ══ */
+.tl2__g {
+  display: grid;
+  gap: 22px 24px;
+  margin-top: clamp(36px, 4.4vw, 56px);
+}
+@media (min-width: 720px) {
+  .tl2__g {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0 22px;
+  }
+}
+.tl2 {
+  display: grid;
+  gap: 7px;
+  align-content: start;
+}
+.tl2__bar {
+  display: block;
+  height: 4px;
+  border-radius: 2px;
+  background: #dddad2;
+  margin-bottom: 8px;
+}
+.tl2:last-child .tl2__bar {
+  background: var(--red);
+}
+.tl2__d {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink2);
+  margin: 0;
+}
+.tl2__d i {
+  font-style: normal;
+  color: var(--faint);
+}
+.tl2:last-child .tl2__d {
+  color: var(--red);
+}
+.tl2__t {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.022em;
+  margin: 0;
+}
+.tl2__p {
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--grey);
+  margin: 0;
+}
+
+/* ══ eyebrow / title ══ */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin: 0 0 24px;
+  }
+.eyebrow--red {
+  color: var(--red);
+}
+.h1 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(38px, 6.2vw, 78px);
+  line-height: 0.97;
+  letter-spacing: -0.045em;
+  margin: 0 0 22px;
+}
+
+/* ══ back link ══ */
+.start__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--onc3);
+  text-decoration: none;
+  margin-bottom: clamp(30px, 4vw, 52px);
+  transition: color 0.15s ease;
+}
+.start__back span {
+  font-size: 14px;
+  line-height: 1;
+}
+.start__back:hover {
+  color: var(--red);
+}
+
+/* ══ step indicator (inside the card) ══ */
+.start__steps {
+  display: flex;
+  justify-content: center;
+  gap: 26px;
+  margin: 0 0 26px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.start__steps span {
+  color: var(--onc3);
+}
+.start__steps i {
+  font-style: normal;
+  opacity: 0.6;
+}
+.start__steps .is-done {
+  color: var(--onc2);
+}
+.start__steps .is-now {
+  color: var(--red);
+}
+
+/* ══ the card — same as the Start-here card on /candidates ══ */
+.apply {
+  background: var(--char2);
+  border: 1px solid var(--cline);
+  border-radius: 20px;
+  padding: clamp(36px, 5.5vw, 56px) clamp(22px, 4.5vw, 48px) clamp(32px, 4.5vw, 40px);
+  color: var(--onc);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+@media (min-width: 700px) {
+  .apply {
+    padding-inline: clamp(32px, 4.5vw, 48px);
+  }
+}
+.apply__k {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin: 0 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.apply__k::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+  animation: applyPulse 2s ease-in-out infinite;
+}
+@keyframes applyPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.7);
+  }
+}
+.apply__h {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 auto 22px;
+  max-width: 640px;
+  text-align: center;
+}
+.apply__h .accent {
+  color: var(--red);
+}
+.apply__s {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--grey);
+  margin: 0 auto 36px;
+  max-width: 520px;
+  text-align: center;
+}
+.apply__s b {
+  color: #d8d5c9;
+  font-weight: 600;
+}
+
+/* ══ the form ══ */
+.apply__form {
+  display: grid;
+  gap: 10px;
+}
+.apply__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 560px;
+  margin-inline: auto;
+  width: 100%;
+}
+.apply__row--2 {
+  align-items: stretch;
+}
+.apply__row--cta {
+  margin-top: 10px;
+}
+.apply__field {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+.step-tag {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--mono);
+  font-size: 10px;
+  color: #5d5a52;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+}
+.step-tag.is-ok {
+  color: var(--grn);
+}
+.apply__url,
+.apply__mail {
+  width: 100%;
+  height: 52px;
+  background: #1b1a18;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0 66px 0 18px;
+  color: #f8f6f0;
+  font-family: var(--ui);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.apply__url::placeholder,
+.apply__mail::placeholder {
+  color: #5c594f;
+}
+.apply__url:focus,
+.apply__mail:focus {
+  border-color: rgba(224, 64, 47, 0.55);
+}
+.apply__mail:invalid:not(:placeholder-shown) {
+  border-color: rgba(224, 72, 78, 0.6);
+}
+.apply__mail[readonly] {
+  border-color: rgba(63, 190, 124, 0.4);
+  color: #cfecd9;
+  cursor: default;
+}
+
+/* ══ CV dropzone ══ */
+.drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 26px 20px;
+  border: 1.5px dashed rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  text-align: center;
+  cursor: pointer;
+  max-width: 560px;
+  margin-inline: auto;
+  width: 100%;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+.drop:hover {
+  border-color: rgba(224, 64, 47, 0.55);
+  background: rgba(224, 64, 47, 0.04);
+}
+.drop input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.drop__k {
+  font-family: var(--ui);
+  font-size: 14px;
+  color: #f8f6f0;
+}
+.drop__k b {
+  color: #f8f6f0;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.drop__s {
+  font-family: var(--ui);
+  font-size: 12px;
+  color: #5d5a52;
+}
+.drop__n {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--grn);
+}
+.drop.has {
+  border-color: rgba(63, 190, 124, 0.5);
+  background: rgba(63, 190, 124, 0.05);
+}
+
+/* ══ submit ══ */
+.apply__go {
+  height: 52px;
+  padding: 0 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 10px;
+  border: 0;
+  background: var(--red);
+  color: #f8f6f0;
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    transform 0.12s ease,
+    background 0.15s ease;
+}
+.apply__go--wide {
+  width: 100%;
+}
+.apply__go:hover {
+  background: #f01018;
+  transform: translateY(-1px);
+}
+.apply__go:active {
+  transform: scale(0.98) translateY(0);
+}
+.apply__go:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.apply__go:disabled:hover {
+  background: var(--red);
+  transform: none;
+}
+.apply__go svg {
+  transition: transform 0.15s ease;
+}
+.apply__go:hover svg {
+  transform: translateX(3px);
+}
+
+/* ══ fine print / errors ══ */
+.apply__fine {
+  font-size: 11.5px;
+  line-height: 1.7;
+  color: #5d5a52;
+  text-align: center;
+  margin: 20px auto 0;
+  max-width: 60ch;
+}
+.apply__fine b {
+  color: #b8b5a9;
+  font-weight: 600;
+}
+.start__err {
+  color: #ff8f8f;
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: center;
+  margin: 14px auto 0;
+  max-width: 60ch;
+}
+
+/* ══ success panel ══ */
+.start__ok {
+  text-align: center;
+  padding: 8px 0 4px;
+}
+.start__okic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(63, 190, 124, 0.12);
+  color: var(--grn);
+  font-size: 28px;
+  line-height: 1;
+  margin-bottom: 26px;
+}
+.start__ok .apply__h {
+  margin-bottom: 14px;
+}
+.start__ok .apply__s {
+  margin-bottom: 28px;
+}
+.start__ok .btn {
+  display: inline-flex;
+}
+
+/* ══ buttons (success panel link) ══ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 15px 26px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition:
+    transform 0.18s var(--ease),
+    background 0.2s,
+    border-color 0.2s,
+    color 0.2s,
+    box-shadow 0.25s;
+  cursor: pointer;
+  line-height: 1;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  background-color: transparent;
+}
+.btn::after {
+  content: "→";
+  font-size: 14px;
+  opacity: 0;
+  width: 0;
+  margin-left: -10px;
+  transition:
+    opacity 0.22s var(--ease),
+    width 0.22s var(--ease),
+    margin 0.22s var(--ease);
+}
+.btn:hover::after {
+  opacity: 1;
+  width: 13px;
+  margin-left: 0;
+}
+.btn--wire {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+.btn--wire:hover {
+  border-color: #fff;
+  background-color: transparent;
+}
+
+/* ══ honeypot ══ */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+/* ══ reveal ══ */
+[data-rv] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.9s var(--ease),
+    transform 0.9s var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+[data-rv].in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .apply,
+  .apply__k::before {
+    animation: none;
+  }
+  [data-rv],
+  [data-rv].in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+</style>
+
+<script is:inline>
+  (function () {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealEls = document.querySelectorAll('[data-rv]');
+    if (reduce || !('IntersectionObserver' in window)) {
+      revealEls.forEach(function (el) {
+        el.classList.add('in');
+      });
+      return;
+    }
+    const io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.14, rootMargin: '0px 0px -8% 0px' },
+    );
+    revealEls.forEach(function (el) {
+      io.observe(el);
+    });
+  })();
+</script>
+
+<script is:inline>
+  (function () {
+    const form = document.getElementById('profileForm');
+    if (!form) return;
+
+    const emailInput = document.getElementById('emailInput');
+    const emailTag = document.getElementById('emailTag');
+    const cvInput = document.getElementById('cvInput');
+    const cvDrop = document.getElementById('cvDrop');
+    const cvName = document.getElementById('cvName');
+    const submitBtn = document.getElementById('submitBtn');
+    const okPanel = document.getElementById('startOk');
+    const errMsg = document.getElementById('startErr');
+    const loadedAt = form.querySelector('[data-form-loaded-at]');
+    const FAIL =
+      'Something went wrong while submitting your profile. Please try again or email your resume to careers@tribera.ai.';
+
+    if (loadedAt) loadedAt.value = String(Date.now());
+
+    const emailParam = new URLSearchParams(window.location.search).get('email') || '';
+    if (emailParam) {
+      emailInput.value = emailParam;
+      emailInput.readOnly = true;
+      emailInput.setAttribute('aria-label', 'Your email (from the previous step)');
+      emailTag.textContent = '\u2713 saved';
+      emailTag.classList.add('is-ok');
+    }
+
+    cvInput.addEventListener('change', () => {
+      if (cvInput.files && cvInput.files.length) {
+        cvDrop.classList.add('has');
+        cvName.textContent = cvInput.files[0].name;
+        submitBtn.disabled = false;
+      } else {
+        cvDrop.classList.remove('has');
+        cvName.textContent = '';
+        submitBtn.disabled = true;
+      }
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (submitBtn.disabled) return;
+
+      errMsg.classList.add('hidden');
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+        const isJson = (res.headers.get('content-type') || '').includes('application/json');
+        const result = isJson
+          ? await res.json()
+          : { success: false, message: FAIL };
+        if (!res.ok || !result.success) {
+          throw new Error(result.message || 'Submission failed');
+        }
+        form.classList.add('hidden');
+        okPanel.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (submitError) {
+        console.error('Profile submit failed:', submitError);
+        errMsg.textContent = FAIL;
+        errMsg.classList.remove('hidden');
+      } finally {
+        submitBtn.textContent = originalText;
+        if (okPanel.classList.contains('hidden')) {
+          submitBtn.disabled = !(cvInput.files && cvInput.files.length);
+        }
+      }
+    });
+  })();
+</script>

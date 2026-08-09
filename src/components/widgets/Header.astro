@@ -6,6 +6,7 @@ const ctaLabel = isCandidateRoute ? 'Create profile' : 'Talk to us';
 const isHome = path === '/';
 const isCandidatesPage = path.startsWith('/candidates');
 const isServicesPage = path === '/services';
+const isIntelligencePage = path === '/intelligence';
 const isBlogPage = path === '/blog' || path.startsWith('/blog/');
 const isAboutPage = path === '/about';
 const isContactPage = path === '/contact';
@@ -28,7 +29,7 @@ const isIndustriesPage = path.startsWith('/industries') || path.startsWith('/fun
       </span>
       <span class="dd__f">Not listed? <a href="/contact">Ask us</a> — we say no when it is not our ground.</span>
     </span>
-  </span><a class="nav__l" href="/services" aria-current={isServicesPage ? 'page' : undefined}>Services</a><a class="nav__l" href="/blog" aria-current={isBlogPage ? 'page' : undefined}>Blog</a><a class="nav__l" href="/about" aria-current={isAboutPage ? 'page' : undefined}>About</a><a class="nav__l" href="/contact" aria-current={isContactPage ? 'page' : undefined}>Contact</a></span>
+  </span><a class="nav__l" href="/services" aria-current={isServicesPage ? 'page' : undefined}>Services</a><a class="nav__l" href="/intelligence" aria-current={isIntelligencePage ? 'page' : undefined}>Intelligence</a><a class="nav__l" href="/blog" aria-current={isBlogPage ? 'page' : undefined}>Blog</a><a class="nav__l" href="/about" aria-current={isAboutPage ? 'page' : undefined}>About</a><a class="nav__l" href="/contact" aria-current={isContactPage ? 'page' : undefined}>Contact</a></span>
   <span class="nav__end">
     <a class="nav__login" href="https://app.tribera.ai/auth/login">Log in</a>
     <a href={ctaHref} class="btn btn--light nav__cta" data-form-intent={!isCandidateRoute ? 'demo' : undefined} data-form-source={!isCandidateRoute ? 'header' : undefined}>{ctaLabel}</a>
@@ -38,6 +39,7 @@ const isIndustriesPage = path.startsWith('/industries') || path.startsWith('/fun
   </span>
 </div>
 <div class="navp" id="navp"><div class="wrap navp__in">
+  <div class="navp__sw"><a href="/" class={isHome ? 'is' : undefined}>I'm hiring</a><a href="/candidates" class={isCandidatesPage ? 'is' : undefined}>I'm looking</a></div>
   <div class="navp__coverage">
     <a class="navp__coverage-link" href="/industries" aria-current={isIndustriesPage ? 'page' : undefined}>Coverage</a>
     <button class="navp__t" type="button" aria-label="Expand Coverage" aria-expanded="false" aria-controls="navp-cov"><i></i></button>
@@ -73,11 +75,11 @@ const isIndustriesPage = path.startsWith('/industries') || path.startsWith('/fun
   </span>
   </div>
   <p class="navp__k">Company</p>
-  <a href="/services" aria-current={isServicesPage ? 'page' : undefined}>Services</a><a href="/blog" aria-current={isBlogPage ? 'page' : undefined}>Blog</a><a href="/about" aria-current={isAboutPage ? 'page' : undefined}>About</a><a href="/contact" aria-current={isContactPage ? 'page' : undefined}>Contact</a>
+  <a href="/services" aria-current={isServicesPage ? 'page' : undefined}>Services</a><a href="/intelligence" aria-current={isIntelligencePage ? 'page' : undefined}>Intelligence</a><a href="/blog" aria-current={isBlogPage ? 'page' : undefined}>Blog</a><a href="/about" aria-current={isAboutPage ? 'page' : undefined}>About</a><a href="/contact" aria-current={isContactPage ? 'page' : undefined}>Contact</a>
   <a href="/careers" aria-current={isCareersPage ? 'page' : undefined}>Careers</a>
   <a href="https://app.tribera.ai/auth/login" class="navp__login">Log in</a>
   <div class="navp__cta">
-    <a href={ctaHref} class="btn btn--light">{ctaLabel}</a>
+    <a href={ctaHref} class="btn btn--light" data-form-intent={!isCandidateRoute ? 'demo' : undefined} data-form-source={!isCandidateRoute ? 'header' : undefined}>{ctaLabel}</a>
   </div>
 </div></div></nav>
 

@@ -57,453 +57,163 @@ if (hasAmpersand) {
 ---
 
 <!-- ===== HERO ===== -->
-<section class="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-black">
-  <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-black"></div>
-    <div class="absolute left-[-30%] md:left-[-15%] top-0 h-full w-[90%] md:w-[60%]
-                bg-[radial-gradient(circle_at_left_center,rgba(218,0,7,0.45),transparent_60%)]"></div>
-    <div class="absolute right-[-30%] md:right-[-15%] top-0 h-full w-[90%] md:w-[60%]
-                bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.45),transparent_60%)]"></div>
-  </div>
-
-  <div class="absolute inset-0 pointer-events-none">
-    {Array.from({ length: 22 }).map(() => (
-      <span class="absolute rounded-full bg-[#da0007]/80" style={`
-        width:3px;height:3px;
-        left:${12 + Math.random() * 76}%;
-        top:${8 + Math.random() * 84}%;
-        --float-x1:${(Math.random() * 44 - 22).toFixed(1)}px;
-        --float-y1:${(Math.random() * 36 - 18).toFixed(1)}px;
-        --float-x2:${(Math.random() * 52 - 26).toFixed(1)}px;
-        --float-y2:${(Math.random() * 42 - 21).toFixed(1)}px;
-        --float-x3:${(Math.random() * 60 - 30).toFixed(1)}px;
-        --float-y3:${(Math.random() * 36 - 18).toFixed(1)}px;
-        --float-x4:${(Math.random() * 48 - 24).toFixed(1)}px;
-        --float-y4:${(Math.random() * 48 - 24).toFixed(1)}px;
-        --float-x5:${(Math.random() * 56 - 28).toFixed(1)}px;
-        --float-y5:${(Math.random() * 40 - 20).toFixed(1)}px;
-        --float-x6:${(Math.random() * 50 - 25).toFixed(1)}px;
-        --float-y6:${(Math.random() * 34 - 17).toFixed(1)}px;
-        --float-scale1:${(1 + Math.random() * 0.28).toFixed(2)};
-        --float-scale2:${(0.78 + Math.random() * 0.18).toFixed(2)};
-        --float-scale3:${(1.02 + Math.random() * 0.22).toFixed(2)};
-        --float-scale4:${(0.82 + Math.random() * 0.14).toFixed(2)};
-        --float-scale5:${(1 + Math.random() * 0.2).toFixed(2)};
-        --float-scale6:${(0.86 + Math.random() * 0.14).toFixed(2)};
-        animation: float ${11 + Math.random() * 14}s ease-in-out infinite;
-        animation-delay: -${(Math.random() * 18).toFixed(1)}s;
-        box-shadow: 0 0 10px rgba(218,0,7,.6);
-      `} />
-    ))}
-  </div>
-
-  <div class="relative z-10 max-w-[1080px] mx-auto px-6 text-center">
-    <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#da0007]/40 bg-white/[0.03] px-3.5 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/80">
-      <span class="h-1.5 w-1.5 rounded-full bg-[#da0007]"></span>
-      <span>{badgeLabel}</span>
-    </div>
-
-    {
-      heroHeadline ? (
-        <h1 class="font-[600] leading-[1.02] sm:leading-[1.08]" set:html={heroHeadline} />
+<header class="hero" id="top">
+  <div class="hero__top">
+    <div class="hero__copy">
+      <p class="eyebrow" data-rv>{badgeLabel}</p>
+      {heroHeadline ? (
+        <h1 class="h1" data-rv style="--d:60ms" set:html={heroHeadline} />
       ) : (
-        <h1 class="font-[600] leading-[1.02] sm:leading-[1.08]">
-          <span class="block whitespace-nowrap text-white text-[clamp(2.15rem,10.8vw,3rem)] sm:text-[clamp(2.8rem,6vw,5rem)] tracking-[-0.08em]">
-            {firstLine}
-          </span>
+        <h1 class="h1" data-rv style="--d:60ms">
+          <span class="block whitespace-nowrap">{firstLine}</span>
           {secondLine && (
-            <span class="block text-[clamp(2.45rem,12vw,3.4rem)] sm:text-[clamp(2.8rem,6vw,5rem)] text-[#da0007] tracking-[-0.08em]">
-              {secondLine}
-            </span>
+            <span class="block text-[#da0007]">{secondLine}</span>
           )}
         </h1>
-      )
-    }
-
-    <p class="mt-6 md:mt-8 text-white/60 text-[16px] md:text-[20px] max-w-2xl md:max-w-3xl mx-auto leading-relaxed px-2">
-      {subtitle}
-    </p>
-
-    <div class="mt-8 md:mt-12 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-5">
-      <div class="flex w-auto max-w-full flex-col items-center gap-1 px-4 py-3 rounded-xl border border-[#da0007]/40 bg-[#da0007]/20 text-center text-white sm:w-auto sm:flex-row sm:gap-2 sm:px-5 sm:text-left">
-        <span class="whitespace-nowrap text-[13px] font-[600] leading-tight text-white/90">
-          <span class="text-[#da0007]">1:3</span> Selection Ratio Guarantee*
-        </span>
-        <span class="text-[11px] font-[550] leading-tight text-white/50">Interview 3, hire 1</span>
+      )}
+      <p class="hero__p" data-rv style="--d:110ms">{subtitle}</p>
+      <div class="btns" data-rv style="--d:150ms">
+        <a href="/contact" class="btn btn--light">Book a Demo</a>
+        <a href="/contact" class="btn btn--wire">Talk to Us</a>
       </div>
-
-      <button type="button" data-form-intent="demo" data-form-source={formSource}
-        class="px-6 py-3 rounded-full bg-[#ff0000] text-white text-[13px] font-bold transition-all duration-300 hover:bg-[#e00000]">
-        Book a Demo
-      </button>
-
-      <a href="/contact"
-        class="px-6 py-3 rounded-full bg-[#121212] border border-white/10 text-white/80 text-[13px] font-bold transition-all duration-300 hover:border-white/20">
-        Talk to Us
-      </a>
+      <p class="hero__p" data-rv style="--d:190ms;font-size:12px;color:var(--faint)">*We'll walk you through it</p>
     </div>
-
-    <p class="mt-8 md:mt-14 text-white/30 text-[12px] font-[550]">*We'll walk you through it</p>
+    <div class="hero__card" data-rv style="--d:150ms">
+      <p class="feat__k">1:3 Selection Ratio Guarantee*</p>
+      <div class="labcard">
+        <span class="feat__glint"></span>
+        <p class="labcard__n"><b>1:3</b><i>Interview 3, hire 1</i></p>
+        <p class="labcard__x">Three hire-ready candidates in 36 hours — with full reasoning behind each rank.</p>
+      </div>
+    </div>
   </div>
-</section>
+</header>
 
 <!-- ===== OVERVIEW ===== -->
-<section class="bg-black border-t border-white/5 py-14 md:py-20">
-  <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10">
-    <div class="grid lg:grid-cols-[1fr_1.6fr] gap-10 lg:gap-16 items-start">
+<section class="band band--w" id="overview">
+  <div class="wrap">
+    <div class="shead">
       <div>
-        <p class="text-[11px] tracking-[0.24em] font-semibold text-[#da0007] uppercase">
-          Overview
-        </p>
-        <h2
-          class="mt-3 text-white font-[700] leading-[1.08] tracking-[-0.02em]
-                 text-[34px] sm:text-[44px] lg:text-[55px]"
-        >
-          What makes {title} hiring different
-        </h2>
-
-        <!-- Stat callouts -->
-        <div class="mt-8 grid grid-cols-2 gap-x-8 gap-y-5">
-          {
-            [
-              { val: '1:3', label: 'Selection ratio guarantee' },
-              { val: '36hrs', label: 'To first shortlist' },
-              { val: '100+', label: 'AI signals per candidate' },
-              { val: '89%', label: '12-month retention score' },
-            ].map((s) => (
-              <div>
-                <div class="text-[28px] font-[700] leading-none tracking-tight text-[#da0007]">
-                  {s.val}
-                </div>
-                <div class="mt-1 text-[11px] text-white/40 leading-snug">{s.label}</div>
-              </div>
-            ))
-          }
-        </div>
+        <p class="eyebrow eyebrow--red" data-rv>Overview</p>
+        <h2 class="h2" data-rv style="--d:60ms">What makes {title} hiring different</h2>
       </div>
+      <p class="dek" data-rv style="--d:100ms">{overview}</p>
+    </div>
 
-      <div>
-        <p class="text-[15px] leading-[1.85] text-white/55 sm:text-[16px]">
-          {overview}
-        </p>
+    <div class="ov-stats" data-rv style="--d:140ms">
+      <div class="ov-stat"><p class="ov-stat__n">1:3</p><p class="ov-stat__l">Selection ratio guarantee</p></div>
+      <div class="ov-stat"><p class="ov-stat__n">36hrs</p><p class="ov-stat__l">To first shortlist</p></div>
+      <div class="ov-stat"><p class="ov-stat__n">100+</p><p class="ov-stat__l">AI signals per candidate</p></div>
+      <div class="ov-stat"><p class="ov-stat__n">89%</p><p class="ov-stat__l">12-month retention score</p></div>
+    </div>
 
-        <!-- How it works inline -->
-        <div
-          class="relative mt-8 overflow-hidden rounded-xl border border-[#da0007]/30
-                 bg-gradient-to-br from-[#1a0000] to-[#1e0000] p-5"
-        >
-          <div class="pointer-events-none absolute inset-0 flex items-center justify-center">
-            <div
-              class="w-[180px] h-[180px]
-                     bg-[radial-gradient(circle,rgba(218,0,7,0.7),transparent_70%)]
-                     blur-[36px] opacity-40"
-            ></div>
-          </div>
-          <div class="relative z-10 space-y-4">
-            <p class="text-[11px] uppercase tracking-[0.2em] text-[#da0007] font-semibold">
-              How every shortlist is built
-            </p>
-            {
-              [
-                { step: '01', text: 'AI screens 100+ signals — technical depth, project validity, behavioural patterns.' },
-                { step: '02', text: 'A domain advisor runs a structured interview — scenario-based, not trivia.' },
-                { step: '03', text: 'Three hire-ready candidates reach you — GREEN, with full reasoning.' },
-              ].map((item) => (
-                <div class="flex gap-4 items-start">
-                  <span class="text-[#da0007] text-[13px] font-[700] mt-0.5 shrink-0">{item.step}</span>
-                  <p class="text-[13px] text-white/70 leading-relaxed">{item.text}</p>
-                </div>
-              ))
-            }
-          </div>
-        </div>
+    <div class="ov-how" data-rv style="--d:200ms">
+      <p class="eyebrow" data-rv>How every shortlist is built</p>
+      <div class="ov-how__steps">
+        <div class="ov-how__step"><span class="ov-how__num">01</span><p class="ov-how__txt">AI screens 100+ signals — technical depth, project validity, behavioural patterns.</p></div>
+        <div class="ov-how__step"><span class="ov-how__num">02</span><p class="ov-how__txt">A domain advisor runs a structured interview — scenario-based, not trivia.</p></div>
+        <div class="ov-how__step"><span class="ov-how__num">03</span><p class="ov-how__txt">Three hire-ready candidates reach you — with full reasoning behind each rank.</p></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===== HIRING CHALLENGES ===== -->
-<section class="bg-[#f5f5f5] py-14 md:py-20">
-  <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10">
-    <p class="text-[11px] tracking-[0.24em] font-semibold text-[#da0007] uppercase mb-3">
-      Hiring Challenges
-    </p>
-    <h2
-      class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] text-black leading-[1.08] tracking-[-0.02em] max-w-2xl"
-    >
-      Where {title} hiring typically breaks down
-    </h2>
+<section class="fn band" id="challenges">
+  <div class="wrap">
+    <div class="shead">
+      <div>
+        <p class="eyebrow" data-rv>Hiring Challenges</p>
+        <h2 class="h2" data-rv style="--d:60ms">Where {title} hiring typically breaks down</h2>
+      </div>
+    </div>
 
-    <div class="mt-10 grid gap-5 sm:grid-cols-2">
-      {
-        hiringChallenges.map((c, i) => (
-          <div
-            class="group relative overflow-hidden rounded-[24px] border border-black/5 bg-white p-6
-                   transition-all duration-300
-                   hover:-translate-y-1 hover:shadow-[0_18px_48px_-24px_rgba(218,0,7,0.20)]"
-          >
-            <div class="absolute left-0 top-0 h-[3px] w-0 bg-[#da0007] transition-all duration-500 group-hover:w-full" />
-            <div class="relative z-10">
-              <span class="inline-block rounded-sm bg-[#da0007]/10 px-2 py-1 text-[10px] font-[700] tracking-[0.1em] text-[#da0007]">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <h3 class="mt-3 text-[21px] sm:text-[22px] font-semibold tracking-tight leading-tight text-black">{c.title}</h3>
-              <p class="mt-2 text-black/60 text-[14px] leading-relaxed">{c.desc}</p>
-            </div>
-          </div>
-        ))
-      }
+    <div class="chals" data-rv style="--d:140ms">
+      {hiringChallenges.map((c, i) => (
+        <div class="chal">
+          <span class="chal__num">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="chal__title">{c.title}</h3>
+          <p class="chal__desc">{c.desc}</p>
+        </div>
+      ))}
     </div>
   </div>
 </section>
 
 <!-- ===== ROLES WE HIRE ===== -->
-<section class="bg-black py-14 md:py-20">
-  <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10">
-    <p class="text-[11px] tracking-[0.24em] font-semibold text-[#da0007] uppercase mb-3">
-      Roles We Hire
-    </p>
-    <h2
-      class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] tracking-[-0.02em] text-white max-w-xl"
-    >
-      Every level. Every mandate. One guarantee.
-    </h2>
-
-    <div class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-      {
-        rolesWeHire.map((r) => (
-          <div
-            class="group relative overflow-hidden rounded-[20px] border border-white/10
-                   bg-gradient-to-b from-[#181818] to-[#0f0f0f] p-5
-                   shadow-[0_20px_60px_rgba(0,0,0,0.6)]
-                   transition-all duration-300
-                   hover:-translate-y-1 hover:border-[#da0007]/30"
-          >
-            <div class="absolute inset-y-0 left-0 w-[3px] bg-[#da0007] opacity-70" />
-            <div class="pl-3">
-              <h3 class="text-[13px] font-[600] text-white leading-snug">{r.title}</h3>
-              <p class="mt-1.5 text-[11px] text-white/40">{r.level}</p>
-            </div>
-          </div>
-        ))
-      }
+<section class="band band--w" id="roles">
+  <div class="wrap">
+    <div class="shead">
+      <div>
+        <p class="eyebrow eyebrow--red" data-rv>Roles We Hire</p>
+        <h2 class="h2" data-rv style="--d:60ms">Every level. Every mandate. One guarantee.</h2>
+      </div>
     </div>
 
-    <p class="mt-8 text-[13px] text-white/30">
-      Don't see your exact role?{' '}
-      <a href="/contact" class="text-[#da0007] hover:underline underline-offset-4 transition">
-        Tell us what you need →
-      </a>
-    </p>
+    <div class="roles" data-rv style="--d:140ms">
+      {rolesWeHire.map((r) => (
+        <div class="role">
+          <h3 class="role__title">{r.title}</h3>
+          <p class="role__level">{r.level}</p>
+        </div>
+      ))}
+    </div>
+
+    <p class="roles__ft" data-rv>Don't see your exact role? <a href="/contact">Tell us what you need →</a></p>
   </div>
 </section>
 
 <!-- ===== WHY TRIBERA ===== -->
-<section class="bg-[#f5f5f5] py-14 md:py-20">
-  <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10">
-    <p class="text-[11px] tracking-[0.24em] font-semibold text-[#da0007] uppercase mb-3">
-      Why Tribera
-    </p>
-    <h2
-      class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] text-black leading-[1.08] tracking-[-0.02em] max-w-2xl"
-    >
-      Built for {title} — not bolted on
-    </h2>
+<section class="fn band" id="why">
+  <div class="wrap">
+    <div class="shead">
+      <div>
+        <p class="eyebrow" data-rv>Why Tribera</p>
+        <h2 class="h2" data-rv style="--d:60ms">Built for {title} — not bolted on</h2>
+      </div>
+    </div>
 
-    <div class="mt-10 grid gap-5 sm:grid-cols-2">
-      {
-        whyTribera.map((w) => (
-          <div
-            class="group relative overflow-hidden rounded-[24px] border border-black/5 bg-white p-6
-                   transition-all duration-300
-                   hover:-translate-y-1 hover:shadow-[0_18px_48px_-24px_rgba(218,0,7,0.20)]"
-          >
-            <div class="absolute left-0 top-0 h-[3px] w-0 bg-[#da0007] transition-all duration-500 group-hover:w-full" />
-            <div class="relative z-10">
-              <h3 class="text-[21px] sm:text-[22px] font-semibold tracking-tight leading-tight text-black">{w.title}</h3>
-              <p class="mt-2 text-black/60 text-[14px] leading-relaxed">{w.desc}</p>
-            </div>
-          </div>
-        ))
-      }
+    <div class="whys" data-rv style="--d:140ms">
+      {whyTribera.map((w) => (
+        <div class="why">
+          <h3 class="why__title">{w.title}</h3>
+          <p class="why__desc">{w.desc}</p>
+        </div>
+      ))}
     </div>
   </div>
 </section>
 
-<section class="bg-black py-16 md:py-20">
-  <div class="max-w-4xl mx-auto px-6">
-    <div class="text-center mb-10 px-4">
-      <p class="text-[10px] sm:text-[11px]
-    tracking-[0.3em]
-    text-[#da0007]
-    uppercase
-    font-medium">
-        TRIBERA VS COMPETITORS
-      </p>
-
-      <h2
-        class="mt-4
-    font-semibold
-    text-white
-    leading-tight
-    text-[28px]
-    sm:text-[36px]
-    md:text-[44px]
-    lg:text-[52px]"
-      >
-        Why tribera wins
-      </h2>
-
-      <p class="mt-2
-    text-white/50
-    text-[14px]
-    sm:text-[15px]
-    max-w-xl
-    mx-auto">
-        Not just software — a complete solution.
-      </p>
+<!-- ===== COMPETITOR COMPARISON ===== -->
+<section class="band band--w" id="compare">
+  <div class="wrap">
+    <div class="shead" style="text-align:center">
+      <p class="eyebrow" data-rv>Tribera vs Competitors</p>
+      <h2 class="h2" data-rv style="--d:60ms">Why tribera wins</h2>
+      <p class="dek" data-rv style="--d:100ms">Not just software — a complete solution.</p>
     </div>
 
-    <div
-      class="table-mobile md:hidden rounded-[16px] border border-white/10 bg-gradient-to-b from-[#1b1b1b] to-[#0d0d0d] p-3 sm:p-4 space-y-2.5"
-    >
-      {
-        [
-          { feature: 'Domain advisor interviews', tribera: 'check', saas: '✗', rpo: 'Generalist only' },
-          { feature: 'AI signal validation (100+)', tribera: 'check', saas: '✗', rpo: '✗' },
-          { feature: '1:3 selection guarantee', tribera: 'check', saas: '✗', rpo: '✗' },
-          { feature: '36-hour first shortlist', tribera: '36 hours', saas: 'You source it', rpo: '2–4 weeks' },
-          { feature: 'Passive talent access', tribera: 'check', saas: '✗', rpo: 'Partial' },
-          { feature: 'Explainable hiring decisions', tribera: 'check', saas: '✗', rpo: '✗' },
-        ].map((row, i) => (
-          <article class={`group anim-slide-left delay-${i + 1}`}>
-            <div
-              class="relative overflow-hidden rounded-xl border border-white/10 bg-black/40 p-4
-                     before:pointer-events-none before:absolute before:inset-x-5 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-[#da0007]/45 before:to-transparent
-                     after:pointer-events-none after:absolute after:inset-x-0 after:top-0 after:h-14 after:bg-gradient-to-b after:from-[#da0007]/[0.05] after:to-transparent
-                     transition-all duration-500 active:scale-[0.985] hover:translate-y-1
-                     hover:border-[#da0007]/30 hover:shadow-[0_0_40px_rgba(225,6,0,0.15)]"
-            >
-              <h3 class="text-[15px] font-semibold text-white leading-snug">{row.feature}</h3>
-
-              <div class="mt-3 space-y-2.5 text-[14px]">
-                <div class="flex items-center justify-between rounded-lg border border-[#da0007]/40 bg-[#da0007]/15 px-3.5 py-2.5 shadow-[0_0_18px_rgba(218,0,7,0.15)]">
-                  <span class="font-semibold text-[#da0007] text-[12px]">tribera</span>
-                  {row.tribera === 'check' ? (
-                    <span class="inline-flex h-6 min-w-6 items-center justify-center rounded-md bg-[#da0007]/20 px-1.5 font-bold text-[#da0007]">
-                      ✓
-                    </span>
-                  ) : (
-                    <span class="font-semibold text-[#da0007] text-[14px]">{row.tribera}</span>
-                  )}
-                </div>
-
-                <div class="flex items-center justify-between rounded-lg border border-white/15 bg-white/[0.03] px-3.5 py-2.5">
-                  <span class="text-white/90 text-[12px]">SaaS Tools</span>
-                  <span class={`${row.saas === '✗' ? 'text-white/55' : 'text-white'} text-[13px] font-medium`}>
-                    {row.saas}
-                  </span>
-                </div>
-
-                <div class="flex items-center justify-between rounded-lg border border-white/15 bg-white/[0.03] px-3.5 py-2.5">
-                  <span class="text-white/90 text-[12px]">Traditional RPO</span>
-                  <span class={`${row.rpo === '✗' ? 'text-white/55' : 'text-white'} text-[13px] font-medium`}>
-                    {row.rpo}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </article>
-        ))
-      }
-    </div>
-
-    <div
-      class="table-desktop hidden md:block overflow-x-auto rounded-[16px] border border-white/10 bg-gradient-to-b from-[#1b1b1b] to-[#0d0d0d]
-             transition-all duration-500 hover:translate-y-1 hover:border-[#da0007]/30 hover:shadow-[0_0_40px_rgba(225,6,0,0.15)]"
-    >
-      <div class="min-w-[640px]">
-        <div
-          class="grid grid-cols-[1.45fr_0.65fr_0.95fr_1fr] px-6 md:px-10 py-4
-                  text-[12px] md:text-[13px]
-                  text-white/80
-                  border-b border-white/10
-                  bg-white/[0.02]
-                  text-center gap-0"
-        >
-          <div class="text-left font-semibold text-white">Feature</div>
-
-          <div class="font-semibold text-[#da0007]">tribera</div>
-
-          <div class="font-semibold">SaaS Tools</div>
-
-          <div class="font-semibold">Traditional RPO</div>
-        </div>
-
-        <div class="divide-y divide-white/5 text-white/60">
-          {
-            [
-              { feature: 'Domain advisor interviews', tribera: 'check', saas: '✗', rpo: 'Generalist only' },
-              { feature: 'AI signal validation (100+)', tribera: 'check', saas: '✗', rpo: '✗' },
-              { feature: '1:3 selection guarantee', tribera: 'check', saas: '✗', rpo: '✗' },
-              { feature: '36-hour first shortlist', tribera: '36 hours', saas: 'You source it', rpo: '2–4 weeks' },
-              { feature: 'Passive talent access', tribera: 'check', saas: '✗', rpo: 'Partial' },
-              { feature: 'Explainable hiring decisions', tribera: 'check', saas: '✗', rpo: '✗' },
-            ].map((row, i) => (
-              <div
-                class={`grid grid-cols-[1.45fr_0.65fr_0.95fr_1fr]
-                      gap-0
-                      px-6 py-4 md:px-10
-                      items-center text-center
-                      hover:bg-[#da0007]/5 transition
-                      anim-slide-left delay-${i + 1}`}
-              >
-                <div class="text-left text-[13px] md:text-[14px] text-white/60">{row.feature}</div>
-
-                <div class="flex justify-center">
-                  {row.tribera === 'check' ? (
-                    <span class="relative flex items-center justify-center w-6 h-6 group">
-                      <span
-                        class="absolute w-5 h-5 rounded-full
-                           bg-[#da0007]/20
-                           shadow-[0_0_12px_rgba(218,0,7,.6),0_0_6px_rgba(218,0,7,.8)]
-                           animate-[signalPulse_3s_ease-in-out_infinite]
-                           transition-all duration-300
-                           group-hover:animate-none
-                           group-hover:scale-[1.3]
-                           group-hover:shadow-[0_0_20px_rgba(218,0,7,.9),0_0_10px_rgba(218,0,7,1)]"
-                      />
-
-                      <span class="relative text-[#da0007] bg-[#da0007]/15 px-4 md:px-10 py-1.5 rounded-md font-bold text-sm">
-                        ✓
-                      </span>
-                    </span>
-                  ) : (
-                    <span
-                      class={`px-8 md:px-6 py-1.5 rounded-md text-[12px] md:text-[13px] font-medium
-                              ${
-                                row.tribera === '36 hours' || row.tribera === 'Per hire'
-                                  ? 'bg-[#da0007]/15 text-[#da0007]'
-                                  : ''
-                              }`}
-                    >
-                      {row.tribera}
-                    </span>
-                  )}
-                </div>
-
-                <div class={`${row.saas === '✗' ? 'text-white/30' : 'text-[13px] md:text-[14px] text-white/60'}`}>
-                  {row.saas}
-                </div>
-
-                <div class={`${row.rpo === '✗' ? 'text-white/30' : 'text-[13px] md:text-[14px] text-white/60'}`}>
-                  {row.rpo}
-                </div>
-              </div>
-            ))
-          }
-        </div>
+    <div class="comp-table" data-rv style="--d:140ms">
+      <div class="comp-table__row comp-table__head">
+        <span>Feature</span>
+        <span class="comp-table__tribera">tribera</span>
+        <span>SaaS Tools</span>
+        <span>Traditional RPO</span>
       </div>
+      {[{ feature: 'Domain advisor interviews', tribera: '✓', saas: '✗', rpo: 'Generalist only' },
+        { feature: 'AI signal validation (100+)', tribera: '✓', saas: '✗', rpo: '✗' },
+        { feature: '1:3 selection guarantee', tribera: '✓', saas: '✗', rpo: '✗' },
+        { feature: '36-hour first shortlist', tribera: '36 hours', saas: 'You source it', rpo: '2–4 weeks' },
+        { feature: 'Passive talent access', tribera: '✓', saas: '✗', rpo: 'Partial' },
+        { feature: 'Explainable hiring decisions', tribera: '✓', saas: '✗', rpo: '✗' },
+      ].map((row) => (
+        <div class="comp-table__row">
+          <span>{row.feature}</span>
+          <span class="comp-table__tribera">{row.tribera}</span>
+          <span>{row.saas}</span>
+          <span>{row.rpo}</span>
+        </div>
+      ))}
     </div>
   </div>
 </section>
@@ -511,38 +221,23 @@ if (hasAmpersand) {
 <!-- ===== FAQs ===== -->
 {
   faqs.length > 0 && (
-    <section class="bg-[#f5f5f5] py-14 md:py-20">
-      <div class="max-w-3xl mx-auto px-5 sm:px-8 lg:px-10">
-        <p class="text-[11px] tracking-[0.24em] font-semibold text-[#da0007] uppercase mb-3">
-          FAQ
-        </p>
-        <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] text-black leading-[1.08] tracking-[-0.02em] mb-10">
-          Common questions
-        </h2>
-        <div class="space-y-4">
+    <section class="fn band" id="faqs">
+      <div class="wrap">
+        <div class="shead">
+          <div>
+            <p class="eyebrow" data-rv>FAQ</p>
+            <h2 class="h2" data-rv style="--d:60ms">Common questions</h2>
+          </div>
+        </div>
+
+        <div class="faqs" data-rv style="--d:140ms">
           {faqs.map((faq, i) => (
-            <div
-              class="group rounded-[20px] border border-black/5 bg-white overflow-hidden
-                     shadow-[0_4px_16px_rgba(0,0,0,0.04)]"
-            >
-              <button
-                type="button"
-                class="faq-toggle w-full flex items-start justify-between gap-4 px-6 py-5 text-left"
-                aria-expanded="false"
-                aria-controls={`faq-body-${i}`}
-              >
-                <span class="text-[14px] font-[600] text-black leading-snug">{faq.q}</span>
-                <span
-                  class="faq-icon shrink-0 mt-0.5 flex h-6 w-6 items-center justify-center rounded-full
-                         bg-[#da0007]/10 text-[#da0007] transition-transform duration-300 text-[14px]"
-                >
-                  +
-                </span>
+            <div class="faq">
+              <button type="button" class="faq__toggle" aria-expanded="false" aria-controls={`faq-body-${i}`}>
+                <span class="faq__q">{faq.q}</span>
+                <span class="faq__icon">+</span>
               </button>
-              <div
-                id={`faq-body-${i}`}
-                class="faq-body hidden px-6 pb-5 text-[13px] leading-relaxed text-black/55"
-              >
+              <div class="faq__body" id={`faq-body-${i}`}>
                 {faq.a}
               </div>
             </div>
@@ -554,51 +249,23 @@ if (hasAmpersand) {
 }
 
 <!-- ===== CTA ===== -->
-<section class="relative bg-black py-16 md:py-24 overflow-hidden">
-  <div
-    class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(218,0,7,0.13),transparent_58%)]"
-  ></div>
-  <div class="pointer-events-none absolute inset-0 bg-dotted-static opacity-50"></div>
-
-  <div class="relative z-10 max-w-3xl mx-auto px-5 sm:px-8 text-center">
-    <h2
-      class="font-[700] leading-[1.08] tracking-[-0.02em] text-white
-             text-[34px] sm:text-[44px] lg:text-[55px]"
-    >
-      {ctaHeadline}
-    </h2>
-
-    <p class="mt-5 text-[15px] leading-relaxed text-white/45 max-w-xl mx-auto">
-      {ctaSubtext}
-    </p>
-
-    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-      <button
-        type="button"
-        data-form-intent="demo"
-        data-form-source={`${formSource}_cta`}
-        class="px-8 py-3.5 rounded-full tribera-primary-button text-[13px] font-semibold"
-      >
-        Book a Demo
-      </button>
-      <a
-        href="/about"
-        class="text-white/45 text-[13px] font-semibold transition hover:text-white
-               underline underline-offset-4"
-      >
-        Learn about tribera →
-      </a>
+<section class="hero" id="cta">
+  <div class="hero__top">
+    <div class="hero__copy" style="text-align:center">
+      <h2 class="h2" data-rv style="--d:60ms">{ctaHeadline}</h2>
+      <p class="hero__p" data-rv style="--d:100ms;margin-inline:auto">{ctaSubtext}</p>
+      <div class="btns" data-rv style="--d:140ms;justify-content:center">
+        <a href="/contact" class="btn btn--light">Book a Demo</a>
+        <a href="/about" class="btn btn--wire">Learn about tribera →</a>
+      </div>
+      <p class="hero__p" data-rv style="--d:180ms;font-size:11px;color:var(--faint)">No retainer · per-hire pricing · first shortlist in 36 hrs</p>
     </div>
-
-    <p class="mt-8 text-[11px] text-white/25">
-      No retainer · per-hire pricing · first shortlist in 36 hrs
-    </p>
   </div>
 </section>
 
 <script>
   function initFaqs() {
-    document.querySelectorAll('.faq-toggle').forEach((btn) => {
+    document.querySelectorAll('.faq__toggle').forEach((btn) => {
       if (!(btn instanceof HTMLButtonElement)) return;
       if (btn.dataset.faqBound === 'true') return;
       btn.dataset.faqBound = 'true';
@@ -607,7 +274,7 @@ if (hasAmpersand) {
         const bodyId = btn.getAttribute('aria-controls');
         if (!bodyId) return;
         const body = document.getElementById(bodyId);
-        const icon = btn.querySelector('.faq-icon');
+        const icon = btn.querySelector('.faq__icon');
         const expanded = btn.getAttribute('aria-expanded') === 'true';
 
         btn.setAttribute('aria-expanded', String(!expanded));
@@ -624,6 +291,127 @@ if (hasAmpersand) {
   document.addEventListener('DOMContentLoaded', initFaqs);
 </script>
 
-<style is:global>
-.industry-red{color:#DA0007;display:block}
+<style>
+  :root {
+    --red: #DA0007;
+    --onc: #F3F3F0;
+    --char: #131313;
+    --card: #FFF;
+    --grey: #6B6B67;
+    --faint: #9C9C97;
+    --ink: #111110;
+    --ease: cubic-bezier(.16,1,.3,1);
+    --wrap: 1280px;
+    --gut: clamp(20px,4.5vw,48px);
+  }
+
+  .hero{background:var(--char);color:var(--onc);padding-block:clamp(44px,5.6vw,80px) 0}
+  .hero .eyebrow{color:var(--faint)}
+  .hero h1{color:#fff}
+  .hero h1 em{font-style:normal;color:var(--red)}
+  .hero__top{display:grid;gap:clamp(26px,3vw,44px);align-content:center;min-height:1576px}
+  @media(min-width:330px){.hero__top{min-height:1496px}}
+  @media(min-width:340px){.hero__top{min-height:1476px}}
+  @media(min-width:360px){.hero__top{min-height:1461px}}
+  @media(min-width:375px){.hero__top{min-height:1401px}}
+  @media(min-width:390px){.hero__top{min-height:1321px}}
+  @media(min-width:400px){.hero__top{min-height:1301px}}
+  @media(min-width:420px){.hero__top{min-height:1286px}}
+  @media(min-width:440px){.hero__top{min-height:1266px}}
+  @media(min-width:460px){.hero__top{min-height:1216px}}
+  @media(min-width:500px){.hero__top{min-height:1176px}}
+  @media(min-width:550px){.hero__top{min-height:1161px}}
+  @media(min-width:700px){.hero__top{min-height:1121px}}
+  @media(min-width:800px){.hero__top{min-height:1126px}}
+  @media(min-width:900px){.hero__top{min-height:1104px}}
+  @media(min-width:1000px){.hero__top{min-height:727px}}
+  @media(min-width:1100px){.hero__top{min-height:741px}}
+  @media(min-width:1200px){.hero__top{min-height:749px}}
+  @media(min-width:1240px){.hero__top{min-height:759px}}
+  @media(min-width:1000px){.hero__top{grid-template-columns:.9fr 1.1fr;align-items:center;gap:clamp(30px,3.4vw,52px)}}
+  .hero__copy .btns{margin-top:26px}
+  .hero .eyebrow{margin-bottom:16px}
+  .hero h1{max-width:18ch;font-size:clamp(36px,4.6vw,62px)}
+  @media(min-width:1000px){.hero h1{max-width:none}}
+  .hero__p{font-size:clamp(15.5px,1.45vw,17.5px);line-height:1.6;color:var(--onc2);max-width:46ch;margin:0}
+  .hero__p + .hero__p{margin-top:14px}
+  .hero__p b{color:#fff;font-weight:600}
+  .hero__card{perspective:1600px;position:relative}
+  .hero__card::before{content:"";position:absolute;inset:-14% -8% -18%;pointer-events:none;background:radial-gradient(58% 52% at 62% 34%,rgba(218,0,7,.14),transparent 70%);filter:blur(28px);opacity:.55;transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .hero__card.is-flipped::before{opacity:.85;transform:translateX(-6%)}
+  .feat__k{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin:0 0 12px}
+  .labcard{background:var(--card);border-radius:16px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.04),0 8px 28px rgba(0,0,0,.045);position:relative;overflow:hidden}
+  .labcard__n{font-size:clamp(32px,4vw,48px);font-weight:800;color:var(--ink);margin:0;line-height:1}
+  .labcard__n i{font-size:14px;font-weight:400;color:var(--grey);display:block;margin-top:4px}
+  .labcard__x{font-size:13px;line-height:1.6;color:var(--grey);margin:12px 0 0}
+  .feat__glint{position:absolute;top:-30%;right:-30%;width:60%;height:60%;background:radial-gradient(circle,rgba(218,0,7,.12),transparent 70%);pointer-events:none}
+
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);margin:0 0 24px}
+  .eyebrow--red{color:var(--red)}
+  .h1{font-family:var(--display);font-weight:800;font-size:clamp(38px,6.2vw,78px);line-height:.97;letter-spacing:-.045em;margin:0}
+  .h2{font-family:var(--display);font-weight:700;font-size:clamp(29px,4.2vw,52px);line-height:1.04;letter-spacing:-.04em;margin:0;max-width:16ch}
+  .dek{font-size:clamp(16px,1.5vw,18.5px);line-height:1.6;color:var(--grey);max-width:56ch;margin:18px 0 0}
+  .dek b{color:var(--ink);font-weight:600}
+  [data-rv]{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0ms)}
+  [data-rv].in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}[data-rv],[data-rv].in{opacity:1;transform:none;transition:none}}
+
+  .btn{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;text-decoration:none;padding:15px 26px;border-radius:999px;border:1px solid transparent;transition:transform .18s var(--ease),background .2s,border-color .2s,color .2s,box-shadow .25s;cursor:pointer;line-height:1}
+  .btn:hover{transform:translateY(-1px)}
+  .btn--light{background:var(--onc);color:var(--char)}
+  .btn--dark{background:var(--ink);color:#fff}
+  .btn--ghost{border-color:#D2D2CD;color:var(--ink)}.btn--ghost:hover{border-color:var(--ink)}
+  .btn--wire{border-color:rgba(255,255,255,.3);color:#fff}.btn--wire:hover{border-color:#fff}
+  .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+
+  .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gut)}
+  .band{padding-block:clamp(52px,6vw,92px)}
+  .band--w{background:var(--card)}
+  .fn{padding-block:clamp(40px,4.6vw,68px)}
+
+  .ov-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
+  .ov-stat{padding:16px;background:var(--card);border-radius:12px;border:1px solid #E4E4E0}
+  .ov-stat__n{font-size:clamp(28px,3vw,40px);font-weight:800;color:var(--red);line-height:1}
+  .ov-stat__l{font-size:11px;color:var(--faint);margin-top:6px;line-height:1.4}
+  .ov-how{margin-top:32px}
+  .ov-how__steps{display:flex;flex-direction:column;gap:16px;margin-top:16px}
+  .ov-how__step{display:flex;gap:12px;align-items:flex-start}
+  .ov-how__num{font-size:13px;font-weight:700;color:var(--red);margin-top:2px;flex-shrink:0}
+  .ov-how__txt{font-size:14px;line-height:1.6;color:var(--grey)}
+
+  .chals{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));margin-top:32px}
+  .chal{position:relative;padding:24px;background:var(--card);border-radius:16px;border:1px solid #E4E4E0;transition:all .35s var(--ease)}
+  .chal:hover{border-color:var(--red);box-shadow:0 8px 34px rgba(0,0,0,.075)}
+  .chal__num{font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:rgba(218,0,7,.08);color:var(--red);padding:3px 8px;border-radius:4px;font-weight:700;display:inline-block;margin-bottom:12px}
+  .chal__title{font-size:21px;font-weight:700;color:var(--ink);letter-spacing:-.01em;margin:0}
+  .chal__desc{font-size:14px;line-height:1.6;color:var(--grey);margin:8px 0 0}
+
+  .roles{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));margin-top:32px}
+  .role{padding:16px;background:var(--card);border-radius:12px;border:1px solid #E4E4E0;transition:all .35s var(--ease)}
+  .role:hover{border-color:var(--red)}
+  .role__title{font-size:14px;font-weight:700;color:var(--ink);margin:0}
+  .role__level{font-size:12px;color:var(--faint);margin:6px 0 0}
+  .roles__ft{margin-top:24px;font-size:13px;color:var(--grey)}
+  .roles__ft a{color:var(--red);text-decoration:underline;text-underline-offset:4px}
+
+  .comp-table{margin-top:32px;border:1px solid #E4E4E0;border-radius:12px;overflow:hidden}
+  .comp-table__row{display:grid;grid-template-columns:1.45fr 0.65fr 0.95fr 1fr;gap:0;padding:12px 16px;align-items:center;font-size:13px;border-bottom:1px solid #E4E4E0}
+  .comp-table__row:last-child{border-bottom:none}
+  .comp-table__head{background:var(--card);font-weight:600;color:var(--ink)}
+  .comp-table__tribera{color:var(--red);font-weight:600}
+
+  .faqs{display:flex;flex-direction:column;gap:12px;margin-top:32px}
+  .faq{background:var(--card);border-radius:12px;border:1px solid #E4E4E0;overflow:hidden}
+  .faq__toggle{width:100%;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:16px 20px;text-align:left;background:none;border:none;cursor:pointer;font-family:inherit;color:var(--ink);font-size:14px;font-weight:600;line-height:1.4}
+  .faq__icon{font-size:14px;color:var(--red);transition:transform .3s var(--ease);flex-shrink:0;margin-top:2px}
+  .faq__body{padding:0 20px 16px;font-size:13px;line-height:1.6;color:var(--grey)}
+  .faq__body.hidden{display:none}
+
+  @media(max-width:768px){
+    .hero__top{min-height:1100px}
+    .h1{font-size:clamp(28px,8vw,48px)}
+    .h2{font-size:clamp(24px,5vw,36px)}
+    .ov-stats{grid-template-columns:repeat(2,1fr)}
+    .comp-table__row{grid-template-columns:1fr 0.8fr 0.8fr 1fr;font-size:12px}
+  }
 </style>

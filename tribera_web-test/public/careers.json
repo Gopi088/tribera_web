@@ -1,0 +1,137 @@
+{
+  "roles": [
+    {
+      "slug": "backend-engineer",
+      "title": "Backend Engineer",
+      "dept": "Engineering",
+      "type": "Full-time",
+      "loc": "Bengaluru",
+      "mode": "Onsite",
+      "exp": "3–6 years",
+      "feat": true,
+      "blurb": "Great hiring products feel simple on the surface. That simplicity is earned in the backend.",
+      "w": [
+        26,
+        30,
+        16,
+        10,
+        14,
+        4
+      ]
+    },
+    {
+      "slug": "ai-ml-engineer",
+      "title": "AI/ML Engineer",
+      "dept": "Engineering",
+      "type": "Full-time",
+      "loc": "Bengaluru",
+      "mode": "Onsite",
+      "exp": "2–5 years",
+      "feat": true,
+      "blurb": "Practical AI systems that make hiring decisions clearer, more structured, and easier to trust.",
+      "w": [
+        30,
+        26,
+        14,
+        10,
+        16,
+        4
+      ]
+    },
+    {
+      "slug": "software-intern",
+      "title": "Software Intern",
+      "dept": "Engineering",
+      "type": "Internship",
+      "loc": "Bengaluru",
+      "mode": "Onsite",
+      "exp": "Student or recent graduate",
+      "feat": false,
+      "blurb": "This is not a shadowing internship. You will do real work, ship real output, and learn in context.",
+      "w": [
+        20,
+        22,
+        22,
+        16,
+        16,
+        4
+      ]
+    },
+    {
+      "slug": "talent-advisor",
+      "title": "Talent Advisor",
+      "dept": "Talent Advisory",
+      "type": "Full-time",
+      "loc": "Indiranagar, Bengaluru",
+      "mode": "Onsite",
+      "exp": "4+ years",
+      "feat": true,
+      "blurb": "The resume tells you what someone did. It rarely tells you what they can do. We are building the team that knows the difference.",
+      "w": [
+        28,
+        16,
+        16,
+        26,
+        8,
+        6
+      ]
+    },
+    {
+      "slug": "senior-delivery-partner",
+      "title": "Senior Delivery Partner",
+      "dept": "Talent Advisory",
+      "type": "Full-time",
+      "loc": "Indiranagar, Bengaluru",
+      "mode": "Onsite",
+      "exp": "7+ years",
+      "feat": false,
+      "blurb": "Activity is easy to measure. Outcomes are harder. We are accountable for who joins, not for how many profiles were shared.",
+      "w": [
+        24,
+        12,
+        24,
+        20,
+        10,
+        10
+      ]
+    },
+    {
+      "slug": "talent-associate",
+      "title": "Talent Associate",
+      "dept": "Talent Advisory",
+      "type": "Full-time",
+      "loc": "Indiranagar, Bengaluru",
+      "mode": "Onsite",
+      "exp": "Entry level",
+      "feat": false,
+      "blurb": "Every expert was once a beginner who refused to stay one. You will not file resumes. You will learn to read people.",
+      "w": [
+        18,
+        14,
+        20,
+        30,
+        12,
+        6
+      ]
+    },
+    {
+      "slug": "growth-intern",
+      "title": "Growth Intern",
+      "dept": "Business Development",
+      "type": "Internship",
+      "loc": "Bengaluru",
+      "mode": "Onsite",
+      "exp": "Internship",
+      "feat": false,
+      "blurb": "Not every conversation closes a deal. The best ones open a door. That is the whole job, and it matters.",
+      "w": [
+        16,
+        10,
+        18,
+        28,
+        12,
+        16
+      ]
+    }
+  ]
+}

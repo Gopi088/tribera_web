@@ -1,0 +1,68 @@
+---
+import { SITE, METADATA } from 'astrowind:config';
+import type { MetaData } from '~/types';
+import { getCanonical } from '~/utils/permalinks';
+
+export interface Props {
+  metadata?: MetaData;
+}
+
+const { metadata = {} } = Astro.props;
+
+const siteUrl = String(Astro.site || SITE.site).replace(/\/$/, '');
+const canonical = String(metadata?.canonical || getCanonical(String(Astro.url.pathname)));
+const pageTitle = metadata?.title || METADATA?.title?.default || SITE?.name || 'tribera';
+const pageDescription = metadata?.description || METADATA?.description || '';
+const defaultOgImage = `${siteUrl}/og-default.png`;
+const pageOrigin = new URL(canonical).origin;
+const primaryImage = metadata?.openGraph?.images?.[0]?.url
+  ? String(new URL(metadata.openGraph.images[0].url, pageOrigin))
+  : defaultOgImage;
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE?.name || 'tribera',
+  alternateName: 'tribera.ai',
+  url: siteUrl,
+  logo: `${siteUrl}/favicon.png`,
+  description: METADATA?.description || 'AI hiring platform combining signal analysis with human judgment.',
+  sameAs: ['https://www.linkedin.com/company/triberaai'],
+};
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE?.name || 'tribera',
+  url: siteUrl,
+  description: METADATA?.description || 'AI hiring platform combining signal analysis with human judgment.',
+  inLanguage: 'en',
+  publisher: {
+    '@type': 'Organization',
+    name: SITE?.name || 'tribera',
+    url: siteUrl,
+    logo: `${siteUrl}/favicon.png`,
+  },
+};
+
+const webpageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: pageTitle,
+  description: pageDescription,
+  url: canonical,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: SITE?.name || 'tribera',
+    url: siteUrl,
+  },
+  primaryImageOfPage: {
+    '@type': 'ImageObject',
+    url: primaryImage,
+  },
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(webpageJsonLd)} />

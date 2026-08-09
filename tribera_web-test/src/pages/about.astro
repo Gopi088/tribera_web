@@ -1,0 +1,866 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Brands from '~/components/widgets/Brands.astro';
+
+const metadata = {
+  title: 'About tribera | AI Hiring Platform with Human Judgment',
+  description:
+    'Learn how tribera combines AI signal analysis and human judgment to help hiring teams make faster, more defensible decisions.',
+};
+---
+
+<Layout metadata={metadata}>
+  <main>
+    <section class="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-black">
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-black"></div>
+
+        <div
+          class="absolute left-[-30%] md:left-[-15%] top-0 h-full w-[90%] md:w-[60%]
+        bg-[radial-gradient(circle_at_left_center,rgba(218,0,7,0.45),transparent_60%)]"
+        >
+        </div>
+
+        <div
+          class="absolute right-[-30%] md:right-[-15%] top-0 h-full w-[90%] md:w-[60%]
+        bg-[radial-gradient(circle_at_right_center,rgba(218,0,7,0.45),transparent_60%)]"
+        >
+        </div>
+      </div>
+
+      <div class="absolute inset-0 pointer-events-none">
+        {
+          Array.from({ length: 22 }).map(() => (
+            <span
+              class="absolute rounded-full bg-[#da0007]/80"
+              style={`
+          width:3px;
+          height:3px;
+          left:${12 + Math.random() * 76}%;
+          top:${8 + Math.random() * 84}%;
+          --float-x1:${(Math.random() * 44 - 22).toFixed(1)}px;
+          --float-y1:${(Math.random() * 36 - 18).toFixed(1)}px;
+          --float-x2:${(Math.random() * 52 - 26).toFixed(1)}px;
+          --float-y2:${(Math.random() * 42 - 21).toFixed(1)}px;
+          --float-x3:${(Math.random() * 60 - 30).toFixed(1)}px;
+          --float-y3:${(Math.random() * 36 - 18).toFixed(1)}px;
+          --float-x4:${(Math.random() * 48 - 24).toFixed(1)}px;
+          --float-y4:${(Math.random() * 48 - 24).toFixed(1)}px;
+          --float-x5:${(Math.random() * 56 - 28).toFixed(1)}px;
+          --float-y5:${(Math.random() * 40 - 20).toFixed(1)}px;
+          --float-x6:${(Math.random() * 50 - 25).toFixed(1)}px;
+          --float-y6:${(Math.random() * 34 - 17).toFixed(1)}px;
+          --float-scale1:${(1 + Math.random() * 0.28).toFixed(2)};
+          --float-scale2:${(0.78 + Math.random() * 0.18).toFixed(2)};
+          --float-scale3:${(1.02 + Math.random() * 0.22).toFixed(2)};
+          --float-scale4:${(0.82 + Math.random() * 0.14).toFixed(2)};
+          --float-scale5:${(1 + Math.random() * 0.2).toFixed(2)};
+          --float-scale6:${(0.86 + Math.random() * 0.14).toFixed(2)};
+          animation: float ${11 + Math.random() * 14}s ease-in-out infinite;
+          animation-delay: -${(Math.random() * 18).toFixed(1)}s;
+          box-shadow: 0 0 10px rgba(218,0,7,.6);
+        `}
+            />
+          ))
+        }
+      </div>
+
+      <div class="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 text-center group">
+        <div
+          class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#da0007]/40 bg-white/[0.03] px-3.5 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/80 sm:text-[12px]"
+        >
+          <span class="h-1.5 w-1.5 rounded-full bg-[#da0007]"></span>
+          <span>ABOUT TRIBERA</span>
+        </div>
+        <h1 class="text-white font-[700] leading-[1.05]
+             text-[38px] sm:text-[50px] lg:text-[64px]">
+          Belong. Build.<span class="sm:hidden"> </span><br class="hidden sm:block" />
+          Become.
+        </h1>
+
+        <p class="mt-6 max-w-2xl mx-auto text-[15px] sm:text-[16px] leading-relaxed text-white/50">
+          This industry gave us everything. tribera is how we give back.
+        </p>
+
+        <p class="mt-4 max-w-2xl mx-auto text-[14px] sm:text-[15px] leading-relaxed text-white/35">
+          We built tribera.ai to combine AI signal analysis with human judgment, and
+          <a
+            href="/services"
+            class="text-white/70 underline decoration-[#da0007]/50 underline-offset-4 hover:text-white"
+            >our hiring services</a
+          >
+          bring that same model to teams that want more than software alone.
+        </p>
+
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button
+            type="button"
+            data-form-intent="demo"
+            data-form-source="about_hero_demo"
+            class="relative overflow-hidden
+         w-auto
+         inline-flex items-center justify-center
+         px-5 py-2.5
+         rounded-full
+         tribera-primary-button
+         font-semibold text-[13px]"
+          >
+            <span class="relative z-10">See Platform Demo →</span>
+          </button>
+
+          <button
+            type="button"
+            data-form-intent="demo"
+            data-form-source="about_hero_book_demo"
+            class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#121212] border border-white/10 text-white/80 text-[13px] font-bold transition-all duration-300 hover:border-white/20"
+          >
+            Book a Demo
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full px-6 md:px-8 py-8 md:py-10 gap-10 relative">
+      <div class="pointer-events-none absolute inset-0 bg-dotted-static opacity-80"></div>
+
+      <Brands
+        title="Who We Work With"
+        subtitle="Trusted by high-impact <br /> teams across industries"
+        mobileSubtitleSingleLine={true}
+        images={[
+          { src: '~/assets/images/ICICBank.png', alt: 'ICICI Bank' },
+          { src: '~/assets/images/Aeries.png', alt: 'Aeries' },
+          { src: '~/assets/images/DSP_Mutual_Funds.png', alt: 'DSP Mutual Fund' },
+          { src: '~/assets/images/Enpro.png', alt: 'Enpro' },
+          { src: '~/assets/images/Volkwagen.png', alt: 'Volkswagen' },
+          { src: '~/assets/images/UtkarshBank.png', alt: 'Utkarsh Bank' },
+          { src: '~/assets/images/TechnologyHoldings.png', alt: 'TechnologyHoldings' },
+          { src: '~/assets/images/Payu.png', alt: 'PayU' },
+          { src: '~/assets/images/ICICISecurities.png', alt: 'ICICISecurities' },
+          { src: '~/assets/images/SplashBI.png', alt: 'SplashBI' },
+          { src: '~/assets/images/AegonLife.png', alt: 'AegonLife' },
+        ]}
+      />
+    </section>
+
+    <section class="relative bg-black text-white overflow-hidden py-20 md:py-28">
+      <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+        <p class="mb-6 text-[15px] sm:text-[16px] leading-relaxed text-white/50">We are Akshata and Abhishek.</p>
+
+        <p class="mb-16 text-[15px] sm:text-[16px] leading-relaxed text-white/50">
+          We watched brilliant TA Heads with perfect candidates every week.
+        </p>
+
+        <div class="relative inline-block">
+          <div class="absolute inset-0 flex items-center justify-center -z-10">
+            <div class="w-[120%] h-[120%] bg-[#da0007] opacity-10 blur-[20px] rounded-full"></div>
+          </div>
+
+          <h1 class="relative font-semibold leading-tight tracking-tight text-[34px] sm:text-[44px] lg:text-[55px]">
+            “Who will truly<span class="sm:hidden"> </span><br class="hidden sm:block" />
+            belong here?”
+          </h1>
+        </div>
+
+        <div
+          class="mt-16 mx-auto max-w-xl
+                rounded-2xl
+                border border-white/10
+                bg-white/5
+                backdrop-blur-md
+                p-6 sm:p-8
+                shadow-[0_0_40px_rgba(218,0,7,0.15)]"
+        >
+          <p class="text-white/70 text-[14px] sm:text-base leading-relaxed">
+            The question wasn't about credentials.<br />
+            It was about who would truly
+            <span class="text-[#da0007]">thrive.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="relative bg-white py-20 md:py-28 overflow-hidden">
+      <div class="max-w-6xl mx-auto px-6">
+        {/* HEADER */}
+        <div class="text-center mb-10">
+          <p class="text-[#da0007] text-[11px] tracking-[0.24em] font-semibold uppercase mb-2">
+            WHAT MAKES US DIFFERENT
+          </p>
+
+          <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] tracking-[-0.02em]">
+            The difference is context.
+          </h2>
+
+          <p class="mt-4 mx-auto max-w-2xl text-[15px] sm:text-[16px] leading-relaxed text-black/50">
+            Everyone sees the data. We see how it works for YOUR team.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+          {/* LEFT CARD */}
+          <div>
+            <p class="text-[15px] flex text-center items-center justify-center text-black/40 mb-3">EVERYONE ELSE</p>
+
+            <div class="bg-white rounded-2xl p-8 border border-black/5 shadow-sm">
+              <h3 class="font-semibold text-[15px]">Priya Sharma</h3>
+              <p class="text-[13px] text-black/50 mb-6">Senior Engineer</p>
+              <div class="h-px w-full bg-black/5 mb-6"></div>
+
+              <div class="grid grid-cols-2 gap-2 mb-3">
+                {
+                  [
+                    { label: 'EXPERIENCE', value: '8 yrs' },
+                    { label: 'RATING', value: '4.5★' },
+                  ].map((item, i) => (
+                    <div data-step={i} class="bg-black/5 rounded p-4 text-center">
+                      <p class="text-[12px] text-black/50 mb-1">{item.label}</p>
+                      <p class="font-semibold text-black/50 text-lg">{item.value}</p>
+                    </div>
+                  ))
+                }
+              </div>
+
+              <p class="text-[13px] text-black/50">Python · React · AWS</p>
+              <p class="text-[13px] flex items-center justify-center text-black/40 italic mt-3">"Looks qualified"</p>
+            </div>
+          </div>
+
+          {/* RIGHT CARD */}
+          <div class="relative" id="priya-tribera-card">
+            {/* Glow */}
+            <div class="absolute inset-0 -z-10 flex items-center justify-center">
+              <div class="w-[110%] h-[110%] bg-[#da0007] opacity-20 blur-[120px] rounded-3xl"></div>
+            </div>
+
+            <p class="text-[15px] flex items-center justify-center text-[#da0007] mb-3">TRIBERA</p>
+
+            <div
+              class="bg-[#0b0b0b] text-white rounded-2xl p-8 border border-[#da0007]/40 shadow-2xl transform-gpu transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform hover:-translate-y-1"
+            >
+              <div class="flex justify-between items-start mb-3">
+                <div>
+                  <h3 class="font-semibold text-[15px]">Priya Sharma</h3>
+                  <p class="text-[13px] text-white/60">Senior Engineer</p>
+                </div>
+                <span class="text-xs bg-[#da0007]/20 text-[#da0007] px-3 py-1 rounded-full"> ● VERIFIED </span>
+              </div>
+
+              <div class="h-px w-full bg-white/5 mb-6"></div>
+
+              {/* METRICS */}
+              <div class="grid grid-cols-3 gap-2 mb-4">
+                {
+                  [
+                    { label: 'WILL BELONG', value: 92, red: true },
+                    { label: 'WILL BUILD', value: 94 },
+                    { label: 'WILL BECOME', value: 88, red: true },
+                  ].map((item, i) => (
+                    <div
+                      data-step={i}
+                      class="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 p-4 text-center"
+                    >
+                      <p class="text-[11px] text-white/50 mb-1">{item.label}</p>
+                      <p
+                        class={`about-metric-value text-xl font-semibold transition-transform duration-300 group-hover:-translate-y-0.5 ${item.red ? 'text-[#da0007]' : 'text-white'}`}
+                        data-target-value={item.value}
+                      >
+                        0
+                      </p>
+                    </div>
+                  ))
+                }
+              </div>
+
+              {/* PROGRESS BARS */}
+              {/* PROGRESS BARS — MATCHING SCREENSHOT */}
+              <div class="space-y-1 mb-4 text-[12px]">
+                {
+                  [
+                    { label: 'YOUR Stack', value: 94 },
+                    { label: 'YOUR Chemistry', value: 91 },
+                    { label: 'YOUR Success', value: 89 },
+                  ].map((bar, i) => (
+                    <div data-step={i} class="flex items-center gap-2">
+                      {/* LEFT LABEL */}
+                      <span class="w-[80px] text-[10px] text-white/60">{bar.label}</span>
+
+                      {/* CENTER LINE */}
+                      <div class="flex-1 h-[4px] bg-white/10 rounded-full overflow-hidden">
+                        <div
+                          class="about-progress-fill h-full w-0 rounded-full bg-[#da0007] transition-[width] duration-1000 ease-out"
+                          data-target-width={`${bar.value}%`}
+                        />
+                      </div>
+
+                      {/* RIGHT VALUE */}
+                      <span class="w-[35px] text-right text-white/60">{bar.value}%</span>
+                    </div>
+                  ))
+                }
+              </div>
+
+              {/* MATCH BOX */}
+              <div class="bg-[#da0007]/10 border border-[#da0007]/30 rounded-xl p-4 text-[10px] mb-3">
+                <p class="text-white/70 mb-2">MATCHES YOUR TOP PERFORMERS IN:</p>
+                <ul class="space-y-1 text-white/80">
+                  {
+                    ['Technical depth', 'Collaborative style', 'Growth mindset'].map((point, i) => (
+                      <li data-step={i}>→ {point}</li>
+                    ))
+                  }
+                </ul>
+              </div>
+
+              <p class="text-center text-[13px] text-[#da0007]">"Will thrive on YOUR team"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-black text-white py-16 md:py-20">
+      <div class="max-w-5xl mx-auto px-6">
+        {/* HEADER */}
+        <div class="text-center mb-5">
+          <p class="text-[#da0007] text-[11px] tracking-[0.24em] font-semibold uppercase mb-4">THE JOURNEY</p>
+
+          <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] tracking-[-0.02em]">
+            The work behind the insight.
+          </h2>
+        </div>
+
+        {/* STEPS */}
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+          {
+            [
+              {
+                number: '01',
+                label: 'THE COFFEE',
+                text: (
+                  <>
+                    <span class="text-[#da0007] text-[13px] font-medium">Akshata and Abhishek.</span> Two hours mapping
+                    the <span class="text-[#da0007]">"Connection Gap"</span>. By the time the coffee was cold.
+                  </>
+                ),
+              },
+              {
+                number: '02',
+                label: 'THE COMMITMENT',
+                text: (
+                  <>
+                    <span class="text-[#da0007] font-medium">Pranav joined.</span> We walked away from everything. The
+                    right combinations elevate each other.
+                  </>
+                ),
+              },
+              {
+                number: '03',
+                label: 'THE LAB',
+                text: (
+                  <>
+                    <span class="text-[#da0007] font-medium">June 2024 → May 2025.</span> 200,000 interviews analyzed.
+                    We didn’t launch until we had it right.
+                  </>
+                ),
+              },
+              {
+                number: '04',
+                label: 'TODAY',
+                text: (
+                  <>
+                    <span class="text-2xl font-semibold text-[#da0007]">3:1</span>
+                    <br />
+                    <span class="text-white/60 text-[13px]">candidates sent → hired</span>
+                  </>
+                ),
+              },
+            ].map((step, i) => (
+              <div data-step={i}>
+                {/* Circle Number */}
+                <div class="mb-3 mt-10 flex justify-center">
+                  <div
+                    class="w-10 h-10 rounded-full border border-[#da0007]
+                        flex items-center justify-center
+                        text-[#da0007] font-semibold text-[20px]
+                        shadow-[0_0_30px_rgba(218,0,7,0.2)]"
+                  >
+                    {step.number}
+                  </div>
+                </div>
+
+                {/* Label */}
+                <p class="text-[12px] tracking-[0.1em] text-white/40 mb-3">{step.label}</p>
+
+                {/* Card */}
+                <div
+                  class="bg-white/3 border border-white/10
+                      rounded-xl p-6
+                      text-[13px] text-white/70
+                      backdrop-blur-md
+                      hover:border-[#da0007]/40
+                      transition duration-300"
+                >
+                  {step.text}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        {/* Divider */}
+        <div class="mt-20 border-t border-white/5"></div>
+
+        {/* Bottom Statement */}
+        <div class="text-center mt-16 space-y-4">
+          <h3 class="text-2xl sm:text-3xl font-[400]">
+            <span class="text-[#da0007]">Belong</span>
+            <span class="text-white/40 mx-2">·</span>
+            Build
+            <span class="text-white/40 mx-2">·</span>
+            <span class="text-[#da0007]">Become</span>
+          </h3>
+
+          <p class="text-white/60 text-[15px] font-[500]">
+            What happens when people find teams where they truly belong.
+          </p>
+
+          <p class="text-white/40 italic text-[15px]">tribera is our way of giving back.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-[#f3f3f5] py-20 md:py-28 px-6">
+      <div class="max-w-5xl mx-auto text-center">
+        {/* Eyebrow */}
+        <div class="text-[#da0007] text-[15px] font-semibold mb-2">What we've built</div>
+
+        {/* Heading */}
+        <h2
+          class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] tracking-[-0.02em] text-black mb-10"
+        >
+          From Tribe + Era.
+        </h2>
+
+        {/* Cards Wrapper */}
+        <div class="grid md:grid-cols-3 gap-8 text-left">
+          {
+            [
+              {
+                number: '1:3',
+                title: 'Belong. Build. Become.',
+                desc: 'We help organizations find people who belong on their teams, build meaningful work together, and become more than they were individually.',
+              },
+              {
+                number: '200k',
+                title: 'Learning continuously',
+                desc: 'Every interview analyzed. Every outcome tracked. AI surfaces patterns. Senior advisors add context. Together, insights neither could produce alone.',
+              },
+              {
+                number: '∞',
+                title: 'Growing together',
+                desc: 'We started with hiring. The same understanding can help with onboarding, development, and every decision that helps people and teams grow.',
+              },
+            ].map((card) => (
+              <div class="group relative overflow-hidden rounded-[24px] border border-black/5 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_48px_-24px_rgba(218,0,7,0.20)]">
+                <div class="absolute left-0 top-0 h-[3px] w-0 bg-[#da0007] transition-all duration-500 group-hover:w-full" />
+
+                {/* Big Number */}
+                <div
+                  class="text-4xl font-bold
+                      text-[#da0007]
+                      mb-3
+                      transition-all duration-500
+                      group-hover:text-[#da0007]"
+                >
+                  {card.number}
+                </div>
+
+                {/* Title */}
+                <h3 class="text-[21px] sm:text-[22px] font-semibold tracking-tight leading-tight text-black mb-3">
+                  {card.title}
+                </h3>
+
+                {/* Description */}
+                <p class="text-black/60 text-[14px] leading-relaxed">{card.desc}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-black py-20 md:py-28 px-6 sm:px-10">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-20">
+          <div class="text-[#da0007] text-[11px] tracking-[0.24em] font-semibold uppercase mb-4">WHO WE ARE</div>
+
+          <h2 class="text-white font-[700] leading-[1.08] tracking-[-0.02em] text-[34px] sm:text-[44px] lg:text-[55px]">
+            Built by people who learned<span class="sm:hidden"> </span><br class="hidden sm:block" />
+            from this industry.
+          </h2>
+        </div>
+
+        <div class="space-y-20">
+          {
+            [
+              {
+                name: 'Akshata Chandavarkar',
+                role: 'Founder and CEO',
+                img: '/akshata.png',
+                desc: 'Years in consulting, learning from global teams. Watched brilliant TA Heads face the same question every week. Built Tribera to give them the insight they deserve.',
+                quote: 'Where understanding meets impact.',
+              },
+              {
+                name: 'Abhishek Prasad',
+                role: 'Co-Founder and CBO',
+                img: '/abhishek.png',
+                desc: 'Built products used by millions. That coffee conversation turned into two hours mapping out the Connection Gap. Couldn’t unsee the problem.',
+                quote: 'Where technology meets people.',
+              },
+              {
+                name: 'Pranav Gandhi',
+                role: 'Chief Success Officer',
+                img: '/pranav.png',
+                desc: "Scaled companies to 500+ people. Lived the reality of how a 'good' hire can shift a 'great' culture. Brought the scaling blueprint.",
+                quote: 'Where strategy meets scale.',
+              },
+            ].map((member, index) => (
+              <div class="about-founder-reveal" data-founder-card style={`transition-delay:${index * 120}ms;`}>
+                <div class="flex flex-col sm:flex-row gap-8 sm:gap-10 items-center sm:items-start text-center sm:text-left">
+                  <div
+                    class="w-28 h-28 sm:w-32 sm:h-32 rounded-full
+                        overflow-hidden
+                        border border-white/10
+                        shadow-[0_10px_30px_rgba(0,0,0,0.6)]
+                        shrink-0"
+                  >
+                    <img src={member.img} alt={member.name} class="w-full h-full object-cover" />
+                  </div>
+
+                  <div class="flex-1">
+                    <h3 class="text-white text-xl sm:text-2xl font-semibold mb-1">{member.name}</h3>
+
+                    <div class="text-[#DA0007] text-sm font-semibold mb-4">{member.role}</div>
+
+                    <p class="text-white/60 text-sm sm:text-base leading-relaxed max-w-2xl mb-4">{member.desc}</p>
+
+                    <div class="text-[#DA0007] italic text-sm">"{member.quote}"</div>
+                  </div>
+                </div>
+
+                {index !== 2 && <div class="mt-14 border-t border-white/10" />}
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-16 md:py-20 px-6">
+      <div class="max-w-5xl mx-auto text-center">
+        {/* Eyebrow */}
+        <div class="text-[#da0007] text-[11px] tracking-[0.24em] font-semibold uppercase mb-4">OUR APPROACH</div>
+
+        {/* Heading */}
+        <h2
+          class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] tracking-[-0.02em] text-[#1a1a1a] mb-16"
+        >
+          How we help.
+        </h2>
+
+        {/* Cards Grid */}
+        <div class="grid md:grid-cols-2 gap-5 text-left">
+          {
+            [
+              {
+                title: 'Data with context',
+                desc: 'AI helps us see patterns across thousands of interviews. Advisors help us understand what those patterns mean for real teams and real people.',
+                icon: 'tabler:database',
+              },
+              {
+                title: 'Learning from outcomes',
+                desc: 'Every hire teaches us something. Who stayed and grew. Who found a better fit elsewhere. We learn from every outcome to help make better decisions.',
+                icon: 'tabler:chart-line',
+              },
+              {
+                title: 'Supporting TA teams',
+                desc: "We're here to help TA leads, hiring managers, and teams. Better data. Better insights. Better decisions.",
+                icon: 'tabler:users',
+              },
+              {
+                title: 'Growing responsibly',
+                desc: "We started with what we know—hiring. As we learn more, we'll help with more. Always focused on helping people and organizations grow together.",
+                icon: 'tabler:target',
+              },
+            ].map((card) => (
+              <div class="group relative overflow-hidden rounded-[24px] border border-black/5 bg-white p-7 sm:p-8 shadow-[0_2px_16px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_48px_-24px_rgba(218,0,7,0.22)]">
+                <div class="absolute left-0 top-0 h-[3px] w-0 bg-[#da0007] transition-all duration-500 group-hover:w-full" />
+
+                <div class="mb-5 flex h-[32px] w-[32px] items-center justify-center rounded-full border border-[#da0007]/20 bg-[#da0007]/5">
+                  <div class="w-[9px] h-[9px] rounded-full bg-[#da0007] dot-fade" />
+                </div>
+
+                {/* Title */}
+                <h3 class="text-[30px] font-semibold tracking-tight leading-tight text-[#1a1a1a]">{card.title}</h3>
+
+                {/* Description */}
+                <p class="mt-4 text-black/55 text-[16px] leading-relaxed">{card.desc}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-[#f3f3f5] py-20 md:py-28">
+      <div class="max-w-3xl mx-auto px-6 text-center">
+        <p class="text-[#da0007] text-[11px] tracking-[0.24em] font-semibold uppercase mb-4">ABOUT TRIBERA</p>
+
+        <h2 class="text-[34px] sm:text-[44px] lg:text-[55px] font-[700] leading-[1.08] tracking-[-0.02em] text-black">
+          We build teams<span class="sm:hidden"> </span><br class="hidden sm:block" />
+          where people truly belong.
+        </h2>
+
+        <p class="mt-6 max-w-2xl mx-auto text-[15px] sm:text-[16px] leading-relaxed text-black/50">
+          Hiring isn't about resumes. It’s about alignment. We combine intelligence, human insight, and deep context to
+          help companies interview fewer — and hire better.
+        </p>
+
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button
+            type="button"
+            data-form-intent="demo"
+            data-form-source="about_bottom_demo"
+            class="relative overflow-hidden
+         w-auto
+         inline-flex items-center justify-center
+         px-5 py-2.5
+         rounded-full
+         tribera-primary-button
+         font-semibold text-[13px]"
+          >
+            <span class="relative z-10">See Platform Demo →</span>
+          </button>
+
+          <button
+            type="button"
+            data-form-intent="demo"
+            data-form-source="about_bottom_book_demo"
+            class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#121212] border border-black/10 text-white text-[13px] font-bold transition-all duration-300 hover:border-black/20"
+          >
+            Book a Demo
+          </button>
+        </div>
+
+        <p class="mt-6 text-xs text-black/40">Built by operators. Backed by insight. Driven by outcomes.</p>
+      </div>
+    </section>
+  </main>
+  <script is:inline>
+    function runWhenDirectionalTriggerReady(callback, attempts = 30) {
+      if (typeof window.__triberaDirectionalTrigger === 'function') {
+        callback();
+        return;
+      }
+
+      if (attempts <= 0) {
+        return;
+      }
+
+      window.requestAnimationFrame(() => {
+        runWhenDirectionalTriggerReady(callback, attempts - 1);
+      });
+    }
+
+    function initAboutProgressBars() {
+      const card = document.getElementById('priya-tribera-card');
+      if (!(card instanceof HTMLElement)) return;
+      if (card.dataset.progressBound === 'true') return;
+      card.dataset.progressBound = 'true';
+
+      const fills = Array.from(card.querySelectorAll('.about-progress-fill'));
+      const metricValues = Array.from(card.querySelectorAll('.about-metric-value'));
+      if (!fills.length) return;
+
+      let fillTimeouts = [];
+      let metricFrame = null;
+
+      const animate = () => {
+        fillTimeouts.forEach((timeoutId) => window.clearTimeout(timeoutId));
+        fillTimeouts = [];
+
+        fills.forEach((fill, index) => {
+          if (!(fill instanceof HTMLElement)) return;
+          const targetWidth = fill.dataset.targetWidth;
+          if (!targetWidth) return;
+
+          const timeoutId = window.setTimeout(() => {
+            fill.style.width = targetWidth;
+          }, index * 140);
+          fillTimeouts.push(timeoutId);
+        });
+
+        if (metricFrame) {
+          window.cancelAnimationFrame(metricFrame);
+        }
+
+        const targets = metricValues.map((metric) => {
+          if (!(metric instanceof HTMLElement)) return 0;
+          const targetValue = Number(metric.dataset.targetValue || '0');
+          metric.textContent = '0';
+          return Number.isFinite(targetValue) ? targetValue : 0;
+        });
+
+        const startTime = performance.now();
+        const countConfig = window.__triberaCountAnimationConfig || { durationMs: 1200, steps: 72 };
+        const duration = countConfig.durationMs;
+
+        const tick = (now) => {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+
+          metricValues.forEach((metric, index) => {
+            if (!(metric instanceof HTMLElement)) return;
+            const nextValue = Math.round(targets[index] * eased);
+            metric.textContent = String(nextValue);
+          });
+
+          if (progress < 1) {
+            metricFrame = window.requestAnimationFrame(tick);
+            return;
+          }
+
+          metricFrame = null;
+        };
+
+        metricFrame = window.requestAnimationFrame(tick);
+      };
+
+      const reset = () => {
+        fillTimeouts.forEach((timeoutId) => window.clearTimeout(timeoutId));
+        fillTimeouts = [];
+        if (metricFrame) {
+          window.cancelAnimationFrame(metricFrame);
+          metricFrame = null;
+        }
+
+        fills.forEach((fill) => {
+          if (!(fill instanceof HTMLElement)) return;
+          fill.style.width = '0';
+        });
+
+        metricValues.forEach((metric) => {
+          if (!(metric instanceof HTMLElement)) return;
+          metric.textContent = '0';
+        });
+      };
+
+      if (typeof card.__aboutProgressCleanup === 'function') {
+        card.__aboutProgressCleanup();
+      }
+
+      reset();
+      card.__aboutProgressCleanup = window.__triberaDirectionalTrigger({
+        element: card,
+        onEnter: animate,
+        onExit: reset,
+        thresholds: {
+          mobile: {
+            downEnter: 0.72,
+            upEnter: 0.38,
+            topExit: 0.08,
+            bottomExit: 0.92,
+          },
+          desktop: {
+            downEnter: 0.58,
+            upEnter: 0.34,
+            topExit: 0.14,
+            bottomExit: 0.84,
+          },
+        },
+      });
+    }
+
+    function bootAboutProgressBars() {
+      runWhenDirectionalTriggerReady(initAboutProgressBars);
+    }
+
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      bootAboutProgressBars();
+    } else {
+      document.addEventListener('DOMContentLoaded', bootAboutProgressBars, { once: true });
+    }
+
+    document.addEventListener('astro:page-load', bootAboutProgressBars);
+  </script>
+  <script is:inline>
+    function initFounderReveal() {
+      const founderCards = Array.from(document.querySelectorAll('[data-founder-card]'));
+      if (!founderCards.length) return;
+
+      founderCards.forEach((card) => {
+        if (!(card instanceof HTMLElement)) return;
+        if (typeof card.__founderRevealCleanup === 'function') {
+          card.__founderRevealCleanup();
+        }
+        card.classList.remove('is-visible');
+
+        card.__founderRevealCleanup = window.__triberaDirectionalTrigger({
+          element: card,
+          onEnter: () => card.classList.add('is-visible'),
+          onExit: () => card.classList.remove('is-visible'),
+          thresholds: {
+            mobile: {
+              downEnter: 0.7,
+              upEnter: 0.42,
+              topExit: 0.08,
+              bottomExit: 0.94,
+            },
+            desktop: {
+              downEnter: 0.62,
+              upEnter: 0.38,
+              topExit: 0.12,
+              bottomExit: 0.9,
+            },
+          },
+        });
+      });
+    }
+
+    function bootFounderReveal() {
+      runWhenDirectionalTriggerReady(initFounderReveal);
+    }
+
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      bootFounderReveal();
+    } else {
+      document.addEventListener('DOMContentLoaded', bootFounderReveal, { once: true });
+    }
+
+    document.addEventListener('astro:page-load', bootFounderReveal);
+  </script>
+  <style>
+    .about-founder-reveal {
+      opacity: 0;
+      transform: translate3d(0, 22px, 0);
+      transition:
+        opacity 560ms ease,
+        transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .about-founder-reveal.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .about-founder-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
+</Layout>

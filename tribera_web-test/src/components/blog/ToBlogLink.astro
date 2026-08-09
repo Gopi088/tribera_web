@@ -1,0 +1,23 @@
+---
+import { Icon } from '~/components/common/icon-module';
+import { getBlogPermalink } from '~/utils/permalinks';
+import { I18N } from 'astrowind:config';
+
+const { textDirection } = I18N;
+---
+
+<div class="mx-auto px-6 sm:px-6 max-w-3xl py-12 md:py-16">
+  <a
+    href={getBlogPermalink()}
+    class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2.5 text-[14px] font-medium text-black/60 transition-all duration-200 hover:border-[#da0007]/25 hover:text-black hover:shadow-[0_10px_30px_-20px_rgba(218,0,7,0.35)]"
+  >
+    {
+      textDirection === 'rtl' ? (
+        <Icon name="tabler:chevron-right" class="h-4 w-4" />
+      ) : (
+        <Icon name="tabler:chevron-left" class="h-4 w-4" />
+      )
+    }
+    <span>Back to Blog</span>
+  </a>
+</div>

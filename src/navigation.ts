@@ -20,6 +20,10 @@ export const headerData = {
       text: 'Services',
       href: getPermalink('/services'),
     },
+    {
+      text: 'Intelligence',
+      href: getPermalink('/intelligence'),
+    },
   ],
   actions: [],
 };
@@ -44,6 +48,7 @@ export const footerData = {
         { text: 'Blog', href: getPermalink('/blog') },
         { text: 'Contact', href: getPermalink('/contact') },
         { text: 'Services', href: getPermalink('/services') },
+        { text: 'Intelligence', href: getPermalink('/intelligence') },
       ],
     },
     {
