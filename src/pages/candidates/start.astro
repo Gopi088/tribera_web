@@ -86,7 +86,7 @@ import ContactSalesModal from '../../components/ContactSalesModal.astro';
 
               <label class="drop" id="cvDrop" for="cvInput">
                 <input type="file" id="cvInput" name="resume" accept=".pdf,.doc,.docx" />
-                <span class="drop__k" id="dropK">Drop your CV here, or <b>click to browse</b></span>
+                <span class="drop__k" id="dropK"><span class="cv-drop">Drop your CV here, or</span><span class="cv-up">Upload your CV, or</span> <b>click to browse</b></span>
                 <span class="drop__s">PDF, DOC or DOCX &middot; up to 10 MB</span>
                 <span class="drop__n" id="cvName"></span>
               </label>
@@ -235,7 +235,7 @@ a {
 .hero h1 {
   color: #fff;
   max-width: 18ch;
-  font-size: clamp(36px, 4.6vw, 62px);
+  font-size: clamp(38px, 6vw, 76px);
 }
 .hero h1 em {
   font-style: normal;
@@ -255,7 +255,8 @@ a {
   }
 }
 .hero__p {
-  font-size: clamp(15.5px, 1.45vw, 17.5px);
+  text-align: center;
+  font-size: clamp(16px, 1.55vw, 19px);
   line-height: 1.6;
   color: var(--onc2);
   max-width: 46ch;
@@ -294,14 +295,15 @@ a {
 .h2 {
   font-family: var(--display);
   font-weight: 700;
-  font-size: clamp(29px, 4.2vw, 52px);
+  font-size: clamp(30px, 4.2vw, 54px);
   line-height: 1.04;
   letter-spacing: -0.04em;
   margin: 0;
   max-width: 16ch;
 }
 .dek {
-  font-size: clamp(16px, 1.5vw, 18.5px);
+  text-align: center;
+  font-size: clamp(16px, 1.7vw, 20px);
   line-height: 1.6;
   color: var(--grey);
   max-width: 56ch;
@@ -569,10 +571,10 @@ a {
 }
 .apply__url:focus,
 .apply__mail:focus {
-  border-color: rgba(224, 64, 47, 0.55);
+  border-color: rgba(218,0,7, 0.55);
 }
 .apply__mail:invalid:not(:placeholder-shown) {
-  border-color: rgba(224, 72, 78, 0.6);
+  border-color: rgba(218,0,7, 0.6);
 }
 .apply__mail[readonly] {
   border-color: rgba(63, 190, 124, 0.4);
@@ -600,8 +602,8 @@ a {
     background 0.15s ease;
 }
 .drop:hover {
-  border-color: rgba(224, 64, 47, 0.55);
-  background: rgba(224, 64, 47, 0.04);
+  border-color: rgba(218,0,7, 0.55);
+  background: rgba(218,0,7, 0.04);
 }
 .drop input {
   position: absolute;
@@ -615,6 +617,9 @@ a {
   font-size: 14px;
   color: #f8f6f0;
 }
+/* mobile has no drag-and-drop: the zone says "upload" instead of "drop" */
+.cv-up{display:none}
+@media(max-width:699px){.cv-up{display:inline}.cv-drop{display:none}}
 .drop__k b {
   color: #f8f6f0;
   font-weight: 600;

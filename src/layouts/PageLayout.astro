@@ -708,4 +708,24 @@ const { metadata } = Astro.props;
 
     document.addEventListener('astro:page-load', initCustomerMarquee);
   </script>
+
+  <script is:inline>
+    (function(){if(window.__triberaPrefetch)return;window.__triberaPrefetch=true;
+    var done={};
+    function pf(u){if(done[u])return;done[u]=1;var l=document.createElement('link');l.rel='prefetch';l.href=u;document.head.appendChild(l);}
+    document.addEventListener('mouseover',function(e){
+      var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;
+      var u;try{u=new URL(a.href,location.href);}catch(x){return;}
+      if(u.origin!==location.origin)return;
+      var p=u.pathname+u.search;if(p===location.pathname+location.search)return;
+      pf(p);
+    },{passive:true});
+    document.addEventListener('touchstart',function(e){
+      var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;
+      var u;try{u=new URL(a.href,location.href);}catch(x){return;}
+      if(u.origin!==location.origin)return;
+      pf(u.pathname+u.search);
+    },{passive:true});
+    })();
+  </script>
 </Layout>

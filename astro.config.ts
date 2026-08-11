@@ -25,6 +25,11 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'ignore',
 
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'hover',
+  },
+
   integrations: [
     sitemap({
       filter(page) {

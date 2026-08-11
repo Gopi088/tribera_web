@@ -835,7 +835,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         <div>
           <p class="eyebrow eyebrow--red" data-rv>Start here</p>
           <h2 class="h2" data-rv style="--d:60ms;max-width:none;text-align:center">
-            Drop your CV and see the questions it would get.
+            <span class="cv-drop">Drop</span><span class="cv-up">Upload</span> your CV and see the questions it would get.
           </h2>
         </div>
         <p class="dek" data-rv style="--d:100ms;max-width:none;text-align:center">
@@ -852,7 +852,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
           <div class="drop__stage" data-stage="idle">
             <label class="drop__zone" for="cvFile" id="cvZone">
               <span class="drop__mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-              <span class="drop__t">Drop your CV here</span>
+              <span class="drop__t"><span class="cv-drop">Drop your CV here</span><span class="cv-up">Upload your CV here</span></span>
               <span class="drop__s">PDF or Word · or <b>choose a file</b></span>
               <input type="file" id="cvFile" accept=".pdf,.doc,.docx" hidden />
             </label>
@@ -2233,6 +2233,7 @@ a {
 }
 .sq.g4 {
   background: #d6d6cf;
+  border: 1px solid rgba(0, 0, 0, 0.55);
 }
 .sq.g5 {
   background: var(--red);
@@ -8267,6 +8268,9 @@ li,
     text-wrap: balance;
   }
 }
+/* mobile has no drag-and-drop: the zone says "upload" instead of "drop" */
+.cv-up{display:none}
+@media(max-width:699px){.cv-up{display:inline}.cv-drop{display:none}}
 </style>
 
 <script is:inline>
@@ -8677,7 +8681,8 @@ li,
     fN = document.getElementById('fieldN'),
     fL = document.getElementById('fieldLbl'),
     fF = document.getElementById('fieldFt'),
-    stage = 0;
+    stage = 0,
+    sel = 0;
 
   function setStage(n) {
     if (n === stage || !sqs.length) return;
@@ -8695,33 +8700,7 @@ li,
   }
   setStage(1);
 
-  /* hover trace — subtle, on squares and on the step text */
-  function peek(n, mode) {
-    if (!grid) return;
-    var reached = mode !== 'stopped';
-    grid.classList.add('peek');
-    sqs.forEach(function (s) {
-      var d = +s.dataset.drop;
-      s.classList.toggle('co', reached ? d >= n : d === n);
-    });
-    fF.innerHTML = '<i style="background:' + DOT[n] + '"></i>' + (reached ? REACH : STOP)[n];
-  }
-  function unpeek() {
-    if (!grid) return;
-    grid.classList.remove('peek');
-    sqs.forEach(function (s) {
-      s.classList.remove('co');
-    });
-    fF.innerHTML = REST[stage];
-  }
-  if (grid) {
-    grid.addEventListener('mouseover', function (e) {
-      var s = e.target.closest('.sq');
-      if (s) peek(+s.dataset.drop, 'stopped');
-    });
-    grid.addEventListener('mouseleave', unpeek);
-  }
-
+  /* the stage list is clickable — it parks the field on that stage */
   var steps = [].slice.call(document.querySelectorAll('.step'));
   var userTook = false;
   steps.forEach(function (st) {
@@ -8731,17 +8710,8 @@ li,
     function take() {
       userTook = true;
       mark(n);
+      deselect();
     }
-    st.addEventListener('mouseenter', function () {
-      take();
-      peek(n, 'reached');
-    });
-    st.addEventListener('mouseleave', unpeek);
-    st.addEventListener('focus', function () {
-      take();
-      peek(n, 'reached');
-    });
-    st.addEventListener('blur', unpeek);
     st.addEventListener('click', take);
     st.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
@@ -8750,6 +8720,38 @@ li,
       }
     });
   });
+
+  /* clicking a SQUARE is what lights up a stage now — the boxes, not the
+     step numbers, drive the highlight (vice versa of the old hover) */
+  function select(n) {
+    if (!grid || !sqs.length) return;
+    if (sel === n) {
+      deselect();
+      return;
+    }
+    sel = n;
+    grid.classList.add('peek');
+    sqs.forEach(function (s) {
+      s.classList.toggle('co', +s.dataset.drop >= n);
+    });
+    fF.innerHTML = '<i style="background:' + DOT[n] + '"></i>' + REACH[n];
+  }
+  function deselect() {
+    sel = 0;
+    if (!grid) return;
+    grid.classList.remove('peek');
+    sqs.forEach(function (s) {
+      s.classList.remove('co');
+    });
+    fF.innerHTML = REST[stage];
+  }
+  if (grid) {
+    grid.addEventListener('click', function (e) {
+      var s = e.target.closest('.sq');
+      if (!s) return;
+      select(+s.dataset.drop);
+    });
+  }
 
   function mark(n) {
     steps.forEach(function (s) {
