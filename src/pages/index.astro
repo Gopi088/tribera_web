@@ -107,7 +107,7 @@ const industries = [
 
 const leaders = [
   ['/akshata.png', 'AC', 'Akshata Chandavarkar', 'Founder & CEO',
-    'Twenty years of enterprise hiring across GCCs, BFSI and deep-tech. Ran talent acquisition at GCC scale, then built the tool she needed.'],
+    'Twenty years of enterprise hiring across GCCs, BFSI and deep-tech. Ran talent acquisition at GCC scale.'],
   ['/abhishek.png', 'AP', 'Abhishek Prasad', 'Co-founder & CBO',
     'Two decades building products used by millions. Built the signal engine — what a CV hides, join probability, retention.'],
   ['/pranav.png', 'PG', 'Pranav Gandhi', 'Chief Success Officer',
@@ -223,9 +223,9 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
           <p class="eyebrow" data-rv>Fifty senior experts. Thirty minutes each.</p>
           <h1 class="h1" data-rv style="--d:60ms">Every&nbsp;name&nbsp;comes<br />with its <em>reasons</em>.</h1>
           <p class="hero__p" data-rv style="--d:110ms">
-            No candidate is bad — there's a yes for you and a no somewhere else. It starts with your
+            <!-- No candidate is bad — there's a yes for you and a no somewhere else. It starts with your
             culture and narrows from there: the manager, the project, the people they'd sit beside.
-            <b>AI reads the signals; a senior expert reads the person.</b>
+            <b>AI reads the signals; a senior expert reads the person.</b> -->
           </p>
           <p class="hero__p" data-rv style="--d:150ms">
             <b
@@ -233,7 +233,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
               half-hour that replaces the other eight.</b
             >
           </p>
-          <div class="btns" data-rv style="--d:190ms">
+          <div class="btns" data-rv style="--d:150ms">
             <a href="#run" class="btn btn--light">See how one role ran</a>
             <a href="#experts" class="btn btn--wire">Meet the experts</a>
           </div>
@@ -511,17 +511,17 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
       </div>
 
       <div class="fn__close">
-        <p class="fn__line" data-rv>
+        <!-- <p class="fn__line" data-rv>
           They weren't picking the best of five.<br />They were picking <em>between</em> five.
-        </p>
-        <p class="fn__math" data-rv style="--d:80ms">
+        </p> -->
+        <!-- <p class="fn__math" data-rv style="--d:80ms">
           Roughly <b>38 hours</b> stayed with their team — the 126 CV screens at four minutes each, and
           the 40 expert calls at forty-five minutes including write-up. That is what handling the market's
           response to one requirement actually costs. Your rates will differ. The shape won't.
-        </p>
+        </p> -->
       </div>
 
-      <div class="cases" data-rv>
+      <!-- <div class="cases" data-rv>
         <p class="cases__k">Three more, same shape</p>
         <div class="cases__g">
           {
@@ -539,7 +539,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
               </div>
             ))
           }
-        </div>
+        </div> -->
         <p class="cases__ft">
           Different functions, different countries, one method —
           <b>read everything, interview properly, send few.</b> Named versions of all four are in the deck.
@@ -785,9 +785,9 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         </div>
             </div>
             <p class="ramp__note">
-              By your tenth role, four hundred interviews have been scored against your bar — every one of
+              By your tenth role, four hundred interviews have been scored against your bar —<br />every one of
               them still readable, still comparable.
-              <b>That is the multiplier. Not a faster tool: a deeper file.</b>
+              <br /><b>That is the multiplier. Not a faster tool: a deeper file.</b>
             </p>
           </div>
         </div>
@@ -959,10 +959,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         {
           engageStats.map(([number, unit, desc]) => (
             <div class="estat__i">
-              <p class="estat__n">
-                {number}
-                <i>{unit}</i>
-              </p>
+              <p class="estat__n">{number}<i>{unit}</i></p>
               <p class="estat__d">{desc}</p>
             </div>
           ))
@@ -1025,16 +1022,16 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         </div>
       </div>
 
-      <div class="qa" data-rv>
+      <!-- <div class="qa" data-rv>
         <p class="qa__q">"Can an algorithm reject my candidates?"</p>
         <p class="qa__a">No. It surfaces and explains. <em>The reject is always human.</em></p>
-      </div>
+      </div> -->
 
-      <p class="trust__ft" data-rv>
+      <!-- <p class="trust__ft" data-rv>
         ISO 27001 and SOC 2 certification underway, with core controls operating today. Role-based,
         least-privilege access, audit-logged. Every brief documented in the system, so the context sits
         with the engine rather than with one person.
-      </p>
+      </p> -->
     </div>
   </section>
 
@@ -1080,7 +1077,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
       </div>
       <div data-rv style="--d:160ms">
         <p class="hg__k">If you're looking</p>
-        <p class="hg__t">If a team asks for you, they mean it.</p>
+        <p class="hg__t">See talent. Make matches.</p>
         <p class="hg__d">
           You're not one of eight in a pile. You're one of three, and they've read your interview before
           the call.
@@ -1363,9 +1360,9 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
             <b>You can close the tab after reading and we will never know you were here.</b></p>
         </div>
 
-        <p class="human" data-rv>
+        <!-- <p class="human" data-rv>
           We built this because we'd all been on your side of the table, <em>and we remembered how it felt</em>.
-        </p>
+        </p> -->
       </div>
     </div>
   </section>
@@ -1558,6 +1555,7 @@ a {
 }
 .panel .swap__row--keep {
   border-top: 2px solid var(--red);
+  background: rgba(218, 0, 7, 0.05);
 }
 
 .eyebrow {
@@ -1655,6 +1653,10 @@ a {
 .btn:hover {
   transform: translateY(-1px);
   background-color: transparent;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
 }
 .btn--solid,
 .btn--dark {
@@ -1798,9 +1800,9 @@ a {
   .hero__top {
     /* The headline has an intentional <br>; give its first line enough room
        to remain “Every name comes” instead of breaking into three lines. */
-    grid-template-columns: 0.9fr 1.1fr;
+    grid-template-columns: 1.9fr 2.5fr;
     align-items: center;
-    gap: clamp(44px, 5.5vw, 92px);
+    gap: clamp(44px, 5.6vw, 92px);
     width: calc(100% + 48px);
     margin-inline: -24px;
   }
@@ -2472,6 +2474,24 @@ a {
   border-color: rgba(218, 0, 7, 0.45);
 }
 .key {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+  margin: 0 0 2px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #eaeae6;
+}
+
+.key__i {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12.5px;
+  color: var(--grey);
+  white-space: nowrap;
+}
+/* .key {
   display: flex;
   flex-wrap: wrap;
   gap: 8px 18px;
@@ -2486,7 +2506,7 @@ a {
   gap: 9px;
   font-size: 12.5px;
   color: var(--grey);
-}
+} */
 
 /* the answer, before the evidence */
 .hours {
@@ -2501,7 +2521,7 @@ a {
 }
 .hours__n {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 6px;
   flex: none;
 }
@@ -2601,6 +2621,9 @@ a {
 .swap__row:hover {
   background: rgba(0, 0, 0, 0.028);
 }
+.swap__row .tag {
+  align-self: center;
+}
 @media (min-width: 900px) {
   .swap__row {
     margin-inline: -14px;
@@ -2692,12 +2715,12 @@ a {
 .fn__grid {
   display: grid;
   gap: 38px;
-  margin-top: clamp(42px, 5vw, 70px);
+  margin-top: clamp(38px, 4.6vw, 60px);
 }
 @media (min-width: 980px) {
   .fn__grid {
     grid-template-columns: 1.3fr 0.7fr;
-    gap: clamp(40px, 4.6vw, 68px);
+    gap: clamp(44px, 6vw, 72px);
     align-items: start;
   }
 }
@@ -2753,7 +2776,7 @@ a {
   color: #fff;
   letter-spacing: -0.05em;
   line-height: 1;
-  margin: 0 0 18px;
+  margin: 0 0 14px;
   transition: color 0.5s var(--ease);
 }
 .field.at5 .field__n {
@@ -2871,7 +2894,7 @@ a {
   grid-template-columns: 76px 1fr;
   gap: 2px 18px;
   align-items: baseline;
-  padding: clamp(14px, 1.7vw, 20px) 12px;
+  padding: clamp(14px, 2.7vw, 20px) 12px;
   margin-inline: -12px;
   border-top: 1px solid var(--cline);
   border-radius: 8px;
@@ -2961,8 +2984,8 @@ a {
   color: var(--onc3);
 }
 .fn__close {
-  margin-top: clamp(46px, 5.5vw, 80px);
-  padding-top: clamp(32px, 3.8vw, 50px);
+  margin-top: clamp(40px, 4.8vw, 64px);
+  padding-top: clamp(28px, 3.4vw, 44px);
   border-top: 1px solid var(--cline);
   display: grid;
   gap: 26px;
@@ -2995,8 +3018,8 @@ a {
   margin: 0;
 }
 .cases {
-  margin-top: clamp(34px, 4vw, 54px);
-  padding-top: clamp(24px, 2.8vw, 36px);
+  margin-top: clamp(32px, 3.8vw, 48px);
+  padding-top: clamp(22px, 2.6vw, 32px);
   border-top: 1px solid var(--cline);
 }
 .cases__k {
@@ -3013,7 +3036,7 @@ a {
 .cs2 {
   display: grid;
   gap: 6px 26px;
-  padding: 15px 12px;
+  padding: 14px 12px;
   margin-inline: -12px;
   border-radius: 9px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -3755,8 +3778,10 @@ a {
   font-size: 14px;
   line-height: 1.55;
   color: var(--grey);
-  margin: 26px 0 0;
-  max-width: 62ch;
+  margin: 26px auto 0;
+  max-width: none;
+  text-align: center;
+  text-wrap: balance;
   opacity: 0;
   transition: opacity 0.6s var(--ease) 1.7s;
 }
@@ -5042,7 +5067,7 @@ a {
 .inds__g {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 12px;
+  gap: 18px 18px;
 }
 .inds__g a {
   font-size: 13px;
@@ -7498,6 +7523,7 @@ li,
   line-height: 1;
   margin: 0 0 8px;
   color: var(--ink);
+  white-space: nowrap;
 }
 .estat__i:first-child .estat__n {
   color: var(--red);
@@ -7505,10 +7531,10 @@ li,
 .estat__n i {
   font-family: var(--ui);
   font-style: normal;
-  font-size: 13px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 500;
   color: var(--faint);
-  margin-left: 5px;
+  margin-left: 8px;
   letter-spacing: 0;
 }
 .estat__d {
@@ -7612,7 +7638,7 @@ li,
 }
 /* the first paragraph after a display headline needs more air than 14px */
 .h1 + .hero__p {
-  margin-top: clamp(18px, 2vw, 26px);
+  margin-top: clamp(18px, 1vw, 26px);
 }
 
 /* ════════ NAV ════════ */
