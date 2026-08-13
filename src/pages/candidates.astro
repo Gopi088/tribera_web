@@ -9021,7 +9021,8 @@ li,
         }
       }, 200);
     }
-    zone.addEventListener('click', function () {
+    zone.addEventListener('click', function (e) {
+      e.preventDefault();
       file.click();
     });
     file.addEventListener('change', function () {

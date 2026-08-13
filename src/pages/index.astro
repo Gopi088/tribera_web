@@ -8915,7 +8915,8 @@ li,
       if (cvLabel) cvLabel.textContent = 'Upload your CV here';
       if (cvVerb) cvVerb.textContent = 'Upload';
     }
-    zone.addEventListener('click', function () {
+    zone.addEventListener('click', function (e) {
+      e.preventDefault();
       file.click();
     });
     file.addEventListener('change', function () {
