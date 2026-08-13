@@ -853,11 +853,15 @@ a {
 
 <script is:inline>
   (function () {
-    if (window.matchMedia && matchMedia('(max-width:699px)').matches) {
-      const dropK = document.getElementById('dropK');
-      if (dropK && dropK.firstChild && dropK.firstChild.nodeType === 3) {
-        dropK.firstChild.textContent = 'Upload your CV, or ';
+    const dropK = document.getElementById('dropK');
+    if (window.matchMedia && dropK && dropK.firstChild && dropK.firstChild.nodeType === 3) {
+      const dropKmq = matchMedia('(max-width:699px)');
+      function syncDropK() {
+        dropK.firstChild.textContent = dropKmq.matches ? 'Upload your CV, or ' : 'Drop your CV here, or ';
       }
+      syncDropK();
+      if (dropKmq.addEventListener) dropKmq.addEventListener('change', syncDropK);
+      else if (dropKmq.addListener) dropKmq.addListener(syncDropK);
     }
     const form = document.getElementById('profileForm');
     if (!form) return;

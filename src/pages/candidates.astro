@@ -972,6 +972,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
 }
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 84px;
   -webkit-text-size-adjust: 100%;
 }
 body {
@@ -8938,11 +8939,18 @@ li,
 
   /* ══ CV DROP: idle → reading → result ══ */
   (function () {
-    if (window.matchMedia && matchMedia('(max-width:699px)').matches) {
-      var cvLabel = document.getElementById('cvLabel'),
-        cvVerb = document.getElementById('cvVerb');
-      if (cvLabel) cvLabel.textContent = 'Upload your CV here';
-      if (cvVerb) cvVerb.textContent = 'Upload';
+    var cvLabel = document.getElementById('cvLabel'),
+      cvVerb = document.getElementById('cvVerb');
+    if (window.matchMedia && (cvLabel || cvVerb)) {
+      var cvMq = matchMedia('(max-width:699px)');
+      function syncCvLabel() {
+        var mobile = cvMq.matches;
+        if (cvLabel) cvLabel.textContent = mobile ? 'Upload your CV here' : 'Drop your CV here';
+        if (cvVerb) cvVerb.textContent = mobile ? 'Upload' : 'Drop';
+      }
+      syncCvLabel();
+      if (cvMq.addEventListener) cvMq.addEventListener('change', syncCvLabel);
+      else if (cvMq.addListener) cvMq.addListener(syncCvLabel);
     }
     var drop = document.getElementById('drop'),
       zone = document.getElementById('cvZone'),
