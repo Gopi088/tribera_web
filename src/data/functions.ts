@@ -40,7 +40,7 @@ export const jobFunctions: JobFunction[] = [
     seoTitle: `Engineering Hiring — tribera`,
     seoDescription: `AI-validated, advisor-interviewed engineering candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
     overview:
-      `Engineering hiring is the highest-stakes function in most technology organisations — and the most time-consuming to get right. Tribera's AI validates what candidates have actually built before a single advisory interview begins. GitHub activity, open source depth, architecture patterns, and project complexity are cross-referenced against every claim in the profile. A Tribera technology advisor then runs a structured technical interview — scenario-based, not trivia. What reaches you is three engineering candidates your managers will want to interview, not three who cleared a keyword screen.`,
+      `Engineering hiring is the highest-stakes function in most technology organisations — and the most time-consuming to get right. Tribera’s AI validates what candidates have actually built before a single advisory interview begins. GitHub activity, open source depth, architecture patterns, and project complexity are cross-referenced against every claim in the profile. A Tribera technology advisor then runs a structured technical interview — scenario-based, not trivia. What reaches you is three engineering candidates your managers will want to interview, not three who cleared a keyword screen.`,
     hiringChallenges: [
       {
         title: `Resume embellishment is systemic`,
@@ -113,7 +113,7 @@ export const jobFunctions: JobFunction[] = [
     seoTitle: `AI & Machine Learning Hiring — tribera`,
     seoDescription: `AI-validated, advisor-interviewed ML and AI candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
     overview:
-      `The AI hiring market is the most noise-to-signal-distorted segment in technology today. Bootcamp certifications, Kaggle rankings, and GPT wrapper projects have made it genuinely difficult to distinguish candidates with real production ML depth from those with polished presentation. Tribera's AI validation layer cross-references research contributions, production system evidence, and genuine model deployment history before advisory interviews begin. The result is a shortlist of three candidates who have built at the depth you require — not three who have certified for it.`,
+      `The AI hiring market is the most noise-to-signal-distorted segment in technology today. Bootcamp certifications, Kaggle rankings, and GPT wrapper projects have made it genuinely difficult to distinguish candidates with real production ML depth from those with polished presentation. Tribera’s AI validation layer cross-references research contributions, production system evidence, and genuine model deployment history before advisory interviews begin. The result is a shortlist of three candidates who have built at the depth you require — not three who have certified for it.`,
     hiringChallenges: [
       {
         title: `Credential inflation is at its worst in AI/ML`,
@@ -309,7 +309,7 @@ export const jobFunctions: JobFunction[] = [
       },
       {
         q: `Do you hire for AI product management specifically?`,
-        a: `Yes. AI PM roles require a distinct profile — comfort with probabilistic system behaviour, evaluation framework design, and user trust considerations that don't arise in deterministic software. We assess for this specifically.`,
+        a: `Yes. AI PM roles require a distinct profile — comfort with probabilistic system behaviour, evaluation framework design, and user trust considerations that don’t arise in deterministic software. We assess for this specifically.`,
       },
       {
         q: `Can you hire for B2B and B2C product roles simultaneously?`,
@@ -413,7 +413,7 @@ export const jobFunctions: JobFunction[] = [
       },
       {
         title: `Confidentiality constraints in security leadership searches`,
-        desc: `CISO and senior security leadership roles often cannot be publicly advertised. Tribera's passive-talent network and discreet outreach protocols are built for this constraint.`,
+        desc: `CISO and senior security leadership roles often cannot be publicly advertised. Tribera’s passive-talent network and discreet outreach protocols are built for this constraint.`,
       },
     ],
     rolesWeHire: [
@@ -466,7 +466,7 @@ export const jobFunctions: JobFunction[] = [
     seoTitle: `Technology Leadership Hiring — tribera`,
     seoDescription: `AI-validated, advisor-interviewed CTO, VP Engineering, and technology leadership candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
     overview:
-      `Technology leadership hiring is the highest-stakes search in most organisations. The wrong CTO or VP Engineering doesn't just fail to deliver — they consume leadership bandwidth, erode team trust, and create technical debt that outlasts their tenure. Tribera's approach to technology leadership is different: advisory interviews conducted by people who have held equivalent roles, AI validation of real technical impact and organisational influence, and a 1:3 guarantee that holds even at the C-suite level.`,
+      `Technology leadership hiring is the highest-stakes search in most organisations. The wrong CTO or VP Engineering doesn’t just fail to deliver — they consume leadership bandwidth, erode team trust, and create technical debt that outlasts their tenure. Tribera’s approach to technology leadership is different: advisory interviews conducted by people who have held equivalent roles, AI validation of real technical impact and organisational influence, and a 1:3 guarantee that holds even at the C-suite level.`,
     hiringChallenges: [
       {
         title: `Technology leadership presence ≠ technology leadership capability`,
@@ -575,11 +575,11 @@ export const jobFunctions: JobFunction[] = [
       },
       {
         title: `Outcome-based evaluation`,
-        desc: `We probe for specific outcomes — revenue moved, margin improved, markets entered, deals closed. Frameworks without outcomes don't pass our interview.`,
+        desc: `We probe for specific outcomes — revenue moved, margin improved, markets entered, deals closed. Frameworks without outcomes don’t pass our interview.`,
       },
       {
         title: `Consulting-to-operator transition assessment`,
-        desc: `Many mandates require candidates who have made the transition from advisory to delivery. We assess for this specifically — it's one of the most common points of hiring failure we see.`,
+        desc: `Many mandates require candidates who have made the transition from advisory to delivery. We assess for this specifically — it’s one of the most common points of hiring failure we see.`,
       },
       {
         title: `1:3 guarantee across business and strategy roles`,
@@ -608,7 +608,7 @@ export const jobFunctions: JobFunction[] = [
     seoTitle: `Sales Hiring — tribera`,
     seoDescription: `AI-validated, advisor-interviewed sales candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
     overview:
-      `Sales hiring fails most often because interviewers are sold by the candidate's interview performance rather than their actual revenue track record. Tribera advisors probe behind the numbers — deal cycle length, average contract value, competitive win rates, territory size, and the specific commercial decisions that drove outcomes. AI validates employment tenure, revenue claims, and LinkedIn activity against the narrative. What you receive is three sales candidates with verified track records — not three who interview well.`,
+      `Sales hiring fails most often because interviewers are sold by the candidate’s interview performance rather than their actual revenue track record. Tribera advisors probe behind the numbers — deal cycle length, average contract value, competitive win rates, territory size, and the specific commercial decisions that drove outcomes. AI validates employment tenure, revenue claims, and LinkedIn activity against the narrative. What you receive is three sales candidates with verified track records — not three who interview well.`,
     hiringChallenges: [
       {
         title: `Revenue numbers are the easiest thing to inflate`,
@@ -677,7 +677,7 @@ export const jobFunctions: JobFunction[] = [
     seoTitle: `Talent Advisory & HR Hiring — tribera`,
     seoDescription: `AI-validated, advisor-interviewed HR and talent candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
     overview:
-      `Talent and HR hiring is frequently circular — the people making the hire often don't know what great looks like at the next level. Tribera provides an external perspective built on deep HR and talent practitioner experience. Our advisors have built TA functions, led HR transformations, and implemented people strategy at scale. They evaluate HR candidates on the outcomes they have actually driven — not the frameworks they can describe.`,
+      `Talent and HR hiring is frequently circular — the people making the hire often don’t know what great looks like at the next level. Tribera provides an external perspective built on deep HR and talent practitioner experience. Our advisors have built TA functions, led HR transformations, and implemented people strategy at scale. They evaluate HR candidates on the outcomes they have actually driven — not the frameworks they can describe.`,
     hiringChallenges: [
       {
         title: `HR vocabulary is universal — outcomes are not`,
@@ -713,7 +713,7 @@ export const jobFunctions: JobFunction[] = [
       },
       {
         title: `Outcome-based evaluation of HR impact`,
-        desc: `We probe for specific outcomes — cost-per-hire reduction, time-to-fill improvement, retention rate movement, culture survey shifts. Language without outcomes doesn't pass our interview.`,
+        desc: `We probe for specific outcomes — cost-per-hire reduction, time-to-fill improvement, retention rate movement, culture survey shifts. Language without outcomes doesn’t pass our interview.`,
       },
       {
         title: `Business partnership depth assessment`,
@@ -782,7 +782,7 @@ export const jobFunctions: JobFunction[] = [
       },
       {
         title: `Outcome-based evaluation`,
-        desc: `We probe for specific outcomes — cost reduction achieved, throughput improved, error rates reduced, supplier lead times compressed. Process descriptions without outcomes don't pass our interview.`,
+        desc: `We probe for specific outcomes — cost reduction achieved, throughput improved, error rates reduced, supplier lead times compressed. Process descriptions without outcomes don’t pass our interview.`,
       },
       {
         title: `Scale-calibrated assessment`,
@@ -815,7 +815,7 @@ export const jobFunctions: JobFunction[] = [
     seoTitle: `Executive Search — tribera`,
     seoDescription: `AI-validated, advisor-interviewed C-suite and board-level candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
     overview:
-      `Executive search is the category where process quality matters most and is least often delivered. Traditional search firms are slow, opaque, and driven by placement incentives rather than hiring outcomes. Tribera's executive search framework inverts this: AI validates organisational impact and leadership track record before advisory interviews conducted by people who have held equivalent roles. Every engagement is accountable to a 1:3 guarantee — even at the CEO and board level.`,
+      `Executive search is the category where process quality matters most and is least often delivered. Traditional search firms are slow, opaque, and driven by placement incentives rather than hiring outcomes. Tribera’s executive search framework inverts this: AI validates organisational impact and leadership track record before advisory interviews conducted by people who have held equivalent roles. Every engagement is accountable to a 1:3 guarantee — even at the CEO and board level.`,
     hiringChallenges: [
       {
         title: `Leadership presence mistaken for leadership capability`,
@@ -831,7 +831,7 @@ export const jobFunctions: JobFunction[] = [
       },
       {
         title: `Confidentiality and market disruption risk`,
-        desc: `CEO and CFO searches create market disruption if made public. Tribera's discreet outreach network eliminates this risk entirely.`,
+        desc: `CEO and CFO searches create market disruption if made public. Tribera’s discreet outreach network eliminates this risk entirely.`,
       },
     ],
     rolesWeHire: [

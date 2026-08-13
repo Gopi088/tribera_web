@@ -3,12 +3,12 @@ import { getPermalink, getBlogPermalink } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: 'For Hiring Teams',
+      text: 'For hiring teams',
       href: '/',
       reload: true,
     },
     {
-      text: 'For Candidates',
+      text: 'For candidates',
       href: '/candidates',
       reload: true,
     },
@@ -35,7 +35,7 @@ export const footerData = {
       links: [
         { text: 'Overview', href: getPermalink('/') },
         { text: 'How it Works', href: getPermalink('/#how-it-works') },
-        { text: 'Interview Prep', href: getPermalink('/candidates#interview') },
+        { text: 'Interview prep', href: getPermalink('/candidates#interview') },
         { text: 'Plans', href: getPermalink('/#platform-performance') },
         { text: 'Screening', href: getPermalink('/candidates#screening') },
       ],

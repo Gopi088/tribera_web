@@ -67,7 +67,7 @@ export const industriesData = {
         {
           "q": "Who disagreed with your architecture, and what happened?",
           "thin": "“We aligned on a hybrid approach.”",
-          "listeningFor": "Whether they can state the other person's case properly. If they cannot put it fairly, they never understood it, and the compromise was just fatigue."
+          "listeningFor": "Whether they can state the other person’s case properly. If they cannot put it fairly, they never understood it, and the compromise was just fatigue."
         }
       ],
       "roles": [
@@ -305,7 +305,7 @@ export const industriesData = {
       "faq": [
         {
           "q": "How do you assess research versus applied roles?",
-          "a": "Differently, and we say which at intake. Research weighting leans on depth and written reasoning; applied leans on production ownership and measurement. Hiring one against the other's bar is the most common mistake we see in this space."
+          "a": "Differently, and we say which at intake. Research weighting leans on depth and written reasoning; applied leans on production ownership and measurement. Hiring one against the other’s bar is the most common mistake we see in this space."
         }
       ]
     },
@@ -401,7 +401,7 @@ export const industriesData = {
       "faq": [
         {
           "q": "Do you cover both technical and governance roles?",
-          "a": "Yes, and they are almost opposite shapes. A detection engineer is weighted on incident behaviour and systems depth; a GRC lead on documentation, stakeholder handling and regulatory judgment. Running one against the other's rubric is how good people get rejected."
+          "a": "Yes, and they are almost opposite shapes. A detection engineer is weighted on incident behaviour and systems depth; a GRC lead on documentation, stakeholder handling and regulatory judgment. Running one against the other’s rubric is how good people get rejected."
         }
       ]
     },
@@ -689,7 +689,7 @@ export const industriesData = {
       "faq": [
         {
           "q": "Do you cover discrete and process manufacturing?",
-          "a": "Both, with different interviewers. The failure modes are not alike — a batch process person and a discrete assembly person will each struggle with the other's questions, and neither struggle tells you anything useful."
+          "a": "Both, with different interviewers. The failure modes are not alike — a batch process person and a discrete assembly person will each struggle with the other’s questions, and neither struggle tells you anything useful."
         }
       ]
     },

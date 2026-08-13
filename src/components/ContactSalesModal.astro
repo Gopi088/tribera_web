@@ -197,7 +197,6 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
 .cs__ok {
   padding-top: 8px;
   text-align: center;
-  display: none;
 }
 .cs__ok.on {
   display: block;
@@ -233,7 +232,7 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
 }
 </style>
 
-<div id="contactSalesModal" class="hidden">
+<div id="contactSalesModal" class="hidden" hidden>
   <div class="cs__wrap">
     <div class="cs__card">
       <span class="cs__glint"></span>
@@ -307,11 +306,11 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
             {defaultIntentConfig.submitLabel}
           </button>
         </div>
-        <p id="contactSalesErrorMsg" class="cs__err hidden">
+        <p id="contactSalesErrorMsg" class="cs__err hidden" hidden>
           Something went wrong while submitting your request. Please try again or email sales@tribera.ai.
         </p>
       </form>
-      <div id="contactSalesSuccessMsg" class="cs__ok">
+      <div id="contactSalesSuccessMsg" class="cs__ok hidden" hidden>
         <div class="cs__ok__i">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M20 7L10 17l-5-5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -384,6 +383,7 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
 
     const closeModal = () => {
       modal.classList.add('hidden');
+      modal.setAttribute('hidden', '');
       document.body.classList.remove('overflow-hidden');
     };
 
@@ -412,6 +412,7 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
         applyIntentConfig(rawIntent, source, label);
         stampFormLoadedAt();
         modal.classList.remove('hidden');
+        modal.removeAttribute('hidden');
         document.body.classList.add('overflow-hidden');
         modal.dataset.lastOpenedAt = String(Date.now());
       }
@@ -446,7 +447,9 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
 
       const originalText = submitBtn?.textContent || 'Submit';
       errorMsg?.classList.add('hidden');
+      errorMsg?.setAttribute('hidden', '');
       successMsg?.classList.add('hidden');
+      successMsg?.setAttribute('hidden', '');
 
       if (submitBtn) {
         submitBtn.textContent = 'Submitting...';
@@ -479,9 +482,11 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
         stampFormLoadedAt();
         form.classList.add('hidden');
         successMsg?.classList.remove('hidden');
+        successMsg?.removeAttribute('hidden');
 
         setTimeout(() => {
           successMsg?.classList.add('hidden');
+          successMsg?.setAttribute('hidden', '');
           form.classList.remove('hidden');
           closeModal();
         }, 3000);
@@ -494,6 +499,7 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
               : 'Something went wrong while submitting your request. Please try again or email sales@tribera.ai.';
         }
         errorMsg?.classList.remove('hidden');
+          errorMsg?.removeAttribute('hidden');
       } finally {
         if (submitBtn) {
           submitBtn.textContent = originalText;

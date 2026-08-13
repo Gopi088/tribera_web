@@ -1,7 +1,7 @@
 ---
 const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const isCandidateRoute = path.startsWith('/candidates');
-const ctaHref = isCandidateRoute ? '/candidates#apply' : '#close';
+const ctaHref = isCandidateRoute ? '/candidates#apply' : '#contact';
 const ctaLabel = isCandidateRoute ? 'Create profile' : 'Talk to us';
 const isHome = path === '/';
 const isCandidatesPage = path.startsWith('/candidates');
@@ -17,8 +17,8 @@ const isIndustriesPage = path.startsWith('/industries') || path.startsWith('/fun
 <nav class="nav" id="nav"><div class="wrap nav__in">
   <a class="logo" href="/" data-astro-reload>tribera<i>.</i></a>
   <span class="nav__sw">
-    <a href="/" class={isHome ? 'is' : undefined}>I'm hiring</a>
-    <a href="/candidates" class={isCandidatesPage ? 'is' : undefined}>I'm looking</a>
+    <a href="/" class={isHome ? 'is' : undefined}>I’m hiring</a>
+    <a href="/candidates" class={isCandidatesPage ? 'is' : undefined}>I’m looking</a>
   </span>
   <span class="nav__links"><span class="dd">
     <a href="/industries" class="nav__l dd__t" aria-current={isIndustriesPage ? 'page' : undefined}>Coverage<i></i></a>
@@ -29,7 +29,7 @@ const isIndustriesPage = path.startsWith('/industries') || path.startsWith('/fun
       </span>
       <span class="dd__f">Not listed? <a href="/contact">Ask us</a> — we say no when it is not our ground.</span>
     </span>
-  </span><a class="nav__l" href="/services" aria-current={isServicesPage ? 'page' : undefined}>Services</a><a class="nav__l" href="/intelligence" aria-current={isIntelligencePage ? 'page' : undefined}>Intelligence</a><a class="nav__l" href="/blog" aria-current={isBlogPage ? 'page' : undefined}>Blog</a><a class="nav__l" href="/about" aria-current={isAboutPage ? 'page' : undefined}>About</a><a class="nav__l" href="/contact" aria-current={isContactPage ? 'page' : undefined}>Contact</a></span>
+  </span><a class="nav__l" href="/services" aria-current={isServicesPage ? 'page' : undefined}>Services</a><a class="nav__l" href="/intelligence" aria-current={isIntelligencePage ? 'page' : undefined}>Intelligence</a><a class="nav__l" href="/blog" aria-current={isBlogPage ? 'page' : undefined}>Blog</a><a class="nav__l" href="/about" aria-current={isAboutPage ? 'page' : undefined}>About</a><a class="nav__l" href="/contact" aria-current={isContactPage ? 'page' : undefined}>Contact</a><a class="nav__l" href="/careers" aria-current={isCareersPage ? 'page' : undefined}>Careers</a></span>
   <span class="nav__end">
     <a class="nav__login" href="https://app.tribera.ai/auth/login">Log in</a>
     <a href={ctaHref} class="btn btn--light nav__cta" data-form-intent={!isCandidateRoute ? 'demo' : undefined} data-form-source={!isCandidateRoute ? 'header' : undefined}>{ctaLabel}</a>
@@ -39,7 +39,7 @@ const isIndustriesPage = path.startsWith('/industries') || path.startsWith('/fun
   </span>
 </div>
 <div class="navp" id="navp"><div class="wrap navp__in">
-  <div class="navp__sw"><a href="/" class={isHome ? 'is' : undefined}>I'm hiring</a><a href="/candidates" class={isCandidatesPage ? 'is' : undefined}>I'm looking</a></div>
+  <div class="navp__sw"><a href="/" class={isHome ? 'is' : undefined}>I’m hiring</a><a href="/candidates" class={isCandidatesPage ? 'is' : undefined}>I’m looking</a></div>
   <div class="navp__coverage">
     <a class="navp__coverage-link" href="/industries" aria-current={isIndustriesPage ? 'page' : undefined}>Coverage</a>
     <button class="navp__t" type="button" aria-label="Expand Coverage" aria-expanded="false" aria-controls="navp-cov"><i></i></button>

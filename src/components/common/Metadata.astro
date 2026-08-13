@@ -69,7 +69,18 @@ const resolvedTitle =
   seoProps.title && seoProps.titleTemplate?.includes('%s')
     ? seoProps.titleTemplate.replace('%s', seoProps.title)
     : seoProps.title || SITE?.name || '';
-const robotsContent = `${seoProps.noindex ? 'noindex' : 'index'}, ${seoProps.nofollow ? 'nofollow' : 'follow'}`;
+
+// Dev environments must never be indexed: the canonical always points at
+// production, so a dev page would otherwise present itself as the live page.
+// Local dev (import.meta.env.DEV) and any Netlify non-production deploy
+// (CONTEXT = deploy-preview / branch-deploy) are both forced noindex.
+const isDevEnv =
+  import.meta.env.DEV ||
+  (typeof process !== 'undefined' &&
+    process.env.CONTEXT !== undefined &&
+    process.env.CONTEXT !== 'production');
+
+const robotsContent = `${isDevEnv || seoProps.noindex ? 'noindex' : 'index'}, ${seoProps.nofollow ? 'nofollow' : 'follow'}`;
 const resolvedTwitter = seoProps.twitter as MetaDataTwitter | undefined;
 const resolvedOpenGraph = await adaptOpenGraphImages(
   {

@@ -34,12 +34,12 @@ const clientLogos = [
   'Utkarsh Bank', 'Aeries', 'SplashBI', 'Aegon Life', 'Enpro',
 ];
 
-// "What a CV can carry, and what it can't" — the CV line vs. the transcript line.
+// "What a CV can carry, and what it can’t" — the CV line vs. the transcript line.
 const cvVsTranscript: [string, string][] = [
   ['On the CV', 'Built microservices handling two million requests a day.'],
   ['What that shows', 'That he can write a sentence about microservices.'],
   ['On the transcript', 'The trade-off he rejected, why he rejected it, and what it cost him six months later.'],
-  ['What that shows', 'That he made the call — and knows what it cost.'],
+  ['What that shows', 'That he made the call, and knows what it cost.'],
 ];
 
 // "Change the team, watch your score move": the same six scored dimensions feed
@@ -60,7 +60,7 @@ const scoreTeams = ['Consumer scale', 'Fintech platform', 'Infrastructure / SRE'
 // "Every question comes off your own CV": three CV-line-to-interview-question pairs.
 const cvToQuestion: [string, string][] = [
   ['Built microservices handling two million requests a day.',
-    'Which service did you split off first — and what broke when you did?'],
+    'Which service did you split off first, and what broke when you did?'],
   ['Led migration from monolith to event-driven architecture.',
     'What did you have to keep in the monolith, and who argued for keeping more?'],
   ['Reduced p99 latency by 40%.',
@@ -69,17 +69,17 @@ const cvToQuestion: [string, string][] = [
 
 const interviewNotes: [string, string][] = [
   ['Thirty minutes, once',
-    "Recorded and transcribed. It travels to every team that asks for you — you never answer the same question twice."],
+    "Recorded and transcribed. It travels to every team that asks for you, so you never answer the same question twice."],
   ['A peer, not a panel',
-    "The expert interviewing you has run the systems you're describing. That is why the follow-up lands."],
+    "The expert interviewing you has run the systems you’re describing. That is why the follow-up lands."],
 ];
 
 // "We check them too": the five checks run on every team before a request reaches you.
 const teamChecks: [string, string, string, boolean][] = [
-  ['Is the headcount real?', "Approved and funded, or we don't list it.", 'Verified', false],
+  ['Is the headcount real?', "Approved and funded, or we don’t list it.", 'Verified', false],
   ['How many rounds?', "Stated up front. If it changes, you hear from us, not from them.", 'Three', false],
   ['How fast do they decide?', "Measured from your final interview, not from their intake call.", '6 days', false],
-  ['How long has the manager been there?', "The person you'd report to, not the org chart.", '4 yrs', false],
+  ['How long has the manager been there?', "The person you’d report to, not the org chart.", '4 yrs', false],
   ['Do people stay?', 'Twelve-month retention on their last five hires through us.', 'One flag', true],
 ];
 
@@ -106,9 +106,9 @@ const privacyControls: [string, string, string, string, boolean][] = [
 
 const freebieNotes: [string, string][] = [
   ['It costs you nothing',
-    "Not now, not when you're placed, not ever. Companies pay us when they hire. <b>If anyone in this industry asks you for money, walk.</b>"],
-  ["Who it's for",
-    "Mid-level upward, across engineering, data, infrastructure, finance, operations and leadership. If we don't run mandates in your area yet, we'll tell you that on day one rather than sit on your CV."],
+    "Not now, not when you’re placed, not ever. Companies pay us when they hire. <b>If anyone in this industry asks you for money, walk.</b>"],
+  ["Who it’s for",
+    "Mid-level upward, across engineering, data, infrastructure, finance, operations and leadership. If we don’t run mandates in your area yet, we’ll tell you that on day one rather than sit on your CV."],
 ];
 
 // "What happens, and when": the candidate-side timeline and the three stats under it.
@@ -120,7 +120,7 @@ const candidateTimeline: [string, string, string, string][] = [
   ['Day 7+', 'inbound', 'Teams ask for you',
     'Your profile goes live to teams that cleared our checks. No cold applying.'],
   ['~3 weeks', 'offer', 'You decide',
-    "Accept what fits, decline what doesn't. Most people see more than one."],
+    "Accept what fits, decline what doesn’t. Most people see more than one."],
 ];
 
 const candidateStats: [string, string, string][] = [
@@ -133,7 +133,7 @@ const candidateStats: [string, string, string][] = [
 const candidateTestimonials: [string, string, string][] = [
   ['I was stuck in endless screening loops. After one interview here I had four relevant requests in ten days.',
     'Senior backend engineer', 'Fintech product company'],
-  ["The expert had already read my GitHub. The first question was about a design decision I made in 2022. That's when I knew this was different.",
+  ["The expert had already read my GitHub. The first question was about a design decision I made in 2022. That’s when I knew this was different.",
     'Senior backend engineer', '6 yrs, now placed'],
   ['It matched me to roles where I actually fit. The interview felt like a technical discussion, not an interrogation.',
     'Full-stack engineer', 'AI SaaS startup'],
@@ -141,7 +141,7 @@ const candidateTestimonials: [string, string, string][] = [
     'Engineering manager', 'Enterprise platform team'],
   ['Three requests in one week, all aligned to my stack. No spam, no repetition.',
     'Frontend engineer', 'Consumer app company'],
-  ["I'd paused looking for months because applying was draining. This brought the relevant ones back to me.",
+  ["I’d paused looking for months because applying was draining. This brought the relevant ones back to me.",
     'Data engineer', 'B2B analytics company'],
   ['The score breakdown was clear and practical. I knew exactly what to work on, and the next round felt stronger.',
     'Senior platform engineer', 'Cloud infrastructure startup'],
@@ -151,11 +151,11 @@ const candidateTestimonials: [string, string, string][] = [
 
 // Close: the two doors, looking vs. hiring (mirrored from the home page, opposite order).
 const candidateDoors: [string, string, string, string, string, string, string][] = [
-  ["If you're looking", 'One conversation, then teams come to you.',
+  ["If you’re looking", 'One conversation, then teams come to you.',
     'Thirty minutes with someone who has done your job. Anonymous until you decide otherwise.',
     'Fifteen minutes to set up, and you keep the score.',
     'Create your profile', '#apply', 'btn--dark'],
-  ["If you're hiring", 'Three names you’d take any of.',
+  ["If you’re hiring", 'Three names you’d take any of.',
     'A hundred signals, a senior expert on each shortlisted person, and the reasoning behind every rank.',
     'A 45-minute intake call. Three names back inside 36 hours.',
     'See how one role ran', '/', 'btn--ghost'],
@@ -173,12 +173,12 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
           <h1 class="h1" data-rv style="--d:60ms">Interviewed once.<br />Shortlisted <em>everywhere</em>.</h1>
           <!-- <p class="hero__p" data-rv style="--d:110ms">
             Your CV gets six seconds. Your LinkedIn gets skimmed.
-            <b>One honest conversation with someone who has done your job gets read</b> — by every team
+            <b>One honest conversation with someone who has done your job gets read</b>, by every team
             that asks for you afterwards.
           </p> -->
           <p class="hero__p" data-rv style="--d:150ms">
             <b
-              >You're not one of eight in a pile. You're one of three, and they've read your interview
+              >You’re not one of eight in a pile. You’re one of three, and they’ve read your interview
               before they pick up the phone.</b
             >
           </p>
@@ -190,7 +190,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
 
         <!-- Two-sided card: your profile as a team would see it (faceA), and the
              kind of team asking for you, vetted before the request reaches you
-             (faceB). Same tilt/flip scripts as the home page's Decision Package. -->
+             (faceB). Same tilt/flip scripts as the home page’s Decision Package. -->
         <div class="hero__card" data-rv style="--d:150ms">
           <div class="ftabs" role="tablist" aria-label="Two sides of the same conversation">
             <button class="ftab is" id="tabA" role="tab" aria-selected="true" aria-controls="faceA">
@@ -226,7 +226,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
                   <div class="vrd">
                     <p class="vrd__k">What the expert wrote</p>
                     <p class="vrd__t">
-                      He has built the thing most teams are hiring for — and he can show you the decision,
+                      He has built the thing most teams are hiring for, and he can show you the decision,
                       not just the system.
                     </p>
                   </div>
@@ -337,15 +337,15 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         </div>
         <p class="dek" data-rv style="--d:100ms">
           Same person, same six years, same CV. In the spring he sent 140 applications and got three
-          replies. Months later, three teams asked for him inside forty-eight hours —
-          <b>and none of them had seen the CV.</b>
+          replies. Months later, three teams asked for him inside forty-eight hours, and
+          none of them had seen the CV.
         </p>
       </div>
 
       <div class="big" data-rv style="--d:140ms">
         <div class="fan__side fan__side--own">
-          <p class="fan__was">His spring — <span id="tallyN">140</span> applications</p>
-          <!-- Hand-drawn tally chart, same technique as the home page's — one stroke
+          <p class="fan__was">His spring: <span id="tallyN">140</span> applications</p>
+          <!-- Hand-drawn tally chart, same technique as the home page’s — one stroke
                per application, kept literal rather than generated. -->
         <svg class="tally tally--big" viewBox="0 0 300 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path class="tk" pathLength="1" d="M7.9 14.2 Q7.8 27.7 8.0 41.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
@@ -491,7 +491,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
           <p class="fan__cap">Three replies. Grey is silence.</p>
         </div>
         <div>
-          <p class="big__k">What a CV can carry, and what it can't</p>
+          <p class="big__k">What a CV can carry, and what it can’t</p>
           <p class="big__t">
             A CV describes what you were near.<br /><em>A transcript shows what you decided.</em>
           </p>
@@ -513,7 +513,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
       </div>
 
       <p class="cases__ft" style="color:var(--grey);max-width:70ch">
-        This is why the teams that asked for him didn't need the CV.
+        This is why the teams that asked for him didn’t need the CV.
         <b style="color:var(--ink)">They had already read the part a CV leaves out.</b>
       </p>
     </div>
@@ -528,8 +528,8 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
           <h2 class="h2" data-rv style="--d:60ms">Change the team. Watch your score move.</h2>
         </div>
         <p class="dek" data-rv style="--d:100ms">
-          One interview, six dimensions, one set of answers. Every team weights them differently —
-          <b>so you're not a number — you're a different number to each of them.</b> Pick a team and see
+          One interview, six dimensions, one set of answers. Every team weights them differently, so
+          <b>you’re not a number: you’re a different number to each of them.</b> Pick a team and see
           where you land.
         </p>
       </div>
@@ -589,14 +589,14 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
             }
           </div>
           <p class="wrs__ft">
-            Your scores never change. <b>Only the weighting does</b> — and that is the whole reason
+            Your scores never change. Only the weighting does, and that is the whole reason
             applying to forty teams was never going to tell you anything.
           </p>
         </div>
       </div>
 
       <p class="lab__foot2" data-rv>
-        You can't know whose bar you fit by applying. <em>You can find out by being measured once.</em>
+        You can’t know whose bar you fit by applying. <em>You can find out by being measured once.</em>
       </p>
     </div>
   </section>
@@ -676,7 +676,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         }
       </div>
       <div class="outc">
-        <p class="outc__k">And when a check doesn't clear</p>
+        <p class="outc__k">And when a check doesn’t clear</p>
         <div class="outc__g">
           {
             checkOutcomes.map(([kind, status, title, desc]) => (
@@ -690,9 +690,9 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         </div>
       </div>
       <p class="cases__ft">
-        When something doesn't clear, you still see the request —
-        <b>with the flag attached and the reason written out.</b> You decide
-        whether it matters. We don't decide that for you.
+        When something doesn’t clear, you still see the request, with
+        the flag attached and the reason written out. You decide
+        whether it matters. We don’t decide that for you.
       </p>
     </div>
   </section>
@@ -707,7 +707,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         </div>
         <p class="trust__dek" data-rv style="--d:100ms">
           Looking while employed is the normal case, not the exception.
-          <b>These are switches, not a policy page</b> — try them.
+          <b>These are switches, not a policy page</b>; try them.
         </p>
       </div>
       <!-- Real toggles: the click handler in the candidates script swaps each
@@ -758,8 +758,8 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         <h2 class="h2" data-rv style="--d:60ms">No black boxes. You always know where you are.</h2>
       </div>
       <p class="dek" data-rv style="--d:100ms">
-        And if we can't help, <b>we tell you that instead of going quiet.</b> Silence isn't a process, and
-        it's the single thing people hate most about looking.
+        And if we can’t help, we tell you that instead of going quiet. Silence isn’t a process, and
+        it’s the single thing people hate most about looking.
       </p>
     </div>
     <div class="tl2__g" data-rv style="--d:140ms">
@@ -790,7 +790,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
       }
     </div>
     <p class="cstat__ft" data-rv>
-      Which is the part nobody tells you when you're applying:
+      Which is the part nobody tells you when you’re applying:
       <b>the hard bit was never the interview. It was getting to one that counted.</b>
     </p>
     </div>
@@ -806,7 +806,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         </div>
         <p class="dek" data-rv style="--d:100ms">
           Roles and company types are real. Names are withheld, because most of these people were employed
-          at the time — <b>which is rather the point.</b>
+          at the time, <b>which is rather the point.</b>
         </p>
       </div>
     </div>
@@ -835,7 +835,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         <div>
           <p class="eyebrow eyebrow--red" data-rv>Start here</p>
           <h2 class="h2" data-rv style="--d:60ms;max-width:none;text-align:center">
-            <span class="cv-drop">Drop</span><span class="cv-up">Upload</span> your CV and see the questions it would get.
+            <span id="cvVerb">Drop</span> your CV and see the questions it would get.
           </h2>
         </div>
         <p class="dek" data-rv style="--d:100ms;max-width:none;text-align:center">
@@ -852,7 +852,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
           <div class="drop__stage" data-stage="idle">
             <label class="drop__zone" for="cvFile" id="cvZone">
               <span class="drop__mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-              <span class="drop__t"><span class="cv-drop">Drop your CV here</span><span class="cv-up">Upload your CV here</span></span>
+              <span class="drop__t" id="cvLabel">Drop your CV here</span>
               <span class="drop__s">PDF or Word · or <b>choose a file</b></span>
               <input type="file" id="cvFile" accept=".pdf,.doc,.docx" hidden />
             </label>
@@ -872,7 +872,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
                   <p class="ghost__f"><span>From the CV</span>"Owned architecture decisions across three squads"</p>
                 </div>
               </div>
-              <p class="drop__pk">Yours will be different — they come from your CV.</p>
+              <p class="drop__pk">Yours will be different: they come from your CV.</p>
             </div>
           </div>
 
@@ -894,25 +894,25 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         </div>
 
 <p class="drop__fine">Nothing is stored until you say so. No account, no email yet.
-          <b>You can close the tab after reading and we will never know you were here.</b></p>
+          You can close the tab after reading and we will never know you were here.</p>
       </div>
 
       <p class="human" data-rv>
-        We built this because we'd all been on your side of the table, <em>and we remembered how it felt</em>.
+        We built this because we’d all been on your side of the table, <em>and we remembered how it felt</em>.
       </p>
     </div>
   </section>
 
   <!-- ═══ CLOSE: two doors, same room ═══ -->
-  <section class="wrap band close" id="close">
+  <section class="wrap band close" id="contact">
     <div class="shead">
       <div>
         <p class="eyebrow eyebrow--red" data-rv>Two doors</p>
         <h2 class="h2" data-rv>Two doors. Same room.</h2>
       </div>
       <p class="dek" data-rv style="--d:60ms">
-        You're looking, someone else is hiring, and the whole job is
-        <b>putting the two who should be in a conversation into one</b>. Tell us which side you're on.
+        You’re looking, someone else is hiring, and the whole job is
+        <b>putting the two who should be in a conversation into one</b>. Tell us which side you’re on.
       </p>
     </div>
     <div class="doors" data-rv style="--d:110ms">
@@ -3412,7 +3412,7 @@ a {
   background: #c9c9c2;
   border-color: #c9c9c2;
 }
-/* four of them hit a wall. one doesn't. */
+/* four of them hit a wall. one doesn’t. */
 .cmp__r:not(.cmp__r--us) .seg.last::after {
   content: "";
   position: absolute;
@@ -5879,7 +5879,7 @@ a {
   z-index: 70;
   transform: translateY(110%);
   transition: transform 0.4s var(--ease);
-  background: rgba(19, 19, 19, 0.94);
+  background: var(--ink);
   backdrop-filter: blur(12px);
   border-top: 1px solid var(--cline);
 }
@@ -6369,7 +6369,7 @@ li,
   box-shadow: 0 6px 18px rgba(218, 0, 7, 0.3);
 }
 
-/* 3. the candidate timeline behaves like the buyer's one */
+/* 3. the candidate timeline behaves like the buyer’s one */
 .tl2 {
   transition:
     opacity 0.28s var(--ease),
@@ -6616,7 +6616,7 @@ li,
   letter-spacing: -0.02em;
 }
 
-/* ── the candidate's instrument: one interview, four bars ── */
+/* ── the candidate’s instrument: one interview, four bars ── */
 .score2 {
   display: grid;
   gap: clamp(24px, 3vw, 44px);
@@ -7709,9 +7709,7 @@ li,
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(19, 19, 19, 0.72);
-  backdrop-filter: saturate(1.6) blur(14px);
-  -webkit-backdrop-filter: saturate(1.6) blur(14px);
+  background: var(--ink);
   border-bottom: 1px solid transparent;
   transition:
     background 0.3s var(--ease),
@@ -7719,7 +7717,6 @@ li,
     box-shadow 0.3s var(--ease);
 }
 .nav.stuck {
-  background: rgba(19, 19, 19, 0.94);
   border-bottom-color: rgba(255, 255, 255, 0.09);
   box-shadow: 0 6px 26px rgba(0, 0, 0, 0.28);
 }
@@ -7909,9 +7906,7 @@ li,
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(19, 19, 19, 0.98);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: var(--ink);
 }
 .navp.open {
   display: block;
@@ -8005,7 +8000,7 @@ li,
   justify-content: center;
 }
 
-/* ── dropdowns: real destinations, on the page's own surface ── */
+/* ── dropdowns: real destinations, on the page’s own surface ── */
 .dd {
   position: relative;
   display: none;
@@ -8194,7 +8189,7 @@ li,
 #controls .shead,
 #when .shead,
 #voices .shead,
-#close .shead {
+#contact .shead {
   display: grid;
   grid-template-columns: 1fr;
   justify-items: center;
@@ -8208,7 +8203,7 @@ li,
 #controls .shead > *,
 #when .shead > *,
 #voices .shead > *,
-#close .shead > * {
+#contact .shead > * {
   justify-self: center;
 }
 #tally .shead h2,
@@ -8218,7 +8213,7 @@ li,
 #controls .shead h2,
 #when .shead h2,
 #voices .shead h2,
-#close .shead h2 {
+#contact .shead h2 {
   max-width: none;
   text-wrap: nowrap;
   margin-inline: auto;
@@ -8230,7 +8225,7 @@ li,
 #controls .shead .trust__dek,
 #when .shead .dek,
 #voices .shead .dek,
-#close .shead .dek {
+#contact .shead .dek {
   max-width: 76ch;
   margin: 4px auto 0;
   text-align: center;
@@ -8264,13 +8259,11 @@ li,
   #controls .shead h2,
   #when .shead h2,
   #voices .shead h2,
-  #close .shead h2 {
+  #contact .shead h2 {
     text-wrap: balance;
   }
 }
 /* mobile has no drag-and-drop: the zone says "upload" instead of "drop" */
-.cv-up{display:none}
-@media(max-width:699px){.cv-up{display:inline}.cv-drop{display:none}}
 </style>
 
 <script is:inline>
@@ -8283,7 +8276,7 @@ li,
       {
         nm: 'Project-based',
         v: '10–50',
-        d: 'One role you\u2019re stuck on, or a burst of them — permanent, contract or executive.',
+        d: 'One role you\u2019re stuck on, or a burst of them: permanent, contract or executive.',
         p: [
           'Per hire, 15–20%',
           'Nothing owed until you hire',
@@ -8377,7 +8370,7 @@ li,
       auto: 'Weight automation above everything and he drops out of Select. He scored 2 there, and it was the one thing he could not evidence. On this brief he is a no.',
       fabric:
         'Weight fabric depth and he falls to the bottom of Select. He describes the estate; he has not operated the fabric himself.',
-      ops: 'Weight the day job — troubleshooting, change discipline, ownership — and he climbs. That is where the evidence actually sat.',
+      ops: 'Weight the day job (troubleshooting, change discipline, ownership) and he climbs. That is where the evidence actually sat.',
     };
     var rows = document.getElementById('labRows'),
       tiles = document.getElementById('labTiles'),
@@ -8583,7 +8576,7 @@ li,
     });
   }
 
-  /* the card has two faces — demo the flip once, then it's yours */
+  /* the card has two faces — demo the flip once, then it’s yours */
   var flip = document.getElementById('flip'),
     tA = document.getElementById('tabA'),
     tB = document.getElementById('tabB'),
@@ -8658,22 +8651,22 @@ li,
     1: '<b>All 126.</b> Everything the requirement returned.',
     2: '<b>40 reached an expert interview.</b> Eighty-six never did.',
     3: '<b>14 cleared the bar</b> on their own answers.',
-    4: '<b>5 names reached them</b> — the first people the team ever saw.',
+    4: '<b>5 names reached them</b>, the first people the team ever saw.',
     5: '<b>2 hired,</b> out of five interviews.',
   };
   /* hovering a SQUARE shows where that person stopped */
   var STOP = {
-    1: '<b>86 stopped here</b> — screened out before anyone spent time on them.',
-    2: '<b>26 stopped here</b> — interviewed by an expert, didn\u2019t clear the bar.',
-    3: '<b>9 stopped here</b> — cleared the bar, ranked below the top five.',
-    4: '<b>3 stopped here</b> — sent, hireable, not chosen this time.',
+    1: '<b>86 stopped here</b>, screened out before anyone spent time on them.',
+    2: '<b>26 stopped here</b>, interviewed by an expert, didn\u2019t clear the bar.',
+    3: '<b>9 stopped here</b>, cleared the bar, ranked below the top five.',
+    4: '<b>3 stopped here</b>, sent, hireable, not chosen this time.',
     5: '<b>Hired.</b> One of the two.',
   };
   var REST = {
     1: '126 people, shaded by how far each one got. <b>The two in red were hired.</b>',
     2: '<b>86 have dropped away.</b> Screened out before anyone spent time on them.',
     3: '<b>26 more gone.</b> Interviewed by a person, didn\u2019t clear the bar.',
-    4: '<b>9 more.</b> Good — ranked below the top five. They never reached the team.',
+    4: '<b>9 more.</b> Good. Ranked below the top five. They never reached the team.',
     5: '<b>Two hired, out of five interviews.</b> Everything else never left our desk.',
   };
 
@@ -8760,7 +8753,7 @@ li,
     setStage(n);
   }
 
-  /* it narrows itself once when you arrive — then it's yours to poke at */
+  /* it narrows itself once when you arrive — then it’s yours to poke at */
   var fn = document.getElementById('run'),
     played = false;
   if (fn && steps.length && 'IntersectionObserver' in window) {
@@ -8945,6 +8938,12 @@ li,
 
   /* ══ CV DROP: idle → reading → result ══ */
   (function () {
+    if (window.matchMedia && matchMedia('(max-width:699px)').matches) {
+      var cvLabel = document.getElementById('cvLabel'),
+        cvVerb = document.getElementById('cvVerb');
+      if (cvLabel) cvLabel.textContent = 'Upload your CV here';
+      if (cvVerb) cvVerb.textContent = 'Upload';
+    }
     var drop = document.getElementById('drop'),
       zone = document.getElementById('cvZone'),
       file = document.getElementById('cvFile'),

@@ -4,18 +4,18 @@ import Layout from '~/layouts/PageLayout.astro';
 // This page mirrors the reference design build (tribera-home.html): same sections,
 // same class names, same CSS and interaction logic. Repeated list-like content
 // (dimensions, rows, chips, cards) is pulled into the data below and rendered with
-// .map(), the way the rest of the site's pages are written. One-off illustrations
+// .map(), the way the rest of the site’s pages are written. One-off illustrations
 // (the hero decision card, the compounding-ramp sparkline art, the tally chart) stay
-// as plain markup since there's nothing to generalise about a single hand-drawn shape.
+// as plain markup since there’s nothing to generalise about a single hand-drawn shape.
 const metadata = {
   title: 'tribera — every name comes with its reasons',
   description:
-    "No candidate is bad — there's a yes for you and a no somewhere else. It starts with your culture and narrows to the manager, the project, the people they'd sit beside. Interview three, hire one.",
+    "No candidate is bad. There’s a yes for you and a no somewhere else. It starts with your culture and narrows to the manager, the project, the people they’d sit beside. Interview three, hire one.",
   ignoreTitleTemplate: true,
 };
 
 // ── Hero decision card: the same 11 dimensions drive both faces of the card
-// (scored tiles on "the verdict", weighted rubric on "the bar") and seed the Lab's
+// (scored tiles on "the verdict", weighted rubric on "the bar") and seed the Lab’s
 // "as briefed" preset further down the page.
 const scoreDimensions: [string, string, number, number][] = [
   ['A', 'Core networking, TCP/IP', 5, 6.25],
@@ -31,12 +31,12 @@ const scoreDimensions: [string, string, number, number][] = [
   ['K', 'Authenticity', 4, 3.75],
 ];
 
-// Client logos in the marquee under the hero. Rendered twice (once `aria-hidden`)
+// Client logos in the marquee under the hero. Single pass: a static trust strip, not a marquee
 // so the CSS animation can loop seamlessly.
 const clientLogos = [
   'Flipkart', 'Myntra', 'Heineken', 'Volkswagen', 'Mizuho', 'ICICI Bank',
   'Publicis Sapient', 'Capco', 'PayU', 'DSP Mutual Fund', 'ICICI Securities',
-  'Utkarsh Bank', 'Aeries', 'SplashBI', 'Aegon Life', 'Enpro',
+  'Aegon Life',
 ];
 
 // "What leaves your desk": who owns each job today vs. from Monday.
@@ -46,11 +46,11 @@ const deskRows = [
   ['advisor', 'Advisor', 'Four panels asking the same four questions', 'One recorded conversation, shared'],
   ['ai', 'Machine', 'No record of why you passed last time', 'Every verdict written down and kept'],
   ['advisor', 'Advisor', 'Sixty days of notice-period silence', 'An expert with them until day one'],
-  ['you', 'Stays yours', 'Deciding who joins your team', "Yours. We'd be the wrong partner if we wanted it."],
+  ['you', 'Stays yours', 'Deciding who joins your team', "Yours. We’d be the wrong partner if we wanted it."],
 ];
 
 // The funnel: what 126 profiles actually turn into. `owner` marks the two stages
-// that stay tribera's work; `theirs` marks the two the hiring team owns.
+// that stay tribera’s work; `theirs` marks the two the hiring team owns.
 const funnelSteps = [
   [1, 126, 'Sourced and screened', 'Sourced and screened', 'tribera', false,
     'Everything the requirement returned, screened on 100+ signals'],
@@ -64,7 +64,7 @@ const funnelSteps = [
     'Five interviews, two hires. At eight-to-one that costs sixteen.'],
 ];
 
-// Each case study's punchline is split into a plain lead-in and a bolded close,
+// Each case study’s punchline is split into a plain lead-in and a bolded close,
 // matching the emphasis in the reference copy (e.g. "...2 selects. **1 hire.**").
 const caseStudies = [
   ['AI security · engineering', 'Bengaluru', '50+ profiles over six months, no hire',
@@ -109,13 +109,13 @@ const leaders = [
   ['/akshata.png', 'AC', 'Akshata Chandavarkar', 'Founder & CEO',
     'Twenty years of enterprise hiring across GCCs, BFSI and deep-tech. Ran talent acquisition at GCC scale.'],
   ['/abhishek.png', 'AP', 'Abhishek Prasad', 'Co-founder & CBO',
-    'Two decades building products used by millions. Built the signal engine — what a CV hides, join probability, retention.'],
+    'Two decades building products used by millions. Built the signal engine: what a CV hides, join probability, retention.'],
   ['/pranav.png', 'PG', 'Pranav Gandhi', 'Chief Success Officer',
     'Twenty years scaling companies from nothing. Runs client delivery and the quality bar behind every mandate.'],
 ];
 
-// The Lab's preset buttons; the weight sets themselves live in the script since
-// they only ever feed the interactive rubric, not the page's static content.
+// The Lab’s preset buttons; the weight sets themselves live in the script since
+// they only ever feed the interactive rubric, not the page’s static content.
 const labPresets = [
   ['brief', 'As briefed', true],
   ['auto', 'Automation first', false],
@@ -129,15 +129,15 @@ const compareRows: [string, string, number, string, boolean][] = [
   ['Job boards', 'Stops after finding', 1, 'You read everything, judge everything, alone.', false],
   ['AI screening tools', 'Stops after screening', 2, 'Everything a machine can’t see.', false],
   ['Contingency agencies', 'Stops after the interview', 3, 'Eight interviews a hire, and no reasons.', false],
-  ['RPO', 'Stops after the interview', 3, 'The judgment you just outsourced.', false],
+  ['RPO', 'Stops at the shortlist', 3, 'The judgment you just outsourced.', false],
   ['tribera', 'Goes all the way', 4, 'You decide. That’s the only part left.', true],
 ];
 
 // Voices marquee. Rendered twice back-to-back so the CSS scroll loops seamlessly.
 const testimonials = [
   ['ta', '32 Java engineers in four months. Our team had struggled for eight. Interviewed 11, made 8 offers, all accepted.', 'Head of Talent', 'SaaS company'],
-  ['cd', 'Three interview calls in one week — all relevant to my stack. No spam. The expert prepped me before each one.', 'Senior backend engineer', '6 yrs'],
-  ['ta', "Our ratio went from 9:1 to 3:1 in a quarter. That's two hundred manager hours we got back.", 'VP Engineering', 'Enterprise tech'],
+  ['cd', 'Three interview calls in one week, all relevant to my stack. No spam. The expert prepped me before each one.', 'Senior backend engineer', '6 yrs'],
+  ['ta', "Our ratio went from 9:1 to 3:1 in a quarter. That’s two hundred manager hours we got back.", 'VP Engineering', 'Enterprise tech'],
   ['cd', 'It matched me to roles where I actually fit. The interview felt like a technical discussion, not an interrogation.', 'Full-stack engineer', 'AI startup'],
   ['ta', 'Four senior platform hires in six weeks, after three failed agency cycles.', 'CTO', 'Fintech'],
   ['cd', 'My profile stayed private the whole time. I only spoke to teams that were serious.', 'Engineering manager', 'Enterprise platform'],
@@ -147,9 +147,9 @@ const testimonials = [
 
 // "How we engage" timeline and the three headline stats under it.
 const engageSteps = [
-  ['Day 0', '45 min', 'Intake call', 'We learn your yes — the role, the manager, the culture, the bar.', 'You brief · we listen'],
+  ['Day 0', '45 min', 'Intake call', 'We learn your yes: the role, the manager, the culture, the bar.', 'You brief · we listen'],
   ['36 hours', 'shortlist', 'Three names', 'Decision-ready candidates, each scored and explained.', 'We deliver · you review'],
-  ['Week 1', 'interviews', 'Your panel runs it', 'You meet three, not twelve — and we prep your panel with the rubric.', 'You interview · we support'],
+  ['Week 1', 'interviews', 'Your panel runs it', 'You meet three, not twelve, and we prep your panel with the rubric.', 'You interview · we support'],
   ['At offer', 'close', 'Risk flagged first', 'Join-probability and offer-risk surfaced before you extend.', 'You decide · we de-risk'],
   ['Safety net', 'SLA', 'If it falls through', 'Drop-out or no-show, we restart free and go priority queue.', 'Guaranteed in writing'],
 ];
@@ -162,24 +162,24 @@ const engageStats = [
 
 const engageNotes = [
   ['Your recruiter still owns the relationship',
-    "We arm your team. We don't replace them, and we don't touch the candidate relationship you own."],
+    "We arm your team. We don’t replace them, and we don’t touch the candidate relationship you own."],
   ['Fits your ATS',
-    "Shortlists export to Workday, Greenhouse, Lever and SuccessFactors — or to a shared workspace if you'd rather."],
+    "Shortlists export to Workday, Greenhouse, Lever and SuccessFactors, or to a shared workspace if you’d rather."],
 ];
 
 // Trust & compliance: two lists of assurances, plus the three-step "who can
 // actually decide" ladder.
 // List items are stored with their emphasis markup intact (one bold phrase each,
-// at most) and rendered with `set:html`, matching the reference's inline <b> tags.
+// at most) and rendered with `set:html`, matching the reference’s inline <b> tags.
 const compliance: [string, string[]][] = [
   ['Data and consent · DPDP Act', [
     'Candidate consent captured before any evaluation',
     'Data resident in India, encrypted in transit and at rest',
-    'Purpose-limited — transcripts held on a defined clock, then purged',
+    'Purpose-limited: transcripts held on a defined clock, then purged',
     'Right to access, correct and erase, honoured',
   ]],
   ['Fair and defensible AI', [
-    'Human in the loop by design — <b>the AI never auto-rejects</b>',
+    'Human in the loop by design: <b>the AI never auto-rejects</b>',
     'Every score explainable: rubric, evidence, transcript',
     'Signals are role-relevant only; protected attributes excluded',
     'Adverse impact reviewed, rubrics audited',
@@ -194,7 +194,7 @@ const decisionPath: [string, string, string, string, boolean][] = [
 
 // For candidates: the four things they can count on, every time.
 const candidateExpectations = [
-  ["You'll hear back", "With the actual reason. Silence isn't a process."],
+  ["You’ll hear back", "With the actual reason. Silence isn’t a process."],
   ['One conversation, not six', 'Recorded, scored, and it travels with you.'],
   ['Anonymous until you say so', 'Block any company. Pause in one click.'],
   ['We check the team too', 'Headcount, rounds, how fast they decide.'],
@@ -202,12 +202,12 @@ const candidateExpectations = [
 
 // Close: the two doors, hiring vs. looking.
 const doors = [
-  ["I'm hiring",
-    "Tell us one role you're stuck on. We'll come back with how we'd run it, what the shortlist would look like, and what it costs — before you commit to anything.",
+  ["I’m hiring",
+    "Tell us one role you’re stuck on. We’ll come back with how we’d run it, what the shortlist would look like, and what it costs, before you commit to anything.",
     'A 45-minute intake call. Three names back inside 36 hours, each scored against a bar we set with you.',
-    'Talk to us', '#close', 'btn--dark'],
-  ["I'm looking",
-    "Fifteen minutes to set up a profile, then a real conversation with an expert. If there's no fit, you'll hear that too — with the reason.",
+    'Talk to us', '#contact', 'btn--dark'],
+  ["I’m looking",
+    "Fifteen minutes to set up a profile, then a real conversation with an expert. If there’s no fit, you’ll hear that too, with the reason.",
     'Fifteen minutes to set up. An expert calls within a week, and you keep the score whatever happens after that.',
     'Create your profile', '#apply', 'btn--ghost'],
 ];
@@ -221,15 +221,15 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
       <div class="hero__top">
         <div class="hero__copy">
           <p class="eyebrow" data-rv>Fifty senior experts. Thirty minutes each.</p>
-          <h1 class="h1" data-rv style="--d:60ms">Every&nbsp;name&nbsp;comes<br />with its <em>reasons</em>.</h1>
+          <h1 class="h1" data-rv style="--d:60ms"><span class="hero__h1a">Every&nbsp;name&nbsp;comes</span><br />with its <em>reasons</em>.</h1>
           <p class="hero__p" data-rv style="--d:110ms">
-            <!-- No candidate is bad — there's a yes for you and a no somewhere else. It starts with your
-            culture and narrows from there: the manager, the project, the people they'd sit beside.
+            <!-- No candidate is bad. There’s a yes for you and a no somewhere else. It starts with your
+            culture and narrows from there: the manager, the project, the people they’d sit beside.
             <b>AI reads the signals; a senior expert reads the person.</b> -->
           </p>
           <p class="hero__p" data-rv style="--d:150ms">
             <b
-              >If you're hiring, that's three names you'd take any of. If you're looking, it's the
+              >If you’re hiring, that’s three names you’d take any of. If you’re looking, it’s the
               half-hour that replaces the other eight.</b
             >
           </p>
@@ -263,7 +263,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
                   <div class="side__hd">
                     <div>
                       <p class="side__nm">Bharat R</p>
-                      <p class="side__sub">7.5 yrs · Oracle Cloud Infrastructure · <b>available immediately</b></p>
+                      <p class="side__sub">7.5 yrs · Oracle Cloud Infrastructure · available immediately</p>
                     </div>
                     <span class="scr">
                       <span class="scr__n"><b>42.00</b><i>/50</i></span>
@@ -278,7 +278,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
                     <p class="vrd__k">Recommended for the technical round</p>
                     <p class="vrd__t">
                       The first candidate on this role to describe a performance problem he measured
-                      either side of the fix — and the only one to answer both core checks in full.
+                      either side of the fix, and the only one to answer both core checks in full.
                     </p>
                   </div>
                   <div class="tiles" id="tiles">
@@ -302,7 +302,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
                     <div class="note note--warn">
                       <span class="note__k">Open</span>
                       <p class="note__v">
-                        Data-centre depth is described rather than demonstrated — both worked examples
+                        Data-centre depth is described rather than demonstrated; both worked examples
                         are routing-policy failures, not fabric work.
                       </p>
                     </div>
@@ -331,7 +331,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
                   <div class="side__hd">
                     <div>
                       <p class="side__nm">What this role demands</p>
-                      <p class="side__sub">A hands-on operations role, not a design role · <b>automation is good-to-have</b></p>
+                      <p class="side__sub">A hands-on operations role, not a design role · automation is good-to-have</p>
                     </div>
                   </div>
                   <div class="rub">
@@ -350,7 +350,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
                       <span class="note__k">Bands</span>
                       <p class="note__v">
                         <b>Select</b> 34–50 · <b>Grey</b> 28–33 · <b>Reject</b> below 28. Grey is not a
-                        soft no — it names what to test.
+                        soft no. It names what to test.
                       </p>
                     </div>
                     <div class="note note--warn">
@@ -376,10 +376,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         <p class="logos__l">Mandates run for</p>
         <div class="logos__vp">
           <div class="logos__tk">
-            {clientLogos.map((name) => <span>{name}</span>)}
-            <span aria-hidden="true" class="logos__dup">
-              {clientLogos.map((name) => <span>{name}</span>)}
-            </span>
+{clientLogos.map((name) => <span>{name}</span>)}
           </div>
         </div>
       </div>
@@ -395,13 +392,13 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
           <h2 class="h2" data-rv style="--d:60ms">Most of hiring is work you never chose to do.</h2>
         </div>
         <p class="dek" data-rv style="--d:100ms">
-          Nobody joined talent acquisition to read six hundred CVs a quarter. Here's who does each part
+          Nobody joined talent acquisition to read six hundred CVs a quarter. Here’s who does each part
           now.
         </p>
       </div>
 
       <div class="hours" id="hours" data-rv style="--d:120ms">
-        <span class="hours__n"><b id="hrsN">0</b><i>hrs a week</i></span>
+        <span class="hours__n"><b id="hrsN">11</b><i>hrs a week</i></span>
         <span class="hours__d">
           is roughly what those five take off a team running four open roles.
           <b>The sixth is the one you were hired to do.</b>
@@ -442,8 +439,8 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         </div>
         <p class="fn__dek" data-rv style="--d:100ms">
           A backend role in Bengaluru, open nine months, no hire. We took the same requirement back to
-          market and <b>126 profiles came back.</b> Every square below is one of them —
-          <b>and the team saw five.</b>
+          market and <b>126 profiles came back.</b> Every square below is one of them, and
+          <b>the team saw five.</b>
         </p>
       </div>
 
@@ -475,9 +472,9 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
                 <span class="desk__v">5 <i>the ones worth your afternoon</i></span>
               </div>
               <p class="desk__ft">
-                Put a requirement out and 126 come back — never in one pile, but in threes and fives from
+                Put a requirement out and 126 come back: never in one pile, but in threes and fives from
                 agencies, boards, referrals and inbound, over weeks.
-                <b>Reading all of them was the job. We did that part and sent the best five.</b>
+                Reading all of them was the job. We did that part and sent the best five.
               </p>
             </div>
           </div>
@@ -512,12 +509,12 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
 
       <div class="fn__close">
         <!-- <p class="fn__line" data-rv>
-          They weren't picking the best of five.<br />They were picking <em>between</em> five.
+          They weren’t picking the best of five.<br />They were picking <em>between</em> five.
         </p> -->
         <!-- <p class="fn__math" data-rv style="--d:80ms">
           Roughly <b>38 hours</b> stayed with their team — the 126 CV screens at four minutes each, and
-          the 40 expert calls at forty-five minutes including write-up. That is what handling the market's
-          response to one requirement actually costs. Your rates will differ. The shape won't.
+          the 40 expert calls at forty-five minutes including write-up. That is what handling the market’s
+          response to one requirement actually costs. Your rates will differ. The shape won’t.
         </p> -->
       </div>
 
@@ -541,7 +538,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
           }
         </div> -->
         <p class="cases__ft">
-          Different functions, different countries, one method —
+          Different functions, different countries, one method:
           <b>read everything, interview properly, send few.</b> Named versions of all four are in the deck.
         </p>
       </div>
@@ -553,10 +550,10 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
     <div class="shead">
       <div>
         <p class="eyebrow eyebrow--red" data-rv>The people who make the call</p>
-        <h2 class="h2" data-rv style="--d:60ms">Fifty senior experts. One bar — yours.</h2>
+        <h2 class="h2" data-rv style="--d:60ms">Fifty senior experts. One bar: yours.</h2>
       </div>
       <p class="dek" data-rv style="--d:100ms">
-        A verdict is only worth what the person behind it is worth. Not fifty recruiters —
+        A verdict is only worth what the person behind it is worth. Not fifty recruiters:
         <b>fifty people who have done the job</b>, across engineering, finance, operations and leadership.
       </p>
     </div>
@@ -608,11 +605,11 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
     <div class="wrap">
       <div class="shead">
         <div>
-          <p class="eyebrow" data-rv>The bar is yours — literally</p>
+          <p class="eyebrow" data-rv>The bar is yours, literally</p>
           <h2 class="h2" data-rv style="--d:60ms">Move the weightings. Watch the verdict move.</h2>
         </div>
         <p class="lab__dek" data-rv style="--d:100ms">
-          A real rubric from a real role — weighted from your context, and yours to move.
+          A real rubric from a real role, weighted from your context, and yours to move.
           <b style="color:#fff">Weight automation hard enough and he stops being a hire.</b>
         </p>
       </div>
@@ -644,7 +641,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
           </div>
 
           <p class="lab__foot">
-            Tell us your priorities sit differently — <em>and this is what we recalibrate.</em>
+            Tell us your priorities sit differently, and <em>this is what we recalibrate.</em>
           </p>
         </div>
 
@@ -681,7 +678,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
           <p class="dek" data-rv style="--d:100ms">
             Nothing gets thrown away. Every interview is scored against your bar and kept, so the bar
             sharpens and the next brief starts further along.
-            <b>The file gets deeper every time you use it — that is the whole compounding effect.</b>
+            <b>The file gets deeper every time you use it. That is the whole compounding effect.</b>
           </p>
         </div>
 
@@ -785,9 +782,9 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         </div>
             </div>
             <p class="ramp__note">
-              By your tenth role, four hundred interviews have been scored against your bar —<br />every one of
+              By your tenth role, four hundred interviews have been scored against your bar:<br />every one of
               them still readable, still comparable.
-              <br /><b>That is the multiplier. Not a faster tool: a deeper file.</b>
+              <br />That is the multiplier. Not a faster tool: a deeper file.
             </p>
           </div>
         </div>
@@ -804,15 +801,15 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
           <h2 class="h2" data-rv style="--d:60ms">Everyone here does something real. We do the last bit.</h2>
         </div>
         <p class="buy__dek" data-rv style="--d:100ms">
-          They just stop in different places. Whatever they stop short of lands back on your desk — and
-          that's the part nobody puts on a pricing page.
+          They just stop in different places. Whatever they stop short of lands back on your desk, and
+          that’s the part nobody puts on a pricing page.
         </p>
       </div>
       <div class="cmp" data-rv style="--d:140ms">
         <div class="cmp__hd">
           <span>Who</span>
           <span class="trk"><span>Find</span><span>Screen</span><span>Interview</span><span>Write the verdict</span></span>
-          <span>Then it's yours</span>
+          <span>Then it’s yours</span>
         </div>
         {
           compareRows.map(([name, stopLabel, stagesReached, desc, isUs]) => (
@@ -830,7 +827,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         }
       </div>
       <p class="cmp__ft">
-        Segments are sized by where the hours actually go — finding people is quick, forming a defensible
+        Segments are sized by where the hours actually go: finding people is quick, forming a defensible
         view is not. <b>Everybody stops one stage short of the same thing.</b>
       </p>
 
@@ -884,15 +881,15 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
           <h2 class="h2" data-rv style="--d:60ms">Interview three. Hire one.</h2>
         </div>
         <p class="deal__dek" data-rv style="--d:100ms">
-          The industry average is eight interviews per hire. We commit to three — and we can, because
-          <b>your team still interviews every person we send</b>.
+          The industry average is eight interviews per hire. We commit to three, and we can, because
+          your team still interviews every person we send.
         </p>
       </div>
 
       <!-- Volume tiers (10-50 / 50-200 / 200-500+) are picked from and rendered by the
            deal-volume script below; the markup here is just the tab strip and the
            containers it fills in (#volNm, #volV, #volD, #volPts). -->
-      <div class="vol" data-rv style="--d:170ms">
+      <div class="vol" id="plans" data-rv style="--d:170ms">
         <p class="vol__k">How many hires a year?</p>
         <div class="vol__ax" role="tablist" aria-label="Engagement volume">
          <button class="vseg" role="tab" data-i="0" aria-selected="false"><span></span><i>10 - 50</i></button>
@@ -907,7 +904,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
             <p class="vol__d" id="volD">
               Several functions running at once, with one bar carried across all of them.
             </p>
-            <a href="#close" class="btn btn--light">Brief a role</a>
+            <a href="#contact" data-form-intent="demo" data-form-source="guarantee" class="btn btn--light">Brief a role</a>
           </div>
           <ul class="vol__pts" id="volPts" />
         </div>
@@ -931,7 +928,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
       <div class="shead">
         <div>
           <p class="eyebrow eyebrow--red" data-rv>How we engage</p>
-          <h2 class="h2" data-rv style="--d:60ms">From brief to hire — and who does what.</h2>
+          <h2 class="h2" data-rv style="--d:60ms">From brief to hire, and who does what.</h2>
         </div>
         <p class="dek" data-rv style="--d:100ms">
           Forty-five minutes to learn your yes. Thirty-six hours to the shortlist.
@@ -988,7 +985,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
           <h2 class="h2" data-rv style="--d:60ms">The AI recommends. A person decides. Always.</h2>
         </div>
         <p class="trust__dek" data-rv style="--d:100ms">
-          Built for a world of candidate data, consent and fair evaluation —
+          Built for a world of candidate data, consent and fair evaluation:
           <b>the questions your legal team and DPO ask before the first brief.</b>
         </p>
       </div>
@@ -1039,7 +1036,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
   <section class="wrap band--t">
     <div class="hinge">
       <div data-rv>
-        <p class="hg__k">If you're hiring</p>
+        <p class="hg__k">If you’re hiring</p>
         <p class="hg__t">Interview three. Hire one.</p>
         <p class="hg__d">
           Your best people stop spending Thursdays on candidates who were never getting past round two.
@@ -1076,10 +1073,10 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         </div>
       </div>
       <div data-rv style="--d:160ms">
-        <p class="hg__k">If you're looking</p>
+        <p class="hg__k">If you’re looking</p>
         <p class="hg__t">See talent. Make matches.</p>
         <p class="hg__d">
-          You're not one of eight in a pile. You're one of three, and they've read your interview before
+          You’re not one of eight in a pile. You’re one of three, and they’ve read your interview before
           the call.
         </p>
       </div>
@@ -1102,9 +1099,9 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
 
       <div class="fan" data-rv style="--d:140ms">
         <div class="fan__side">
-          <p class="fan__was">Arjun's spring — <span id="tallyN">140</span> applications</p>
+          <p class="fan__was">Arjun’s spring: <span id="tallyN">140</span> applications</p>
           <!-- Hand-drawn tally chart: each stroke is one application, so the marks
-               don't reduce to a simple formula — they're kept as literal paths, one
+               don’t reduce to a simple formula — they’re kept as literal paths, one
                per line, with the two red strokes (tk--r) marking the three replies. -->
         <svg class="tally" viewBox="0 0 258 152" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path class="tk" pathLength="1" d="M7.9 12.1 Q7.8 23.2 7.9 34.2" style="--d:0ms"/>
@@ -1253,7 +1250,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
           <p class="fan__was">One conversation with us</p>
           <span class="fan__3"><span></span><span></span><span></span></span>
           <p class="fan__cap">
-            <b>Three teams asked for him inside 48 hours.</b> Not applications — requests, from teams who
+            <b>Three teams asked for him inside 48 hours.</b> Not applications: requests, from teams who
             had read his interview before they picked up the phone.
           </p>
         </div>
@@ -1262,15 +1259,15 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
       <div class="qt__row">
         <p class="qt" data-rv>
           "The expert had already read my GitHub. The first question was about a design decision I made in
-          2022. That's when I knew this was different."
+          2022. That’s when I knew this was different."
           <span>Senior backend engineer, six years' experience</span>
         </p>
         <div class="qt__side">
           <p class="human" data-rv style="--d:80ms">
-            We built this because we'd all been on your side of the table, <em>and we remembered how it felt</em>.
+            We built this because we’d all been on your side of the table, <em>and we remembered how it felt</em>.
           </p>
           <p class="human__b" data-rv style="--d:140ms">
-            And if you're the one hiring — <b>this is why the people we send you pick up the phone.</b> Nobody
+            And if you’re the one hiring, this is why the people we send you pick up the phone. Nobody
             arrives at your interview having been treated badly on the way in.
           </p>
         </div>
@@ -1298,7 +1295,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
           <div>
             <p class="eyebrow eyebrow--red" data-rv>Start here</p>
             <h2 class="h2" data-rv style="--d:60ms;max-width:none;text-align:center">
-              <span class="cv-drop">Drop</span><span class="cv-up">Upload</span> your CV and see the questions it would get.
+              <span id="cvVerb">Drop</span> your CV and see the questions it would get.
             </h2>
           </div>
           <p class="dek" data-rv style="--d:100ms;max-width:none;text-align:center">
@@ -1315,7 +1312,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
             <div class="drop__stage" data-stage="idle">
               <label class="drop__zone" for="cvFile" id="cvZone">
                 <span class="drop__mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-                <span class="drop__t"><span class="cv-drop">Drop your CV here</span><span class="cv-up">Upload your CV here</span></span>
+                <span class="drop__t" id="cvLabel">Drop your CV here</span>
                 <span class="drop__s">PDF or Word · or <b>choose a file</b></span>
                 <input type="file" id="cvFile" accept=".pdf,.doc,.docx" hidden />
               </label>
@@ -1335,7 +1332,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
                     <p class="ghost__f"><span>From the CV</span>"Owned architecture decisions across three squads"</p>
                   </div>
                 </div>
-                <p class="drop__pk">Yours will be different — they come from your CV.</p>
+                <p class="drop__pk">Yours will be different: they come from your CV.</p>
               </div>
             </div>
 
@@ -1357,27 +1354,27 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
           </div>
 
           <p class="drop__fine">Nothing is stored until you say so. No account, no email yet.
-            <b>You can close the tab after reading and we will never know you were here.</b></p>
+            You can close the tab after reading and we will never know you were here.</p>
         </div>
 
         <!-- <p class="human" data-rv>
-          We built this because we'd all been on your side of the table, <em>and we remembered how it felt</em>.
+          We built this because we’d all been on your side of the table, <em>and we remembered how it felt</em>.
         </p> -->
       </div>
     </div>
   </section>
 
   <!-- ═══ CLOSE: two doors, same room ═══ -->
-  <section class="wrap band" id="close">
+  <section class="wrap band" id="contact">
     <div class="shead">
       <div>
         <p class="eyebrow eyebrow--red" data-rv>Two doors</p>
         <h2 class="h2" data-rv>Two doors. Same room.</h2>
       </div>
       <p class="dek" data-rv style="--d:60ms">
-        One of you is hiring and one of you is looking, and the whole job is the same either way —
+        One of you is hiring and one of you is looking, and the whole job is the same either way:
         <b>putting the two who should be in a conversation into one</b>, and giving both of them a reason
-        to trust it. Tell us which side you're on.
+        to trust it. Tell us which side you’re on.
       </p>
     </div>
     <div class="doors">
@@ -1775,7 +1772,7 @@ a {
   font-style: normal;
   color: var(--red);
 }
-.hero__top{display:grid;gap:clamp(26px,3vw,44px);align-content:center;min-height:1455px}@media(min-width:330px){.hero__top{min-height:1375px}}@media(min-width:340px){.hero__top{min-height:1355px}}@media(min-width:360px){.hero__top{min-height:1340px}}@media(min-width:375px){.hero__top{min-height:1280px}}@media(min-width:390px){.hero__top{min-height:1200px}}@media(min-width:400px){.hero__top{min-height:1180px}}@media(min-width:420px){.hero__top{min-height:1165px}}@media(min-width:440px){.hero__top{min-height:1145px}}@media(min-width:460px){.hero__top{min-height:1095px}}@media(min-width:500px){.hero__top{min-height:1055px}}@media(min-width:550px){.hero__top{min-height:1040px}}@media(min-width:700px){.hero__top{min-height:1000px}}@media(min-width:800px){.hero__top{min-height:1005px}}@media(min-width:900px){.hero__top{min-height:1010px}}@media(min-width:1000px){.hero__top{min-height:630px}}@media(min-width:1100px){.hero__top{min-height:640px}}@media(min-width:1200px){.hero__top{min-height:645px}}@media(min-width:1240px){.hero__top{min-height:650px}}
+.hero__top{display:grid;gap:clamp(26px,3vw,44px);align-content:center;min-height:1455px}@media(min-width:330px){.hero__top{min-height:1375px}}@media(min-width:340px){.hero__top{min-height:1355px}}@media(min-width:360px){.hero__top{min-height:1340px}}@media(min-width:375px){.hero__top{min-height:1280px}}@media(min-width:390px){.hero__top{min-height:1200px}}@media(min-width:400px){.hero__top{min-height:1180px}}@media(min-width:420px){.hero__top{min-height:1165px}}@media(min-width:440px){.hero__top{min-height:1145px}}@media(min-width:460px){.hero__top{min-height:1095px}}@media(min-width:500px){.hero__top{min-height:1055px}}@media(min-width:550px){.hero__top{min-height:1040px}}@media(min-width:700px){.hero__top{min-height:1000px}}@media(min-width:800px){.hero__top{min-height:1005px}}@media(min-width:900px){.hero__top{min-height:1010px}}@media(min-width:1000px){.hero__top{min-height:calc(100vh - 140px);min-height:calc(100dvh - 140px)}}
 @media(max-width:999px){.hero{padding-top:42px}.hero__top{min-height:0;align-content:start}.hero__top>*{min-width:0}.hero__card{width:100%;max-width:100%}}
 @media(max-width:699px){.hero__top{gap:32px}.hero__copy .btns{display:grid;grid-template-columns:1fr;gap:10px}.hero__copy .btns .btn{justify-content:center;min-height:48px;width:100%}}
 
@@ -1815,7 +1812,10 @@ a {
 }
 .hero h1 {
   max-width: 18ch;
-  font-size: clamp(36px, 4.6vw, 62px);
+  font-size: clamp(36px, 4.6vw, 54px);
+}
+.hero h1 .hero__h1a {
+  white-space: nowrap;
 }
 @media (max-width: 340px) {
   .hero .wrap {
@@ -2401,27 +2401,13 @@ a {
 }
 .logos__vp {
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
 }
 .logos__tk {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 34px;
-  width: max-content;
-  animation: logoscroll 78s linear infinite;
-}
-.logos__vp:hover .logos__tk,
-.logos__vp:focus-within .logos__tk {
-  animation-play-state: paused;
-}
-@keyframes logoscroll {
-  to {
-    transform: translateX(calc(-50% - 17px));
-  }
-}
-.logos__dup {
-  display: contents;
+  justify-content: flex-end;
+  gap: 14px 34px;
 }
 .logos__tk span {
   font-family: var(--display);
@@ -2434,17 +2420,6 @@ a {
 }
 .logos__tk span:hover {
   color: #b4b4ad;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .logos__vp {
-    overflow-x: auto;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-  .logos__tk {
-    animation: none;
-  }
 }
 
 /* ══ SIGNAL TAGS ══ */
@@ -4098,7 +4073,7 @@ a {
   background: #c9c9c2;
   border-color: #c9c9c2;
 }
-/* four of them hit a wall. one doesn't. */
+/* four of them hit a wall. one doesn’t. */
 .cmp__r:not(.cmp__r--us) .seg.last::after {
   content: "";
   position: absolute;
@@ -4369,6 +4344,19 @@ a {
     grid-template-columns: 1fr auto 1fr;
     gap: clamp(28px, 4.5vw, 60px);
     text-align: left;
+    align-items: stretch;
+  }
+  .hinge > div:first-child,
+  .hinge > div:last-child {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+  }
+  .hinge > div:first-child .hg__d,
+  .hinge > div:last-child .hg__d {
+    align-self: end;
+  }
+  .hinge > div:last-child {
+    text-align: right;
   }
 }
 .hg__k {
@@ -4393,11 +4381,9 @@ a {
   color: var(--grey);
   margin: 0;
   max-width: 34ch;
+  min-height: 4.65em;
 }
 @media (min-width: 900px) {
-  .hinge > div:last-child {
-    text-align: right;
-  }
   .hinge > div:last-child .hg__d {
     margin-left: auto;
   }
@@ -5178,7 +5164,7 @@ a {
 .cost {
   width: 100%;
   max-width: 270px;
-  margin-top: 4px;
+  margin-top: auto;
   padding-top: 16px;
   border-top: 1px solid var(--hair);
 }
@@ -5711,22 +5697,22 @@ a {
 }
 
 /* ══ CLOSE ══ */
-#close .shead {
+#contact .shead {
   display: grid;
   grid-template-columns: 1fr;
   justify-items: center;
   text-align: center;
   gap: 8px;
 }
-#close .shead > * {
+#contact .shead > * {
   justify-self: center;
 }
-#close .shead h2 {
+#contact .shead h2 {
   max-width: none;
   text-wrap: nowrap;
   margin-inline: auto;
 }
-#close .shead .dek {
+#contact .shead .dek {
   max-width: 96ch;
   margin: 4px auto 0;
   text-align: center;
@@ -5746,7 +5732,7 @@ a {
   #experts .shead h2,
   .trust .shead h2,
   #engage .shead h2,
-  #close .shead h2 {
+  #contact .shead h2 {
     text-wrap: balance;
   }
 }
@@ -6810,7 +6796,7 @@ a {
   z-index: 70;
   transform: translateY(110%);
   transition: transform 0.4s var(--ease);
-  background: rgba(19, 19, 19, 0.94);
+  background: var(--ink);
   backdrop-filter: blur(12px);
   border-top: 1px solid var(--cline);
 }
@@ -7373,7 +7359,7 @@ li,
   box-shadow: 0 6px 18px rgba(218, 0, 7, 0.3);
 }
 
-/* 3. the candidate timeline behaves like the buyer's one */
+/* 3. the candidate timeline behaves like the buyer’s one */
 .tl2 {
   transition:
     opacity 0.28s var(--ease),
@@ -7646,9 +7632,7 @@ li,
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(19, 19, 19, 0.72);
-  backdrop-filter: saturate(1.6) blur(14px);
-  -webkit-backdrop-filter: saturate(1.6) blur(14px);
+  background: var(--ink);
   border-bottom: 1px solid transparent;
   transition:
     background 0.3s var(--ease),
@@ -7656,7 +7640,6 @@ li,
     box-shadow 0.3s var(--ease);
 }
 .nav.stuck {
-  background: rgba(19, 19, 19, 0.94);
   border-bottom-color: rgba(255, 255, 255, 0.09);
   box-shadow: 0 6px 26px rgba(0, 0, 0, 0.28);
 }
@@ -7852,9 +7835,7 @@ li,
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(19, 19, 19, 0.98);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: var(--ink);
 }
 .navp.open {
   display: block;
@@ -7948,7 +7929,7 @@ li,
   justify-content: center;
 }
 
-/* ── dropdowns: real destinations, on the page's own surface ── */
+/* ── dropdowns: real destinations, on the page’s own surface ── */
 .dd {
   position: relative;
   display: none;
@@ -8128,9 +8109,6 @@ li,
   .stickcta__in { gap: 8px; }
   .stickcta .btn { padding-inline: 15px; font-size: 13px; }
 }
-/* mobile has no drag-and-drop: the zone says "upload" instead of "drop" */
-.cv-up{display:none}
-@media(max-width:699px){.cv-up{display:inline}.cv-drop{display:none}}
 </style>
 
 <script is:inline>
@@ -8143,7 +8121,7 @@ li,
       {
         nm: 'Project-based',
         v: '10 - 50',
-        d: 'One role you\u2019re stuck on, or a burst of them — permanent, contract or executive.',
+        d: 'One role you\u2019re stuck on, or a burst of them: permanent, contract or executive.',
         p: [
           'Per hire, 15–20%',
           'Nothing owed until you hire',
@@ -8237,7 +8215,7 @@ li,
       auto: 'Weight automation above everything and he drops out of Select. He scored 2 there, and it was the one thing he could not evidence. On this brief he is a no.',
       fabric:
         'Weight fabric depth and he falls to the bottom of Select. He describes the estate; he has not operated the fabric himself.',
-      ops: 'Weight the day job — troubleshooting, change discipline, ownership — and he climbs. That is where the evidence actually sat.',
+      ops: 'Weight the day job (troubleshooting, change discipline, ownership) and he climbs. That is where the evidence actually sat.',
     };
     var rows = document.getElementById('labRows'),
       tiles = document.getElementById('labTiles'),
@@ -8443,7 +8421,7 @@ li,
     });
   }
 
-  /* the card has two faces — demo the flip once, then it's yours */
+  /* the card has two faces — demo the flip once, then it’s yours */
   var flip = document.getElementById('flip'),
     tA = document.getElementById('tabA'),
     tB = document.getElementById('tabB'),
@@ -8542,22 +8520,22 @@ li,
     1: '<b>All 126.</b> Everything the requirement returned.',
     2: '<b>40 reached an expert interview.</b> Eighty-six never did.',
     3: '<b>14 cleared the bar</b> on their own answers.',
-    4: '<b>5 names reached them</b> — the first people the team ever saw.',
+    4: '<b>5 names reached them</b>, the first people the team ever saw.',
     5: '<b>2 hired,</b> out of five interviews.',
   };
   /* hovering a SQUARE shows where that person stopped */
   var STOP = {
-    1: '<b>86 stopped here</b> — screened out before anyone spent time on them.',
-    2: '<b>26 stopped here</b> — interviewed by an expert, didn\u2019t clear the bar.',
-    3: '<b>9 stopped here</b> — cleared the bar, ranked below the top five.',
-    4: '<b>3 stopped here</b> — sent, hireable, not chosen this time.',
+    1: '<b>86 stopped here</b>, screened out before anyone spent time on them.',
+    2: '<b>26 stopped here</b>, interviewed by an expert, didn\u2019t clear the bar.',
+    3: '<b>9 stopped here</b>, cleared the bar, ranked below the top five.',
+    4: '<b>3 stopped here</b>, sent, hireable, not chosen this time.',
     5: '<b>Hired.</b> One of the two.',
   };
   var REST = {
     1: '126 people, shaded by how far each one got. <b>The two in red were hired.</b>',
     2: '<b>86 have dropped away.</b> Screened out before anyone spent time on them.',
     3: '<b>26 more gone.</b> Interviewed by a person, didn\u2019t clear the bar.',
-    4: '<b>9 more.</b> Good — ranked below the top five. They never reached the team.',
+    4: '<b>9 more.</b> Good. Ranked below the top five. They never reached the team.',
     5: '<b>Two hired, out of five interviews.</b> Everything else never left our desk.',
   };
 
@@ -8593,6 +8571,7 @@ li,
     st.setAttribute('role', 'button');
     function take() {
       userTook = true;
+      clearLoop();
       mark(n);
       deselect();
     }
@@ -8633,6 +8612,8 @@ li,
     grid.addEventListener('click', function (e) {
       var s = e.target.closest('.sq');
       if (!s) return;
+      userTook = true;
+      clearLoop();
       select(+s.dataset.drop);
     });
   }
@@ -8644,9 +8625,38 @@ li,
     setStage(n);
   }
 
-  /* it narrows itself once when you arrive — then it's yours to poke at */
+  /* it narrows itself when you arrive, then keeps cycling 126 → 2 — until you
+     take over with a click; then it parks and is yours to poke at */
   var fn = document.getElementById('run'),
-    played = false;
+    played = false,
+    loopTimers = [];
+  function clearLoop() {
+    loopTimers.forEach(clearTimeout);
+    loopTimers = [];
+  }
+  function runLoop() {
+    if (userTook) return;
+    [2, 3, 4, 5].forEach(function (n, i) {
+      loopTimers.push(
+        setTimeout(
+          function () {
+            if (!userTook) mark(n);
+          },
+          900 + i * 780,
+        ),
+      );
+    });
+    loopTimers.push(
+      setTimeout(
+        function () {
+          if (userTook) return;
+          mark(1);
+          runLoop();
+        },
+        900 + 4 * 780 + 1000,
+      ),
+    );
+  }
   if (fn && steps.length && 'IntersectionObserver' in window) {
     new IntersectionObserver(
       function (es, ob) {
@@ -8658,14 +8668,7 @@ li,
             mark(5);
             return;
           }
-          [2, 3, 4, 5].forEach(function (n, i) {
-            setTimeout(
-              function () {
-                if (!userTook) mark(n);
-              },
-              900 + i * 780,
-            );
-          });
+          runLoop();
         });
       },
       { threshold: 0.35 },
@@ -8906,6 +8909,12 @@ li,
         }
       }, 200);
     }
+    if (window.matchMedia && matchMedia('(max-width:699px)').matches) {
+      var cvLabel = document.getElementById('cvLabel'),
+        cvVerb = document.getElementById('cvVerb');
+      if (cvLabel) cvLabel.textContent = 'Upload your CV here';
+      if (cvVerb) cvVerb.textContent = 'Upload';
+    }
     zone.addEventListener('click', function () {
       file.click();
     });
@@ -8950,6 +8959,11 @@ li,
         if (!e.isIntersecting || ran) return;
         ran = true;
         ob.disconnect();
+        if (reduce) {
+          n.textContent = TARGET;
+          return;
+        }
+        n.textContent = '0';
         (function step() {
           var d = TARGET - shown;
           if (d < 0.04) {

@@ -91,7 +91,7 @@ export const getSizes = (width?: number, layout?: Layout): string | undefined =>
   }
   switch (layout) {
     // If screen is wider than the max size, image width is the max size,
-    // otherwise it's the width of the screen
+    // otherwise it’s the width of the screen
     case `constrained`:
       return `(min-width: ${width}px) ${width}px, 100vw`;
 
@@ -319,7 +319,7 @@ export async function getImagesOptimized(
   } else if (width && height) {
     aspectRatio = width / height;
   } else if (layout !== 'fullWidth') {
-    // Fullwidth images don't need dimensions
+    // Fullwidth images don’t need dimensions
     console.error('Either aspectRatio or both width and height must be set');
     console.error('Image', image);
   }

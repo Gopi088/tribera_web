@@ -28,11 +28,11 @@ import ContactSalesModal from '../../components/ContactSalesModal.astro';
             <p class="eyebrow" data-rv>Almost there</p>
             <h1 class="h1" data-rv style="--d:60ms">Your profile, <em>one minute away</em>.</h1>
             <p class="hero__p" data-rv style="--d:110ms">
-              We already have your email from the previous screen. The last of it is here —
-              <b>your name and your CV</b>.
+              We already have your email from the previous screen. The last of it is here:
+              your name and your CV.
             </p>
             <p class="hero__p" data-rv style="--d:150ms">
-              <b>We reply within a day either way</b>, and if we can't help we'll say so rather than go
+              <b>We reply within a day either way</b>, and if we can’t help we’ll say so rather than go
               quiet.
             </p>
           </div>
@@ -45,8 +45,8 @@ import ContactSalesModal from '../../components/ContactSalesModal.astro';
             <p class="apply__k">One minute</p>
             <p class="apply__h">Two fields. <span class="accent">Then we take it from here.</span></p>
             <p class="apply__s">
-              Name and CV, and we'll pick everything up on this screen.
-              <b>We reply within a day either way</b>, and if we can't help we'll say so rather than go quiet.
+              Name and CV, and we’ll pick everything up on this screen.
+              <b>We reply within a day either way</b>, and if we can’t help we’ll say so rather than go quiet.
             </p>
 
             <form class="apply__form" id="profileForm" action="/.netlify/functions/candidate-profile" method="POST" enctype="multipart/form-data">
@@ -86,7 +86,7 @@ import ContactSalesModal from '../../components/ContactSalesModal.astro';
 
               <label class="drop" id="cvDrop" for="cvInput">
                 <input type="file" id="cvInput" name="resume" accept=".pdf,.doc,.docx" />
-                <span class="drop__k" id="dropK"><span class="cv-drop">Drop your CV here, or</span><span class="cv-up">Upload your CV, or</span> <b>click to browse</b></span>
+                <span class="drop__k" id="dropK">Drop your CV here, or <b>click to browse</b></span>
                 <span class="drop__s">PDF, DOC or DOCX &middot; up to 10 MB</span>
                 <span class="drop__n" id="cvName"></span>
               </label>
@@ -109,7 +109,7 @@ import ContactSalesModal from '../../components/ContactSalesModal.astro';
               <span class="start__okic">&#10003;</span>
               <p class="apply__h">We got it.</p>
               <p class="apply__s">
-                Your profile is with us. <b>We reply within a day either way</b> — if we can't help, we'll
+                Your profile is with us. <b>We reply within a day either way</b>; if we can’t help, we’ll
                 say so rather than go quiet.
               </p>
               <a href="/candidates" class="btn btn--wire">Back to how it works</a>
@@ -124,10 +124,10 @@ import ContactSalesModal from '../../components/ContactSalesModal.astro';
       <div class="shead">
         <div>
           <p class="eyebrow eyebrow--red" data-rv>What happens next</p>
-          <h2 class="h2" data-rv>From here, it's mostly us.</h2>
+          <h2 class="h2" data-rv>From here, it’s mostly us.</h2>
         </div>
         <p class="dek" data-rv style="--d:60ms">
-          You're done. The rest of the work happens on our side —
+          You’re done. The rest of the work happens on our side.
           <b>you keep the score, whatever happens after that</b>.
         </p>
       </div>
@@ -154,7 +154,7 @@ import ContactSalesModal from '../../components/ContactSalesModal.astro';
           <span class="tl2__bar"></span>
           <p class="tl2__d">~3 weeks <i>&middot;</i> offer</p>
           <p class="tl2__t">You decide</p>
-          <p class="tl2__p">Accept what fits, decline what doesn't. Most people see more than one.</p>
+          <p class="tl2__p">Accept what fits, decline what doesn’t. Most people see more than one.</p>
         </div>
       </div>
     </section>
@@ -618,8 +618,6 @@ a {
   color: #f8f6f0;
 }
 /* mobile has no drag-and-drop: the zone says "upload" instead of "drop" */
-.cv-up{display:none}
-@media(max-width:699px){.cv-up{display:inline}.cv-drop{display:none}}
 .drop__k b {
   color: #f8f6f0;
   font-weight: 600;
@@ -855,6 +853,12 @@ a {
 
 <script is:inline>
   (function () {
+    if (window.matchMedia && matchMedia('(max-width:699px)').matches) {
+      const dropK = document.getElementById('dropK');
+      if (dropK && dropK.firstChild && dropK.firstChild.nodeType === 3) {
+        dropK.firstChild.textContent = 'Upload your CV, or ';
+      }
+    }
     const form = document.getElementById('profileForm');
     if (!form) return;
 
