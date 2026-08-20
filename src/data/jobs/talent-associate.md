@@ -9,7 +9,7 @@ remotePolicy: onsite
 experienceLevel: Entry level
 featured: false
 sortOrder: 30
-summary: Every expert was once a beginner who refused to stay one. At Tribera, you won't file resumes. You'll learn to read people — and that changes how you see everything.
+summary: Every expert was once a beginner who refused to stay one. At Tribera, you won’t file resumes. You’ll learn to read people — and that changes how you see everything.
 applyEmail: careers@tribera.ai
 postedAt: 2026-03-20
 updatedAt: 2026-03-20
@@ -21,9 +21,9 @@ seoDescription: Join Tribera as a Talent Associate and learn what structured, qu
 
 Every expert was once a beginner who refused to stay one.
 
-At Tribera, you won't file resumes. You'll learn to read people — and that changes how you see everything.
+At Tribera, you won’t file resumes. You’ll learn to read people — and that changes how you see everything.
 
-## What you'll learn to do
+## What you’ll learn to do
 
 - Identify real capability — not just keyword matching
 - Have honest, direct conversations with candidates
@@ -39,7 +39,7 @@ At Tribera, you won't file resumes. You'll learn to read people — and that cha
 
 ## Why this role matters
 
-This is not a role where you file resumes · It's where you learn to see potential
+This is not a role where you file resumes · It’s where you learn to see potential
 
 ## Hiring process
 

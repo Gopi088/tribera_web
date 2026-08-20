@@ -72,13 +72,17 @@ const resolvedTitle =
 
 // Dev environments must never be indexed: the canonical always points at
 // production, so a dev page would otherwise present itself as the live page.
-// Local dev (import.meta.env.DEV) and any Netlify non-production deploy
-// (CONTEXT = deploy-preview / branch-deploy) are both forced noindex.
+// Local dev (import.meta.env.DEV), any Netlify non-production deploy
+// (CONTEXT = deploy-preview / branch-deploy) and any Netlify subdomain
+// (triberaai.netlify.app) are all forced noindex.
 const isDevEnv =
   import.meta.env.DEV ||
   (typeof process !== 'undefined' &&
     process.env.CONTEXT !== undefined &&
-    process.env.CONTEXT !== 'production');
+    process.env.CONTEXT !== 'production') ||
+  (typeof process !== 'undefined' &&
+    process.env.URL !== undefined &&
+    process.env.URL.includes('netlify.app'));
 
 const robotsContent = `${isDevEnv || seoProps.noindex ? 'noindex' : 'index'}, ${seoProps.nofollow ? 'nofollow' : 'follow'}`;
 const resolvedTwitter = seoProps.twitter as MetaDataTwitter | undefined;

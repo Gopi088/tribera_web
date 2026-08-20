@@ -9,7 +9,7 @@ remotePolicy: onsite
 experienceLevel: 4+ years experience
 featured: true
 sortOrder: 20
-summary: The resume tells you what someone did. It rarely tells you what they can do. We're building the team that knows the difference.
+summary: The resume tells you what someone did. It rarely tells you what they can do. We’re building the team that knows the difference.
 applyEmail: careers@tribera.ai
 postedAt: 2026-03-20
 updatedAt: 2026-03-20
@@ -21,9 +21,9 @@ seoDescription: Join Tribera to help teams hire with more signal, context, and t
 
 The resume tells you what someone did. It rarely tells you what they can do.
 
-We're building the team that knows the difference.
+We’re building the team that knows the difference.
 
-## What you'll own
+## What you’ll own
 
 - Read capability, not credentials — and act on it
 - Partner with clients to define what great actually looks like
@@ -43,7 +43,7 @@ Signal over noise · Outcomes over activity
 
 ## Hiring process
 
-If this resonates — let's talk.
+If this resonates — let’s talk.
 
 ## About Tribera
 

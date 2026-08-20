@@ -21,9 +21,9 @@ seoDescription: Join Tribera to build practical AI systems for hiring and decisi
 
 We are looking for an AI/ML Engineer to build practical AI systems that make hiring decisions clearer, more structured, and easier to trust.
 
-You will work on the models, evaluation logic, and AI-assisted workflows that sit inside Tribera's product and shape real hiring decisions.
+You will work on the models, evaluation logic, and AI-assisted workflows that sit inside Tribera’s product and shape real hiring decisions.
 
-## What you'll own
+## What you’ll own
 
 - Build AI and ML workflows that improve candidate evaluation and decision support
 - Work across model behavior, offline evaluation, and product integration
@@ -48,11 +48,11 @@ You will work on the models, evaluation logic, and AI-assisted workflows that si
 
 ## Why this role matters
 
-Tribera's value comes from better judgment, not more automation for its own sake. This role helps make that real in the product.
+Tribera’s value comes from better judgment, not more automation for its own sake. This role helps make that real in the product.
 
 ## Hiring process
 
-If this resonates — let's talk.
+If this resonates — let’s talk.
 
 ## About Tribera
 

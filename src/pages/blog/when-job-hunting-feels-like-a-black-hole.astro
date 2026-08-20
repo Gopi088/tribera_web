@@ -6,7 +6,7 @@ import ContactSalesModal from '../../components/ContactSalesModal.astro';
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>When job hunting feels like a black hole — tribera</title>
+<title>When job hunting feels like a black hole: tribera</title>
 <meta name="description" content="A hundred and forty applications, three replies. What that actually does to a person, and the one thing that changes it.">
     <link rel="preload" href="/fonts/figtree-800.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/inter-tight-600.woff2" as="font" type="font/woff2" crossorigin />
@@ -20,10 +20,13 @@ import ContactSalesModal from '../../components/ContactSalesModal.astro';
   --red:#DA0007;--grn:#3FBE7C;
   --display:"Figtree",-apple-system,sans-serif;--ui:"Inter Tight",-apple-system,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
-  --ease:cubic-bezier(.16,1,.3,1);--wrap:1280px;--gut:clamp(20px,4.5vw,48px);
+  --ease:cubic-bezier(.16,1,.3,1);--wrap:1280px;--gut:24px;
+}
+@media (min-width: 1536px) {
+  :root { --wrap: 1600px; --gut: 30px; }
 }
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;scroll-padding-top:64px;overflow-x:clip;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--ui);font-size:16px;
   line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
@@ -117,7 +120,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 @media(max-width:999px){.hero{padding-top:42px}.hero__top{min-height:0;align-content:start}.hero__top>*{min-width:0}.hero__card{width:100%;max-width:100%}}
 @media(max-width:699px){.hero__top{gap:32px}.hero__copy .btns{display:grid;grid-template-columns:1fr;gap:10px}.hero__copy .btns .btn{justify-content:center;min-height:48px;width:100%}}
 @media(min-width:1000px){.hero__top{grid-template-columns:.9fr 1.1fr;align-items:center;
-  gap:clamp(44px,5.5vw,92px);width:calc(100% + 48px);margin-inline:-24px}}
+  gap:clamp(44px,5.5vw,92px);max-width:1080px;margin-inline:auto}}
 .hero__copy .btns{margin-top:26px}
 .hero .eyebrow{margin-bottom:16px}
 .hero h1{max-width:18ch;font-size:clamp(36px,4.6vw,62px)}
@@ -133,6 +136,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .hero__card::before{content:"";position:absolute;inset:-14% -8% -18%;pointer-events:none;
   background:radial-gradient(58% 52% at 62% 34%,rgba(218,0,7,.14),transparent 70%);
   filter:blur(28px);opacity:.55;transition:opacity .8s var(--ease),transform .8s var(--ease)}
+@media(max-width:1280px){.hero__card::before{inset:-14% -16px -18%}}
 .hero__card.is-flipped::before{opacity:.85;transform:translateX(-6%)}
 .tilt{transform-style:preserve-3d;-webkit-transform-style:preserve-3d;
   transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
@@ -1137,7 +1141,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 
 /* ══ sticky candidate CTA ══ */
 .stickcta{position:fixed;left:0;right:0;bottom:0;z-index:70;transform:translateY(110%);
-  transition:transform .4s var(--ease);background:rgba(19,19,19,.94);
+  transition:transform .4s var(--ease);background:#131313;
   backdrop-filter:blur(12px);border-top:1px solid var(--cline)}
 .stickcta.show{transform:none}
 .stickcta__in{display:flex;align-items:center;gap:14px;padding:12px 0}
@@ -1484,15 +1488,14 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
 .ind__w{margin-top:auto}
 
 /* ════════ NAV ════════ */
-.nav{position:sticky;top:0;z-index:50;background:rgba(19,19,19,.72);
-  backdrop-filter:saturate(1.6) blur(14px);-webkit-backdrop-filter:saturate(1.6) blur(14px);
-  border-bottom:1px solid transparent;transition:background .3s var(--ease),
-  border-color .3s var(--ease),box-shadow .3s var(--ease)}
-.nav.stuck{background:rgba(19,19,19,.94);border-bottom-color:rgba(255,255,255,.09);
-  box-shadow:0 6px 26px rgba(0,0,0,.28)}
+.nav{position:sticky;top:0;z-index:50;background:#131313;
+  
+  transition:background .3s var(--ease)}
+.nav::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(to right,transparent,rgba(255,255,255,.1) 50%,transparent);pointer-events:none}
+
 .nav__in{display:flex;align-items:center;gap:18px;
-  padding-block:clamp(14px,1.5vw,20px);transition:padding-block .3s var(--ease)}
-.nav.stuck .nav__in{padding-block:11px}
+  padding-block:clamp(7px,0.9vw,8px);transition:padding-block .3s var(--ease)}
+
 .logo{font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.045em;
   color:var(--onc);text-decoration:none;flex:none;line-height:1}
 .logo i{display:inline-block;font-style:normal;color:var(--red);
@@ -1534,7 +1537,7 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
 @media(max-width:1079px){.nav__sw{display:none}}
 
 html.nlock{overflow:hidden}
-.navp{display:none;position:absolute;top:100%;left:0;right:0;max-height:calc(100dvh - 100%);overflow-y:auto;-webkit-overflow-scrolling:touch;border-top:1px solid rgba(255,255,255,.08);background:rgba(19,19,19,.98);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.navp{display:none;position:absolute;top:100%;left:0;right:0;max-height:calc(100dvh - 100%);overflow-y:auto;-webkit-overflow-scrolling:touch;border-top:1px solid rgba(255,255,255,.08);background:#131313;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .navp.open{display:block;animation:npIn .3s var(--ease) both}
 @keyframes npIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 @media(min-width:1080px){.navp{display:none!important}}
@@ -1707,7 +1710,7 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
         <span class="dd__c"><p class="dd__k">Industries</p><a href="/industries/banking-financial-services">Banking & financial services</a><a href="/industries/enterprise-technology">Enterprise technology</a><a href="/industries/product-saas">Product & SaaS</a><a href="/industries/ai-data">AI & data</a><a href="/industries/cybersecurity">Cybersecurity</a><a href="/industries/healthcare-life-sciences">Healthcare & life sciences</a><a href="/industries/pharmaceutical">Pharmaceutical</a><a href="/industries/manufacturing">Manufacturing</a><a href="/industries/industrial-engineering">Industrial & engineering</a><a href="/industries/global-capability-centres">Global capability centres</a><a href="/industries/consumer-digital-commerce">Consumer & digital commerce</a><a href="/industries/private-equity-portfolio">Private equity portfolio</a></span>
         <span class="dd__c"><p class="dd__k">Functions</p><a href="/functions/engineering-platform">Engineering & platform</a><a href="/functions/data-analytics">Data & analytics</a><a href="/functions/infrastructure-sre">Infrastructure & SRE</a><a href="/functions/security">Security</a><a href="/functions/finance-risk">Finance & risk</a><a href="/functions/product-design">Product & design</a><a href="/functions/operations">Operations</a><a href="/functions/leadership">Leadership</a></span>
       </span>
-      <span class="dd__f">Not listed? <a href="/contact">Ask us</a> — we say no when it is not our
+      <span class="dd__f">Not listed? <a href="/contact">Ask us</a>: we say no when it is not our
         ground.</span>
     </span>
   </span><a class="nav__l" href="/services">Services</a><a class="nav__l" href="/intelligence">Intelligence</a><a class="nav__l" href="/blog" aria-current="page">Blog</a><a class="nav__l" href="/about">About</a><a class="nav__l" href="/contact">Contact</a></span>
@@ -1761,13 +1764,13 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   <article class="art">
 <p class="lede">Arjun sent a hundred and forty applications in one spring. He got three replies. He stopped counting in April, which is the detail I keep coming back to.</p>
 
-<p>Not because three is unusually low — it is roughly normal — but because stopping counting is what happens when a process stops giving you information. You cannot learn from silence. You cannot adjust to it. You cannot even tell whether the problem is your CV, your timing, the market, or nothing at all.</p>
+<p>Not because three is unusually low, it is roughly normal, but because stopping counting is what happens when a process stops giving you information. You cannot learn from silence. You cannot adjust to it. You cannot even tell whether the problem is your CV, your timing, the market, or nothing at all.</p>
 
 <p>Most advice for this moment is about volume and optimisation. Tailor the CV. Use the keywords. Apply to more. All of which is reasonable and none of which addresses the actual problem, which is that you are getting no feedback from a system you have no visibility into.</p>
 
 <h2>What silence actually costs</h2>
 
-<p>It is not the rejection. People handle rejection. What silence does is remove your ability to tell a good decision from a bad one — so every subsequent choice gets made in the dark, and confidence erodes in a way that shows up in interviews weeks later.</p>
+<p>It is not the rejection. People handle rejection. What silence does is remove your ability to tell a good decision from a bad one. So every subsequent choice gets made in the dark, and confidence erodes in a way that shows up in interviews weeks later.</p>
 
 <blockquote class="pull">You cannot learn from silence.
 <em>You can only lose faith in stages.</em></blockquote>
@@ -1776,13 +1779,13 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
 
 <p><b>Stop optimising for volume.</b> A hundred and forty applications is not forty times better than three well-chosen ones; it is mostly forty times more silence. The response rate on cold applications is what it is, and no amount of tailoring moves it much.</p>
 
-<p><b>Get one conversation that travels.</b> The reason applying is so lossy is that every application starts from zero — a stranger reading a document. One recorded, structured conversation that multiple teams can read changes the arithmetic completely. Arjun did one. Three teams asked for him inside forty-eight hours, and none of them had seen the CV.</p>
+<p><b>Get one conversation that travels.</b> The reason applying is so lossy is that every application starts from zero, a stranger reading a document. One recorded, structured conversation that multiple teams can read changes the arithmetic completely. Arjun did one. Three teams asked for him inside forty-eight hours, and none of them had seen the CV.</p>
 
 <p><b>Protect the part of yourself that will be interviewing later.</b> This sounds soft and it is the most practical thing on the list. Four months of silence changes how you answer questions, and hiring managers can hear it.</p>
 
 <h2>The thing we owe you</h2>
 
-<p>If you talk to us and we cannot help, we will say so and tell you why. Not as a courtesy — because the alternative is adding to the pile of unanswered things, and the pile is the problem.</p>
+<p>If you talk to us and we cannot help, we will say so and tell you why. Not as a courtesy. Because the alternative is adding to the pile of unanswered things, and the pile is the problem.</p>
 
 <p class="signoff">Belong. Build. Become.</p></article>
   <div class="aft">
@@ -1826,7 +1829,7 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
       <h2 class="h2" data-rv style="max-width:none">Two doors. Same room.</h2>
     </div>
     <p class="dek" data-rv style="--d:60ms;max-width:none">If you have a role you’re stuck on, or you’re the
-    one being interviewed, <b>both of those start the same way.</b></p>
+    one being interviewed, both of those start the same way.</p>
   </div>
   <div class="doors" data-rv style="--d:110ms">
     <div class="door">

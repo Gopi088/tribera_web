@@ -186,7 +186,13 @@ import ContactSalesModal from '../../components/ContactSalesModal.astro';
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --spring: cubic-bezier(0.34, 1.42, 0.64, 1);
   --wrap: 1280px;
-  --gut: clamp(20px, 4.5vw, 48px);
+  --gut: 24px;
+}
+@media (min-width: 1536px) {
+  :root {
+    --wrap: 1600px;
+    --gut: 30px;
+  }
 }
 *,
 *::before,
@@ -853,16 +859,6 @@ a {
 
 <script is:inline>
   (function () {
-    const dropK = document.getElementById('dropK');
-    if (window.matchMedia && dropK && dropK.firstChild && dropK.firstChild.nodeType === 3) {
-      const dropKmq = matchMedia('(max-width:699px)');
-      function syncDropK() {
-        dropK.firstChild.textContent = dropKmq.matches ? 'Upload your CV, or ' : 'Drop your CV here, or ';
-      }
-      syncDropK();
-      if (dropKmq.addEventListener) dropKmq.addEventListener('change', syncDropK);
-      else if (dropKmq.addListener) dropKmq.addListener(syncDropK);
-    }
     const form = document.getElementById('profileForm');
     if (!form) return;
 

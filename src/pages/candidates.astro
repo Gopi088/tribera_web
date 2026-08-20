@@ -170,7 +170,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
       <div class="hero__top">
         <div class="hero__copy">
           <p class="eyebrow" data-rv>One conversation. Thirty minutes.</p>
-          <h1 class="h1" data-rv style="--d:60ms">Interviewed once.<br />Shortlisted <em>everywhere</em>.</h1>
+          <h1 class="h1" data-rv style="--d:60ms">Interviewed once. Shortlisted <em>everywhere</em>.</h1>
           <!-- <p class="hero__p" data-rv style="--d:110ms">
             Your CV gets six seconds. Your LinkedIn gets skimmed.
             <b>One honest conversation with someone who has done your job gets read</b>, by every team
@@ -963,7 +963,13 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
   --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --wrap: 1280px;
-  --gut: clamp(20px, 4.5vw, 48px);
+  --gut: 24px;
+}
+@media (min-width: 1536px) {
+  :root {
+    --wrap: 1600px;
+    --gut: 30px;
+  }
 }
 *,
 *::before,
@@ -972,7 +978,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
 }
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 84px;
+  scroll-padding-top: 64px;
   -webkit-text-size-adjust: 100%;
 }
 body {
@@ -1283,7 +1289,7 @@ a {
 .hero {
   background: var(--char);
   color: var(--onc);
-  padding-block: clamp(44px, 5.6vw, 80px) 0;
+  /* padding-block: clamp(44px, 5.6vw, 80px) 0; */
 }
 .hero .eyebrow {
   color: var(--onc3);
@@ -1295,7 +1301,7 @@ a {
   font-style: normal;
   color: var(--red);
 }
-.hero__top{display:grid;gap:clamp(26px,3vw,44px);align-content:center;min-height:1576px}@media(min-width:330px){.hero__top{min-height:1496px}}@media(min-width:340px){.hero__top{min-height:1476px}}@media(min-width:360px){.hero__top{min-height:1461px}}@media(min-width:375px){.hero__top{min-height:1401px}}@media(min-width:390px){.hero__top{min-height:1321px}}@media(min-width:400px){.hero__top{min-height:1301px}}@media(min-width:420px){.hero__top{min-height:1286px}}@media(min-width:440px){.hero__top{min-height:1266px}}@media(min-width:460px){.hero__top{min-height:1216px}}@media(min-width:500px){.hero__top{min-height:1176px}}@media(min-width:550px){.hero__top{min-height:1161px}}@media(min-width:700px){.hero__top{min-height:1121px}}@media(min-width:800px){.hero__top{min-height:1126px}}@media(min-width:900px){.hero__top{min-height:1104px}}@media(min-width:1000px){.hero__top{min-height:727px}}@media(min-width:1100px){.hero__top{min-height:741px}}@media(min-width:1200px){.hero__top{min-height:749px}}@media(min-width:1240px){.hero__top{min-height:759px}}
+.hero__top{display:grid;gap:clamp(26px,3vw,44px);align-content:center;min-height:1576px}@media(min-width:330px){.hero__top{min-height:1496px}}@media(min-width:340px){.hero__top{min-height:1476px}}@media(min-width:360px){.hero__top{min-height:1461px}}@media(min-width:375px){.hero__top{min-height:1401px}}@media(min-width:390px){.hero__top{min-height:1321px}}@media(min-width:400px){.hero__top{min-height:1301px}}@media(min-width:420px){.hero__top{min-height:1286px}}@media(min-width:440px){.hero__top{min-height:1266px}}@media(min-width:460px){.hero__top{min-height:1216px}}@media(min-width:500px){.hero__top{min-height:1176px}}@media(min-width:550px){.hero__top{min-height:1161px}}@media(min-width:700px){.hero__top{min-height:1121px}}@media(min-width:800px){.hero__top{min-height:1126px}}@media(min-width:900px){.hero__top{min-height:1104px}}@media(min-width:1000px){.hero__top{min-height:calc(100svh - 64px)}}
 @media(max-width:999px){.hero{padding-top:42px}.hero__top{min-height:0;align-content:start}.hero__top>*{min-width:0}.hero__card{width:100%;max-width:100%}}
 @media(max-width:699px){.hero__top{gap:32px}.hero__copy .btns{display:grid;grid-template-columns:1fr;gap:10px}.hero__copy .btns .btn{justify-content:center;min-height:48px;width:100%}}
 
@@ -1321,8 +1327,8 @@ a {
     grid-template-columns: 0.9fr 1.1fr;
     align-items: center;
     gap: clamp(44px, 5.5vw, 92px);
-    width: calc(100% + 48px);
-    margin-inline: -24px;
+    max-width: 1080px;
+    margin-inline: auto;
   }
 }
 .hero__copy .btns {
@@ -7710,28 +7716,27 @@ li,
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--ink);
-  border-bottom: 1px solid transparent;
-  transition:
-    background 0.3s var(--ease),
-    border-color 0.3s var(--ease),
-    box-shadow 0.3s var(--ease);
+  background: #000;
+  transition: background 0.3s var(--ease);
 }
-.nav.stuck {
-  border-bottom-color: rgba(255, 255, 255, 0.09);
-  box-shadow: 0 6px 26px rgba(0, 0, 0, 0.28);
+.nav::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1) 50%, transparent);
+  pointer-events: none;
 }
+
 .nav__in {
   display: flex;
   align-items: center;
   gap: 18px;
-  padding-block: clamp(14px, 1.5vw, 20px);
+  padding-block: clamp(7px, 0.9vw, 8px);
   transition: padding-block 0.3s var(--ease);
-}
-.nav.stuck .nav__in {
-  padding-block: 11px;
-}
-.logo {
+}.logo {
   font-family: var(--display);
   font-weight: 800;
   font-size: 21px;
@@ -7794,6 +7799,8 @@ li,
 @media (min-width: 1080px) {
   .nav__links {
     display: flex;
+    flex: 1 0 auto;
+    justify-content: flex-end;
   }
 }
 .nav__l {
@@ -7834,6 +7841,7 @@ li,
 @media (min-width: 1080px) {
   .nav__end {
     margin-left: 14px;
+    flex-shrink: 0;
   }
 }
 .nav__login {
@@ -8939,19 +8947,6 @@ li,
 
   /* ══ CV DROP: idle → reading → result ══ */
   (function () {
-    var cvLabel = document.getElementById('cvLabel'),
-      cvVerb = document.getElementById('cvVerb');
-    if (window.matchMedia && (cvLabel || cvVerb)) {
-      var cvMq = matchMedia('(max-width:699px)');
-      function syncCvLabel() {
-        var mobile = cvMq.matches;
-        if (cvLabel) cvLabel.textContent = mobile ? 'Upload your CV here' : 'Drop your CV here';
-        if (cvVerb) cvVerb.textContent = mobile ? 'Upload' : 'Drop';
-      }
-      syncCvLabel();
-      if (cvMq.addEventListener) cvMq.addEventListener('change', syncCvLabel);
-      else if (cvMq.addListener) cvMq.addListener(syncCvLabel);
-    }
     var drop = document.getElementById('drop'),
       zone = document.getElementById('cvZone'),
       file = document.getElementById('cvFile'),

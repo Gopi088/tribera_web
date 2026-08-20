@@ -21,11 +21,11 @@ seoDescription: Join Tribera to build the infrastructure behind AI-assisted hiri
 
 Great hiring products feel simple on the surface. That simplicity is earned in the backend.
 
-We're looking for backend engineers who care about reliability, clarity, and building systems that make product judgment stronger.
+We’re looking for backend engineers who care about reliability, clarity, and building systems that make product judgment stronger.
 
-## What you'll own
+## What you’ll own
 
-- Build the APIs and services behind Tribera's hiring workflows
+- Build the APIs and services behind Tribera’s hiring workflows
 - Keep the system fast, dependable, and easy to reason about
 - Work closely with product and AI teams on evaluation logic, scoring, and data flow
 - Ship with ownership, discipline, and a high bar for quality
@@ -52,7 +52,7 @@ Simple products only stay simple when the underlying systems are rigorous. This 
 
 ## Hiring process
 
-If this resonates — let's talk.
+If this resonates — let’s talk.
 
 ## About Tribera
 

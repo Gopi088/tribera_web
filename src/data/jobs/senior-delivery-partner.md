@@ -9,7 +9,7 @@ remotePolicy: onsite
 experienceLevel: 7+ years experience
 featured: true
 sortOrder: 25
-summary: Activity is easy to measure. Outcomes are harder. We hire. We close. We're accountable for who joins — not just how many profiles were shared.
+summary: Activity is easy to measure. Outcomes are harder. We hire. We close. We’re accountable for who joins — not just how many profiles were shared.
 applyEmail: careers@tribera.ai
 postedAt: 2026-03-20
 updatedAt: 2026-03-20
@@ -21,9 +21,9 @@ seoDescription: Join Tribera as a Senior Delivery Partner and own the outcome ac
 
 Activity is easy to measure. Outcomes are harder.
 
-We hire. We close. We're accountable for who joins — not just how many profiles were shared.
+We hire. We close. We’re accountable for who joins — not just how many profiles were shared.
 
-## What you'll own
+## What you’ll own
 
 - Full delivery accountability across multiple clients
 - The entire funnel: brief to day one
@@ -37,11 +37,11 @@ We hire. We close. We're accountable for who joins — not just how many profile
 
 ## Why this role matters
 
-We don't count profiles shared · We count people who joined
+We don’t count profiles shared · We count people who joined
 
 ## Hiring process
 
-Own the outcome — let's connect.
+Own the outcome — let’s connect.
 
 ## About Tribera
 

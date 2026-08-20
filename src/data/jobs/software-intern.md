@@ -23,7 +23,7 @@ This is not a shadowing internship. You will do real work, ship real output, and
 
 You will contribute across product, engineering, and internal tooling with support from a small team that expects ownership early.
 
-## What you'll own
+## What you’ll own
 
 - Contribute to feature work, fixes, and internal tooling
 - Learn how product, backend, and AI systems fit together in practice
@@ -50,7 +50,7 @@ Interns at Tribera should leave with real context, real skills, and work that ac
 
 ## Hiring process
 
-If this resonates — let's talk.
+If this resonates — let’s talk.
 
 ## About Tribera
 

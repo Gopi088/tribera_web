@@ -111,7 +111,7 @@ To make a request, email us at [privacy@tribera.ai](mailto:privacy@tribera.ai)
 
 Our site may contain links to external websites. We are not responsible for their content or privacy practices. Please review their policies before submitting personal data.
 
-## 9. Children's Privacy
+## 9. Children’s Privacy
 
 Our Service is not intended for users under the age of 18. We do not knowingly collect data from minors. If you believe a minor has submitted data to us, contact us immediately.
 

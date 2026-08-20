@@ -9,7 +9,7 @@ remotePolicy: onsite
 experienceLevel: Internship
 featured: false
 sortOrder: 40
-summary: Not every conversation closes a deal. The best ones open a door. That's the whole job — and it matters.
+summary: Not every conversation closes a deal. The best ones open a door. That’s the whole job — and it matters.
 applyEmail: careers@tribera.ai
 postedAt: 2026-03-20
 updatedAt: 2026-03-20
@@ -21,9 +21,9 @@ seoDescription: Join Tribera as a Growth Intern and learn outbound the right way
 
 Not every conversation closes a deal. The best ones open a door.
 
-That's the whole job — and it matters.
+That’s the whole job — and it matters.
 
-## What you'll do
+## What you’ll do
 
 - Identify the right person and find your way to them — the approach is yours
 - Build personalised outreach based on company context and hiring patterns
@@ -39,7 +39,7 @@ That's the whole job — and it matters.
 - Curious about startups, hiring, or B2B SaaS
 - Thinks before sending — personalisation is the work
 
-## What you'll learn
+## What you’ll learn
 
 - How B2B SaaS sales actually works from the inside
 - Outreach that earns responses — not just sends

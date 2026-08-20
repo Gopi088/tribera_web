@@ -793,7 +793,13 @@ html {
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --spring: cubic-bezier(0.34, 1.42, 0.64, 1);
   --wrap: 1280px;
-  --gut: clamp(20px, 4.5vw, 48px);
+  --gut: 24px;
+}
+@media (min-width: 1536px) {
+  :root {
+    --wrap: 1600px;
+    --gut: 30px;
+  }
 }
 .wrap {
   max-width: var(--wrap);
@@ -859,28 +865,16 @@ html {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(19, 19, 19, 0.72);
-  backdrop-filter: saturate(1.6) blur(14px);
-  -webkit-backdrop-filter: saturate(1.6) blur(14px);
-  border-bottom: 1px solid transparent;
-  transition: background 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
-}
-.nav.stuck {
-  background: rgba(19, 19, 19, 0.94);
-  border-bottom-color: rgba(255, 255, 255, 0.09);
-  box-shadow: 0 6px 26px rgba(0, 0, 0, 0.28);
-}
-.nav__in {
+  background: #000;
+
+  transition: background 0.3s var(--ease);
+}.nav__in {
   display: flex;
   align-items: center;
   gap: 18px;
-  padding-block: clamp(14px, 1.5vw, 20px);
+  padding-block: clamp(7px, 0.9vw, 8px);
   transition: padding-block 0.3s var(--ease);
-}
-.nav.stuck .nav__in {
-  padding-block: 11px;
-}
-.nav .logo {
+}.nav .logo {
   font-family: var(--display);
   font-weight: 800;
   font-size: 21px;
@@ -942,6 +936,8 @@ html {
 @media (min-width: 1080px) {
   .nav__links {
     display: flex;
+    flex: 1 0 auto;
+    justify-content: flex-end;
   }
 }
 .nav__l {
@@ -979,6 +975,7 @@ html {
 @media (min-width: 1080px) {
   .nav__end {
     margin-left: 14px;
+    flex-shrink: 0;
   }
 }
 .nav__login {
@@ -1053,9 +1050,7 @@ html.nlock {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(19, 19, 19, 0.98);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: #131313;
 }
 .navp.open {
   display: block;
