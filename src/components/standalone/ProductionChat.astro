@@ -1,0 +1,24 @@
+<script is:inline>
+  (() => {
+    if (window.location.hostname !== 'www.tribera.ai') return;
+
+    const scriptId = 'chatbot';
+    if (document.getElementById(scriptId)) return;
+
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.id = scriptId;
+    script.src = 'https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js';
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+    script.setAttribute('environmentId', '75186a18-80c9-e34b-b323-d376419f05d1');
+    const loadChat = () => {
+      if (!document.getElementById(scriptId)) document.body.appendChild(script);
+    };
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(loadChat, { timeout: 4000 });
+    } else {
+      window.setTimeout(loadChat, 2500);
+    }
+  })();
+</script>

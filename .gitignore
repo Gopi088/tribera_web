@@ -26,6 +26,7 @@ pnpm-lock.yaml
 tmp/*
 artifacts/screenshots/
 artifacts/screenshots.zip
+artifacts/
 
 # Local Netlify folder
 .netlify

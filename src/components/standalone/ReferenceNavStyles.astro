@@ -1,0 +1,940 @@
+<style is:global>
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  .nav {
+    background: rgba(19, 19, 19, 0.9) !important;
+    backdrop-filter: saturate(160%) blur(12px);
+    border-bottom: 1px solid var(--cline, rgba(255, 255, 255, 0.1));
+  }
+
+  .nav::after {
+    display: none;
+  }
+
+  .nav__in {
+    min-height: 64px;
+    height: 64px;
+    gap: 20px !important;
+    padding-block: 0 !important;
+  }
+
+  .nav .logo {
+    display: inline-flex !important;
+    flex: 0 0 76px;
+    align-items: baseline;
+    box-sizing: border-box;
+    width: 76px;
+    height: 20px;
+    font-family: 'Figtree', -apple-system, sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    line-height: 20px !important;
+    letter-spacing: -0.055em !important;
+    text-decoration: none !important;
+    white-space: nowrap;
+  }
+
+  .nav .logo i {
+    display: inline-block !important;
+    flex: 0 0 auto;
+    font: inherit !important;
+    font-style: normal !important;
+    line-height: 1 !important;
+    transform: none !important;
+  }
+
+  .nav__sw {
+    gap: 2px !important;
+    padding: 3px !important;
+    border-color: var(--cline, rgba(255, 255, 255, 0.1)) !important;
+  }
+
+  .nav__sw a {
+    padding: 6px 13px !important;
+    font-size: 13px !important;
+  }
+
+  @media (min-width: 1080px) {
+    .nav__links {
+      gap: 0 !important;
+    }
+
+    .nav__l,
+    .dd__t {
+      padding: 7px 8px !important;
+      font-size: 13px !important;
+    }
+
+    .nav__end {
+      gap: 12px !important;
+      margin-left: 10px !important;
+    }
+
+    .nav__login {
+      display: inline-flex !important;
+      flex: 0 0 37px !important;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      padding: 0 4px !important;
+      font-size: 13px !important;
+      line-height: 1 !important;
+      white-space: nowrap;
+    }
+  }
+
+  .nav__cta {
+    flex: 0 0 125px !important;
+    box-sizing: border-box;
+    width: 125px !important;
+    min-width: 125px !important;
+    min-height: 34px;
+    padding: 9px 18px !important;
+    font-size: 14px !important;
+    white-space: nowrap !important;
+  }
+
+  @media (min-width: 720px) {
+    .nav__cta {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  /* Keep hero actions clear of the next section at every desktop height. */
+  .hero {
+    padding-bottom: clamp(36px, 4vw, 64px) !important;
+  }
+
+  .hero__p {
+    color: #bdbdb7 !important;
+  }
+
+  /* The two audience routes share one hero frame. Their copy and card content
+     can differ, but the logo rail must start at the same vertical position. */
+  @media (max-width: 699px) {
+    .tribera-home .hero__top,
+    .tribera-candidates .hero__top {
+      min-height: 1050px;
+    }
+  }
+
+  @media (min-width: 700px) and (max-width: 999px) {
+    .tribera-home .hero__top,
+    .tribera-candidates .hero__top {
+      min-height: 1087px;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .tribera-home .hero__top,
+    .tribera-candidates .hero__top {
+      min-height: clamp(618px, calc(698px - 5.5vw), 642px);
+    }
+  }
+
+  /* The hero card is a supporting proof object, not half of the canvas. Keep
+     both audience routes on one measured desktop footprint. */
+  @media (min-width: 1152px) {
+    .tribera-home .hero__top,
+    .tribera-candidates .hero__top {
+      min-height: 692px;
+      grid-template-columns: minmax(0, 46fr) minmax(0, 54fr) !important;
+      gap: clamp(64px, 7.5vw, 144px) !important;
+    }
+
+    .tribera-home .hero__card,
+    .tribera-candidates .hero__card {
+      width: 100% !important;
+      max-width: 600px !important;
+      justify-self: end;
+      margin-right: clamp(0px, 4vw, 72px);
+    }
+
+    /* Treat the copy as the claim and the card as its proof: the headline can
+       occupy the column, while prose retains a deliberately readable measure. */
+    .tribera-home .hero h1,
+    .tribera-candidates .hero h1 {
+      font-size: clamp(52px, 3.125vw, 60px) !important;
+      line-height: 1.02 !important;
+      letter-spacing: -0.025em !important;
+    }
+
+    .tribera-home .hero__card .face,
+    .tribera-candidates .hero__card .face {
+      /* Reserve the loaded-font footprint. A minimum lets late font metrics
+         grow the card; an explicit frame keeps both sides stationary. */
+      height: 608px;
+    }
+
+    .tribera-home .hero__card .flip,
+    .tribera-candidates .hero__card .flip {
+      height: 608px;
+    }
+
+    .tribera-home .hero__copy .eyebrow,
+    .tribera-candidates .hero__copy .eyebrow {
+      margin-bottom: 24px !important;
+    }
+
+    .tribera-home .hero__copy .hero__p,
+    .tribera-candidates .hero__copy .hero__p {
+      max-width: 58ch !important;
+      font-size: 19px !important;
+      line-height: 1.62 !important;
+    }
+
+    .tribera-home .hero h1 + .hero__p,
+    .tribera-candidates .hero h1 + .hero__p {
+      margin-top: 32px !important;
+    }
+
+    .tribera-home .hero__p + .hero__p,
+    .tribera-candidates .hero__p + .hero__p {
+      margin-top: 24px !important;
+    }
+
+    .tribera-home .hero__copy .btns,
+    .tribera-candidates .hero__copy .btns {
+      margin-top: 48px !important;
+      gap: 16px !important;
+    }
+
+    .tribera-home .hero__copy .btn,
+    .tribera-candidates .hero__copy .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 56px;
+      padding-inline: 32px;
+      border-radius: 999px;
+    }
+
+    .tribera-home .hero__card .ftabs,
+    .tribera-candidates .hero__card .ftabs {
+      margin-bottom: 24px;
+    }
+
+  }
+
+  @media (min-width: 700px) and (max-width: 1151px) {
+    .tribera-home .hero,
+    .tribera-candidates .hero {
+      padding-block: 72px 56px !important;
+    }
+
+    .tribera-home .hero__top,
+    .tribera-candidates .hero__top {
+      min-height: 1087px;
+      grid-template-columns: minmax(0, 1fr) !important;
+      align-items: start !important;
+      gap: 56px !important;
+    }
+
+    .tribera-home .hero__copy,
+    .tribera-candidates .hero__copy {
+      max-width: 620px;
+    }
+
+    .tribera-home .hero__card,
+    .tribera-candidates .hero__card {
+      width: 100%;
+      max-width: 620px;
+      margin-inline: auto;
+    }
+  }
+
+  /* The client rail continues past the shared content rail, while the label
+     remains aligned with the copy. One roster now fills a desktop viewport,
+     so the loop does not show the same client twice at once. */
+  .tribera-home .logos__vp,
+  .tribera-candidates .logos__vp {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 72px, #000 calc(100% - 96px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 72px, #000 calc(100% - 96px), transparent 100%);
+  }
+
+  @media (min-width: 1152px) {
+    .tribera-home .logos__tk,
+    .tribera-candidates .logos__tk {
+      gap: 86px;
+      animation-name: tribera-logo-scroll;
+    }
+
+    .tribera-home .logos__tk {
+      animation-duration: 90s;
+    }
+
+    .tribera-candidates .logos__tk {
+      animation-duration: 116s;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .tribera-home .logos__vp,
+    .tribera-candidates .logos__vp {
+      margin-right: calc((var(--wrap) - 100vw) / 2 - var(--gut));
+    }
+  }
+
+  @keyframes tribera-logo-scroll {
+    to {
+      transform: translateX(calc(-50% - 43px));
+    }
+  }
+
+  @media (max-width: 767px) {
+    .tribera-home .hero__top,
+    .tribera-candidates .hero__top {
+      min-height: 1050px;
+    }
+
+    .tribera-home .hero__copy .btns,
+    .tribera-candidates .hero__copy .btns {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) !important;
+      gap: 12px !important;
+      width: 100%;
+    }
+
+    .tribera-home .hero__copy .btn,
+    .tribera-candidates .hero__copy .btn {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .tribera-candidates .hero__card .mtr2__r {
+      grid-template-columns: minmax(0, 1fr) 28px;
+    }
+
+    .tribera-candidates .hero__card .mtr2__b {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+
+    .tribera-candidates .hero__card .mtr2__v {
+      grid-column: 2;
+      grid-row: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) and (min-width: 1200px) {
+    .tribera-home .logos__vp,
+    .tribera-candidates .logos__vp {
+      overflow: hidden;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+
+    .tribera-home .logos__tk,
+    .tribera-candidates .logos__tk {
+      animation: none !important;
+      transform: none !important;
+      margin-inline: auto;
+    }
+
+    .tribera-home .logos__dup,
+    .tribera-candidates .logos__dup {
+      display: none;
+    }
+  }
+
+  /* Card evidence system: numbers, thresholds, and state labels must carry the
+     same meaning on both audience routes. */
+  .tribera-home .face--b .face__hd,
+  .tribera-candidates .face--b .face__hd,
+  .tribera-home .rank,
+  .tribera-candidates .rank {
+    color: var(--onc3) !important;
+  }
+
+  .tribera-home .rank i,
+  .tribera-candidates .rank i {
+    margin-right: 0.2em;
+    color: var(--red);
+    font-style: normal;
+  }
+
+  .tribera-home .face--b,
+  .tribera-candidates .face--b {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .tribera-home .face--b .side,
+  .tribera-candidates .face--b .side {
+    flex: 1;
+  }
+
+  .tribera-home .side__sub b,
+  .tribera-candidates .side__sub b {
+    color: #fff !important;
+  }
+
+  .tribera-home .hero__card .face:not(.face--b) .side__sub b,
+  .tribera-candidates .hero__card .face:not(.face--b) .side__sub b {
+    color: var(--grn) !important;
+    font-weight: 600;
+  }
+
+  .tribera-candidates .side__sub .side__outcome {
+    color: var(--grn) !important;
+  }
+
+  .tribera-candidates .hero__card .side__privacy {
+    display: block;
+    margin-top: 4px;
+  }
+
+  .tribera-home .scale__sel,
+  .tribera-candidates .scale__sel {
+    left: 0 !important;
+    right: auto;
+    width: var(--fill, var(--pin, 84%));
+    background: rgba(63, 190, 124, 0.42);
+  }
+
+  .tribera-home .scale__pin,
+  .tribera-candidates .scale__pin {
+    left: var(--pin, 84%) !important;
+  }
+
+  .tribera-home .scale::after,
+  .tribera-candidates .scale::after {
+    position: absolute;
+    top: -3px;
+    bottom: -3px;
+    left: var(--thr, 68%);
+    width: 1px;
+    content: '';
+    background: rgba(255, 255, 255, 0.52);
+  }
+
+  .tribera-home .scale__range,
+  .tribera-candidates .scale__range {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: -3px;
+    font-family: var(--mono);
+    font-size: 9px;
+    line-height: 1;
+    color: var(--onc3);
+  }
+
+  .tribera-home .scale__range i,
+  .tribera-candidates .scale__range i {
+    font-style: normal;
+  }
+
+  .tribera-home .scale__k,
+  .tribera-candidates .scale__k {
+    font-size: 11px !important;
+    color: var(--onc2) !important;
+  }
+
+  .tribera-candidates .hero__card .mtr2__b {
+    background: rgba(255, 255, 255, 0.18) !important;
+  }
+
+  .tribera-candidates .hero__card .mtr2__f {
+    /* Metrics are scores out of 100, so their visual scale must use the same
+       denominator as the number beside it. */
+    width: calc(var(--pct) * 1%) !important;
+  }
+
+  .tribera-candidates .hero__card .mtr2__r--low .mtr2__f {
+    background: #e8a33d !important;
+  }
+
+  .tribera-candidates .hero__card .mtr2__r--low .mtr2__v {
+    color: #e8a33d;
+  }
+
+  .tribera-candidates .hero__card .sig__r {
+    display: grid !important;
+    grid-template-columns: 140px minmax(0, 1fr) !important;
+    align-items: baseline !important;
+    gap: 16px !important;
+  }
+
+  .tribera-candidates .hero__card .sig__v {
+    font-family: var(--ui) !important;
+    text-align: left !important;
+    white-space: normal !important;
+  }
+
+  .tribera-candidates .hero__card .lg--ctl .lg--y,
+  .tribera-candidates .hero__card .lg--ctl .lg--n {
+    color: var(--onc3);
+  }
+
+  .tribera-candidates .hero__card .lg--ctl i::before {
+    border: 0;
+    border-radius: 2px;
+    background: currentColor;
+  }
+
+  .tribera-home .hero__card .rub__r {
+    grid-template-columns: 14px minmax(0, 1fr) minmax(56px, 0.48fr) 78px;
+    align-items: center;
+  }
+
+  .tribera-home .hero__card .rub__p {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .tribera-home .hero__card .rub__k {
+    font-size: 10px;
+    color: var(--onc2);
+  }
+
+  .tribera-home .hero__card .rub__b {
+    display: block;
+    height: 3px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .tribera-home .hero__card .rub__b > span {
+    display: block;
+    width: calc(var(--weight) * 16%);
+    height: 100%;
+    border-radius: inherit;
+    background: #c9c9c2;
+  }
+
+  .tribera-home .hero__card .rub__r--total {
+    margin-top: 6px;
+    padding-top: 8px;
+    border-top: 1px solid var(--cline);
+    border-bottom: 0;
+  }
+
+  .tribera-home .hero__card .rub__r--total .rub__n,
+  .tribera-home .hero__card .rub__r--total .rub__p {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  @media (min-width: 1152px) {
+    .tribera-home .hero__card .face__hd,
+    .tribera-candidates .hero__card .face__hd {
+      padding: 13px 20px;
+    }
+
+    .tribera-home .hero__card .side,
+    .tribera-candidates .hero__card .side {
+      padding: 20px !important;
+    }
+
+    .tribera-home .hero__card .side__hd,
+    .tribera-candidates .hero__card .side__hd {
+      margin-bottom: 14px;
+    }
+
+    /* The rubric has more rows than the verdict. Compact its secondary face
+       instead of hiding the evidence or allowing it to spill below the card. */
+    .tribera-home .hero__card .face--b .side {
+      padding-block: 14px !important;
+    }
+
+    .tribera-home .hero__card .face--b .side__hd {
+      margin-bottom: 8px;
+    }
+
+    .tribera-home .hero__card .face--b .side__nm {
+      font-size: 20px;
+    }
+
+    .tribera-home .hero__card .face--b .rub {
+      margin-top: 8px;
+    }
+
+    .tribera-home .hero__card .face--b .rub__r {
+      padding-block: 3px;
+    }
+
+    .tribera-home .hero__card .face--b .notes {
+      gap: 6px;
+      margin-top: 14px;
+      padding-top: 10px;
+    }
+
+    .tribera-home .hero__card .face--b .notes::before {
+      top: 10px;
+    }
+
+    .tribera-home .hero__card .face--b .note__v {
+      font-size: 11.5px;
+      line-height: 1.35;
+    }
+
+    /* The score is a calibrated verdict stack, not an inline statistic. */
+    .tribera-home .hero__card .face:not(.face--b) .side__hd,
+    .tribera-candidates .hero__card .face:not(.face--b) .side__hd {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 180px;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .tribera-home .hero__card .face:not(.face--b) .scr,
+    .tribera-candidates .hero__card .face:not(.face--b) .scr {
+      display: grid;
+      grid-template-areas:
+        'score state'
+        'rail caption';
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 8px 10px;
+      width: 180px;
+      min-width: 0;
+      align-items: center;
+    }
+
+    .tribera-home .hero__card .face:not(.face--b) .scr__n,
+    .tribera-candidates .hero__card .face:not(.face--b) .scr__n {
+      display: flex;
+      grid-area: score;
+    }
+
+    .tribera-home .hero__card .face:not(.face--b) .scr .pill,
+    .tribera-candidates .hero__card .face:not(.face--b) .scr .pill {
+      grid-area: state;
+      display: inline-flex;
+      height: auto;
+      padding: 8px 13px;
+      align-items: center;
+      border-radius: 8px;
+    }
+
+    .tribera-home .hero__card .face:not(.face--b) .scr .scale,
+    .tribera-candidates .hero__card .face:not(.face--b) .scr .scale {
+      grid-area: rail;
+      width: 72px;
+      margin-top: 0;
+    }
+
+    .tribera-home .hero__card .face:not(.face--b) .scr .scale__k,
+    .tribera-candidates .hero__card .face:not(.face--b) .scr .scale__k {
+      grid-area: caption;
+      font-size: 9px !important;
+      line-height: 1;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .tribera-home .hero__card .face:not(.face--b) .scr b,
+    .tribera-candidates .hero__card .face:not(.face--b) .scr b {
+      font-size: 28px;
+    }
+
+    .tribera-home .hero__card .vrd,
+    .tribera-candidates .hero__card .vrd {
+      margin: 32px 0 0;
+      padding: 13px 15px;
+    }
+
+    .tribera-candidates .hero__card .mtr2 {
+      margin-top: 16px;
+    }
+
+    .tribera-candidates .hero__card .mtr2__r {
+      grid-template-columns: minmax(0, 1fr) 104px 36px;
+      padding: 9px 0;
+    }
+
+    .tribera-home .hero__card .tiles .tl:nth-child(7) {
+      grid-column: auto;
+    }
+
+    .tribera-home .hero__card .tiles {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0 16px;
+      margin-top: 16px;
+      border-top: 1px solid var(--cline);
+    }
+
+    .tribera-home .hero__card .tiles .tl {
+      justify-content: flex-start;
+      gap: 28px;
+      padding: 9px 0;
+      border: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .tribera-home .hero__card .tiles .tl--summary {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0;
+      font-family: var(--mono);
+      font-size: 9px;
+      line-height: 1.3;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--onc3);
+      margin: 0;
+    }
+
+    .tribera-home .hero__card .tiles .tl--low i,
+    .tribera-home .hero__card .tiles .tl--low b {
+      color: #e8a33d;
+    }
+
+    .tribera-home .hero__card .notes,
+    .tribera-candidates .hero__card .notes {
+      gap: 9px;
+      margin-top: 32px;
+      padding-top: 12px;
+    }
+
+    .tribera-home .hero__card .face__ft,
+    .tribera-candidates .hero__card .face__ft {
+      padding: 11px 20px;
+      background: transparent;
+    }
+
+    .tribera-home .hero__card .notes,
+    .tribera-candidates .hero__card .notes {
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .tribera-home .hero__card .notes::before,
+    .tribera-candidates .hero__card .notes::before {
+      position: absolute;
+      top: 12px;
+      bottom: 0;
+      left: 0;
+      width: 1px;
+      content: '';
+      background: rgba(232, 163, 61, 0.45);
+    }
+
+    .tribera-home .hero__card .note,
+    .tribera-candidates .hero__card .note {
+      grid-template-columns: 64px minmax(0, 1fr);
+    }
+
+    .tribera-home .hero__card .side__nm,
+    .tribera-candidates .hero__card .side__nm {
+      font-size: 22px;
+    }
+
+    .tribera-home .hero__card .vrd__t,
+    .tribera-candidates .hero__card .vrd__t {
+      font-size: 15.5px;
+      font-weight: 600;
+    }
+
+    .tribera-home .hero__card .tiles .tl:nth-child(7) {
+      grid-column: auto;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .tribera-home .hero__card .face__hd,
+    .tribera-candidates .hero__card .face__hd {
+      display: flex !important;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    .tribera-home .hero__card .face__hd > span,
+    .tribera-candidates .hero__card .face__hd > span {
+      white-space: nowrap;
+    }
+
+    .tribera-home .hero__card .side__sub b,
+    .tribera-candidates .hero__card .side__sub b {
+      display: block;
+      margin-top: 3px;
+    }
+
+    .tribera-home .hero__card .scale__range,
+    .tribera-candidates .hero__card .scale__range {
+      display: none;
+    }
+
+    .tribera-home .hero__card .scale__k,
+    .tribera-candidates .hero__card .scale__k {
+      font-size: 10px !important;
+    }
+
+    .tribera-home .hero__card .tiles {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0 10px;
+      margin-top: 16px;
+      border-top: 1px solid var(--cline);
+    }
+
+    .tribera-home .hero__card .tiles .tl {
+      justify-content: flex-start;
+      gap: 16px;
+      padding: 8px 0;
+      border: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .tribera-home .hero__card .tiles .tl:nth-child(7) {
+      grid-column: auto;
+    }
+
+    .tribera-home .hero__card .tiles .tl--summary {
+      display: block;
+      grid-column: 1 / -1;
+      padding: 8px 0 0;
+      border: 0;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--onc3);
+    }
+
+    .tribera-home .hero__card .notes,
+    .tribera-candidates .hero__card .notes {
+      display: grid !important;
+      gap: 10px;
+      margin-top: 20px;
+      padding: 12px 0 0 12px;
+      position: relative;
+    }
+
+    .tribera-home .hero__card .notes::before,
+    .tribera-candidates .hero__card .notes::before {
+      position: absolute;
+      top: 12px;
+      bottom: 0;
+      left: 0;
+      width: 1px;
+      content: '';
+      background: rgba(232, 163, 61, 0.45);
+    }
+
+    .tribera-home .hero__card .note,
+    .tribera-candidates .hero__card .note {
+      display: block;
+    }
+
+    .tribera-home .hero__card .note__k,
+    .tribera-candidates .hero__card .note__k {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .tribera-home .hero__card .rub__b {
+      display: none;
+    }
+
+    .tribera-home .hero__card .rub__r {
+      grid-template-columns: 14px minmax(0, 1fr) auto;
+    }
+
+    .tribera-home .hero__card .rub__r > span:nth-child(3) {
+      display: none;
+    }
+
+    .tribera-candidates .hero__card .sig__r {
+      grid-template-columns: 116px minmax(0, 1fr) !important;
+      gap: 10px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tribera-home .hero__card .face__ft .lg,
+    .tribera-candidates .hero__card .face__ft .lg {
+      display: inline-flex !important;
+    }
+
+    .tribera-home .hero__card .face__ft .lg i:not(:first-child),
+    .tribera-candidates .hero__card .face__ft .lg i:not(:first-child) {
+      display: none;
+    }
+
+    .tribera-home .hero__card .face__ft .lg::after,
+    .tribera-candidates .hero__card .face__ft .lg::after {
+      content: '+2';
+      color: var(--onc3);
+    }
+  }
+
+  .band--w .dek {
+    color: #4b4b47 !important;
+  }
+
+  .burger {
+    width: 36px !important;
+    height: 36px !important;
+    border: 0 !important;
+    border-radius: 6px !important;
+  }
+
+  .close .shead {
+    grid-template-columns: 0.9fr 1.1fr !important;
+    justify-items: start !important;
+    text-align: left !important;
+    gap: clamp(26px, 3vw, 44px) !important;
+  }
+
+  .close .shead h2 {
+    max-width: 13ch !important;
+    text-align: left !important;
+  }
+
+  .close .shead .dek {
+    max-width: 46ch !important;
+    text-align: left !important;
+  }
+
+  @media (max-width: 759px) {
+    .eyebrow {
+      font-size: 12px !important;
+      letter-spacing: 0.16em !important;
+    }
+
+    /* The decision cards are interactive previews, but their key evidence must
+       still be readable without zooming on a phone. */
+    .hero__card .verd__sub,
+    .hero__card .verd__note,
+    .hero__card .verd__ax,
+    .hero__card .tiles__cap {
+      font-size: 12px !important;
+      line-height: 1.5 !important;
+    }
+
+    .hero__card .verd__nm {
+      font-size: 17px !important;
+    }
+
+    .hero__card .verd__band,
+    .hero__card .tile__n,
+    .hero__card .tile__v,
+    .hero__card .rub__k,
+    .hero__card .rub__p {
+      font-size: 11px !important;
+    }
+
+    .hero__card .rub__n {
+      font-size: 13px !important;
+    }
+
+    .close .shead {
+      grid-template-columns: 1fr !important;
+      gap: 14px !important;
+    }
+  }
+</style>

@@ -523,7 +523,7 @@ export const jobFunctions: JobFunction[] = [
         a: `Yes. All technology leadership searches are conducted under strict confidentiality protocols. Candidate identity and role context are protected through every stage of the process.`,
       },
       {
-        q: `What is your approach to assessing a candidate\'s ability to inherit an existing team?`,
+        q: `What is your approach to assessing a candidate's ability to inherit an existing team?`,
         a: `We probe specifically for this — asking candidates to describe how they have joined, assessed, and built trust with existing engineering teams. The quality of reasoning about team dynamics tells us more than technical depth alone.`,
       },
     ],

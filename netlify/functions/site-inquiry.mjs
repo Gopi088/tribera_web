@@ -110,6 +110,21 @@ const configs = {
       `,
     }),
   },
+  newsletter: {
+    recipient: process.env.NEWSLETTER_TO || 'hello@tribera.ai',
+    subject: () => 'Newsletter launch notification request',
+    failureMessage: 'Something went wrong while saving your request. Please try again in a moment.',
+    validate: (fields) => fields.email,
+    build: (fields) => ({
+      text: ['Newsletter launch notification request', '', `Email: ${fields.email}`].join('\n'),
+      html: `
+        <div style="font-family: Inter, Arial, sans-serif; color: #111;">
+          <h2 style="margin-bottom: 16px;">Newsletter launch notification request</h2>
+          <p><strong>Email:</strong> ${escapeHtml(fields.email)}</p>
+        </div>
+      `,
+    }),
+  },
 };
 
 export const handler = async (event) => {

@@ -6,77 +6,77 @@
   font-family: "Figtree";
   font-style: normal;
   font-weight: 400;
-  font-display: block;
+  font-display: optional;
   src: url("/fonts/figtree-400.woff2") format("woff2");
 }
 @font-face {
   font-family: "Figtree";
   font-style: normal;
   font-weight: 500;
-  font-display: block;
+  font-display: optional;
   src: url("/fonts/figtree-500.woff2") format("woff2");
 }
 @font-face {
   font-family: "Figtree";
   font-style: normal;
   font-weight: 600;
-  font-display: block;
+  font-display: optional;
   src: url("/fonts/figtree-600.woff2") format("woff2");
 }
 @font-face {
   font-family: "Figtree";
   font-style: normal;
   font-weight: 700;
-  font-display: block;
+  font-display: optional;
   src: url("/fonts/figtree-700.woff2") format("woff2");
 }
 @font-face {
   font-family: "Figtree";
   font-style: normal;
   font-weight: 800;
-  font-display: block;
+  font-display: optional;
   src: url("/fonts/figtree-800.woff2") format("woff2");
 }
 @font-face {
   font-family: "Inter Tight";
   font-style: normal;
   font-weight: 400;
-  font-display: block;
+  font-display: optional;
   src: url("/fonts/inter-tight-400.woff2") format("woff2");
 }
 @font-face {
   font-family: "Inter Tight";
   font-style: normal;
   font-weight: 500;
-  font-display: block;
+  font-display: optional;
   src: url("/fonts/inter-tight-500.woff2") format("woff2");
 }
 @font-face {
   font-family: "Inter Tight";
   font-style: normal;
   font-weight: 600;
-  font-display: block;
+  font-display: optional;
   src: url("/fonts/inter-tight-600.woff2") format("woff2");
 }
 @font-face {
   font-family: "JetBrains Mono";
   font-style: normal;
   font-weight: 400;
-  font-display: block;
+  font-display: optional;
   src: url("/fonts/jetbrains-mono-400.woff2") format("woff2");
 }
 @font-face {
   font-family: "JetBrains Mono";
   font-style: normal;
   font-weight: 500;
-  font-display: block;
+  font-display: optional;
   src: url("/fonts/jetbrains-mono-500.woff2") format("woff2");
 }
 @font-face {
   font-family: "JetBrains Mono";
   font-style: normal;
   font-weight: 700;
-  font-display: block;
+  font-display: optional;
   src: url("/fonts/jetbrains-mono-700.woff2") format("woff2");
 }
 
@@ -787,6 +787,11 @@ html {
   --onc3: #6e6e68;
   --red: #da0007;
   --grn: #3fbe7c;
+  --paper-v58: #f4f3f0;
+  --line-v58: rgba(19, 19, 19, 0.1);
+  --line-v58-strong: rgba(19, 19, 19, 0.16);
+  --ink-v58-muted: #57565b;
+  --display-editorial: "Fraunces", Georgia, serif;
   --display: "Figtree", -apple-system, sans-serif;
   --ui: "Inter Tight", -apple-system, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;

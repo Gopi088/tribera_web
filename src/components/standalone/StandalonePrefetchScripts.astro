@@ -1,0 +1,46 @@
+<script is:inline>
+  (() => {
+    const prefetchWindow = window;
+
+    if (prefetchWindow.__triberaPrefetch) return;
+    prefetchWindow.__triberaPrefetch = true;
+
+    const prefetched = {};
+
+    const prefetch = (pathname) => {
+      if (prefetched[pathname]) return;
+      prefetched[pathname] = true;
+
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.href = pathname;
+      document.head.appendChild(link);
+    };
+
+    const handleLinkIntent = (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const anchor = target.closest('a[href]');
+      if (!(anchor instanceof HTMLAnchorElement)) return;
+
+      let nextUrl;
+      try {
+        nextUrl = new URL(anchor.href, location.href);
+      } catch {
+        return;
+      }
+
+      if (nextUrl.origin !== location.origin) return;
+
+      const nextPath = `${nextUrl.pathname}${nextUrl.search}`;
+      const currentPath = `${location.pathname}${location.search}`;
+      if (nextPath === currentPath) return;
+
+      prefetch(nextPath);
+    };
+
+    document.addEventListener('mouseover', handleLinkIntent, { passive: true });
+    document.addEventListener('touchstart', handleLinkIntent, { passive: true });
+  })();
+</script>

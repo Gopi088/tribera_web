@@ -23,8 +23,6 @@ interface Props {
 
 const {
   type,
-  slug,
-  badge,
   title,
   heroHeadline,
   subtitle,
@@ -38,7 +36,6 @@ const {
 } = Astro.props;
 
 const badgeLabel = type === 'industry' ? 'Industry Focus' : 'Function Focus';
-const formSource = `${type}_${slug}`;
 
 const words = title.split(' ');
 const hasAmpersand = title.includes('&');

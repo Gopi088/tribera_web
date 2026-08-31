@@ -30,7 +30,6 @@ const {
   advisorLabel,
   hiringChallenges,
   rolesWeHire,
-  whyTribera,
   faqs,
   ctaHeadline,
   ctaSubtext,
@@ -200,7 +199,7 @@ if (hasAmpersand) {
     </div>
 
     <div class="grid gap-5 sm:grid-cols-2">
-      {hiringChallenges.map((c, i) => (
+      {hiringChallenges.map((c) => (
         <div
           class="group relative rounded-xl bg-white p-4 md:p-5 border border-black/5 overflow-hidden
                  transition-all duration-500
@@ -423,5 +422,5 @@ if (hasAmpersand) {
 </style>
 
 <script is:inline>
-(function(){var r=window.matchMedia('(prefers-reduced-motion:reduce)').matches,i=[].slice.call(document.querySelectorAll('[data-rv]'));if(r){i.forEach(function(e){e.classList.add('in')});return}var t=false;function s(){t=false;var v=window.innerHeight;i=i.filter(function(e){if(e.getBoundingClientRect().top<v*0.92){e.classList.add('in');return false}return true});if(!i.length){window.removeEventListener('scroll',o);window.removeEventListener('resize',o)}}function o(){if(t)return;t=true;requestAnimationFrame(s)}window.addEventListener('scroll',o,{passive:true});window.addEventListener('resize',o);s()})();
+(function(){const r=window.matchMedia('(prefers-reduced-motion:reduce)').matches;let i=[].slice.call(document.querySelectorAll('[data-rv]'));if(r){i.forEach(function(e){e.classList.add('in')});return}let t=false;function s(){t=false;const v=window.innerHeight;i=i.filter(function(e){if(e.getBoundingClientRect().top<v*0.92){e.classList.add('in');return false}return true});if(!i.length){window.removeEventListener('scroll',o);window.removeEventListener('resize',o)}}function o(){if(t)return;t=true;requestAnimationFrame(s)}window.addEventListener('scroll',o,{passive:true});window.addEventListener('resize',o);s()})();
 </script>

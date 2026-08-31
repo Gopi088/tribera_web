@@ -1,13 +1,15 @@
 ---
 import ContactSalesModal from '../components/ContactSalesModal.astro';
+import StandaloneNavScripts from '../components/standalone/StandaloneNavScripts.astro';
+import StandaloneMetadata from '../components/standalone/StandaloneMetadata.astro';
+import StandalonePrefetchScripts from '../components/standalone/StandalonePrefetchScripts.astro';
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Services — not everything we do ends in a hire — tribera</title>
-<meta name="description" content="Seven defined pieces of work with defined outputs. Four are fixed-fee and require nobody to be hired, because most of what goes wrong happens before anyone meets a candidate.">
+<StandaloneMetadata title="Services — not everything we do ends in a hire — tribera" description="Seven defined pieces of work with defined outputs. Four are fixed-fee and require nobody to be hired, because most of what goes wrong happens before anyone meets a candidate." />
     <link rel="preload" href="/fonts/figtree-800.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/inter-tight-600.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/figtree-400.woff2" as="font" type="font/woff2" crossorigin />
@@ -3027,13 +3029,13 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
 </footer>
 <script>
 (function(){
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
 
   /* ══ THE DEAL: pick your volume, the shape resolves ══ */
   (function(){
-    var V=[
+    const V=[
       {nm:'Project-based',v:'10–50',d:'One role you\u2019re stuck on, or a burst of them: permanent, contract or executive.',
        p:['Per hire, 15–20%','Nothing owed until you hire','Your bar written on the first brief']},
       {nm:'Scale',v:'50–200',d:'Several functions running at once, with one bar carried across all of them.',
@@ -3041,13 +3043,13 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
       {nm:'Full RPO',v:'200–500+',d:'Your whole talent function, run alongside your team rather than outside it.',
        p:['Experts embedded in your team','Subscription plus a reduced rate','Quarterly recalibration of the bar']}
     ];
-    var segs=[].slice.call(document.querySelectorAll('.vseg')),
+    const segs=[].slice.call(document.querySelectorAll('.vseg')),
         out=document.getElementById('volOut');
     if(!segs.length||!out) return;
-    var nm=document.getElementById('volNm'), vv=document.getElementById('volV'),
+    const nm=document.getElementById('volNm'), vv=document.getElementById('volV'),
         dd=document.getElementById('volD'), pts=document.getElementById('volPts');
     function pick(i){
-      var s=V[i];
+      const s=V[i];
       segs.forEach(function(b,j){ b.classList.toggle('is',j===i);
         b.setAttribute('aria-selected',String(j===i)); });
       nm.textContent=s.nm;
@@ -3065,7 +3067,7 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
 
   /* ══ THE LAB: the visitor moves the bar, the verdict follows ══ */
   (function(){
-    var D=[
+    const D=[
       {k:'A',n:'Core networking, TCP/IP',w:6.25,s:5},
       {k:'B',n:'Routing and BGP depth',w:6.25,s:5},
       {k:'C',n:'Data-centre networks',w:6.25,s:3},
@@ -3078,20 +3080,20 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
       {k:'J',n:'Linux, scripting, automation',w:1.25,s:2},
       {k:'K',n:'Authenticity',w:3.75,s:4}
     ];
-    var BASE=D.map(function(d){return d.w;});
-    var PRE={
+    const BASE=D.map(function(d){return d.w;});
+    const PRE={
       brief:BASE.slice(),
       auto:[2,2,3,2,2,2,2,1,2,12,2],
       fabric:[2,2,12,2,2,2,2,1,2,3,2],
       ops:[7,7,1,3,9,5,8,3,7,0.5,4]
     };
-    var NOTE={
+    const NOTE={
       brief:'As briefed: fundamentals, troubleshooting and performance carry the weight. Automation is deliberately weighted so it cannot carry a profile.',
       auto:'Weight automation above everything and he drops out of Select. He scored 2 there, and it was the one thing he could not evidence. On this brief he is a no.',
       fabric:'Weight fabric depth and he falls to the bottom of Select. He describes the estate; he has not operated the fabric himself.',
       ops:'Weight the day job (troubleshooting, change discipline, ownership) and he climbs. That is where the evidence actually sat.'
     };
-    var rows=document.getElementById('labRows'), tiles=document.getElementById('labTiles'),
+    const rows=document.getElementById('labRows'), tiles=document.getElementById('labTiles'),
         elScore=document.getElementById('labScore'), elBand=document.getElementById('labBand'),
         elPin=document.getElementById('labPin'), elTot=document.getElementById('labTotal'),
         elNote=document.getElementById('labNote');
@@ -3109,26 +3111,26 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
         'tabindex="0" title="'+d.n+' — '+d.s+' of 5"><i>'+d.k+'</i><b>'+d.s+'</b></span>';
     }).join('');
 
-    var shown=42, raf=null;
+    let shown=42, raf=null;
     function paint(){
-      var tw=0, got=0, max=0;
+      let tw=0, got=0, max=0;
       D.forEach(function(d){ tw+=d.w; got+=d.w*d.s/5; if(d.w>max) max=d.w; });
-      var score = tw>0 ? (got/tw)*50 : 0;
+      const score = tw>0 ? (got/tw)*50 : 0;
       D.forEach(function(d,i){
         document.getElementById('pts'+i).textContent=(d.w*d.s/5).toFixed(2);
-        var heavy = d.w >= Math.max(7, max*0.92);
+        const heavy = d.w >= Math.max(7, max*0.92);
         document.getElementById('row'+i).classList.toggle('heavy',heavy);
         document.getElementById('tile'+i).classList.toggle('heavy',heavy);
       });
       elTot.textContent=tw.toFixed(2);
       elPin.style.left=Math.max(1,Math.min(99,(score/50)*100))+'%';
-      var band = score>=34?['SELECT','b-sel'] : score>=28?['GREY','b-grey'] : ['REJECT','b-rej'];
+      const band = score>=34?['SELECT','b-sel'] : score>=28?['GREY','b-grey'] : ['REJECT','b-rej'];
       elBand.textContent=band[0];
       elBand.className='verd__band '+band[1];
       /* count the number rather than snapping it */
       cancelAnimationFrame(raf);
       (function step(){
-        var diff=score-shown;
+        const diff=score-shown;
         if(Math.abs(diff)<0.02){ shown=score; elScore.textContent=score.toFixed(2); return; }
         shown+=diff*0.22; elScore.textContent=shown.toFixed(2);
         raf=requestAnimationFrame(step);
@@ -3137,32 +3139,32 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
 
     /* hover either half, the other half answers */
     function link(i,on){
-      var t=document.getElementById('tile'+i), r=document.getElementById('row'+i);
+      const t=document.getElementById('tile'+i), r=document.getElementById('row'+i);
       if(t) t.classList.toggle('lit',on);
       if(r) r.classList.toggle('lit',on);
     }
     function bind(host,sel){
       host.addEventListener('mouseover',function(e){
-        var el=e.target.closest(sel); if(el) link(+el.dataset.i,true); });
+        const el=e.target.closest(sel); if(el) link(+el.dataset.i,true); });
       host.addEventListener('mouseout',function(e){
-        var el=e.target.closest(sel); if(el) link(+el.dataset.i,false); });
+        const el=e.target.closest(sel); if(el) link(+el.dataset.i,false); });
       host.addEventListener('focusin',function(e){
-        var el=e.target.closest(sel); if(el) link(+el.dataset.i,true); });
+        const el=e.target.closest(sel); if(el) link(+el.dataset.i,true); });
       host.addEventListener('focusout',function(e){
-        var el=e.target.closest(sel); if(el) link(+el.dataset.i,false); });
+        const el=e.target.closest(sel); if(el) link(+el.dataset.i,false); });
     }
     bind(tiles,'.lt');
     bind(rows,'.row');
 
     rows.addEventListener('input',function(e){
-      var t=e.target; if(t.type!=='range') return;
+      const t=e.target; if(t.type!=='range') return;
       D[+t.dataset.i].w=parseFloat(t.value);
       document.querySelectorAll('.pre').forEach(function(b){b.classList.remove('on');});
       paint();
     });
     document.querySelectorAll('.pre').forEach(function(btn){
       btn.addEventListener('click',function(){
-        var set=PRE[btn.dataset.pre];
+        const set=PRE[btn.dataset.pre];
         D.forEach(function(d,i){ d.w=set[i];
           rows.querySelector('input[data-i="'+i+'"]').value=set[i]; });
         document.querySelectorAll('.pre').forEach(function(b){b.classList.remove('on');});
@@ -3175,27 +3177,27 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   })();
 
   /* the score tiles name themselves */
-  var tiles=document.getElementById('tiles'), tcap=document.getElementById('tilesCap');
+  const tiles=document.getElementById('tiles'), tcap=document.getElementById('tilesCap');
   if(tiles && tcap){
-    var base=tcap.textContent;
+    const base=tcap.textContent;
     function show(t){ tcap.classList.add('is');
       tcap.innerHTML=t.dataset.n+' — <b style="color:#fff">'+t.dataset.s+' of 5</b>'; }
     function clear(){ tcap.classList.remove('is'); tcap.textContent=base; }
-    tiles.addEventListener('mouseover',function(e){var t=e.target.closest('.tl'); if(t) show(t);});
-    tiles.addEventListener('focusin',function(e){var t=e.target.closest('.tl'); if(t) show(t);});
+    tiles.addEventListener('mouseover',function(e){const t=e.target.closest('.tl'); if(t) show(t);});
+    tiles.addEventListener('focusin',function(e){const t=e.target.closest('.tl'); if(t) show(t);});
     tiles.addEventListener('mouseleave',clear);
     tiles.addEventListener('focusout',clear);
   }
 
   /* the card behaves like an object: it tilts toward you and catches light */
-  var cardWrap=document.querySelector('.hero__card'), tilt=document.getElementById('tilt');
+  const cardWrap=document.querySelector('.hero__card'), tilt=document.getElementById('tilt');
   if(cardWrap && tilt && !reduce && matchMedia('(hover:hover) and (pointer:fine)').matches){
-    var raf=null;
+    let raf=null;
     cardWrap.addEventListener('pointermove',function(e){
       if(raf) return;
       raf=requestAnimationFrame(function(){
         raf=null;
-        var r=cardWrap.getBoundingClientRect(),
+        const r=cardWrap.getBoundingClientRect(),
             px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
         tilt.classList.add('live');
         tilt.style.setProperty('--ry',((px-.5)*11).toFixed(2)+'deg');
@@ -3213,9 +3215,10 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   }
 
   /* the card has two faces — demo the flip once, then it’s yours */
-  var flip=document.getElementById('flip'),
+  const flip=document.getElementById('flip'),
       tA=document.getElementById('tabA'), tB=document.getElementById('tabB'),
-      fA=document.getElementById('faceA'), fB=document.getElementById('faceB'), took=false;
+      fA=document.getElementById('faceA'), fB=document.getElementById('faceB');
+  let took=false;
   function face(b){
     if(!flip) return;
     flip.classList.toggle('is-b', b);
@@ -3242,19 +3245,20 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
       },{threshold:.4}).observe(flip);
     }
   }
-  var GROUPS=[[86,1],[26,2],[9,3],[3,4],[2,5]];
-  var grid=document.getElementById('grid'), sqs=[];
+  const GROUPS=[[86,1],[26,2],[9,3],[3,4],[2,5]];
+  const grid=document.getElementById('grid');
+  let sqs=[];
   if(grid){
-    var html='';
-    GROUPS.forEach(function(g){for(var i=0;i<g[0];i++)
+    let html='';
+    GROUPS.forEach(function(g){for(let i=0;i<g[0];i++)
       html+='<span class="sq g'+g[1]+'" data-drop="'+g[1]+'"></span>';});
     grid.innerHTML=html; sqs=[].slice.call(grid.children);
   }
 
 
-  var DOT={1:'#3A3A37',2:'#5A5A55',3:'#8A8A85',4:'#D8D8D3',5:'#DA0007'};
+  const DOT={1:'#3A3A37',2:'#5A5A55',3:'#8A8A85',4:'#D8D8D3',5:'#DA0007'};
   /* hovering a STAGE shows everyone who got that far */
-  var REACH={
+  const REACH={
     1:'<b>All 126.</b> Everything the requirement returned.',
     2:'<b>40 reached an expert interview.</b> Eighty-six never did.',
     3:'<b>14 cleared the bar</b> on their own answers.',
@@ -3262,14 +3266,14 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
     5:'<b>2 hired,</b> out of five interviews.'
   };
   /* hovering a SQUARE shows where that person stopped */
-  var STOP={
+  const STOP={
     1:'<b>86 stopped here</b>, screened out before anyone spent time on them.',
     2:'<b>26 stopped here</b>, interviewed by an expert, didn\u2019t clear the bar.',
     3:'<b>9 stopped here</b>, cleared the bar, ranked below the top five.',
     4:'<b>3 stopped here</b>, sent, hireable, not chosen this time.',
     5:'<b>Hired.</b> One of the two.'
   };
-  var REST={
+  const REST={
     1:'126 people, shaded by how far each one got. <b>The two in red were hired.</b>',
     2:'<b>86 have dropped away.</b> Screened out before anyone spent time on them.',
     3:'<b>26 more gone.</b> Interviewed by a person, didn\u2019t clear the bar.',
@@ -3277,15 +3281,16 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
     5:'<b>Two hired, out of five interviews.</b> Everything else never left our desk.'
   };
 
-  var field=document.getElementById('field'),fN=document.getElementById('fieldN'),
-      fL=document.getElementById('fieldLbl'),fF=document.getElementById('fieldFt'),stage=0;
+  const field=document.getElementById('field'),fN=document.getElementById('fieldN'),
+      fL=document.getElementById('fieldLbl'),fF=document.getElementById('fieldFt');
+  let stage=0;
 
   function setStage(n){
     if(n===stage||!sqs.length) return;
     stage=n;
     sqs.forEach(function(s){ s.classList.toggle('out', +s.dataset.drop < n); });
     field.classList.toggle('at5',n===5);
-    var st=document.querySelector('.step[data-n="'+n+'"]');
+    const st=document.querySelector('.step[data-n="'+n+'"]');
     if(st){fN.textContent=st.dataset.count;fL.textContent=st.dataset.lbl;}
     fF.innerHTML=REST[n];
   }
@@ -3294,10 +3299,10 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   /* hover trace — subtle, on squares and on the step text */
   function peek(n, mode){
     if(!grid) return;
-    var reached = mode !== 'stopped';
+    const reached = mode !== 'stopped';
     grid.classList.add('peek');
     sqs.forEach(function(s){
-      var d=+s.dataset.drop;
+      const d=+s.dataset.drop;
       s.classList.toggle('co', reached ? d>=n : d===n);
     });
     fF.innerHTML='<i style="background:'+DOT[n]+'"></i>'+(reached?REACH:STOP)[n];
@@ -3310,15 +3315,15 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   }
   if(grid){
     grid.addEventListener('mouseover',function(e){
-      var s=e.target.closest('.sq'); if(s) peek(+s.dataset.drop,'stopped');
+      const s=e.target.closest('.sq'); if(s) peek(+s.dataset.drop,'stopped');
     });
     grid.addEventListener('mouseleave',unpeek);
   }
 
-  var steps=[].slice.call(document.querySelectorAll('.step'));
-  var userTook=false;
+  const steps=[].slice.call(document.querySelectorAll('.step'));
+  let userTook=false;
   steps.forEach(function(st){
-    var n=+st.dataset.n;
+    const n=+st.dataset.n;
     st.setAttribute('tabindex','0');
     st.setAttribute('role','button');
     function take(){ userTook=true; mark(n); }
@@ -3338,7 +3343,8 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   }
 
   /* it narrows itself once when you arrive — then it’s yours to poke at */
-  var fn=document.getElementById('run'), played=false;
+  const fn=document.getElementById('run');
+  let played=false;
   if(fn && steps.length && 'IntersectionObserver' in window){
     new IntersectionObserver(function(es,ob){
       es.forEach(function(e){
@@ -3352,22 +3358,22 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
     },{threshold:.35}).observe(fn);
   } else if(steps.length){ mark(5); }
 
-  var io=new IntersectionObserver(function(es){
+  const io=new IntersectionObserver(function(es){
     es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
   },{threshold:.14,rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('[data-rv]').forEach(function(el){io.observe(el);});
 
   /* signal tags act as filters over the table */
-  var swap=document.querySelector('.swap'), keyBar=document.querySelector('.key');
+  const swap=document.querySelector('.swap'), keyBar=document.querySelector('.key');
   if(swap && keyBar){
-    var rows=[].slice.call(swap.querySelectorAll('.swap__row'));
+    const rows=[].slice.call(swap.querySelectorAll('.swap__row'));
     function apply(k){
       if(!k){ swap.classList.remove('dim');
         rows.forEach(function(r){ r.classList.remove('hit'); }); return; }
-      var want=k.querySelector('.tag').textContent.trim().toLowerCase();
+      const want=k.querySelector('.tag').textContent.trim().toLowerCase();
       swap.classList.add('dim');
       rows.forEach(function(r){
-        var t=r.querySelector('.tag');
+        const t=r.querySelector('.tag');
         r.classList.toggle('hit', !!t && t.textContent.trim().toLowerCase()===want);
       });
     }
@@ -3378,7 +3384,7 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
     /* one authority for clearing — the bar itself */
     keyBar.addEventListener('mouseleave',function(){ apply(null); });
     keyBar.addEventListener('focusin',function(e){
-      var k=e.target.closest('.key__i'); apply(k||null);
+      const k=e.target.closest('.key__i'); apply(k||null);
     });
     keyBar.addEventListener('focusout',function(e){
       if(!keyBar.contains(e.relatedTarget)) apply(null);
@@ -3386,7 +3392,7 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   }
 
   /* the tally draws once, slowly, then the three land at speed */
-  var fan=document.querySelector('.fan'), tN=document.getElementById('tallyN');
+  const fan=document.querySelector('.fan'), tN=document.getElementById('tallyN');
   if(fan){
     new IntersectionObserver(function(es,ob){
       es.forEach(function(e){
@@ -3395,11 +3401,12 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
         if(reduce) return;
         fan.classList.add('go');
         if(!tN) return;
-        var t0=null, DUR=1800;
+        let t0=null;
+        const DUR=1800;
         tN.textContent='0';
         requestAnimationFrame(function step(ts){
           if(t0===null) t0=ts;
-          var u=Math.min((ts-t0)/DUR,1);
+          const u=Math.min((ts-t0)/DUR,1);
           tN.textContent=Math.round(Math.pow(u,1/0.62)*140);
           if(u<1) requestAnimationFrame(step); else tN.textContent='140';
         });
@@ -3407,27 +3414,25 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
     },{threshold:.35}).observe(fan);
   }
 
-  var deskBlk=document.querySelector('.desk');
+  const deskBlk=document.querySelector('.desk');
   if(deskBlk) new IntersectionObserver(function(es,ob){
     es.forEach(function(e){ if(e.isIntersecting){ deskBlk.classList.add('in'); ob.disconnect(); } });
   },{threshold:.4}).observe(deskBlk);
 
-  var ramp=document.getElementById('ramp');
+  const ramp=document.getElementById('ramp');
   if(ramp) new IntersectionObserver(function(es,ob){
     es.forEach(function(e){ if(e.isIntersecting){ ramp.classList.add('in'); ob.disconnect(); } });
   },{threshold:.3}).observe(ramp);
 
   /* nav switcher reflects where you are */
-  var cand=document.getElementById('candidates'),
-      sw=[].slice.call(document.querySelectorAll('.nav__sw a')),
+  const cand=document.getElementById('candidates'),
       bar=document.getElementById('stickcta'),
       applyBox=document.getElementById('apply');
-  var onCandPage=sw.length>1&&(function(){try{return location.pathname.replace(/\/+$/,'')===new URL(sw[1].getAttribute('href')||'/',location.href).pathname.replace(/\/+$/,'');}catch(e){return false;}})();
 
   /* sticky apply bar: only while the candidate section is on screen,
      and never on top of the apply card itself */
   if(cand && bar && applyBox){
-    var inSection=false, atForm=false;
+    let inSection=false, atForm=false;
     function sync(){ bar.classList.toggle('show', inSection && !atForm); }
     new IntersectionObserver(function(es){
       es.forEach(function(e){ inSection=e.isIntersecting; sync(); });
@@ -3438,9 +3443,9 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   }
 
   /* a filename is better feedback than a silent upload */
-  var fileIn=document.querySelector('.apply__file input');
+  const fileIn=document.querySelector('.apply__file input');
   if(fileIn) fileIn.addEventListener('change',function(){
-    var lbl=fileIn.parentNode.querySelector('span');
+    const lbl=fileIn.parentNode.querySelector('span');
     if(fileIn.files && fileIn.files[0]) lbl.textContent=fileIn.files[0].name;
   });
 })();
@@ -3448,15 +3453,16 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
 
   /* ══ INDUSTRIES: the same six dimensions, any two sectors ══ */
   (function(){
-    var W={"consumer-digital-commerce": {"n": "Consumer & digital commerce", "w": [30, 24, 8, 22, 6, 10]}, "banking-financial-services": {"n": "Banking & financial services", "w": [20, 14, 30, 10, 18, 8]}, "enterprise-technology": {"n": "Enterprise technology", "w": [26, 26, 10, 20, 10, 8]}, "product-saas": {"n": "Product & SaaS", "w": [22, 18, 6, 20, 8, 26]}, "ai-data": {"n": "AI & data", "w": [30, 26, 10, 16, 10, 8]}, "cybersecurity": {"n": "Cybersecurity", "w": [24, 16, 32, 12, 10, 6]}, "healthcare-life-sciences": {"n": "Healthcare & life sciences", "w": [18, 12, 30, 10, 22, 8]}, "pharmaceutical": {"n": "Pharmaceutical", "w": [16, 10, 34, 8, 24, 8]}, "manufacturing": {"n": "Manufacturing", "w": [22, 14, 22, 18, 14, 10]}, "industrial-engineering": {"n": "Industrial & engineering", "w": [24, 18, 18, 18, 14, 8]}, "global-capability-centres": {"n": "Global capability centres", "w": [22, 18, 12, 20, 10, 18]}, "private-equity-portfolio": {"n": "Private equity portfolio", "w": [20, 14, 10, 32, 8, 16]}};
-    var D=["Core depth", "Systems design", "Controls and risk", "Delivery speed", "Documentation", "Stakeholder handling"];
-    var a=document.getElementById('secA'), b=document.getElementById('secB'),
+    const W={"consumer-digital-commerce": {"n": "Consumer & digital commerce", "w": [30, 24, 8, 22, 6, 10]}, "banking-financial-services": {"n": "Banking & financial services", "w": [20, 14, 30, 10, 18, 8]}, "enterprise-technology": {"n": "Enterprise technology", "w": [26, 26, 10, 20, 10, 8]}, "product-saas": {"n": "Product & SaaS", "w": [22, 18, 6, 20, 8, 26]}, "ai-data": {"n": "AI & data", "w": [30, 26, 10, 16, 10, 8]}, "cybersecurity": {"n": "Cybersecurity", "w": [24, 16, 32, 12, 10, 6]}, "healthcare-life-sciences": {"n": "Healthcare & life sciences", "w": [18, 12, 30, 10, 22, 8]}, "pharmaceutical": {"n": "Pharmaceutical", "w": [16, 10, 34, 8, 24, 8]}, "manufacturing": {"n": "Manufacturing", "w": [22, 14, 22, 18, 14, 10]}, "industrial-engineering": {"n": "Industrial & engineering", "w": [24, 18, 18, 18, 14, 8]}, "global-capability-centres": {"n": "Global capability centres", "w": [22, 18, 12, 20, 10, 18]}, "private-equity-portfolio": {"n": "Private equity portfolio", "w": [20, 14, 10, 32, 8, 16]}};
+    const D=["Core depth", "Systems design", "Controls and risk", "Delivery speed", "Documentation", "Stakeholder handling"];
+    const a=document.getElementById('secA'), b=document.getElementById('secB'),
         ft=document.getElementById('cmpFt');
     if(!a||!b) return;
     function paint(){
-      var A=W[a.value], B=W[b.value], mx=0, gap=-1, gi=0;
+      const A=W[a.value], B=W[b.value];
+      let mx=0, gap=-1, gi=0;
       D.forEach(function(_,i){ mx=Math.max(mx,A.w[i],B.w[i]);
-        var g=Math.abs(A.w[i]-B.w[i]); if(g>gap){gap=g;gi=i;} });
+        const g=Math.abs(A.w[i]-B.w[i]); if(g>gap){gap=g;gi=i;} });
       D.forEach(function(n,i){
         document.getElementById('fa'+i).style.width=(A.w[i]/mx*100)+'%';
         document.getElementById('fb'+i).style.width=(B.w[i]/mx*100)+'%';
@@ -3465,245 +3471,14 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
         document.getElementById('bw'+i).classList.toggle('key', i===gi);
       });
       if(A.n===B.n){ ft.innerHTML='Same sector both sides. <b>Pick two and the bar moves.</b>'; return; }
-      var hi = A.w[gi]>B.w[gi] ? A : B;
       ft.innerHTML='<b>'+D[gi]+'</b> moves from '+Math.min(A.w[gi],B.w[gi])+'% to '+
         Math.max(A.w[gi],B.w[gi])+'%: a '+gap+'-point swing, and <b>a different person wins</b>.';
     }
     a.addEventListener('change',paint); b.addEventListener('change',paint); paint();
   })();
-
-  /* ══ NAV: compacts on scroll, opens on small screens ══ */
-  (function(){
-    var nav=document.getElementById('nav'), b=document.querySelector('.burger'),
-        p=document.getElementById('navp');
-    if(nav){
-      var tick=function(){ if(scrollY>20){ nav.classList.add('stuck'); } else if(scrollY<=2){ nav.classList.remove('stuck'); } };
-      addEventListener('scroll',tick,{passive:true}); tick();
-    }
-    if(b&&p){
-      function setNav(open){
-        p.classList.toggle('open',open); b.classList.toggle('on',open);
-        if(open){
-          p.style.top=(nav.offsetHeight)+'px';
-          var y=window.scrollY; document.body.dataset.sy=y;
-          document.body.style.position='fixed'; document.body.style.width='100%';
-          document.body.style.top='-'+y+'px'; document.body.style.left='0'; document.body.style.right='0';
-        } else {
-          var sy=Number(document.body.dataset.sy||0);
-          document.body.style.position=''; document.body.style.width='';
-          document.body.style.top=''; document.body.style.left=''; document.body.style.right='';
-          window.scrollTo(0,sy); delete document.body.dataset.sy;
-        }
-        b.setAttribute('aria-expanded',String(open));
-      }
-      b.addEventListener('click',function(){
-        setNav(!p.classList.contains('open'));
-      });
-      p.addEventListener('click',function(e){ if(e.target.tagName==='A'||e.target===p) setNav(false); });
-      addEventListener('keydown',function(e){ if(e.key==='Escape'&&p.classList.contains('open')) setNav(false); });
-    }
-  })();
-    var t=document.querySelector('.navp__t'), c=document.getElementById('navp-cov');
-    if(t&&c){ t.addEventListener('click',function(){
-      var o=c.classList.toggle('open'); t.setAttribute('aria-expanded',String(o)); }); }
-
-  /* ══ dropdowns: hover on pointer, click and keys everywhere ══ */
-  (function(){
-    var dds=[].slice.call(document.querySelectorAll('.dd'));
-    if(!dds.length) return;
-    function shut(except){ dds.forEach(function(d){
-      if(d!==except){ d.classList.remove('open');
-        var t=d.querySelector('.dd__t'); if(t) t.setAttribute('aria-expanded','false'); } }); }
-    dds.forEach(function(d){
-      var t=d.querySelector('.dd__t'), timer;
-      t.addEventListener('click',function(e){
-        if(t.tagName==="A") return;
-        e.preventDefault();
-        var open=!d.classList.contains('open');
-        shut(d); d.classList.toggle('open',open); t.setAttribute('aria-expanded',String(open));
-      });
-      d.addEventListener('mouseenter',function(){
-        clearTimeout(timer); shut(d); d.classList.add('open'); t.setAttribute('aria-expanded','true'); });
-      d.addEventListener('mouseleave',function(){
-        timer=setTimeout(function(){ d.classList.remove('open');
-          t.setAttribute('aria-expanded','false'); },140); });
-      d.addEventListener('focusout',function(e){
-        if(!d.contains(e.relatedTarget)){ d.classList.remove('open');
-          t.setAttribute('aria-expanded','false'); } });
-    });
-    addEventListener('keydown',function(e){ if(e.key==='Escape') shut(null); });
-    document.addEventListener('click',function(e){ if(!e.target.closest('.dd')) shut(null); });
-  })();
-
-
-
-
-  /* ══ SERVICES: what is wrong → what we would do ══ */
-  (function(){
-    var S=[{"t": "The role has been open for months", "d": "We have sourced plenty. Nothing converts.", "r": ["bar", "review"], "n": "Almost never a sourcing problem at that point. Two things are worth doing before anyone sources another profile: fix the bar, then re-read the people you already rejected."}, {"t": "Nobody agrees what good looks like", "d": "Every panellist is testing something different.", "r": ["bar", "library"], "n": "The most common and cheapest thing to fix. Forty-five minutes with the hiring manager produces a weighted rubric everyone can argue with before a candidate is in the room rather than after."}, {"t": "We have candidates, not confidence", "d": "Shortlist is fine. Nobody wants to commit.", "r": ["interviews"], "n": "You do not need more people. You need someone who has held the job to spend thirty minutes with the ones you have and write down what they found."}, {"t": "We need people and have no time", "d": "The team cannot absorb another twelve interviews.", "r": ["search"], "n": "The full thing. Brief to three names in 36 hours, all hireable, with the reasoning behind each rank."}, {"t": "We need it built, not staffed", "d": "No time to hire before this ships.", "r": ["pod", "handover"], "n": "Hiring and delivery are different problems and you may only have time for one. A pod delivers while your own hiring runs in parallel, and hands over when your people are in place."}, {"t": "Our hires keep not working out", "d": "They clear the process and leave in a year.", "r": ["diagnostic", "bar"], "n": "This is a measurement problem, not a hiring one. We read your last twelve months of hires and leavers against a bar written now, and tell you what the process was systematically missing."}, {"t": "We are scaling and this has to repeat", "d": "Ten roles now, forty next year.", "r": ["library", "embedded"], "n": "Build the bar once per role family, calibrate your interviewers against it, and put experts inside the team rather than beside it."}, {"t": "We are buying a company", "d": "The engineering team is most of what we are paying for.", "r": ["diligence"], "n": "The team is the asset and almost nobody assesses it properly. Same rubric we use on candidates, applied to people who do not know they are being read."}, {"t": "We are not sure our team is right", "d": "Good people, and something is not working.", "r": ["teamread", "bar"], "n": "Read the team you have against the bar you would hire to today. The gap between those two is usually the answer, and it is rarely about individuals."}];
-    var NAMES={"bar": "Role scorecard", "review": "Pipeline review", "interviews": "We interview your shortlist", "search": "Full search", "diagnostic": "Hiring process review", "library": "Scorecard library", "embedded": "Embedded hiring experts", "pod": "Managed delivery team", "handover": "Build, operate, transfer", "diligence": "Technical due diligence", "teamread": "Team assessment"};
-    var btns=[].slice.call(document.querySelectorAll('.sym')),
-        box=document.getElementById('rec'), nm=document.getElementById('recN'),
-        sb=document.getElementById('recS'), xt=document.getElementById('recX'),
-        note=document.getElementById('dnote'), noteQ=document.getElementById('dnoteQ'),
-        noteC=document.getElementById('dnoteC');
-    if(!btns.length) return;
-    function clearRows(){
-      document.querySelectorAll('.lead,.oc').forEach(function(c){ c.classList.remove('sug'); });
-      if(note) note.hidden=true;
-    }
-    function pick(i, mark){
-      var s=S[i];
-      btns.forEach(function(b,j){ b.classList.toggle('on', j===i); });
-      sb.textContent='“'+s.d+'”';
-      nm.textContent=s.r.map(function(k){ return NAMES[k]; }).join('  ·  ');
-      xt.textContent=s.n;
-      box.classList.remove('swap'); void box.offsetWidth; box.classList.add('swap');
-      if(!mark){ clearRows(); return; }
-      document.querySelectorAll('.lead,.oc').forEach(function(c){
-        c.classList.toggle('sug', s.r.indexOf(c.id.replace('dlv-','')) > -1); });
-      if(note){ note.hidden=false; noteQ.textContent='“'+s.t+'”'; }
-    }
-    btns.forEach(function(b,i){ b.addEventListener('click',function(){ pick(i,true); }); });
-    if(noteC) noteC.addEventListener('click', clearRows);
-    pick(0,false);
-  })();
-
-  /* ══ deliverables: filter, and open for detail ══ */
-  (function(){
-    var wrap=document.querySelector('.drs'); if(!wrap) return;
-    wrap.addEventListener('click',function(e){
-      var hd=e.target.closest('.dr__hd'); if(!hd) return;
-      var row=hd.parentElement; if(row.classList.contains('dr--head')) return;
-      var open=row.classList.toggle('op');
-      hd.setAttribute('aria-expanded', String(open));
-    });
-    var f=document.querySelector('.dfilt');
-    if(f) f.addEventListener('click',function(e){
-      var b=e.target.closest('.dfb'); if(!b) return;
-      var a=b.dataset.a;
-      f.querySelectorAll('.dfb').forEach(function(x){ x.classList.toggle('on', x===b); });
-      wrap.querySelectorAll('.dr:not(.dr--head)').forEach(function(r){
-        var show = a==='all' || (a==='nohire' ? r.querySelector('.hn') : r.dataset.arm===a);
-        r.classList.toggle('out', !show);
-      });
-    });
-  })();
-
-  /* ══ the map: phase filters the columns, chip opens the detail ══ */
-  (function(){
-    var D={"bar": {"n": "Role scorecard", "t": "2 days", "p": "Fixed fee", "h": "Fixed price", "l": "A weighted scorecard for one role, agreed with the hiring manager, plus the structured interview guide that goes with it.", "pts": ["45-minute intake with the person the hire will report to", "Six to eleven criteria, weighted, with the reasoning written down", "Scenario questions mapped to each criterion", "Scoring bands, and what \u201cstrong hire\u201d actually means for this role"], "note": "Yours to keep, and to use with or without us.", "arm": "talent"}, "review": {"n": "Pipeline review", "t": "5 days", "p": "Fixed fee", "h": "Fixed price", "l": "A written verdict on every candidate already in your pipeline, including the ones you rejected.", "pts": ["Every CV scored against the criteria, not against each other", "The rejected ones read first \u2014 that is usually where the hire is", "A note on what the original job brief was missing", "A ranked shortlist out of people you already have"], "note": "No hire required. Often ends the search without sourcing anyone new.", "arm": "talent"}, "interviews": {"n": "We interview your shortlist", "t": "48 hrs a batch", "p": "Per interview", "h": "Fixed price", "l": "A scored write-up on each candidate you send us, with the recording and transcript attached.", "pts": ["You source. A senior expert in that field interviews", "Thirty structured minutes, on questions written from their CV", "Scored against your criteria, with the open questions named", "Recording and transcript available on request"], "note": "Priced per interview. Nothing to do with whether you hire them.", "arm": "talent"}, "search": {"n": "Full search", "t": "36 hrs", "p": "15\u201320%", "h": "Fee on hire", "l": "Three people you would take any of, inside 36 hours of a confirmed brief.", "pts": ["The scorecard agreed with you at intake", "Sourcing, screening on 100+ signals, and expert interviews", "Three ranked names with the reasoning behind each", "1:3 guarantee \u2014 if none of the three fit, we restart free"], "note": "Nothing owed until someone starts.", "arm": "talent"}, "diagnostic": {"n": "Hiring process review", "t": "3 weeks", "p": "Fixed fee", "h": "Fixed price", "l": "A written analysis of what your hiring process has been systematically missing, with the evidence behind it.", "pts": ["Your last twelve months of hires and leavers, scored against criteria written today", "Where your interview-to-hire ratio actually goes", "Which criterion your process never really tested", "What we would change, in order of what it is costing you"], "note": "A report you can take to a board. No hiring attached.", "arm": "talent"}, "library": {"n": "Scorecard library", "t": "2 weeks", "p": "Fixed fee", "h": "Fixed price", "l": "Scorecards for every level in a role family, plus a calibration workshop for your interview panel.", "pts": ["One scorecard per level, from mid-level to head of function", "Structured interview guides your own panel can run", "A calibration workshop using real interview transcripts", "A quarterly refresh as the roles change"], "note": "Your team can run it without us afterwards.", "arm": "talent"}, "embedded": {"n": "Embedded hiring experts", "t": "Ongoing", "p": "Subscription", "h": "Part on hire", "l": "Senior hiring experts working inside your team rather than beside it.", "pts": ["Named experts assigned to your roles", "Your scorecards reused across every requisition", "Weekly working sessions with your TA team", "A quarterly refresh as the org changes"], "note": "Subscription plus a reduced rate per hire. For teams hiring 50+ a year.", "arm": "talent"}, "pod": {"n": "Managed delivery team", "t": "Per scope", "p": "Fixed scope", "h": "Fixed price", "l": "A team assembled from our bench, a defined scope, and a delivery date. We run it; you review it.", "pts": ["Team shaped around the work, not around a rate card", "Everyone on it interviewed against the same scorecard we use for your hires", "A weekly demo, one named lead, one line of accountability", "Scope and exit criteria written before anyone starts"], "note": "Ends when the scope ends. No minimum term beyond it.", "arm": "delivery"}, "handover": {"n": "Build, operate, transfer", "t": "4\u201318 months", "p": "Build + operate", "h": "Fixed price", "l": "A team in India that becomes yours. We hire it against your scorecard, run it while it matures, and transfer it to your entity on a date agreed in the contract.", "pts": ["<b>Build</b> \u2014 hired against your criteria, not a generic offshore standard", "<b>Operate</b> \u2014 we run delivery, payroll and compliance while it matures", "<b>Transfer</b> \u2014 people, contracts and knowledge move to your entity", "The transfer date is written in from day one, not negotiated later", "Your own leadership embedded through the operate phase", "Retention through transfer is the number we are measured on"], "note": "The usual route into India for teams not ready to open an entity yet.", "arm": "delivery"}, "diligence": {"n": "Technical due diligence", "t": "2\u20133 weeks", "p": "Fixed fee", "h": "Fixed price", "l": "An assessment of a target company’s engineering team and codebase, written for people who will act on it.", "pts": ["The team assessed against the same scorecard we use on candidates", "Architecture, delivery cadence and operational maturity", "Key-person risk named, with who and why", "What it would cost to fix, in order of what it costs to ignore"], "note": "Built for private equity and corp-dev timelines. No hiring attached.", "arm": "delivery"}, "teamread": {"n": "Team assessment", "t": "2 weeks", "p": "Fixed fee", "h": "Fixed price", "l": "Your existing team, assessed against the standard you would hire to today.", "pts": ["Each person assessed against the same six to eleven criteria", "Where the team is strong, thin, and duplicated", "What your next three hires should actually be", "Individual feedback shared with each person, not only with you"], "note": "Uncomfortable, useful, and the individual feedback is non-negotiable.", "arm": "delivery"}};
-    var wrap=document.querySelector('.mapx'); if(!wrap) return;
-    var det=document.getElementById('det');
-    function show(k){
-      var v=D[k]; if(!v) return;
-      document.getElementById('detN').textContent=v.n;
-      document.getElementById('detT').textContent=v.t;
-      document.getElementById('detP').textContent=v.p;
-      document.getElementById('detH').textContent=v.h;
-      document.getElementById('detL').textContent=v.l;
-      document.getElementById('detU').innerHTML=v.pts.map(function(p){return '<li>'+p+'</li>';}).join('');
-      document.getElementById('detK').textContent=v.note;
-      wrap.querySelectorAll('.chip').forEach(function(c){ c.classList.toggle('on', c.dataset.k===k); });
-      det.style.animation='none'; void det.offsetWidth; det.style.animation='';
-    }
-    function phase(p){
-      wrap.querySelectorAll('.ph').forEach(function(b){ b.classList.toggle('on', b.dataset.p===p); });
-      wrap.querySelectorAll('.pcol').forEach(function(c){ c.classList.toggle('dim', c.dataset.p!==p); });
-    }
-    wrap.addEventListener('click',function(e){
-      var c=e.target.closest('.chip');
-      if(c){ show(c.dataset.k); if(c.dataset.p!=='all') phase(c.dataset.p); return; }
-      var b=e.target.closest('.ph');
-      if(b){ phase(b.dataset.p);
-        var first=wrap.querySelector('.pcol[data-p="'+b.dataset.p+'"] .chip');
-        if(first) show(first.dataset.k); }
-    });
-    wrap.querySelectorAll('.ph').forEach(function(b){
-      b.addEventListener('mouseenter',function(){
-        wrap.querySelectorAll('.pcol').forEach(function(c){
-          c.classList.toggle('dim', c.dataset.p!==b.dataset.p); }); });
-    });
-    var rail=wrap.querySelector('.rail');
-    if(rail) rail.addEventListener('mouseleave',function(){
-      var cur=wrap.querySelector('.ph.on');
-      wrap.querySelectorAll('.pcol').forEach(function(c){
-        c.classList.toggle('dim', !!cur && c.dataset.p!==cur.dataset.p); }); });
-    show('bar');
-  })();
-
-  /* ══ services: open a row for the detail ══ */
-  (function(){
-    var wrap=document.querySelector('.svs'); if(!wrap) return;
-    wrap.addEventListener('click',function(e){
-      var hd=e.target.closest('.sv__hd'); if(!hd) return;
-      var row=hd.parentElement;
-      var open=row.classList.toggle('op');
-      hd.setAttribute('aria-expanded', String(open));
-    });
-  })();
-
-  /* ══ the nine open for detail ══ */
-  (function(){
-    var w=document.querySelector('.rests'); if(!w) return;
-    w.addEventListener('click',function(e){
-      var hd=e.target.closest('.rest__hd'); if(!hd) return;
-      var open=hd.parentElement.classList.toggle('op');
-      hd.setAttribute('aria-expanded', String(open));
-    });
-  })();
-
-  /* ══ the other eight open in place ══ */
-  (function(){
-    var w=document.querySelector('.ocs'); if(!w) return;
-    w.addEventListener('click',function(e){
-      var hd=e.target.closest('.oc__hd'); if(!hd) return;
-      var open=hd.parentElement.classList.toggle('op');
-      hd.setAttribute('aria-expanded', String(open));
-    });
-  })();
-  /* ══ active nav reflects the current page ══ */
-  (function(){
-    var p=location.pathname.replace(/\/+$/,'')||'/';
-    function mark(sel,on){ var a=document.querySelector(sel); if(a&&on) a.setAttribute('aria-current','page'); }
-    function markIs(sel,on){ var a=document.querySelector(sel); if(a&&on) a.classList.add('is'); }
-    markIs('.nav__sw a[href="/"]', p==='/');
-    markIs('.navp__sw a[href="/"]', p==='/');
-    markIs('.navp__sw a[href="/candidates"]', p.indexOf('/candidates')===0);
-    markIs('.nav__sw a[href="/candidates"]', p.indexOf('/candidates')===0);
-    mark('.nav__l[href="/services"]', p==='/services');
-    mark('.nav__l[href="/blog"]', p==='/blog'||p.indexOf('/blog/')===0);
-    mark('.nav__l[href="/about"]', p==='/about');
-    mark('.nav__l[href="/contact"]', p==='/contact');
-    var cov=p.indexOf('/industries')===0||p.indexOf('/functions')===0;
-    mark('.dd__t',cov); mark('.navp__t',cov);
-    mark('.navp a[href="/"]', p==='/');
-    mark('.navp a[href="/services"]', p==='/services');
-    mark('.navp a[href="/blog"]', p==='/blog'||p.indexOf('/blog/')===0);
-    mark('.navp a[href="/about"]', p==='/about');
-    mark('.navp a[href="/contact"]', p==='/contact');
-    mark('.navp a[href="/careers"]', p==='/careers'||p.indexOf('/careers/')===0);
-  })();
 </script>
+<StandaloneNavScripts />
 <ContactSalesModal />
-<script is:inline>
-(function(){if(window.__triberaPrefetch)return;window.__triberaPrefetch=true;
-var done={};
-function pf(u){if(done[u])return;done[u]=1;var l=document.createElement('link');l.rel='prefetch';l.href=u;document.head.appendChild(l);}
-document.addEventListener('mouseover',function(e){
-  var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;
-  var u;try{u=new URL(a.href,location.href);}catch(x){return;}
-  if(u.origin!==location.origin)return;
-  var p=u.pathname+u.search;if(p===location.pathname+location.search)return;
-  pf(p);
-},{passive:true});
-document.addEventListener('touchstart',function(e){
-  var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;
-  var u;try{u=new URL(a.href,location.href);}catch(x){return;}
-  if(u.origin!==location.origin)return;
-  pf(u.pathname+u.search);
-},{passive:true});
-})();
-</script>
+<StandalonePrefetchScripts />
 </body>
 </html>

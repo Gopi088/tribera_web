@@ -1,28 +1,14 @@
----
-import { getStaticPathsFunctions } from '~/data/function-pages';
-import type { FunctionPageData } from '~/data/function-pages';
-
-export const prerender = true;
-
-export const getStaticPaths = getStaticPathsFunctions;
-
-const { fw } = Astro.props as { fw: FunctionPageData };
-import ContactSalesModal from '../../components/ContactSalesModal.astro';
-import StandaloneNavScripts from '../../components/standalone/StandaloneNavScripts.astro';
-import StandaloneMetadata from '../../components/standalone/StandaloneMetadata.astro';
-import StandalonePrefetchScripts from '../../components/standalone/StandalonePrefetchScripts.astro';
----
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<StandaloneMetadata title={fw.title} description={fw.description} />
-    <link rel="preload" href="/fonts/figtree-800.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/inter-tight-600.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/figtree-400.woff2" as="font" type="font/woff2" crossorigin />
-<style is:global>
+<title>tribera — interviewed once, shortlisted everywhere</title>
+<meta name="description" content="One thirty-minute conversation with a senior expert who has done your job. Scored, recorded, and read by every team that asks for you. Anonymous until you say otherwise.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
 :root{
   --char:#131313;--char2:#1C1C1B;--char3:#282826;--cline:#2E2E2C;
   --paper:#F2F2F0;--warm:#EFEDE8;--card:#FFF;
@@ -31,18 +17,15 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
   --red:#DA0007;--grn:#3FBE7C;
   --display:"Figtree",-apple-system,sans-serif;--ui:"Inter Tight",-apple-system,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
-  --ease:cubic-bezier(.16,1,.3,1);--wrap:1280px;--gut:24px;
-}
-@media (min-width: 1536px) {
-  :root { --wrap: 1600px; --gut: 30px; }
+  --ease:cubic-bezier(.16,1,.3,1);--wrap:1280px;--gut:clamp(20px,4.5vw,48px);
 }
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:64px;overflow-x:clip;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--ui);font-size:16px;
   line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gut)}
-.band{padding-block:clamp(48px,6vw,80px)}
+.band{padding-block:clamp(52px,6vw,92px)}
 .band--w{background:var(--card)}
 .band--w .panel{background:#F4F4F2;border:1px solid #E9E9E5;
   box-shadow:none}
@@ -52,7 +35,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .band--w .tag--ai{background:#D2D2C8;color:#3B3B35}
 .band--w .plan{border-top-color:#E4E4E0}
 .band--w .plans__ft{border-top-color:#E4E4E0}
-.band--t{padding-block:clamp(40px,5vw,64px)}
+.band--t{padding-block:clamp(40px,4.6vw,68px)}
 .panel{background:var(--card);border-radius:16px;
   padding:clamp(18px,2vw,28px) clamp(18px,2vw,28px);
   box-shadow:0 1px 3px rgba(0,0,0,.04),0 8px 28px rgba(0,0,0,.045);
@@ -77,11 +60,11 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .eyebrow--red{color:var(--red)}
 .h1{font-family:var(--display);font-weight:800;font-size:clamp(38px,6.2vw,78px);
   line-height:.97;letter-spacing:-.045em;margin:0}
-.h2{font-family:var(--display);font-weight:700;font-size:clamp(30px,4.2vw,54px);
+.h2{font-family:var(--display);font-weight:700;font-size:clamp(29px,4.2vw,52px);
   line-height:1.04;letter-spacing:-.04em;margin:0;max-width:16ch}
-.h3{font-family:var(--display);font-weight:700;font-size:17px;
+.h3{font-family:var(--display);font-weight:700;font-size:clamp(20px,2.2vw,28px);
   line-height:1.14;letter-spacing:-.03em;margin:0}
-.dek{font-size:clamp(16px,1.7vw,20px);line-height:1.6;color:var(--grey);max-width:56ch;margin:clamp(24px,2.8vw,32px) 0 0}
+.dek{font-size:clamp(16px,1.5vw,18.5px);line-height:1.6;color:var(--grey);max-width:56ch;margin:18px 0 0}
 .dek b{color:var(--ink);font-weight:600}
 [data-rv]{opacity:0;transform:translateY(18px);
   transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0ms)}
@@ -107,17 +90,18 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .btn--wire{border-color:rgba(255,255,255,.3);color:#fff}.btn--wire:hover{border-color:#fff}
 .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
 
-
-
+.nav{position:sticky;top:0;z-index:60;background:rgba(19,19,19,.9);
+  backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--cline)}
+.nav__in{display:flex;align-items:center;gap:26px;height:64px}
 .logo{font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.055em;
   text-decoration:none;color:var(--onc)}
 .logo i{color:var(--red);font-style:normal}
-
+.nav__r{margin-left:auto;display:flex;align-items:center;gap:24px}
 .nav__r a{font-size:14px;color:var(--onc2);text-decoration:none;transition:color .2s}
 .nav__r a:hover{color:#fff}
 @media(max-width:720px){
   .nav__in{gap:12px}
-  
+  .nav__sw a{font-size:12px;padding:6px 11px}
   .nav__r{gap:10px}
   .nav__r .btn{padding:9px 15px;font-size:13.5px}
   .nav__r .btn::after{display:none}
@@ -125,20 +109,16 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 
 /* ══ HERO ══ */
 .hero{background:var(--char);color:var(--onc);padding-block:clamp(44px,5.6vw,80px) 0}
-.hero .eyebrow{color:var(--onc3)}.hero .eyebrow.eyebrow--red{color:var(--red)}
+.hero .eyebrow{color:var(--onc3)}
 .hero h1{color:#fff}.hero h1 em{font-style:normal;color:var(--red)}
-.hero__top{display:grid;gap:clamp(26px,3vw,44px);align-content:center;min-height:1576px}@media(min-width:330px){.hero__top{min-height:1496px}}@media(min-width:340px){.hero__top{min-height:1476px}}@media(min-width:360px){.hero__top{min-height:1461px}}@media(min-width:375px){.hero__top{min-height:1401px}}@media(min-width:390px){.hero__top{min-height:1321px}}@media(min-width:400px){.hero__top{min-height:1301px}}@media(min-width:420px){.hero__top{min-height:1286px}}@media(min-width:440px){.hero__top{min-height:1266px}}@media(min-width:460px){.hero__top{min-height:1216px}}@media(min-width:500px){.hero__top{min-height:1176px}}@media(min-width:550px){.hero__top{min-height:1161px}}@media(min-width:700px){.hero__top{min-height:1121px}}@media(min-width:800px){.hero__top{min-height:1126px}}@media(min-width:900px){.hero__top{min-height:1104px}}@media(min-width:1000px){.hero__top{min-height:calc(100svh - 64px)}}
-.hero__top{display:grid;gap:clamp(26px,3vw,44px);align-content:center;min-height:1576px}@media(min-width:330px){.hero__top{min-height:1496px}}@media(min-width:340px){.hero__top{min-height:1476px}}@media(min-width:360px){.hero__top{min-height:1461px}}@media(min-width:375px){.hero__top{min-height:1401px}}@media(min-width:390px){.hero__top{min-height:1321px}}@media(min-width:400px){.hero__top{min-height:1301px}}@media(min-width:420px){.hero__top{min-height:1286px}}@media(min-width:440px){.hero__top{min-height:1266px}}@media(min-width:460px){.hero__top{min-height:1216px}}@media(min-width:500px){.hero__top{min-height:1176px}}@media(min-width:550px){.hero__top{min-height:1161px}}@media(min-width:700px){.hero__top{min-height:1121px}}@media(min-width:800px){.hero__top{min-height:1126px}}@media(min-width:900px){.hero__top{min-height:1104px}}@media(min-width:1000px){.hero__top{min-height:calc(100svh - 64px)}}
+.hero__top{display:grid;gap:clamp(26px,3vw,44px)}
 @media(min-width:1000px){.hero__top{grid-template-columns:.9fr 1.1fr;align-items:center;
-  gap:clamp(44px,5.5vw,92px);max-width:1080px;margin-inline:auto}}
-@media(max-width:999px){.hero{padding-top:42px}.hero__top{min-height:0;align-content:start}.hero__top>*{min-width:0}.hero__card{width:100%;max-width:100%}}
-@media(max-width:699px){.hero__top{gap:32px}.hero__copy .btns{display:grid;grid-template-columns:1fr;gap:10px}.hero__copy .btns .btn{justify-content:center;min-height:48px;width:100%}}
+  gap:clamp(30px,3.4vw,52px)}}
 .hero__copy .btns{margin-top:26px}
 .hero .eyebrow{margin-bottom:16px}
-.hero h1{max-width:28ch;font-size:clamp(36px,4.6vw,62px)}
-.hero h1 + .hero__p{margin-top:18px}
+.hero h1{max-width:18ch;font-size:clamp(36px,4.6vw,62px)}
 @media(min-width:1000px){.hero h1{max-width:none}}
-.hero__p{font-size:clamp(15.5px,1.45vw,17.5px);line-height:1.6;color:var(--onc2);max-width:46ch;margin:5}
+.hero__p{font-size:clamp(15.5px,1.45vw,17.5px);line-height:1.6;color:var(--onc2);max-width:46ch;margin:0}
 .hero__p + .hero__p{margin-top:14px}
 .hero__p b{color:#fff;font-weight:600}
 
@@ -148,7 +128,6 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .hero__card::before{content:"";position:absolute;inset:-14% -8% -18%;pointer-events:none;
   background:radial-gradient(58% 52% at 62% 34%,rgba(218,0,7,.14),transparent 70%);
   filter:blur(28px);opacity:.55;transition:opacity .8s var(--ease),transform .8s var(--ease)}
-@media(max-width:1280px){.hero__card::before{inset:-14% -16px -18%}}
 .hero__card.is-flipped::before{opacity:.85;transform:translateX(-6%)}
 .tilt{transform-style:preserve-3d;-webkit-transform-style:preserve-3d;
   transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
@@ -266,7 +245,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .lg{display:flex;gap:14px;font-family:var(--mono);font-size:10px;letter-spacing:.12em}
 .lg i{font-style:normal;display:inline-flex;align-items:center;gap:5px}
 .lg i::before{content:"";width:7px;height:7px;border-radius:2px;background:currentColor}
-.lg--g{color:var(--grn)}.lg--y{color:#9B9B95}.lg--r{color:#DA0007}
+.lg--g{color:var(--grn)}.lg--y{color:#9B9B95}.lg--r{color:#E0484E}
 @media(prefers-reduced-motion:reduce){
   .flip{transition:none}
   .face--b{transition:none}
@@ -341,10 +320,10 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 /* ══ FUNNEL ══ */
 .fn{background:var(--char);color:var(--onc)}
 .fn .eyebrow{color:var(--onc3)}.fn h2{color:#fff}
-.fn__dek{font-size:clamp(16px,1.7vw,20px);line-height:1.62;color:var(--onc2);max-width:56ch;margin:22px 0 0}
+.fn__dek{font-size:clamp(16px,1.5vw,18.5px);line-height:1.62;color:var(--onc2);max-width:56ch;margin:22px 0 0}
 .fn__dek b{color:#fff;font-weight:600}
 .fn__grid{display:grid;gap:38px;margin-top:clamp(42px,5vw,70px)}
-@media(min-width:980px){.fn__grid{grid-template-columns:1.3fr .7fr;gap:clamp(40px,5vw,64px);align-items:start}}
+@media(min-width:980px){.fn__grid{grid-template-columns:1.3fr .7fr;gap:clamp(40px,4.6vw,68px);align-items:start}}
 .stick{position:relative}
 .field{position:relative;background:#191918;border:1px solid #35352F;border-radius:18px;
   padding:clamp(20px,2.4vw,30px);box-shadow:0 24px 60px rgba(0,0,0,.45)}
@@ -354,9 +333,9 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .field__n{font-family:var(--mono);font-weight:700;font-size:clamp(36px,4.4vw,58px);color:#fff;
   letter-spacing:-.05em;line-height:1;margin:0 0 18px;transition:color .5s var(--ease)}
 .field.at5 .field__n{color:var(--red)}
-.grid{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:6px;min-width:0}
-@media(min-width:520px){.grid{grid-template-columns:repeat(18,minmax(0,1fr))}}
-@media(min-width:980px){.grid{grid-template-columns:repeat(18,minmax(0,1fr));gap:7px}}
+.grid{display:grid;grid-template-columns:repeat(14,1fr);gap:6px}
+@media(min-width:520px){.grid{grid-template-columns:repeat(18,1fr)}}
+@media(min-width:980px){.grid{grid-template-columns:repeat(18,1fr);gap:7px}}
 .sq{position:relative;aspect-ratio:1/1;border-radius:2px;background:#3A3A37;
   transition:opacity .45s var(--ease),transform .32s var(--ease),box-shadow .2s var(--ease)}
 .sq.g1{background:#3B3B36}
@@ -484,7 +463,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .lab{background:var(--char);color:var(--onc)}
 .lab .eyebrow{color:var(--red)}
 .lab h2{color:#fff}
-.lab__dek{font-size:clamp(16px,1.7vw,20px);line-height:1.6;color:var(--onc2);max-width:44ch;margin:0}
+.lab__dek{font-size:clamp(16px,1.5vw,18.5px);line-height:1.6;color:var(--onc2);max-width:44ch;margin:0}
 .lab__grid{display:grid;gap:clamp(24px,3vw,44px);margin-top:clamp(32px,4vw,52px)}
 @media(min-width:980px){.lab__grid{grid-template-columns:.86fr 1.14fr;align-items:start}}
 
@@ -499,9 +478,9 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .b-sel{color:var(--grn);background:linear-gradient(180deg,rgba(63,190,124,.2),rgba(63,190,124,.08));
   border:1px solid rgba(63,190,124,.42);box-shadow:0 0 22px rgba(63,190,124,.18)}
 .b-grey{color:#C9C9C3;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2)}
-.b-rej{color:#DA0007;background:rgba(218,0,7,.12);border:1px solid rgba(218,0,7,.4);
-  box-shadow:0 0 22px rgba(218,0,7,.16)}
-.verd__big{display:flex;align-items:baseline;gap:6px;margin:clamp(24px,2.8vw,32px) 0 0}
+.b-rej{color:#E0484E;background:rgba(224,72,78,.12);border:1px solid rgba(224,72,78,.4);
+  box-shadow:0 0 22px rgba(224,72,78,.16)}
+.verd__big{display:flex;align-items:baseline;gap:6px;margin:18px 0 0}
 .verd__big b{font-family:var(--mono);font-weight:700;font-size:clamp(42px,5vw,60px);
   letter-spacing:-.05em;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
 .verd__big i{font-family:var(--mono);font-style:normal;font-size:13px;color:var(--onc3)}
@@ -624,7 +603,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 /* ══ BUYING ══ */
 .buy{background:var(--char);color:var(--onc)}
 .buy .eyebrow{color:var(--onc3)}.buy h2{color:#fff}
-.buy__dek{font-size:clamp(16px,1.7vw,20px);line-height:1.62;color:var(--onc2);max-width:54ch;margin:22px 0 0}
+.buy__dek{font-size:clamp(16px,1.5vw,18.5px);line-height:1.62;color:var(--onc2);max-width:54ch;margin:22px 0 0}
 .cmp{margin-top:clamp(26px,3vw,40px);border:1px solid rgba(255,255,255,.08);border-radius:16px;
   padding:clamp(16px,1.9vw,24px) clamp(16px,1.9vw,26px);background:rgba(255,255,255,.012)}
 .cmp:hover .cmp__r:not(:hover) .seg.on{opacity:.55}
@@ -659,7 +638,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
   transition:background .3s var(--ease),border-color .3s var(--ease),opacity .3s var(--ease)}
 .seg.on{background:#8E8E87;border-color:#8E8E87}
 .cmp__r:hover .seg.on{background:#C9C9C2;border-color:#C9C9C2}
-/* four of them hit a wall. one doesn’t. */
+/* four of them hit a wall. one doesn't. */
 .cmp__r:not(.cmp__r--us) .seg.last::after{content:"";position:absolute;right:-6px;top:-7px;bottom:-7px;
   width:2px;border-radius:1px;background:rgba(255,255,255,.28)}
 .cmp__r--us .seg.on{background:#D6D6CF;border-color:#D6D6CF}
@@ -718,7 +697,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .plan__d{font-size:14.5px;line-height:1.5;color:var(--grey);margin:0;max-width:30ch}
 .plans__ft{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline;
   justify-content:space-between;font-size:13.5px;color:var(--grey);
-  margin:clamp(24px,2.8vw,32px) 0 0;padding-top:14px;border-top:1px solid var(--hair)}
+  margin:18px 0 0;padding-top:14px;border-top:1px solid var(--hair)}
 .plans__ft b{color:var(--ink);font-weight:600}
 .plans__ft a{color:var(--red);text-decoration:none;border-bottom:1px solid rgba(218,0,7,.35);
   padding-bottom:2px;transition:border-color .2s}
@@ -811,7 +790,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .deal{background:var(--char);color:var(--onc)}
 .deal .eyebrow{color:var(--red)}
 .deal h2{color:#fff}
-.deal__dek{font-size:clamp(16px,1.7vw,20px);line-height:1.6;color:var(--onc2);max-width:44ch;margin:0}
+.deal__dek{font-size:clamp(16px,1.5vw,18.5px);line-height:1.6;color:var(--onc2);max-width:44ch;margin:0}
 .deal__dek b{color:#fff;font-weight:600}
 .pledge2{font-family:var(--display);font-weight:700;font-size:clamp(24px,3.4vw,44px);
   line-height:1.12;letter-spacing:-.038em;color:#fff;margin:clamp(32px,3.8vw,52px) 0 0;max-width:22ch}
@@ -949,7 +928,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .trust{background:var(--char);color:var(--onc)}
 .trust .eyebrow{color:var(--red)}
 .trust h2{color:#fff}
-.trust__dek{font-size:clamp(16px,1.7vw,20px);line-height:1.6;color:var(--onc2);max-width:44ch;margin:0}
+.trust__dek{font-size:clamp(16px,1.5vw,18.5px);line-height:1.6;color:var(--onc2);max-width:44ch;margin:0}
 .trust__dek b{color:#fff;font-weight:600}
 .tr2{display:grid;gap:26px 44px}
 @media(min-width:820px){.tr2{grid-template-columns:repeat(2,1fr)}}
@@ -1110,12 +1089,13 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 
 
 /* ══ NAV audience pill ══ */
-
+.nav__sw{display:inline-flex;align-items:center;gap:2px;padding:3px;border-radius:999px;
+  background:rgba(255,255,255,.07);border:1px solid var(--cline)}
 .nav__sw a{font-size:13px;padding:6px 13px;border-radius:999px;color:var(--onc2);
   text-decoration:none;white-space:nowrap;transition:background .2s,color .2s}
-
+.nav__sw a.is{background:var(--onc);color:var(--char);font-weight:600}
 .nav__sw a:hover:not(.is){color:#fff}
-
+@media(max-width:720px){.nav__sw a{font-size:12px;padding:6px 10px}}
 
 /* ══ APPLY card ══ */
 .apply{margin-top:clamp(38px,4.6vw,60px);background:var(--char);border-radius:20px;
@@ -1142,18 +1122,18 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .apply__url:focus,.apply__mail:focus{border-color:var(--onc2)}
 .apply__mail{border-color:rgba(255,255,255,.28)}
 .apply__mail:focus{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.08)}
-.apply__mail:invalid:not(:placeholder-shown){border-color:rgba(218,0,7,.6)}
+.apply__mail:invalid:not(:placeholder-shown){border-color:rgba(224,72,78,.6)}
 .apply__row--2{align-items:stretch}
 .apply__go{padding:15px 28px;display:inline-flex;align-items:center;gap:9px;border-radius:999px;border:0;background:var(--red);color:#fff;
   font-family:var(--ui);font-weight:600;font-size:15px;cursor:pointer;white-space:nowrap;
   transition:transform .18s var(--ease),background .2s}
 .apply__go:hover{transform:translateY(-1px);background:#C10006}
-.apply__fine{font-size:13px;color:var(--onc3);margin:clamp(24px,2.8vw,32px) 0 0}
+.apply__fine{font-size:13px;color:var(--onc3);margin:18px 0 0}
 .apply__fine b{color:var(--onc);font-weight:600}
 
 /* ══ sticky candidate CTA ══ */
 .stickcta{position:fixed;left:0;right:0;bottom:0;z-index:70;transform:translateY(110%);
-  transition:transform .4s var(--ease);background:#131313;
+  transition:transform .4s var(--ease);background:rgba(19,19,19,.94);
   backdrop-filter:blur(12px);border-top:1px solid var(--cline)}
 .stickcta.show{transform:none}
 .stickcta__in{display:flex;align-items:center;gap:14px;padding:12px 0}
@@ -1163,7 +1143,7 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){.stickcta{transition:none}}
 
 /* ══ SECTION RHYTHM — the header owns the gap below it ══ */
-.shead{margin-bottom:clamp(50px,5.8vw,88px)} #contact .shead{margin-bottom:clamp(8px,3.8vw,30px)}
+.shead{margin-bottom:clamp(30px,3.6vw,52px)}
 .shead + *{margin-top:0}
 .shead + .ramp{margin-top:0}
 
@@ -1309,7 +1289,7 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
 .fan__side:hover .fan__3 span:nth-child(3){transition-delay:.12s}
 .fan__side:hover .fan__3 span:last-child{box-shadow:0 6px 18px rgba(218,0,7,.3)}
 
-/* 3. the candidate timeline behaves like the buyer’s one */
+/* 3. the candidate timeline behaves like the buyer's one */
 .tl2{transition:opacity .28s var(--ease),transform .3s var(--spring)}
 .tl2__bar{transition:background .3s var(--ease),transform .34s var(--spring);transform-origin:left}
 .tl2__g:hover .tl2{opacity:.45}
@@ -1330,546 +1310,680 @@ p,li,.dek,.hero__p,.fn__dek,.lab__dek,.deal__dek,.trust__dek,.cand__lede,
   .tl2__g:hover .tl2{opacity:1}
 }
 
-/* ════════ BLOG ════════ */
-.hero h1 em{font-style:normal;color:var(--red)}
+/* ════════ CANDIDATES PAGE ════════ */
 
-/* the latest piece, as an object */
-.feat__k{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--onc3);margin:0 0 12px}
-.feat{position:relative;display:grid;gap:0;overflow:hidden;text-decoration:none;
-  background:linear-gradient(158deg,#232320,#1A1A18 46%,#141413);
-  border:1px solid #33332E;border-radius:18px;padding:clamp(22px,2.4vw,30px);
-  box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 24px 56px rgba(0,0,0,.45);
-  transition:transform .34s var(--spring),border-color .3s var(--ease),box-shadow .3s var(--ease)}
-.feat:hover{transform:translateY(-4px);border-color:#4A4A44;
-  box-shadow:0 1px 0 rgba(255,255,255,.08) inset,0 32px 70px rgba(0,0,0,.55)}
-.feat__glint{position:absolute;top:0;left:8%;right:8%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent)}
-.feat__hd{display:flex;justify-content:space-between;gap:14px;
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--onc3);padding-bottom:16px;border-bottom:1px solid var(--cline)}
-.feat__t{font-family:var(--display);font-weight:700;font-size:clamp(24px,2.9vw,34px);
-  line-height:1.14;letter-spacing:-.036em;color:#fff;margin:18px 0 8px;text-wrap:balance}
-.feat__sub{font-size:15px;line-height:1.45;color:var(--onc2);margin-bottom:14px}
-.feat__x{font-size:14px;line-height:1.6;color:var(--onc3);text-wrap:pretty}
-.feat__ft{display:flex;justify-content:space-between;align-items:center;gap:14px;
-  margin-top:20px;padding-top:16px;border-top:1px solid var(--cline)}
-.feat__min{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--onc3)}
-.feat__go{font-size:14px;font-weight:600;color:#fff;display:inline-flex;align-items:center;gap:8px}
-.feat__go i{font-style:normal;color:var(--red);transition:transform .3s var(--spring)}
-.feat:hover .feat__go i{transform:translateX(4px)}
+/* ── HERO: your profile, and the team asking ── */
+.cprof{display:grid;gap:11px}
+.cprof__hd{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.cprof__nm{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.028em;
+  color:#fff;margin:0}
+.cprof__sub{font-size:12.5px;color:var(--onc3);margin:5px 0 0}
+.cprof__sub b{color:var(--grn);font-weight:600}
+.sig{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex:none}
+.sig__n{display:flex;align-items:baseline;gap:3px}
+.sig__n b{font-family:var(--mono);font-weight:700;font-size:28px;letter-spacing:-.045em;
+  color:#fff;line-height:1}
+.sig__n i{font-family:var(--mono);font-style:normal;font-size:11px;color:var(--onc3)}
+.sig__k{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--grn)}
+.mtr2{display:grid;gap:0;margin-top:14px;border-top:1px solid var(--cline)}
+.mtr2__r{display:grid;grid-template-columns:1fr 74px 34px;gap:12px;align-items:center;
+  padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.mtr2__n{font-size:13px;color:var(--onc2)}
+.mtr2__b{height:4px;border-radius:2px;background:rgba(255,255,255,.1);overflow:hidden}
+.mtr2__f{display:block;height:100%;border-radius:2px;background:#C9C9C2;
+  transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease)}
+.cflip.in .mtr2__f{transform:scaleX(1)}
+.mtr2__r:nth-child(2) .mtr2__f{transition-delay:.1s}
+.mtr2__r:nth-child(3) .mtr2__f{transition-delay:.2s}
+.mtr2__r:nth-child(4) .mtr2__f{transition-delay:.3s}
+.mtr2__v{font-family:var(--mono);font-size:12px;color:#fff;text-align:right}
 
-/* the filter bar */
-.fbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(20px,2.4vw,30px)}
-.fchip{display:inline-flex;align-items:center;gap:8px;font-family:var(--ui);font-size:13px;
-  font-weight:600;padding:9px 15px;border-radius:999px;border:1px solid var(--hair);
-  background:var(--card);color:var(--grey);cursor:pointer;
-  transition:background .22s var(--ease),color .22s,border-color .22s,transform .2s var(--spring)}
-.fchip:hover{border-color:#CFCBC1;color:var(--ink)}
-.fchip:active{transform:scale(.96)}
-.fchip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.fchip i{font-family:var(--mono);font-style:normal;font-size:10px;opacity:.6}
-.fchip:focus-visible{outline:2px solid var(--red);outline-offset:2px}
-
-/* the list — editorial rows, not cards */
-.posts{display:grid;border-top:1px solid var(--hair)}
-.post{display:grid;gap:6px 26px;padding:clamp(20px,2.2vw,26px) 12px;margin-inline:-12px;
-  border-bottom:1px solid var(--hair);border-radius:10px;text-decoration:none;color:inherit;
-  align-items:start;transition:background .24s var(--ease),transform .26s var(--spring),opacity .26s}
-@media(min-width:880px){.post{grid-template-columns:150px 1fr 78px}}
-.posts:hover .post{opacity:.48}
-.posts:hover .post:hover{opacity:1;background:rgba(0,0,0,.032);transform:translateX(3px)}
-.post.hide{display:none}
-.post__meta{display:grid;gap:4px}
-.post__d{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--ink2)}
-.post__cat{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+/* ── the tally, at full size ── */
+.big{display:grid;gap:clamp(26px,3vw,44px)}
+@media(min-width:900px){.big{grid-template-columns:1.05fr .95fr;align-items:center}}
+.big__k{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 10px}
+.big__t{font-family:var(--display);font-weight:700;font-size:clamp(22px,2.6vw,32px);
+  line-height:1.2;letter-spacing:-.032em;margin:0 0 8px}
+.big__t em{font-style:normal;color:var(--red)}
+.big__d{font-size:14.5px;line-height:1.55;color:var(--grey);margin:0}
+.ba{display:grid;gap:0;border-top:1px solid var(--hair);margin-top:22px}
+.ba__r{display:grid;grid-template-columns:112px 1fr;gap:18px;align-items:baseline;
+  padding:14px 0;border-bottom:1px solid var(--hair)}
+.ba__k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--faint)}
-.post__t{display:block;font-family:var(--display);font-weight:700;
-  font-size:clamp(18px,2vw,23px);line-height:1.2;letter-spacing:-.03em;color:var(--ink)}
-.post__sub{display:block;font-size:14.5px;line-height:1.4;color:var(--grey);margin:4px 0 8px}
-.post__x{display:block;font-size:14px;line-height:1.6;color:var(--grey);max-width:60ch;
-  text-wrap:pretty}
-.post__min{font-family:var(--mono);font-size:12px;color:var(--faint);display:flex;
-  align-items:baseline;gap:4px;justify-content:flex-start}
-@media(min-width:880px){.post__min{justify-content:flex-end}}
-.post__min i{font-style:normal;font-size:9px;letter-spacing:.1em;text-transform:uppercase}
-.post__ar{color:var(--red);opacity:0;margin-left:8px;transition:opacity .25s,transform .3s var(--spring)}
-.post:hover .post__ar{opacity:1;transform:translateX(3px)}
-.posts__none{display:none;font-size:14.5px;color:var(--grey);padding:30px 0;margin:0}
-.posts__none.on{display:block}
+.ba__r--now .ba__k{color:var(--red)}
+.ba__v{font-size:15px;line-height:1.45;color:var(--grey);margin:0}
+.ba__r--now .ba__v{color:var(--ink);font-family:var(--display);font-weight:600;font-size:16.5px;
+  letter-spacing:-.02em}
 
-/* subscribe */
-.sub{max-width:56ch}
-.sub__k{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--red);margin:0 0 12px}
-.sub__h{font-family:var(--display);font-weight:700;font-size:clamp(26px,3.4vw,42px);
-  line-height:1.12;letter-spacing:-.038em;color:#fff;margin:0 0 14px}
-.sub__s{font-size:15px;line-height:1.6;color:var(--onc2);margin:0 0 24px}
 
-/* ════════ INDUSTRIES ════════ */
-.hero h1 em{font-style:normal;color:var(--red)}
 
-/* hero card: one title, two sectors */
-.cmpw{position:relative;background:linear-gradient(158deg,#232320,#1A1A18 46%,#141413);
-  border:1px solid #33332E;border-radius:18px;padding:clamp(20px,2.2vw,26px);overflow:hidden;
-  box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 24px 56px rgba(0,0,0,.45)}
+/* ── the candidate's instrument: one interview, four bars ── */
+.score2{display:grid;gap:clamp(24px,3vw,44px)}
+@media(min-width:980px){.score2{grid-template-columns:.92fr 1.08fr;align-items:start}}
+.vcard{background:var(--card);border:1px solid var(--hair);border-radius:18px;
+  padding:clamp(20px,2.2vw,28px);box-shadow:0 1px 3px rgba(0,0,0,.04),0 12px 34px rgba(0,0,0,.055)}
+.vcard__hd{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.vcard__nm{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.028em;margin:0}
+.vcard__sub{font-size:12.5px;color:var(--faint);margin:5px 0 0}
+.vcard__band{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;padding:7px 11px;border-radius:7px;white-space:nowrap;flex:none;
+  background:rgba(63,190,124,.14);color:#2E8F5C;border:1px solid rgba(63,190,124,.35);
+  transition:all .4s var(--ease)}
+.vcard__band.mid{background:rgba(0,0,0,.05);color:var(--grey);border-color:var(--hair)}
+.vcard__band.low{background:rgba(232,163,61,.14);color:#8A6216;border-color:rgba(232,163,61,.4)}
+.vcard__big{display:flex;align-items:baseline;gap:6px;margin:18px 0 0}
+.vcard__big b{font-family:var(--mono);font-weight:700;font-size:clamp(40px,5vw,58px);
+  letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.vcard__big i{font-family:var(--mono);font-style:normal;font-size:13px;color:var(--faint)}
+.vcard__track{position:relative;height:6px;border-radius:3px;background:#E7E5DE;margin:16px 0 6px}
+.vcard__z1{position:absolute;left:50%;width:16.7%;top:0;bottom:0;background:#D6D3CA}
+.vcard__z2{position:absolute;left:66.7%;right:0;top:0;bottom:0;border-radius:0 3px 3px 0;
+  background:rgba(63,190,124,.42)}
+.vcard__pin{position:absolute;top:-4px;width:3px;height:14px;border-radius:2px;background:var(--ink);
+  transition:left .55s var(--ease)}
+.vcard__ax{display:flex;justify-content:space-between;font-family:var(--mono);font-size:8.5px;
+  letter-spacing:.1em;color:var(--faint)}
+.vms{display:grid;margin-top:18px;border-top:1px solid var(--hair)}
+.vm{display:grid;grid-template-columns:1fr 84px 34px;gap:12px;align-items:center;
+  padding:9px 0;border-bottom:1px solid var(--hair);transition:opacity .3s var(--ease)}
+.vm__n{font-size:13.5px;color:var(--ink2)}
+.vm__b{height:5px;border-radius:3px;background:#E7E5DE;overflow:hidden}
+.vm__f{display:block;height:100%;border-radius:3px;background:var(--ink)}
+.vm__v{font-family:var(--mono);font-size:12.5px;font-weight:700;text-align:right}
+.vm.dim2{opacity:.34}
+.vm.key .vm__f{background:var(--red)}
+.vm.key .vm__v{color:var(--red)}
+.vcard__ft{font-size:13px;line-height:1.5;color:var(--grey);margin:14px 0 0;padding-top:13px;
+  border-top:1px solid var(--hair);min-height:calc(3 * 1.5em)}
 
-.cmpw__sel{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-bottom:16px;
-  border-bottom:1px solid var(--cline);margin-bottom:6px}
-.sel{display:grid;gap:6px}
-.sel>span{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--onc3)}
-.sel--b>span{color:var(--red)}
-.sel select{appearance:none;-webkit-appearance:none;width:100%;font-family:var(--ui);font-size:13px;
-  color:#fff;background:rgba(255,255,255,.06);border:1px solid var(--cline);border-radius:9px;
-  padding:9px 26px 9px 11px;cursor:pointer;outline:none;
-  background-image:linear-gradient(45deg,transparent 50%,#9C9C97 50%),
-    linear-gradient(135deg,#9C9C97 50%,transparent 50%);
-  background-position:calc(100% - 14px) 50%,calc(100% - 9px) 50%;
-  background-size:5px 5px,5px 5px;background-repeat:no-repeat;
-  transition:border-color .2s,background-color .2s}
-.sel select:hover{border-color:#4A4A44}
-.sel select:focus{border-color:var(--onc2)}
-.sel select option{background:#1A1A18;color:#fff}
-.bw{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:center;
-  padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);
-  transition:opacity .28s var(--ease)}
-.cmpw__g:hover .bw{opacity:.5}
-.cmpw__g:hover .bw:hover,.bw.key{opacity:1}
-.bw__n{font-size:12px;color:var(--onc3);line-height:1.25}
-.bw.key .bw__n{color:#fff}
-.bw__pair{display:grid;gap:4px}
-.bw__b{height:5px;border-radius:3px;background:rgba(255,255,255,.09);overflow:hidden}
-.bw__f{display:block;height:100%;width:0;border-radius:3px;background:#7E7A72;
-  transition:width .55s var(--ease),background .3s var(--ease)}
-.bw__f--b{background:#B4B0A6}
-.bw.key .bw__f{background:#C9C9C2}
-.bw.key .bw__f--b{background:var(--red);box-shadow:0 0 10px rgba(218,0,7,.5)}
-.bw__v{font-family:var(--mono);font-size:10.5px;color:var(--onc3);text-align:right;line-height:1.5}
-.bw__v i,.bw__v b{display:block;font-style:normal}
-.bw__v b{color:#fff;font-weight:400}
-.bw.key .bw__v b{color:var(--red);font-weight:700}
+.score2__k{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 14px}
+.pres2{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.pre2{font-family:var(--ui);font-size:13px;font-weight:600;padding:9px 15px;border-radius:999px;
+  border:1px solid var(--hair);background:var(--card);color:var(--grey);cursor:pointer;
+  transition:background .22s var(--ease),color .22s,border-color .22s,transform .2s var(--spring)}
+.pre2:hover{border-color:#CFCBC1;color:var(--ink)}
+.pre2:active{transform:scale(.965)}
+.pre2.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pre2:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.wrs{display:grid;border-top:1px solid var(--hair)}
+.wr{display:grid;grid-template-columns:1fr 1fr 46px;gap:14px;align-items:center;
+  padding:11px 0;border-bottom:1px solid var(--hair);transition:opacity .3s var(--ease)}
+.wr__n{font-size:14px;color:var(--ink2)}
+.wr__b{height:6px;border-radius:3px;background:#EAE8E2;overflow:hidden}
+.wr__f{display:block;height:100%;border-radius:3px;background:#8E8A80;width:0;
+  transition:width .55s var(--ease)}
+.wr__v{font-family:var(--mono);font-size:12.5px;text-align:right;font-variant-numeric:tabular-nums}
+.wr.zero{opacity:.38}
+.wr.top .wr__f{background:var(--red)}
+.wr.top .wr__n{color:var(--ink);font-weight:600}
+.wr.top .wr__v{color:var(--red)}
+.wrs__ft{font-size:13.5px;line-height:1.55;color:var(--grey);margin:16px 0 0;padding-top:14px;
+  border-top:1px solid var(--hair)}
+.wrs__ft b{color:var(--ink)}
+.lab__foot2{font-family:var(--display);font-weight:700;font-size:clamp(19px,2.4vw,30px);
+  line-height:1.25;letter-spacing:-.032em;margin:clamp(30px,3.6vw,48px) 0 0;max-width:30ch}
+.lab__foot2 em{font-style:normal;color:var(--red)}
 
-.cmpw__ft{font-size:12.5px;line-height:1.55;color:var(--onc3);margin:16px 0 0;padding-top:14px;
-  border-top:1px solid var(--cline)}
-.cmpw__ft b{color:#fff;font-weight:600}
+/* ── the controls are actual switches ── */
+.ctrls{display:grid;gap:12px;margin-top:clamp(28px,3.2vw,42px)}
+@media(min-width:760px){.ctrls{grid-template-columns:repeat(2,1fr);gap:14px 20px}}
+.ctl{display:grid;grid-template-columns:46px 1fr;gap:16px;align-items:start;width:100%;
+  padding:18px;border:1px solid var(--cline);border-radius:14px;cursor:pointer;
+  text-align:left;font:inherit;color:inherit;
+  background:rgba(255,255,255,.012);
+  transition:border-color .25s var(--ease),background .25s var(--ease),transform .2s var(--spring)}
+.ctl:hover{border-color:#45453F;background:rgba(255,255,255,.03)}
+.ctl:active{transform:scale(.99)}
+.ctl:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.ctl__sw{display:block;width:46px;height:26px;border-radius:999px;background:rgba(255,255,255,.14);
+  position:relative;transition:background .3s var(--ease);flex:none;margin-top:2px}
+.ctl__sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;
+  border-radius:50%;background:#fff;transition:transform .34s var(--spring)}
+.ctl.on .ctl__sw{background:var(--red)}
+.ctl.on .ctl__sw::after{transform:translateX(20px)}
+.ctl__body{display:block}
+.ctl__t{display:block;font-family:var(--display);font-weight:700;font-size:15.5px;
+  letter-spacing:-.02em;color:#fff;margin:0 0 5px;line-height:1.25}
+.ctl__d{display:block;font-size:13.5px;line-height:1.5;color:var(--onc3);margin:0}
+.ctl__st{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--onc3);margin:10px 0 0;padding-top:9px;
+  border-top:1px solid rgba(255,255,255,.07);transition:color .25s}
+.ctl.on .ctl__st{color:var(--red)}
 
-/* the twelve */
-.inds2{display:grid;gap:14px}
-@media(min-width:700px){.inds2{grid-template-columns:repeat(2,1fr);gap:16px}}
-@media(min-width:1080px){.inds2{grid-template-columns:repeat(3,1fr)}}
-.ind{display:grid;align-content:start;gap:10px;padding:20px;text-decoration:none;color:inherit;
-  background:var(--card);border:1px solid var(--hair);border-top:2px solid #DCD8CE;
-  border-radius:2px 2px 14px 14px;
-  transition:opacity .28s var(--ease),transform .28s var(--spring),
-  box-shadow .28s var(--ease),border-top-color .28s var(--ease)}
-.inds2:hover .ind{opacity:.5}
-.inds2:hover .ind:hover{opacity:1;transform:translateY(-4px);border-top-color:var(--red);
-  box-shadow:0 12px 30px rgba(0,0,0,.07)}
-.ind__hd{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-.ind__n{font-family:var(--display);font-weight:700;font-size:17px;line-height:1.2;
-  letter-spacing:-.028em;text-wrap:balance}
-.ind__ar{color:var(--red);font-family:var(--mono);flex:none;opacity:0;
-  transition:opacity .25s,transform .3s var(--spring)}
-.ind:hover .ind__ar{opacity:1;transform:translateX(3px)}
-.ind__x{font-size:13.5px;line-height:1.5;color:var(--grey);text-wrap:pretty}
-.ind__w{display:block;margin-top:4px;padding-top:12px;border-top:1px solid var(--hair);
-  font-size:13.5px;line-height:1.45;color:var(--ink2);font-weight:600}
-.ind__w i{display:block;font-family:var(--mono);font-style:normal;font-size:8.5px;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--faint);font-weight:400;margin-bottom:5px}
+/* ── they get checked too ── */
+.them{display:grid;gap:0;border-top:1px solid var(--hair);margin-top:clamp(24px,2.8vw,38px)}
+.them__r{display:grid;gap:6px 24px;padding:16px 12px;margin-inline:-12px;border-radius:9px;
+  border-bottom:1px solid var(--hair);transition:background .22s var(--ease)}
+@media(min-width:820px){.them__r{grid-template-columns:230px 1fr auto;align-items:baseline}}
+.them__r:hover{background:rgba(0,0,0,.03)}
+.them__k{font-family:var(--display);font-weight:700;font-size:15.5px;letter-spacing:-.02em;margin:0}
+.them__d{font-size:14px;line-height:1.5;color:var(--grey);margin:0}
+.them__v{font-family:var(--mono);font-size:12.5px;color:var(--ink);white-space:nowrap}
+.them__r--flag .them__v{color:#B8860B}
 
-/* each sector’s weighting, as a shape you can scan */
-.isp{display:block;width:66px;height:26px;margin-bottom:2px;opacity:.85;
-  transition:opacity .28s var(--ease),transform .3s var(--spring)}
-.ind:hover .isp{opacity:1;transform:translateY(-2px)}
-.ind{grid-template-rows:auto auto auto 1fr}
-.ind__w{margin-top:auto}
+.sig__list{display:grid;margin-top:14px;border-top:1px solid var(--cline)}
+.sig__r{display:flex;justify-content:space-between;gap:16px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.sig__k2{font-size:13px;color:var(--onc2)}
+.sig__v{font-family:var(--mono);font-size:11.5px;color:#fff;text-align:right}
+.tally--big{width:100%;max-width:330px;height:auto}
+.fn .steps .step__d{max-width:46ch}
 
-/* ════════ NAV ════════ */
-.nav{position:sticky;top:0;z-index:50;background:#131313;
-  
-  transition:background .3s var(--ease)}
-.nav::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(to right,transparent,rgba(255,255,255,.1) 50%,transparent);pointer-events:none}
+.mtr2__r--low .mtr2__f{background:#E8A33D}
+.mtr2__r--low .mtr2__v{color:#E8A33D}
+.cflip .scale__sel{left:85%}
+.cflip .scale__pin{left:88%}
+.cflip .pill{color:var(--grn)}
 
-.nav__in{display:flex;align-items:center;gap:18px;
-  padding-block:clamp(7px,0.9vw,8px);transition:padding-block .3s var(--ease)}
+/* ── the candidate instrument, on the product surface ── */
+#score .vcard{background:linear-gradient(158deg,#232320,#1A1A18 46%,#141413);
+  border:1px solid #33332E;box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 24px 56px rgba(0,0,0,.45)}
+#score .vcard__nm{color:#fff}
+#score .vcard__sub{color:var(--onc3)}
+#score .vcard__big b{color:#fff}
+#score .vcard__big i,#score .vcard__ax{color:var(--onc3)}
+#score .vcard__track{background:rgba(255,255,255,.08)}
+#score .vcard__z1{background:rgba(255,255,255,.13)}
+#score .vcard__z2{background:rgba(63,190,124,.32)}
+#score .vcard__pin{background:#fff;box-shadow:0 0 10px rgba(255,255,255,.7)}
+#score .vms{border-top-color:var(--cline)}
+#score .vm{border-bottom-color:rgba(255,255,255,.055)}
+#score .vm__n{color:var(--onc2)}
+#score .vm__b{background:rgba(255,255,255,.1)}
+#score .vm__f{background:#C9C9C2}
+#score .vm__v{color:#fff}
+#score .vcard__ft{color:var(--onc3);border-top-color:var(--cline)}
+#score .vcard__band{background:linear-gradient(180deg,rgba(63,190,124,.2),rgba(63,190,124,.08));
+  color:var(--grn);border-color:rgba(63,190,124,.42);box-shadow:0 0 22px rgba(63,190,124,.18)}
+#score .vcard__band.mid{background:rgba(255,255,255,.07);color:#C9C9C3;
+  border-color:rgba(255,255,255,.2);box-shadow:none}
+#score .vcard__band.low{background:rgba(232,163,61,.14);color:#E8A33D;
+  border-color:rgba(232,163,61,.42);box-shadow:none}
+#score .score2__k{color:var(--onc3)}
+#score .pre2{background:transparent;border-color:var(--cline);color:var(--onc2)}
+#score .pre2:hover{color:#fff;border-color:#4A4A44}
+#score .pre2.on{background:var(--onc);color:var(--char);border-color:var(--onc)}
+#score .wrs{border-top-color:var(--cline)}
+#score .wr{border-bottom-color:rgba(255,255,255,.055)}
+#score .wr__n{color:var(--onc2)}
+#score .wr.top .wr__n{color:#fff}
+#score .wr__b{background:rgba(255,255,255,.09)}
+#score .wr__f{background:#6E6A61}
+#score .wr__v{color:#fff}
+#score .wrs__ft{color:var(--onc3);border-top-color:var(--cline)}
+#score .wrs__ft b{color:#fff}
+#score .lab__foot2{color:#fff}
 
-.logo{font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.045em;
-  color:var(--onc);text-decoration:none;flex:none;line-height:1}
-.logo i{display:inline-block;font-style:normal;color:var(--red);
-  transition:transform .4s var(--spring)}
-.logo:hover i{transform:translateY(-2px) scale(1.25)}
+/* ── the interview section, relit for paper ── */
+#thirty h2{color:var(--ink)}
+#thirty .eyebrow{color:var(--faint)}
+#thirty .steps{margin-top:clamp(28px,3.4vw,46px);border-top:1px solid var(--hair)}
+#thirty .step{display:grid;grid-template-columns:52px 1fr;gap:6px 20px;align-items:baseline;
+  padding:clamp(16px,1.9vw,22px) 12px;margin-inline:-12px;border-radius:10px;
+  border-bottom:1px solid var(--hair);border-top:0;
+  transition:background .22s var(--ease),transform .24s var(--spring)}
+#thirty .step:hover{background:rgba(0,0,0,.03);transform:translateX(2px)}
+#thirty .step__n{font-family:var(--mono);font-weight:700;font-size:clamp(20px,2.2vw,26px);
+  letter-spacing:-.04em;color:var(--faint);grid-row:span 2}
+#thirty .step:last-child .step__n{color:var(--red)}
+#thirty .step__t{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.024em;
+  color:var(--ink);display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+#thirty .step__d{font-size:14.5px;line-height:1.5;color:var(--grey);grid-column:2;max-width:52ch}
+#thirty .own{background:#DCDCD4;color:#3B3B35;border-color:transparent}
+#thirty .own--you{background:transparent;color:var(--red);border-color:rgba(218,0,7,.45)}
+#thirty .fn__line{color:var(--ink);margin-top:clamp(26px,3vw,40px)}
 
-.nav__sw{display:inline-flex;gap:3px;padding:3px;border-radius:999px;
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);flex:none}
-.nav__sw a{font-family:var(--ui);font-size:13px;font-weight:600;padding:7px 15px;border-radius:999px;
-  color:var(--onc3);text-decoration:none;white-space:nowrap;
-  transition:background .3s var(--spring),color .22s,transform .2s var(--spring)}
-.nav__sw a:hover{color:#fff}
-.nav__sw a.is{background:var(--onc);color:var(--char)}
-.nav__sw a:active{transform:scale(.95)}
+/* text on a dark ground must be lit for it — .dek defaults to ink */
+.lab .dek,.trust .dek,.fn .dek,.hero .dek{color:var(--onc2)}
+.lab .dek b,.trust .dek b,.fn .dek b,.hero .dek b{color:#fff}
+.lab .eyebrow,.trust .eyebrow,.fn .eyebrow{color:var(--red)}
+.lab .shead h2,.trust .shead h2,.fn .shead h2{color:#fff}
 
-.nav__links{display:none;align-items:center;gap:2px;margin-left:auto}
-@media(min-width:1080px){.nav__links{display:flex}}
-.nav__l{position:relative;font-size:14px;color:var(--onc2);text-decoration:none;
-  padding:8px 12px;border-radius:8px;transition:color .22s var(--ease),background .22s}
-.nav__l:hover{color:#fff;background:rgba(255,255,255,.05)}
-.nav__l[aria-current="page"]{color:#fff}
-.nav__l[aria-current="page"]::after{content:"";position:absolute;left:12px;right:12px;bottom:2px;
-  height:1.5px;border-radius:1px;background:var(--red)}
-
-.nav__end{display:flex;align-items:center;gap:10px;margin-left:auto}
-@media(min-width:1080px){.nav__end{margin-left:14px}}
-.nav__login{display:none;font-size:13.5px;color:var(--onc3);text-decoration:none;padding:8px 4px;
-  transition:color .22s}
-.nav__login:hover{color:#fff}
-@media(min-width:1080px){.nav__login{display:inline-block}}
-.nav__cta{padding:9px 18px!important;font-size:14px}
-@media(max-width:719px){.nav__cta{display:none}}
-
-.burger{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:36px;height:36px;border-radius:6px;border:0;background:transparent;cursor:pointer;flex:none;transition:background .2s}
-@media(min-width:1080px){.burger{display:none}}
-.burger:hover{background:rgba(255,255,255,.05)}
-.burger:active{transform:scale(.94)}
-.burger span{display:block;width:24px;height:2px;border-radius:1px;background:#fff;transition:background .2s}
-@media(max-width:1079px){.nav__sw{display:none}}
-
-html.nlock{overflow:hidden}
-.navp{display:none;position:absolute;top:100%;left:0;right:0;max-height:calc(100dvh - 100%);overflow-y:auto;-webkit-overflow-scrolling:touch;border-top:1px solid rgba(255,255,255,.08);background:#131313;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-.navp.open{display:block;animation:npIn .3s var(--ease) both}
-@keyframes npIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
-@media(min-width:1080px){.navp{display:none!important}}
-.navp__in{padding-block:20px 26px;display:grid;gap:2px}
-.navp__k{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--onc3);margin:16px 0 6px}
-.navp__sw{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}.navp__sw a{text-align:center;padding:10px 8px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);color:var(--onc2);font-weight:600;font-size:13px;text-decoration:none;transition:background .25s var(--ease),color .2s}.navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}.navp__sw a.is{background:var(--onc);color:var(--char)}
-.navp__k:first-child{margin-top:0}
-.navp__cta{margin-top:18px;display:grid;gap:9px}
-.navp__cta .btn{justify-content:center}
-
-/* ── dropdowns: real destinations, on the page’s own surface ── */
-.dd{position:relative;display:none}
-@media(min-width:1080px){.dd{display:inline-block}}
-.dd__t{display:inline-flex;align-items:center;gap:6px;font-family:var(--ui);font-size:14px;
-  color:var(--onc2);background:transparent;border:0;cursor:pointer;padding:8px 12px;
-  border-radius:8px;text-decoration:none!important;text-decoration-line:none!important;border-bottom:0!important;transition:color .22s,background .22s}
-.dd__t:hover,.dd.open .dd__t{color:#fff;background:rgba(255,255,255,.05)}
-.dd__t--q{font-size:13.5px;color:var(--onc3);padding:8px 6px}
-.dd__t i{width:7px;height:7px;border-right:1.4px solid currentColor;border-bottom:1.4px solid currentColor;
-  transform:rotate(45deg) translate(-1px,-1px);transition:transform .3s var(--spring)}
-.dd.open .dd__t i{transform:rotate(225deg) translate(-2px,-2px)}
-.dd__p{position:absolute;top:calc(100% + 10px);left:-8px;z-index:60;
-  background:rgba(24,24,22,.98);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border:1px solid rgba(255,255,255,.11);border-radius:16px;padding:20px;
-  box-shadow:0 24px 60px rgba(0,0,0,.5);opacity:0;visibility:hidden;transform:translateY(-6px);
-  transition:opacity .24s var(--ease),transform .28s var(--spring),visibility .24s}
-.dd.open .dd__p{opacity:1;visibility:visible;transform:none}
-.dd--r .dd__p{left:auto;right:-8px}
-.dd__g{display:grid;grid-template-columns:230px 210px;gap:0 34px}
-.dd__c{display:grid;align-content:start}
-.dd__k{font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--red);margin:0 0 10px}
-.dd__p a{display:block;font-size:13.5px;color:var(--onc2);text-decoration:none;padding:6px 8px;
-  margin-inline:-8px;border-radius:7px;transition:background .18s,color .18s,padding-left .22s var(--ease)}
-.dd__p a:hover{background:rgba(255,255,255,.06);color:#fff;padding-left:12px}
-.dd__f{display:block;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.09);
-  font-size:12.5px;color:var(--onc3)}
-.dd__f a{display:inline;padding:0;margin:0;color:var(--red);border-bottom:1px solid rgba(218,0,7,.35)}
-.dd__f a:hover{padding-left:0;background:transparent}
-.dd__p--sm{width:290px}
-.dd__p--sm a{padding:11px 10px;margin-inline:-10px;border-bottom:1px solid rgba(255,255,255,.055)}
-.dd__p--sm a:last-child{border-bottom:0}
-.dd__p--sm b{display:block;font-family:var(--display);font-weight:700;font-size:14.5px;
-  letter-spacing:-.02em;color:#fff;margin-bottom:3px}
-.dd__p--sm span{display:block;font-size:12px;line-height:1.4;color:var(--onc3)}
-
-.navp a:not(.btn){display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.026em;color:var(--onc2);text-decoration:none;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.06);transition:color .2s var(--ease)}
-.navp a:not(.btn):hover{color:#fff}
-html body .navp .navp__sw a{display:flex;align-items:center;justify-content:center;text-align:center;padding:10px 8px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);color:var(--onc2);font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:normal;text-decoration:none;transition:background .25s var(--ease),color .2s}
-html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
-
-.navp a[aria-current="page"]{color:#fff}
-.navp__login{color:var(--red)!important;font-weight:600}
-.navp__t{display:flex;align-items:center;justify-content:space-between;width:100%;padding:7px 0;background:none;border:0;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;color:var(--onc2);text-align:left;transition:color .2s var(--ease)}
-.navp__t:hover{color:#fff}
-.navp__t i{width:8px;height:8px;border-right:1.5px solid var(--onc3);border-bottom:1.5px solid var(--onc3);transform:rotate(45deg);transition:transform .25s var(--ease);margin-right:6px;flex:none}
-.navp__t[aria-expanded="true"] i{transform:rotate(-135deg)}
-.navp__cov{display:none;padding:2px 0 8px 12px;border-left:1px solid rgba(255,255,255,.08)}
-.navp__cov.open{display:block}
-.navp__cols{display:grid;gap:0}
-@media(min-width:520px){.navp__cols{grid-template-columns:1fr 1fr;column-gap:28px}}
-.navp__c .navp__k{margin-top:12px}
-.navp__cols .navp__c:first-child .navp__k{margin-top:0}
-@media(min-width:520px){.navp__cols .navp__c+.navp__c .navp__k{margin-top:0}}
-.navp a[aria-current="page"]{color:#fff}
-.navp a[aria-current="page"]::before{background:var(--red);transform:scale(1)}
-.navp .btn{color:var(--char)}
-.navp .btn--wire{color:#fff}
-
-.ind{display:grid;align-content:start;grid-template-rows:auto auto 1fr auto;gap:10px}
-.isp{margin:0 0 2px}
-.ind__w{margin-top:0;align-self:end}
-
-/* ════════ FUNCTION DETAIL ════════ */
-.hero h1 em{font-style:normal;color:var(--red)}
-.crumb{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--onc3);margin:0 0 clamp(20px,2.4vw,30px)}
-.crumb a{color:var(--onc2);text-decoration:none;border-bottom:1px solid var(--cline);padding-bottom:2px}
-.crumb a:hover{color:#fff;border-color:var(--onc2)}
-.crumb i{font-style:normal;opacity:.4;margin:0 6px}
-
-/* what a CV cannot tell you */
-.miss{display:grid;border-top:1px solid var(--hair)}
-.mis{display:grid;grid-template-columns:52px 1fr;gap:6px 20px;padding:clamp(20px,2.2vw,26px) 12px;
-  margin-inline:-12px;border-bottom:1px solid var(--hair);border-radius:10px;align-items:start;
-  transition:background .24s var(--ease),opacity .26s var(--ease),transform .26s var(--spring)}
-.miss:hover .mis{opacity:.48}
-.miss:hover .mis:hover{opacity:1;background:rgba(0,0,0,.03);transform:translateX(3px)}
-.mis__n{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--red)}
-.mis__t{font-family:var(--display);font-weight:700;font-size:clamp(18px,1.9vw,22px);line-height:1.2;
-  letter-spacing:-.03em;margin:0;text-wrap:balance}
-.mis__k{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--faint);margin:6px 0 10px}
-.mis__x{font-size:14.5px;line-height:1.6;color:var(--grey);margin:0 0 10px;max-width:62ch;
-  text-wrap:pretty}
-.mis__w{font-size:14px;line-height:1.55;color:var(--ink2);margin:0;padding-top:10px;
-  border-top:1px solid var(--hair);max-width:62ch;font-weight:500}
-
-/* the questions */
-.qqs{display:grid;gap:16px}
-.qq{padding:clamp(20px,2.2vw,26px);background:var(--card);border:1px solid var(--hair);
-  border-top:2px solid var(--ink);border-radius:2px 2px 16px 16px;
-  transition:opacity .28s var(--ease),transform .28s var(--spring),box-shadow .28s var(--ease),
-  border-top-color .28s}
-.qqs:hover .qq{opacity:.5}
-.qqs:hover .qq:hover{opacity:1;transform:translateY(-3px);border-top-color:var(--red);
-  box-shadow:0 12px 30px rgba(0,0,0,.07)}
-.qq__q{display:flex;gap:14px;align-items:baseline;font-family:var(--display);font-weight:700;
-  font-size:clamp(17px,1.9vw,21px);line-height:1.3;letter-spacing:-.028em;margin:0 0 18px;
-  text-wrap:balance}
-.qq__q span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--red);flex:none}
-.qq__g{display:grid;gap:16px 30px}
-@media(min-width:820px){.qq__g{grid-template-columns:.9fr 1.1fr}}
-.qq__b{padding-left:18px;position:relative}
-.qq__b::before{content:"";position:absolute;left:0;top:4px;bottom:2px;width:2px;border-radius:1px}
-.qq__b--weak::before{background:#DCD8CE}
-.qq__b--for::before{background:var(--red)}
-.qq__k{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;
+/* ── CV line → the question it earns ── */
+.qps{display:grid;gap:12px;margin-top:clamp(26px,3vw,42px)}
+.qp{display:grid;gap:10px 20px;padding:clamp(16px,1.9vw,22px);border:1px solid var(--hair);
+  border-radius:14px;background:var(--card);align-items:center;
+  transition:border-color .25s var(--ease),transform .28s var(--spring),box-shadow .28s var(--ease)}
+@media(min-width:820px){.qp{grid-template-columns:1fr 28px 1.15fr}}
+.qps:hover .qp{opacity:.5}
+.qps:hover .qp:hover{opacity:1;transform:translateY(-3px);border-color:#D8D4CA;
+  box-shadow:0 10px 28px rgba(0,0,0,.06)}
+.qp{transition:opacity .28s var(--ease),border-color .25s var(--ease),
+  transform .28s var(--spring),box-shadow .28s var(--ease)}
+.qp__k{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--faint);display:block;margin-bottom:6px}
-.qq__v{font-size:14.5px;line-height:1.6;color:var(--ink2);margin:0;text-wrap:pretty}
-.qq__b--weak .qq__v{color:var(--faint);font-style:italic}
+.qp__k--r{color:var(--red)}
+.qp__v{font-size:14.5px;line-height:1.45;color:var(--faint);margin:0;
+  text-decoration:line-through;text-decoration-color:#DCD8CE;text-decoration-thickness:1px}
+.qp__q{font-family:var(--display);font-weight:700;font-size:clamp(15.5px,1.7vw,18px);
+  line-height:1.35;letter-spacing:-.022em;color:var(--ink);margin:0}
+.qp__arrow{font-family:var(--mono);font-size:15px;color:var(--red);text-align:center;
+  transition:transform .3s var(--spring)}
+.qp:hover .qp__arrow{transform:translateX(3px)}
+@media(max-width:819px){.qp__arrow{display:none}}
+.qnote{display:grid;gap:16px 40px;margin-top:clamp(24px,2.8vw,36px);
+  padding-top:clamp(18px,2.2vw,26px);border-top:1px solid var(--hair)}
+@media(min-width:760px){.qnote{grid-template-columns:repeat(2,1fr)}}
+.qnote__k{font-family:var(--display);font-weight:700;font-size:15.5px;letter-spacing:-.02em;
+  margin:0 0 5px;position:relative;padding-left:20px}
+.qnote__k::before{content:"";position:absolute;left:0;top:.44em;width:8px;height:8px;
+  border-radius:50%;background:var(--red)}
+.qnote__v{font-size:13.5px;line-height:1.5;color:var(--grey);margin:0;padding-left:20px}
 
-/* roles */
-.rles{display:grid;gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:14px;
-  overflow:hidden}
-@media(min-width:620px){.rles{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:960px){.rles{grid-template-columns:repeat(4,1fr)}}
-.rle{background:var(--card);padding:17px 18px;transition:background .22s var(--ease)}
-.rle:hover{background:#FAFAF8}
-.rle__n{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:-.02em;margin:0}
-.rle__l{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin:5px 0 0}
-.rles__ft{font-size:14px;color:var(--grey);margin:clamp(24px,2.8vw,32px) 0 0}
-.rles__ft a{color:var(--red);text-decoration:none;border-bottom:1px solid rgba(218,0,7,.35)}
-.rles__ft a:hover{border-color:var(--red)}
+/* ── what happens when a company fails a check ── */
+.outc{margin-top:clamp(26px,3vw,40px);padding-top:clamp(20px,2.4vw,28px);
+  border-top:1px solid var(--hair)}
+.outc__k{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 16px}
+.outc__g{display:grid;gap:14px}
+@media(min-width:820px){.outc__g{grid-template-columns:repeat(3,1fr);gap:18px}}
+.outc__i{padding:20px 18px 18px;border:1px solid var(--hair);border-top-width:2px;
+  border-radius:2px 2px 14px 14px;background:var(--card);
+  transition:opacity .28s var(--ease),transform .28s var(--spring),box-shadow .28s var(--ease)}
+.outc__g:hover .outc__i{opacity:.58}
+.outc__g:hover .outc__i:hover{opacity:1;transform:translateY(-3px);
+  box-shadow:0 10px 26px rgba(0,0,0,.06)}
+.outc__i--ok{border-top-color:#B9B5AB}
+.outc__i--fl{border-top-color:#C9A46A}
+.outc__i--no{border-top-color:var(--red)}
+.outc__s{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  padding:5px 9px;border-radius:5px;display:inline-block;margin-bottom:13px;
+  background:transparent;border:1px solid}
+.outc__i--ok .outc__s{color:var(--grey);border-color:#DCD8CE}
+.outc__i--fl .outc__s{color:#8A6216;border-color:rgba(232,163,61,.5)}
+.outc__i--no .outc__s{color:var(--red);border-color:rgba(218,0,7,.45)}
+.outc__t{font-family:var(--display);font-weight:700;font-size:15.5px;letter-spacing:-.02em;margin:0 0 6px}
+.outc__d{font-size:13.5px;line-height:1.5;color:var(--grey);margin:0}
 
-/* faq on a light ground */
-.qas--l{border-top-color:var(--hair)}
-.qas--l{max-width:56ch;margin-inline:auto}
-.qas--l .qa2{border-bottom-color:var(--hair)}
-.qas--l .qa2__q{color:var(--ink)}
-.qas--l .qa2__q:hover{color:var(--grey)}
-.qas--l .qa2__a{color:var(--grey)}
-.close.fn h2{color:#fff}
-.navp__t[aria-current="page"]{color:#fff}
-.navp__t[aria-current="page"]{color:#fff}
+/* ── the numbers under the timeline ── */
+.cstat{display:grid;gap:20px 32px;margin-top:clamp(28px,3.2vw,44px);
+  padding-top:clamp(20px,2.4vw,28px);border-top:1px solid var(--hair)}
+@media(min-width:700px){.cstat{grid-template-columns:repeat(3,1fr)}}
+.cstat__n{font-family:var(--mono);font-weight:700;font-size:clamp(34px,4vw,48px);
+  letter-spacing:-.05em;line-height:1;margin:0 0 8px;color:var(--ink)}
+.cstat__i:first-child .cstat__n{color:var(--red)}
+.cstat__n i{font-family:var(--ui);font-style:normal;font-size:13px;font-weight:400;
+  color:var(--faint);margin-left:5px;letter-spacing:0}
+.cstat__d{font-size:13.5px;line-height:1.5;color:var(--grey);margin:0;max-width:30ch}
+.cstat__i{transition:transform .28s var(--spring)}
+.cstat:hover .cstat__i{opacity:.5}
+.cstat:hover .cstat__i:hover{opacity:1;transform:translateY(-2px)}
+.cstat__i{transition:opacity .28s var(--ease),transform .28s var(--spring)}
+.cstat__ft{font-size:14.5px;line-height:1.6;color:var(--grey);margin:clamp(18px,2vw,26px) 0 0;
+  max-width:64ch}
+.cstat__ft b{color:var(--ink);font-weight:600}
+
+.freeb{display:grid;gap:20px 40px;margin-top:clamp(26px,3vw,40px);
+  padding-top:clamp(20px,2.4vw,28px);border-top:1px solid var(--cline)}
+@media(min-width:760px){.freeb{grid-template-columns:repeat(2,1fr)}}
+.freeb__k{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.022em;
+  color:#fff;margin:0 0 6px;position:relative;padding-left:20px}
+.freeb__k::before{content:"";position:absolute;left:0;top:.42em;width:8px;height:8px;
+  border-radius:50%;background:var(--red)}
+.freeb__v{font-size:14px;line-height:1.55;color:var(--onc2);margin:0;padding-left:20px}
+.freeb__v b{color:#fff;font-weight:600}
 </style>
 </head>
 <body>
-<nav class="nav" id="nav"><div class="wrap nav__in">
-  <a class="logo" href="/" data-astro-reload>tribera<i>.</i></a>
-  <span class="nav__sw">
-    <a href="/">I’m hiring</a>
-    <a href="/candidates">I’m looking</a>
-  </span>
-  <span class="nav__links"><span class="dd">
-    <a href="/functions" class="nav__l dd__t" aria-current="page">Coverage<i></i></a>
-    <span class="dd__p" role="menu">
-      <span class="dd__g">
-        <span class="dd__c"><p class="dd__k">Industries</p><a href="/industries/banking-financial-services">Banking & financial services</a><a href="/industries/enterprise-technology">Enterprise technology</a><a href="/industries/product-saas">Product & SaaS</a><a href="/industries/ai-data">AI & data</a><a href="/industries/cybersecurity">Cybersecurity</a><a href="/industries/healthcare-life-sciences">Healthcare & life sciences</a><a href="/industries/pharmaceutical">Pharmaceutical</a><a href="/industries/manufacturing">Manufacturing</a><a href="/industries/industrial-engineering">Industrial & engineering</a><a href="/industries/global-capability-centres">Global capability centres</a><a href="/industries/consumer-digital-commerce">Consumer & digital commerce</a><a href="/industries/private-equity-portfolio">Private equity portfolio</a></span>
-        <span class="dd__c"><p class="dd__k">Functions</p><a href="/functions/engineering-platform">Engineering & platform</a><a href="/functions/data-analytics">Data & analytics</a><a href="/functions/infrastructure-sre">Infrastructure & SRE</a><a href="/functions/security">Security</a><a href="/functions/finance-risk">Finance & risk</a><a href="/functions/product-design">Product & design</a><a href="/functions/operations">Operations</a><a href="/functions/leadership">Leadership</a></span>
-      </span>
-      <span class="dd__f">Not listed? <a href="/contact">Ask us</a>: we say no when it is not our
-        ground.</span>
+<nav class="nav"><div class="wrap nav__in">
+  <a class="logo" href="#top">tribera<i>.</i></a>
+  <div class="nav__r">
+    <span class="nav__sw">
+      <a href="/">I'm hiring</a>
+      <a href="#top" class="is">I'm looking</a>
     </span>
-  </span><a class="nav__l" href="/services">Services</a><a class="nav__l" href="/intelligence">Intelligence</a><a class="nav__l" href="/blog">Blog</a><a class="nav__l" href="/about">About</a><a class="nav__l" href="/contact">Contact</a></span>
-  <span class="nav__end">
-    <a class="nav__login" href="https://app.tribera.ai/auth/login">Log in</a>
-    <a href="/contact" data-form-intent="demo" data-form-source="page" class="btn btn--light nav__cta">Talk to us</a>
-    <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="navp">
-      <span></span><span></span><span></span></button>
-  </span>
-</div>
-<div class="navp" id="navp"><div class="wrap navp__in">
-    <div class="navp__sw"><a href="/">I’m hiring</a><a href="/candidates">I’m looking</a></div>
-  <div class="navp__coverage"><a class="navp__coverage-link" href="/functions" aria-current="page">Coverage</a><button class="navp__t" type="button" aria-label="Expand Coverage" aria-expanded="false" aria-controls="navp-cov"><i></i></button></div>
-  <div class="navp__cov" id="navp-cov">
-  <span class="navp__cols">
-    <span class="navp__c">
-      <p class="navp__k">Industries</p>
-      <a href="/industries/banking-financial-services">Banking &amp; financial services</a><a href="/industries/enterprise-technology">Enterprise technology</a><a href="/industries/product-saas">Product &amp; SaaS</a><a href="/industries/ai-data">AI &amp; data</a><a href="/industries/cybersecurity">Cybersecurity</a><a href="/industries/healthcare-life-sciences">Healthcare &amp; life sciences</a><a href="/industries/pharmaceutical">Pharmaceutical</a><a href="/industries/manufacturing">Manufacturing</a><a href="/industries/industrial-engineering">Industrial &amp; engineering</a><a href="/industries/global-capability-centres">Global capability centres</a><a href="/industries/consumer-digital-commerce">Consumer &amp; digital commerce</a><a href="/industries/private-equity-portfolio">Private equity portfolio</a>
-    </span>
-    <span class="navp__c">
-      <p class="navp__k">Functions</p>
-      <a href="/functions/engineering-platform">Engineering &amp; platform</a><a href="/functions/data-analytics">Data &amp; analytics</a><a href="/functions/infrastructure-sre">Infrastructure &amp; SRE</a><a href="/functions/security">Security</a><a href="/functions/finance-risk">Finance &amp; risk</a><a href="/functions/product-design">Product &amp; design</a><a href="/functions/operations">Operations</a><a href="/functions/leadership">Leadership</a>
-    </span>
-  </span>
+    <a href="#apply" class="btn btn--light" style="padding:9px 18px">Create profile</a>
   </div>
-  <p class="navp__k">Company</p>
-  <a href="/services">Services</a><a href="/intelligence">Intelligence</a><a href="/blog">Blog</a><a href="/about">About</a><a href="/contact">Contact</a>
-  <a href="/careers">Careers</a>
-  
-  
-  <a href="https://app.tribera.ai/auth/login" class="navp__login">Log in</a>
-  <div class="navp__cta">
-    <a href="#contact" data-form-intent="demo" data-form-source="page" class="btn btn--light">Talk to us</a>
-      </div>
-</div></div></nav>
-<header class="hero hero--bare" id="top">
+</div></nav>
+<header class="hero" id="top">
   <div class="wrap">
     <div class="hero__top">
       <div class="hero__copy">
-        <p class:list={['eyebrow', fw.slug === 'engineering-platform' && 'eyebrow--red']} data-rv>{fw.heroEyebrow}</p>
-        <h1 class="h1" data-rv style="--d:60ms" set:html={fw.heroH1}></h1>
-        {fw.heroPs.map((p, i) => (
-          <p class="hero__p" data-rv style={`--d:${110 + i * 40}ms`} set:html={p}></p>
-        ))}
+        <p class="eyebrow" data-rv>One conversation. Thirty minutes.</p>
+        <h1 class="h1" data-rv style="--d:60ms">Interviewed once.<br>Shortlisted <em>everywhere</em>.</h1>
+        <p class="hero__p" data-rv style="--d:110ms">Your CV gets six seconds. Your LinkedIn gets skimmed.
+        <b>One honest conversation with someone who has done your job gets read</b> — by every team that
+        asks for you afterwards.</p>
+        <p class="hero__p" data-rv style="--d:150ms"><b>You're not one of eight in a pile. You're one of three,
+        and they've read your interview before they pick up the phone.</b></p>
         <div class="btns" data-rv style="--d:190ms">
-          <a href="/contact" class="btn btn--light">Brief a role</a>
-          <a href="#asks" class="btn btn--wire">See what we ask</a>
+          <a href="#apply" class="btn btn--light">Create your profile</a>
+          <a href="/" class="btn btn--wire">I'm hiring</a>
         </div>
       </div>
+
       <div class="hero__card" data-rv style="--d:150ms">
-        <p class="feat__k">The bar in this function</p>
-        <div class="cmpw"><span class="feat__glint"></span>
-          <div class="cmpw__g">
-            {fw.bars.map((b) => (
-              <div class:list={['bw', { key: b.key }]}><span class="bw__n">{b.n}</span><span class="bw__b"><span class="bw__f" style={`--w:${b.w}%`}></span></span><span class="bw__v">{b.v}</span></div>
-            ))}
+        <div class="ftabs" role="tablist" aria-label="Two sides of the same conversation">
+          <button class="ftab is" id="tabA" role="tab" aria-selected="true" aria-controls="faceA">Your profile</button>
+          <button class="ftab" id="tabB" role="tab" aria-selected="false" aria-controls="faceB">The team asking</button>
+        </div>
+        <div class="tilt" id="tilt">
+          <div class="flip cflip" id="flip">
+            <div class="face" id="faceA" role="tabpanel" aria-labelledby="tabA"><span class="face__glint"></span>
+              <div class="face__hd"><span>Your profile <span class="rank">· live</span></span>
+                <span>Senior backend · Bengaluru</span></div>
+              <div class="side">
+                <div class="side__hd">
+                  <div><p class="side__nm">A. Mehta</p>
+                    <p class="side__sub">6 yrs · Python, AWS, Kubernetes · <b>anonymous</b></p></div>
+                  <span class="scr">
+                    <span class="scr__n"><b>88</b><i>/100</i></span>
+                    <span class="pill">TOP 8%</span>
+                    <span class="scale" aria-hidden="true"><span class="scale__sel"></span>
+                      <span class="scale__pin"></span></span>
+                    <span class="scale__k">Top decile starts at 85</span>
+                  </span>
+                </div>
+                <div class="vrd"><p class="vrd__k">What the expert wrote</p>
+                  <p class="vrd__t">He has built the thing most teams are hiring for — and he can show you
+                  the decision, not just the system.</p></div>
+                <div class="mtr2">
+                  <div class="mtr2__r"><span class="mtr2__n">Architecture thinking</span><span class="mtr2__b"><span class="mtr2__f" style="width:96%"></span></span><span class="mtr2__v">96</span></div>
+                  <div class="mtr2__r"><span class="mtr2__n">Systems design</span><span class="mtr2__b"><span class="mtr2__f" style="width:91%"></span></span><span class="mtr2__v">91</span></div>
+                  <div class="mtr2__r"><span class="mtr2__n">Code quality</span><span class="mtr2__b"><span class="mtr2__f" style="width:95%"></span></span><span class="mtr2__v">95</span></div>
+                  <div class="mtr2__r mtr2__r--low"><span class="mtr2__n">Communication</span><span class="mtr2__b"><span class="mtr2__f" style="width:89%"></span></span><span class="mtr2__v">89</span></div>
+                </div>
+                <p class="tiles__cap">Four dimensions, scored on the same rubric the team receives</p>
+                <div class="notes">
+                  <div class="note note--warn"><span class="note__k">Next</span>
+                    <p class="note__v">Communication is the one below your band. One worked example of a
+                    disagreement you resolved would move it.</p></div>
+                  <div class="note"><span class="note__k">Heard</span>
+                    <p class="note__v">Named the failure mode he was designing against before anyone
+                    asked him to.</p></div>
+                </div>
+              </div>
+              <div class="face__ft"><span>Recorded call · you keep the transcript</span>
+                <span class="lg"><i class="lg--g">LIVE</i><i class="lg--y">PAUSED</i><i class="lg--r">HIDDEN</i></span></div>
+            </div>
+
+            <div class="face face--b" id="faceB" role="tabpanel" aria-labelledby="tabB" aria-hidden="true">
+              <span class="face__glint"></span>
+              <div class="face__hd"><span>The team asking <span class="rank">· 1 of 3</span></span>
+                <span>Consumer internet · Series D</span></div>
+              <div class="side">
+                <div class="side__hd">
+                  <div><p class="side__nm">Platform team, 9 engineers</p>
+                    <p class="side__sub">Reports to VP Engineering · <b>headcount approved</b></p></div>
+                  <span class="verd__band b-sel" style="font-size:9.5px;padding:6px 11px">CLEARED</span>
+                </div>
+                <div class="vrd"><p class="vrd__k">Why we let them ask</p>
+                  <p class="vrd__t">They know what they want, they decide in a week, and people stay.</p></div>
+                <div class="sig__list"><div class="sig__r"><span class="sig__k2">Headcount</span><span class="sig__v">Approved and funded this quarter</span></div><div class="sig__r"><span class="sig__k2">Rounds</span><span class="sig__v">Three, then a decision</span></div><div class="sig__r"><span class="sig__k2">Decision speed</span><span class="sig__v">Six days from final interview</span></div><div class="sig__r"><span class="sig__k2">Manager tenure</span><span class="sig__v">Four years in the role</span></div></div>
+                <div class="notes">
+                  <div class="note note--warn"><span class="note__k">Watch</span>
+                    <p class="note__v">They interview in one-week blocks. If you need longer, say so before
+                    you accept the call.</p></div>
+                </div>
+              </div>
+              <p class="tiles__cap">What we verified before this request reached you</p>
+              <div class="face__ft"><span>We check them before you meet them</span>
+                <span class="lg"><i class="lg--g">SERIOUS</i><i class="lg--y">SLOW</i><i class="lg--r">DECLINED</i></span></div>
+            </div>
           </div>
-          <p class="cmpw__ft" set:html={fw.barsFt}></p>
         </div>
       </div>
+    </div>
+
+    <div class="logos" data-rv>
+      <p class="logos__l">Teams hiring through us</p>
+      <div class="logos__vp"><div class="logos__tk"><span>Flipkart</span><span>Myntra</span><span>Heineken</span><span>Volkswagen</span><span>Mizuho</span><span>ICICI Bank</span><span>Publicis Sapient</span><span>Capco</span><span>PayU</span><span>DSP Mutual Fund</span><span>ICICI Securities</span><span>Utkarsh Bank</span><span>Aeries</span><span>SplashBI</span><span>Aegon Life</span><span>Enpro</span><span aria-hidden="true" class="logos__dup"><span>Flipkart</span><span>Myntra</span><span>Heineken</span><span>Volkswagen</span><span>Mizuho</span><span>ICICI Bank</span><span>Publicis Sapient</span><span>Capco</span><span>PayU</span><span>DSP Mutual Fund</span><span>ICICI Securities</span><span>Utkarsh Bank</span><span>Aeries</span><span>SplashBI</span><span>Aegon Life</span><span>Enpro</span></span></div></div>
     </div>
   </div>
 </header>
 
-<section class="band band--w" id="misses"><div class="wrap">
-  <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
-    <div><p class="eyebrow eyebrow--red" data-rv>Where a generic screen breaks</p>
-      <h2 class="h2" data-rv style="--d:60ms;max-width:none;">{fw.missH2}</h2></div>
-    <p class="dek" data-rv style="--d:100ms;max-width:none">None of these are exotic. <b>They are simply invisible to
-    anyone assessing from outside the function</b>, which is most of the people doing the assessing.</p>
+<section class="band band--w" id="tally"><div class="wrap">
+  <div class="shead">
+    <div>
+      <p class="eyebrow eyebrow--red" data-rv>The only thing that changed</p>
+      <h2 class="h2" data-rv style="--d:60ms">Nothing about him changed. What they could see did.</h2>
+    </div>
+    <p class="dek" data-rv style="--d:100ms">Same person, same six years, same CV. In the spring he sent
+    140 applications and got three replies. Months later, three teams asked for him inside forty-eight
+    hours — <b>and none of them had seen the CV.</b></p>
   </div>
-  <div class="miss" data-rv style="--d:140ms">{fw.misses.map((miss) => (
-    <div class="mis"><span class="mis__n">{miss.n}</span><div><p class="mis__t">{miss.t}</p><p class="mis__k">{miss.k}</p><p class="mis__x">{miss.x}</p><p class="mis__w">{miss.w}</p></div></div>
-  ))}</div></div></section>
 
-<section class="wrap band" id="asks">
-  <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
-    <div><p class="eyebrow eyebrow--red" data-rv>What we actually ask</p>
-      <h2 class="h2" data-rv style="--d:60ms;max-width:none;">Three questions, and what a thin answer sounds like.</h2></div>
-    <p class="dek" data-rv style="--d:100ms;max-width:none">Every question comes off the candidate’s own CV, so these are
-    shapes rather than a script. <b>The second column is the part a generic interviewer cannot supply.</b></p>
+  <div class="big" data-rv style="--d:140ms">
+    <div class="fan__side fan__side--own">
+      <p class="fan__was">His spring — <span id="tallyN">140</span> applications</p>
+      <svg class="tally tally--big" viewBox="0 0 300 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path class="tk" pathLength="1" d="M7.9 14.2 Q7.8 27.7 8.0 41.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M13.1 13.1 Q13.5 26.6 13.8 40.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M17.4 13.4 Q18.4 26.2 17.9 38.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M22.4 15.4 Q22.9 28.3 22.6 41.3" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M5.0 36.6 Q14.8 24.7 27.0 14.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M49.3 13.9 Q50.4 26.9 49.4 39.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M55.2 14.0 Q55.1 27.2 54.7 40.5" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M60.7 15.4 Q61.4 28.2 60.3 41.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M64.6 13.4 Q65.5 26.1 64.4 38.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M48.1 37.7 Q56.9 26.2 69.7 17.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M92.6 13.9 Q92.2 27.6 91.5 41.3" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M97.2 14.8 Q95.9 27.1 96.8 39.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M102.6 14.7 Q101.8 26.8 101.7 38.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M106.4 14.8 Q106.6 27.0 106.3 39.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M89.0 38.6 Q98.2 27.2 110.4 16.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M133.6 13.4 Q134.6 27.3 133.1 41.3" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M139.5 13.2 Q140.7 26.4 139.9 39.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk tk--r" pathLength="1" d="M143.4 15.4 Q142.7 27.3 144.1 39.2" stroke="#DA0007" stroke-width="2.6" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M148.8 13.4 Q147.4 26.1 149.0 38.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M131.1 38.3 Q143.8 27.0 152.8 15.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M176.1 15.0 Q175.0 27.1 177.1 39.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M181.4 13.3 Q182.2 26.2 182.5 39.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M185.6 15.3 Q185.9 28.2 185.4 41.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M190.4 12.7 Q189.6 27.0 190.9 41.3" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M173.1 38.9 Q182.8 28.0 195.2 15.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M217.4 13.2 Q218.5 26.7 217.7 40.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M222.7 15.2 Q221.1 27.2 222.1 39.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M227.9 12.8 Q227.5 25.9 228.1 39.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M232.5 13.6 Q234.0 27.4 232.9 41.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M215.8 38.2 Q224.2 28.1 236.4 14.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M260.3 15.3 Q260.7 27.0 260.2 38.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M265.3 13.5 Q264.0 27.4 265.4 41.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M270.3 15.1 Q271.0 27.9 271.0 40.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M275.6 13.6 Q276.9 27.1 276.5 40.5" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M257.4 38.8 Q269.0 27.0 279.6 16.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M8.1 52.3 Q8.6 64.6 9.3 76.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M13.5 52.6 Q14.3 65.2 13.7 77.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M17.9 52.9 Q18.7 64.9 16.8 76.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M23.1 51.9 Q23.8 64.6 23.1 77.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M5.7 77.2 Q15.4 65.6 26.6 52.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M49.6 51.1 Q50.1 65.1 49.4 79.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M55.5 51.5 Q54.6 65.0 55.4 78.5" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M60.4 53.2 Q60.1 66.1 60.6 79.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M64.7 51.0 Q65.8 64.5 65.6 78.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M47.8 77.3 Q58.0 64.3 68.6 53.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M91.6 51.8 Q91.6 65.1 91.2 78.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M97.5 53.3 Q96.1 65.6 96.4 77.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M102.5 50.7 Q102.7 64.7 102.1 78.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M107.4 50.7 Q107.3 63.8 106.3 77.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M90.0 75.3 Q100.7 63.8 110.4 52.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M134.2 52.4 Q135.6 65.6 134.6 78.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M138.6 51.9 Q137.0 64.5 138.5 77.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M144.3 51.1 Q143.8 64.2 144.8 77.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M149.0 52.3 Q148.7 65.5 149.7 78.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M132.1 74.8 Q141.4 64.5 153.7 54.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M176.2 53.1 Q176.4 65.4 177.1 77.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M181.4 53.2 Q181.9 65.6 180.7 77.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M186.3 52.9 Q187.0 65.6 185.6 78.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M191.6 53.3 Q191.7 66.3 192.3 79.3" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M173.2 77.1 Q182.7 65.1 195.6 53.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M218.1 52.8 Q216.6 65.4 218.8 78.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M222.4 52.8 Q221.9 65.0 223.1 77.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M227.5 51.0 Q228.2 64.5 228.3 78.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk tk--r" pathLength="1" d="M233.3 53.2 Q234.7 65.6 232.3 78.0" stroke="#DA0007" stroke-width="2.6" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M215.1 76.1 Q226.4 65.4 236.7 54.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M260.5 52.2 Q260.1 64.8 261.3 77.5" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M265.6 51.2 Q267.1 65.1 265.6 79.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M270.1 51.2 Q270.1 64.6 270.4 78.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M274.3 53.3 Q274.0 65.7 275.1 78.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M257.6 76.0 Q268.6 64.0 279.3 52.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M8.6 91.2 Q8.6 103.3 7.7 115.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M12.9 90.9 Q12.8 104.0 12.5 117.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M17.6 90.3 Q16.4 103.8 18.2 117.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M22.3 89.1 Q22.9 102.2 21.9 115.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M5.3 114.3 Q14.3 103.5 26.4 92.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M49.7 89.2 Q49.4 102.6 49.4 116.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M54.9 90.1 Q53.9 102.6 55.2 115.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M60.2 90.1 Q60.6 103.5 61.1 117.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M64.6 90.7 Q65.9 103.8 64.2 116.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M47.2 115.2 Q59.4 102.8 68.5 93.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M91.6 90.6 Q90.3 103.0 92.4 115.3" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M96.9 90.8 Q96.6 102.9 97.3 115.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M101.3 89.2 Q102.6 102.8 102.4 116.5" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M106.5 90.0 Q106.5 103.4 106.9 116.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M89.0 112.8 Q99.9 101.8 110.4 90.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M134.1 89.0 Q133.1 102.1 134.9 115.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M139.7 91.2 Q138.3 103.0 140.8 114.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M143.9 90.7 Q143.8 103.1 144.0 115.5" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M148.9 90.3 Q149.5 102.5 149.7 114.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M131.0 113.9 Q141.0 101.5 153.4 91.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M176.0 88.6 Q177.0 102.9 176.5 117.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M181.5 90.4 Q181.8 103.0 181.5 115.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M186.7 90.9 Q188.0 103.1 187.3 115.3" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M191.4 90.9 Q192.7 103.3 192.3 115.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M173.8 114.7 Q185.5 101.5 195.4 91.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M217.8 89.9 Q217.3 102.3 218.1 114.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M223.2 89.2 Q223.7 103.2 222.8 117.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M228.2 90.2 Q227.9 103.1 229.4 116.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M233.2 90.6 Q234.7 103.6 232.1 116.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M215.7 114.7 Q224.3 102.0 236.6 91.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M259.8 88.9 Q261.1 102.1 259.9 115.3" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M265.0 91.3 Q266.6 103.7 265.3 116.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M270.4 88.8 Q271.3 102.5 269.3 116.3" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M275.6 89.0 Q274.5 102.5 275.6 115.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M257.7 112.8 Q268.8 102.7 279.7 91.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M7.8 127.4 Q8.0 140.9 7.3 154.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M13.3 127.4 Q12.5 140.0 12.2 152.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M17.5 128.7 Q18.8 141.2 18.1 153.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M22.4 129.4 Q21.0 142.3 23.3 155.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M5.4 151.9 Q16.7 142.4 27.8 129.3" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M50.3 127.9 Q51.3 141.6 50.6 155.3" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M54.5 128.3 Q53.5 141.1 53.4 153.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M60.0 126.9 Q60.6 140.4 59.9 153.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M64.7 128.2 Q65.6 141.0 64.7 153.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M48.3 153.3 Q57.3 142.8 69.4 129.3" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M92.4 128.3 Q91.7 141.0 92.8 153.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M97.1 128.3 Q97.9 141.3 96.3 154.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M101.6 129.3 Q102.9 142.3 100.5 155.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk tk--r" pathLength="1" d="M106.4 127.4 Q106.8 140.6 105.4 153.8" stroke="#DA0007" stroke-width="2.6" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M89.6 150.8 Q100.2 141.2 110.3 130.5" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M133.8 127.9 Q133.3 140.6 134.4 153.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M139.5 126.8 Q140.5 139.9 139.8 152.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M144.4 127.2 Q143.6 140.5 145.1 153.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M148.8 128.4 Q148.3 141.9 148.9 155.4" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M131.9 153.2 Q140.8 142.9 152.9 129.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M175.4 126.8 Q175.4 140.5 175.9 154.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M180.7 128.8 Q179.8 140.8 181.1 152.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M185.4 127.5 Q186.0 141.0 184.9 154.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M190.5 127.6 Q190.1 141.1 189.6 154.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M173.8 152.2 Q186.4 141.5 195.7 131.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M218.4 127.5 Q218.1 140.5 219.5 153.5" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M223.6 127.3 Q223.1 140.5 223.2 153.6" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M227.9 127.7 Q228.1 140.4 228.6 153.1" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M233.1 128.9 Q232.0 141.6 233.7 154.2" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M216.1 151.4 Q226.3 141.0 236.2 130.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M260.7 128.4 Q259.3 141.6 260.8 154.9" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M265.4 126.8 Q266.2 139.8 266.4 152.8" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M269.4 128.4 Q270.2 140.7 269.8 153.0" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M274.6 127.2 Q274.7 141.0 275.3 154.7" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="tk" pathLength="1" d="M257.3 151.5 Q268.5 141.2 279.7 130.5" stroke="#C8C4BA" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
+      <p class="fan__cap">Three replies. Grey is silence.</p>
+    </div>
+    <div>
+      <p class="big__k">What a CV can carry, and what it can't</p>
+      <p class="big__t">A CV describes what you were near.<br><em>A transcript shows what you decided.</em></p>
+      <p class="big__d">Every line on a CV is a claim with no working shown. Thirty minutes of follow-up
+      questions is the cheapest way anyone has found to tell the two apart.</p>
+      <div class="ba"><div class="ba__r"><span class="ba__k">On the CV</span><p class="ba__v">Built microservices handling two million requests a day.</p></div><div class="ba__r"><span class="ba__k">What that shows</span><p class="ba__v">That he can write a sentence about microservices.</p></div><div class="ba__r"><span class="ba__k">On the transcript</span><p class="ba__v">The trade-off he rejected, why he rejected it, and what it cost him six months later.</p></div><div class="ba__r ba__r--now"><span class="ba__k">What that shows</span><p class="ba__v">That he made the call — and knows what it cost.</p></div></div>
+    </div>
   </div>
-  <div class="qqs" data-rv style="--d:140ms">{fw.qqs.map((qq, i) => (
-    <div class="qq"><p class="qq__q"><span>Q{i + 1}</span>{qq.q}</p><div class="qq__g"><div class="qq__b qq__b--weak"><span class="qq__k">{qq.thinT}</span><p class="qq__v">{qq.thin}</p></div><div class="qq__b qq__b--for"><span class="qq__k">{qq.forT}</span><p class="qq__v">{qq.for}</p></div></div></div>
-  ))}</div>
-  <p class="cases__ft" style="color:var(--grey);max-width:96ch;margin-inline:auto;text-align:center" set:html={fw.casesFt}></p>
+
+  <p class="cases__ft" style="color:var(--grey);max-width:70ch">This is why the teams that asked for him
+  didn't need the CV. <b style="color:var(--ink)">They had already read the part a CV leaves out.</b></p>
+</div></section>
+
+<section class="lab band" id="score"><div class="wrap">
+  <div class="shead">
+    <div>
+      <p class="eyebrow eyebrow--red" data-rv>The same you, four different bars</p>
+      <h2 class="h2" data-rv style="--d:60ms">Change the team. Watch your score move.</h2>
+    </div>
+    <p class="dek" data-rv style="--d:100ms">One interview, six dimensions, one set of answers. Every team
+    weights them differently — <b>so you're not a number — you're a different number to each of them.</b>
+    Pick a team and see where you land.</p>
+  </div>
+
+  <div class="score2" data-rv style="--d:140ms">
+    <div class="vcard">
+      <div class="vcard__hd">
+        <div><p class="vcard__nm">A. Mehta</p>
+          <p class="vcard__sub">Senior backend · 6 yrs · sample profile</p></div>
+        <span class="vcard__band" id="sBand">Top of their list</span>
+      </div>
+      <div class="vcard__big"><b id="sScore">91.1</b><i>/ 100</i></div>
+      <div class="vcard__track">
+        <span class="vcard__z1"></span><span class="vcard__z2"></span>
+        <span class="vcard__pin" id="sPin"></span>
+      </div>
+      <div class="vcard__ax"><span>70</span><span>85 · STRONG · 90 · TOP DECILE</span><span>100</span></div>
+      <div class="vms"><div class="vm" id="vm0"><span class="vm__n">Architecture thinking</span><span class="vm__b"><span class="vm__f" style="width:96%"></span></span><span class="vm__v">96</span></div><div class="vm" id="vm1"><span class="vm__n">Systems design</span><span class="vm__b"><span class="vm__f" style="width:91%"></span></span><span class="vm__v">91</span></div><div class="vm" id="vm2"><span class="vm__n">Code quality</span><span class="vm__b"><span class="vm__f" style="width:95%"></span></span><span class="vm__v">95</span></div><div class="vm" id="vm3"><span class="vm__n">Communication</span><span class="vm__b"><span class="vm__f" style="width:89%"></span></span><span class="vm__v">89</span></div><div class="vm" id="vm4"><span class="vm__n">Ops and on-call</span><span class="vm__b"><span class="vm__f" style="width:74%"></span></span><span class="vm__v">74</span></div><div class="vm" id="vm5"><span class="vm__n">Product sense</span><span class="vm__b"><span class="vm__f" style="width:68%"></span></span><span class="vm__v">68</span></div></div>
+      <p class="vcard__ft" id="sNote"></p>
+    </div>
+
+    <div>
+      <p class="score2__k">Whose bar are we using?</p>
+      <div class="pres2"><button class="pre2 on" data-i="0" type="button">Consumer scale</button><button class="pre2" data-i="1" type="button">Fintech platform</button><button class="pre2" data-i="2" type="button">Infrastructure / SRE</button><button class="pre2" data-i="3" type="button">Early-stage product</button></div>
+      <div class="wrs"><div class="wr" id="wr0"><span class="wr__n">Architecture thinking</span><span class="wr__b"><span class="wr__f" id="wf0"></span></span><span class="wr__v" id="wv0">0%</span></div><div class="wr" id="wr1"><span class="wr__n">Systems design</span><span class="wr__b"><span class="wr__f" id="wf1"></span></span><span class="wr__v" id="wv1">0%</span></div><div class="wr" id="wr2"><span class="wr__n">Code quality</span><span class="wr__b"><span class="wr__f" id="wf2"></span></span><span class="wr__v" id="wv2">0%</span></div><div class="wr" id="wr3"><span class="wr__n">Communication</span><span class="wr__b"><span class="wr__f" id="wf3"></span></span><span class="wr__v" id="wv3">0%</span></div><div class="wr" id="wr4"><span class="wr__n">Ops and on-call</span><span class="wr__b"><span class="wr__f" id="wf4"></span></span><span class="wr__v" id="wv4">0%</span></div><div class="wr" id="wr5"><span class="wr__n">Product sense</span><span class="wr__b"><span class="wr__f" id="wf5"></span></span><span class="wr__v" id="wv5">0%</span></div></div>
+      <p class="wrs__ft">Your scores never change. <b>Only the weighting does</b> — and that is the whole
+      reason applying to forty teams was never going to tell you anything.</p>
+    </div>
+  </div>
+
+  <p class="lab__foot2" data-rv>You can’t know whose bar you fit by applying.
+    <em>You can find out by being measured once.</em></p>
+</div></section>
+
+<section class="band" id="thirty"><div class="wrap">
+  <div class="shead">
+    <div>
+      <p class="eyebrow" data-rv>The thirty minutes</p>
+      <h2 class="h2" data-rv style="--d:60ms">Every question comes off your own CV.</h2>
+    </div>
+    <p class="dek" data-rv style="--d:100ms">Not a script, and not a quiz. The engine reads what you wrote
+    and turns each claim into something only the person who did it could answer.
+    <b>Then someone who has run what you run asks it, and follows up where the answer stays general.</b></p>
+  </div>
+
+  <div class="qps" data-rv style="--d:140ms"><div class="qp"><div class="qp__l"><span class="qp__k">On your CV</span><p class="qp__v">Built microservices handling two million requests a day.</p></div><span class="qp__arrow" aria-hidden="true">→</span><div class="qp__r"><span class="qp__k qp__k--r">What you get asked</span><p class="qp__q">Which service did you split off first — and what broke when you did?</p></div></div><div class="qp"><div class="qp__l"><span class="qp__k">On your CV</span><p class="qp__v">Led migration from monolith to event-driven architecture.</p></div><span class="qp__arrow" aria-hidden="true">→</span><div class="qp__r"><span class="qp__k qp__k--r">What you get asked</span><p class="qp__q">What did you have to keep in the monolith, and who argued for keeping more?</p></div></div><div class="qp"><div class="qp__l"><span class="qp__k">On your CV</span><p class="qp__v">Reduced p99 latency by 40%.</p></div><span class="qp__arrow" aria-hidden="true">→</span><div class="qp__r"><span class="qp__k qp__k--r">What you get asked</span><p class="qp__q">What was the 40% measured against, and what did you check before you believed it?</p></div></div></div>
+
+  <div class="qnote" data-rv>
+    <div><p class="qnote__k">Thirty minutes, once</p>
+      <p class="qnote__v">Recorded and transcribed. It travels to every team that asks for you — you never
+      answer the same question twice.</p></div>
+    <div><p class="qnote__k">A peer, not a panel</p>
+      <p class="qnote__v">The expert interviewing you has run the systems you're describing. That is why
+      the follow-up lands.</p></div>
+  </div>
+
+  <p class="fn__line" data-rv>Most screens test whether you can describe it.<br>This one tests
+  <em>whether you decided it</em>.</p>
+</div></section>
+
+
+
+<section class="band band--w" id="them"><div class="wrap">
+  <div class="shead">
+    <div>
+      <p class="eyebrow eyebrow--red" data-rv>The other half</p>
+      <h2 class="h2" data-rv style="--d:60ms">We check them too, before you meet them.</h2>
+    </div>
+    <p class="dek" data-rv style="--d:100ms">Every job board asks you to prove yourself to a company that
+    has proved nothing to you. <b>A request only reaches you if the team on the other end clears its own
+    set of checks.</b></p>
+  </div>
+  <div class="them"><div class="them__r"><p class="them__k">Is the headcount real?</p><p class="them__d">Approved and funded, or we don't list it.</p><span class="them__v">Verified</span></div><div class="them__r"><p class="them__k">How many rounds?</p><p class="them__d">Stated up front. If it changes, you hear from us, not from them.</p><span class="them__v">Three</span></div><div class="them__r"><p class="them__k">How fast do they decide?</p><p class="them__d">Measured from your final interview, not from their intake call.</p><span class="them__v">6 days</span></div><div class="them__r"><p class="them__k">How long has the manager been there?</p><p class="them__d">The person you'd report to, not the org chart.</p><span class="them__v">4 yrs</span></div><div class="them__r them__r--flag"><p class="them__k">Do people stay?</p><p class="them__d">Twelve-month retention on their last five hires through us.</p><span class="them__v">One flag</span></div></div>
+  <div class="outc">
+    <p class="outc__k">And when a check doesn't clear</p>
+    <div class="outc__g">
+      <div class="outc__i outc__i--ok"><span class="outc__s">Cleared</span>
+        <p class="outc__t">The request reaches you</p>
+        <p class="outc__d">Normal case. You see the role, the team, and what they weighted.</p></div>
+      <div class="outc__i outc__i--fl"><span class="outc__s">Flagged</span>
+        <p class="outc__t">It reaches you with the flag</p>
+        <p class="outc__d">One check failed. You see which, and what it means, and you decide whether
+        it matters.</p></div>
+      <div class="outc__i outc__i--no"><span class="outc__s">Declined</span>
+        <p class="outc__t">It never reaches you</p>
+        <p class="outc__d">Unfunded headcount, or a role that has churned twice this year. You are never
+        told about it, because there is nothing to tell.</p></div>
+    </div>
+  </div>
+  <p class="cases__ft" style="color:var(--grey)">When something doesn't clear, you still see the request —
+  <b style="color:var(--ink)">with the flag attached and the reason written out.</b> You decide whether it
+  matters. We don't decide that for you.</p>
+</div></section>
+
+<section class="trust band" id="controls">
+  <div class="wrap">
+    <div class="shead">
+      <div>
+        <p class="eyebrow" data-rv>Your controls</p>
+        <h2 class="h2" data-rv style="--d:60ms">Your employer will never know you were here.</h2>
+      </div>
+      <p class="trust__dek" data-rv style="--d:100ms">Looking while employed is the normal case, not the
+      exception. <b>These are switches, not a policy page</b> — try them.</p>
+    </div>
+    <div class="ctrls" data-rv style="--d:140ms"><button class="ctl on" type="button" aria-pressed="true"><span class="ctl__sw"></span><span class="ctl__body"><span class="ctl__t">Anonymous by default</span><span class="ctl__d">Your name, employer and contact stay hidden until you release them to a specific team.</span><span class="ctl__st">Hidden</span></span></button><button class="ctl on" type="button" aria-pressed="true"><span class="ctl__sw"></span><span class="ctl__body"><span class="ctl__t">Block by name</span><span class="ctl__d">Name your current employer, or anyone else. They never see you exist.</span><span class="ctl__st">3 companies blocked</span></span></button><button class="ctl on" type="button" aria-pressed="true"><span class="ctl__sw"></span><span class="ctl__body"><span class="ctl__t">No direct contact</span><span class="ctl__d">Companies cannot message you. Every request comes through us first.</span><span class="ctl__st">All requests routed</span></span></button><button class="ctl" type="button" aria-pressed="false"><span class="ctl__sw"></span><span class="ctl__body"><span class="ctl__t">Pause in one click</span><span class="ctl__d">Got an offer? Make the profile invisible. Turn it back on whenever.</span><span class="ctl__st">Profile live</span></span></button></div>
+    <div class="freeb" data-rv>
+      <div><p class="freeb__k">It costs you nothing</p>
+        <p class="freeb__v">Not now, not when you're placed, not ever. Companies pay us when they hire.
+        <b>If anyone in this industry asks you for money, walk.</b></p></div>
+      <div><p class="freeb__k">Who it's for</p>
+        <p class="freeb__v">Mid-level upward, across engineering, data, infrastructure, finance,
+        operations and leadership. If we don't run mandates in your area yet, we'll tell you that on
+        day one rather than sit on your CV.</p></div>
+    </div>
+    <p class="trust__ft" data-rv>Consent is captured before anything is evaluated, your data sits in India,
+    and you can ask for all of it back or deleted at any point. Transcripts are held on a defined clock and
+    then purged.</p>
+  </div>
 </section>
 
-<section class="band band--w" id="roles"><div class="wrap">
-  <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
-    <div><p class="eyebrow eyebrow--red" data-rv>Roles we run here</p>
-      <h2 class="h2" data-rv style="--d:60ms;max-width:none;">Every level, one guarantee.</h2></div>
-    <p class="dek" data-rv style="--d:100ms;max-width:none">Interview three, hire one; <b>if none of the three fit,
-    we restart at no cost.</b></p>
+<section class="wrap band" id="when">
+  <div class="shead">
+    <div>
+      <p class="eyebrow eyebrow--red" data-rv>What happens, and when</p>
+      <h2 class="h2" data-rv style="--d:60ms">No black boxes. You always know where you are.</h2>
+    </div>
+    <p class="dek" data-rv style="--d:100ms">And if we can't help, <b>we tell you that instead of going
+    quiet.</b> Silence isn't a process, and it's the single thing people hate most about looking.</p>
   </div>
-  <div class="rles" data-rv style="--d:140ms">{fw.roles.map((r) => (
-    <div class="rle"><p class="rle__n">{r.n}</p><p class="rle__l">{r.l}</p></div>
-  ))}</div>
-  <p class="rles__ft" data-rv>Not seeing yours? <a href="/contact">Tell us what you’re hiring for</a>, and
-  we will say honestly whether it is our ground.</p>
-</div></section>
-
-<section class="trust band" id="who"><div class="wrap">
-  <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
-    <div><p class="eyebrow" data-rv>Who does the interviewing</p>
-      <h2 class="h2" data-rv style="--d:60ms;max-width:none;">Operators, not recruiters.</h2></div>
-    <p class="trust__dek" data-rv style="--d:100ms;max-width:none">The distinction this whole page rests on.
-    <b>Every interview here is run by someone who has held the job</b>, and they only interview on ground
-    they have actually worked.</p>
+  <div class="tl2__g" data-rv style="--d:140ms"><div class="tl2"><span class="tl2__bar"></span><p class="tl2__d">Day 1 <i>· 15 min</i></p><p class="tl2__t">Set up your profile</p><p class="tl2__p">Stack, preferences, and who you want blocked. Anonymous from the first second.</p></div><div class="tl2"><span class="tl2__bar"></span><p class="tl2__d">Day 3–5 <i>· 30 min</i></p><p class="tl2__t">An expert interviews you</p><p class="tl2__p">Someone who has done your job. Recorded, and you get the score.</p></div><div class="tl2"><span class="tl2__bar"></span><p class="tl2__d">Day 7+ <i>· inbound</i></p><p class="tl2__t">Teams ask for you</p><p class="tl2__p">Your profile goes live to teams that cleared our checks. No cold applying.</p></div><div class="tl2"><span class="tl2__bar"></span><p class="tl2__d">~3 weeks <i>· offer</i></p><p class="tl2__t">You decide</p><p class="tl2__p">Accept what fits, decline what doesn't. Most people see more than one.</p></div></div>
+  <div class="cstat" data-rv>
+    <div class="cstat__i"><p class="cstat__n">85<i>%</i></p>
+      <p class="cstat__d">of candidates who reach a final interview get an offer</p></div>
+    <div class="cstat__i"><p class="cstat__n">3<i>wks</i></p>
+      <p class="cstat__d">median from profile going live to an offer in hand</p></div>
+    <div class="cstat__i"><p class="cstat__n">1.8<i>offers</i></p>
+      <p class="cstat__d">the average person here ends up choosing between</p></div>
   </div>
-  <div class="tr2" data-rv style="--d:140ms">
-    {fw.benchT ? (
-      <div class="tr2__c"><p class="tr2__k">{fw.benchT}</p><ul class="tr2__l">{fw.bench.map((b) => <li>{b}</li>)}</ul></div>
-    ) : (
-      <ul class="tr2__l">{fw.bench.map((b) => <li>{b}</li>)}</ul>
-    )}
-    <div class="tr2__c"><p class="tr2__k">What that changes</p><ul class="tr2__l">
-      <li>The follow-up lands, because they know where the answer usually thins</li>
-      <li>Titles get read against scope, not against a salary band</li>
-      <li><b>A weak answer gets a second chance</b> before it gets a low score</li>
-      <li>The write-up is in the language your hiring manager already uses</li>
-    </ul></div>
-  </div>
-  <p class="trust__ft" style="max-width:100ch;margin-inline:auto;text-align:center" data-rv set:html={fw.trustFt}></p>
-</div></section>
-
-<section class="wrap band" id="faq">
-  <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
-    <div><p class="eyebrow eyebrow--red" data-rv>Before you brief us</p>
-      <h2 class="h2" data-rv style="--d:60ms;max-width:none;">Three things teams ask first.</h2></div>
-    <p class="dek" data-rv style="--d:100ms;max-width:none">Answered here so the first call can be about your role rather
-    than about us.</p>
-  </div>
-  <div class="qas qas--l" data-rv style="--d:140ms">{fw.faqs.map((f) => (
-    <details class="qa2"><summary class="qa2__q">{f.q}<i></i></summary><p class="qa2__a">{f.a}</p></details>
-  ))}</div>
+  <p class="cstat__ft" data-rv>Which is the part nobody tells you when you're applying:
+  <b>the hard bit was never the interview. It was getting to one that counted.</b></p>
 </section>
 
-<section class="fn band close" id="contact"><div class="wrap">
-  <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
-    <div>
-      <p class="eyebrow" data-rv style="color:var(--red)">Start here</p>
-      <h2 class="h2" data-rv style="max-width:none;color:#fff">Tell us the role. Three names in 36 hours.</h2>
+<section class="band band--w" id="voices">
+  <div class="wrap">
+    <div class="shead">
+      <div>
+        <p class="eyebrow eyebrow--red" data-rv>In their words</p>
+        <h2 class="h2" data-rv style="--d:60ms">What people say afterwards.</h2>
+      </div>
+      <p class="dek" data-rv style="--d:100ms">Roles and company types are real. Names are withheld, because
+      most of these people were employed at the time — <b>which is rather the point.</b></p>
     </div>
-    <p class="fn__dek" data-rv style="--d:60ms;max-width:none" set:html={fw.closeDek}></p>
   </div>
-  <div class="btns" data-rv style="--d:110ms;justify-content:center;display:flex;margin-top:16px">
-    <a href="/contact" class="btn btn--light">Brief a role</a>
-    <a href="/functions" class="btn btn--wire">Other functions</a>
+  <div class="mq" data-rv style="--d:140ms"><div class="mq__t"><figure class="qc qc--cd"><span class="qc__tag">Candidate</span><blockquote class="qc__q">I was stuck in endless screening loops. After one interview here I had four relevant requests in ten days.</blockquote><figcaption class="qc__a"><b>Senior backend engineer</b><span>Fintech product company</span></figcaption></figure><figure class="qc qc--cd"><span class="qc__tag">Candidate</span><blockquote class="qc__q">The expert had already read my GitHub. The first question was about a design decision I made in 2022. That's when I knew this was different.</blockquote><figcaption class="qc__a"><b>Senior backend engineer</b><span>6 yrs, now placed</span></figcaption></figure><figure class="qc qc--cd"><span class="qc__tag">Candidate</span><blockquote class="qc__q">It matched me to roles where I actually fit. The interview felt like a technical discussion, not an interrogation.</blockquote><figcaption class="qc__a"><b>Full-stack engineer</b><span>AI SaaS startup</span></figcaption></figure><figure class="qc qc--cd"><span class="qc__tag">Candidate</span><blockquote class="qc__q">My profile stayed private while I explored. I only spoke to serious teams, and had an offer inside three weeks.</blockquote><figcaption class="qc__a"><b>Engineering manager</b><span>Enterprise platform team</span></figcaption></figure><figure class="qc qc--cd"><span class="qc__tag">Candidate</span><blockquote class="qc__q">Three requests in one week, all aligned to my stack. No spam, no repetition.</blockquote><figcaption class="qc__a"><b>Frontend engineer</b><span>Consumer app company</span></figcaption></figure><figure class="qc qc--cd"><span class="qc__tag">Candidate</span><blockquote class="qc__q">I'd paused looking for months because applying was draining. This brought the relevant ones back to me.</blockquote><figcaption class="qc__a"><b>Data engineer</b><span>B2B analytics company</span></figcaption></figure><figure class="qc qc--cd"><span class="qc__tag">Candidate</span><blockquote class="qc__q">The score breakdown was clear and practical. I knew exactly what to work on, and the next round felt stronger.</blockquote><figcaption class="qc__a"><b>Senior platform engineer</b><span>Cloud infrastructure startup</span></figcaption></figure><figure class="qc qc--cd"><span class="qc__tag">Candidate</span><blockquote class="qc__q">I switched without announcing I was looking. Every conversation I took was worth the time.</blockquote><figcaption class="qc__a"><b>Mobile engineer</b><span>Digital payments company</span></figcaption></figure><figure class="qc qc--cd"><span class="qc__tag">Candidate</span><blockquote class="qc__q">I was stuck in endless screening loops. After one interview here I had four relevant requests in ten days.</blockquote><figcaption class="qc__a"><b>Senior backend engineer</b><span>Fintech product company</span></figcaption></figure><figure class="qc qc--cd"><span class="qc__tag">Candidate</span><blockquote class="qc__q">The expert had already read my GitHub. The first question was about a design decision I made in 2022. That's when I knew this was different.</blockquote><figcaption class="qc__a"><b>Senior backend engineer</b><span>6 yrs, now placed</span></figcaption></figure><figure class="qc qc--cd"><span class="qc__tag">Candidate</span><blockquote class="qc__q">It matched me to roles where I actually fit. The interview felt like a technical discussion, not an interrogation.</blockquote><figcaption class="qc__a"><b>Full-stack engineer</b><span>AI SaaS startup</span></figcaption></figure><figure class="qc qc--cd"><span class="qc__tag">Candidate</span><blockquote class="qc__q">My profile stayed private while I explored. I only spoke to serious teams, and had an offer inside three weeks.</blockquote><figcaption class="qc__a"><b>Engineering manager</b><span>Enterprise platform team</span></figcaption></figure><figure class="qc qc--cd"><span class="qc__tag">Candidate</span><blockquote class="qc__q">Three requests in one week, all aligned to my stack. No spam, no repetition.</blockquote><figcaption class="qc__a"><b>Frontend engineer</b><span>Consumer app company</span></figcaption></figure><figure class="qc qc--cd"><span class="qc__tag">Candidate</span><blockquote class="qc__q">I'd paused looking for months because applying was draining. This brought the relevant ones back to me.</blockquote><figcaption class="qc__a"><b>Data engineer</b><span>B2B analytics company</span></figcaption></figure><figure class="qc qc--cd"><span class="qc__tag">Candidate</span><blockquote class="qc__q">The score breakdown was clear and practical. I knew exactly what to work on, and the next round felt stronger.</blockquote><figcaption class="qc__a"><b>Senior platform engineer</b><span>Cloud infrastructure startup</span></figcaption></figure><figure class="qc qc--cd"><span class="qc__tag">Candidate</span><blockquote class="qc__q">I switched without announcing I was looking. Every conversation I took was worth the time.</blockquote><figcaption class="qc__a"><b>Mobile engineer</b><span>Digital payments company</span></figcaption></figure></div></div>
+</section>
+
+<section class="cand band" id="apply"><div class="wrap">
+  <div class="apply">
+    <p class="apply__k">Start here</p>
+    <p class="apply__h">One conversation. Then you stop applying.</p>
+    <p class="apply__s">Leave your email and we'll pick it up on the next screen — your name and CV, about
+    a minute. <b>We reply within a day either way</b>, and if we can't help we'll say so rather than go
+    quiet.</p>
+    <form class="apply__form" action="/candidates/start" method="get">
+      <div class="apply__row apply__row--2">
+        <input class="apply__mail" type="email" name="email" required placeholder="your@email.com"
+               aria-label="Your email address">
+        <button class="apply__go" type="submit">Continue<span class="apply__ar">→</span></button>
+      </div>
+    </form>
+    <p class="apply__fine">No account needed · <b>one minute, two fields</b> · anonymous from the first
+    second · your email is only ever used to reply</p>
   </div>
+
+  <p class="human" data-rv>We built this because we'd all been on your side of the table,
+  <em>and we remembered how it felt</em>.</p>
 </div></section>
 
-<section class="band band--w" id="why"><div class="wrap">
-  <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
-    <div>
-      <p class="eyebrow eyebrow--red" data-rv>Why tribera</p>
-      <h2 class="h2" data-rv style="--d:60ms;max-width:none;">We hire like you think.</h2>
-    </div>
-    <p class="dek" data-rv style="--d:100ms;max-width:none">Our process is shaped by the mandates we run and the people we hire.
-    <b>Every step is designed to find the right person, not just any person.</b></p>
+<section class="wrap band close" id="close">
+  <p class="eyebrow eyebrow--red" data-rv>Two doors</p>
+  <h2 class="h2" data-rv style="max-width:13ch">Two doors.<br>Same room.</h2>
+  <p class="dek" data-rv style="--d:60ms">You're looking, someone else is hiring, and the whole job is
+  <b>putting the two who should be in a conversation into one</b>. Tell us which side you're on.</p>
+  <div class="doors" data-rv style="--d:110ms">
+    <div class="door">
+      <p class="door__k">If you're looking</p>
+      <p class="door__t">One conversation, then teams come to you.</p>
+      <p class="door__d">Thirty minutes with someone who has done your job. Anonymous until you decide
+      otherwise.</p>
+      <p class="door__next"><span>Next</span> Fifteen minutes to set up. An expert calls within a week,
+      and you keep the score whatever happens after that.</p>
+      <a href="#apply" class="btn btn--dark">Create your profile</a></div>
+    <div class="door">
+      <p class="door__k">If you're hiring</p>
+      <p class="door__t">Three names you'd take any of.</p>
+      <p class="door__d">A hundred signals, a senior expert on each shortlisted person, and the reasoning
+      behind every rank.</p>
+      <p class="door__next"><span>Next</span> A 45-minute intake call. Three names back inside 36 hours,
+      each scored against a bar we set with you.</p>
+      <a href="/" class="btn btn--ghost">See how one role ran</a></div>
   </div>
+
   <p class="bbb2" data-rv><span>Belong</span><i></i><span>Build</span><i></i><span>Become</span></p>
   <p class="bbb2__s" data-rv>Tribe + Era. A hire only works if both sides were right about each other.</p>
-</div></section>
+</section>
 
 <footer class="ft">
   <div class="wrap">
     <div class="ft__top">
       <div class="ft__brand">
-        <a class="logo" href="#top" data-astro-reload style="font-size:22px">tribera<i>.</i></a>
+        <a class="logo" href="#top" style="font-size:22px">tribera<i>.</i></a>
         <p class="ft__line"><b>AI reads the signal. Senior experts add the judgment. You make the
           call.</b> The bar is yours, and every candidate is held to the same one.</p>
         <p class="ft__tribe">Tribe + Era</p>
@@ -1882,19 +1996,19 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
 
       <nav class="ft__col" aria-label="For hiring teams">
         <p class="ft__ttl">For hiring teams</p>
-        <a href="/#run">How it works</a>
-        <a href="/#lab">The bar</a>
-        <a href="/#guarantee">The guarantee</a>
-        <a href="/#guarantee">Plans</a>
+        <a href="#run">How it works</a>
+        <a href="#lab">The bar</a>
+        <a href="#guarantee">The guarantee</a>
+        <a href="#guarantee">Plans</a>
         <a href="/industries">Industries</a>
         <a href="/functions">Functions</a>
       </nav>
 
       <nav class="ft__col" aria-label="For candidates">
         <p class="ft__ttl">For candidates</p>
-        <a href="/#apply">Create your profile</a>
+        <a href="#apply">Create your profile</a>
         <a href="/candidates">How it works</a>
-        <a href="/careers#roles">Open roles</a>
+        <a href="/roles">Open roles</a>
         <a href="/candidates#privacy">Privacy controls</a>
       </nav>
 
@@ -1909,9 +2023,11 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
 
       <nav class="ft__col" aria-label="Legal">
         <p class="ft__ttl">Legal</p>
+        <a href="#trust">Trust &amp; compliance</a>
         <a href="/security">Security</a>
         <a href="/terms">Terms</a>
         <a href="/privacy">Privacy</a>
+        <a href="/dpa">Data processing</a>
       </nav>
     </div>
 
@@ -1923,27 +2039,27 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
 </footer>
 <script>
 (function(){
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
 
   /* ══ THE DEAL: pick your volume, the shape resolves ══ */
   (function(){
-    const V=[
-      {nm:'Project-based',v:'10–50',d:'One role you\u2019re stuck on, or a burst of them: permanent, contract or executive.',
+    var V=[
+      {nm:'Project-based',v:'10–50',d:'One role you\u2019re stuck on, or a burst of them — permanent, contract or executive.',
        p:['Per hire, 15–20%','Nothing owed until you hire','Your bar written on the first brief']},
       {nm:'Scale',v:'50–200',d:'Several functions running at once, with one bar carried across all of them.',
        p:['Volume rate per hire','A named expert bench for your stack','Your bar reused on every brief']},
       {nm:'Full RPO',v:'200–500+',d:'Your whole talent function, run alongside your team rather than outside it.',
        p:['Experts embedded in your team','Subscription plus a reduced rate','Quarterly recalibration of the bar']}
     ];
-    const segs=[].slice.call(document.querySelectorAll('.vseg')),
+    var segs=[].slice.call(document.querySelectorAll('.vseg')),
         out=document.getElementById('volOut');
     if(!segs.length||!out) return;
-    const nm=document.getElementById('volNm'), vv=document.getElementById('volV'),
+    var nm=document.getElementById('volNm'), vv=document.getElementById('volV'),
         dd=document.getElementById('volD'), pts=document.getElementById('volPts');
     function pick(i){
-      const s=V[i];
+      var s=V[i];
       segs.forEach(function(b,j){ b.classList.toggle('is',j===i);
         b.setAttribute('aria-selected',String(j===i)); });
       nm.textContent=s.nm;
@@ -1961,7 +2077,7 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
 
   /* ══ THE LAB: the visitor moves the bar, the verdict follows ══ */
   (function(){
-    const D=[
+    var D=[
       {k:'A',n:'Core networking, TCP/IP',w:6.25,s:5},
       {k:'B',n:'Routing and BGP depth',w:6.25,s:5},
       {k:'C',n:'Data-centre networks',w:6.25,s:3},
@@ -1974,20 +2090,20 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
       {k:'J',n:'Linux, scripting, automation',w:1.25,s:2},
       {k:'K',n:'Authenticity',w:3.75,s:4}
     ];
-    const BASE=D.map(function(d){return d.w;});
-    const PRE={
+    var BASE=D.map(function(d){return d.w;});
+    var PRE={
       brief:BASE.slice(),
       auto:[2,2,3,2,2,2,2,1,2,12,2],
       fabric:[2,2,12,2,2,2,2,1,2,3,2],
       ops:[7,7,1,3,9,5,8,3,7,0.5,4]
     };
-    const NOTE={
+    var NOTE={
       brief:'As briefed: fundamentals, troubleshooting and performance carry the weight. Automation is deliberately weighted so it cannot carry a profile.',
       auto:'Weight automation above everything and he drops out of Select. He scored 2 there, and it was the one thing he could not evidence. On this brief he is a no.',
       fabric:'Weight fabric depth and he falls to the bottom of Select. He describes the estate; he has not operated the fabric himself.',
-      ops:'Weight the day job (troubleshooting, change discipline, ownership) and he climbs. That is where the evidence actually sat.'
+      ops:'Weight the day job — troubleshooting, change discipline, ownership — and he climbs. That is where the evidence actually sat.'
     };
-    const rows=document.getElementById('labRows'), tiles=document.getElementById('labTiles'),
+    var rows=document.getElementById('labRows'), tiles=document.getElementById('labTiles'),
         elScore=document.getElementById('labScore'), elBand=document.getElementById('labBand'),
         elPin=document.getElementById('labPin'), elTot=document.getElementById('labTotal'),
         elNote=document.getElementById('labNote');
@@ -2005,26 +2121,26 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
         'tabindex="0" title="'+d.n+' — '+d.s+' of 5"><i>'+d.k+'</i><b>'+d.s+'</b></span>';
     }).join('');
 
-    let shown=42, raf=null;
+    var shown=42, raf=null;
     function paint(){
-      let tw=0, got=0, max=0;
+      var tw=0, got=0, max=0;
       D.forEach(function(d){ tw+=d.w; got+=d.w*d.s/5; if(d.w>max) max=d.w; });
-      const score = tw>0 ? (got/tw)*50 : 0;
+      var score = tw>0 ? (got/tw)*50 : 0;
       D.forEach(function(d,i){
         document.getElementById('pts'+i).textContent=(d.w*d.s/5).toFixed(2);
-        const heavy = d.w >= Math.max(7, max*0.92);
+        var heavy = d.w >= Math.max(7, max*0.92);
         document.getElementById('row'+i).classList.toggle('heavy',heavy);
         document.getElementById('tile'+i).classList.toggle('heavy',heavy);
       });
       elTot.textContent=tw.toFixed(2);
       elPin.style.left=Math.max(1,Math.min(99,(score/50)*100))+'%';
-      const band = score>=34?['SELECT','b-sel'] : score>=28?['GREY','b-grey'] : ['REJECT','b-rej'];
+      var band = score>=34?['SELECT','b-sel'] : score>=28?['GREY','b-grey'] : ['REJECT','b-rej'];
       elBand.textContent=band[0];
       elBand.className='verd__band '+band[1];
       /* count the number rather than snapping it */
       cancelAnimationFrame(raf);
       (function step(){
-        const diff=score-shown;
+        var diff=score-shown;
         if(Math.abs(diff)<0.02){ shown=score; elScore.textContent=score.toFixed(2); return; }
         shown+=diff*0.22; elScore.textContent=shown.toFixed(2);
         raf=requestAnimationFrame(step);
@@ -2033,32 +2149,32 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
 
     /* hover either half, the other half answers */
     function link(i,on){
-      const t=document.getElementById('tile'+i), r=document.getElementById('row'+i);
+      var t=document.getElementById('tile'+i), r=document.getElementById('row'+i);
       if(t) t.classList.toggle('lit',on);
       if(r) r.classList.toggle('lit',on);
     }
     function bind(host,sel){
       host.addEventListener('mouseover',function(e){
-        const el=e.target.closest(sel); if(el) link(+el.dataset.i,true); });
+        var el=e.target.closest(sel); if(el) link(+el.dataset.i,true); });
       host.addEventListener('mouseout',function(e){
-        const el=e.target.closest(sel); if(el) link(+el.dataset.i,false); });
+        var el=e.target.closest(sel); if(el) link(+el.dataset.i,false); });
       host.addEventListener('focusin',function(e){
-        const el=e.target.closest(sel); if(el) link(+el.dataset.i,true); });
+        var el=e.target.closest(sel); if(el) link(+el.dataset.i,true); });
       host.addEventListener('focusout',function(e){
-        const el=e.target.closest(sel); if(el) link(+el.dataset.i,false); });
+        var el=e.target.closest(sel); if(el) link(+el.dataset.i,false); });
     }
     bind(tiles,'.lt');
     bind(rows,'.row');
 
     rows.addEventListener('input',function(e){
-      const t=e.target; if(t.type!=='range') return;
+      var t=e.target; if(t.type!=='range') return;
       D[+t.dataset.i].w=parseFloat(t.value);
       document.querySelectorAll('.pre').forEach(function(b){b.classList.remove('on');});
       paint();
     });
     document.querySelectorAll('.pre').forEach(function(btn){
       btn.addEventListener('click',function(){
-        const set=PRE[btn.dataset.pre];
+        var set=PRE[btn.dataset.pre];
         D.forEach(function(d,i){ d.w=set[i];
           rows.querySelector('input[data-i="'+i+'"]').value=set[i]; });
         document.querySelectorAll('.pre').forEach(function(b){b.classList.remove('on');});
@@ -2071,27 +2187,27 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   })();
 
   /* the score tiles name themselves */
-  const tiles=document.getElementById('tiles'), tcap=document.getElementById('tilesCap');
+  var tiles=document.getElementById('tiles'), tcap=document.getElementById('tilesCap');
   if(tiles && tcap){
-    const base=tcap.textContent;
+    var base=tcap.textContent;
     function show(t){ tcap.classList.add('is');
       tcap.innerHTML=t.dataset.n+' — <b style="color:#fff">'+t.dataset.s+' of 5</b>'; }
     function clear(){ tcap.classList.remove('is'); tcap.textContent=base; }
-    tiles.addEventListener('mouseover',function(e){const t=e.target.closest('.tl'); if(t) show(t);});
-    tiles.addEventListener('focusin',function(e){const t=e.target.closest('.tl'); if(t) show(t);});
+    tiles.addEventListener('mouseover',function(e){var t=e.target.closest('.tl'); if(t) show(t);});
+    tiles.addEventListener('focusin',function(e){var t=e.target.closest('.tl'); if(t) show(t);});
     tiles.addEventListener('mouseleave',clear);
     tiles.addEventListener('focusout',clear);
   }
 
   /* the card behaves like an object: it tilts toward you and catches light */
-  const cardWrap=document.querySelector('.hero__card'), tilt=document.getElementById('tilt');
+  var cardWrap=document.querySelector('.hero__card'), tilt=document.getElementById('tilt');
   if(cardWrap && tilt && !reduce && matchMedia('(hover:hover) and (pointer:fine)').matches){
-    let raf=null;
+    var raf=null;
     cardWrap.addEventListener('pointermove',function(e){
       if(raf) return;
       raf=requestAnimationFrame(function(){
         raf=null;
-        const r=cardWrap.getBoundingClientRect(),
+        var r=cardWrap.getBoundingClientRect(),
             px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
         tilt.classList.add('live');
         tilt.style.setProperty('--ry',((px-.5)*11).toFixed(2)+'deg');
@@ -2108,11 +2224,10 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
     });
   }
 
-  /* the card has two faces — demo the flip once, then it’s yours */
-  const flip=document.getElementById('flip'),
+  /* the card has two faces — demo the flip once, then it's yours */
+  var flip=document.getElementById('flip'),
       tA=document.getElementById('tabA'), tB=document.getElementById('tabB'),
-      fA=document.getElementById('faceA'), fB=document.getElementById('faceB');
-  let took=false;
+      fA=document.getElementById('faceA'), fB=document.getElementById('faceB'), took=false;
   function face(b){
     if(!flip) return;
     flip.classList.toggle('is-b', b);
@@ -2121,10 +2236,10 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
     tA.setAttribute('aria-selected', String(!b)); tB.setAttribute('aria-selected', String(b));
     fA.setAttribute('aria-hidden', String(b)); fB.setAttribute('aria-hidden', String(!b));
   }
-  if(flip&&cardWrap){
+  if(flip){
     tA.addEventListener('click',function(){took=true;face(false);});
     tB.addEventListener('click',function(){took=true;face(true);});
-    cardWrap.addEventListener('click',function(e){if(e.target.closest('.ftab'))return;took=true;face(!flip.classList.contains('is-b'));});
+    flip.addEventListener('click',function(){took=true;face(!flip.classList.contains('is-b'));});
     if(!reduce && 'IntersectionObserver' in window){
       new IntersectionObserver(function(es,ob){
         es.forEach(function(e){
@@ -2135,52 +2250,50 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
       },{threshold:.4}).observe(flip);
     }
   }
-  const GROUPS=[[86,1],[26,2],[9,3],[3,4],[2,5]];
-  const grid=document.getElementById('grid');
-  let sqs=[];
+  var GROUPS=[[86,1],[26,2],[9,3],[3,4],[2,5]];
+  var grid=document.getElementById('grid'), sqs=[];
   if(grid){
-    let html='';
-    GROUPS.forEach(function(g){for(let i=0;i<g[0];i++)
+    var html='';
+    GROUPS.forEach(function(g){for(var i=0;i<g[0];i++)
       html+='<span class="sq g'+g[1]+'" data-drop="'+g[1]+'"></span>';});
     grid.innerHTML=html; sqs=[].slice.call(grid.children);
   }
 
 
-  const DOT={1:'#3A3A37',2:'#5A5A55',3:'#8A8A85',4:'#D8D8D3',5:'#DA0007'};
+  var DOT={1:'#3A3A37',2:'#5A5A55',3:'#8A8A85',4:'#D8D8D3',5:'#DA0007'};
   /* hovering a STAGE shows everyone who got that far */
-  const REACH={
+  var REACH={
     1:'<b>All 126.</b> Everything the requirement returned.',
     2:'<b>40 reached an expert interview.</b> Eighty-six never did.',
     3:'<b>14 cleared the bar</b> on their own answers.',
-    4:'<b>5 names reached them</b>, the first people the team ever saw.',
+    4:'<b>5 names reached them</b> — the first people the team ever saw.',
     5:'<b>2 hired,</b> out of five interviews.'
   };
   /* hovering a SQUARE shows where that person stopped */
-  const STOP={
-    1:'<b>86 stopped here</b>, screened out before anyone spent time on them.',
-    2:'<b>26 stopped here</b>, interviewed by an expert, didn\u2019t clear the bar.',
-    3:'<b>9 stopped here</b>, cleared the bar, ranked below the top five.',
-    4:'<b>3 stopped here</b>, sent, hireable, not chosen this time.',
+  var STOP={
+    1:'<b>86 stopped here</b> — screened out before anyone spent time on them.',
+    2:'<b>26 stopped here</b> — interviewed by an expert, didn\u2019t clear the bar.',
+    3:'<b>9 stopped here</b> — cleared the bar, ranked below the top five.',
+    4:'<b>3 stopped here</b> — sent, hireable, not chosen this time.',
     5:'<b>Hired.</b> One of the two.'
   };
-  const REST={
+  var REST={
     1:'126 people, shaded by how far each one got. <b>The two in red were hired.</b>',
     2:'<b>86 have dropped away.</b> Screened out before anyone spent time on them.',
     3:'<b>26 more gone.</b> Interviewed by a person, didn\u2019t clear the bar.',
-    4:'<b>9 more.</b> Good. Ranked below the top five. They never reached the team.',
+    4:'<b>9 more.</b> Good — ranked below the top five. They never reached the team.',
     5:'<b>Two hired, out of five interviews.</b> Everything else never left our desk.'
   };
 
-  const field=document.getElementById('field'),fN=document.getElementById('fieldN'),
-      fL=document.getElementById('fieldLbl'),fF=document.getElementById('fieldFt');
-  let stage=0;
+  var field=document.getElementById('field'),fN=document.getElementById('fieldN'),
+      fL=document.getElementById('fieldLbl'),fF=document.getElementById('fieldFt'),stage=0;
 
   function setStage(n){
     if(n===stage||!sqs.length) return;
     stage=n;
     sqs.forEach(function(s){ s.classList.toggle('out', +s.dataset.drop < n); });
     field.classList.toggle('at5',n===5);
-    const st=document.querySelector('.step[data-n="'+n+'"]');
+    var st=document.querySelector('.step[data-n="'+n+'"]');
     if(st){fN.textContent=st.dataset.count;fL.textContent=st.dataset.lbl;}
     fF.innerHTML=REST[n];
   }
@@ -2189,10 +2302,10 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   /* hover trace — subtle, on squares and on the step text */
   function peek(n, mode){
     if(!grid) return;
-    const reached = mode !== 'stopped';
+    var reached = mode !== 'stopped';
     grid.classList.add('peek');
     sqs.forEach(function(s){
-      const d=+s.dataset.drop;
+      var d=+s.dataset.drop;
       s.classList.toggle('co', reached ? d>=n : d===n);
     });
     fF.innerHTML='<i style="background:'+DOT[n]+'"></i>'+(reached?REACH:STOP)[n];
@@ -2205,15 +2318,15 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   }
   if(grid){
     grid.addEventListener('mouseover',function(e){
-      const s=e.target.closest('.sq'); if(s) peek(+s.dataset.drop,'stopped');
+      var s=e.target.closest('.sq'); if(s) peek(+s.dataset.drop,'stopped');
     });
     grid.addEventListener('mouseleave',unpeek);
   }
 
-  const steps=[].slice.call(document.querySelectorAll('.step'));
-  let userTook=false;
+  var steps=[].slice.call(document.querySelectorAll('.step'));
+  var userTook=false;
   steps.forEach(function(st){
-    const n=+st.dataset.n;
+    var n=+st.dataset.n;
     st.setAttribute('tabindex','0');
     st.setAttribute('role','button');
     function take(){ userTook=true; mark(n); }
@@ -2232,9 +2345,8 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
     setStage(n);
   }
 
-  /* it narrows itself once when you arrive — then it’s yours to poke at */
-  const fn=document.getElementById('run');
-  let played=false;
+  /* it narrows itself once when you arrive — then it's yours to poke at */
+  var fn=document.getElementById('run'), played=false;
   if(fn && steps.length && 'IntersectionObserver' in window){
     new IntersectionObserver(function(es,ob){
       es.forEach(function(e){
@@ -2248,22 +2360,22 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
     },{threshold:.35}).observe(fn);
   } else if(steps.length){ mark(5); }
 
-  const io=new IntersectionObserver(function(es){
+  var io=new IntersectionObserver(function(es){
     es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
   },{threshold:.14,rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('[data-rv]').forEach(function(el){io.observe(el);});
 
   /* signal tags act as filters over the table */
-  const swap=document.querySelector('.swap'), keyBar=document.querySelector('.key');
+  var swap=document.querySelector('.swap'), keyBar=document.querySelector('.key');
   if(swap && keyBar){
-    const rows=[].slice.call(swap.querySelectorAll('.swap__row'));
+    var rows=[].slice.call(swap.querySelectorAll('.swap__row'));
     function apply(k){
       if(!k){ swap.classList.remove('dim');
         rows.forEach(function(r){ r.classList.remove('hit'); }); return; }
-      const want=k.querySelector('.tag').textContent.trim().toLowerCase();
+      var want=k.querySelector('.tag').textContent.trim().toLowerCase();
       swap.classList.add('dim');
       rows.forEach(function(r){
-        const t=r.querySelector('.tag');
+        var t=r.querySelector('.tag');
         r.classList.toggle('hit', !!t && t.textContent.trim().toLowerCase()===want);
       });
     }
@@ -2274,7 +2386,7 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
     /* one authority for clearing — the bar itself */
     keyBar.addEventListener('mouseleave',function(){ apply(null); });
     keyBar.addEventListener('focusin',function(e){
-      const k=e.target.closest('.key__i'); apply(k||null);
+      var k=e.target.closest('.key__i'); apply(k||null);
     });
     keyBar.addEventListener('focusout',function(e){
       if(!keyBar.contains(e.relatedTarget)) apply(null);
@@ -2282,7 +2394,7 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   }
 
   /* the tally draws once, slowly, then the three land at speed */
-  const fan=document.querySelector('.fan'), tN=document.getElementById('tallyN');
+  var fan=document.querySelector('.fan'), tN=document.getElementById('tallyN');
   if(fan){
     new IntersectionObserver(function(es,ob){
       es.forEach(function(e){
@@ -2291,12 +2403,11 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
         if(reduce) return;
         fan.classList.add('go');
         if(!tN) return;
-        let t0=null;
-        const DUR=1800;
+        var t0=null, DUR=1800;
         tN.textContent='0';
         requestAnimationFrame(function step(ts){
           if(t0===null) t0=ts;
-          const u=Math.min((ts-t0)/DUR,1);
+          var u=Math.min((ts-t0)/DUR,1);
           tN.textContent=Math.round(Math.pow(u,1/0.62)*140);
           if(u<1) requestAnimationFrame(step); else tN.textContent='140';
         });
@@ -2304,25 +2415,35 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
     },{threshold:.35}).observe(fan);
   }
 
-  const deskBlk=document.querySelector('.desk');
+  var deskBlk=document.querySelector('.desk');
   if(deskBlk) new IntersectionObserver(function(es,ob){
     es.forEach(function(e){ if(e.isIntersecting){ deskBlk.classList.add('in'); ob.disconnect(); } });
   },{threshold:.4}).observe(deskBlk);
 
-  const ramp=document.getElementById('ramp');
+  var ramp=document.getElementById('ramp');
   if(ramp) new IntersectionObserver(function(es,ob){
     es.forEach(function(e){ if(e.isIntersecting){ ramp.classList.add('in'); ob.disconnect(); } });
   },{threshold:.3}).observe(ramp);
 
   /* nav switcher reflects where you are */
-  const cand=document.getElementById('candidates'),
+  var cand=document.getElementById('candidates'),
+      sw=[].slice.call(document.querySelectorAll('.nav__sw a')),
       bar=document.getElementById('stickcta'),
       applyBox=document.getElementById('apply');
+  if(cand && sw.length){
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        var inCand=e.isIntersecting;
+        sw[0].classList.toggle('is',!inCand);
+        sw[1].classList.toggle('is',inCand);
+      });
+    },{threshold:.18}).observe(cand);
+  }
 
   /* sticky apply bar: only while the candidate section is on screen,
      and never on top of the apply card itself */
   if(cand && bar && applyBox){
-    let inSection=false, atForm=false;
+    var inSection=false, atForm=false;
     function sync(){ bar.classList.toggle('show', inSection && !atForm); }
     new IntersectionObserver(function(es){
       es.forEach(function(e){ inSection=e.isIntersecting; sync(); });
@@ -2333,42 +2454,78 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   }
 
   /* a filename is better feedback than a silent upload */
-  const fileIn=document.querySelector('.apply__file input');
+  var fileIn=document.querySelector('.apply__file input');
   if(fileIn) fileIn.addEventListener('change',function(){
-    const lbl=fileIn.parentNode.querySelector('span');
+    var lbl=fileIn.parentNode.querySelector('span');
     if(fileIn.files && fileIn.files[0]) lbl.textContent=fileIn.files[0].name;
   });
 })();
 
-
-  /* ══ INDUSTRIES: the same six dimensions, any two sectors ══ */
+  /* ══ CANDIDATES: score bars, privacy switches ══ */
   (function(){
-    const W={"engineering-platform":{"n":"Engineering & platform","w":[26,22,10,18,10,14]},"data-analytics":{"n":"Data & analytics","w":[24,20,10,16,18,14]},"infrastructure-sre":{"n":"Infrastructure & SRE","w":[18,26,14,12,12,18]},"security":{"n":"Security","w":[12,12,26,10,20,6]},"finance-risk":{"n":"Finance & risk","w":[22,12,26,14,18,8]},"product-design":{"n":"Product & design","w":[26,10,8,18,8,30]},"operations":{"n":"Operations","w":[24,10,18,26,10,12]},"leadership":{"n":"Leadership","w":[18,8,16,20,10,26]}};
-    const D=["Core depth", "Systems design", "Controls and risk", "Delivery speed", "Documentation", "Stakeholder handling"];
-    const a=document.getElementById('secA'), b=document.getElementById('secB'),
-        ft=document.getElementById('cmpFt');
-    if(!a||!b) return;
-    function paint(){
-      const A=W[a.value], B=W[b.value];
-      let mx=0, gap=-1, gi=0;
-      D.forEach(function(_,i){ mx=Math.max(mx,A.w[i],B.w[i]);
-        const g=Math.abs(A.w[i]-B.w[i]); if(g>gap){gap=g;gi=i;} });
-      D.forEach(function(n,i){
-        document.getElementById('fa'+i).style.width=(A.w[i]/mx*100)+'%';
-        document.getElementById('fb'+i).style.width=(B.w[i]/mx*100)+'%';
-        document.getElementById('va'+i).textContent=A.w[i];
-        document.getElementById('vb'+i).textContent=B.w[i];
-        document.getElementById('bw'+i).classList.toggle('key', i===gi);
+    var card=document.querySelector('.cflip');
+    if(card) new IntersectionObserver(function(es,ob){
+      es.forEach(function(e){ if(e.isIntersecting){ card.classList.add('in'); ob.disconnect(); } });
+    },{threshold:.3}).observe(card);
+
+    /* the switches are real — they flip */
+    document.querySelectorAll('.ctl').forEach(function(b){
+      b.addEventListener('click',function(){
+        var on=b.classList.toggle('on');
+        b.setAttribute('aria-pressed', String(on));
+        var st=b.querySelector('.ctl__st');
+        if(!st) return;
+        var pair=st.dataset.pair || st.textContent;
+        st.dataset.pair=pair;
+        var map={'Hidden':'Visible','Visible':'Hidden',
+                 '3 companies blocked':'No blocks','No blocks':'3 companies blocked',
+                 'All requests routed':'Direct contact allowed','Direct contact allowed':'All requests routed',
+                 'Profile live':'Profile paused','Profile paused':'Profile live'};
+        st.textContent = map[st.textContent] || st.textContent;
       });
-      if(A.n===B.n){ ft.innerHTML='Same function both sides. <b>Pick two and the bar moves.</b>'; return; }
-      ft.innerHTML='<b>'+D[gi]+'</b> moves from '+Math.min(A.w[gi],B.w[gi])+'% to '+
-        Math.max(A.w[gi],B.w[gi])+'%: a '+gap+'-point swing, and <b>a different person wins</b>.';
+    });
+  })();
+
+
+  /* ══ CANDIDATE SCORE: one interview, four different bars ══ */
+  (function(){
+    var D=[{"n": "Architecture thinking", "v": 96}, {"n": "Systems design", "v": 91}, {"n": "Code quality", "v": 95}, {"n": "Communication", "v": 89}, {"n": "Ops and on-call", "v": 74}, {"n": "Product sense", "v": 68}];
+    var R=[{"id": "consumer", "nm": "Consumer scale", "w": [30, 30, 15, 15, 10, 0], "note": "Scale and throughput. Architecture and systems carry two-thirds of their bar \u2014 and they barely look at product."}, {"id": "fintech", "nm": "Fintech platform", "w": [25, 25, 25, 10, 10, 5], "note": "Correctness first. Depth and code discipline weighted evenly, communication low, product almost nil."}, {"id": "infra", "nm": "Infrastructure / SRE", "w": [15, 30, 15, 10, 30, 0], "note": "Who carries the pager. Ops experience is weighted as heavily as systems design \u2014 the one place you scored 74."}, {"id": "product", "nm": "Early-stage product", "w": [15, 15, 10, 25, 5, 30], "note": "Breadth and judgment. They weight product sense above everything you scored highest on."}];
+    var pres=document.querySelectorAll('.pre2');
+    var elS=document.getElementById('sScore'), elB=document.getElementById('sBand'),
+        elP=document.getElementById('sPin'), elN=document.getElementById('sNote');
+    if(!pres.length||!elS) return;
+    var shown=0, raf=null;
+    function paint(i){
+      var r=R[i], tot=r.w.reduce(function(a,b){return a+b;},0);
+      var score=D.reduce(function(a,d,j){return a+d.v*r.w[j];},0)/(tot||1);
+      var mx=Math.max.apply(null,r.w);
+      pres.forEach(function(b,j){ b.classList.toggle('on',j===i); });
+      D.forEach(function(d,j){
+        var wr=document.getElementById('wr'+j), vm=document.getElementById('vm'+j);
+        document.getElementById('wf'+j).style.width=(r.w[j]/mx*100)+'%';
+        document.getElementById('wv'+j).textContent=r.w[j]+'%';
+        wr.classList.toggle('zero', r.w[j]===0);
+        wr.classList.toggle('top', r.w[j]===mx);
+        vm.classList.toggle('dim2', r.w[j]<=5);
+        vm.classList.toggle('key', r.w[j]===mx);
+      });
+      elP.style.left=Math.max(1,Math.min(99,(score-70)/30*100))+'%';
+      var band = score>=90 ? ['Top of their list',''] :
+                 score>=86 ? ['Strongly in range','mid'] : ['In range, not top','low'];
+      elB.textContent=band[0]; elB.className='vcard__band '+band[1];
+      elN.textContent=r.note;
+      cancelAnimationFrame(raf);
+      (function step(){
+        var diff=score-shown;
+        if(Math.abs(diff)<0.02){ shown=score; elS.textContent=score.toFixed(1); return; }
+        shown+=diff*0.22; elS.textContent=shown.toFixed(1);
+        raf=requestAnimationFrame(step);
+      })();
     }
-    a.addEventListener('change',paint); b.addEventListener('change',paint); paint();
+    pres.forEach(function(b,i){ b.addEventListener('click',function(){paint(i);}); });
+    paint(0);
   })();
 </script>
-<StandaloneNavScripts />
-<ContactSalesModal />
-<StandalonePrefetchScripts />
 </body>
 </html>

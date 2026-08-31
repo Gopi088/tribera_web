@@ -1,0 +1,32 @@
+---
+import Favicons from '~/components/Favicons.astro';
+import Metadata from '~/components/common/Metadata.astro';
+import SiteVerification from '~/components/common/SiteVerification.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
+import type { MetaData } from '~/types';
+import { getAsset } from '~/utils/permalinks';
+
+export interface Props {
+  title: string;
+  description: string;
+  openGraphType?: 'article' | 'website';
+  openGraphImage?: string;
+}
+
+const { title, description, openGraphType = 'website', openGraphImage = '/og-default.png' } = Astro.props;
+const metadata: MetaData = {
+  title,
+  description,
+  ignoreTitleTemplate: true,
+  openGraph: {
+    type: openGraphType,
+    images: [{ url: openGraphImage, width: 1200, height: 628 }],
+  },
+};
+---
+
+<link rel="sitemap" href={getAsset('/sitemap-index.xml')} />
+<Favicons />
+<Metadata {...metadata} />
+<StructuredData metadata={metadata} />
+<SiteVerification />

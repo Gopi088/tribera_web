@@ -1,0 +1,455 @@
+---
+import Analytics from '~/components/common/Analytics.astro';
+import ProductionChat from '~/components/standalone/ProductionChat.astro';
+
+// Intelligence uses PageLayout, which already renders Analytics.
+const shouldRenderAnalytics = Astro.url.pathname !== '/intelligence';
+---
+
+{shouldRenderAnalytics && <Analytics />}
+{shouldRenderAnalytics && <ProductionChat />}
+
+<style is:global>
+  /* Every route carries legacy page-local nav rules. These are the final,
+     shared contract so the header does not change shape between pages. */
+  .nav {
+    background: rgba(19, 19, 19, 0.9) !important;
+    backdrop-filter: saturate(160%) blur(12px);
+    border-bottom: 1px solid var(--cline, rgba(255, 255, 255, 0.1));
+  }
+
+  .nav::after { display: none; }
+
+  .nav a,
+  .nav a:visited {
+    text-decoration: none !important;
+  }
+
+  .nav__l,
+  .nav__l:visited,
+  .dd__t,
+  .dd__t:visited {
+    color: var(--onc2, #9b9b95) !important;
+  }
+
+  .nav__l:hover,
+  .nav__l:focus-visible,
+  .dd__t:hover,
+  .dd__t:focus-visible,
+  .nav__l[aria-current='page'],
+  .dd__t[aria-current='page'] {
+    color: #fff !important;
+  }
+
+  .dd__c a,
+  .dd__c a:visited {
+    color: var(--onc2, #9b9b95) !important;
+    text-decoration: none !important;
+  }
+
+  .dd__c a:hover,
+  .dd__c a:focus-visible { color: #fff !important; }
+
+  .navp__in > a,
+  .navp__in > a:visited {
+    color: var(--onc2, #9b9b95) !important;
+    text-decoration: none !important;
+  }
+
+  .navp__in > a:hover,
+  .navp__in > a:focus-visible,
+  .navp__in > a[aria-current='page'] { color: #fff !important; }
+
+  .nav__in {
+    min-height: 64px;
+    height: 64px;
+    gap: 20px !important;
+    padding-block: 0 !important;
+  }
+
+  .nav .logo {
+    display: inline-flex !important;
+    flex: 0 0 76px;
+    align-items: baseline;
+    box-sizing: border-box;
+    width: 76px;
+    height: 20px;
+    font-family: 'Figtree', -apple-system, sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    line-height: 20px !important;
+    letter-spacing: -0.055em !important;
+    white-space: nowrap;
+  }
+
+  .nav .logo i {
+    display: inline-block !important;
+    flex: 0 0 auto;
+    font: inherit !important;
+    font-style: normal !important;
+    line-height: 1 !important;
+    transform: none !important;
+  }
+
+  .nav__sw {
+    display: inline-grid !important;
+    grid-template-columns: repeat(2, 90px);
+    align-items: center;
+    height: 40px;
+    gap: 2px !important;
+    padding: 3px !important;
+    border-color: var(--cline, rgba(255, 255, 255, 0.1)) !important;
+  }
+
+  .nav__sw a {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 90px;
+    height: 32px;
+    font-family: ui-sans-serif, system-ui, sans-serif !important;
+    padding: 6px 8px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    letter-spacing: -0.01em;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 1080px) {
+    .nav__links { gap: 0 !important; }
+
+    .nav__l,
+    .dd__t {
+      position: relative;
+      padding: 7px 8px !important;
+      font-size: 13px !important;
+    }
+
+    .nav__l[aria-current='page']::after,
+    .dd__t[aria-current='page']::after {
+      content: '' !important;
+      position: absolute !important;
+      right: 8px !important;
+      bottom: 1px !important;
+      left: 8px !important;
+      height: 1px !important;
+      background: var(--red, #da0007) !important;
+      transform: none !important;
+    }
+
+    .nav__end {
+      width: 178px;
+      justify-content: flex-end;
+      gap: 12px !important;
+      margin-left: 10px !important;
+    }
+
+    .nav__login {
+      display: inline-flex !important;
+      flex: 0 0 37px !important;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      padding: 0 4px !important;
+      font-size: 13px !important;
+      line-height: 1 !important;
+      white-space: nowrap;
+    }
+  }
+
+  .nav__cta {
+    flex: 0 0 125px !important;
+    box-sizing: border-box;
+    width: 125px !important;
+    min-width: 125px !important;
+    min-height: 34px;
+    padding: 9px 18px !important;
+    font-size: 14px !important;
+    white-space: nowrap !important;
+  }
+
+  @media (min-width: 720px) {
+    .nav__cta {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .burger {
+    width: 36px !important;
+    height: 36px !important;
+    border: 0 !important;
+    border-radius: 6px !important;
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const nav = document.getElementById('nav');
+    const burger = nav?.querySelector('.burger');
+    const navPanel = document.getElementById('navp');
+    const coverageToggle = document.querySelector('.navp__t');
+    const coveragePanel = document.getElementById('navp-cov');
+    const dropdowns = Array.from(document.querySelectorAll('.dd'));
+
+    if (nav instanceof HTMLElement) {
+      const syncStickyState = () => {
+        if (window.scrollY > 20) {
+          nav.classList.add('stuck');
+        } else if (window.scrollY <= 2) {
+          nav.classList.remove('stuck');
+        }
+      };
+
+      window.addEventListener('scroll', syncStickyState, { passive: true });
+      syncStickyState();
+    }
+
+    if (burger instanceof HTMLElement && navPanel instanceof HTMLElement && nav instanceof HTMLElement) {
+      const setNavOpen = (open) => {
+        navPanel.classList.toggle('open', open);
+        burger.classList.toggle('on', open);
+
+        if (open) {
+          navPanel.style.top = `${nav.offsetHeight}px`;
+          const scrollY = window.scrollY;
+          document.body.dataset.sy = String(scrollY);
+          document.body.style.position = 'fixed';
+          document.body.style.width = '100%';
+          document.body.style.top = `-${scrollY}px`;
+          document.body.style.left = '0';
+          document.body.style.right = '0';
+        } else {
+          const storedScrollY = Number(document.body.dataset.sy || 0);
+          document.body.style.position = '';
+          document.body.style.width = '';
+          document.body.style.top = '';
+          document.body.style.left = '';
+          document.body.style.right = '';
+          window.scrollTo(0, storedScrollY);
+          delete document.body.dataset.sy;
+        }
+
+        burger.setAttribute('aria-expanded', String(open));
+      };
+
+      burger.addEventListener('click', () => {
+        setNavOpen(!navPanel.classList.contains('open'));
+      });
+
+      navPanel.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        if (target.tagName === 'A' || target === navPanel) {
+          setNavOpen(false);
+        }
+      });
+
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && navPanel.classList.contains('open')) {
+          setNavOpen(false);
+        }
+      });
+    }
+
+    if (coverageToggle instanceof HTMLElement && coveragePanel instanceof HTMLElement) {
+      coverageToggle.addEventListener('click', () => {
+        const open = coveragePanel.classList.toggle('open');
+        coverageToggle.setAttribute('aria-expanded', String(open));
+      });
+    }
+
+    const closeDropdowns = (except = null) => {
+      dropdowns.forEach((dropdown) => {
+        if (!(dropdown instanceof HTMLElement) || dropdown === except) return;
+        dropdown.classList.remove('open');
+        const toggle = dropdown.querySelector('.dd__t');
+        if (toggle instanceof HTMLElement) {
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    };
+
+    dropdowns.forEach((dropdown) => {
+      if (!(dropdown instanceof HTMLElement)) return;
+
+      const toggle = dropdown.querySelector('.dd__t');
+      if (!(toggle instanceof HTMLElement)) return;
+
+      let timer = 0;
+
+      toggle.addEventListener('click', (event) => {
+        if (toggle.tagName === 'A') return;
+        event.preventDefault();
+        const open = !dropdown.classList.contains('open');
+        closeDropdowns(dropdown);
+        dropdown.classList.toggle('open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+
+      dropdown.addEventListener('mouseenter', () => {
+        window.clearTimeout(timer);
+        closeDropdowns(dropdown);
+        dropdown.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+      });
+
+      dropdown.addEventListener('mouseleave', () => {
+        timer = window.setTimeout(() => {
+          dropdown.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }, 140);
+      });
+
+      dropdown.addEventListener('focusout', (event) => {
+        const relatedTarget = event.relatedTarget;
+        if (relatedTarget instanceof Node && dropdown.contains(relatedTarget)) return;
+        dropdown.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeDropdowns();
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof Element) || target.closest('.dd')) return;
+      closeDropdowns();
+    });
+
+    const pathname = location.pathname.replace(/\/+$/, '') || '/';
+    const isCandidateRoute = pathname.startsWith('/candidates');
+    const prefetchedRoutes = new Set();
+    const prefetchAudienceRoute = (href) => {
+      if (!href || prefetchedRoutes.has(href)) return;
+      prefetchedRoutes.add(href);
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.href = href;
+      document.head.appendChild(link);
+    };
+    const primaryLinks = [
+      ['/services', 'Services'],
+      ['/intelligence', 'Intelligence'],
+      ['/blog', 'Blog'],
+      ['/about', 'About'],
+      ['/contact', 'Contact'],
+      ['/careers', 'Careers'],
+    ];
+    const industries = [
+      ['/industries/banking-financial-services', 'Banking & financial services'],
+      ['/industries/enterprise-technology', 'Enterprise technology'],
+      ['/industries/product-saas', 'Product & SaaS'],
+      ['/industries/ai-data', 'AI & data'],
+      ['/industries/cybersecurity', 'Cybersecurity'],
+      ['/industries/healthcare-life-sciences', 'Healthcare & life sciences'],
+      ['/industries/pharmaceutical', 'Pharmaceutical'],
+      ['/industries/manufacturing', 'Manufacturing'],
+      ['/industries/industrial-engineering', 'Industrial & engineering'],
+      ['/industries/global-capability-centres', 'Global capability centres'],
+      ['/industries/consumer-digital-commerce', 'Consumer & digital commerce'],
+      ['/industries/private-equity-portfolio', 'Private equity portfolio'],
+    ];
+    const functions = [
+      ['/functions/engineering-platform', 'Engineering & platform'],
+      ['/functions/data-analytics', 'Data & analytics'],
+      ['/functions/infrastructure-sre', 'Infrastructure & SRE'],
+      ['/functions/security', 'Security'],
+      ['/functions/finance-risk', 'Finance & risk'],
+      ['/functions/product-design', 'Product & design'],
+      ['/functions/operations', 'Operations'],
+      ['/functions/leadership', 'Leadership'],
+    ];
+    const linkMarkup = (links) => links.map(([href, label]) => `<a href="${href}">${label}</a>`).join('');
+
+    // Normalise legacy, copied navigation markup before wiring interaction.
+    const desktopLinks = nav?.querySelector('.nav__links');
+    if (desktopLinks instanceof HTMLElement) {
+      desktopLinks.querySelectorAll('.nav__l:not(.dd__t)').forEach((link) => link.remove());
+      desktopLinks.insertAdjacentHTML('beforeend', primaryLinks.map(([href, label]) => `<a class="nav__l" href="${href}">${label}</a>`).join(''));
+      const dropdownGroups = desktopLinks.querySelector('.dd__g');
+      if (dropdownGroups instanceof HTMLElement) {
+        dropdownGroups.innerHTML = `<span class="dd__c"><p class="dd__k">Industries</p>${linkMarkup(industries)}</span><span class="dd__c"><p class="dd__k">Functions</p>${linkMarkup(functions)}</span>`;
+      }
+    }
+
+    const mobileGroups = navPanel?.querySelector('.navp__cols');
+    if (mobileGroups instanceof HTMLElement) {
+      mobileGroups.innerHTML = `<span class="navp__c"><p class="navp__k">Industries</p>${linkMarkup(industries)}</span><span class="navp__c"><p class="navp__k">Functions</p>${linkMarkup(functions)}</span>`;
+    }
+
+    navPanel?.querySelectorAll('.navp__in > a[href^="/"]').forEach((link) => {
+      if (!(link instanceof HTMLAnchorElement) || link.closest('.navp__cov')) return;
+      if (primaryLinks.some(([href]) => href === link.getAttribute('href'))) link.remove();
+    });
+    const mobileCompanyHeading = navPanel?.querySelector('.navp__k:not(.navp__c .navp__k)');
+    if (mobileCompanyHeading instanceof HTMLElement) {
+      mobileCompanyHeading.insertAdjacentHTML('afterend', linkMarkup(primaryLinks));
+    }
+
+    document.querySelectorAll('.nav__cta, .navp__cta .btn').forEach((link) => {
+      if (!(link instanceof HTMLAnchorElement)) return;
+      link.href = isCandidateRoute ? '/candidates#apply' : '/contact';
+      link.textContent = isCandidateRoute ? 'Create profile' : 'Talk to us';
+      if (isCandidateRoute) {
+        link.removeAttribute('data-form-intent');
+        link.removeAttribute('data-form-source');
+      } else {
+        link.dataset.formIntent = 'demo';
+        link.dataset.formSource = link.classList.contains('nav__cta') ? 'header' : 'page';
+      }
+    });
+
+    const markPage = (selector, active) => {
+      const element = document.querySelector(selector);
+      if (element instanceof HTMLElement && active) {
+        element.setAttribute('aria-current', 'page');
+      }
+    };
+    const markActive = (selector, active) => {
+      const element = document.querySelector(selector);
+      if (element instanceof HTMLElement) {
+        element.classList.toggle('is', active);
+      }
+    };
+
+    markActive('.nav__sw a[href="/"]', !isCandidateRoute);
+    markActive('.navp__sw a[href="/"]', !isCandidateRoute);
+    markActive('.navp__sw a[href="/candidates"]', isCandidateRoute);
+    markActive('.nav__sw a[href="/candidates"]', isCandidateRoute);
+
+    document.querySelectorAll('.nav__sw a[href]').forEach((link) => {
+      if (!(link instanceof HTMLAnchorElement)) return;
+      const warmRoute = () => prefetchAudienceRoute(link.href);
+      link.addEventListener('pointerenter', warmRoute, { once: true });
+      link.addEventListener('focus', warmRoute, { once: true });
+    });
+
+    markPage('.nav__l[href="/services"]', pathname === '/services' || pathname.startsWith('/services/'));
+    markPage('.nav__l[href="/intelligence"]', pathname === '/intelligence' || pathname.startsWith('/intelligence/'));
+    markPage('.nav__l[href="/blog"]', pathname === '/blog' || pathname.startsWith('/blog/'));
+    markPage('.nav__l[href="/about"]', pathname === '/about' || pathname.startsWith('/about/'));
+    markPage('.nav__l[href="/contact"]', pathname === '/contact' || pathname.startsWith('/contact/'));
+    markPage('.nav__l[href="/careers"]', pathname === '/careers' || pathname.startsWith('/careers/'));
+
+    const inCoverageSection = pathname.startsWith('/industries') || pathname.startsWith('/functions');
+    markPage('.dd__t', inCoverageSection);
+    markPage('.navp__t', inCoverageSection);
+
+    markPage('.navp a[href="/"]', pathname === '/');
+    markPage('.navp a[href="/services"]', pathname === '/services' || pathname.startsWith('/services/'));
+    markPage('.navp a[href="/intelligence"]', pathname === '/intelligence' || pathname.startsWith('/intelligence/'));
+    markPage('.navp a[href="/blog"]', pathname === '/blog' || pathname.startsWith('/blog/'));
+    markPage('.navp a[href="/about"]', pathname === '/about' || pathname.startsWith('/about/'));
+    markPage('.navp a[href="/contact"]', pathname === '/contact' || pathname.startsWith('/contact/'));
+    markPage('.navp a[href="/careers"]', pathname === '/careers' || pathname.startsWith('/careers/'));
+  })();
+</script>

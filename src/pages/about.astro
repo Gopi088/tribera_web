@@ -1,15 +1,16 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import ReferenceNavStyles from '~/components/standalone/ReferenceNavStyles.astro';
 
 const metadata = {
   title: 'About tribera \u2014 this industry gave us everything',
   description: 'We read two hundred thousand interviews before we let anyone use it. Why tribera exists, what we hold to, and the three people who walked away from everything to build it.',
 };
-import ContactSalesModal from '../components/ContactSalesModal.astro';
 ---
 
 <Layout metadata={metadata}>
-<header class="hero" id="top">
+<ReferenceNavStyles />
+<header class="hero hero--bare" id="top">
   <div class="wrap">
     <div class="hero__top">
       <div class="hero__copy">
@@ -19,7 +20,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         the misses, the hires that worked and the ones that quietly didn’t.
         <b>tribera is how we give some of it back.</b></p>
         <p class="hero__p" data-rv style="--d:150ms">It’s also why we spent a year reading two hundred thousand
-        interviews before letting anyone outside the three of us near it.</p>
+        interviews before letting anyone outside the three of us use it.</p>
         <div class="btns" data-rv style="--d:190ms">
           <a href="#story" class="btn btn--light">How it started</a>
           <a href="#team" class="btn btn--wire">The three of us</a>
@@ -40,23 +41,37 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
 </header>
 
 <section class="band band--w" id="story"><div class="wrap">
-  <div class="ask" style="text-align:center">
-    <p class="eyebrow eyebrow--red" data-rv>Where it starts</p>
-    <blockquote class="ask__q" data-rv style="--d:60ms">Who will actually<br><em>belong here?</em></blockquote>
-    <p class="ask__x" data-rv style="--d:110ms">Every scorecard we write is an attempt at that one question.</p>
-    <p class="ask__x ask__x--b" data-rv style="--d:150ms"><b>It is the only thing a CV cannot tell you, and the only thing that
-    decides whether a hire holds.</b></p>
+  <div class="shead">
+    <div>
+      <p class="eyebrow eyebrow--red" data-rv>How it started</p>
+      <h2 class="h2" data-rv style="--d:60ms">The question nobody had a column for.</h2>
+    </div>
+    <p class="dek" data-rv style="--d:100ms">Akshata spent years watching capable teams run sensible
+    processes and still get it wrong. <b>Not on credentials, those were nearly always fine.</b></p>
   </div>
+  <div class="story" data-rv style="--d:140ms">
+    <div>
+      <p class="story__p">The shortlist was strong. The interviews were structured. Everyone in the room
+      was experienced. And a year later roughly a third of those hires had quietly not worked, for reasons
+      nobody had written down and nobody could point to afterwards.</p>
+      <p class="story__p">The thing being missed was never on the scorecard, because no scorecard had a
+      column for it.</p>
+    </div>
+    <blockquote class="story__q">Who will actually<br><em>belong here?</em></blockquote>
+  </div>
+  <p class="story__ft" data-rv>Two of us sat down over a coffee to work out whether that question could be
+  answered rather than felt. <b>It took two hours and the coffee went cold.</b> Pranav joined a few weeks
+  later. <b>Between the three of us we left two salaries, a consulting practice and a board seat</b>, and
+  told our families it would take a year before there was anything to show them.</p>
 </div></section>
 
 <section class="fn band" id="whynow"><div class="wrap">
   <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px;margin-bottom:clamp(16px,2vw,24px)">
     <div>
       <p class="eyebrow eyebrow--red" data-rv>Why now</p>
-      <h2 class="h2" data-rv style="--d:60ms;max-width:none;text-align:center">Three times the volume.<br>A third less output.</h2></div>
-    <p class="fn__dek" data-rv style="--d:100ms;max-width:none;text-align:center">Reaching a candidate has never been cheaper, and placing
-    one has never been harder. Those two facts are the same fact, and the industry has not yet said so
-    out loud.</p>
+      <h2 class="h2" data-rv style="--d:60ms;max-width:none;text-align:center">More reach.<br>Less signal.</h2></div>
+    <p class="fn__dek" data-rv style="--d:100ms;max-width:none;text-align:center">Reaching a candidate has become easier. Deciding who will
+    belong has not. Those two things are connected, and the industry has not yet said so out loud.</p>
   </div>
 
   <div class="wn" data-rv style="--d:140ms">
@@ -88,16 +103,15 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
     <p class="ltr__k">From Akshata</p>
     <div class="ltr__cols">
       <div class="ltr__col ltr__col--a">
-        <p class="ltr__lede">I left this industry.</p>
-        <p class="ltr__sub">I came back because I could not stop believing there was a better way to do it.</p>
+        <p class="ltr__lede">The pause was always the same.</p>
+        <p class="ltr__sub">A profile reads well, until someone asks a real question about the work.</p>
         <p>Twenty years in, the scoreboard had never changed. Number of recruiters. Number of clients.
       Number of CVs sent. Every target I was given measured effort, and every target I handed down did the
       same. None of them measured whether we were right. I did not question it for a long time,
       because nobody did.</p>
-        <p>And you can see what that produced. Every year there are more tools, more automation, more
-      profiles reaching more people, and every year a recruiter places fewer of them.
-      Three times the volume, a third less output. That is not a workforce that got worse at its
-      job. That is what happens when activity is the only thing anyone counts.</p>
+        <p>And you can see what that produced. Every year there are more tools, more automation, and more
+      profiles reaching more people. Activity looks like progress until someone has to decide whether a
+      person will actually do the work. That is what happens when activity is the only thing anyone counts.</p>
         <p>You know the moment I mean. A profile goes across that reads well, the client brings the person
       in, and somebody asks a real question about the work: what they decided, what happened when it went
       wrong. Then the pause. I have been the person in that pause, on both sides of the table. It
@@ -144,24 +158,24 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
 </div></section>
 
 <section class="band" id="team"><div class="wrap">
-  <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
+  <div class="shead">
     <div>
       <p class="eyebrow eyebrow--red" data-rv>The three of us</p>
-      <h2 class="h2" data-rv style="--d:60ms;max-width:none;text-align:center">Built by people who were in the room.</h2>
+      <h2 class="h2" data-rv style="--d:60ms">Built by people who were in the room.</h2>
     </div>
-    <p class="dek" data-rv style="--d:100ms;max-width:none;text-align:center">Not observers of this industry. <b>We ran the searches, made
+    <p class="dek" data-rv style="--d:100ms">Not observers of this industry. <b>We ran the searches, made
     the calls, and carried the ones that went wrong.</b></p>
   </div>
   <div class="fnds" data-rv style="--d:140ms"><div class="fnd"><span class="fnd__ph" id="ph-akshata" aria-hidden="true"></span><div><p class="fnd__n">Akshata Chandavarkar</p><p class="fnd__r">Founder &amp; CEO</p><p class="fnd__x">Twenty years of enterprise hiring across GCCs, BFSI, product and deep-tech. Ran talent acquisition at GCC scale, and still runs live searches herself, on the bar the engine is built on: the one she works to.</p><p class="fnd__q">She had asked the question for years before anyone tried to answer it.</p></div></div><div class="fnd"><span class="fnd__ph" id="ph-abhishek" aria-hidden="true"></span><div><p class="fnd__n">Abhishek Prasad</p><p class="fnd__r">Co-founder &amp; CBO</p><p class="fnd__x">Two decades building products used by millions. Architected the signal engine: what a CV hides, join probability, offer behaviour, retention. The hundred-plus signals behind every verdict are his.</p><p class="fnd__q">He left that coffee unable to stop seeing the problem.</p></div></div><div class="fnd"><span class="fnd__ph" id="ph-pranav" aria-hidden="true"></span><div><p class="fnd__n">Pranav Gandhi</p><p class="fnd__r">Chief Success Officer</p><p class="fnd__x">Twenty years scaling companies past five hundred people, and living the arithmetic of it: how one wrong senior hire quietly resets a culture that took three years to build. Runs client delivery and the quality bar behind every mandate.</p><p class="fnd__q">He had watched a good hire cost more than a bad quarter.</p></div></div></div>
 </div></section>
 
 <section class="fn band" id="year"><div class="wrap">
-  <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
+  <div class="shead">
     <div>
-      <p class="eyebrow eyebrow--red" data-rv>What we did about it</p>
-      <h2 class="h2" data-rv style="--d:60ms;max-width:none;text-align:center">We spent a year not launching.</h2>
+      <p class="eyebrow" data-rv>What we did about it</p>
+      <h2 class="h2" data-rv style="--d:60ms">We spent a year not launching.</h2>
     </div>
-    <p class="fn__dek" data-rv style="--d:100ms;max-width:none;text-align:center">The obvious move was to ship something small and learn in
+    <p class="fn__dek" data-rv style="--d:100ms">The obvious move was to ship something small and learn in
     public. <b>We did the opposite, because the thing being tested was whether a stranger’s judgment could
     be trusted with someone’s career</b>, and you can’t iterate your way through that in front of real
     candidates.</p>
@@ -173,15 +187,15 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
 
 
 <section class="wrap band" id="believe">
-  <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
+  <div class="shead">
     <div>
       <p class="eyebrow eyebrow--red" data-rv>What we hold to</p>
-      <h2 class="h2" data-rv style="--d:60ms;max-width:none;text-align:center">Three things, and we argue about the rest.</h2>
+      <h2 class="h2" data-rv style="--d:60ms">Four things, and we argue about the rest.</h2>
     </div>
-    <p class="dek" data-rv style="--d:100ms;max-width:none;text-align:center">These are not values on a wall. <b>Each one cost us something
+    <p class="dek" data-rv style="--d:100ms">These are not values on a wall. <b>Each one cost us something
     to hold</b>: a shortcut we could have taken, a number that would have looked better.</p>
   </div>
-  <div class="bels" data-rv style="--d:140ms"><div class="bel"><span class="bel__n">01</span><p class="bel__t">No candidate is bad.</p><p class="bel__x">There is a yes for you and a no somewhere else, and it is usually the same person. Fit isn’t quality: it’s the manager, the project, the people they’d sit beside.</p></div><div class="bel"><span class="bel__n">02</span><p class="bel__t">The reject is always human.</p><p class="bel__x">The engine surfaces and explains. It can’t turn anyone down. A person reads the transcript, a person writes the verdict, and you make the call.</p></div><div class="bel"><span class="bel__n">03</span><p class="bel__t">Both sides get checked.</p><p class="bel__x">A candidate proving themselves to a company that has proved nothing is not a conversation. Before a request reaches anyone, the team on the other end clears its own set of checks.</p></div></div>
+  <div class="bels" data-rv style="--d:140ms"><div class="bel"><span class="bel__n">01</span><p class="bel__t">No candidate is bad.</p><p class="bel__x">There is a yes for you and a no somewhere else, and it is usually the same person. Fit isn’t quality: it’s the manager, the project, the people they’d sit beside.</p></div><div class="bel"><span class="bel__n">02</span><p class="bel__t">The reject is always human.</p><p class="bel__x">The engine surfaces and explains. It can’t turn anyone down. A person reads the transcript, a person writes the verdict, and you make the call.</p></div><div class="bel"><span class="bel__n">03</span><p class="bel__t">Judgment evaporates unless you write it down.</p><p class="bel__x">A good conversation disappears the moment it ends unless someone records what they heard, why it mattered, and where the doubt remains. The next brief should begin with that reasoning, not another hunch.</p></div><div class="bel"><span class="bel__n">04</span><p class="bel__t">Both sides get checked.</p><p class="bel__x">A candidate proving themselves to a company that has proved nothing is not a conversation. Before a request reaches anyone, the team on the other end clears its own set of checks.</p></div></div>
   <div class="argue" data-rv>
     <p class="argue__k">And one we have not settled</p>
     <p class="argue__q">How long should we keep a transcript?</p>
@@ -195,32 +209,33 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         holding it for years means someone is judged in 2029 on a bad half hour in 2026. They should be
         able to make it go away.</p></div>
     </div>
-    <p class="argue__ft">Today it is a defined clock and then purged, which is Akshata’s answer, and the
-    compounding file the homepage describes is weaker for it. We have moved the date twice and we will
-    probably move it again.</p>
+    <p class="argue__ft">Today it is a defined clock and then purged, which is Akshata’s answer. We keep
+    written judgment long enough to improve the next brief, not long enough to let an old half hour define
+    someone forever. We have moved the date twice and we will probably move it again.</p>
   </div>
 </section>
 
 
 
 <section class="trust band" id="name"><div class="wrap">
-  <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
-    <div><p class="eyebrow eyebrow--red" data-rv>The name</p>
-      <h2 class="h2" data-rv style="--d:60ms;max-width:none;text-align:center">Tribe, and era.</h2></div>
-    <p class="trust__dek" data-rv style="--d:100ms;max-width:none;text-align:center">The group you are actually part of, and the stretch of
-    time you spend building something in it. <b>Belong, then build, then become. The order is the
-    argument.</b></p>
+  <div class="shead">
+    <div><p class="eyebrow" data-rv>The name</p>
+      <h2 class="h2" data-rv style="--d:60ms">Tribe, and era.</h2></div>
+    <p class="trust__dek" data-rv style="--d:100ms"><b>Tribe</b> is the group you are actually part of.
+    <b>Era</b> is the stretch of time you spend building something in it. <b>Belong, then build, then
+    become. The order is the argument.</b></p>
   </div>
   <p class="bbb2" data-rv><span>Belong</span><i></i><span>Build</span><i></i><span>Become</span></p>
   <p class="trust__ft" data-rv>Nobody builds anything worth having somewhere they are still working out
-  whether they fit. A hire only works when both sides are right about each other.</p>
+  whether they fit. A hire only works when both sides are right about each other, and it is proved over
+  time when the person belongs and the team grows with them.</p>
 </div></section>
 
 <section class="band band--w" id="facts"><div class="wrap">
-  <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
+  <div class="shead">
     <div><p class="eyebrow eyebrow--red" data-rv>The company</p>
-      <h2 class="h2" data-rv style="--d:60ms;max-width:none;text-align:center">The plain facts.</h2></div>
-    <p class="dek" data-rv style="--d:100ms;max-width:none;text-align:center">Everything above is a story. <b>This is the part you can
+      <h2 class="h2" data-rv style="--d:60ms">The plain facts.</h2></div>
+    <p class="dek" data-rv style="--d:100ms">Everything above is a story. <b>This is the part you can
     check.</b></p>
   </div>
   <div class="facts" data-rv style="--d:140ms">
@@ -241,15 +256,15 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
 </div></section>
 
 <section class="fn band" id="ahead"><div class="wrap">
-  <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
+  <div class="shead">
     <div><p class="eyebrow eyebrow--red" data-rv>Where this goes</p>
-      <h2 class="h2" data-rv style="--d:60ms;max-width:none;text-align:center">Four things we are trying to be true in five years.</h2></div>
-    <p class="fn__dek" data-rv style="--d:100ms;max-width:none;text-align:center">Not a roadmap. Four claims we would like someone to be able to make about us, and hold us to.</p>
+      <h2 class="h2" data-rv style="--d:60ms">Four things we are trying to make true in five years.</h2></div>
+    <p class="fn__dek" data-rv style="--d:100ms">Not a roadmap. Four claims we want others to be able to make about us, and hold us to.</p>
   </div>
   <div class="steps" data-rv style="--d:140ms">
     <div class="step"><span class="step__n">01</span>
-      <span class="step__t">A recruiter closes ten a month <em class="own own--you">under 2 today</em></span>
-      <span class="step__d">The industry runs at under two. Everything we build is aimed at that number, not
+      <span class="step__t">A recruiter closes ten hires a month <em class="own own--you">under 2 today</em></span>
+      <span class="step__d">Today, the industry averages under two closes a month. Everything we build is aimed at that number, not
       by making anyone work harder, but by removing the work that was never worth doing.</span></div>
     <div class="step"><span class="step__n">02</span>
       <span class="step__t">Nobody interviews for us who has not done the job</span>
@@ -269,10 +284,10 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
   for a room</em>.</p>
 </div></section>
 
-<section class="wrap band close" id="contact" style="text-align:center">
+<section class="wrap band close" id="contact">
   <p class="eyebrow eyebrow--red" data-rv>Two doors</p>
-  <h2 class="h2" data-rv style="max-width:none;text-align:center">Two doors. Same room.</h2>
-  <p class="dek" data-rv style="--d:60ms;max-width:none;text-align:center">You’re hiring, or you’re looking. <b>The whole job is putting
+  <h2 class="h2" data-rv style="max-width:13ch">Two doors. Same room.</h2>
+  <p class="dek" data-rv style="--d:60ms;max-width:46ch">You’re hiring, or you’re looking. <b>The whole job is putting
   the two who should be in a conversation into one.</b></p>
   <div class="doors" data-rv style="--d:110ms">
     <div class="door">
@@ -296,13 +311,13 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
 
 <script>
 (function(){
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
 
   /* ══ THE DEAL: pick your volume, the shape resolves ══ */
   (function(){
-    var V=[
+    const V=[
       {nm:'Project-based',v:'10–50',d:'One role you\u2019re stuck on, or a burst of them: permanent, contract or executive.',
        p:['Per hire, 15–20%','Nothing owed until you hire','Your bar written on the first brief']},
       {nm:'Scale',v:'50–200',d:'Several functions running at once, with one bar carried across all of them.',
@@ -310,13 +325,13 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
       {nm:'Full RPO',v:'200–500+',d:'Your whole talent function, run alongside your team rather than outside it.',
        p:['Experts embedded in your team','Subscription plus a reduced rate','Quarterly recalibration of the bar']}
     ];
-    var segs=[].slice.call(document.querySelectorAll('.vseg')),
+    const segs=[].slice.call(document.querySelectorAll('.vseg')),
         out=document.getElementById('volOut');
     if(!segs.length||!out) return;
-    var nm=document.getElementById('volNm'), vv=document.getElementById('volV'),
+    const nm=document.getElementById('volNm'), vv=document.getElementById('volV'),
         dd=document.getElementById('volD'), pts=document.getElementById('volPts');
     function pick(i){
-      var s=V[i];
+      const s=V[i];
       segs.forEach(function(b,j){ b.classList.toggle('is',j===i);
         b.setAttribute('aria-selected',String(j===i)); });
       nm.textContent=s.nm;
@@ -334,7 +349,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
 
   /* ══ THE LAB: the visitor moves the bar, the verdict follows ══ */
   (function(){
-    var D=[
+    const D=[
       {k:'A',n:'Core networking, TCP/IP',w:6.25,s:5},
       {k:'B',n:'Routing and BGP depth',w:6.25,s:5},
       {k:'C',n:'Data-centre networks',w:6.25,s:3},
@@ -347,20 +362,20 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
       {k:'J',n:'Linux, scripting, automation',w:1.25,s:2},
       {k:'K',n:'Authenticity',w:3.75,s:4}
     ];
-    var BASE=D.map(function(d){return d.w;});
-    var PRE={
+    const BASE=D.map(function(d){return d.w;});
+    const PRE={
       brief:BASE.slice(),
       auto:[2,2,3,2,2,2,2,1,2,12,2],
       fabric:[2,2,12,2,2,2,2,1,2,3,2],
       ops:[7,7,1,3,9,5,8,3,7,0.5,4]
     };
-    var NOTE={
+    const NOTE={
       brief:'As briefed: fundamentals, troubleshooting and performance carry the weight. Automation is deliberately weighted so it cannot carry a profile.',
       auto:'Weight automation above everything and he drops out of Select. He scored 2 there, and it was the one thing he could not evidence. On this brief he is a no.',
       fabric:'Weight fabric depth and he falls to the bottom of Select. He describes the estate; he has not operated the fabric himself.',
       ops:'Weight the day job (troubleshooting, change discipline, ownership) and he climbs. That is where the evidence actually sat.'
     };
-    var rows=document.getElementById('labRows'), tiles=document.getElementById('labTiles'),
+    const rows=document.getElementById('labRows'), tiles=document.getElementById('labTiles'),
         elScore=document.getElementById('labScore'), elBand=document.getElementById('labBand'),
         elPin=document.getElementById('labPin'), elTot=document.getElementById('labTotal'),
         elNote=document.getElementById('labNote');
@@ -378,26 +393,26 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         'tabindex="0" title="'+d.n+' — '+d.s+' of 5"><i>'+d.k+'</i><b>'+d.s+'</b></span>';
     }).join('');
 
-    var shown=42, raf=null;
+    let shown=42, raf=null;
     function paint(){
-      var tw=0, got=0, max=0;
+      let tw=0, got=0, max=0;
       D.forEach(function(d){ tw+=d.w; got+=d.w*d.s/5; if(d.w>max) max=d.w; });
-      var score = tw>0 ? (got/tw)*50 : 0;
+      const score = tw>0 ? (got/tw)*50 : 0;
       D.forEach(function(d,i){
         document.getElementById('pts'+i).textContent=(d.w*d.s/5).toFixed(2);
-        var heavy = d.w >= Math.max(7, max*0.92);
+        const heavy = d.w >= Math.max(7, max*0.92);
         document.getElementById('row'+i).classList.toggle('heavy',heavy);
         document.getElementById('tile'+i).classList.toggle('heavy',heavy);
       });
       elTot.textContent=tw.toFixed(2);
       elPin.style.left=Math.max(1,Math.min(99,(score/50)*100))+'%';
-      var band = score>=34?['SELECT','b-sel'] : score>=28?['GREY','b-grey'] : ['REJECT','b-rej'];
+      const band = score>=34?['SELECT','b-sel'] : score>=28?['GREY','b-grey'] : ['REJECT','b-rej'];
       elBand.textContent=band[0];
       elBand.className='verd__band '+band[1];
       /* count the number rather than snapping it */
       cancelAnimationFrame(raf);
       (function step(){
-        var diff=score-shown;
+        const diff=score-shown;
         if(Math.abs(diff)<0.02){ shown=score; elScore.textContent=score.toFixed(2); return; }
         shown+=diff*0.22; elScore.textContent=shown.toFixed(2);
         raf=requestAnimationFrame(step);
@@ -406,32 +421,32 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
 
     /* hover either half, the other half answers */
     function link(i,on){
-      var t=document.getElementById('tile'+i), r=document.getElementById('row'+i);
+      const t=document.getElementById('tile'+i), r=document.getElementById('row'+i);
       if(t) t.classList.toggle('lit',on);
       if(r) r.classList.toggle('lit',on);
     }
     function bind(host,sel){
       host.addEventListener('mouseover',function(e){
-        var el=e.target.closest(sel); if(el) link(+el.dataset.i,true); });
+        const el=e.target.closest(sel); if(el) link(+el.dataset.i,true); });
       host.addEventListener('mouseout',function(e){
-        var el=e.target.closest(sel); if(el) link(+el.dataset.i,false); });
+        const el=e.target.closest(sel); if(el) link(+el.dataset.i,false); });
       host.addEventListener('focusin',function(e){
-        var el=e.target.closest(sel); if(el) link(+el.dataset.i,true); });
+        const el=e.target.closest(sel); if(el) link(+el.dataset.i,true); });
       host.addEventListener('focusout',function(e){
-        var el=e.target.closest(sel); if(el) link(+el.dataset.i,false); });
+        const el=e.target.closest(sel); if(el) link(+el.dataset.i,false); });
     }
     bind(tiles,'.lt');
     bind(rows,'.row');
 
     rows.addEventListener('input',function(e){
-      var t=e.target; if(t.type!=='range') return;
+      const t=e.target; if(t.type!=='range') return;
       D[+t.dataset.i].w=parseFloat(t.value);
       document.querySelectorAll('.pre').forEach(function(b){b.classList.remove('on');});
       paint();
     });
     document.querySelectorAll('.pre').forEach(function(btn){
       btn.addEventListener('click',function(){
-        var set=PRE[btn.dataset.pre];
+        const set=PRE[btn.dataset.pre];
         D.forEach(function(d,i){ d.w=set[i];
           rows.querySelector('input[data-i="'+i+'"]').value=set[i]; });
         document.querySelectorAll('.pre').forEach(function(b){b.classList.remove('on');});
@@ -444,27 +459,27 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
   })();
 
   /* the score tiles name themselves */
-  var tiles=document.getElementById('tiles'), tcap=document.getElementById('tilesCap');
+  const tiles=document.getElementById('tiles'), tcap=document.getElementById('tilesCap');
   if(tiles && tcap){
-    var base=tcap.textContent;
+    const base=tcap.textContent;
     function show(t){ tcap.classList.add('is');
       tcap.innerHTML=t.dataset.n+' — <b style="color:#fff">'+t.dataset.s+' of 5</b>'; }
     function clear(){ tcap.classList.remove('is'); tcap.textContent=base; }
-    tiles.addEventListener('mouseover',function(e){var t=e.target.closest('.tl'); if(t) show(t);});
-    tiles.addEventListener('focusin',function(e){var t=e.target.closest('.tl'); if(t) show(t);});
+    tiles.addEventListener('mouseover',function(e){const t=e.target.closest('.tl'); if(t) show(t);});
+    tiles.addEventListener('focusin',function(e){const t=e.target.closest('.tl'); if(t) show(t);});
     tiles.addEventListener('mouseleave',clear);
     tiles.addEventListener('focusout',clear);
   }
 
   /* the card behaves like an object: it tilts toward you and catches light */
-  var cardWrap=document.querySelector('.hero__card'), tilt=document.getElementById('tilt');
+  const cardWrap=document.querySelector('.hero__card'), tilt=document.getElementById('tilt');
   if(cardWrap && tilt && !reduce && matchMedia('(hover:hover) and (pointer:fine)').matches){
-    var raf=null;
+    let raf=null;
     cardWrap.addEventListener('pointermove',function(e){
       if(raf) return;
       raf=requestAnimationFrame(function(){
         raf=null;
-        var r=cardWrap.getBoundingClientRect(),
+        const r=cardWrap.getBoundingClientRect(),
             px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
         tilt.classList.add('live');
         tilt.style.setProperty('--ry',((px-.5)*11).toFixed(2)+'deg');
@@ -482,9 +497,10 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
   }
 
   /* the card has two faces — demo the flip once, then it’s yours */
-  var flip=document.getElementById('flip'),
+  const flip=document.getElementById('flip'),
       tA=document.getElementById('tabA'), tB=document.getElementById('tabB'),
-      fA=document.getElementById('faceA'), fB=document.getElementById('faceB'), took=false;
+      fA=document.getElementById('faceA'), fB=document.getElementById('faceB');
+  let took=false;
   function face(b){
     if(!flip) return;
     flip.classList.toggle('is-b', b);
@@ -507,19 +523,20 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
       },{threshold:.4}).observe(flip);
     }
   }
-  var GROUPS=[[86,1],[26,2],[9,3],[3,4],[2,5]];
-  var grid=document.getElementById('grid'), sqs=[];
+  const GROUPS=[[86,1],[26,2],[9,3],[3,4],[2,5]];
+  const grid=document.getElementById('grid');
+  let sqs=[];
   if(grid){
-    var html='';
-    GROUPS.forEach(function(g){for(var i=0;i<g[0];i++)
+    let html='';
+    GROUPS.forEach(function(g){for(let i=0;i<g[0];i++)
       html+='<span class="sq g'+g[1]+'" data-drop="'+g[1]+'"></span>';});
     grid.innerHTML=html; sqs=[].slice.call(grid.children);
   }
 
 
-  var DOT={1:'#3A3A37',2:'#5A5A55',3:'#8A8A85',4:'#D8D8D3',5:'#DA0007'};
+  const DOT={1:'#3A3A37',2:'#5A5A55',3:'#8A8A85',4:'#D8D8D3',5:'#DA0007'};
   /* hovering a STAGE shows everyone who got that far */
-  var REACH={
+  const REACH={
     1:'<b>All 126.</b> Everything the requirement returned.',
     2:'<b>40 reached an expert interview.</b> Eighty-six never did.',
     3:'<b>14 cleared the bar</b> on their own answers.',
@@ -527,14 +544,14 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
     5:'<b>2 hired,</b> out of five interviews.'
   };
   /* hovering a SQUARE shows where that person stopped */
-  var STOP={
+  const STOP={
     1:'<b>86 stopped here</b>, screened out before anyone spent time on them.',
     2:'<b>26 stopped here</b>, interviewed by an expert, didn\u2019t clear the bar.',
     3:'<b>9 stopped here</b>, cleared the bar, ranked below the top five.',
     4:'<b>3 stopped here</b>, sent, hireable, not chosen this time.',
     5:'<b>Hired.</b> One of the two.'
   };
-  var REST={
+  const REST={
     1:'126 people, shaded by how far each one got. <b>The two in red were hired.</b>',
     2:'<b>86 have dropped away.</b> Screened out before anyone spent time on them.',
     3:'<b>26 more gone.</b> Interviewed by a person, didn\u2019t clear the bar.',
@@ -542,15 +559,16 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
     5:'<b>Two hired, out of five interviews.</b> Everything else never left our desk.'
   };
 
-  var field=document.getElementById('field'),fN=document.getElementById('fieldN'),
-      fL=document.getElementById('fieldLbl'),fF=document.getElementById('fieldFt'),stage=0;
+  const field=document.getElementById('field'),fN=document.getElementById('fieldN'),
+      fL=document.getElementById('fieldLbl'),fF=document.getElementById('fieldFt');
+  let stage=0;
 
   function setStage(n){
     if(n===stage||!sqs.length) return;
     stage=n;
     sqs.forEach(function(s){ s.classList.toggle('out', +s.dataset.drop < n); });
     field.classList.toggle('at5',n===5);
-    var st=document.querySelector('.step[data-n="'+n+'"]');
+    const st=document.querySelector('.step[data-n="'+n+'"]');
     if(st){fN.textContent=st.dataset.count;fL.textContent=st.dataset.lbl;}
     fF.innerHTML=REST[n];
   }
@@ -559,10 +577,10 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
   /* hover trace — subtle, on squares and on the step text */
   function peek(n, mode){
     if(!grid) return;
-    var reached = mode !== 'stopped';
+    const reached = mode !== 'stopped';
     grid.classList.add('peek');
     sqs.forEach(function(s){
-      var d=+s.dataset.drop;
+      const d=+s.dataset.drop;
       s.classList.toggle('co', reached ? d>=n : d===n);
     });
     fF.innerHTML='<i style="background:'+DOT[n]+'"></i>'+(reached?REACH:STOP)[n];
@@ -575,15 +593,15 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
   }
   if(grid){
     grid.addEventListener('mouseover',function(e){
-      var s=e.target.closest('.sq'); if(s) peek(+s.dataset.drop,'stopped');
+      const s=e.target.closest('.sq'); if(s) peek(+s.dataset.drop,'stopped');
     });
     grid.addEventListener('mouseleave',unpeek);
   }
 
-  var steps=[].slice.call(document.querySelectorAll('.step'));
-  var userTook=false;
+  const steps=[].slice.call(document.querySelectorAll('.step'));
+  let userTook=false;
   steps.forEach(function(st){
-    var n=+st.dataset.n;
+    const n=+st.dataset.n;
     st.setAttribute('tabindex','0');
     st.setAttribute('role','button');
     function take(){ userTook=true; mark(n); }
@@ -603,7 +621,8 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
   }
 
   /* it narrows itself once when you arrive — then it’s yours to poke at */
-  var fn=document.getElementById('run'), played=false;
+  const fn=document.getElementById('run');
+  let played=false;
   if(fn && steps.length && 'IntersectionObserver' in window){
     new IntersectionObserver(function(es,ob){
       es.forEach(function(e){
@@ -617,22 +636,22 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
     },{threshold:.35}).observe(fn);
   } else if(steps.length){ mark(5); }
 
-  var io=new IntersectionObserver(function(es){
+  const io=new IntersectionObserver(function(es){
     es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
   },{threshold:.14,rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('[data-rv]').forEach(function(el){io.observe(el);});
 
   /* signal tags act as filters over the table */
-  var swap=document.querySelector('.swap'), keyBar=document.querySelector('.key');
+  const swap=document.querySelector('.swap'), keyBar=document.querySelector('.key');
   if(swap && keyBar){
-    var rows=[].slice.call(swap.querySelectorAll('.swap__row'));
+    const rows=[].slice.call(swap.querySelectorAll('.swap__row'));
     function apply(k){
       if(!k){ swap.classList.remove('dim');
         rows.forEach(function(r){ r.classList.remove('hit'); }); return; }
-      var want=k.querySelector('.tag').textContent.trim().toLowerCase();
+      const want=k.querySelector('.tag').textContent.trim().toLowerCase();
       swap.classList.add('dim');
       rows.forEach(function(r){
-        var t=r.querySelector('.tag');
+        const t=r.querySelector('.tag');
         r.classList.toggle('hit', !!t && t.textContent.trim().toLowerCase()===want);
       });
     }
@@ -643,7 +662,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
     /* one authority for clearing — the bar itself */
     keyBar.addEventListener('mouseleave',function(){ apply(null); });
     keyBar.addEventListener('focusin',function(e){
-      var k=e.target.closest('.key__i'); apply(k||null);
+      const k=e.target.closest('.key__i'); apply(k||null);
     });
     keyBar.addEventListener('focusout',function(e){
       if(!keyBar.contains(e.relatedTarget)) apply(null);
@@ -651,7 +670,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
   }
 
   /* the tally draws once, slowly, then the three land at speed */
-  var fan=document.querySelector('.fan'), tN=document.getElementById('tallyN');
+  const fan=document.querySelector('.fan'), tN=document.getElementById('tallyN');
   if(fan){
     new IntersectionObserver(function(es,ob){
       es.forEach(function(e){
@@ -660,11 +679,12 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
         if(reduce) return;
         fan.classList.add('go');
         if(!tN) return;
-        var t0=null, DUR=1800;
+        let t0=null;
+        const DUR=1800;
         tN.textContent='0';
         requestAnimationFrame(function step(ts){
           if(t0===null) t0=ts;
-          var u=Math.min((ts-t0)/DUR,1);
+          const u=Math.min((ts-t0)/DUR,1);
           tN.textContent=Math.round(Math.pow(u,1/0.62)*140);
           if(u<1) requestAnimationFrame(step); else tN.textContent='140';
         });
@@ -672,25 +692,25 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
     },{threshold:.35}).observe(fan);
   }
 
-  var deskBlk=document.querySelector('.desk');
+  const deskBlk=document.querySelector('.desk');
   if(deskBlk) new IntersectionObserver(function(es,ob){
     es.forEach(function(e){ if(e.isIntersecting){ deskBlk.classList.add('in'); ob.disconnect(); } });
   },{threshold:.4}).observe(deskBlk);
 
-  var ramp=document.getElementById('ramp');
+  const ramp=document.getElementById('ramp');
   if(ramp) new IntersectionObserver(function(es,ob){
     es.forEach(function(e){ if(e.isIntersecting){ ramp.classList.add('in'); ob.disconnect(); } });
   },{threshold:.3}).observe(ramp);
 
   /* nav switcher reflects where you are */
-  var cand=document.getElementById('candidates'),
+  const cand=document.getElementById('candidates'),
       sw=[].slice.call(document.querySelectorAll('.nav__sw a')),
       bar=document.getElementById('stickcta'),
       applyBox=document.getElementById('apply');
   if(cand && sw.length){
     new IntersectionObserver(function(es){
       es.forEach(function(e){
-        var inCand=e.isIntersecting;
+        const inCand=e.isIntersecting;
         sw[0].classList.toggle('is',!inCand);
         sw[1].classList.toggle('is',inCand);
       });
@@ -700,7 +720,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
   /* sticky apply bar: only while the candidate section is on screen,
      and never on top of the apply card itself */
   if(cand && bar && applyBox){
-    var inSection=false, atForm=false;
+    let inSection=false, atForm=false;
     function sync(){ bar.classList.toggle('show', inSection && !atForm); }
     new IntersectionObserver(function(es){
       es.forEach(function(e){ inSection=e.isIntersecting; sync(); });
@@ -711,16 +731,16 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
   }
 
   /* a filename is better feedback than a silent upload */
-  var fileIn=document.querySelector('.apply__file input');
+  const fileIn=document.querySelector('.apply__file input');
   if(fileIn) fileIn.addEventListener('change',function(){
-    var lbl=fileIn.parentNode.querySelector('span');
+    const lbl=fileIn.parentNode.querySelector('span');
     if(fileIn.files && fileIn.files[0]) lbl.textContent=fileIn.files[0].name;
   });
 })();
 
   /* ══ the chalk marks draw themselves in ══ */
   (function(){
-    var j=document.querySelector('.jrny'); if(!j) return;
+    const j=document.querySelector('.jrny'); if(!j) return;
     new IntersectionObserver(function(es,ob){
       es.forEach(function(e){ if(e.isIntersecting){ j.classList.add('in'); ob.disconnect(); } });
     },{threshold:.3}).observe(j);
@@ -728,7 +748,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
 
   /* ══ the signature writes itself once ══ */
   (function(){
-    var l=document.querySelector('.ltr'); if(!l) return;
+    const l=document.querySelector('.ltr'); if(!l) return;
     new IntersectionObserver(function(es,ob){
       es.forEach(function(e){ if(e.isIntersecting){ l.classList.add('in'); ob.disconnect(); } });
     },{threshold:.25}).observe(l);
@@ -738,18 +758,18 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
      Generic and defensive — it animates whatever is on the page and does
      nothing where those elements do not exist. */
   (function(){
-    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     /* every element on the site whose content is a figure worth arriving */
-    var FIGS = ['.bw__v','.sc__v','.fd__n','.av__p','.av__cv','.estat__n','.cstat__n',
+    const FIGS = ['.bw__v','.sc__v','.fd__n','.av__p','.av__cv','.estat__n','.cstat__n',
                 '.nine__n b','.ratio__n','.hrs__n','.big__n','.stat__n','.us__v',
                 '.grp__c','.dept__c','.rfb i','.fchip i','.dlv__c','.pth__d em',
                 '.cmp__v','.tally__n','.hours','.mult__n','.vol__n','.labcard__n b','.fct__n'].join(',');
 
     function parse(t){
-      var m = String(t).match(/^(\D*?)([\d,]+(?:\.\d+)?)(.*)$/);
+      const m = String(t).match(/^(\D*?)([\d,]+(?:\.\d+)?)(.*)$/);
       if(!m) return null;
-      var n = parseFloat(m[2].replace(/,/g,''));
+      const n = parseFloat(m[2].replace(/,/g,''));
       if(!isFinite(n) || n === 0) return null;
       return { pre:m[1], n:n, post:m[3], dec:(m[2].split('.')[1]||'').length,
                grouped:m[2].indexOf(',') > -1 };
@@ -757,19 +777,20 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
 
     function count(el){
       if(el.dataset.counted) return;
-      var f = parse(el.textContent.trim());
+      const f = parse(el.textContent.trim());
       if(!f) return;
       el.dataset.counted = '1';
       if(reduce) return;
-      var t0 = null, dur = f.n > 999 ? 1000 : 800;
+      let t0 = null;
+      const dur = f.n > 999 ? 1000 : 800;
       function fmt(v){
-        var s = f.dec ? v.toFixed(f.dec)
-                      : (f.grouped ? Math.round(v).toLocaleString('en-IN') : String(Math.round(v)));
+        const s = f.dec ? v.toFixed(f.dec)
+                      : (f.grouped ? Math.round(v).toLocaleString('en-US') : String(Math.round(v)));
         return f.pre + s + f.post;
       }
       function step(ts){
         if(!t0) t0 = ts;
-        var p = Math.min((ts - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+        const p = Math.min((ts - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
         el.textContent = fmt(f.n * e);
         if(p < 1) requestAnimationFrame(step);
         else el.textContent = fmt(f.n);
@@ -782,7 +803,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
     function fill(el){
       if(el.dataset.filled) return;
       el.dataset.filled = '1';
-      var w = el.style.getPropertyValue('--w');
+      const w = el.style.getPropertyValue('--w');
       if(!w) return;
       if(reduce){ el.style.width = w; return; }
       el.style.width = '0';
@@ -794,7 +815,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
 
     function watch(nodes, fn, threshold){
       if(!nodes.length) return;
-      var io = new IntersectionObserver(function(entries){
+      const io = new IntersectionObserver(function(entries){
         entries.forEach(function(e){
           if(!e.isIntersecting) return;
           fn(e.target);
@@ -819,7 +840,7 @@ import ContactSalesModal from '../components/ContactSalesModal.astro';
 
   /* ══ the two curves draw once ══ */
   (function(){
-    var w=document.querySelector('.wn'); if(!w) return;
+    const w=document.querySelector('.wn'); if(!w) return;
     new IntersectionObserver(function(es,ob){
       es.forEach(function(e){ if(e.isIntersecting){ w.classList.add('in'); ob.disconnect(); } });
     },{threshold:.3}).observe(w);
@@ -931,11 +952,11 @@ a{color:inherit}:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .hero{background:var(--char);color:var(--onc);padding-block:clamp(44px,5.6vw,80px) 0}
 .hero .eyebrow{color:var(--onc3)}.hero .eyebrow--red{color:var(--red)}
 .hero h1{color:#fff}.hero h1 em{font-style:normal;color:var(--red)}
-.hero__top{display:grid;gap:clamp(26px,3vw,44px);align-content:center;min-height:1576px}@media(min-width:330px){.hero__top{min-height:1496px}}@media(min-width:340px){.hero__top{min-height:1476px}}@media(min-width:360px){.hero__top{min-height:1461px}}@media(min-width:375px){.hero__top{min-height:1401px}}@media(min-width:390px){.hero__top{min-height:1321px}}@media(min-width:400px){.hero__top{min-height:1301px}}@media(min-width:420px){.hero__top{min-height:1286px}}@media(min-width:440px){.hero__top{min-height:1266px}}@media(min-width:460px){.hero__top{min-height:1216px}}@media(min-width:500px){.hero__top{min-height:1176px}}@media(min-width:550px){.hero__top{min-height:1161px}}@media(min-width:700px){.hero__top{min-height:1121px}}@media(min-width:800px){.hero__top{min-height:1126px}}@media(min-width:900px){.hero__top{min-height:1104px}}@media(min-width:1000px){.hero__top{min-height:calc(100svh - 64px)}}
-@media(max-width:999px){.hero{padding-top:42px}.hero__top{min-height:0;align-content:start}.hero__top>*{min-width:0}.hero__card{width:100%;max-width:100%}}
-@media(max-width:699px){.hero__top{gap:32px}.hero__copy .btns{display:grid;grid-template-columns:1fr;gap:10px}.hero__copy .btns .btn{justify-content:center;min-height:48px;width:100%}}
+.hero__top{display:grid;gap:clamp(26px,3vw,44px)}
+@media(max-width:999px){.hero{padding-top:42px}.hero__top>*{min-width:0}.hero__card{width:100%;max-width:100%}}
+@media(max-width:699px){.hero__top{gap:32px}.hero__copy .btns{flex-wrap:nowrap;gap:10px}.hero__copy .btns .btn{justify-content:center;min-height:48px;padding-inline:15px;white-space:nowrap}}
 @media(min-width:1000px){.hero__top{grid-template-columns:.9fr 1.1fr;align-items:center;
-  gap:clamp(30px,3.4vw,52px);max-width:1080px;margin-inline:auto}}
+  gap:clamp(30px,3.4vw,52px)}}
 .hero__copy .btns{margin-top:26px}
 .hero .eyebrow{margin-bottom:16px}
 .hero h1{max-width:18ch;font-size:clamp(36px,4.6vw,62px)}
@@ -2853,16 +2874,17 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   color:var(--faint);margin:6px 0 0}
 
 </style>
-<script>
+<!-- Duplicate initializer retained as source context, but must not execute. -->
+<script type="text/plain">
 
 (function(){
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
 
   /* ══ THE DEAL: pick your volume, the shape resolves ══ */
   (function(){
-    var V=[
+    const V=[
       {nm:'Project-based',v:'10–50',d:'One role you\u2019re stuck on, or a burst of them: permanent, contract or executive.',
        p:['Per hire, 15–20%','Nothing owed until you hire','Your bar written on the first brief']},
       {nm:'Scale',v:'50–200',d:'Several functions running at once, with one bar carried across all of them.',
@@ -2870,13 +2892,13 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
       {nm:'Full RPO',v:'200–500+',d:'Your whole talent function, run alongside your team rather than outside it.',
        p:['Experts embedded in your team','Subscription plus a reduced rate','Quarterly recalibration of the bar']}
     ];
-    var segs=[].slice.call(document.querySelectorAll('.vseg')),
+    const segs=[].slice.call(document.querySelectorAll('.vseg')),
         out=document.getElementById('volOut');
     if(!segs.length||!out) return;
-    var nm=document.getElementById('volNm'), vv=document.getElementById('volV'),
+    const nm=document.getElementById('volNm'), vv=document.getElementById('volV'),
         dd=document.getElementById('volD'), pts=document.getElementById('volPts');
     function pick(i){
-      var s=V[i];
+      const s=V[i];
       segs.forEach(function(b,j){ b.classList.toggle('is',j===i);
         b.setAttribute('aria-selected',String(j===i)); });
       nm.textContent=s.nm;
@@ -2894,7 +2916,7 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
 
   /* ══ THE LAB: the visitor moves the bar, the verdict follows ══ */
   (function(){
-    var D=[
+    const D=[
       {k:'A',n:'Core networking, TCP/IP',w:6.25,s:5},
       {k:'B',n:'Routing and BGP depth',w:6.25,s:5},
       {k:'C',n:'Data-centre networks',w:6.25,s:3},
@@ -2907,20 +2929,20 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
       {k:'J',n:'Linux, scripting, automation',w:1.25,s:2},
       {k:'K',n:'Authenticity',w:3.75,s:4}
     ];
-    var BASE=D.map(function(d){return d.w;});
-    var PRE={
+    const BASE=D.map(function(d){return d.w;});
+    const PRE={
       brief:BASE.slice(),
       auto:[2,2,3,2,2,2,2,1,2,12,2],
       fabric:[2,2,12,2,2,2,2,1,2,3,2],
       ops:[7,7,1,3,9,5,8,3,7,0.5,4]
     };
-    var NOTE={
+    const NOTE={
       brief:'As briefed: fundamentals, troubleshooting and performance carry the weight. Automation is deliberately weighted so it cannot carry a profile.',
       auto:'Weight automation above everything and he drops out of Select. He scored 2 there, and it was the one thing he could not evidence. On this brief he is a no.',
       fabric:'Weight fabric depth and he falls to the bottom of Select. He describes the estate; he has not operated the fabric himself.',
       ops:'Weight the day job (troubleshooting, change discipline, ownership) and he climbs. That is where the evidence actually sat.'
     };
-    var rows=document.getElementById('labRows'), tiles=document.getElementById('labTiles'),
+    const rows=document.getElementById('labRows'), tiles=document.getElementById('labTiles'),
         elScore=document.getElementById('labScore'), elBand=document.getElementById('labBand'),
         elPin=document.getElementById('labPin'), elTot=document.getElementById('labTotal'),
         elNote=document.getElementById('labNote');
@@ -2938,26 +2960,26 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
         'tabindex="0" title="'+d.n+' — '+d.s+' of 5"><i>'+d.k+'</i><b>'+d.s+'</b></span>';
     }).join('');
 
-    var shown=42, raf=null;
+    let shown=42, raf=null;
     function paint(){
-      var tw=0, got=0, max=0;
+      let tw=0, got=0, max=0;
       D.forEach(function(d){ tw+=d.w; got+=d.w*d.s/5; if(d.w>max) max=d.w; });
-      var score = tw>0 ? (got/tw)*50 : 0;
+      const score = tw>0 ? (got/tw)*50 : 0;
       D.forEach(function(d,i){
         document.getElementById('pts'+i).textContent=(d.w*d.s/5).toFixed(2);
-        var heavy = d.w >= Math.max(7, max*0.92);
+        const heavy = d.w >= Math.max(7, max*0.92);
         document.getElementById('row'+i).classList.toggle('heavy',heavy);
         document.getElementById('tile'+i).classList.toggle('heavy',heavy);
       });
       elTot.textContent=tw.toFixed(2);
       elPin.style.left=Math.max(1,Math.min(99,(score/50)*100))+'%';
-      var band = score>=34?['SELECT','b-sel'] : score>=28?['GREY','b-grey'] : ['REJECT','b-rej'];
+      const band = score>=34?['SELECT','b-sel'] : score>=28?['GREY','b-grey'] : ['REJECT','b-rej'];
       elBand.textContent=band[0];
       elBand.className='verd__band '+band[1];
       /* count the number rather than snapping it */
       cancelAnimationFrame(raf);
       (function step(){
-        var diff=score-shown;
+        const diff=score-shown;
         if(Math.abs(diff)<0.02){ shown=score; elScore.textContent=score.toFixed(2); return; }
         shown+=diff*0.22; elScore.textContent=shown.toFixed(2);
         raf=requestAnimationFrame(step);
@@ -2966,32 +2988,32 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
 
     /* hover either half, the other half answers */
     function link(i,on){
-      var t=document.getElementById('tile'+i), r=document.getElementById('row'+i);
+      const t=document.getElementById('tile'+i), r=document.getElementById('row'+i);
       if(t) t.classList.toggle('lit',on);
       if(r) r.classList.toggle('lit',on);
     }
     function bind(host,sel){
       host.addEventListener('mouseover',function(e){
-        var el=e.target.closest(sel); if(el) link(+el.dataset.i,true); });
+        const el=e.target.closest(sel); if(el) link(+el.dataset.i,true); });
       host.addEventListener('mouseout',function(e){
-        var el=e.target.closest(sel); if(el) link(+el.dataset.i,false); });
+        const el=e.target.closest(sel); if(el) link(+el.dataset.i,false); });
       host.addEventListener('focusin',function(e){
-        var el=e.target.closest(sel); if(el) link(+el.dataset.i,true); });
+        const el=e.target.closest(sel); if(el) link(+el.dataset.i,true); });
       host.addEventListener('focusout',function(e){
-        var el=e.target.closest(sel); if(el) link(+el.dataset.i,false); });
+        const el=e.target.closest(sel); if(el) link(+el.dataset.i,false); });
     }
     bind(tiles,'.lt');
     bind(rows,'.row');
 
     rows.addEventListener('input',function(e){
-      var t=e.target; if(t.type!=='range') return;
+      const t=e.target; if(t.type!=='range') return;
       D[+t.dataset.i].w=parseFloat(t.value);
       document.querySelectorAll('.pre').forEach(function(b){b.classList.remove('on');});
       paint();
     });
     document.querySelectorAll('.pre').forEach(function(btn){
       btn.addEventListener('click',function(){
-        var set=PRE[btn.dataset.pre];
+        const set=PRE[btn.dataset.pre];
         D.forEach(function(d,i){ d.w=set[i];
           rows.querySelector('input[data-i="'+i+'"]').value=set[i]; });
         document.querySelectorAll('.pre').forEach(function(b){b.classList.remove('on');});
@@ -3004,27 +3026,27 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   })();
 
   /* the score tiles name themselves */
-  var tiles=document.getElementById('tiles'), tcap=document.getElementById('tilesCap');
+  const tiles=document.getElementById('tiles'), tcap=document.getElementById('tilesCap');
   if(tiles && tcap){
-    var base=tcap.textContent;
+    const base=tcap.textContent;
     function show(t){ tcap.classList.add('is');
       tcap.innerHTML=t.dataset.n+' — <b style="color:#fff">'+t.dataset.s+' of 5</b>'; }
     function clear(){ tcap.classList.remove('is'); tcap.textContent=base; }
-    tiles.addEventListener('mouseover',function(e){var t=e.target.closest('.tl'); if(t) show(t);});
-    tiles.addEventListener('focusin',function(e){var t=e.target.closest('.tl'); if(t) show(t);});
+    tiles.addEventListener('mouseover',function(e){const t=e.target.closest('.tl'); if(t) show(t);});
+    tiles.addEventListener('focusin',function(e){const t=e.target.closest('.tl'); if(t) show(t);});
     tiles.addEventListener('mouseleave',clear);
     tiles.addEventListener('focusout',clear);
   }
 
   /* the card behaves like an object: it tilts toward you and catches light */
-  var cardWrap=document.querySelector('.hero__card'), tilt=document.getElementById('tilt');
+  const cardWrap=document.querySelector('.hero__card'), tilt=document.getElementById('tilt');
   if(cardWrap && tilt && !reduce && matchMedia('(hover:hover) and (pointer:fine)').matches){
-    var raf=null;
+    let raf=null;
     cardWrap.addEventListener('pointermove',function(e){
       if(raf) return;
       raf=requestAnimationFrame(function(){
         raf=null;
-        var r=cardWrap.getBoundingClientRect(),
+        const r=cardWrap.getBoundingClientRect(),
             px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
         tilt.classList.add('live');
         tilt.style.setProperty('--ry',((px-.5)*11).toFixed(2)+'deg');
@@ -3042,9 +3064,10 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   }
 
   /* the card has two faces — demo the flip once, then it’s yours */
-  var flip=document.getElementById('flip'),
+  const flip=document.getElementById('flip'),
       tA=document.getElementById('tabA'), tB=document.getElementById('tabB'),
-      fA=document.getElementById('faceA'), fB=document.getElementById('faceB'), took=false;
+      fA=document.getElementById('faceA'), fB=document.getElementById('faceB');
+  let took=false;
   function face(b){
     if(!flip) return;
     flip.classList.toggle('is-b', b);
@@ -3067,19 +3090,20 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
       },{threshold:.4}).observe(flip);
     }
   }
-  var GROUPS=[[86,1],[26,2],[9,3],[3,4],[2,5]];
-  var grid=document.getElementById('grid'), sqs=[];
+  const GROUPS=[[86,1],[26,2],[9,3],[3,4],[2,5]];
+  const grid=document.getElementById('grid');
+  let sqs=[];
   if(grid){
-    var html='';
-    GROUPS.forEach(function(g){for(var i=0;i<g[0];i++)
+    let html='';
+    GROUPS.forEach(function(g){for(let i=0;i<g[0];i++)
       html+='<span class="sq g'+g[1]+'" data-drop="'+g[1]+'"></span>';});
     grid.innerHTML=html; sqs=[].slice.call(grid.children);
   }
 
 
-  var DOT={1:'#3A3A37',2:'#5A5A55',3:'#8A8A85',4:'#D8D8D3',5:'#DA0007'};
+  const DOT={1:'#3A3A37',2:'#5A5A55',3:'#8A8A85',4:'#D8D8D3',5:'#DA0007'};
   /* hovering a STAGE shows everyone who got that far */
-  var REACH={
+  const REACH={
     1:'<b>All 126.</b> Everything the requirement returned.',
     2:'<b>40 reached an expert interview.</b> Eighty-six never did.',
     3:'<b>14 cleared the bar</b> on their own answers.',
@@ -3087,14 +3111,14 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
     5:'<b>2 hired,</b> out of five interviews.'
   };
   /* hovering a SQUARE shows where that person stopped */
-  var STOP={
+  const STOP={
     1:'<b>86 stopped here</b>, screened out before anyone spent time on them.',
     2:'<b>26 stopped here</b>, interviewed by an expert, didn\u2019t clear the bar.',
     3:'<b>9 stopped here</b>, cleared the bar, ranked below the top five.',
     4:'<b>3 stopped here</b>, sent, hireable, not chosen this time.',
     5:'<b>Hired.</b> One of the two.'
   };
-  var REST={
+  const REST={
     1:'126 people, shaded by how far each one got. <b>The two in red were hired.</b>',
     2:'<b>86 have dropped away.</b> Screened out before anyone spent time on them.',
     3:'<b>26 more gone.</b> Interviewed by a person, didn\u2019t clear the bar.',
@@ -3102,15 +3126,16 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
     5:'<b>Two hired, out of five interviews.</b> Everything else never left our desk.'
   };
 
-  var field=document.getElementById('field'),fN=document.getElementById('fieldN'),
-      fL=document.getElementById('fieldLbl'),fF=document.getElementById('fieldFt'),stage=0;
+  const field=document.getElementById('field'),fN=document.getElementById('fieldN'),
+      fL=document.getElementById('fieldLbl'),fF=document.getElementById('fieldFt');
+  let stage=0;
 
   function setStage(n){
     if(n===stage||!sqs.length) return;
     stage=n;
     sqs.forEach(function(s){ s.classList.toggle('out', +s.dataset.drop < n); });
     field.classList.toggle('at5',n===5);
-    var st=document.querySelector('.step[data-n="'+n+'"]');
+    const st=document.querySelector('.step[data-n="'+n+'"]');
     if(st){fN.textContent=st.dataset.count;fL.textContent=st.dataset.lbl;}
     fF.innerHTML=REST[n];
   }
@@ -3119,10 +3144,10 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   /* hover trace — subtle, on squares and on the step text */
   function peek(n, mode){
     if(!grid) return;
-    var reached = mode !== 'stopped';
+    const reached = mode !== 'stopped';
     grid.classList.add('peek');
     sqs.forEach(function(s){
-      var d=+s.dataset.drop;
+      const d=+s.dataset.drop;
       s.classList.toggle('co', reached ? d>=n : d===n);
     });
     fF.innerHTML='<i style="background:'+DOT[n]+'"></i>'+(reached?REACH:STOP)[n];
@@ -3135,15 +3160,15 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   }
   if(grid){
     grid.addEventListener('mouseover',function(e){
-      var s=e.target.closest('.sq'); if(s) peek(+s.dataset.drop,'stopped');
+      const s=e.target.closest('.sq'); if(s) peek(+s.dataset.drop,'stopped');
     });
     grid.addEventListener('mouseleave',unpeek);
   }
 
-  var steps=[].slice.call(document.querySelectorAll('.step'));
-  var userTook=false;
+  const steps=[].slice.call(document.querySelectorAll('.step'));
+  let userTook=false;
   steps.forEach(function(st){
-    var n=+st.dataset.n;
+    const n=+st.dataset.n;
     st.setAttribute('tabindex','0');
     st.setAttribute('role','button');
     function take(){ userTook=true; mark(n); }
@@ -3163,7 +3188,8 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   }
 
   /* it narrows itself once when you arrive — then it’s yours to poke at */
-  var fn=document.getElementById('run'), played=false;
+  const fn=document.getElementById('run');
+  let played=false;
   if(fn && steps.length && 'IntersectionObserver' in window){
     new IntersectionObserver(function(es,ob){
       es.forEach(function(e){
@@ -3177,22 +3203,22 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
     },{threshold:.35}).observe(fn);
   } else if(steps.length){ mark(5); }
 
-  var io=new IntersectionObserver(function(es){
+  const io=new IntersectionObserver(function(es){
     es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
   },{threshold:.14,rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('[data-rv]').forEach(function(el){io.observe(el);});
 
   /* signal tags act as filters over the table */
-  var swap=document.querySelector('.swap'), keyBar=document.querySelector('.key');
+  const swap=document.querySelector('.swap'), keyBar=document.querySelector('.key');
   if(swap && keyBar){
-    var rows=[].slice.call(swap.querySelectorAll('.swap__row'));
+    const rows=[].slice.call(swap.querySelectorAll('.swap__row'));
     function apply(k){
       if(!k){ swap.classList.remove('dim');
         rows.forEach(function(r){ r.classList.remove('hit'); }); return; }
-      var want=k.querySelector('.tag').textContent.trim().toLowerCase();
+      const want=k.querySelector('.tag').textContent.trim().toLowerCase();
       swap.classList.add('dim');
       rows.forEach(function(r){
-        var t=r.querySelector('.tag');
+        const t=r.querySelector('.tag');
         r.classList.toggle('hit', !!t && t.textContent.trim().toLowerCase()===want);
       });
     }
@@ -3203,7 +3229,7 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
     /* one authority for clearing — the bar itself */
     keyBar.addEventListener('mouseleave',function(){ apply(null); });
     keyBar.addEventListener('focusin',function(e){
-      var k=e.target.closest('.key__i'); apply(k||null);
+      const k=e.target.closest('.key__i'); apply(k||null);
     });
     keyBar.addEventListener('focusout',function(e){
       if(!keyBar.contains(e.relatedTarget)) apply(null);
@@ -3211,7 +3237,7 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   }
 
   /* the tally draws once, slowly, then the three land at speed */
-  var fan=document.querySelector('.fan'), tN=document.getElementById('tallyN');
+  const fan=document.querySelector('.fan'), tN=document.getElementById('tallyN');
   if(fan){
     new IntersectionObserver(function(es,ob){
       es.forEach(function(e){
@@ -3220,11 +3246,12 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
         if(reduce) return;
         fan.classList.add('go');
         if(!tN) return;
-        var t0=null, DUR=1800;
+        let t0=null;
+        const DUR=1800;
         tN.textContent='0';
         requestAnimationFrame(function step(ts){
           if(t0===null) t0=ts;
-          var u=Math.min((ts-t0)/DUR,1);
+          const u=Math.min((ts-t0)/DUR,1);
           tN.textContent=Math.round(Math.pow(u,1/0.62)*140);
           if(u<1) requestAnimationFrame(step); else tN.textContent='140';
         });
@@ -3232,25 +3259,25 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
     },{threshold:.35}).observe(fan);
   }
 
-  var deskBlk=document.querySelector('.desk');
+  const deskBlk=document.querySelector('.desk');
   if(deskBlk) new IntersectionObserver(function(es,ob){
     es.forEach(function(e){ if(e.isIntersecting){ deskBlk.classList.add('in'); ob.disconnect(); } });
   },{threshold:.4}).observe(deskBlk);
 
-  var ramp=document.getElementById('ramp');
+  const ramp=document.getElementById('ramp');
   if(ramp) new IntersectionObserver(function(es,ob){
     es.forEach(function(e){ if(e.isIntersecting){ ramp.classList.add('in'); ob.disconnect(); } });
   },{threshold:.3}).observe(ramp);
 
   /* nav switcher reflects where you are */
-  var cand=document.getElementById('candidates'),
+  const cand=document.getElementById('candidates'),
       sw=[].slice.call(document.querySelectorAll('.nav__sw a')),
       bar=document.getElementById('stickcta'),
       applyBox=document.getElementById('apply');
   if(cand && sw.length){
     new IntersectionObserver(function(es){
       es.forEach(function(e){
-        var inCand=e.isIntersecting;
+        const inCand=e.isIntersecting;
         sw[0].classList.toggle('is',!inCand);
         sw[1].classList.toggle('is',inCand);
       });
@@ -3260,7 +3287,7 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   /* sticky apply bar: only while the candidate section is on screen,
      and never on top of the apply card itself */
   if(cand && bar && applyBox){
-    var inSection=false, atForm=false;
+    let inSection=false, atForm=false;
     function sync(){ bar.classList.toggle('show', inSection && !atForm); }
     new IntersectionObserver(function(es){
       es.forEach(function(e){ inSection=e.isIntersecting; sync(); });
@@ -3271,16 +3298,16 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
   }
 
   /* a filename is better feedback than a silent upload */
-  var fileIn=document.querySelector('.apply__file input');
+  const fileIn=document.querySelector('.apply__file input');
   if(fileIn) fileIn.addEventListener('change',function(){
-    var lbl=fileIn.parentNode.querySelector('span');
+    const lbl=fileIn.parentNode.querySelector('span');
     if(fileIn.files && fileIn.files[0]) lbl.textContent=fileIn.files[0].name;
   });
 })();
 
   /* ══ the chalk marks draw themselves in ══ */
   (function(){
-    var j=document.querySelector('.jrny'); if(!j) return;
+    const j=document.querySelector('.jrny'); if(!j) return;
     new IntersectionObserver(function(es,ob){
       es.forEach(function(e){ if(e.isIntersecting){ j.classList.add('in'); ob.disconnect(); } });
     },{threshold:.3}).observe(j);
@@ -3288,7 +3315,7 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
 
   /* ══ the signature writes itself once ══ */
   (function(){
-    var l=document.querySelector('.ltr'); if(!l) return;
+    const l=document.querySelector('.ltr'); if(!l) return;
     new IntersectionObserver(function(es,ob){
       es.forEach(function(e){ if(e.isIntersecting){ l.classList.add('in'); ob.disconnect(); } });
     },{threshold:.25}).observe(l);
@@ -3298,18 +3325,18 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
      Generic and defensive — it animates whatever is on the page and does
      nothing where those elements do not exist. */
   (function(){
-    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     /* every element on the site whose content is a figure worth arriving */
-    var FIGS = ['.bw__v','.sc__v','.fd__n','.av__p','.av__cv','.estat__n','.cstat__n',
+    const FIGS = ['.bw__v','.sc__v','.fd__n','.av__p','.av__cv','.estat__n','.cstat__n',
                 '.nine__n b','.ratio__n','.hrs__n','.big__n','.stat__n','.us__v',
                 '.grp__c','.dept__c','.rfb i','.fchip i','.dlv__c','.pth__d em',
                 '.cmp__v','.tally__n','.hours','.mult__n','.vol__n','.labcard__n b','.fct__n'].join(',');
 
     function parse(t){
-      var m = String(t).match(/^(\D*?)([\d,]+(?:\.\d+)?)(.*)$/);
+      const m = String(t).match(/^(\D*?)([\d,]+(?:\.\d+)?)(.*)$/);
       if(!m) return null;
-      var n = parseFloat(m[2].replace(/,/g,''));
+      const n = parseFloat(m[2].replace(/,/g,''));
       if(!isFinite(n) || n === 0) return null;
       return { pre:m[1], n:n, post:m[3], dec:(m[2].split('.')[1]||'').length,
                grouped:m[2].indexOf(',') > -1 };
@@ -3317,19 +3344,20 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
 
     function count(el){
       if(el.dataset.counted) return;
-      var f = parse(el.textContent.trim());
+      const f = parse(el.textContent.trim());
       if(!f) return;
       el.dataset.counted = '1';
       if(reduce) return;
-      var t0 = null, dur = f.n > 999 ? 1000 : 800;
+      let t0 = null;
+      const dur = f.n > 999 ? 1000 : 800;
       function fmt(v){
-        var s = f.dec ? v.toFixed(f.dec)
+        const s = f.dec ? v.toFixed(f.dec)
                       : (f.grouped ? Math.round(v).toLocaleString('en-IN') : String(Math.round(v)));
         return f.pre + s + f.post;
       }
       function step(ts){
         if(!t0) t0 = ts;
-        var p = Math.min((ts - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+        const p = Math.min((ts - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
         el.textContent = fmt(f.n * e);
         if(p < 1) requestAnimationFrame(step);
         else el.textContent = fmt(f.n);
@@ -3342,7 +3370,7 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
     function fill(el){
       if(el.dataset.filled) return;
       el.dataset.filled = '1';
-      var w = el.style.getPropertyValue('--w');
+      const w = el.style.getPropertyValue('--w');
       if(!w) return;
       if(reduce){ el.style.width = w; return; }
       el.style.width = '0';
@@ -3354,7 +3382,7 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
 
     function watch(nodes, fn, threshold){
       if(!nodes.length) return;
-      var io = new IntersectionObserver(function(entries){
+      const io = new IntersectionObserver(function(entries){
         entries.forEach(function(e){
           if(!e.isIntersecting) return;
           fn(e.target);
@@ -3379,7 +3407,7 @@ html body .navp .navp__sw a:hover{color:#fff;background:rgba(255,255,255,.11)}
 
   /* ══ the two curves draw once ══ */
   (function(){
-    var w=document.querySelector('.wn'); if(!w) return;
+    const w=document.querySelector('.wn'); if(!w) return;
     new IntersectionObserver(function(es,ob){
       es.forEach(function(e){ if(e.isIntersecting){ w.classList.add('in'); ob.disconnect(); } });
     },{threshold:.3}).observe(w);

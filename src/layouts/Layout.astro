@@ -22,6 +22,8 @@ export interface Props {
 const { metadata = {} } = Astro.props;
 const { language, textDirection } = I18N;
 const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
+const isCandidateRoute = Astro.url.pathname.startsWith('/candidates');
+const isAboutRoute = Astro.url.pathname === '/about' || Astro.url.pathname === '/about/';
 ---
 
 <!doctype html>
@@ -35,9 +37,19 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
       type="font/woff2"
       crossorigin
     />
+    <link rel="preload" href="/fonts/fraunces-400.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/fraunces-500.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/fraunces-600.ttf" as="font" type="font/ttf" crossorigin />
     <link
       rel="preload"
       href="/fonts/inter-tight-600.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/inter-tight-400.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -49,10 +61,251 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
       type="font/woff2"
       crossorigin
     />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400..700&display=swap"
-    />
+    <link rel="preload" href="/fonts/figtree-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-tight-500.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/jetbrains-mono-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/jetbrains-mono-500.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/jetbrains-mono-700.woff2" as="font" type="font/woff2" crossorigin />
+    {isAboutRoute && (
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" />
+    )}
+    <style is:inline>
+      /* Define the hero fonts in the document head. The page CSS repeats these
+         faces, but it can load later without causing the hero to swap metrics. */
+      @font-face { font-family: 'Figtree'; font-style: normal; font-weight: 400; font-display: optional; src: url('/fonts/figtree-400.woff2') format('woff2'); }
+      @font-face { font-family: 'Figtree'; font-style: normal; font-weight: 700; font-display: optional; src: url('/fonts/figtree-700.woff2') format('woff2'); }
+      @font-face { font-family: 'Figtree'; font-style: normal; font-weight: 800; font-display: optional; src: url('/fonts/figtree-800.woff2') format('woff2'); }
+      @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/fraunces-400.ttf') format('truetype'); }
+      @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/fraunces-500.ttf') format('truetype'); }
+      @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/fraunces-600.ttf') format('truetype'); }
+      @font-face { font-family: 'Inter Tight'; font-style: normal; font-weight: 400; font-display: optional; src: url('/fonts/inter-tight-400.woff2') format('woff2'); }
+      @font-face { font-family: 'Inter Tight'; font-style: normal; font-weight: 500; font-display: optional; src: url('/fonts/inter-tight-500.woff2') format('woff2'); }
+      @font-face { font-family: 'Inter Tight'; font-style: normal; font-weight: 600; font-display: optional; src: url('/fonts/inter-tight-600.woff2') format('woff2'); }
+      @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: optional; src: url('/fonts/jetbrains-mono-400.woff2') format('woff2'); }
+      @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 500; font-display: optional; src: url('/fonts/jetbrains-mono-500.woff2') format('woff2'); }
+      @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 700; font-display: optional; src: url('/fonts/jetbrains-mono-700.woff2') format('woff2'); }
+
+      /* Keep the shared header stable before deferred component styles arrive. */
+      .nav__in { min-height: 64px !important; height: 64px !important; gap: 20px !important; padding-block: 0 !important; }
+      .nav .logo {
+        display: inline-flex !important;
+        flex: 0 0 76px !important;
+        align-items: baseline !important;
+        box-sizing: border-box !important;
+        width: 76px !important;
+        height: 20px !important;
+        font-family: 'Figtree', -apple-system, sans-serif !important;
+        font-size: 20px !important;
+        font-weight: 800 !important;
+        line-height: 20px !important;
+        letter-spacing: -0.055em !important;
+        text-decoration: none !important;
+        white-space: nowrap !important;
+      }
+      .nav .logo i {
+        display: inline-block !important;
+        flex: 0 0 auto !important;
+        font: inherit !important;
+        font-style: normal !important;
+        line-height: 1 !important;
+        transform: none !important;
+      }
+      .nav__sw {
+        display: inline-grid !important;
+        grid-template-columns: repeat(2, 90px) !important;
+        align-items: center !important;
+        height: 40px !important;
+        gap: 2px !important;
+        padding: 3px !important;
+      }
+      .nav__sw a {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+        width: 90px !important;
+        height: 32px !important;
+        padding: 6px 8px !important;
+        font-family: ui-sans-serif, system-ui, sans-serif !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        line-height: 1 !important;
+        letter-spacing: -0.01em !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+      }
+      @media (min-width: 1080px) {
+        .nav__end { width: 178px !important; justify-content: flex-end !important; gap: 12px !important; margin-left: 10px !important; }
+        .nav__login {
+          display: inline-flex !important;
+          flex: 0 0 37px !important;
+          align-items: center !important;
+          justify-content: center !important;
+          box-sizing: border-box !important;
+          padding: 0 4px !important;
+          line-height: 1 !important;
+          white-space: nowrap !important;
+        }
+      }
+      @media (min-width: 720px) {
+        .nav__cta {
+          display: inline-flex !important;
+          flex: 0 0 125px !important;
+          align-items: center !important;
+          justify-content: center !important;
+          box-sizing: border-box !important;
+          width: 125px !important;
+          min-width: 125px !important;
+          min-height: 34px !important;
+          white-space: nowrap !important;
+        }
+      }
+
+      /* Shared hero CSS must be available before body-level page styles parse. */
+      .hero {
+        background: var(--char, #131313);
+        color: var(--onc, #f3f3f0);
+        padding-block: clamp(44px, 5.6vw, 80px) 0;
+      }
+      .hero__top { display: grid; gap: clamp(26px, 3vw, 44px); }
+      .hero h1 {
+        color: #fff;
+        font-family: 'Figtree', ui-sans-serif, system-ui, sans-serif;
+        font-size: clamp(36px, 4.6vw, 62px);
+        font-weight: 800;
+        line-height: 0.97;
+        letter-spacing: -0.045em;
+      }
+      .hero__p {
+        font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+        font-size: clamp(15.5px, 1.45vw, 17.5px);
+        line-height: 1.6;
+        color: var(--onc2, #9b9b95);
+      }
+      @media (min-width: 1000px) {
+        .hero__top {
+          grid-template-columns: 0.9fr 1.1fr;
+          align-items: center;
+          gap: clamp(30px, 3.4vw, 52px);
+        }
+      }
+      @media (min-width: 700px) and (max-width: 1151px) {
+        .tribera-home .hero,
+        .tribera-candidates .hero {
+          padding-block: 72px 56px;
+        }
+        .tribera-home .hero__top,
+        .tribera-candidates .hero__top {
+          min-height: 1087px;
+          grid-template-columns: minmax(0, 1fr);
+          align-items: start;
+          gap: 56px;
+        }
+        .tribera-home .hero__card,
+        .tribera-candidates .hero__card {
+          width: 100%;
+          max-width: 620px;
+          margin-inline: auto;
+        }
+      }
+      @media (max-width: 699px) {
+        .tribera-home .hero__top,
+        .tribera-candidates .hero__top {
+          min-height: 1050px;
+        }
+      }
+      @media (min-width: 1152px) {
+        .tribera-home .hero__top,
+        .tribera-candidates .hero__top {
+          min-height: 660px;
+          grid-template-columns: minmax(0, 46fr) minmax(0, 54fr);
+          gap: clamp(64px, 7.5vw, 144px);
+        }
+        .tribera-home .hero__card,
+        .tribera-candidates .hero__card {
+          width: 100%;
+          max-width: 760px;
+          justify-self: end;
+        }
+        .tribera-home .hero h1,
+        .tribera-candidates .hero h1 {
+          font-size: clamp(44px, 3.55vw, 68px);
+          line-height: 1.02;
+          letter-spacing: -0.025em;
+        }
+        .tribera-home .hero__copy .btns,
+        .tribera-candidates .hero__copy .btns {
+          gap: 16px;
+        }
+        .tribera-home .hero__copy .btn,
+        .tribera-candidates .hero__copy .btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 56px;
+          padding-inline: 32px;
+          border-radius: 999px;
+        }
+        .tribera-home .hero__card .ftabs,
+        .tribera-candidates .hero__card .ftabs {
+          margin-bottom: 24px;
+        }
+      }
+    </style>
+    {
+      isCandidateRoute && (
+        <style is:inline>
+          /* Candidate hero geometry is critical to first paint. */
+          @media (min-width: 1000px) {
+            .tribera-candidates .hero {
+              padding-block: clamp(44px, 5.6vw, 80px) clamp(36px, 4vw, 64px) !important;
+            }
+            .tribera-candidates .hero__top {
+              display: grid !important;
+              grid-template-columns: 0.9fr 1.1fr !important;
+              align-items: center !important;
+              gap: clamp(30px, 3.4vw, 52px) !important;
+            }
+            .tribera-candidates .hero h1 {
+              font-size: clamp(36px, 4.6vw, 54px) !important;
+            }
+            .tribera-candidates .hero [data-rv] {
+              opacity: 1 !important;
+              transform: none !important;
+              transition: none !important;
+            }
+          }
+          @media (min-width: 1152px) {
+            .tribera-candidates .hero__top {
+              grid-template-columns: minmax(0, 46fr) minmax(0, 54fr) !important;
+              gap: clamp(64px, 7.5vw, 144px) !important;
+            }
+            .tribera-candidates .hero h1 {
+              /* Match the shared hero rule before deferred page CSS is parsed. */
+              font-size: clamp(52px, 3.125vw, 60px) !important;
+              line-height: 1.02 !important;
+              letter-spacing: -0.025em !important;
+            }
+          }
+          @media (min-width: 700px) and (max-width: 1151px) {
+            .tribera-candidates .hero {
+              padding-block: 72px 56px !important;
+            }
+            .tribera-candidates .hero__top {
+              min-height: 1087px !important;
+              grid-template-columns: minmax(0, 1fr) !important;
+              align-items: start !important;
+              gap: 56px !important;
+            }
+            .tribera-candidates .hero__card {
+              width: 100% !important;
+              max-width: 620px !important;
+              margin-inline: auto !important;
+            }
+          }
+        </style>
+      )
+    }
     <Favicons />
     <CustomStyles />
     <ApplyColorMode />
@@ -60,24 +313,6 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
     <StructuredData metadata={metadata} />
     <SiteVerification />
     <Analytics />
-    {
-      isChatEnabledHost && (
-        <>
-          <link rel="dns-prefetch" href="//res.public.onecdn.static.microsoft" />
-          <link rel="dns-prefetch" href="//customerconnect.teams.usercontent.microsoft" />
-          <link rel="dns-prefetch" href="//statics.teams.cdn.office.net" />
-          <link rel="preconnect" href="https://res.public.onecdn.static.microsoft" crossorigin="anonymous" />
-          <link rel="preconnect" href="https://customerconnect.teams.usercontent.microsoft" crossorigin="anonymous" />
-          <link rel="preconnect" href="https://statics.teams.cdn.office.net" crossorigin="anonymous" />
-          <link
-            rel="preload"
-            as="script"
-            href="https://res.public.onecdn.static.microsoft/customerconnect/v1/7dttl/init.js"
-            crossorigin="anonymous"
-          />
-        </>
-      )
-    }
   </head>
 
   <body class="bg-page overflow-x-hidden">
@@ -312,6 +547,9 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
         };
 
         const ensurePrewarmFrame = () => {
+          // Loading a hidden third-party iframe competes with the actual page.
+          // The widget is loaded on idle instead, so this remains opt-in only.
+          if (!window.__triberaEnableChatPrewarm) return;
           if (prewarmState.requested || prewarmState.completed) return;
           if (!canPrewarmChat()) return;
           if (getIframe() instanceof HTMLIFrameElement) return;
@@ -447,10 +685,24 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           }
         };
 
+        let idleChatTimer = null;
         const initChatbot = (_source = 'unknown') => {
           reattachPreservedArtifacts();
           ensureChatbotScript();
           ensurePrewarmFrame();
+        };
+
+        const scheduleChatbot = (source) => {
+          if (idleChatTimer || chatRuntime.scriptLoaded || document.getElementById(chatbotScriptId)) return;
+          const run = () => {
+            idleChatTimer = null;
+            initChatbot(source);
+          };
+          if ('requestIdleCallback' in window) {
+            idleChatTimer = window.requestIdleCallback(run, { timeout: 4000 });
+          } else {
+            idleChatTimer = window.setTimeout(run, 2500);
+          }
         };
 
         const reinitChatbotOnPageShow = () => {
@@ -463,9 +715,9 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
           reattachPreservedArtifacts();
           initChatbot(source);
         };
-        chatRuntime.pageLoadHandler = () => initChatbot('astro:page-load');
-        chatRuntime.loadHandler = () => initChatbot('window:load');
-        chatRuntime.pageShowHandler = reinitChatbotOnPageShow;
+        chatRuntime.pageLoadHandler = () => scheduleChatbot('astro:page-load');
+        chatRuntime.loadHandler = () => scheduleChatbot('window:load');
+        chatRuntime.pageShowHandler = () => scheduleChatbot('pageshow');
         chatRuntime.beforeSwapHandler = () => {
           const iframe = getIframe();
           if (iframe instanceof HTMLIFrameElement) {
@@ -532,7 +784,7 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
 
         observeIframeLifecycle();
         preserveChatArtifacts();
-        ensurePrewarmFrame();
+        scheduleChatbot('initial');
       })();
     </script>
     <script is:inline>
@@ -711,6 +963,6 @@ const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
       </div>
     </div>
 
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script defer src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   </body>
 </html>

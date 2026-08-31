@@ -1,23 +1,24 @@
 ---
+import StandaloneNavScripts from '~/components/standalone/StandaloneNavScripts.astro';
 const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const isCandidateRoute = path.startsWith('/candidates');
+const isHiringRoute = !isCandidateRoute;
 const ctaHref = isCandidateRoute ? '/candidates#apply' : '#contact';
 const ctaLabel = isCandidateRoute ? 'Create profile' : 'Talk to us';
-const isHome = path === '/';
 const isCandidatesPage = path.startsWith('/candidates');
-const isServicesPage = path === '/services';
-const isIntelligencePage = path === '/intelligence';
+const isServicesPage = path === '/services' || path.startsWith('/services/');
+const isIntelligencePage = path === '/intelligence' || path.startsWith('/intelligence/');
 const isBlogPage = path === '/blog' || path.startsWith('/blog/');
-const isAboutPage = path === '/about';
-const isContactPage = path === '/contact';
-const isCareersPage = path === '/careers';
+const isAboutPage = path === '/about' || path.startsWith('/about/');
+const isContactPage = path === '/contact' || path.startsWith('/contact/');
+const isCareersPage = path === '/careers' || path.startsWith('/careers/');
 const isIndustriesPage = path.startsWith('/industries') || path.startsWith('/functions');
 ---
 
 <nav class="nav" id="nav"><div class="wrap nav__in">
   <a class="logo" href="/" data-astro-reload>tribera<i>.</i></a>
   <span class="nav__sw">
-    <a href="/" class={isHome ? 'is' : undefined}>I’m hiring</a>
+    <a href="/" class={isHiringRoute ? 'is' : undefined}>I’m hiring</a>
     <a href="/candidates" class={isCandidatesPage ? 'is' : undefined}>I’m looking</a>
   </span>
   <span class="nav__links"><span class="dd">
@@ -39,7 +40,7 @@ const isIndustriesPage = path.startsWith('/industries') || path.startsWith('/fun
   </span>
 </div>
 <div class="navp" id="navp"><div class="wrap navp__in">
-  <div class="navp__sw"><a href="/" class={isHome ? 'is' : undefined}>I’m hiring</a><a href="/candidates" class={isCandidatesPage ? 'is' : undefined}>I’m looking</a></div>
+  <div class="navp__sw"><a href="/" class={isHiringRoute ? 'is' : undefined}>I’m hiring</a><a href="/candidates" class={isCandidatesPage ? 'is' : undefined}>I’m looking</a></div>
   <div class="navp__coverage">
     <a class="navp__coverage-link" href="/industries" aria-current={isIndustriesPage ? 'page' : undefined}>Coverage</a>
     <button class="navp__t" type="button" aria-label="Expand Coverage" aria-expanded="false" aria-controls="navp-cov"><i></i></button>
@@ -83,62 +84,4 @@ const isIndustriesPage = path.startsWith('/industries') || path.startsWith('/fun
   </div>
 </div></div></nav>
 
-<script>
-  (function(){
-    var nav=document.getElementById('nav'), b=nav?.querySelector('.burger'),
-        p=document.getElementById('navp');
-    if(nav){
-      var tick=function(){ if(scrollY>20){ nav.classList.add('stuck'); } else if(scrollY<=2){ nav.classList.remove('stuck'); } };
-      addEventListener('scroll',tick,{passive:true}); tick();
-    }
-    if(b&&p){
-      function setNav(open){
-        p.classList.toggle('open',open); b.classList.toggle('on',open);
-        if(open){
-          p.style.top=(nav.offsetHeight)+'px';
-          var y=window.scrollY; document.body.dataset.sy=y;
-          document.body.style.position='fixed'; document.body.style.width='100%';
-          document.body.style.top='-'+y+'px'; document.body.style.left='0'; document.body.style.right='0';
-        } else {
-          var sy=Number(document.body.dataset.sy||0);
-          document.body.style.position=''; document.body.style.width='';
-          document.body.style.top=''; document.body.style.left=''; document.body.style.right='';
-          window.scrollTo(0,sy); delete document.body.dataset.sy;
-        }
-        b.setAttribute('aria-expanded',String(open));
-      }
-      b.addEventListener('click',function(){
-        setNav(!p.classList.contains('open'));
-      });
-      p.addEventListener('click',function(e){ if(e.target.tagName==='A'||e.target===p) setNav(false); });
-      addEventListener('keydown',function(e){ if(e.key==='Escape'&&p.classList.contains('open')) setNav(false); });
-    }
-    var t=document.querySelector('.navp__t'), c=document.getElementById('navp-cov');
-    if(t&&c){ t.addEventListener('click',function(){
-      var o=c.classList.toggle('open'); t.setAttribute('aria-expanded',String(o)); }); }
-    var dds=[].slice.call(document.querySelectorAll('.dd'));
-    if(!dds.length) return;
-    function shut(except){ dds.forEach(function(d){
-      if(d!==except){ d.classList.remove('open');
-        var t=d.querySelector('.dd__t'); if(t) t.setAttribute('aria-expanded','false'); } }); }
-    dds.forEach(function(d){
-      var t=d.querySelector('.dd__t'), timer;
-       t.addEventListener('click',function(e){
-         if(t.tagName==='A') return;
-         e.preventDefault();
-         var open=!d.classList.contains('open');
-         shut(d); d.classList.toggle('open',open); t.setAttribute('aria-expanded',String(open));
-       });
-      d.addEventListener('mouseenter',function(){
-        clearTimeout(timer); shut(d); d.classList.add('open'); t.setAttribute('aria-expanded','true'); });
-      d.addEventListener('mouseleave',function(){
-        timer=setTimeout(function(){ d.classList.remove('open');
-          t.setAttribute('aria-expanded','false'); },140); });
-      d.addEventListener('focusout',function(e){
-        if(!d.contains(e.relatedTarget)){ d.classList.remove('open');
-          t.setAttribute('aria-expanded','false'); } });
-    });
-    addEventListener('keydown',function(e){ if(e.key==='Escape') shut(null); });
-    document.addEventListener('click',function(e){ if(!e.target.closest('.dd')) shut(null); });
-  })();
-</script>
+<StandaloneNavScripts />
