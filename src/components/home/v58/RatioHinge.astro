@@ -1,0 +1,250 @@
+---
+const industryInterviews = 8;
+const triberaInterviews = 3;
+---
+
+<section class="v58-hinge" aria-labelledby="hinge-title">
+  <div class="v58-hinge__wrap">
+    <div class="v58-hinge__side">
+      <p>If you are hiring</p><h2 id="hinge-title">Interview three.<br />Hire one.</h2><p>
+        Your best people stop spending Thursdays on candidates who were never getting past round two.
+      </p>
+    </div>
+
+    <div class="v58-hinge__proof" data-ratio-proof>
+      <p class="v58-hinge__ratio">1:3</p>
+      <div
+        class="v58-hinge__squares"
+        aria-label="Eight industry interviews per hire compared with three tribera interviews per hire"
+      >
+        <div>
+          <span>Industry</span><i
+            >{
+              Array.from({ length: industryInterviews }).map((_, index) => (
+                <b
+                  class:list={{ 'v58-hinge__square': true, 'v58-hinge__square--hit': index === industryInterviews - 1 }}
+                  aria-hidden="true"
+                />
+              ))
+            }</i
+          >
+        </div>
+        <div class="v58-hinge__tribera">
+          <span>tribera</span><i
+            >{
+              Array.from({ length: triberaInterviews }).map((_, index) => (
+                <b
+                  class:list={{ 'v58-hinge__square': true, 'v58-hinge__square--hit': index === triberaInterviews - 1 }}
+                  aria-hidden="true"
+                />
+              ))
+            }</i
+          >
+        </div>
+      </div>
+      <p class="v58-hinge__caption">Interviews per hire</p>
+      <div class="v58-hinge__hours">
+        <div><span>Usual</span><i><b style="--width:100%"></b></i><strong>32 <em>hrs</em></strong></div>
+        <div class="v58-hinge__tribera">
+          <span>tribera</span><i><b style="--width:37.5%"></b></i><strong>12 <em>hrs</em></strong>
+        </div>
+        <p>Panel time per hire, at four people an interview. <b>Twenty hours back, every seat you fill.</b></p>
+      </div>
+    </div>
+
+    <div class="v58-hinge__side">
+      <p>If you are looking</p><h2>See talent.<br />Make matches.</h2><p>
+        You are not one of eight in a pile. You are one of three, and they have read your interview before the call.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const proof = document.querySelector<HTMLElement>('[data-ratio-proof]');
+  if (proof && 'IntersectionObserver' in window) {
+    new IntersectionObserver(
+      (entries, observer) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        proof.dataset.revealed = 'true';
+        observer.disconnect();
+      },
+      { threshold: 0.45 }
+    ).observe(proof);
+  } else if (proof) {
+    proof.dataset.revealed = 'true';
+  }
+</script>
+
+<style>
+  .v58-hinge {
+    background: var(--v58-white);
+    color: var(--v58-ink);
+    padding-block: clamp(78px, 10vw, 144px);
+  }
+  .v58-hinge__wrap {
+    width: min(100% - clamp(44px, 10vw, 144px), var(--v58-wrap));
+    margin-inline: auto;
+    display: grid;
+    gap: 3rem;
+  }
+  .v58-hinge__side > p:first-child,
+  .v58-hinge__caption {
+    color: var(--v58-muted);
+    font-family: var(--v58-mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .v58-hinge__side > p:first-child {
+    margin: 0 0 1rem;
+  }
+  .v58-hinge h2 {
+    font-family: var(--v58-display);
+    font-size: clamp(2rem, 3.5vw, 3.15rem);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    margin: 0;
+  }
+  .v58-hinge__side > p:last-child {
+    color: var(--v58-muted);
+    font-size: 0.98rem;
+    line-height: 1.5;
+    margin: 1rem 0 0;
+    max-width: 25rem;
+  }
+  .v58-hinge__proof {
+    align-items: center;
+    display: grid;
+    justify-items: center;
+  }
+  .v58-hinge__ratio {
+    color: var(--v58-red);
+    font-family: var(--v58-display);
+    font-size: clamp(4rem, 7vw, 6rem);
+    font-weight: 500;
+    letter-spacing: -0.08em;
+    line-height: 0.8;
+    margin: 0 0 1.4rem;
+  }
+  .v58-hinge__squares {
+    display: grid;
+    gap: 0.65rem;
+    width: min(100%, 19rem);
+  }
+  .v58-hinge__squares > div,
+  .v58-hinge__hours > div {
+    align-items: center;
+    display: grid;
+    gap: 0.65rem;
+    grid-template-columns: 3.65rem 1fr;
+  }
+  .v58-hinge__squares span,
+  .v58-hinge__hours span {
+    color: var(--v58-muted);
+    font-family: var(--v58-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.13em;
+    text-align: right;
+    text-transform: uppercase;
+  }
+  .v58-hinge__squares i {
+    display: flex;
+    gap: 0.28rem;
+  }
+  .v58-hinge__square {
+    background: var(--v58-line-strong);
+    border-radius: 0.25rem;
+    height: 1rem;
+    width: 1rem;
+  }
+  .v58-hinge__square--hit {
+    background: var(--v58-ink);
+  }
+  .v58-hinge__tribera > span,
+  .v58-hinge__tribera > strong {
+    color: var(--v58-red) !important;
+  }
+  .v58-hinge__tribera .v58-hinge__square {
+    background: color-mix(in srgb, var(--v58-red) 18%, var(--v58-paper));
+  }
+  .v58-hinge__tribera .v58-hinge__square--hit {
+    background: var(--v58-red);
+    box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--v58-red) 15%, transparent);
+  }
+  .v58-hinge__caption {
+    margin: 1rem 0 0;
+  }
+  .v58-hinge__hours {
+    border-top: 1px solid var(--v58-line);
+    display: grid;
+    gap: 0.55rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    width: min(100%, 19rem);
+  }
+  .v58-hinge__hours > div {
+    grid-template-columns: 3.65rem 1fr auto;
+  }
+  .v58-hinge__hours i {
+    background: var(--v58-line);
+    border-radius: 999px;
+    height: 0.45rem;
+    overflow: hidden;
+  }
+  .v58-hinge__hours i b {
+    background: var(--v58-muted);
+    border-radius: inherit;
+    display: block;
+    height: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.7s ease;
+    width: var(--width);
+  }
+  .v58-hinge__hours .v58-hinge__tribera i b {
+    background: var(--v58-red);
+    transition-delay: 0.16s;
+  }
+  [data-ratio-proof][data-revealed='true'] .v58-hinge__hours i b {
+    transform: scaleX(1);
+  }
+  .v58-hinge__hours strong {
+    font-family: var(--v58-mono);
+    font-size: 0.85rem;
+  }
+  .v58-hinge__hours em {
+    color: var(--v58-muted);
+    font-family: var(--v58-ui);
+    font-size: 0.72rem;
+    font-style: normal;
+    font-weight: 400;
+  }
+  .v58-hinge__hours p {
+    color: var(--v58-muted);
+    font-size: 0.8rem;
+    line-height: 1.45;
+    margin: 0.45rem 0 0;
+  }
+  .v58-hinge__hours p b {
+    color: var(--v58-ink);
+  }
+  @media (min-width: 900px) {
+    .v58-hinge__wrap {
+      align-items: center;
+      grid-template-columns: 1fr minmax(19rem, 0.8fr) 1fr;
+    }
+    .v58-hinge__side:last-child {
+      text-align: right;
+    }
+    .v58-hinge__side:last-child > p:last-child {
+      margin-left: auto;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v58-hinge__hours i b {
+      transition: none;
+    }
+  }
+</style>

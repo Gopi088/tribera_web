@@ -1,0 +1,33 @@
+## Route Verdicts
+
+| Route | Visual | Copy |
+|---|---|---|
+| `/careers/backend-engineer/` | **Pass** — matches baseline hiring style (Fraunces hero, mono labels, red CTA, warm-paper scorecard section, dark process/apply sections, centered final CTA), desktop and mobile reflow cleanly | **Pass** — scorecard sums to 100% (30+26+16+14+10+4); interviewer line is role-neutral ("someone who has done the work") |
+| `/careers/growth-intern/` | **Pass** — same template, consistent card/row structure, no layout breaks at 390px | **Pass** — sums to 100% (28+18+16+16+12+10); tag row correctly separates employment type (Internship) from experience level (Entry level), no duplication |
+| `/careers/senior-delivery-partner/` | **Pass** — consistent | **Pass** — sums to 100% (24+24+20+12+10+10); copy specific to delivery/account context, not reused engineer language |
+| `/careers/software-intern/` | **Pass** — consistent | **Pass** — sums to 100% (22+22+20+16+16+4) |
+| `/careers/talent-advisor/` | **Pass** — consistent | **Pass** — sums to 100% (28+26+16+16+8+6) |
+
+All five: identical structural template (hero + live scorecard widget → what-you'll-own/why-it-matters → six-dimension breakdown → what-you-bring/nice-to-have → four-step process → dark apply block → centered "someone will write back" close → shared footer), which is what "consistent cards, shared header/footer" in the disposition claims — confirmed here, not just asserted.
+
+## Remaining actionable issues (none blocking, listed by severity)
+
+**Minor / worth a manual check, not confirmed as bugs:**
+- On every route, the mono breadcrumb ("ALL ROLES / ENGINEERING," etc.) and the faded secondary nav row sit very close in value to the black hero background. At the screenshot compression used here (up to ~5x downscale on the 1520px shots), I can't rule out this being simply the intended muted/restrained mono label treatment rather than a contrast problem. Recommend a live-browser contrast check rather than treating this as confirmed.
+- Tag chips under each hero H1 (role/type/location/experience) are small, muted-gray-on-dark mono text. Legible in every screenshot I read, consistent with the "restrained" style, but if there's a WCAG contrast target, worth a quick automated contrast check — I'm not confirming a failure, just flagging it hasn't been measured.
+
+**Not defects (confirming disposition's "not treated as bugs" still holds):**
+- No FAQ/accordion content exists on these five pages — the "COLLAPSIBLE CONTENT" copy-file marker is simply empty because these pages have no collapsibles, not a missing-answer bug (that finding was specific to Coverage pages).
+- The two-step apply flow (email field → "CV and paragraph on the next screen") is a deliberate progressive-disclosure design per the copy, not a dead/broken CTA — I did not test the actual submission behavior since that's functional, not visual/copy.
+
+**No overflow, clipping, truncated copy, obsolete promises, or inconsistent card shapes found** across desktop or mobile renders for any of the five routes.
+
+## Owner-evidence items (separate from design/code — not part of this visual/copy verdict)
+- "1 position" headcount and "within 3 days" / "45 minutes" / "two weeks" timing claims on every role page.
+- "Nobody has been rejected here for a missing line in this column" and similar hiring-outcome assertions — process claims, not verifiable from screenshots/copy.
+- Experience-band claims (e.g., "7+ years," "4+ years," "3–6 years") tied to real open requisitions.
+
+These require the same owner sign-off called out generally in `correction-disposition.md` and are not something this review can confirm or deny.
+
+## Scope note
+This review covers only the five `/careers/*` routes and files listed above (plus the baseline home reference for style comparison). No other route was opened or assessed in this pass.

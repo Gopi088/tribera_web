@@ -1,0 +1,27 @@
+Both hero crops render clean, correctly styled, matching the hiring page's dark hero pattern. No visible defects. This is sufficient — the article body was already legible in the full-page screenshot and matched the copy file verbatim.
+
+## Route: `/blog/designing-ai-for-high-stakes-technical-assessment/`
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| blog/designing-ai-for-high-stakes-technical-assessment | Pass — consistent with approved style and hiring reference | Pass — matches copy file verbatim, no corruption |
+
+### Findings
+
+**None actionable / release-blocking.** This route is clean:
+
+- Hero: dark charcoal section, Fraunces headline, mono eyebrow (`JAN 24, 2026 · AI AND ASSESSMENT · 5 MIN READ`), red accent link — consistent with hiring page's dark-hero pattern. Author byline and photo render correctly on both breakpoints.
+- Body: left-aligned Fraunces H2s (`Three things we let the engine do`, `What we got wrong first`, `Explainability is not a feature`), Inter Tight body text, red bold pull-quote (`The engine works both ends. / The expert does the part in between.`) — same restrained-red-accent treatment as the hiring page's bold red callouts.
+- Shared "Two doors. Same room." CTA section is byte-identical in copy and layout to the same section on the homepage (verified against `home-1520.png`) — confirms shared component, not a divergent one-off.
+- Footer, nav, and topic-tag pill styling match the site-wide pattern.
+- Mobile (390px): hero, byline, and audio-waveform decoration reflow cleanly with no overlap or truncation; three-column related-articles grid collapses to single column as expected.
+- Article text was checked line-by-line against the copy file — no corrupted words, no missing sentences, no placeholder text.
+
+### Optional polish (not blockers)
+- None identified. No cosmetic nits found on this route.
+
+### Owner-evidence items
+- None applicable — this article contains no statistics, SLA, permission, or legal claims requiring owner sign-off beyond what's already covered in `correction-disposition.md` (e.g., "36 hours," author title/tenure).
+
+### Coverage note
+All requested assets for this route (desktop full-page, mobile full-page, both hero section crops) were reviewed. No image could not be reviewed.

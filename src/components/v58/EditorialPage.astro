@@ -1,0 +1,356 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+export interface Props extends HTMLAttributes<'div'> {
+  as?: 'div' | 'main';
+}
+const { as: Tag = 'div', class: className, ...attributes } = Astro.props;
+---
+
+<Tag {...attributes} class:list={['site-editorial', className]}><slot /></Tag>
+
+<style is:global>
+  /* Opt-in content boundary: these rules never reach the navigation or footer. */
+  :root .site-editorial {
+    --display: 'Fraunces', Georgia, serif;
+    --ui: 'Inter Tight', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+    --paper: #f4f3f0;
+    --warm: #f4f3f0;
+    --card: #fff;
+    --char: #121212;
+    --ink: #131313;
+    --grey: #57565b;
+    --red: #da0007;
+    --hair: rgba(19, 19, 19, 0.1);
+    --wrap: 1160px;
+    color: var(--ink);
+    background: var(--paper);
+    font-family: var(--ui);
+    min-width: 0;
+  }
+  :root .site-editorial .wrap {
+    width: min(calc(100% - clamp(44px, 10vw, 144px)), 1160px);
+    max-width: none;
+    padding-inline: 0;
+    margin-inline: auto;
+  }
+  :root .site-editorial .band {
+    padding-block: clamp(64px, 7vw, 112px);
+  }
+  :root .site-editorial :is(h1, .h1) {
+    font-family: var(--display);
+    font-size: clamp(2.08rem, 4.48vw, 3.32rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+  :root .site-editorial :is(h2, .h2) {
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.9vw, 3rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+  :root .site-editorial :is(h3, .lead__n, .oc__n) {
+    font-family: var(--display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  :root .site-editorial .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 1.28rem;
+  }
+  :root .site-editorial .hero {
+    --onc: #131313;
+    --onc2: #57565b;
+    --onc3: #77776f;
+    min-height: 0;
+    background: radial-gradient(ellipse at 35% 0%, rgba(218, 0, 7, 0.035), transparent 60%), #fff;
+    color: var(--ink);
+    padding-block: clamp(96px, 10vw, 152px) clamp(56px, 6vw, 96px);
+  }
+  :root .site-editorial .hero .hero__top {
+    min-height: 0;
+    align-items: start;
+    gap: 34px;
+    padding-block: 0;
+  }
+  :root .site-editorial .hero .hero__card {
+    background: transparent;
+    border: 0;
+    color: var(--ink);
+    box-shadow: none;
+  }
+  :root .site-editorial .hero .cmpw {
+    --onc: #fff;
+    --onc2: #c0c0bb;
+    --onc3: #aaa9a2;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+  }
+  :root .site-editorial .hero :is(.sym, .rec__n, .rec__s, .rec__x) {
+    color: var(--onc2);
+    font-family: var(--ui);
+    font-weight: 400;
+  }
+  :root .site-editorial .hero :is(.sym.on, .sym:hover) {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  :root .site-editorial .hero :is(h1, .feat__k) {
+    color: var(--ink);
+  }
+  :root .site-editorial .hero .hero__p b {
+    color: inherit;
+  }
+  :root .site-editorial .hero__copy {
+    text-align: left;
+  }
+  :root .site-editorial .hero__copy .hero__p {
+    text-align: left;
+    margin-inline: 0;
+  }
+  :root .site-editorial.tribera-start .apply {
+    background: #fff;
+    color: var(--ink);
+    border: 1px solid var(--hair);
+    border-radius: 14px;
+    padding: 28px;
+    text-align: left;
+    box-shadow: 0 20px 36px -28px rgba(19, 19, 19, 0.22);
+  }
+  :root .site-editorial.tribera-start :is(.apply__h, .apply__k, .apply__field label, .drop__k) {
+    color: var(--ink);
+  }
+  :root .site-editorial.tribera-start .apply__h {
+    font: 500 1.5rem/1.3 var(--display);
+  }
+  :root .site-editorial.tribera-start :is(.apply__s, .apply__fine, .drop__s) {
+    color: var(--grey);
+  }
+  :root .site-editorial.tribera-start :is(.apply__mail, .drop) {
+    background: var(--paper);
+    color: var(--ink);
+    border-color: rgba(19, 19, 19, 0.18);
+  }
+  :root .site-editorial.tribera-start .apply__mail::placeholder {
+    color: var(--grey);
+  }
+  :root .site-editorial.tribera-start .drop__k b {
+    color: var(--ink);
+  }
+  :root .site-editorial.tribera-start .drop__n {
+    color: #256b45;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+  }
+  :root .site-editorial.tribera-start .apply__go {
+    border-radius: 999px;
+  }
+  :root .site-editorial .hero h1 em {
+    font-style: italic;
+  }
+  :root .site-editorial .hero .eyebrow {
+    color: var(--grey);
+  }
+  :root .site-editorial .cmpw {
+    box-shadow: 0 20px 36px -28px rgba(19, 19, 19, 0.3);
+  }
+  :root .site-editorial :is(#method, #same) .step {
+    opacity: 1;
+    cursor: default;
+  }
+  :root .site-editorial :is(#method, #same) .step__d {
+    color: #bdbdb7;
+  }
+  :root .site-editorial :is(#method, #same) .own {
+    color: #bdbdb7;
+  }
+  :root .site-editorial #method .fn__line em {
+    color: inherit;
+  }
+  :root .site-editorial #method .fn__line {
+    text-align: left !important;
+    margin-inline: 0 !important;
+  }
+  :root .site-editorial :is(.fn .eyebrow, .cmpw .rec__k) {
+    color: #bdbdb7;
+  }
+  :root .site-editorial .hero .sym {
+    letter-spacing: normal;
+    font-size: 14px;
+  }
+  :root .site-editorial :is(.btn--wire, .btn--ghost, .rec__x a) {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  :root .site-editorial #avail :is(.av__cv, .av__ck) {
+    color: var(--ink);
+  }
+  :root .site-editorial #avail .av__ck {
+    font-size: 11px;
+  }
+  :root .site-editorial :is(.hero__p, .dek, .fn__dek, .buy__dek) {
+    font-family: var(--ui);
+    font-size: clamp(16px, 1.1vw, 19px);
+    line-height: 1.55;
+    max-width: 60ch;
+  }
+  :root .site-editorial section:not(.close) .shead {
+    text-align: left !important;
+    justify-items: start !important;
+    align-items: start;
+    margin-bottom: clamp(32px, 3vw, 48px);
+  }
+  :root .site-editorial section:not(.close) .shead > * {
+    text-align: left !important;
+    justify-self: start;
+    margin-inline: 0;
+    max-width: 60ch;
+  }
+  :root .site-editorial section:not(.close) .shead :is(h2, .h2, .dek, .fn__dek) {
+    text-align: left !important;
+    text-wrap: balance;
+    margin-inline: 0;
+  }
+  :root .site-editorial .shead > :last-child {
+    padding-bottom: 0;
+  }
+  :root .site-editorial :is(.panel, .lead, .oc, .hero__card) {
+    border-radius: 14px;
+    border: 1px solid var(--hair);
+    box-shadow: 0 20px 36px -28px rgba(19, 19, 19, 0.22);
+  }
+  :root .site-editorial .lead {
+    --onc: #131313;
+    --onc2: #57565b;
+    --onc3: #77776f;
+    padding: 1.25rem 1.3rem 1.3rem;
+    background: #fff;
+    color: var(--ink);
+    box-shadow: 0 20px 36px -28px rgba(19, 19, 19, 0.22);
+  }
+  :root .site-editorial .lead__n {
+    font-size: 1.5rem;
+    line-height: 1.25;
+  }
+  /* These cards are light surfaces, even when legacy parent hover rules fire. */
+  :root .site-editorial .lead :is(.lead__n, .lead__give, .lead__why b, .lead__go) {
+    color: var(--ink);
+  }
+  :root .site-editorial .lead :is(.lead__why, .lead__get, .lead__m, .hn) {
+    color: var(--grey) !important;
+  }
+  :root
+    .site-editorial
+    .lead:is(:hover, :focus-within)
+    :is(.lead__n, .lead__give, .lead__why, .lead__why b, .lead__go) {
+    color: var(--ink) !important;
+  }
+  :root .site-editorial .lead__go:is(:hover, :focus-visible) {
+    color: var(--red);
+  }
+  :root .site-editorial .oc :is(.oc__note, .hn) {
+    color: var(--grey) !important;
+  }
+  :root .site-editorial .oc .hp {
+    color: #79611f !important;
+  }
+  :root .site-editorial :is(.rc__d, .rc__m, .post__cat, .post__min, .av__w, .pth__d, .off__k, .fct__k, .hs__d) {
+    color: var(--grey);
+  }
+  :root .site-editorial .hero .feat .feat__sub {
+    color: #c0c0bb;
+  }
+  :root .site-editorial :is(.relc__k, .mis__k, .rle__l, .sc__v, .wt__n),
+  :root .site-editorial .qq__b--weak :is(.qq__k, .qq__v),
+  :root .site-editorial .ind__w i {
+    color: var(--grey);
+  }
+  :root .site-editorial .door:is(:hover, :focus-within) .door__next span {
+    color: #c10006;
+  }
+  :root .site-editorial .qq__b .qq__k {
+    color: var(--grey);
+  }
+  :root .site-editorial .cform .cswx:not(.on):is(:hover, :focus-visible) {
+    color: #fff;
+  }
+  :root .site-editorial #same.fn .own:not(.own--you) {
+    color: #bdbdb7;
+  }
+  :root .site-editorial :is(.lead__give, .lead__get, .lead__why) {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  :root .site-editorial .btn {
+    border-radius: 999px;
+    font: 500 0.784rem/1.5 var(--ui);
+    padding: 0.8em 1.5em;
+    min-height: 44px;
+  }
+  :root .site-editorial .btn:is(.btn--light, .btn--dark) {
+    background: var(--red) !important;
+    color: #fff !important;
+    border-color: transparent;
+    box-shadow: 0 8px 20px -8px rgba(218, 0, 7, 0.5);
+  }
+  :root .site-editorial :is(.btn--light, .btn--dark):hover {
+    background: #c10006;
+    color: #fff;
+  }
+  :root .site-editorial .btn:is(.btn--wire, .btn--ghost) {
+    background: transparent;
+    box-shadow: none;
+    border-color: transparent;
+    color: inherit;
+    padding-inline: 0;
+  }
+  :root .site-editorial :is(a, button, input, select, textarea):focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 3px;
+  }
+  :root .site-editorial :is(.btns, .syms) {
+    flex-wrap: wrap;
+  }
+  :root .site-editorial :is(.hero__copy, .hero__card, .shead > *, .lead, .oc) {
+    min-width: 0;
+  }
+  :root .site-editorial .close .shead {
+    text-align: center;
+    justify-items: center;
+  }
+  @media (min-width: 900px) {
+    :root .site-editorial .shead:not(.close .shead) {
+      column-gap: 34px;
+    }
+    :root .site-editorial .hero__top {
+      grid-template-columns: 1.04fr 0.96fr;
+    }
+  }
+  @media (max-width: 799px) {
+    :root .site-editorial :is(.lead__go, .oc__hd, .sym) {
+      min-height: 44px;
+    }
+    :root .site-editorial .hero__top {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :root .site-editorial *,
+    :root .site-editorial *::before,
+    :root .site-editorial *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+    :root .site-editorial [data-rv] {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

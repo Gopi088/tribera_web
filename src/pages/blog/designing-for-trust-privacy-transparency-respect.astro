@@ -1,6 +1,8 @@
 ---
+import SiteFooter from '~/components/widgets/Footer.astro';
+import EditorialPage from '~/components/v58/EditorialPage.astro';
+import SiteHeader from '~/components/widgets/Header.astro';
 import ContactSalesModal from '../../components/ContactSalesModal.astro';
-import StandaloneNavScripts from '../../components/standalone/StandaloneNavScripts.astro';
 import StandaloneMetadata from '../../components/standalone/StandaloneMetadata.astro';
 import StandalonePrefetchScripts from '../../components/standalone/StandalonePrefetchScripts.astro';
 ---
@@ -6270,2178 +6272,1458 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
     </style>
   </head>
   <body>
-    <nav class="nav" id="nav">
-      <div class="wrap nav__in">
-        <a class="logo" href="/" data-astro-reload>tribera<i>.</i></a>
-        <span class="nav__sw">
-          <a href="/">I’m hiring</a>
-          <a href="/candidates" class="is">I’m looking</a>
-        </span>
-        <span class="nav__links"
-          ><span class="dd">
-            <a href="/industries" class="dd__t">Coverage<i></i></a>
-            <span class="dd__p" role="menu">
-              <span class="dd__g">
-                <span class="dd__c"
-                  ><p class="dd__k">Industries</p><a href="/industries/banking-financial-services"
-                    >Banking & financial services</a
-                  ><a href="/industries/enterprise-technology">Enterprise technology</a><a
-                    href="/industries/product-saas">Product & SaaS</a
-                  ><a href="/industries/ai-data">AI & data</a><a href="/industries/cybersecurity">Cybersecurity</a><a
-                    href="/industries/healthcare-life-sciences">Healthcare & life sciences</a
-                  ><a href="/industries/pharmaceutical">Pharmaceutical</a><a href="/industries/manufacturing"
-                    >Manufacturing</a
-                  ><a href="/industries/industrial-engineering">Industrial & engineering</a><a
-                    href="/industries/global-capability-centres">Global capability centres</a
-                  ><a href="/industries/consumer-digital-commerce">Consumer & digital commerce</a><a
-                    href="/industries/private-equity-portfolio">Private equity portfolio</a
-                  ></span
-                >
-                <span class="dd__c"
-                  ><p class="dd__k">Functions</p><a href="/functions/engineering-platform">Engineering & platform</a><a
-                    href="/functions/data-analytics">Data & analytics</a
-                  ><a href="/functions/infrastructure-sre">Infrastructure & SRE</a><a href="/functions/security"
-                    >Security</a
-                  ><a href="/functions/finance-risk">Finance & risk</a><a href="/functions/product-design"
-                    >Product & design</a
-                  ><a href="/functions/operations">Operations</a><a href="/functions/leadership">Leadership</a></span
-                >
-              </span>
-              <span class="dd__f">Not listed? <a href="/contact">Ask us</a> — we say no when it is not our ground.</span
-              >
-            </span>
-          </span><a class="nav__l" href="/services">Services</a><a class="nav__l" href="/intelligence">Intelligence</a
-          ><a class="nav__l" href="/blog" aria-current="page">Blog</a><a class="nav__l" href="/about">About</a><a
-            class="nav__l"
-            href="/contact">Contact</a
-          ></span
-        >
-        <span class="nav__end">
-          <a class="nav__login" href="https://app.tribera.ai/auth/login">Log in</a>
-          <a href="/candidates" class="btn btn--light nav__cta">Create profile</a>
-          <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="navp">
-            <span></span><span></span><span></span></button
-          >
-        </span>
-      </div>
-      <div class="navp" id="navp">
-        <div class="wrap navp__in">
-          <div class="navp__sw"><a href="/">I’m hiring</a><a href="/candidates">I’m looking</a></div>
-          <div class="navp__coverage">
-            <a class="navp__coverage-link" href="/industries">Coverage</a><button
-              class="navp__t"
-              type="button"
-              aria-label="Expand Coverage"
-              aria-expanded="false"
-              aria-controls="navp-cov"><i></i></button>
-          </div>
-          <div class="navp__cov" id="navp-cov">
-            <span class="navp__cols">
-              <span class="navp__c">
-                <p class="navp__k">Industries</p>
-                <a href="/industries/banking-financial-services">Banking &amp; financial services</a><a
-                  href="/industries/enterprise-technology">Enterprise technology</a
-                ><a href="/industries/product-saas">Product &amp; SaaS</a><a href="/industries/ai-data">AI &amp; data</a
-                ><a href="/industries/cybersecurity">Cybersecurity</a><a href="/industries/healthcare-life-sciences"
-                  >Healthcare &amp; life sciences</a
-                ><a href="/industries/pharmaceutical">Pharmaceutical</a><a href="/industries/manufacturing"
-                  >Manufacturing</a
-                ><a href="/industries/industrial-engineering">Industrial &amp; engineering</a><a
-                  href="/industries/global-capability-centres">Global capability centres</a
-                ><a href="/industries/consumer-digital-commerce">Consumer &amp; digital commerce</a><a
-                  href="/industries/private-equity-portfolio">Private equity portfolio</a
-                >
-              </span>
-              <span class="navp__c">
-                <p class="navp__k">Functions</p>
-                <a href="/functions/engineering-platform">Engineering &amp; platform</a><a
-                  href="/functions/data-analytics">Data &amp; analytics</a
-                ><a href="/functions/infrastructure-sre">Infrastructure &amp; SRE</a><a href="/functions/security"
-                  >Security</a
-                ><a href="/functions/finance-risk">Finance &amp; risk</a><a href="/functions/product-design"
-                  >Product &amp; design</a
-                ><a href="/functions/operations">Operations</a><a href="/functions/leadership">Leadership</a>
-              </span>
-            </span>
-          </div>
-          <p class="navp__k">Company</p>
-          <a href="/services">Services</a><a href="/intelligence">Intelligence</a><a href="/blog" aria-current="page"
-            >Blog</a
-          ><a href="/about">About</a><a href="/contact">Contact</a>
-          <a href="/careers">Careers</a>
-
-          <a href="https://app.tribera.ai/auth/login" class="navp__login">Log in</a>
-          <div class="navp__cta">
-            <a href="/candidates" class="btn btn--light">Create profile</a>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <SiteHeader />
     <div class="reading" aria-hidden="true"><span class="reading__f"></span></div>
 
-    <header class="ahead band" id="top">
-      <div class="wrap">
-        <p class="ahead__meta">
-          <span>Feb 8, 2026</span><i>·</i>
-          <a href="/category/candidate-experience">Candidate experience</a><i>·</i><span>3 min read</span>
-        </p>
-        <h1>Designing for trust</h1>
-        <p class="ahead__sub">
-          Most people looking for a job already have one. Everything we built follows from that, including the thing we
-          got wrong for a year.
-        </p>
-        <div class="ahead__by">
-          <span class="ahead__ph" id="byPh" aria-hidden="true"></span>
-          <span class="ahead__who"><b>Abhishek Prasad</b>Co-founder &amp; CBO · built the signal engine</span>
-        </div>
-        <svg
-          class="pglyph ahead__glyph"
-          viewBox="0 0 420 62"
-          preserveAspectRatio="none"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-          ><rect x="1.0" y="17.9" width="5.6" height="26.2" rx="1.6" fill="#B8B4AA" opacity="0.08"></rect><rect
-            x="8.8"
-            y="14.1"
-            width="5.6"
-            height="33.9"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.12"></rect><rect
-            x="16.6"
-            y="16.6"
-            width="5.6"
-            height="28.8"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.08"></rect><rect
-            x="24.3"
-            y="15.7"
-            width="5.6"
-            height="30.6"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.12"></rect><rect
-            x="32.1"
-            y="16.5"
-            width="5.6"
-            height="28.9"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.12"></rect><rect
-            x="39.9"
-            y="11.4"
-            width="5.6"
-            height="39.2"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.08"></rect><rect
-            x="47.7"
-            y="12.6"
-            width="5.6"
-            height="36.7"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.10"></rect><rect
-            x="55.4"
-            y="13.9"
-            width="5.6"
-            height="34.3"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.14"></rect><rect
-            x="63.2"
-            y="17.1"
-            width="5.6"
-            height="27.9"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.07"></rect><rect
-            x="71.0"
-            y="8.6"
-            width="5.6"
-            height="44.8"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.10"></rect><rect
-            x="78.8"
-            y="16.0"
-            width="5.6"
-            height="30.0"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.09"></rect><rect
-            x="86.6"
-            y="14.4"
-            width="5.6"
-            height="33.3"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.14"></rect><rect
-            x="94.3"
-            y="15.9"
-            width="5.6"
-            height="30.2"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.09"></rect><rect
-            x="102.1"
-            y="12.2"
-            width="5.6"
-            height="37.7"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.11"></rect><rect
-            x="109.9"
-            y="8.5"
-            width="5.6"
-            height="45.1"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.13"></rect><rect
-            x="117.7"
-            y="14.4"
-            width="5.6"
-            height="33.1"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.08"></rect><rect
-            x="125.4"
-            y="9.6"
-            width="5.6"
-            height="42.7"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.14"></rect><rect
-            x="133.2"
-            y="17.7"
-            width="5.6"
-            height="26.6"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.12"></rect><rect
-            x="141.0"
-            y="9.3"
-            width="5.6"
-            height="43.4"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.12"></rect><rect
-            x="148.8"
-            y="15.8"
-            width="5.6"
-            height="30.4"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.13"></rect><rect
-            x="156.6"
-            y="10.7"
-            width="5.6"
-            height="40.6"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.08"></rect><rect
-            x="164.3"
-            y="11.6"
-            width="5.6"
-            height="38.8"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.09"></rect><rect
-            x="172.1"
-            y="17.6"
-            width="5.6"
-            height="26.8"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.09"></rect><rect
-            x="179.9"
-            y="14.7"
-            width="5.6"
-            height="32.7"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.10"></rect><rect
-            x="187.7"
-            y="11.5"
-            width="5.6"
-            height="38.9"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.13"></rect><rect
-            x="195.4"
-            y="8.4"
-            width="5.6"
-            height="45.2"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.14"></rect><rect
-            x="203.2"
-            y="8.1"
-            width="5.6"
-            height="45.9"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.13"></rect><rect
-            x="211.0"
-            y="14.9"
-            width="5.6"
-            height="32.1"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.08"></rect><rect
-            x="218.8"
-            y="11.8"
-            width="5.6"
-            height="38.5"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.11"></rect><rect
-            x="226.6"
-            y="11.3"
-            width="5.6"
-            height="39.5"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.08"></rect><rect
-            x="234.3"
-            y="16.1"
-            width="5.6"
-            height="29.9"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.13"></rect><rect
-            x="242.1"
-            y="12.0"
-            width="5.6"
-            height="38.0"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.12"></rect><rect
-            x="249.9"
-            y="17.0"
-            width="5.6"
-            height="27.9"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.10"></rect><rect
-            x="257.7"
-            y="8.9"
-            width="5.6"
-            height="44.2"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.12"></rect><rect
-            x="265.4"
-            y="8.1"
-            width="5.6"
-            height="45.8"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.08"></rect><rect
-            x="273.2"
-            y="13.5"
-            width="5.6"
-            height="35.1"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.13"></rect><rect
-            x="281.0"
-            y="13.6"
-            width="5.6"
-            height="34.9"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.13"></rect><rect
-            x="288.8"
-            y="12.4"
-            width="5.6"
-            height="37.2"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.08"></rect><rect
-            x="296.6"
-            y="17.0"
-            width="5.6"
-            height="28.0"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.14"></rect><rect
-            x="304.3"
-            y="16.8"
-            width="5.6"
-            height="28.4"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.08"></rect><rect
-            x="312.1"
-            y="14.6"
-            width="5.6"
-            height="32.7"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.12"></rect><rect
-            x="319.9"
-            y="9.5"
-            width="5.6"
-            height="43.1"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.10"></rect><rect
-            x="327.7"
-            y="13.0"
-            width="5.6"
-            height="36.0"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.13"></rect><rect
-            x="335.4"
-            y="15.2"
-            width="5.6"
-            height="31.6"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.10"></rect><rect
-            x="343.2"
-            y="11.9"
-            width="5.6"
-            height="38.3"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.11"></rect><rect
-            x="351.0"
-            y="17.6"
-            width="5.6"
-            height="26.8"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.08"></rect><rect
-            x="358.8"
-            y="16.6"
-            width="5.6"
-            height="28.8"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.12"></rect><rect
-            x="366.6"
-            y="11.1"
-            width="5.6"
-            height="39.9"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.14"></rect><rect
-            x="374.3"
-            y="10.3"
-            width="5.6"
-            height="41.4"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.09"></rect><rect
-            x="382.1"
-            y="10.3"
-            width="5.6"
-            height="41.3"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.14"></rect><rect
-            x="389.9"
-            y="14.5"
-            width="5.6"
-            height="33.0"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.07"></rect><rect
-            x="397.7"
-            y="14.2"
-            width="5.6"
-            height="33.5"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.09"></rect><rect
-            x="405.4"
-            y="16.2"
-            width="5.6"
-            height="29.5"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.07"></rect><rect
-            x="413.2"
-            y="16.8"
-            width="5.6"
-            height="28.5"
-            rx="1.6"
-            fill="#B8B4AA"
-            opacity="0.13"></rect><rect x="203.2" y="10" width="5.6" height="42" rx="1.6" fill="#DA0007"></rect><rect
-            x="211.0"
-            y="10"
-            width="5.6"
-            height="42"
-            rx="1.6"
-            fill="#DA0007"></rect></svg
-        >
-      </div>
-    </header>
-
-    <section class="band band--w">
-      <div class="wrap">
-        <article class="art">
-          <p class="lede">
-            The person you most want to hire has a job, is reasonably happy in it, and has not opened their CV in three
-            years. Almost everything we built follows from that one fact.
+    <EditorialPage as="main">
+      <header class="ahead band" id="top">
+        <div class="wrap">
+          <p class="ahead__meta">
+            <span>Feb 8, 2026</span><i>·</i>
+            <a href="/category/candidate-experience">Candidate experience</a><i>·</i><span>3 min read</span>
           </p>
-
-          <p>
-            There is a version of hiring that assumes the market is full of people looking. Post the role, collect the
-            applications, filter down. It works for volume roles and it works when the economy is bad, and the rest of
-            the time it quietly selects for the people with the most availability rather than the most judgment.
+          <h1>Designing for trust</h1>
+          <p class="ahead__sub">
+            Most people looking for a job already have one. Everything we built follows from that, including the thing
+            we got wrong for a year.
           </p>
-
-          <p>
-            The engineer you actually want has been somewhere four years, is in the middle of something she cares about,
-            and will look at exactly one opportunity this year. She will look at it quietly. And she will only look at
-            all if looking costs her nothing.
-          </p>
-
-          <p>
-            So the design question was never how to attract more candidates. It was <b
-              >how to make a conversation safe enough to be worth having.</b>
-          </p>
-
-          <h2>What quietly has to mean</h2>
-
-          <p>
-            Not searchable. Your profile does not appear in a directory, a feed, or a recruiter’s saved search. There is
-            no version of this where someone stumbles across you.
-          </p>
-
-          <p>
-            Blockable by name. You list your current employer, and anyone else you would rather not meet, and those
-            companies never see that you exist. Not a filtered result — no result.
-          </p>
-
-          <p>
-            No direct contact. Companies cannot message you. Every request comes through us, which means you find out
-            that someone is interested without them finding out you were looking.
-          </p>
-
-          <figure class="fig">
-            <svg
-              class="fig__svg"
-              viewBox="0 0 210 120"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              ><rect x="6" y="8" width="15" height="11" rx="2.5" fill="#DA0007" opacity="1"></rect><rect
-                x="26"
-                y="8"
-                width="15"
-                height="11"
-                rx="2.5"
-                fill="#C6C2B8"
-                opacity="0.28"></rect><rect x="46" y="8" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"
-              ></rect><rect x="66" y="8" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"></rect><rect
-                x="86"
-                y="8"
-                width="15"
-                height="11"
-                rx="2.5"
-                fill="#C6C2B8"
-                opacity="0.28"></rect><rect x="106" y="8" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"
-              ></rect><rect x="126" y="8" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"></rect><rect
-                x="146"
-                y="8"
-                width="15"
-                height="11"
-                rx="2.5"
-                fill="#C6C2B8"
-                opacity="0.28"></rect><rect x="166" y="8" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"
-              ></rect><rect x="186" y="8" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"></rect><rect
-                x="6"
-                y="36"
-                width="15"
-                height="11"
-                rx="2.5"
-                fill="#DA0007"
-                opacity="1"></rect><rect x="26" y="36" width="15" height="11" rx="2.5" fill="#DA0007" opacity="1"
-              ></rect><rect x="46" y="36" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"></rect><rect
-                x="66"
-                y="36"
-                width="15"
-                height="11"
-                rx="2.5"
-                fill="#C6C2B8"
-                opacity="0.28"></rect><rect x="86" y="36" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"
-              ></rect><rect x="106" y="36" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"></rect><rect
-                x="126"
-                y="36"
-                width="15"
-                height="11"
-                rx="2.5"
-                fill="#C6C2B8"
-                opacity="0.28"></rect><rect x="146" y="36" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"
-              ></rect><rect x="166" y="36" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"></rect><rect
-                x="186"
-                y="36"
-                width="15"
-                height="11"
-                rx="2.5"
-                fill="#C6C2B8"
-                opacity="0.28"></rect><rect x="6" y="64" width="15" height="11" rx="2.5" fill="#DA0007" opacity="1"
-              ></rect><rect x="26" y="64" width="15" height="11" rx="2.5" fill="#DA0007" opacity="1"></rect><rect
-                x="46"
-                y="64"
-                width="15"
-                height="11"
-                rx="2.5"
-                fill="#DA0007"
-                opacity="1"></rect><rect x="66" y="64" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"
-              ></rect><rect x="86" y="64" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"></rect><rect
-                x="106"
-                y="64"
-                width="15"
-                height="11"
-                rx="2.5"
-                fill="#C6C2B8"
-                opacity="0.28"></rect><rect x="126" y="64" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"
-              ></rect><rect x="146" y="64" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"></rect><rect
-                x="166"
-                y="64"
-                width="15"
-                height="11"
-                rx="2.5"
-                fill="#C6C2B8"
-                opacity="0.28"></rect><rect x="186" y="64" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"
-              ></rect><rect x="6" y="92" width="15" height="11" rx="2.5" fill="#DA0007" opacity="1"></rect><rect
-                x="26"
-                y="92"
-                width="15"
-                height="11"
-                rx="2.5"
-                fill="#DA0007"
-                opacity="1"></rect><rect x="46" y="92" width="15" height="11" rx="2.5" fill="#DA0007" opacity="1"
-              ></rect><rect x="66" y="92" width="15" height="11" rx="2.5" fill="#DA0007" opacity="1"></rect><rect
-                x="86"
-                y="92"
-                width="15"
-                height="11"
-                rx="2.5"
-                fill="#C6C2B8"
-                opacity="0.28"></rect><rect x="106" y="92" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"
-              ></rect><rect x="126" y="92" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"></rect><rect
-                x="146"
-                y="92"
-                width="15"
-                height="11"
-                rx="2.5"
-                fill="#C6C2B8"
-                opacity="0.28"></rect><rect x="166" y="92" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"
-              ></rect><rect x="186" y="92" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"></rect></svg
-            >
-            <figcaption>
-              <b>Visibility only ever moves one way, and only when you move it.</b> Before you do anything, nobody. After
-              the interview, us. Then one named team, then that team’s panel — each step released by you, and reversible.
-            </figcaption>
-          </figure>
-
-          <h2>The thing we had backwards</h2>
-
-          <p>
-            We built the privacy controls first and made them opt-in. Sensible-looking: give people the switches, let
-            them decide. A settings page with four toggles, all off by default, clearly explained.
-          </p>
-
-          <p>
-            Almost nobody turned them on. Not because they did not care — because they never got that far. Someone
-            weighing up whether it is safe to explore does not sign up and then go looking for the safety features. They
-            decide on the landing page, in about eleven seconds, and if the answer is not obviously yes they close the
-            tab.
-          </p>
-
-          <blockquote class="pull">
-            A privacy setting is a promise you make later.
-            <em>A default is a promise you have already kept.</em>
-          </blockquote>
-
-          <figure class="fig">
-            <svg class="fig__svg" viewBox="0 0 240 58" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-              ><rect x="0" y="6" width="44" height="14" rx="7" fill="#C6C2B8" opacity="0.45"></rect><rect
-                x="0"
-                y="34"
-                width="232"
-                height="14"
-                rx="7"
-                fill="#DA0007"
-                opacity="1"></rect></svg
-            >
-            <figcaption>
-              Opt-in privacy, then default privacy. <b
-                >The controls did not change. Only which way they pointed when you arrived.</b>
-            </figcaption>
-          </figure>
-
-          <p>
-            So we inverted it. Hidden is the default state, not the protected one. You are invisible from the moment you
-            arrive, and everything after that is you deciding to be slightly less invisible to one named company at a
-            time.
-          </p>
-
-          <h2>Privacy without transparency is just a black box</h2>
-
-          <p>
-            The other half of trust is harder, and most platforms skip it: if we are going to score you, you have to be
-            able to see the score.
-          </p>
-
-          <p>
-            You see the same breakdown the hiring team sees. The same four dimensions, the same numbers, including the
-            one you came out weakest on and what specifically would move it. There is no separate, gentler version
-            prepared for the candidate — partly because that would be dishonest, and partly because the moment two
-            versions exist, someone eventually shows you the wrong one.
-          </p>
-
-          <p>
-            It is uncomfortable to build. It is the only version that survives a candidate asking why they were ranked
-            third.
-          </p>
-
-          <h2>We check the company too</h2>
-
-          <p>
-            Every job board asks a candidate to prove themselves to a company that has proved nothing to anyone. Before
-            a request reaches you, the team on the other end has to clear its own checks: is the headcount actually
-            funded, how many rounds, how fast do they decide, how long has the manager been in post, and did the last
-            few people they hired stay.
-          </p>
-
-          <p>
-            When something does not clear, you still see the request — with the flag attached and the reason written
-            out. You decide whether it matters. We are not in a position to decide that for you, and pretending
-            otherwise would be its own kind of disrespect.
-          </p>
-
-          <h2>Why any of this is worth the engineering</h2>
-
-          <p>
-            Because the cost of getting it wrong is not ours. A candidate whose employer finds out they were looking
-            does not lose a feature. They lose standing, a project, sometimes a job — and they lose it because of a
-            system they trusted for about a week.
-          </p>
-
-          <p>
-            That asymmetry is the whole argument. We carry a product risk. They carry a career risk. The defaults should
-            reflect who has more to lose, and almost none of them do.
-          </p>
-
-          <p class="signoff">Belong. Build. Become.</p>
-        </article>
-        <div class="aft">
-          <div class="atags">
-            <a class="atag" href="/tag/privacy-by-design">Privacy by design</a><a
-              class="atag"
-              href="/tag/candidate-experience">Candidate experience</a
-            ><a class="atag" href="/tag/trust-in-hiring">Trust in hiring</a><a class="atag" href="/tag/default-states"
-              >Default states</a>
+          <div class="ahead__by">
+            <span class="ahead__ph" id="byPh" aria-hidden="true"></span>
+            <span class="ahead__who"><b>Abhishek Prasad</b>Co-founder &amp; CBO · built the signal engine</span>
           </div>
-          <div class="ashare">
-            <span>Share</span>
-            <a href="#" aria-label="Share on LinkedIn">LinkedIn</a>
-            <a href="#" aria-label="Copy link">Copy link</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="wrap band" id="related">
-      <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
-        <div>
-          <p class="eyebrow eyebrow--red" data-rv>Keep reading</p>
-          <h2 class="h2" data-rv style="--d:60ms;max-width:none;margin-bottom:clamp(16px,2vw,24px)">
-            Three more that came out of real mandates.
-          </h2>
-        </div>
-        <p class="dek" data-rv style="--d:100ms;max-width:none">
-          Or go back to <a
-            href="/blog"
-            style="color:var(--red);
-    text-decoration:none;border-bottom:1px solid rgba(218,0,7,.35)"
-            >everything we’ve published</a
-          >.
-        </p>
-      </div>
-      <div class="rel" data-rv style="--d:140ms">
-        <a class="relc" href="/blog/rethinking-hiring-metrics-signal-efficiency"
-          ><svg class="pglyph" viewBox="0 0 76 46" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-            ><rect x="2.0" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.26"></rect><rect
-              x="6.3"
-              y="4.0"
-              width="3"
-              height="3"
-              rx="1"
+          <svg
+            class="pglyph ahead__glyph"
+            viewBox="0 0 420 62"
+            preserveAspectRatio="none"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            ><rect x="1.0" y="17.9" width="5.6" height="26.2" rx="1.6" fill="#B8B4AA" opacity="0.08"></rect><rect
+              x="8.8"
+              y="14.1"
+              width="5.6"
+              height="33.9"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.35"></rect><rect x="10.6" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.30"
-            ></rect><rect x="14.9" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.37"></rect><rect
-              x="19.2"
-              y="4.0"
-              width="3"
-              height="3"
-              rx="1"
+              opacity="0.12"></rect><rect
+              x="16.6"
+              y="16.6"
+              width="5.6"
+              height="28.8"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.38"></rect><rect x="23.5" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.20"
-            ></rect><rect x="27.8" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.18"></rect><rect
+              opacity="0.08"></rect><rect
+              x="24.3"
+              y="15.7"
+              width="5.6"
+              height="30.6"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.12"></rect><rect
               x="32.1"
-              y="4.0"
-              width="3"
-              height="3"
-              rx="1"
+              y="16.5"
+              width="5.6"
+              height="28.9"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.45"></rect><rect x="36.4" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.26"
-            ></rect><rect x="40.7" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.25"></rect><rect
-              x="45.0"
-              y="4.0"
-              width="3"
-              height="3"
-              rx="1"
+              opacity="0.12"></rect><rect
+              x="39.9"
+              y="11.4"
+              width="5.6"
+              height="39.2"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.50"></rect><rect x="49.3" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.33"
-            ></rect><rect x="53.6" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.45"></rect><rect
-              x="57.9"
-              y="4.0"
-              width="3"
-              height="3"
-              rx="1"
+              opacity="0.08"></rect><rect
+              x="47.7"
+              y="12.6"
+              width="5.6"
+              height="36.7"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.33"></rect><rect x="62.2" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.38"
-            ></rect><rect x="66.5" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.23"></rect><rect
-              x="70.8"
-              y="4.0"
-              width="3"
-              height="3"
-              rx="1"
+              opacity="0.10"></rect><rect
+              x="55.4"
+              y="13.9"
+              width="5.6"
+              height="34.3"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.38"></rect><rect x="2.0" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.46"
-            ></rect><rect x="6.3" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.35"></rect><rect
-              x="10.6"
+              opacity="0.14"></rect><rect
+              x="63.2"
+              y="17.1"
+              width="5.6"
+              height="27.9"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.07"></rect><rect
+              x="71.0"
+              y="8.6"
+              width="5.6"
+              height="44.8"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.10"></rect><rect
+              x="78.8"
+              y="16.0"
+              width="5.6"
+              height="30.0"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.09"></rect><rect
+              x="86.6"
+              y="14.4"
+              width="5.6"
+              height="33.3"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.14"></rect><rect
+              x="94.3"
+              y="15.9"
+              width="5.6"
+              height="30.2"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.09"></rect><rect
+              x="102.1"
+              y="12.2"
+              width="5.6"
+              height="37.7"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.11"></rect><rect
+              x="109.9"
+              y="8.5"
+              width="5.6"
+              height="45.1"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.13"></rect><rect
+              x="117.7"
+              y="14.4"
+              width="5.6"
+              height="33.1"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.08"></rect><rect
+              x="125.4"
               y="9.6"
-              width="3"
-              height="3"
-              rx="1"
+              width="5.6"
+              height="42.7"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.42"></rect><rect x="14.9" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.39"
-            ></rect><rect x="19.2" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.20"></rect><rect
-              x="23.5"
-              y="9.6"
-              width="3"
-              height="3"
-              rx="1"
+              opacity="0.14"></rect><rect
+              x="133.2"
+              y="17.7"
+              width="5.6"
+              height="26.6"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.42"></rect><rect x="27.8" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.37"
-            ></rect><rect x="32.1" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.28"></rect><rect
-              x="36.4"
-              y="9.6"
-              width="3"
-              height="3"
-              rx="1"
+              opacity="0.12"></rect><rect
+              x="141.0"
+              y="9.3"
+              width="5.6"
+              height="43.4"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.19"></rect><rect x="40.7" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.46"
-            ></rect><rect x="45.0" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.33"></rect><rect
-              x="49.3"
-              y="9.6"
-              width="3"
-              height="3"
-              rx="1"
+              opacity="0.12"></rect><rect
+              x="148.8"
+              y="15.8"
+              width="5.6"
+              height="30.4"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.41"></rect><rect x="53.6" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.46"
-            ></rect><rect x="57.9" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.41"></rect><rect
-              x="62.2"
-              y="9.6"
-              width="3"
-              height="3"
-              rx="1"
+              opacity="0.13"></rect><rect
+              x="156.6"
+              y="10.7"
+              width="5.6"
+              height="40.6"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.47"></rect><rect x="66.5" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.31"
-            ></rect><rect x="70.8" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.44"></rect><rect
-              x="2.0"
+              opacity="0.08"></rect><rect
+              x="164.3"
+              y="11.6"
+              width="5.6"
+              height="38.8"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.09"></rect><rect
+              x="172.1"
+              y="17.6"
+              width="5.6"
+              height="26.8"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.09"></rect><rect
+              x="179.9"
+              y="14.7"
+              width="5.6"
+              height="32.7"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.10"></rect><rect
+              x="187.7"
+              y="11.5"
+              width="5.6"
+              height="38.9"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.13"></rect><rect
+              x="195.4"
+              y="8.4"
+              width="5.6"
+              height="45.2"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.14"></rect><rect
+              x="203.2"
+              y="8.1"
+              width="5.6"
+              height="45.9"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.13"></rect><rect
+              x="211.0"
+              y="14.9"
+              width="5.6"
+              height="32.1"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.08"></rect><rect
+              x="218.8"
+              y="11.8"
+              width="5.6"
+              height="38.5"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.11"></rect><rect
+              x="226.6"
+              y="11.3"
+              width="5.6"
+              height="39.5"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.08"></rect><rect
+              x="234.3"
+              y="16.1"
+              width="5.6"
+              height="29.9"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.13"></rect><rect
+              x="242.1"
+              y="12.0"
+              width="5.6"
+              height="38.0"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.12"></rect><rect
+              x="249.9"
+              y="17.0"
+              width="5.6"
+              height="27.9"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.10"></rect><rect
+              x="257.7"
+              y="8.9"
+              width="5.6"
+              height="44.2"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.12"></rect><rect
+              x="265.4"
+              y="8.1"
+              width="5.6"
+              height="45.8"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.08"></rect><rect
+              x="273.2"
+              y="13.5"
+              width="5.6"
+              height="35.1"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.13"></rect><rect
+              x="281.0"
+              y="13.6"
+              width="5.6"
+              height="34.9"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.13"></rect><rect
+              x="288.8"
+              y="12.4"
+              width="5.6"
+              height="37.2"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.08"></rect><rect
+              x="296.6"
+              y="17.0"
+              width="5.6"
+              height="28.0"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.14"></rect><rect
+              x="304.3"
+              y="16.8"
+              width="5.6"
+              height="28.4"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.08"></rect><rect
+              x="312.1"
+              y="14.6"
+              width="5.6"
+              height="32.7"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.12"></rect><rect
+              x="319.9"
+              y="9.5"
+              width="5.6"
+              height="43.1"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.10"></rect><rect
+              x="327.7"
+              y="13.0"
+              width="5.6"
+              height="36.0"
+              rx="1.6"
+              fill="#B8B4AA"
+              opacity="0.13"></rect><rect
+              x="335.4"
               y="15.2"
-              width="3"
-              height="3"
-              rx="1"
+              width="5.6"
+              height="31.6"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.32"></rect><rect x="6.3" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.48"
-            ></rect><rect x="10.6" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.46"></rect><rect
-              x="14.9"
-              y="15.2"
-              width="3"
-              height="3"
-              rx="1"
+              opacity="0.10"></rect><rect
+              x="343.2"
+              y="11.9"
+              width="5.6"
+              height="38.3"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.21"></rect><rect x="19.2" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.22"
-            ></rect><rect x="23.5" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.25"></rect><rect
-              x="27.8"
-              y="15.2"
-              width="3"
-              height="3"
-              rx="1"
+              opacity="0.11"></rect><rect
+              x="351.0"
+              y="17.6"
+              width="5.6"
+              height="26.8"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.49"></rect><rect x="32.1" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.32"
-            ></rect><rect x="36.4" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.38"></rect><rect
-              x="40.7"
-              y="15.2"
-              width="3"
-              height="3"
-              rx="1"
+              opacity="0.08"></rect><rect
+              x="358.8"
+              y="16.6"
+              width="5.6"
+              height="28.8"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.28"></rect><rect x="45.0" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.34"
-            ></rect><rect x="49.3" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.30"></rect><rect
-              x="53.6"
-              y="15.2"
-              width="3"
-              height="3"
-              rx="1"
+              opacity="0.12"></rect><rect
+              x="366.6"
+              y="11.1"
+              width="5.6"
+              height="39.9"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.29"></rect><rect x="57.9" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.37"
-            ></rect><rect x="62.2" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.37"></rect><rect
-              x="66.5"
-              y="15.2"
-              width="3"
-              height="3"
-              rx="1"
+              opacity="0.14"></rect><rect
+              x="374.3"
+              y="10.3"
+              width="5.6"
+              height="41.4"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.47"></rect><rect x="70.8" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.40"
-            ></rect><rect x="2.0" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.48"></rect><rect
-              x="6.3"
-              y="20.8"
-              width="3"
-              height="3"
-              rx="1"
+              opacity="0.09"></rect><rect
+              x="382.1"
+              y="10.3"
+              width="5.6"
+              height="41.3"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.45"></rect><rect x="10.6" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.50"
-            ></rect><rect x="14.9" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.39"></rect><rect
-              x="19.2"
-              y="20.8"
-              width="3"
-              height="3"
-              rx="1"
+              opacity="0.14"></rect><rect
+              x="389.9"
+              y="14.5"
+              width="5.6"
+              height="33.0"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.23"></rect><rect x="23.5" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.46"
-            ></rect><rect x="27.8" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.49"></rect><rect
-              x="32.1"
-              y="20.8"
-              width="3"
-              height="3"
-              rx="1"
+              opacity="0.07"></rect><rect
+              x="397.7"
+              y="14.2"
+              width="5.6"
+              height="33.5"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.47"></rect><rect x="36.4" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.36"
-            ></rect><rect x="40.7" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.41"></rect><rect
-              x="45.0"
-              y="20.8"
-              width="3"
-              height="3"
-              rx="1"
+              opacity="0.09"></rect><rect
+              x="405.4"
+              y="16.2"
+              width="5.6"
+              height="29.5"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.25"></rect><rect x="49.3" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.45"
-            ></rect><rect x="53.6" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.36"></rect><rect
-              x="57.9"
-              y="20.8"
-              width="3"
-              height="3"
-              rx="1"
+              opacity="0.07"></rect><rect
+              x="413.2"
+              y="16.8"
+              width="5.6"
+              height="28.5"
+              rx="1.6"
               fill="#B8B4AA"
-              opacity="0.27"></rect><rect x="62.2" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.20"
-            ></rect><rect x="66.5" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.45"></rect><rect
-              x="70.8"
-              y="20.8"
-              width="3"
-              height="3"
-              rx="1"
-              fill="#B8B4AA"
-              opacity="0.50"></rect><rect x="2.0" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.21"
-            ></rect><rect x="6.3" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.44"></rect><rect
-              x="10.6"
-              y="26.4"
-              width="3"
-              height="3"
-              rx="1"
-              fill="#B8B4AA"
-              opacity="0.31"></rect><rect x="14.9" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.23"
-            ></rect><rect x="19.2" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.27"></rect><rect
-              x="23.5"
-              y="26.4"
-              width="3"
-              height="3"
-              rx="1"
-              fill="#B8B4AA"
-              opacity="0.43"></rect><rect x="27.8" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.46"
-            ></rect><rect x="32.1" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.19"></rect><rect
-              x="36.4"
-              y="26.4"
-              width="3"
-              height="3"
-              rx="1"
-              fill="#B8B4AA"
-              opacity="0.38"></rect><rect x="40.7" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.19"
-            ></rect><rect x="45.0" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.41"></rect><rect
-              x="49.3"
-              y="26.4"
-              width="3"
-              height="3"
-              rx="1"
-              fill="#B8B4AA"
-              opacity="0.29"></rect><rect x="53.6" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.46"
-            ></rect><rect x="57.9" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.49"></rect><rect
-              x="62.2"
-              y="26.4"
-              width="3"
-              height="3"
-              rx="1"
-              fill="#B8B4AA"
-              opacity="0.34"></rect><rect x="66.5" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.50"
-            ></rect><rect x="70.8" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.28"></rect><rect
-              x="2.0"
-              y="32.0"
-              width="3"
-              height="3"
-              rx="1"
-              fill="#B8B4AA"
-              opacity="0.20"></rect><rect x="6.3" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.37"
-            ></rect><rect x="10.6" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.19"></rect><rect
-              x="14.9"
-              y="32.0"
-              width="3"
-              height="3"
-              rx="1"
-              fill="#B8B4AA"
-              opacity="0.24"></rect><rect x="19.2" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.31"
-            ></rect><rect x="23.5" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.38"></rect><rect
-              x="27.8"
-              y="32.0"
-              width="3"
-              height="3"
-              rx="1"
-              fill="#B8B4AA"
-              opacity="0.23"></rect><rect x="32.1" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.19"
-            ></rect><rect x="36.4" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.46"></rect><rect
-              x="40.7"
-              y="32.0"
-              width="3"
-              height="3"
-              rx="1"
-              fill="#B8B4AA"
-              opacity="0.28"></rect><rect x="45.0" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.49"
-            ></rect><rect x="49.3" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.47"></rect><rect
-              x="53.6"
-              y="32.0"
-              width="3"
-              height="3"
-              rx="1"
-              fill="#B8B4AA"
-              opacity="0.30"></rect><rect x="57.9" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.33"
-            ></rect><rect x="62.2" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.35"></rect><rect
-              x="66.5"
-              y="32.0"
-              width="3"
-              height="3"
-              rx="1"
-              fill="#B8B4AA"
-              opacity="0.39"></rect><rect x="70.8" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.37"
-            ></rect><rect x="2.0" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.36"></rect><rect
-              x="6.3"
-              y="37.6"
-              width="3"
-              height="3"
-              rx="1"
-              fill="#B8B4AA"
-              opacity="0.38"></rect><rect x="10.6" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.48"
-            ></rect><rect x="14.9" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.34"></rect><rect
-              x="19.2"
-              y="37.6"
-              width="3"
-              height="3"
-              rx="1"
-              fill="#B8B4AA"
-              opacity="0.32"></rect><rect x="23.5" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.41"
-            ></rect><rect x="27.8" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.26"></rect><rect
-              x="32.1"
-              y="37.6"
-              width="3"
-              height="3"
-              rx="1"
-              fill="#B8B4AA"
-              opacity="0.28"></rect><rect x="36.4" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.49"
-            ></rect><rect x="40.7" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.35"></rect><rect
-              x="45.0"
-              y="37.6"
-              width="3"
-              height="3"
-              rx="1"
-              fill="#B8B4AA"
-              opacity="0.36"></rect><rect x="49.3" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.18"
-            ></rect><rect x="53.6" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.31"></rect><rect
-              x="57.9"
-              y="37.6"
-              width="3"
-              height="3"
-              rx="1"
-              fill="#B8B4AA"
-              opacity="0.37"></rect><rect x="62.2" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.19"
-            ></rect><rect x="66.5" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.38"></rect><rect
-              x="70.8"
-              y="37.6"
-              width="3"
-              height="3"
-              rx="1"
-              fill="#B8B4AA"
-              opacity="0.38"></rect><rect x="57.9" y="26.4" width="3" height="3" rx="1" fill="#DA0007" opacity="1.00"
-            ></rect><rect x="32.1" y="15.2" width="3" height="3" rx="1" fill="#DA0007" opacity="1.00"></rect></svg
-          ><p class="relc__k">Hiring strategy</p><p class="relc__t">Rethinking hiring metrics</p><p class="relc__x">
-            Time-to-hire measures your speed. Interview-to-hire measures your aim.
-          </p></a
-        ><a class="relc" href="/blog/when-job-hunting-feels-like-a-black-hole"
-          ><svg class="pglyph" viewBox="0 0 76 46" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-            ><line
-              x1="4.0"
-              y1="12"
-              x2="4.0"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="6.6"
-              y1="12"
-              x2="6.4"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="9.2"
-              y1="12"
-              x2="8.8"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="11.8"
-              y1="12"
-              x2="12.2"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="2.4"
-              y1="33"
-              x2="13.0"
-              y2="13"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="18.0"
-              y1="12"
-              x2="17.4"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="20.6"
-              y1="12"
-              x2="20.6"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="23.2"
-              y1="12"
-              x2="23.7"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="25.8"
-              y1="12"
-              x2="25.3"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="16.4"
-              y1="33"
-              x2="27.0"
-              y2="13"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="32.0"
-              y1="12"
-              x2="32.1"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="34.6"
-              y1="12"
-              x2="34.7"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="37.2"
-              y1="12"
-              x2="36.6"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="39.8"
-              y1="12"
-              x2="39.7"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="30.4"
-              y1="33"
-              x2="41.0"
-              y2="13"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="46.0"
-              y1="12"
-              x2="46.2"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="48.6"
-              y1="12"
-              x2="48.5"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="51.2"
-              y1="12"
-              x2="51.5"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="53.8"
-              y1="12"
-              x2="53.4"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="44.4"
-              y1="33"
-              x2="55.0"
-              y2="13"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="60.0"
-              y1="12"
-              x2="59.7"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="62.6"
-              y1="12"
-              x2="62.1"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="65.2"
-              y1="12"
-              x2="65.2"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="67.8"
-              y1="12"
-              x2="68.3"
-              y2="34"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="58.4"
-              y1="33"
-              x2="69.0"
-              y2="13"
-              stroke="#B8B4AA"
-              stroke-width="1.4"
-              opacity=".34"
-              stroke-linecap="round"></line><line
-              x1="33.2"
-              y1="12"
-              x2="33.2"
-              y2="34"
-              stroke="#DA0007"
-              stroke-width="1.8"
-              stroke-linecap="round"></line></svg
-          ><p class="relc__k">Candidate experience</p><p class="relc__t">When job hunting feels like a black hole</p><p
-            class="relc__x"
+              opacity="0.13"></rect><rect x="203.2" y="10" width="5.6" height="42" rx="1.6" fill="#DA0007"></rect><rect
+              x="211.0"
+              y="10"
+              width="5.6"
+              height="42"
+              rx="1.6"
+              fill="#DA0007"></rect></svg
           >
-            Silence is not rejection, but it costs the same.
-          </p></a
-        ><a class="relc" href="/blog/designing-ai-for-high-stakes-technical-assessment"
-          ><svg class="pglyph" viewBox="0 0 76 46" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-            ><rect x="3.0" y="6.0" width="64.0" height="4" rx="2.0" fill="#B8B4AA" opacity="0.42"></rect><rect
-              x="3.0"
-              y="14.0"
-              width="52.0"
-              height="4"
-              rx="2.0"
-              fill="#B8B4AA"
-              opacity="0.34"></rect><rect
-              x="3.0"
-              y="22.0"
-              width="58.0"
-              height="4"
-              rx="2.0"
-              fill="#B8B4AA"
-              opacity="0.38"></rect><rect
-              x="3.0"
-              y="30.0"
-              width="38.0"
-              height="4"
-              rx="2.0"
-              fill="#DA0007"
-              opacity="1.00"></rect><rect
-              x="3.0"
-              y="38.0"
-              width="46.0"
-              height="4"
-              rx="2.0"
-              fill="#B8B4AA"
-              opacity="0.30"></rect></svg
-          ><p class="relc__k">AI and assessment</p><p class="relc__t">Designing AI for high-stakes assessment</p><p
-            class="relc__x"
-          >
-            A model can read a transcript. It cannot tell you whether the person meant it.
-          </p></a>
-      </div>
-    </section>
+        </div>
+      </header>
 
-    <section class="trust band" id="cta">
-      <div class="wrap">
-        <div class="sub" style="text-align:center;display:flex;flex-direction:column;align-items:center">
-          <p class="sub__k">If you’re the one looking</p>
-          <p class="sub__h">Hidden from the first second.</p>
-          <p class="sub__s">
-            Half an hour with someone who has done your job, scored against the same rubric the hiring team sees.
-          </p>
-          <div class="btns" style="justify-content:center">
-            <a href="/candidates" class="btn btn--light">Create your profile</a>
-            <a href="/blog" class="btn btn--wire">Read the rest</a>
+      <section class="band band--w">
+        <div class="wrap">
+          <article class="art">
+            <p class="lede">
+              The person you most want to hire has a job, is reasonably happy in it, and has not opened their CV in
+              three years. Almost everything we built follows from that one fact.
+            </p>
+
+            <p>
+              There is a version of hiring that assumes the market is full of people looking. Post the role, collect the
+              applications, filter down. It works for volume roles and it works when the economy is bad, and the rest of
+              the time it quietly selects for the people with the most availability rather than the most judgment.
+            </p>
+
+            <p>
+              The engineer you actually want has been somewhere four years, is in the middle of something she cares
+              about, and will look at exactly one opportunity this year. She will look at it quietly. And she will only
+              look at all if looking costs her nothing.
+            </p>
+
+            <p>
+              So the design question was never how to attract more candidates. It was <b
+                >how to make a conversation safe enough to be worth having.</b
+              >
+            </p>
+
+            <h2>What quietly has to mean</h2>
+
+            <p>
+              Not searchable. Your profile does not appear in a directory, a feed, or a recruiter’s saved search. There
+              is no version of this where someone stumbles across you.
+            </p>
+
+            <p>
+              Blockable by name. You list your current employer, and anyone else you would rather not meet, and those
+              companies never see that you exist. Not a filtered result — no result.
+            </p>
+
+            <p>
+              No direct contact. Companies cannot message you. Every request comes through us, which means you find out
+              that someone is interested without them finding out you were looking.
+            </p>
+
+            <figure class="fig">
+              <svg
+                class="fig__svg"
+                viewBox="0 0 210 120"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                ><rect x="6" y="8" width="15" height="11" rx="2.5" fill="#DA0007" opacity="1"></rect><rect
+                  x="26"
+                  y="8"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect x="46" y="8" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"
+                ></rect><rect x="66" y="8" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"></rect><rect
+                  x="86"
+                  y="8"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="106"
+                  y="8"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="126"
+                  y="8"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="146"
+                  y="8"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="166"
+                  y="8"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="186"
+                  y="8"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect x="6" y="36" width="15" height="11" rx="2.5" fill="#DA0007" opacity="1"
+                ></rect><rect x="26" y="36" width="15" height="11" rx="2.5" fill="#DA0007" opacity="1"></rect><rect
+                  x="46"
+                  y="36"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="66"
+                  y="36"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="86"
+                  y="36"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="106"
+                  y="36"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="126"
+                  y="36"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="146"
+                  y="36"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="166"
+                  y="36"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="186"
+                  y="36"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect x="6" y="64" width="15" height="11" rx="2.5" fill="#DA0007" opacity="1"
+                ></rect><rect x="26" y="64" width="15" height="11" rx="2.5" fill="#DA0007" opacity="1"></rect><rect
+                  x="46"
+                  y="64"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#DA0007"
+                  opacity="1"></rect><rect x="66" y="64" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"
+                ></rect><rect x="86" y="64" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"></rect><rect
+                  x="106"
+                  y="64"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="126"
+                  y="64"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="146"
+                  y="64"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="166"
+                  y="64"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="186"
+                  y="64"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect x="6" y="92" width="15" height="11" rx="2.5" fill="#DA0007" opacity="1"
+                ></rect><rect x="26" y="92" width="15" height="11" rx="2.5" fill="#DA0007" opacity="1"></rect><rect
+                  x="46"
+                  y="92"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#DA0007"
+                  opacity="1"></rect><rect x="66" y="92" width="15" height="11" rx="2.5" fill="#DA0007" opacity="1"
+                ></rect><rect x="86" y="92" width="15" height="11" rx="2.5" fill="#C6C2B8" opacity="0.28"></rect><rect
+                  x="106"
+                  y="92"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="126"
+                  y="92"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="146"
+                  y="92"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="166"
+                  y="92"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect><rect
+                  x="186"
+                  y="92"
+                  width="15"
+                  height="11"
+                  rx="2.5"
+                  fill="#C6C2B8"
+                  opacity="0.28"></rect></svg
+              >
+              <figcaption>
+                <b>Visibility only ever moves one way, and only when you move it.</b> Before you do anything, nobody. After
+                the interview, us. Then one named team, then that team’s panel — each step released by you, and reversible.
+              </figcaption>
+            </figure>
+
+            <h2>The thing we had backwards</h2>
+
+            <p>
+              We built the privacy controls first and made them opt-in. Sensible-looking: give people the switches, let
+              them decide. A settings page with four toggles, all off by default, clearly explained.
+            </p>
+
+            <p>
+              Almost nobody turned them on. Not because they did not care — because they never got that far. Someone
+              weighing up whether it is safe to explore does not sign up and then go looking for the safety features.
+              They decide on the landing page, in about eleven seconds, and if the answer is not obviously yes they
+              close the tab.
+            </p>
+
+            <blockquote class="pull">
+              A privacy setting is a promise you make later.
+              <em>A default is a promise you have already kept.</em>
+            </blockquote>
+
+            <figure class="fig">
+              <svg
+                class="fig__svg"
+                viewBox="0 0 240 58"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                ><rect x="0" y="6" width="44" height="14" rx="7" fill="#C6C2B8" opacity="0.45"></rect><rect
+                  x="0"
+                  y="34"
+                  width="232"
+                  height="14"
+                  rx="7"
+                  fill="#DA0007"
+                  opacity="1"></rect></svg
+              >
+              <figcaption>
+                Opt-in privacy, then default privacy. <b
+                  >The controls did not change. Only which way they pointed when you arrived.</b
+                >
+              </figcaption>
+            </figure>
+
+            <p>
+              So we inverted it. Hidden is the default state, not the protected one. You are invisible from the moment
+              you arrive, and everything after that is you deciding to be slightly less invisible to one named company
+              at a time.
+            </p>
+
+            <h2>Privacy without transparency is just a black box</h2>
+
+            <p>
+              The other half of trust is harder, and most platforms skip it: if we are going to score you, you have to
+              be able to see the score.
+            </p>
+
+            <p>
+              You see the same breakdown the hiring team sees. The same four dimensions, the same numbers, including the
+              one you came out weakest on and what specifically would move it. There is no separate, gentler version
+              prepared for the candidate — partly because that would be dishonest, and partly because the moment two
+              versions exist, someone eventually shows you the wrong one.
+            </p>
+
+            <p>
+              It is uncomfortable to build. It is the only version that survives a candidate asking why they were ranked
+              third.
+            </p>
+
+            <h2>We check the company too</h2>
+
+            <p>
+              Every job board asks a candidate to prove themselves to a company that has proved nothing to anyone.
+              Before a request reaches you, the team on the other end has to clear its own checks: is the headcount
+              actually funded, how many rounds, how fast do they decide, how long has the manager been in post, and did
+              the last few people they hired stay.
+            </p>
+
+            <p>
+              When something does not clear, you still see the request — with the flag attached and the reason written
+              out. You decide whether it matters. We are not in a position to decide that for you, and pretending
+              otherwise would be its own kind of disrespect.
+            </p>
+
+            <h2>Why any of this is worth the engineering</h2>
+
+            <p>
+              Because the cost of getting it wrong is not ours. A candidate whose employer finds out they were looking
+              does not lose a feature. They lose standing, a project, sometimes a job — and they lose it because of a
+              system they trusted for about a week.
+            </p>
+
+            <p>
+              That asymmetry is the whole argument. We carry a product risk. They carry a career risk. The defaults
+              should reflect who has more to lose, and almost none of them do.
+            </p>
+
+            <p class="signoff">Belong. Build. Become.</p>
+          </article>
+          <div class="aft">
+            <div class="atags">
+              <a class="atag" href="/tag/privacy-by-design">Privacy by design</a><a
+                class="atag"
+                href="/tag/candidate-experience">Candidate experience</a
+              ><a class="atag" href="/tag/trust-in-hiring">Trust in hiring</a><a class="atag" href="/tag/default-states"
+                >Default states</a
+              >
+            </div>
+            <div class="ashare">
+              <span>Share</span>
+              <a href="#" aria-label="Share on LinkedIn">LinkedIn</a>
+              <a href="#" aria-label="Copy link">Copy link</a>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="band band--w close" id="contact">
-      <div class="wrap">
+      <section class="wrap band" id="related">
         <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
           <div>
-            <p class="eyebrow eyebrow--red" data-rv>Two doors</p>
-            <h2 class="h2" data-rv style="max-width:none">Two doors. Same room.</h2>
+            <p class="eyebrow eyebrow--red" data-rv>Keep reading</p>
+            <h2 class="h2" data-rv style="--d:60ms;max-width:none;margin-bottom:clamp(16px,2vw,24px)">
+              Three more that came out of real mandates.
+            </h2>
           </div>
-          <p class="dek" data-rv style="--d:60ms;max-width:none">
-            If you have a role you’re stuck on, or you’re the one being interviewed, <b
-              >both of those start the same way.</b>
+          <p class="dek" data-rv style="--d:100ms;max-width:none">
+            Or go back to <a
+              href="/blog"
+              style="color:var(--red);
+    text-decoration:none;border-bottom:1px solid rgba(218,0,7,.35)"
+              >everything we’ve published</a
+            >.
           </p>
         </div>
-        <div class="doors" data-rv style="--d:110ms">
-          <div class="door">
-            <p class="door__k">If you’re hiring</p>
-            <p class="door__t">Three names you’d take any of.</p>
-            <p class="door__d">
-              A hundred signals, a senior expert on each shortlisted person, and the reasoning behind every rank.
-            </p>
-            <p class="door__next"><span>Next</span> A 45-minute intake call. Three names back inside 36 hours.</p>
-            <a href="/" class="btn btn--dark">See how one role ran</a>
-          </div>
-          <div class="door">
-            <p class="door__k">If you’re looking</p>
-            <p class="door__t">One conversation, then teams come to you.</p>
-            <p class="door__d">
-              Half an hour with someone who has done your job. Anonymous until you decide otherwise.
-            </p>
-            <p class="door__next"><span>Next</span> Fifteen minutes to set up, and you keep the score.</p>
-            <a href="/candidates" class="btn btn--ghost">Create your profile</a>
-          </div>
+        <div class="rel" data-rv style="--d:140ms">
+          <a class="relc" href="/blog/rethinking-hiring-metrics-signal-efficiency"
+            ><svg class="pglyph" viewBox="0 0 76 46" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+              ><rect x="2.0" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.26"></rect><rect
+                x="6.3"
+                y="4.0"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.35"></rect><rect x="10.6" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.30"
+              ></rect><rect x="14.9" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.37"></rect><rect
+                x="19.2"
+                y="4.0"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.38"></rect><rect x="23.5" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.20"
+              ></rect><rect x="27.8" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.18"></rect><rect
+                x="32.1"
+                y="4.0"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.45"></rect><rect x="36.4" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.26"
+              ></rect><rect x="40.7" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.25"></rect><rect
+                x="45.0"
+                y="4.0"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.50"></rect><rect x="49.3" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.33"
+              ></rect><rect x="53.6" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.45"></rect><rect
+                x="57.9"
+                y="4.0"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.33"></rect><rect x="62.2" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.38"
+              ></rect><rect x="66.5" y="4.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.23"></rect><rect
+                x="70.8"
+                y="4.0"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.38"></rect><rect x="2.0" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.46"
+              ></rect><rect x="6.3" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.35"></rect><rect
+                x="10.6"
+                y="9.6"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.42"></rect><rect x="14.9" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.39"
+              ></rect><rect x="19.2" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.20"></rect><rect
+                x="23.5"
+                y="9.6"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.42"></rect><rect x="27.8" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.37"
+              ></rect><rect x="32.1" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.28"></rect><rect
+                x="36.4"
+                y="9.6"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.19"></rect><rect x="40.7" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.46"
+              ></rect><rect x="45.0" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.33"></rect><rect
+                x="49.3"
+                y="9.6"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.41"></rect><rect x="53.6" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.46"
+              ></rect><rect x="57.9" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.41"></rect><rect
+                x="62.2"
+                y="9.6"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.47"></rect><rect x="66.5" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.31"
+              ></rect><rect x="70.8" y="9.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.44"></rect><rect
+                x="2.0"
+                y="15.2"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.32"></rect><rect x="6.3" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.48"
+              ></rect><rect x="10.6" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.46"></rect><rect
+                x="14.9"
+                y="15.2"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.21"></rect><rect x="19.2" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.22"
+              ></rect><rect x="23.5" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.25"></rect><rect
+                x="27.8"
+                y="15.2"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.49"></rect><rect x="32.1" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.32"
+              ></rect><rect x="36.4" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.38"></rect><rect
+                x="40.7"
+                y="15.2"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.28"></rect><rect x="45.0" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.34"
+              ></rect><rect x="49.3" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.30"></rect><rect
+                x="53.6"
+                y="15.2"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.29"></rect><rect x="57.9" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.37"
+              ></rect><rect x="62.2" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.37"></rect><rect
+                x="66.5"
+                y="15.2"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.47"></rect><rect x="70.8" y="15.2" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.40"
+              ></rect><rect x="2.0" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.48"></rect><rect
+                x="6.3"
+                y="20.8"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.45"></rect><rect x="10.6" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.50"
+              ></rect><rect x="14.9" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.39"></rect><rect
+                x="19.2"
+                y="20.8"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.23"></rect><rect x="23.5" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.46"
+              ></rect><rect x="27.8" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.49"></rect><rect
+                x="32.1"
+                y="20.8"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.47"></rect><rect x="36.4" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.36"
+              ></rect><rect x="40.7" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.41"></rect><rect
+                x="45.0"
+                y="20.8"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.25"></rect><rect x="49.3" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.45"
+              ></rect><rect x="53.6" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.36"></rect><rect
+                x="57.9"
+                y="20.8"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.27"></rect><rect x="62.2" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.20"
+              ></rect><rect x="66.5" y="20.8" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.45"></rect><rect
+                x="70.8"
+                y="20.8"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.50"></rect><rect x="2.0" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.21"
+              ></rect><rect x="6.3" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.44"></rect><rect
+                x="10.6"
+                y="26.4"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.31"></rect><rect x="14.9" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.23"
+              ></rect><rect x="19.2" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.27"></rect><rect
+                x="23.5"
+                y="26.4"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.43"></rect><rect x="27.8" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.46"
+              ></rect><rect x="32.1" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.19"></rect><rect
+                x="36.4"
+                y="26.4"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.38"></rect><rect x="40.7" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.19"
+              ></rect><rect x="45.0" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.41"></rect><rect
+                x="49.3"
+                y="26.4"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.29"></rect><rect x="53.6" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.46"
+              ></rect><rect x="57.9" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.49"></rect><rect
+                x="62.2"
+                y="26.4"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.34"></rect><rect x="66.5" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.50"
+              ></rect><rect x="70.8" y="26.4" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.28"></rect><rect
+                x="2.0"
+                y="32.0"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.20"></rect><rect x="6.3" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.37"
+              ></rect><rect x="10.6" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.19"></rect><rect
+                x="14.9"
+                y="32.0"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.24"></rect><rect x="19.2" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.31"
+              ></rect><rect x="23.5" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.38"></rect><rect
+                x="27.8"
+                y="32.0"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.23"></rect><rect x="32.1" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.19"
+              ></rect><rect x="36.4" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.46"></rect><rect
+                x="40.7"
+                y="32.0"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.28"></rect><rect x="45.0" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.49"
+              ></rect><rect x="49.3" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.47"></rect><rect
+                x="53.6"
+                y="32.0"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.30"></rect><rect x="57.9" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.33"
+              ></rect><rect x="62.2" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.35"></rect><rect
+                x="66.5"
+                y="32.0"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.39"></rect><rect x="70.8" y="32.0" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.37"
+              ></rect><rect x="2.0" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.36"></rect><rect
+                x="6.3"
+                y="37.6"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.38"></rect><rect x="10.6" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.48"
+              ></rect><rect x="14.9" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.34"></rect><rect
+                x="19.2"
+                y="37.6"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.32"></rect><rect x="23.5" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.41"
+              ></rect><rect x="27.8" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.26"></rect><rect
+                x="32.1"
+                y="37.6"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.28"></rect><rect x="36.4" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.49"
+              ></rect><rect x="40.7" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.35"></rect><rect
+                x="45.0"
+                y="37.6"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.36"></rect><rect x="49.3" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.18"
+              ></rect><rect x="53.6" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.31"></rect><rect
+                x="57.9"
+                y="37.6"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.37"></rect><rect x="62.2" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.19"
+              ></rect><rect x="66.5" y="37.6" width="3" height="3" rx="1" fill="#B8B4AA" opacity="0.38"></rect><rect
+                x="70.8"
+                y="37.6"
+                width="3"
+                height="3"
+                rx="1"
+                fill="#B8B4AA"
+                opacity="0.38"></rect><rect x="57.9" y="26.4" width="3" height="3" rx="1" fill="#DA0007" opacity="1.00"
+              ></rect><rect x="32.1" y="15.2" width="3" height="3" rx="1" fill="#DA0007" opacity="1.00"></rect></svg
+            ><p class="relc__k">Hiring strategy</p><p class="relc__t">Rethinking hiring metrics</p><p class="relc__x">
+              Time-to-hire measures your speed. Interview-to-hire measures your aim.
+            </p></a
+          ><a class="relc" href="/blog/when-job-hunting-feels-like-a-black-hole"
+            ><svg class="pglyph" viewBox="0 0 76 46" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+              ><line
+                x1="4.0"
+                y1="12"
+                x2="4.0"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="6.6"
+                y1="12"
+                x2="6.4"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="9.2"
+                y1="12"
+                x2="8.8"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="11.8"
+                y1="12"
+                x2="12.2"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="2.4"
+                y1="33"
+                x2="13.0"
+                y2="13"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="18.0"
+                y1="12"
+                x2="17.4"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="20.6"
+                y1="12"
+                x2="20.6"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="23.2"
+                y1="12"
+                x2="23.7"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="25.8"
+                y1="12"
+                x2="25.3"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="16.4"
+                y1="33"
+                x2="27.0"
+                y2="13"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="32.0"
+                y1="12"
+                x2="32.1"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="34.6"
+                y1="12"
+                x2="34.7"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="37.2"
+                y1="12"
+                x2="36.6"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="39.8"
+                y1="12"
+                x2="39.7"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="30.4"
+                y1="33"
+                x2="41.0"
+                y2="13"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="46.0"
+                y1="12"
+                x2="46.2"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="48.6"
+                y1="12"
+                x2="48.5"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="51.2"
+                y1="12"
+                x2="51.5"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="53.8"
+                y1="12"
+                x2="53.4"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="44.4"
+                y1="33"
+                x2="55.0"
+                y2="13"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="60.0"
+                y1="12"
+                x2="59.7"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="62.6"
+                y1="12"
+                x2="62.1"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="65.2"
+                y1="12"
+                x2="65.2"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="67.8"
+                y1="12"
+                x2="68.3"
+                y2="34"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="58.4"
+                y1="33"
+                x2="69.0"
+                y2="13"
+                stroke="#B8B4AA"
+                stroke-width="1.4"
+                opacity=".34"
+                stroke-linecap="round"></line><line
+                x1="33.2"
+                y1="12"
+                x2="33.2"
+                y2="34"
+                stroke="#DA0007"
+                stroke-width="1.8"
+                stroke-linecap="round"></line></svg
+            ><p class="relc__k">Candidate experience</p><p class="relc__t">
+              When job hunting feels like a black hole
+            </p><p class="relc__x">Silence is not rejection, but it costs the same.</p></a
+          ><a class="relc" href="/blog/designing-ai-for-high-stakes-technical-assessment"
+            ><svg class="pglyph" viewBox="0 0 76 46" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+              ><rect x="3.0" y="6.0" width="64.0" height="4" rx="2.0" fill="#B8B4AA" opacity="0.42"></rect><rect
+                x="3.0"
+                y="14.0"
+                width="52.0"
+                height="4"
+                rx="2.0"
+                fill="#B8B4AA"
+                opacity="0.34"></rect><rect
+                x="3.0"
+                y="22.0"
+                width="58.0"
+                height="4"
+                rx="2.0"
+                fill="#B8B4AA"
+                opacity="0.38"></rect><rect
+                x="3.0"
+                y="30.0"
+                width="38.0"
+                height="4"
+                rx="2.0"
+                fill="#DA0007"
+                opacity="1.00"></rect><rect
+                x="3.0"
+                y="38.0"
+                width="46.0"
+                height="4"
+                rx="2.0"
+                fill="#B8B4AA"
+                opacity="0.30"></rect></svg
+            ><p class="relc__k">AI and assessment</p><p class="relc__t">Designing AI for high-stakes assessment</p><p
+              class="relc__x"
+            >
+              A model can read a transcript. It cannot tell you whether the person meant it.
+            </p></a
+          >
         </div>
-        <p class="bbb2" data-rv><span>Belong</span><i></i><span>Build</span><i></i><span>Become</span></p>
-        <p class="bbb2__s" data-rv>Tribe + Era. A hire only works if both sides were right about each other.</p>
-      </div>
+      </section>
 
-      <footer class="ft">
+      <section class="trust band" id="cta">
         <div class="wrap">
-          <div class="ft__top">
-            <div class="ft__brand">
-              <a class="logo" href="#top" data-astro-reload style="font-size:22px">tribera<i>.</i></a>
-              <p class="ft__line">
-                <b>AI reads the signal. Senior experts add the judgment. You make the call.</b> The bar is yours, and every
-                candidate is held to the same one.
-              </p>
-              <p class="ft__tribe">Tribe + Era</p>
-              <p class="ft__bbb"><em>Belong</em><i></i>Build<i></i>Become</p>
-              <div class="ft__social">
-                <a href="https://linkedin.com/company/triberaai">LinkedIn</a>
-                <a href="mailto:hello@tribera.ai">hello@tribera.ai</a>
-              </div>
+          <div class="sub" style="text-align:center;display:flex;flex-direction:column;align-items:center">
+            <p class="sub__k">If you’re the one looking</p>
+            <p class="sub__h">Hidden from the first second.</p>
+            <p class="sub__s">
+              Half an hour with someone who has done your job, scored against the same rubric the hiring team sees.
+            </p>
+            <div class="btns" style="justify-content:center">
+              <a href="/candidates" class="btn btn--light">Create your profile</a>
+              <a href="/blog" class="btn btn--wire">Read the rest</a>
             </div>
-
-            <nav class="ft__col" aria-label="For hiring teams">
-              <p class="ft__ttl">For hiring teams</p>
-              <a href="/#run">How it works</a>
-              <a href="/#lab">The bar</a>
-              <a href="/#guarantee">The guarantee</a>
-              <a href="/#guarantee">Plans</a>
-              <a href="/industries">Industries</a>
-              <a href="/functions">Functions</a>
-            </nav>
-
-            <nav class="ft__col" aria-label="For candidates">
-              <p class="ft__ttl">For candidates</p>
-              <a href="/#apply">Create your profile</a>
-              <a href="/candidates">How it works</a>
-              <a href="/careers#roles">Open roles</a>
-              <a href="/candidates#privacy">Privacy controls</a>
-            </nav>
-
-            <nav class="ft__col" aria-label="Company">
-              <p class="ft__ttl">Company</p>
-              <a href="/about">About</a>
-              <a href="/blog">Blog</a>
-              <a href="/careers">Careers</a>
-              <a href="/contact">Contact</a>
-              <a href="https://app.tribera.ai/auth/login">Log in</a>
-            </nav>
-
-            <nav class="ft__col" aria-label="Legal">
-              <p class="ft__ttl">Legal</p>
-              <a href="/security">Security</a>
-              <a href="/terms">Terms</a>
-              <a href="/privacy">Privacy</a>
-            </nav>
-          </div>
-
-          <div class="ft__bar">
-            <span>© 2026 Tribera · Eragina Digital Solutions Private Limited</span>
-            <span class="ft__made">Bengaluru</span>
           </div>
         </div>
-      </footer>
-      <script>
-        (function () {
-          const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      </section>
 
-          /* ══ THE DEAL: pick your volume, the shape resolves ══ */
-          (function () {
-            const V = [
-         {
-           nm: 'Project-based',
-           v: '10–50',
-           d: 'One role you\u2019re stuck on, or a burst of them — permanent, contract or executive.',
-           p: ['Per hire, 15–20%', 'Nothing owed until you hire', 'Your bar written on the first brief'],
-         },
-         {
-           nm: 'Scale',
-           v: '50–200',
-           d: 'Several functions running at once, with one bar carried across all of them.',
-           p: ['Volume rate per hire', 'A named expert bench for your stack', 'Your bar reused on every brief'],
-         },
-         {
-           nm: 'Full RPO',
-           v: '200–500+',
-           d: 'Your whole talent function, run alongside your team rather than outside it.',
-           p: [
-             'Experts embedded in your team',
-             'Subscription plus a reduced rate',
-             'Quarterly recalibration of the bar',
-           ],
-         },
-       ];
-            const segs = [].slice.call(document.querySelectorAll('.vseg')),
-         out = document.getElementById('volOut');
-            if (!segs.length || !out) return;
-            const nm = document.getElementById('volNm'),
-         vv = document.getElementById('volV'),
-         dd = document.getElementById('volD'),
-         pts = document.getElementById('volPts');
-            function pick(i) {
-              const s = V[i];
-              segs.forEach(function (b, j) {
-                b.classList.toggle('is', j === i);
-                b.setAttribute('aria-selected', String(j === i));
-              });
-              nm.textContent = s.nm;
-              vv.innerHTML = s.v + ' <span>hires a year</span>';
-              dd.textContent = s.d;
-              pts.innerHTML = s.p
-                .map(function (t) {
-                  return '<li>' + t + '</li>';
-                })
-                .join('');
-              out.classList.remove('swap-in');
-              void out.offsetWidth;
-              out.classList.add('swap-in');
-            }
-            segs.forEach(function (b, i) {
-              b.addEventListener('click', function () {
-                pick(i);
-              });
-              b.addEventListener('mouseenter', function () {
-                pick(i);
-              });
-            });
-            pick(1);
-          })();
+      <section class="band band--w close" id="contact">
+        <div class="wrap">
+          <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
+            <div>
+              <p class="eyebrow eyebrow--red" data-rv>Two doors</p>
+              <h2 class="h2" data-rv style="max-width:none">Two doors. Same room.</h2>
+            </div>
+            <p class="dek" data-rv style="--d:60ms;max-width:none">
+              If you have a role you’re stuck on, or you’re the one being interviewed, <b
+                >both of those start the same way.</b
+              >
+            </p>
+          </div>
+          <div class="doors" data-rv style="--d:110ms">
+            <div class="door">
+              <p class="door__k">If you’re hiring</p>
+              <p class="door__t">Three names you’d take any of.</p>
+              <p class="door__d">
+                A hundred signals, a senior expert on each shortlisted person, and the reasoning behind every rank.
+              </p>
+              <p class="door__next"><span>Next</span> A 45-minute intake call. Three names back inside 36 hours.</p>
+              <a href="/" class="btn btn--dark">See how one role ran</a>
+            </div>
+            <div class="door">
+              <p class="door__k">If you’re looking</p>
+              <p class="door__t">One conversation, then teams come to you.</p>
+              <p class="door__d">
+                Half an hour with someone who has done your job. Anonymous until you decide otherwise.
+              </p>
+              <p class="door__next"><span>Next</span> Fifteen minutes to set up, and you keep the score.</p>
+              <a href="/candidates" class="btn btn--ghost">Create your profile</a>
+            </div>
+          </div>
+          <p class="bbb2" data-rv><span>Belong</span><i></i><span>Build</span><i></i><span>Become</span></p>
+          <p class="bbb2__s" data-rv>Tribe + Era. A hire only works if both sides were right about each other.</p>
+        </div>
+      </section>
+    </EditorialPage>
+    <SiteFooter />
+    <script>
+      import { initReferenceInteractions } from '~/scripts/reference';
 
-          /* ══ THE LAB: the visitor moves the bar, the verdict follows ══ */
-          (function () {
-            const D = [
-         { k: 'A', n: 'Core networking, TCP/IP', w: 6.25, s: 5 },
-         { k: 'B', n: 'Routing and BGP depth', w: 6.25, s: 5 },
-         { k: 'C', n: 'Data-centre networks', w: 6.25, s: 3 },
-         { k: 'D', n: 'Hybrid, DCI and WAN', w: 3.75, s: 4 },
-         { k: 'E', n: 'Troubleshooting and RCA', w: 6.25, s: 5 },
-         { k: 'F', n: 'Performance and optimisation', w: 5.0, s: 4 },
-         { k: 'G', n: 'Change and runbook discipline', w: 5.0, s: 4 },
-         { k: 'H', n: 'ISP and carrier coordination', w: 2.5, s: 4 },
-         { k: 'I', n: 'Operations and ownership', w: 3.75, s: 4 },
-         { k: 'J', n: 'Linux, scripting, automation', w: 1.25, s: 2 },
-         { k: 'K', n: 'Authenticity', w: 3.75, s: 4 },
-       ];
-            const BASE = D.map(function (d) {
-         return d.w;
-       });
-            const PRE = {
-         brief: BASE.slice(),
-         auto: [2, 2, 3, 2, 2, 2, 2, 1, 2, 12, 2],
-         fabric: [2, 2, 12, 2, 2, 2, 2, 1, 2, 3, 2],
-         ops: [7, 7, 1, 3, 9, 5, 8, 3, 7, 0.5, 4],
-       };
-            const NOTE = {
-         brief:
-           'As briefed: fundamentals, troubleshooting and performance carry the weight. Automation is deliberately weighted so it cannot carry a profile.',
-         auto: 'Weight automation above everything and he drops out of Select. He scored 2 there, and it was the one thing he could not evidence. On this brief he is a no.',
-         fabric:
-           'Weight fabric depth and he falls to the bottom of Select. He describes the estate; he has not operated the fabric himself.',
-         ops: 'Weight the day job — troubleshooting, change discipline, ownership — and he climbs. That is where the evidence actually sat.',
-       };
-            const rows = document.getElementById('labRows'),
-         tiles = document.getElementById('labTiles'),
-         elScore = document.getElementById('labScore'),
-         elBand = document.getElementById('labBand'),
-         elPin = document.getElementById('labPin'),
-         elTot = document.getElementById('labTotal'),
-         elNote = document.getElementById('labNote');
-            if (!rows) return;
+      initReferenceInteractions(document, { blogCopy: true });
 
-            rows.innerHTML = D.map(function (d, i) {
-              return (
-                '<div class="row" id="row' +
-                i +
-                '" data-i="' +
-                i +
-                '"><span class="row__k">' +
-                d.k +
-                '</span>' +
-                '<span class="row__n">' +
-                d.n +
-                '</span>' +
-                '<input type="range" min="0" max="12" step="0.25" value="' +
-                d.w +
-                '" data-i="' +
-                i +
-                '" ' +
-                'aria-label="Weight for ' +
-                d.n +
-                '">' +
-                '<span class="row__p" id="pts' +
-                i +
-                '">0.00</span></div>'
-              );
-            }).join('');
-            tiles.innerHTML = D.map(function (d, i) {
-              return (
-                '<span class="lt' +
-                (d.s <= 2 ? ' low' : '') +
-                '" id="tile' +
-                i +
-                '" data-i="' +
-                i +
-                '" style="--s:' +
-                d.s +
-                '" ' +
-                'tabindex="0" title="' +
-                d.n +
-                ' — ' +
-                d.s +
-                ' of 5"><i>' +
-                d.k +
-                '</i><b>' +
-                d.s +
-                '</b></span>'
-              );
-            }).join('');
-
-            let shown = 42,
-              raf = null;
-            function paint() {
-              let tw = 0,
-                got = 0,
-                max = 0;
-              D.forEach(function (d) {
-                tw += d.w;
-                got += (d.w * d.s) / 5;
-                if (d.w > max) max = d.w;
-              });
-              const score = tw > 0 ? (got / tw) * 50 : 0;
-              D.forEach(function (d, i) {
-                document.getElementById('pts' + i).textContent = ((d.w * d.s) / 5).toFixed(2);
-                const heavy = d.w >= Math.max(7, max * 0.92);
-                document.getElementById('row' + i).classList.toggle('heavy', heavy);
-                document.getElementById('tile' + i).classList.toggle('heavy', heavy);
-              });
-              elTot.textContent = tw.toFixed(2);
-              elPin.style.left = Math.max(1, Math.min(99, (score / 50) * 100)) + '%';
-              const band = score >= 34 ? ['SELECT', 'b-sel'] : score >= 28 ? ['GREY', 'b-grey'] : ['REJECT', 'b-rej'];
-              elBand.textContent = band[0];
-              elBand.className = 'verd__band ' + band[1];
-              /* count the number rather than snapping it */
-              cancelAnimationFrame(raf);
-              (function step() {
-                const diff = score - shown;
-                if (Math.abs(diff) < 0.02) {
-                  shown = score;
-                  elScore.textContent = score.toFixed(2);
-                  return;
-                }
-                shown += diff * 0.22;
-                elScore.textContent = shown.toFixed(2);
-                raf = requestAnimationFrame(step);
-              })();
-            }
-
-            /* hover either half, the other half answers */
-            function link(i, on) {
-              const t = document.getElementById('tile' + i),
-           r = document.getElementById('row' + i);
-              if (t) t.classList.toggle('lit', on);
-              if (r) r.classList.toggle('lit', on);
-            }
-            function bind(host, sel) {
-              host.addEventListener('mouseover', function (e) {
-                const el = e.target.closest(sel);
-                if (el) link(+el.dataset.i, true);
-              });
-              host.addEventListener('mouseout', function (e) {
-                const el = e.target.closest(sel);
-                if (el) link(+el.dataset.i, false);
-              });
-              host.addEventListener('focusin', function (e) {
-                const el = e.target.closest(sel);
-                if (el) link(+el.dataset.i, true);
-              });
-              host.addEventListener('focusout', function (e) {
-                const el = e.target.closest(sel);
-                if (el) link(+el.dataset.i, false);
-              });
-            }
-            bind(tiles, '.lt');
-            bind(rows, '.row');
-
-            rows.addEventListener('input', function (e) {
-              const t = e.target;
-              if (t.type !== 'range') return;
-              D[+t.dataset.i].w = parseFloat(t.value);
-              document.querySelectorAll('.pre').forEach(function (b) {
-                b.classList.remove('on');
-              });
-              paint();
-            });
-            document.querySelectorAll('.pre').forEach(function (btn) {
-              btn.addEventListener('click', function () {
-                const set = PRE[btn.dataset.pre];
-                D.forEach(function (d, i) {
-                  d.w = set[i];
-                  rows.querySelector('input[data-i="' + i + '"]').value = set[i];
-                });
-                document.querySelectorAll('.pre').forEach(function (b) {
-                  b.classList.remove('on');
-                });
-                btn.classList.add('on');
-                elNote.textContent = NOTE[btn.dataset.pre];
-                paint();
-              });
-            });
-            paint();
-          })();
-
-          /* the score tiles name themselves */
-          const tiles = document.getElementById('tiles'),
-       tcap = document.getElementById('tilesCap');
-          if (tiles && tcap) {
-            const base = tcap.textContent;
-            function show(t) {
-              tcap.classList.add('is');
-              tcap.innerHTML = t.dataset.n + ' — <b style="color:#fff">' + t.dataset.s + ' of 5</b>';
-            }
-            function clear() {
-              tcap.classList.remove('is');
-              tcap.textContent = base;
-            }
-            tiles.addEventListener('mouseover', function (e) {
-              const t = e.target.closest('.tl');
-              if (t) show(t);
-            });
-            tiles.addEventListener('focusin', function (e) {
-              const t = e.target.closest('.tl');
-              if (t) show(t);
-            });
-            tiles.addEventListener('mouseleave', clear);
-            tiles.addEventListener('focusout', clear);
-          }
-
-          /* the card behaves like an object: it tilts toward you and catches light */
-          const cardWrap = document.querySelector('.hero__card'),
-       tilt = document.getElementById('tilt');
-          if (cardWrap && tilt && !reduce && matchMedia('(hover:hover) and (pointer:fine)').matches) {
-            let raf = null;
-            cardWrap.addEventListener('pointermove', function (e) {
-              if (raf) return;
-              raf = requestAnimationFrame(function () {
-                raf = null;
-                const r = cardWrap.getBoundingClientRect(),
-             px = (e.clientX - r.left) / r.width,
-             py = (e.clientY - r.top) / r.height;
-                tilt.classList.add('live');
-                tilt.style.setProperty('--ry', ((px - 0.5) * 11).toFixed(2) + 'deg');
-                tilt.style.setProperty('--rx', ((0.5 - py) * 8).toFixed(2) + 'deg');
-                cardWrap.querySelectorAll('.face').forEach(function (f) {
-                  f.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
-                  f.style.setProperty('--my', (py * 100).toFixed(1) + '%');
-                });
-              });
-            });
-            cardWrap.addEventListener('pointerleave', function () {
-              tilt.classList.remove('live');
-              tilt.style.setProperty('--ry', '0deg');
-              tilt.style.setProperty('--rx', '0deg');
-            });
-          }
-
-          /* the card has two faces — demo the flip once, then it’s yours */
-          const flip = document.getElementById('flip'),
-            tA = document.getElementById('tabA'),
-            tB = document.getElementById('tabB'),
-            fA = document.getElementById('faceA'),
-            fB = document.getElementById('faceB');
-          let took = false;
-          function face(b) {
-            if (!flip) return;
-            flip.classList.toggle('is-b', b);
-            if (cardWrap) cardWrap.classList.toggle('is-flipped', b);
-            tA.classList.toggle('is', !b);
-            tB.classList.toggle('is', b);
-            tA.setAttribute('aria-selected', String(!b));
-            tB.setAttribute('aria-selected', String(b));
-            fA.setAttribute('aria-hidden', String(b));
-            fB.setAttribute('aria-hidden', String(!b));
-          }
-          if (flip && cardWrap) {
-            tA.addEventListener('click', function () {
-              took = true;
-              face(false);
-            });
-            tB.addEventListener('click', function () {
-              took = true;
-              face(true);
-            });
-            cardWrap.addEventListener('click', function (e) {
-              if (e.target.closest('.ftab')) return;
-              took = true;
-              face(!flip.classList.contains('is-b'));
-            });
-            if (!reduce && 'IntersectionObserver' in window) {
-              new IntersectionObserver(
-                function (es, ob) {
-                  es.forEach(function (e) {
-                    if (!e.isIntersecting) return;
-                    ob.disconnect();
-                    setTimeout(function () {
-                      if (!took) face(true);
-                    }, 2600);
-                    setTimeout(function () {
-                      if (!took) face(false);
-                    }, 5200);
-                  });
-                },
-                { threshold: 0.4 }
-              ).observe(flip);
-            }
-          }
-          const GROUPS = [
-       [86, 1],
-       [26, 2],
-       [9, 3],
-       [3, 4],
-       [2, 5],
-     ];
-          const grid = document.getElementById('grid');
-          let sqs = [];
-          if (grid) {
-            let html = '';
-            GROUPS.forEach(function (g) {
-              for (let i = 0; i < g[0]; i++) html += '<span class="sq g' + g[1] + '" data-drop="' + g[1] + '"></span>';
-            });
-            grid.innerHTML = html;
-            sqs = [].slice.call(grid.children);
-          }
-
-          const DOT = { 1: '#3A3A37', 2: '#5A5A55', 3: '#8A8A85', 4: '#D8D8D3', 5: '#DA0007' };
-          /* hovering a STAGE shows everyone who got that far */
-          const REACH = {
-       1: '<b>All 126.</b> Everything the requirement returned.',
-       2: '<b>40 reached an expert interview.</b> Eighty-six never did.',
-       3: '<b>14 cleared the bar</b> on their own answers.',
-       4: '<b>5 names reached them</b> — the first people the team ever saw.',
-       5: '<b>2 hired,</b> out of five interviews.',
-     };
-          /* hovering a SQUARE shows where that person stopped */
-          const STOP = {
-       1: '<b>86 stopped here</b> — screened out before anyone spent time on them.',
-       2: '<b>26 stopped here</b> — interviewed by an expert, didn\u2019t clear the bar.',
-       3: '<b>9 stopped here</b> — cleared the bar, ranked below the top five.',
-       4: '<b>3 stopped here</b> — sent, hireable, not chosen this time.',
-       5: '<b>Hired.</b> One of the two.',
-     };
-          const REST = {
-       1: '126 people, shaded by how far each one got. <b>The two in red were hired.</b>',
-       2: '<b>86 have dropped away.</b> Screened out before anyone spent time on them.',
-       3: '<b>26 more gone.</b> Interviewed by a person, didn\u2019t clear the bar.',
-       4: '<b>9 more.</b> Good — ranked below the top five. They never reached the team.',
-       5: '<b>Two hired, out of five interviews.</b> Everything else never left our desk.',
-     };
-
-          const field = document.getElementById('field'),
-            fN = document.getElementById('fieldN'),
-            fL = document.getElementById('fieldLbl'),
-            fF = document.getElementById('fieldFt');
-          let stage = 0;
-
-          function setStage(n) {
-            if (n === stage || !sqs.length) return;
-            stage = n;
-            sqs.forEach(function (s) {
-              s.classList.toggle('out', +s.dataset.drop < n);
-            });
-            field.classList.toggle('at5', n === 5);
-            const st = document.querySelector('.step[data-n="' + n + '"]');
-            if (st) {
-              fN.textContent = st.dataset.count;
-              fL.textContent = st.dataset.lbl;
-            }
-            fF.innerHTML = REST[n];
-          }
-          setStage(1);
-
-          /* hover trace — subtle, on squares and on the step text */
-          function peek(n, mode) {
-            if (!grid) return;
-            const reached = mode !== 'stopped';
-            grid.classList.add('peek');
-            sqs.forEach(function (s) {
-              const d = +s.dataset.drop;
-              s.classList.toggle('co', reached ? d >= n : d === n);
-            });
-            fF.innerHTML = '<i style="background:' + DOT[n] + '"></i>' + (reached ? REACH : STOP)[n];
-          }
-          function unpeek() {
-            if (!grid) return;
-            grid.classList.remove('peek');
-            sqs.forEach(function (s) {
-              s.classList.remove('co');
-            });
-            fF.innerHTML = REST[stage];
-          }
-          if (grid) {
-            grid.addEventListener('mouseover', function (e) {
-              const s = e.target.closest('.sq');
-              if (s) peek(+s.dataset.drop, 'stopped');
-            });
-            grid.addEventListener('mouseleave', unpeek);
-          }
-
-          const steps = [].slice.call(document.querySelectorAll('.step'));
-          let userTook = false;
-          steps.forEach(function (st) {
-            const n = +st.dataset.n;
-            st.setAttribute('tabindex', '0');
-            st.setAttribute('role', 'button');
-            function take() {
-              userTook = true;
-              mark(n);
-            }
-            st.addEventListener('mouseenter', function () {
-              take();
-              peek(n, 'reached');
-            });
-            st.addEventListener('mouseleave', unpeek);
-            st.addEventListener('focus', function () {
-              take();
-              peek(n, 'reached');
-            });
-            st.addEventListener('blur', unpeek);
-            st.addEventListener('click', take);
-            st.addEventListener('keydown', function (e) {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                take();
-              }
-            });
-          });
-
-          function mark(n) {
-            steps.forEach(function (s) {
-              s.classList.toggle('on', +s.dataset.n === n);
-            });
-            setStage(n);
-          }
-
-          /* it narrows itself once when you arrive — then it’s yours to poke at */
-          const fn = document.getElementById('run');
-          let played = false;
-          if (fn && steps.length && 'IntersectionObserver' in window) {
-            new IntersectionObserver(
-              function (es, ob) {
-                es.forEach(function (e) {
-                  if (!e.isIntersecting || played) return;
-                  played = true;
-                  ob.disconnect();
-                  if (reduce) {
-                    mark(5);
-                    return;
-                  }
-                  [2, 3, 4, 5].forEach(function (n, i) {
-                    setTimeout(
-                      function () {
-                        if (!userTook) mark(n);
-                      },
-                      900 + i * 780
-                    );
-                  });
-                });
-              },
-              { threshold: 0.35 }
-            ).observe(fn);
-          } else if (steps.length) {
-            mark(5);
-          }
-
-          const io = new IntersectionObserver(
-            function (es) {
-              es.forEach(function (e) {
-                if (e.isIntersecting) {
-                  e.target.classList.add('in');
-                  io.unobserve(e.target);
-                }
-              });
-            },
-            { threshold: 0.14, rootMargin: '0px 0px -8% 0px' }
-          );
-          document.querySelectorAll('[data-rv]').forEach(function (el) {
-            io.observe(el);
-          });
-
-          /* signal tags act as filters over the table */
-          const swap = document.querySelector('.swap'),
-       keyBar = document.querySelector('.key');
-          if (swap && keyBar) {
-            const rows = [].slice.call(swap.querySelectorAll('.swap__row'));
-            function apply(k) {
-              if (!k) {
-                swap.classList.remove('dim');
-                rows.forEach(function (r) {
-                  r.classList.remove('hit');
-                });
-                return;
-              }
-              const want = k.querySelector('.tag').textContent.trim().toLowerCase();
-              swap.classList.add('dim');
-              rows.forEach(function (r) {
-                const t = r.querySelector('.tag');
-                r.classList.toggle('hit', !!t && t.textContent.trim().toLowerCase() === want);
-              });
-            }
-            keyBar.querySelectorAll('.key__i').forEach(function (k) {
-              k.setAttribute('tabindex', '0');
-              k.setAttribute('role', 'button');
-              k.addEventListener('mouseenter', function () {
-                apply(k);
-              });
-            });
-            /* one authority for clearing — the bar itself */
-            keyBar.addEventListener('mouseleave', function () {
-              apply(null);
-            });
-            keyBar.addEventListener('focusin', function (e) {
-              const k = e.target.closest('.key__i');
-              apply(k || null);
-            });
-            keyBar.addEventListener('focusout', function (e) {
-              if (!keyBar.contains(e.relatedTarget)) apply(null);
-            });
-          }
-
-          /* the tally draws once, slowly, then the three land at speed */
-          const fan = document.querySelector('.fan'),
-       tN = document.getElementById('tallyN');
-          if (fan) {
-            new IntersectionObserver(
-              function (es, ob) {
-                es.forEach(function (e) {
-                  if (!e.isIntersecting) return;
-                  ob.disconnect();
-                  if (reduce) return;
-                  fan.classList.add('go');
-                  if (!tN) return;
-                  let t0 = null;
-                  const DUR = 1800;
-                  tN.textContent = '0';
-                  requestAnimationFrame(function step(ts) {
-                    if (t0 === null) t0 = ts;
-                    const u = Math.min((ts - t0) / DUR, 1);
-                    tN.textContent = Math.round(Math.pow(u, 1 / 0.62) * 140);
-                    if (u < 1) requestAnimationFrame(step);
-                    else tN.textContent = '140';
-                  });
-                });
-              },
-              { threshold: 0.35 }
-            ).observe(fan);
-          }
-
-          const deskBlk = document.querySelector('.desk');
-          if (deskBlk)
-            new IntersectionObserver(
-              function (es, ob) {
-                es.forEach(function (e) {
-                  if (e.isIntersecting) {
-                    deskBlk.classList.add('in');
-                    ob.disconnect();
-                  }
-                });
-              },
-              { threshold: 0.4 }
-            ).observe(deskBlk);
-
-          const ramp = document.getElementById('ramp');
-          if (ramp)
-            new IntersectionObserver(
-              function (es, ob) {
-                es.forEach(function (e) {
-                  if (e.isIntersecting) {
-                    ramp.classList.add('in');
-                    ob.disconnect();
-                  }
-                });
-              },
-              { threshold: 0.3 }
-            ).observe(ramp);
-
-          /* nav switcher reflects where you are */
-          const cand = document.getElementById('candidates'),
-       bar = document.getElementById('stickcta'),
-       applyBox = document.getElementById('apply');
-
-          /* sticky apply bar: only while the candidate section is on screen,
-     and never on top of the apply card itself */
-          if (cand && bar && applyBox) {
-            let inSection = false,
-              atForm = false;
-            function sync() {
-              bar.classList.toggle('show', inSection && !atForm);
-            }
-            new IntersectionObserver(
-              function (es) {
-                es.forEach(function (e) {
-                  inSection = e.isIntersecting;
-                  sync();
-                });
-              },
-              { threshold: 0.12 }
-            ).observe(cand);
-            new IntersectionObserver(
-              function (es) {
-                es.forEach(function (e) {
-                  atForm = e.isIntersecting;
-                  sync();
-                });
-              },
-              { threshold: 0.3 }
-            ).observe(applyBox);
-          }
-
-          /* a filename is better feedback than a silent upload */
-          const fileIn = document.querySelector('.apply__file input');
-          if (fileIn)
-            fileIn.addEventListener('change', function () {
-              const lbl = fileIn.parentNode.querySelector('span');
-              if (fileIn.files && fileIn.files[0]) lbl.textContent = fileIn.files[0].name;
-            });
-        })();
-
-        /* ══ reading progress ══ */
-        (function () {
-          const bar = document.querySelector('.reading__f'),
-       art = document.querySelector('.art');
-          if (!bar || !art) return;
-          function tick() {
-            const r = art.getBoundingClientRect(),
-         vh = innerHeight;
-            const total = r.height - vh * 0.4;
-            const done = Math.min(Math.max(-r.top + vh * 0.4, 0), Math.max(total, 1));
-            bar.style.width = (done / Math.max(total, 1)) * 100 + '%';
-          }
-          addEventListener('scroll', tick, { passive: true });
-          addEventListener('resize', tick);
-          tick();
-        })();
-      </script>
-      <StandaloneNavScripts />
-      <ContactSalesModal />
-      <StandalonePrefetchScripts />
-    </section>
+      /* ══ reading progress ══ */
+      (function () {
+        const bar = document.querySelector<HTMLElement>('.reading__f'),
+          art = document.querySelector<HTMLElement>('.art');
+        if (!bar || !art) return;
+        function tick() {
+          if (!art || !bar) return;
+          const r = art.getBoundingClientRect(),
+            vh = innerHeight;
+          const total = r.height - vh * 0.4;
+          const done = Math.min(Math.max(-r.top + vh * 0.4, 0), Math.max(total, 1));
+          bar.style.width = (done / Math.max(total, 1)) * 100 + '%';
+        }
+        addEventListener('scroll', tick, { passive: true });
+        addEventListener('resize', tick);
+        tick();
+      })();
+    </script>
+    <ContactSalesModal />
+    <StandalonePrefetchScripts />
   </body>
 </html>

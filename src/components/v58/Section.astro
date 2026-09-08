@@ -1,0 +1,35 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+export interface Props extends HTMLAttributes<'section'> {
+  tone?: 'white' | 'paper' | 'dark';
+  class?: string;
+}
+
+const { tone = 'white', class: className, ...attributes } = Astro.props;
+---
+
+<section {...attributes} class:list={['v58-section', `v58-section--${tone}`, className]}>
+  <div class="v58-section__wrap"><slot /></div>
+</section>
+
+<style>
+  .v58-section {
+    padding-block: clamp(76px, 10vw, 140px);
+  }
+  .v58-section--white {
+    background: var(--v58-white);
+    color: var(--v58-ink);
+  }
+  .v58-section--paper {
+    background: var(--v58-paper);
+    color: var(--v58-ink);
+  }
+  .v58-section--dark {
+    background: var(--v58-charcoal);
+    color: var(--v58-white);
+  }
+  .v58-section__wrap {
+    width: min(100% - clamp(44px, 10vw, 144px), var(--v58-wrap));
+    margin-inline: auto;
+  }
+</style>

@@ -1,0 +1,41 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+# Route-by-Route Review
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/functions/security/` | **Pass, on-brand.** Matches homepage template: Fraunces italic-red hero phrase, dark bar-chart panel, cream "cannot tell you" cards, dark "operators" section, red CTAs, centered final Belong/Build/Become. Cards/columns align cleanly desktop + mobile. | **Needs a copyedit pass.** Two clear typos: "the instinctz" (should be *instincts*) and "the classic incapacstrength answer" (garbled/nonsense word — reads broken, not just informal). Otherwise strong, sector-specific voice. |
+| `/industries/` | **Pass, strongest page in the set.** The two-sector comparison panel (dropdowns + paired bars) is the best executed "shape changes" visual in the whole packet. Twelve-card grid is evenly aligned, consistent mini-bar treatment per card. Dark "method" section reads clean. | **Pass, one awkward sentence.** "Our first question is never the job description. It's what your sector punishes, get it wrong." — comma splice, unclear on first read. Reads as if a word ("when you") was dropped. |
+| `/industries/ai-data/` | **Pass**, same proven template as security page, consistent card/table alignment. | **Pass.** Clean, no typos found. |
+| `/industries/banking-financial-services/` | **Pass**, same template, consistent. | **Pass.** Clean. |
+| `/industries/consumer-digital-commerce/` | **Pass**, same template, consistent. | **Pass.** Clean. |
+
+Given the shared template, once the security-page typos and the industries-hub sentence are fixed, all five routes are visually and editorially solid.
+
+---
+
+## Findings by severity
+
+**High**
+- `/functions/security/`: "incapacstrength" is a nonsense/corrupted word inside a customer-facing "thin answer" example — reads as broken copy, not a stylistic choice. Fix before next deploy.
+- `/functions/security/`: "the instinctz" typo, same section (Containment speed vs proof).
+
+**Medium**
+- `/industries/`: "It's what your sector punishes, get it wrong" — comma splice reads confusingly; likely missing "when you."
+- Cross-page inconsistency: the "who does the interviewing" section label differs in kind, not just wording, between page types. The three industry pages I reviewed (ai-data, banking, consumer) use a "years of experience" bench format ("ML engineering, 9 yrs"), while `/functions/security/` swaps in narrative bullets ("Engineers who have actually been woken up by a real signal, not a training table") under the heading "SECURITY BENCH YOU GET" — a label that also breaks the "ON THIS BENCH / ON OUR BFSI BENCH" naming pattern used elsewhere. Likely intentional per page type, but worth confirming it's a deliberate content decision rather than a partial migration.
+
+**Low**
+- Resolution limit: on the 390px mobile shots, the hero bar-chart panels (especially the industries-index two-sector comparison with paired numeric labels) render very small. I can't confirm from these screenshots whether the paired numbers stay legible at real device size — worth a manual on-device check rather than assuming it's fine.
+- I cannot verify from a static screenshot whether the industries-index sector dropdowns (Sector A / Sector B selectors) are wired up as live interactive controls or a static mock. Flagging for engineering confirmation, not as a defect.
+
+No overflow, cut-off text, or broken card layouts were visible in any of the five routes at either breakpoint — cards, table grids, and columns all aligned consistently with the homepage baseline.
+
+---
+
+## Claims needing owner evidence (not design/code issues)
+
+1. **"Interview three, hire one; if none of the three fit, we restart at no cost."** — appears as a stated guarantee on `/industries/ai-data/`, `/industries/banking-financial-services/`, and `/industries/consumer-digital-commerce/`, but is **absent** from `/functions/security/`. Confirm whether this guarantee applies to security mandates too, or whether the omission is intentional (e.g., contractual terms differ by sector vs. function).
+2. **"Three names in 36 hours"** — repeated verbatim as a hard SLA across every route reviewed. Confirm this is an operationally honored commitment, not aspirational copy.
+3. **Named bench tenure figures** (e.g., "Risk and compliance leads, 13–15 yrs," "ML engineering, 9 yrs," "Consumer product, 11 yrs") — presented as factual descriptions of current interviewer bench. Confirm these reflect real, current personnel and are kept updated as the bench changes.
+4. **"Outcomes come back to the expert who ran the interview — who got hired, who was still there a year later."** — implies an active retention-tracking/feedback loop exists. Confirm this system is operational, not descriptive of an intended-but-unbuilt process.
+
+I've only reviewed the five routes and assets listed above — no other pages in the site were assessed.

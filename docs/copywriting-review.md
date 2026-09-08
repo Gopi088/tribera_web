@@ -6,13 +6,13 @@ Status: in progress
 
 Current pages are reviewed against these supplied references:
 
-| Current page | Reference page |
-| --- | --- |
-| `src/pages/index.astro` | `sample_data/tribera-home (1).html` |
-| `src/pages/about.astro` | `sample_data/tribera-about (2).html` |
+| Current page                 | Reference page                            |
+| ---------------------------- | ----------------------------------------- |
+| `src/pages/index.astro`      | `sample_data/tribera-home (1).html`       |
+| `src/pages/about.astro`      | `sample_data/tribera-about (2).html`      |
 | `src/pages/candidates.astro` | `sample_data/tribera-candidates (1).html` |
-| `src/pages/contact.astro` | `sample_data/tribera-contact (1).html` |
-| `src/pages/blog/index.astro` | `sample_data/tribera-blog (5).html` |
+| `src/pages/contact.astro`    | `sample_data/tribera-contact (1).html`    |
+| `src/pages/blog/index.astro` | `sample_data/tribera-blog (5).html`       |
 
 The review protects the existing direct, evidence-led voice. It separates editorial improvements from factual, legal, product, and commercial claims that require an owner-confirmed source.
 

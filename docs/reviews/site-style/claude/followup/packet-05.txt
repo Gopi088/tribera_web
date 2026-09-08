@@ -1,0 +1,30 @@
+## Route-by-Route Verdict
+
+| Route | Visual | Copy |
+|---|---|---|
+| `/careers/talent-associate/` | **Pass.** Fraunces headline, mono eyebrow/labels, red CTA, dark hero → white/paper alternating sections, left-aligned headings, centered final CTA block. Desktop and mobile both render cleanly, no overflow or clipped text. | **Pass.** Scorecard percentages sum to 100 (30+20+18+14+12+6). Voice is consistent and specific throughout. No corrupted words or dangling sentences found. |
+| `/category/ai-and-assessment/` | **Pass.** Single-card grid, active pill correctly filled black, inactive pills outlined on both breakpoints. No masonry/asymmetry. | **Pass.** Filter labels human-readable; teaser matches the live article's teaser/read-time seen on the blog index review. |
+| `/category/candidate-experience/` | **Pass.** Two-card grid aligned evenly, consistent card treatment, mobile stacks cleanly. | **Pass** on style/consistency. McKinsey/Deloitte/PwC research citation is a factual claim — flagged below as owner-evidence, not a design/copy defect. |
+| `/category/hiring-philosophy/` | **Pass.** One-card layout matches the same card component as the other category pages — no divergent styling for the single-item case. | **Pass.** Teaser/date/read-time consistent with card metadata pattern. |
+| `/category/hiring-strategy/` | **Pass.** Same shared card/grid/filter component, consistent spacing and rule lines on desktop and mobile. | **Pass** on style. "2,00,000 interviews" figure is a factual/statistical claim — flagged below as owner-evidence. |
+
+All five routes use one shared filter-pill component and one shared card component, satisfying the "consistent cards, no asymmetric masonry" fix. Header/footer are identical across all five, matching the home baseline's black footer and mono-label nav.
+
+## Findings by Severity
+
+**Blocking:** None found in this packet.
+
+**Non-blocking / minor:**
+- None observed. Text is legible at both breakpoints in every screenshot; no dead-looking controls, no unreadable contrast, no truncated cards.
+
+**Correctly not-a-bug (per disposition, confirmed here):**
+- Category cards each show only category + up to two tags — consistent with "taxonomy cards do not list every tag." Not re-flagging as a defect.
+- Collapsible sections on these five pages were captured closed; the copy files include the closed-state text, consistent with the disposition's note that native details/summary controls are functioning, not broken.
+
+## Owner-Evidence Release Questions (not design/code issues)
+
+- `/category/candidate-experience/`: "Backed by research from McKinsey, Deloitte, and PwC" — needs citation/permission confirmation before publishing under those firms' names.
+- `/category/hiring-strategy/`: "2,00,000 structured interviews" volume claim — needs the same interview-volume evidence flagged in the disposition's owner-evidence section.
+- `/careers/talent-associate/`: role headcount ("1 POSITION") and process SLAs ("within 3 days," "two weeks") fall under the disposition's "36-hour targets/response SLAs/live job openings" owner-evidence category — confirm this role is actually open and the timelines are current before publishing.
+
+No other routes were reviewed; this assessment covers only the five listed above.

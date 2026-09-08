@@ -1,0 +1,41 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+## Scope note
+This review covers only the 5 routes below, each checked at 1520px desktop, 390px mobile, and against the extracted copy file. No other routes were opened.
+
+## Route verdicts
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/tag/decision-infrastructure/` | Pass with issues — 2-card grid fills evenly, but a stray red pill button reading "decision-infrastructure" sits alone above the grid with no visible purpose | Pass — headline/dek clean; "2,00,000 structured interviews" stat needs evidence |
+| `/tag/empathy/` | Issues — single card leaves entire right column of the grid empty; large dead whitespace under hero | Pass — copy is clean and on-brand |
+| `/tag/engineering/` | Issues — same single-card/empty-column problem as empathy | Minor issue — tag chip reads "Ai In Hiring" (should be "AI in Hiring") |
+| `/tag/hiring-insights/` | Issues — same single-card/empty-column problem | Needs evidence — dek cites "research from McKinsey, Deloitte, and PwC" with no citation/link shown |
+| `/tag/hiring-metrics/` | Issues — same single-card/empty-column problem | Pass — "2,00,000 structured interviews" stat needs evidence (same claim as decision-infrastructure, since it's the same article) |
+
+All 5 share one template, so most issues below repeat across routes.
+
+## Findings by severity
+
+**High**
+- **Broken/inconsistent filter control.** The copy dump on every one of the 5 pages contains a full taxonomy list (All, Candidate Experience, Technical Hiring, AI & Assessment, Hiring Philosophy, Hiring Strategy, talent-acquisition, decision-infrastructure), implying a tag-filter pill row should render. Visually, 4 of 5 pages (empathy, engineering, hiring-insights, hiring-metrics) show **no filter pills at all**. Only decision-infrastructure shows **one** red pill, and it just repeats the current tag name — it isn't a filter set, it's a dead-looking single button with no visible function. This reads as a broken component, not a design choice.
+- **Unfinished-looking grid layout.** The card grid appears built for 2+ columns, but 4 of the 5 tag pages have exactly one post, leaving a large empty column to the right of the single card (desktop only — mobile stacks fine). This looks unfinished/broken rather than intentional, especially since decision-infrastructure (which happens to have 2 posts) fills the grid correctly by contrast.
+
+**Medium**
+- **Excessive dead whitespace above the fold.** On both desktop and mobile, there's a large blank gap between the hero dek ("Notes on hiring, assessment and the candidate experience.") and the first card — roughly half the viewport on desktop, and on mobile it pushes the only content below the fold, forcing a scroll through empty space before any real content appears.
+- **Slug leaking into headline.** The Fraunces H1 on every tag page is the raw URL slug verbatim ("decision-infrastructure," "hiring-insights," "hiring-metrics") rather than a human-readable title ("Decision Infrastructure," "Hiring Insights"). This breaks the otherwise polished editorial tone used elsewhere on the site.
+- **No way back / no post count.** None of the 5 pages show a "back to all posts" link or any indication of how many posts exist under the tag, so a visitor landing on a single-post tag page has no path to browse further other than global nav.
+
+**Low**
+- Tag chip capitalization inconsistency: "Ai In Hiring" on `/tag/engineering/` should read "AI in Hiring" (compare correctly-cased "AI & ASSESSMENT" category label directly above it on the same card).
+
+**Consistent / working well**
+- Header, footer, typography (Fraunces headline / Inter body / mono eyebrow label), red CTA restraint, and left-aligned section heading conventions all match the home baseline across all 5 routes.
+- Footer legal links (Security, Terms, Privacy) and company/candidate nav columns are intact and identical on every route — no legal content is missing.
+- Mobile layouts have no overflow, no overlapping text, and card text is legible at 390px on every route checked.
+
+## Claims needing owner evidence (separate from design/code blockers)
+1. "Backed by research from McKinsey, Deloitte, and PwC" (hiring-insights teaser) — no citation or link accompanies this claim; confirm sourcing exists before treating it as verified.
+2. "2,00,000 structured interviews across domains" (article appearing on both decision-infrastructure and hiring-metrics tag pages) — confirm this figure is accurate/current and sourced, since it's a specific, prominent quantitative claim.
+
+## Resolution caveat
+All text in the provided screenshots was legible at the given resolutions — no unreadable-text issues to report for these 5 routes specifically. I'm not able to inspect underlying DOM/CSS, so "no filter pills rendering" is a visual-evidence finding (absence in the screenshot), not a confirmed code diagnosis.

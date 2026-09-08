@@ -1,0 +1,49 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Read all 15 files (5 desktop, 5 mobile, 5 copy) plus the baseline. Full-page captures downscale to 78–550px wide, so body text is mostly sub-pixel; visual verdicts below are based on layout, rhythm, colour and control affordance, with copy read from the text files. I could not verify font sizes, contrast ratios, link targets, hover/focus states, or whether any control is actually wired.
+
+## Per-route verdicts
+
+| Route | Visual (1520 / 390) | Copy |
+|---|---|---|
+| /blog/designing-for-trust-privacy-transparency-respect/ | **Pass with issues.** Shell matches baseline (dark hero, left-offset measure, red rule + Fraunces H2s, warm-paper related band). Two inline figures read as skeleton/placeholder graphics. Uniquely gets a dark candidate CTA ("Hidden from the first second.") where 4 of 5 siblings get the newsletter block. Mobile ~9.9k px tall, no overflow seen. | **Pass with issues.** Best-argued piece in the packet, but its "We check the company too" section is near-verbatim the same section in route 2. Unsourced "about eleven seconds" stat. Several hard privacy guarantees. |
+| /blog/hiring-is-not-a-transaction-its-a-relationship/ | **Pass.** Cleanest structure: one figure-free column, ellipse hero mark, equal-height related cards. Newsletter band + Two-doors + footer as elsewhere. Mobile stacks correctly; pull quote appears to become a solid red block on mobile vs red-text-on-white on desktop. | **Pass with issues.** Shortest and tightest. Same duplicated company-check paragraphs as route 1. Article is never surfaced in any related module in this packet. |
+| /blog/rethinking-hiring-metrics-signal-efficiency/ | **Pass with issues.** Three inline figures; the third is an unlabelled bar graphic carrying a correlation claim in its caption. Tag chips wrap to a second row leaving an orphan chip beside the right-aligned SHARE row. Longest mobile page in the packet (~10,000px) for a 4-min read. | **Pass with issues.** Strong argument; carries the packet's biggest unsourced number ("200,000 interviews") in the hero sub. Shares a verbatim sentence with route 4. |
+| /blog/signal-vs-noise-technical-hiring/ | **Pass.** Highest-fidelity capture and the most on-style page: scatter hero mark, aligned column, consistent pull quote, equal cards. Mobile clean, no overflow. | **Pass with issues.** Tight and persuasive. One straight apostrophe ("managers'") against curly quotes everywhere else. Repeats route 3's "a bar written after the first CV is a description of that CV" word for word. |
+| /blog/when-job-hunting-feels-like-a-black-hole/ | **Pass with issues.** Tally-mark hero graphic is the best of the set. Hero sub-headline appears noticeably dimmer grey-on-near-black than sibling heroes (flagging as suspected, not measured). Otherwise identical shell; mobile clean. | **Pass with issues.** A named individual's job-search story ("Arjun") presented as fact with specific numbers — needs consent/composite disclosure. Candidate-audience piece, but it gets the newsletter block rather than the candidate CTA route 1 gets. |
+
+## Findings by severity
+
+### High
+1. **"NEWSLETTER IN PREPARATION — Get notified when it is ready" ships on 4 of 5 routes.** A live-looking email field and red Subscribe button for a product that the label itself says does not exist. Newest post here is dated Feb 15, 2026; as of today this promise has been "in preparation" for months with no date. Either wire it and drop the "in preparation" framing, or remove the block. Confirm whether submissions are actually captured — an unwired field on four URLs is worse than no field.
+2. **Duplicated body copy across two live URLs.** Route 1's "We check the company too" and route 2's "So we check the company too" are near-identical for three paragraphs, closing on the same sentence ("pretending otherwise would be its own kind of disrespect"). Route 3 and route 4 both contain "A bar written after the first CV is a description of that CV." Rewrite one side of each pair.
+3. **Two-doors CTA asymmetry on every route.** The hiring card gets a solid red button; the candidate card gets a bare underlined "Create your profile" text link. On a page pair that claims both sides are choosing, the candidate door renders as the weaker/secondary control. Same asymmetry on mobile.
+
+### Medium
+4. **Placeholder-looking graphics.** The inline figures (route 1's "toggle" and grey-pill/red-bar image, route 3's bar figures) and most related-card thumbnails are grey-bar abstractions that read as skeleton loaders or unloaded images. Users will scroll past them assuming a failed load. Route 1's second figure is the worst offender.
+5. **Route 3's unlabelled chart carries a statistical claim.** The caption asserts "the strongest correlation was whether the bar existed in writing before sourcing began… candidate quality… barely moved the number at all" over bars with no axis, no n, no scale. Either label it or demote it to a non-chart device.
+6. **Audience toggle appears stuck on "I'm hiring."** On all five pages, including the two candidate-audience articles, the "I'm hiring" pill appears selected and "I'm looking" greyed. If this is a persisted preference rather than a page-context default, candidate readers land in the wrong mode. (Selected-vs-hover state is my reading of a low-res pill; verify in browser.)
+7. **Related module is effectively a fixed list.** Routes 2, 4 and 5 all surface the identical trio (Rethinking / Designing for trust / Designing AI). "Designing AI" appears in all five; "Hiring is not a transaction" appears in none. The section is headed "Three more that came out of real mandates" — it reads as curated but behaves as a fallback.
+8. **Share and tag controls look dead.** "SHARE · LinkedIn · Copy link" is tiny mono text with no button or icon affordance; the tag chips are outlined pills that look clickable but I cannot confirm they link anywhere. Both need either real affordance or de-emphasis.
+
+### Low
+9. Tag chips wrap to a second row on routes 3, 4 and 5, orphaning one chip beneath a right-aligned SHARE cluster. Reserve the row or move SHARE below.
+10. Hero eyebrow (date · category · read time) is very small red/grey mono on near-black across all five; suspected contrast and legibility problem, not measured.
+11. Footer "BENGALURU" bottom-right is near-invisible dark-grey on black.
+12. "Belong. Build. Become." appears three times per page (article sign-off, large lockup, footer brand block).
+13. Editorial tic: three of five articles hinge on "the thing we had backwards / got wrong for two years"; route 3 uses it as both sub-headline and an H2.
+14. Route 1's H1 "Designing for trust" doesn't match its slug (`…-privacy-transparency-respect`), and its related-card dek is a truncation of a different sentence.
+15. Straight apostrophe in route 4 ("hiring managers' willingness") against curly quotes site-wide.
+16. Header primary CTA is "Start with one role" but the in-page hiring CTA is "See how one role ran" — two different primary next steps for the same audience on the same page.
+
+## Claims needing owner evidence (not design blockers)
+- **"What 200,000 interviews taught us"** (route 3 hero sub) — the largest number on the blog, unsourced.
+- **"three interviews per hire is roughly where a calibrated process settles"** and the correlation caption (route 3) — needs the underlying mandate data or softer framing.
+- **Company-side vetting**: funded headcount, number of rounds, decision speed, manager tenure, and *"did the last few people hired through us stay"* (routes 1 and 2) — asserts both an operating capability and a placement-tenure dataset. Confirm it exists and that clients contractually supply it.
+- **Candidate privacy guarantees** (route 1): not searchable, blocked companies "never see that you exist," companies cannot message you, candidate sees the identical score the hiring team sees, "anonymous until you decide otherwise," "you keep the score." These are legal-grade commitments — confirm each against the shipped product and the privacy policy. Preserve them only if all are currently true.
+- **Service SLAs repeated on all five routes**: "A 45-minute intake call. Three names back inside 36 hours," "A hundred signals," "Fifteen minutes to set up."
+- **"A 327-profile search that closed in 22 days"** (related card, route 3).
+- **"Arjun"** (route 5): 140 applications, three replies, three teams inside 48 hours. If real, confirm consent; if composite, say so.
+- **Bylines**: "twenty years of enterprise hiring" (route 3), "built the signal engine" (route 1).
+- **"We never share the list"** (newsletter, 4 routes) — a data promise attached to a list that may not yet exist.
+
+Scope note: this covers only the five blog article routes listed. I did not review /blog/index, the linked "Designing AI" and "Why tech hiring" posts, or any Two-doors/footer destination.

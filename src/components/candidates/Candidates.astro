@@ -1,0 +1,1592 @@
+---
+import { dimensions, briefs, weightedScore, leadingPriorities, weakerEvidence } from './model';
+import EditorialHeading from '../v58/EditorialHeading.astro';
+const initialScore = weightedScore(briefs[0].weights).toFixed(1);
+const initialPriorities = leadingPriorities(briefs[0].weights);
+const clients = [
+  'Mizuho',
+  'Capco',
+  'Deloitte',
+  'ArcelorMittal',
+  'Flipkart',
+  'Myntra',
+  'Motherson',
+  'Publicis Sapient',
+  'Publicis Resources',
+  'Evident Microscopy',
+  'Antz',
+];
+const steps = [
+  ['01', 'Share your profile', 'Your CV, experience and the kind of work you want next.'],
+  ['02', 'Speak with an expert', 'A conversation about your work, decisions and the problems you have solved.'],
+  ['03', 'Explore relevant roles', 'We review your experience against what each hiring team needs.'],
+  ['04', 'Choose your next move', 'Meet the team, ask your questions and decide whether the role fits.'],
+];
+const quotes = [
+  [
+    'From the very first conversation, the process was handled with professionalism, transparency and steady communication. A special mention to Chyna from Tribera, who understood my background and stayed with me the whole way - coordinating interviews, sharing timely updates and offering guidance at every stage. She made a stressful process feel genuinely smooth.',
+    'Anil Giri',
+  ],
+  [
+    'From the initial shortlisting of my profile to coordinating the discussions and interview rounds, the team kept a high level of professionalism, responsiveness and transparency. Expectations, timelines, feedback and next steps were communicated clearly at every stage - which made the whole process feel smooth, structured and genuinely well-run.',
+    'Reema Mitra',
+  ],
+];
+---
+
+<div class="candidate-page">
+  <header class="c-hero" id="top">
+    <div class="c-hero__main c-wrap">
+      <p class="c-eyebrow"><span aria-hidden="true">\</span> Be seen for what you can do</p>
+      <h1>
+        Interview once.<br /><em class="c-underline"
+          >Be seen for your work.<svg viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true"
+            ><path d="M2,8 C26,3.5 54,9.5 84,6 C104,3.6 116,8 118,5"></path></svg
+          ></em
+        >
+      </h1>
+      <p class="c-lead">
+        You know what it is like to send a CV and hear nothing back. One conversation with an expert brings your work
+        into focus. We take that evidence to relevant teams, so they have more to go on before they meet you.
+      </p>
+      <div class="c-actions">
+        <a class="c-primary" href="#apply">Create your profile</a><a class="c-link" href="#score"
+          >See how teams assess fit &rsaquo;</a
+        >
+      </div>
+      <p class="c-micro">Less ground to cover again. More of your work understood.</p>
+    </div>
+    <a class="c-cue" href="#score">Same person. A different fit.<span aria-hidden="true">&darr;</span></a>
+  </header>
+  <div class="c-clients">
+    <div class="c-wrap">
+      <span class="c-label">Teams we have worked with</span><div class="c-clients__window">
+        <div class="c-clients__track">
+          {
+            [0, 1].map((copy) => (
+              <div aria-hidden={copy === 1 ? 'true' : undefined}>
+                {clients.map((client) => (
+                  <span>
+                    {client}
+                    <i aria-hidden="true">&middot;</i>
+                  </span>
+                ))}
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="c-section c-dark" id="score" aria-labelledby="score-title">
+    <div class="c-wrap">
+      <p class="c-eyebrow"><span aria-hidden="true">\</span> How fit works</p>
+      <div class="c-head">
+        <div>
+          <EditorialHeading id="score-title">Same person.<br />Different team.<br />Different score.</EditorialHeading>
+        </div><p class="c-lead">
+          These six scores come from Anirudh's sample interview. They stay the same, but what each team needs is
+          different. Choose a team to see how that changes his overall score.
+        </p>
+      </div>
+      <div class="c-score-layout" data-candidate-score>
+        <article class="c-scorecard">
+          <div class="c-score-summary">
+            <div data-score-summary-content>
+              <div class="c-scorecard__who">
+                <div><h3>Anirudh Mehta</h3><p>Senior backend &middot; 6 years</p></div><span class="c-badge"
+                  >Sample profile</span
+                >
+              </div>
+              <p class="c-scorecard__number"><b data-score>{initialScore}</b><span>/ 100</span></p>
+              <div class="c-scorecard__track" aria-hidden="true">
+                <i data-score-pin style={`left:${initialScore}%`}></i>
+              </div>
+              <p class="c-scorecard__axis">
+                <span>0</span><span>Weighted score &middot; not a ranking</span><span>100</span>
+              </p>
+            </div>
+          </div>
+          <p class="c-label c-evidence-label">Interview scores &middot; out of 100</p>
+          <dl class="c-evidence">
+            {
+              dimensions.map((dimension, index) => (
+                <div
+                  tabindex="0"
+                  data-evidence-row={index}
+                  class:list={{ 'is-priority': initialPriorities[index], 'is-weaker': weakerEvidence[index] }}
+                >
+                  <>
+                    <dt>{dimension.name}</dt>
+                    <dd>{dimension.score}</dd>
+                  </>
+                </div>
+              ))
+            }
+          </dl>
+          <p class="c-evidence-key">
+            <span>Amber: relatively weaker areas</span><span>Bright borders: this team's leading priorities</span>
+          </p>
+        </article>
+        <div class="c-priorities">
+          <div class="c-mobile-score">
+            <div><span>Anirudh's overall score</span><small data-mobile-team>{briefs[0].name}</small></div><strong
+              ><b data-mobile-score>{initialScore}</b><small> / 100</small></strong
+            >
+          </div>
+          <div class="c-score-summary">
+            <div data-score-summary-content>
+              <p class="c-label" id="brief-label">Choose a team</p>
+              <div class="c-presets" role="group" aria-labelledby="brief-label">
+                {
+                  briefs.map((brief, index) => (
+                    <button type="button" data-brief={index} aria-pressed={index === 0}>
+                      {brief.name}
+                    </button>
+                  ))
+                }
+              </div>
+              <p class="c-score-note" data-score-note>{briefs[0].note}</p>
+            </div>
+          </div>
+          <div class="c-weights-heading"><span>What this team values</span><span>Importance</span></div>
+          <dl class="c-weights">
+            {
+              dimensions.map((dimension, index) => (
+                <div tabindex="0" data-priority-row={index} class:list={{ 'is-priority': initialPriorities[index] }}>
+                  <>
+                    <dt>{dimension.name}</dt>
+                    <dd>
+                      <>
+                        <span class="c-weight-track" aria-hidden="true">
+                          <i data-weight-bar style={`width:${briefs[0].weights[index]}%`} />
+                        </span>
+                        <b data-weight>{briefs[0].weights[index]}%</b>
+                      </>
+                    </dd>
+                  </>
+                </div>
+              ))
+            }
+          </dl>
+          <p class="c-small">
+            Weights total 100%. These briefs illustrate the calculation, not a live vacancy or a hiring decision.
+          </p>
+          <noscript
+            ><p class="c-small">
+              The Consumer product example is shown. Enable JavaScript to compare the other briefs.
+            </p></noscript
+          >
+          <p class="c-sr-only" role="status" aria-live="polite" data-score-status></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="c-section c-paper" id="tally">
+    <div class="c-wrap">
+      <div class="c-head">
+        <div>
+          <p class="c-eyebrow"><span aria-hidden="true">\</span> What teams could not see</p><h2>
+            The same experience.<br />A different picture.
+          </h2>
+        </div><p class="c-lead">
+          Your ability did not begin with this interview. What changes is what a team can see: the decisions you made,
+          the alternatives you rejected and what you learned when things went wrong.
+        </p>
+      </div>
+      <div class="c-comparison">
+        <article>
+          <p class="c-label">On a CV &middot; illustrative example</p><h3>Built a payments service.</h3><p>
+            The project and the stack. A useful starting point, but your contribution is still hard to see.
+          </p>
+        </article><article class="c-comparison__evidence">
+          <p class="c-label">In the conversation</p><h3>Why that design? What did it cost?</h3><p>
+            The trade-off you rejected, why you rejected it, and what happened six months later. Now the team can see
+            the judgment behind the job title.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="c-section" id="proof">
+    <div class="c-wrap">
+      <div class="c-head">
+        <div>
+          <p class="c-eyebrow"><span aria-hidden="true">\</span> Both sides of the conversation</p><h2>
+            See what the team sees.
+          </h2>
+        </div><p class="c-lead">
+          Your interview gives the team more than a CV to read before they call. You need a clear picture of them, too.
+          Explore both sides in this example: your experience, and the opportunity you are considering.
+        </p>
+      </div>
+      <div class="c-preview" data-candidate-preview>
+        <div class="c-tabs" role="tablist" aria-label="Profile and team examples">
+          <button type="button" role="tab" id="profile-tab" aria-controls="profile-panel" aria-selected="true"
+            >Your profile</button
+          ><button type="button" role="tab" id="team-tab" aria-controls="team-panel" aria-selected="false" tabindex="-1"
+            >The team asking</button
+          >
+        </div>
+        <div class="c-preview__frame">
+          <article id="profile-panel" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+            <div class="c-preview__heading">
+              <div class="c-preview__meta">
+                <p class="c-label">Illustrative profile</p><span class="c-badge">Evidence first</span>
+              </div><h3>Senior backend engineer</h3><p>6 years &middot; Python, AWS, Kubernetes</p>
+            </div>
+            <div class="c-preview__columns">
+              <div>
+                <p class="c-label">What the interview brought out</p><h4>
+                  Designed for retries, without duplicate payments.
+                </h4><p>
+                  Explained the failure mode, why an idempotency key was needed, and how the team checked the change in
+                  production.
+                </p>
+              </div><div>
+                <p class="c-label">What to explore next</p><h4>How did you bring the team with you?</h4><p>
+                  The technical reasoning is clear. A worked example of resolving a design disagreement would add the
+                  collaboration behind it.
+                </p>
+              </div>
+            </div>
+          </article>
+          <article id="team-panel" role="tabpanel" aria-labelledby="team-tab" tabindex="0" hidden>
+            <div class="c-preview__heading">
+              <div class="c-preview__meta">
+                <p class="c-label">Illustrative team brief</p><span class="c-badge">Example team</span>
+              </div><h3>Platform team, 9 engineers</h3><p>Consumer internet &middot; reports to VP Engineering</p>
+            </div>
+            <dl class="c-team-facts">
+              <div><dt>The work</dt><dd>Own reliability and on-call improvements for a growing platform</dd></div><div>
+                <dt>The manager</dt><dd>VP Engineering, with a team of nine engineers</dd>
+              </div><div>
+                <dt>The process</dt><dd>Technical discussion, manager conversation, then a team meeting</dd>
+              </div><div>
+                <dt>The practicalities</dt><dd>
+                  Discuss the on-call rotation, location and compensation before proceeding
+                </dd>
+              </div>
+            </dl>
+          </article>
+        </div>
+        <p class="c-small">Examples only. Actual evidence and role details depend on the interview and hiring brief.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="c-section c-paper" id="thirty">
+    <div class="c-wrap">
+      <div class="c-head c-conversation-head">
+        <div>
+          <p class="c-eyebrow"><span aria-hidden="true">\</span> The expert conversation</p><h2>
+            One conversation.<br /><span class="c-underline"
+              >Less starting over.<svg viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true"
+                ><path d="M2,8 C26,3.5 54,9.5 84,6 C104,3.6 116,8 118,5"></path></svg
+              ></span
+            >
+          </h2>
+        </div><p class="c-lead">
+          Tell someone who knows the work how you actually did it. The evidence carries forward to relevant teams, so
+          each introduction can build on what you have already explained.
+        </p>
+      </div>
+      <div class="c-features">
+        <article>
+          <h3>Someone who knows where to go deeper.</h3><p>
+            An expert in your field explores your decisions and trade-offs, with questions shaped by the work you have
+            done.
+          </p>
+        </article><article>
+          <h3>A starting point for the next conversation.</h3><p>
+            Teams can build on your evidence rather than just your CV. They may still ask follow-up questions and run
+            their own interviews.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="c-section" id="controls">
+    <div class="c-wrap">
+      <div class="c-head">
+        <div>
+          <p class="c-eyebrow"><span aria-hidden="true">\</span> Your preferences matter</p><h2>
+            Looking for a move.<br />Keeping it discreet.
+          </h2>
+        </div><p class="c-lead">
+          Exploring your next role does not mean announcing your search. Tell us which companies should be excluded and
+          discuss how your profile will be shared before an introduction.
+        </p>
+      </div>
+      <div class="c-control-grid">
+        <article>
+          <h3>Who can see your profile.</h3><p>
+            Let us know if your current employer or other companies should be excluded from introductions.
+          </p>
+        </article><article>
+          <h3>Which conversations you want.</h3><p>
+            Share your priorities for the role, location and team. You decide which opportunities to explore.
+          </p>
+        </article><article>
+          <h3>When your plans change.</h3><p>Tell us if you want to pause your search or update your preferences.</p>
+        </article><article>
+          <h3>How your data is handled.</h3><p>
+            Review our privacy policy and ask about access, recording, retention or deletion before you proceed.
+          </p>
+        </article>
+      </div>
+      <a class="c-policy" href="/privacy">Read our privacy policy</a>
+      <div class="c-control-foot">
+        <div>
+          <h3>No candidate fee.</h3><p>
+            Companies pay for our services. You do not pay us to be considered for a role.
+          </p>
+        </div><div>
+          <h3>Across functions.</h3><p>
+            Engineering, data, infrastructure, finance, operations and leadership. We confirm whether we cover your
+            area.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="c-section c-paper" id="when">
+    <div class="c-wrap">
+      <div class="c-head">
+        <div>
+          <p class="c-eyebrow"><span aria-hidden="true">\</span> What happens next</p><h2>
+            A clear next step.<br />At every stage.
+          </h2>
+        </div><p class="c-lead">
+          Start with your profile. We review where we can help and explain the next step. Timing depends on your
+          experience and the roles available.
+        </p>
+      </div>
+      <ol class="c-steps">
+        {
+          steps.map(([number, title, copy], index) => (
+            <li class:list={{ 'c-step--yours': index === 0 || index === 3 }}>
+              <div class="c-step__card">
+                <>
+                  <span class="c-label">
+                    {number} &middot; {index === 0 || index === 3 ? 'Your move' : 'With Tribera'}
+                  </span>
+                  <h3>{title}</h3>
+                  <p>{copy}</p>
+                </>
+              </div>
+              {index < steps.length - 1 && (
+                <svg class="c-step__arrow" viewBox="0 0 36 16" aria-hidden="true">
+                  <path d="M2 9 Q12 6 32 8 M24 3 L33 8 L25 13" />
+                </svg>
+              )}
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="c-section c-dark" id="voices">
+    <div class="c-wrap">
+      <div class="c-head">
+        <div>
+          <p class="c-eyebrow"><span aria-hidden="true">\</span> In their words</p><h2>What candidates say.</h2>
+        </div>
+      </div>
+      <div class="c-quotes">
+        {
+          quotes.map(([quote, name]) => (
+            <figure>
+              <>
+                <span class="c-badge">Candidate</span>
+                <blockquote>&ldquo;{quote}&rdquo;</blockquote>
+                <figcaption>
+                  <>
+                    <b>{name}</b>
+                    <span>Placed through Tribera</span>
+                  </>
+                </figcaption>
+              </>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="c-section c-apply" id="apply">
+    <div class="c-wrap" id="close">
+      <p class="c-eyebrow"><span aria-hidden="true">\</span> Start with your experience</p><h2>
+        Give the right teams<br />more reasons to meet you.
+      </h2>
+      <p class="c-lead">
+        Share your CV and the work you want next. An expert conversation can turn that experience into evidence for
+        relevant teams, so your next introduction starts with what you can do.
+      </p>
+      <form action="/candidates/start" method="get" class="c-signup">
+        <label for="candidate-email">Your email</label><div>
+          <input
+            id="candidate-email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            placeholder="you@example.com"
+          /><button type="submit" class="c-primary">Create your profile</button>
+        </div><p class="c-small">
+          Next: your name and CV. Review our <a href="/privacy">privacy policy</a> before submitting your profile.
+        </p>
+      </form>
+      <p class="c-other">Hiring for your team? <a href="/">See how we work with you &rsaquo;</a></p>
+    </div>
+  </section>
+</div>
+
+<script>
+  import { briefs, weightedScore, leadingPriorities } from './model';
+  const root = document.querySelector('.candidate-page');
+  if (root) {
+    const scoreLayout = root.querySelector<HTMLElement>('[data-candidate-score]')!;
+    const summaries = [...root.querySelectorAll<HTMLElement>('[data-score-summary-content]')];
+    // Share only the summary height, leaving the two breakdowns at natural height.
+    const alignSummaries = () => {
+      scoreLayout.style.setProperty(
+        '--score-summary-height',
+        `${Math.ceil(Math.max(...summaries.map((summary) => summary.getBoundingClientRect().height)))}px`
+      );
+    };
+    const summaryObserver = new ResizeObserver(alignSummaries);
+    summaries.forEach((summary) => summaryObserver.observe(summary));
+    alignSummaries();
+    const evidenceRows = [...root.querySelectorAll<HTMLElement>('[data-evidence-row]')];
+    const priorityRows = [...root.querySelectorAll<HTMLElement>('[data-priority-row]')];
+    let hoveredRow = -1;
+    let focusedRow = -1;
+    function highlightRows() {
+      const active = hoveredRow >= 0 ? hoveredRow : focusedRow;
+      [evidenceRows, priorityRows].forEach((rows) =>
+        rows.forEach((row, index) => row.classList.toggle('is-linked', index === active))
+      );
+    }
+    [evidenceRows, priorityRows].forEach((rows) =>
+      rows.forEach((row, index) => {
+        row.addEventListener('pointerenter', () => {
+          hoveredRow = index;
+          highlightRows();
+        });
+        row.addEventListener('pointerleave', () => {
+          hoveredRow = -1;
+          highlightRows();
+        });
+        row.addEventListener('focus', () => {
+          focusedRow = index;
+          highlightRows();
+        });
+        row.addEventListener('blur', () => {
+          focusedRow = -1;
+          highlightRows();
+        });
+      })
+    );
+    const buttons = [...root.querySelectorAll<HTMLButtonElement>('[data-brief]')];
+    buttons.forEach((button) =>
+      button.addEventListener('click', () => {
+        const index = Number(button.dataset.brief);
+        const brief = briefs[index];
+        const priorities = leadingPriorities(brief.weights);
+        [evidenceRows, priorityRows].forEach((rows) =>
+          rows.forEach((row, i) => row.classList.toggle('is-priority', priorities[i]))
+        );
+        const value = weightedScore(brief.weights).toFixed(1);
+        buttons.forEach((other, otherIndex) => other.setAttribute('aria-pressed', String(otherIndex === index)));
+        root.querySelector('[data-score]')!.textContent = value;
+        root.querySelector('[data-mobile-score]')!.textContent = value;
+        root.querySelector('[data-mobile-team]')!.textContent = brief.name;
+        root.querySelector<HTMLElement>('[data-score-pin]')!.style.left = `${value}%`;
+        root.querySelector('[data-score-note]')!.textContent = brief.note;
+        root.querySelectorAll('[data-weight]').forEach((element, i) => {
+          element.textContent = `${brief.weights[i]}%`;
+        });
+        root.querySelectorAll<HTMLElement>('[data-weight-bar]').forEach((element, i) => {
+          element.style.width = `${brief.weights[i]}%`;
+        });
+        root.querySelector('[data-score-status]')!.textContent =
+          `${brief.name}: ${value} out of 100. Interview evidence unchanged.`;
+      })
+    );
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role=tab]')];
+    function selectTab(index: number) {
+      tabs.forEach((tab, i) => {
+        const selected = i === index;
+        tab.setAttribute('aria-selected', String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+        const panel = document.getElementById(tab.getAttribute('aria-controls')!)!;
+        panel.hidden = !selected;
+        panel.inert = !selected;
+      });
+    }
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectTab(index));
+      tab.addEventListener('keydown', (event) => {
+        const next =
+          event.key === 'Home'
+            ? 0
+            : event.key === 'End'
+              ? tabs.length - 1
+              : event.key === 'ArrowRight'
+                ? (index + 1) % tabs.length
+                : event.key === 'ArrowLeft'
+                  ? (index + tabs.length - 1) % tabs.length
+                  : null;
+        if (next === null) return;
+        event.preventDefault();
+        selectTab(next);
+        tabs[next].focus();
+      });
+    });
+    selectTab(0);
+  }
+</script>
+
+<style>
+  .candidate-page {
+    color: var(--v58-ink);
+    background: var(--v58-white);
+    font-family: var(--v58-ui);
+  }
+  .c-wrap {
+    width: min(100% - clamp(44px, 10vw, 144px), 1160px);
+    margin-inline: auto;
+  }
+  .candidate-page :is(h1, h2) {
+    font-family: var(--v58-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+    margin: 0;
+  }
+  h1 {
+    font-size: clamp(2.08rem, 4.48vw, 3.32rem);
+  }
+  h2 {
+    font-size: clamp(2rem, 3.9vw, 3rem);
+  }
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin: 0 0 12px;
+  }
+  p {
+    margin: 0;
+  }
+  .c-section {
+    padding-block: clamp(76px, 10vw, 140px);
+    scroll-margin-top: 80px;
+  }
+  .c-paper {
+    background: var(--v58-paper);
+  }
+  .c-dark {
+    background: var(--v58-charcoal);
+    color: #fff;
+  }
+  .c-eyebrow {
+    font: 400 0.56rem/1.5 var(--v58-mono);
+    color: var(--v58-faint);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin: 0 0 1.28rem;
+  }
+  .c-eyebrow > span {
+    color: var(--v58-red);
+    margin-right: 0.6em;
+  }
+  .c-lead {
+    color: var(--v58-muted);
+    font-size: clamp(16px, 1.1vw, 19px);
+    line-height: 1.55;
+    max-width: 60ch;
+  }
+  .c-head {
+    display: grid;
+    gap: 24px;
+    margin-bottom: clamp(32px, 3vw, 48px);
+  }
+  .c-head h2 {
+    max-width: 22ch;
+  }
+  #controls .c-head,
+  #when .c-head,
+  #proof .c-head {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  #controls .c-lead,
+  #when .c-lead,
+  #proof .c-lead {
+    max-width: 62ch;
+  }
+  .c-dark .c-lead,
+  .c-dark .c-eyebrow,
+  .c-dark .c-small {
+    color: rgba(255, 255, 255, 0.65);
+  }
+  .c-hero {
+    min-height: calc(100svh - 126px);
+    padding-block: clamp(24px, 3.5vw, 44px);
+    background: radial-gradient(1100px 520px at 50% 6%, rgba(218, 0, 7, 0.05), transparent 60%), #fff;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .c-hero::before {
+    content: '';
+    position: absolute;
+    inset: 22% 12%;
+    background-image: radial-gradient(rgba(218, 0, 7, 0.09) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse, #000, transparent 65%);
+    pointer-events: none;
+  }
+  .c-hero__main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-block: 24px;
+  }
+  .c-hero .c-lead {
+    max-width: 56ch;
+    margin: 1.28rem auto 0;
+    font-size: clamp(0.864rem, 1.24vw, 1.024rem);
+    line-height: 1.5;
+  }
+  .c-underline {
+    display: inline-block;
+    position: relative;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .c-underline svg {
+    position: absolute;
+    bottom: -0.15em;
+    width: 100%;
+    height: 0.3em;
+    left: 0;
+    overflow: visible;
+  }
+  .c-underline path {
+    fill: none;
+    stroke: var(--v58-red);
+    stroke-width: 2.6;
+    stroke-linecap: round;
+  }
+  .c-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    margin-top: 28px;
+  }
+  .c-primary {
+    border: 1px solid transparent;
+    background: var(--v58-red);
+    color: #fff;
+    box-shadow: 0 8px 20px -8px rgba(218, 0, 7, 0.5);
+    border-radius: 999px;
+    padding: 0.8em 1.5em;
+    font: 500 0.784rem/1.5 var(--v58-ui);
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition:
+      background 0.18s,
+      transform 0.18s;
+  }
+  .c-primary:hover {
+    background: #c10006;
+    transform: translateY(-1px);
+  }
+  .c-link {
+    color: var(--v58-muted);
+    font-size: 0.8rem;
+    text-decoration: none;
+    padding-block: 10px;
+  }
+  .c-link:hover {
+    color: var(--v58-red);
+  }
+  .c-micro {
+    font: 400 0.592rem/1.6 var(--v58-mono);
+    color: var(--v58-muted);
+    margin-top: 26px;
+  }
+  .c-cue {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+    padding-top: 20px;
+    font: 400 10px/1.5 var(--v58-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--v58-faint);
+    text-decoration: none;
+  }
+  .c-cue span {
+    color: var(--v58-red);
+    font-size: 24px;
+  }
+  .c-clients {
+    background: var(--v58-paper);
+    border-block: 1px solid var(--v58-line);
+  }
+  .c-clients > .c-wrap {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding-block: 18px;
+  }
+  .c-clients .c-label {
+    white-space: nowrap;
+  }
+  .c-clients__window {
+    min-width: 0;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .c-clients__track {
+    display: flex;
+    width: max-content;
+    animation: clients 50s linear infinite;
+  }
+  .c-clients__track > div {
+    display: flex;
+  }
+  .c-clients__track span {
+    white-space: nowrap;
+    font: 500 1rem/1.5 var(--v58-display);
+    padding-right: 16px;
+    color: var(--v58-muted);
+  }
+  .c-clients__track i {
+    font-style: normal;
+    color: var(--v58-red);
+    margin-left: 16px;
+  }
+  .c-clients__window:hover .c-clients__track {
+    animation-play-state: paused;
+  }
+  @keyframes clients {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .c-label {
+    color: var(--v58-muted);
+    font: 400 10px/1.5 var(--v58-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .c-dark .c-label {
+    color: rgba(255, 255, 255, 0.65);
+  }
+  .c-score-layout {
+    display: grid;
+    gap: 34px;
+    align-items: start;
+  }
+  .c-scorecard {
+    background: linear-gradient(158deg, #232320, #1a1a18 46%, #141413);
+    border: 1px solid #33332e;
+    border-radius: 16px;
+    padding: 26px;
+  }
+  .c-scorecard__who {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: start;
+  }
+  .c-scorecard__who h3 {
+    font: 500 24px/1.2 var(--v58-display);
+    margin-bottom: 6px;
+  }
+  .c-scorecard__who p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.65);
+  }
+  .c-badge {
+    display: inline-block;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    padding: 5px 8px;
+    font: 400 9px/1.4 var(--v58-mono);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--v58-muted);
+  }
+  .c-dark .c-badge {
+    color: rgba(255, 255, 255, 0.65);
+  }
+  .c-scorecard__number {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    margin: 24px 0 18px;
+    font-family: var(--v58-mono);
+  }
+  .c-scorecard__number b {
+    font-size: clamp(42px, 5vw, 60px);
+    line-height: 1;
+  }
+  .c-scorecard__number span {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.65);
+  }
+  .c-scorecard__track {
+    position: relative;
+    background: rgba(255, 255, 255, 0.18);
+    height: 5px;
+    border-radius: 3px;
+  }
+  .c-scorecard__track i {
+    position: absolute;
+    top: -4px;
+    width: 3px;
+    height: 13px;
+    background: #fff;
+    transition: left 0.3s;
+  }
+  .c-scorecard__axis {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font: 400 11px/1.5 var(--v58-mono);
+    color: rgba(255, 255, 255, 0.76);
+    margin-top: 8px;
+  }
+  .c-evidence-label {
+    margin-top: 20px;
+  }
+  .c-evidence {
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3px;
+  }
+  .c-evidence > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    min-width: 0;
+    min-height: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 7px;
+    padding: 6px 9px;
+    font-size: 12px;
+    line-height: 1.4;
+    background: rgba(255, 255, 255, 0.045);
+  }
+  .c-evidence dt {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .c-evidence dd {
+    flex: none;
+    font-family: var(--v58-mono);
+    font-weight: 500;
+  }
+  .c-scorecard__track i {
+    height: 14px;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  }
+  .c-evidence > div.is-priority {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+  .c-evidence .is-weaker dd {
+    color: #e8a33d;
+  }
+  .c-evidence-key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 11px;
+    line-height: 1.5;
+    margin-top: 12px;
+  }
+  .c-evidence-key span:first-child {
+    color: #e8a33d;
+  }
+  .c-evidence > div.is-linked {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.65);
+  }
+  .c-weights > div.is-linked {
+    background: rgba(255, 255, 255, 0.035);
+  }
+  .c-evidence > div:focus-visible,
+  .c-weights > div:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.65);
+    outline-offset: 2px;
+  }
+  .c-score-note {
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.65);
+    margin-top: 16px;
+    min-height: 3em;
+  }
+  .c-presets {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .c-presets button,
+  .c-tabs button {
+    font: 500 13px/1.4 var(--v58-ui);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 999px;
+    padding: 6px 12px;
+    background: transparent;
+    cursor: pointer;
+  }
+  .c-presets button[aria-pressed='true'] {
+    background: #fff;
+    color: #141413;
+    border-color: #fff;
+  }
+  .c-presets button {
+    font: 500 13.12px var(--v58-ui);
+    padding: 0.5em 0.9em;
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  .c-presets button:hover {
+    border-color: rgba(255, 255, 255, 0.62);
+  }
+  .c-presets button:focus-visible {
+    outline: 2px solid var(--v58-red);
+    outline-offset: 2px;
+  }
+  .c-weights-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 52px;
+    gap: 10px;
+    margin-top: 28px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.11);
+    padding-bottom: 10px;
+    font: 500 10px/1.5 var(--v58-mono);
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .c-weights-heading > span:last-child {
+    text-align: right;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 9px;
+    font-weight: 400;
+  }
+  .c-weights {
+    margin: 0;
+  }
+  .c-weights > div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 172px;
+    gap: 10px;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 5px 0;
+    min-height: 36px;
+  }
+  .c-weights dt {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .c-weights dd {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .c-weights b {
+    flex: none;
+    width: 52px;
+    text-align: right;
+    font: 500 12px/1.5 var(--v58-mono);
+    font-variant-numeric: tabular-nums;
+  }
+  .c-weight-track {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.12);
+    height: 4px;
+  }
+  .c-weight-track i {
+    display: block;
+    background: #fff;
+    height: 100%;
+    transition: width 0.3s;
+  }
+  .c-weights .is-priority .c-weight-track i {
+    background: var(--v58-red);
+  }
+  .c-weights .is-priority dt {
+    color: #fff;
+  }
+  .c-small {
+    color: var(--v58-muted);
+    font-size: 13px;
+    line-height: 1.6;
+    margin-top: 20px;
+  }
+  .c-mobile-score {
+    display: none;
+  }
+  @media (max-width: 899px) {
+    .c-mobile-score {
+      position: sticky;
+      top: 72px;
+      z-index: 2;
+      background: var(--v58-charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0;
+      margin-bottom: 20px;
+      border-block: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .c-presets button,
+    .c-weights > div {
+      scroll-margin-top: 180px;
+    }
+    .c-mobile-score > div {
+      display: grid;
+      gap: 4px;
+    }
+    .c-mobile-score span {
+      font-size: 13px;
+    }
+    .c-mobile-score small {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 12px;
+    }
+    .c-mobile-score strong {
+      white-space: nowrap;
+      font: 500 28px/1.2 var(--v58-mono);
+      font-variant-numeric: tabular-nums;
+    }
+  }
+  .c-comparison,
+  .c-features,
+  .c-control-grid,
+  .c-quotes {
+    display: grid;
+    gap: 16px;
+  }
+  .c-comparison article,
+  .c-control-grid article {
+    background: #fff;
+    padding: 1.55rem;
+    border: 1px solid var(--v58-line);
+    border-radius: 14px;
+    box-shadow: 0 20px 36px -28px rgba(19, 19, 19, 0.22);
+  }
+  .c-control-grid {
+    gap: 14px;
+  }
+  .c-control-grid article {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding: 1.25rem 1.3rem 1.3rem;
+  }
+  .c-control-grid article p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .c-comparison h3 {
+    font: 500 26px/1.2 var(--v58-display);
+    margin: 20px 0 14px;
+  }
+  .c-comparison .c-comparison__evidence {
+    border-top: 3px solid var(--v58-red);
+    padding-top: 24px;
+  }
+  .c-comparison p:not(.c-label),
+  .c-features p,
+  .c-control-grid p,
+  .c-control-foot p,
+  .c-steps p {
+    color: var(--v58-muted);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .c-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .c-tabs button {
+    color: var(--v58-muted);
+    border-color: var(--v58-line-strong);
+  }
+  .c-tabs button[aria-selected='true'] {
+    background: var(--v58-ink);
+    color: #fff;
+    border-color: var(--v58-ink);
+  }
+  .c-preview {
+    max-width: 900px;
+    margin-inline: 0;
+  }
+  .c-preview__frame {
+    display: grid;
+    border: 1px solid var(--v58-line);
+    border-radius: 16px;
+    background: #fff;
+    padding: 32px;
+    box-shadow: 0 30px 60px -30px rgba(19, 19, 19, 0.22);
+  }
+  .c-preview__frame > article {
+    grid-area: 1/1;
+    min-width: 0;
+  }
+  /* Both panels define the frame height, but only the selected one is exposed. */
+  .c-preview__frame > article[hidden] {
+    display: block;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .c-preview__meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--v58-line);
+  }
+  .c-preview__meta .c-badge {
+    font-size: 8px;
+    padding: 3px 7px;
+  }
+  .c-preview__heading h3 {
+    font: 500 28px/1.2 var(--v58-display);
+    margin: 22px 0 8px;
+  }
+  .c-preview p:not(.c-label) {
+    color: var(--v58-muted);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .c-preview__columns {
+    display: grid;
+    gap: 24px;
+    margin-top: 28px;
+  }
+  .c-preview__columns > div {
+    padding: 20px;
+    background: var(--v58-paper);
+    border-radius: 8px;
+  }
+  .c-preview h4 {
+    font: 500 1.25rem/1.3 var(--v58-display);
+    margin: 12px 0;
+  }
+  .c-team-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 28px;
+  }
+  .c-team-facts > div {
+    display: grid;
+    gap: 8px;
+    align-content: start;
+    padding-top: 14px;
+    border-top: 1px solid var(--v58-line);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .c-team-facts dt {
+    color: var(--v58-ink);
+    font: 500 1.25rem/1.3 var(--v58-display);
+  }
+  .c-team-facts dd {
+    color: var(--v58-muted);
+  }
+  .c-head.c-conversation-head {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: clamp(40px, 4.5vw, 64px);
+  }
+  .c-conversation-head h2 {
+    font-size: clamp(1.75rem, 3.9vw, 3rem);
+  }
+  .c-conversation-head .c-underline {
+    white-space: nowrap;
+  }
+  .c-conversation-head .c-lead {
+    max-width: 62ch;
+  }
+  .c-features {
+    gap: 32px clamp(32px, 5vw, 76px);
+  }
+  .c-features h3 {
+    font-family: var(--v58-display);
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    max-width: 30ch;
+    margin-bottom: 14px;
+  }
+  .c-features p {
+    max-width: 56ch;
+  }
+  .c-control-grid h3 {
+    font: 500 1.1rem/1.6 var(--v58-display);
+    margin: 0;
+  }
+  .c-policy {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 16px;
+    font-size: 14px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .c-control-foot {
+    display: grid;
+    gap: 28px;
+    border-top: 1px solid var(--v58-line);
+    margin-top: 32px;
+    padding-top: 32px;
+  }
+  .c-control-foot h3 {
+    font: 500 1.1rem/1.6 var(--v58-display);
+  }
+  .c-control-foot p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .c-steps {
+    display: grid;
+    gap: 42px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .c-steps li {
+    position: relative;
+    display: flex;
+    min-width: 0;
+  }
+  .c-step__card {
+    width: 100%;
+    background: #fff;
+    border: 1px solid var(--v58-line);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow:
+      0 1px 2px rgba(19, 19, 19, 0.04),
+      0 30px 60px -30px rgba(19, 19, 19, 0.22);
+  }
+  .c-step--yours .c-step__card {
+    box-shadow:
+      inset 0 3px 0 var(--v58-red),
+      0 1px 2px rgba(19, 19, 19, 0.04),
+      0 30px 60px -30px rgba(19, 19, 19, 0.22);
+  }
+  .c-step--yours .c-label {
+    color: var(--v58-red);
+  }
+  .c-steps h3 {
+    font-size: 16px;
+    line-height: 1.3;
+    margin: 16px 0 8px;
+  }
+  .c-steps p {
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .c-step__arrow {
+    position: absolute;
+    width: 32px;
+    height: 16px;
+    bottom: -29px;
+    left: calc(50% - 16px);
+    transform: rotate(90deg);
+    overflow: visible;
+  }
+  .c-step__arrow path {
+    fill: none;
+    stroke: var(--v58-red);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .c-quotes figure {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 0;
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    background: #191917;
+  }
+  .c-quotes blockquote {
+    font: 400 16px/1.55 var(--v58-ui);
+    color: rgba(255, 255, 255, 0.76);
+    margin: 22px 0 28px;
+  }
+  .c-quotes figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: auto;
+    padding-top: 16px;
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .c-quotes figcaption b {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .c-quotes figcaption span {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.65);
+  }
+  .c-apply {
+    text-align: center;
+  }
+  .c-apply .c-lead {
+    max-width: 46ch;
+    margin: 24px auto 0;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+  .c-signup {
+    max-width: 540px;
+    margin: 40px auto 0;
+    text-align: left;
+  }
+  .c-signup label {
+    font-size: 14px;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .c-signup > div {
+    display: flex;
+    gap: 12px;
+  }
+  .c-signup input {
+    min-width: 0;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--v58-line-strong);
+    border-radius: 8px;
+    font-size: 16px;
+    background: #fff;
+  }
+  .c-signup button {
+    flex: none;
+    font-size: 14px;
+  }
+  .c-signup .c-small {
+    margin-top: 12px;
+  }
+  .c-small a,
+  .c-other a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .c-other {
+    color: var(--v58-muted);
+    font-size: 14px;
+    margin-top: 32px;
+  }
+  .c-other a {
+    color: var(--v58-ink);
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .c-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  @media (min-width: 720px) {
+    .c-comparison,
+    .c-features,
+    .c-control-grid,
+    .c-control-foot,
+    .c-quotes,
+    .c-preview__columns {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1000px) {
+    .c-step__arrow {
+      left: auto;
+      right: -37px;
+      top: calc(50% - 8px);
+      bottom: auto;
+      transform: none;
+    }
+  }
+  @media (min-width: 1000px) {
+    .c-head,
+    .c-score-layout {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .c-head {
+      gap: clamp(32px, 5vw, 76px);
+      align-items: center;
+    }
+    .c-steps {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 900px) {
+    #score .c-head,
+    .c-score-layout {
+      grid-template-columns: 1.04fr 0.96fr;
+      gap: 34px;
+      align-items: start;
+    }
+    .c-scorecard {
+      padding: 22px;
+    }
+    .c-scorecard__who h3 {
+      font-size: 22px;
+    }
+    .c-priorities {
+      padding-top: 23px;
+    }
+    .c-score-summary {
+      min-height: var(--score-summary-height, 0px);
+    }
+    .c-evidence-label,
+    .c-weights-heading {
+      margin-top: 20px;
+    }
+  }
+  @media (max-width: 899px) {
+    .c-hero {
+      min-height: 0;
+      padding-block: 64px 28px;
+    }
+    .c-hero__main {
+      padding: 0;
+    }
+    .c-cue {
+      margin-top: 40px;
+    }
+  }
+  @media (max-width: 599px) {
+    .c-underline {
+      white-space: normal;
+    }
+    .c-hero h1 {
+      font-size: clamp(26px, 7vw, 36px);
+    }
+    .c-clients > .c-wrap {
+      flex-direction: column;
+      gap: 12px;
+      align-items: stretch;
+    }
+    .c-clients .c-label {
+      text-align: center;
+    }
+    .c-scorecard {
+      padding: 22px;
+    }
+    .c-scorecard__who {
+      flex-wrap: wrap;
+    }
+    .c-scorecard__axis {
+      font-size: 10px;
+    }
+    .c-preview__frame {
+      padding: 22px;
+    }
+    .c-team-facts {
+      grid-template-columns: 1fr;
+    }
+    .c-team-facts > div {
+      gap: 4px;
+    }
+    .c-weights > div {
+      grid-template-columns: minmax(0, 1fr) 100px;
+    }
+    .c-signup > div {
+      flex-direction: column;
+    }
+    .c-signup button {
+      min-height: 44px;
+    }
+  }
+  @media (max-width: 799px), (pointer: coarse) {
+    .c-primary,
+    .c-link,
+    .c-presets button,
+    .c-tabs button {
+      min-height: 44px;
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .c-hero__main {
+      animation: enter 0.6s ease-out both;
+    }
+    @keyframes enter {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .c-clients__track {
+      animation: none;
+    }
+    .candidate-page * {
+      transition: none !important;
+    }
+  }
+  .c-cue:is(:hover, :focus-visible) {
+    color: var(--v58-muted);
+  }
+</style>

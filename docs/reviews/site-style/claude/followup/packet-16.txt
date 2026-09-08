@@ -1,0 +1,19 @@
+## /terms/ — Review
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/terms/` (1520 desktop, 390 mobile) | **Pass.** Fraunces serif for H1/H2, Inter body, consistent left-aligned section headings, shared header/footer with mono red category labels — matches the approved style and the home baseline. Mobile stacks cleanly with no overflow, no clipped text, no broken bullets. Footer collapses to a normal stacked layout on mobile. | **Pass.** Screenshot text matches `terms-copy.txt` verbatim. The disclaimer heading ("AS IS and AS AVAILABLE Disclaimer") now renders as plain text while the body correctly uses curly quotes ("AS IS" / "AS AVAILABLE") — the punctuation fix listed in the disposition doc is confirmed working, no stray or mismatched quote marks anywhere on the page. |
+
+### Findings by severity
+- **None outstanding.** No unreadable text, no overflow, no dead-looking controls, no inconsistent cards (page has no card components). The trailing `COLLAPSIBLE CONTENT (including closed states):` marker in the copy capture has no corresponding content on this page — there are no accordions/FAQs on `/terms/`, so this is an empty capture artifact, not a missing-content bug.
+- Nav/footer chrome (logo, links, "Start with one role" CTA) matches the shared shell seen on the home baseline; I did not test link destinations or CTA click-through, only static appearance.
+
+### Owner-evidence-required (not a design/code blocker, per disposition doc)
+These are legal/factual claims on this page that visual review cannot validate — confirm with counsel/ownership before release:
+- Governing law / exclusive jurisdiction (Bengaluru, Karnataka) and the India-only scope.
+- Liability cap figure (INR 8,000) and whether it's current/approved.
+- Legal entity name and registered office address (Eragina Digital Solutions Private Limited, Pune).
+- "Last updated: July 27, 2025" — confirm this date reflects the actual last legal revision.
+- `legal@tribera.ai` as the correct current contact channel for disputes.
+
+**Verdict: /terms/ is a decisive pass on design and copy fidelity.** No remaining actionable visual/copy issue; only the owner-evidence items above need sign-off before release.

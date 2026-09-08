@@ -1,0 +1,46 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+# Critical Review — 5 Routes
+
+*(Reviewed only the routes/screenshots listed below. No other routes assessed.)*
+
+| Route | Visual Verdict | Copy Verdict |
+|---|---|---|
+| /privacy/ | Pass — on-brand, clean, legible at both widths | Pass — standard, complete privacy policy |
+| /security/ | Pass — on-brand, clean, legible at both widths | Pass — clear, appropriately scoped disclosure policy |
+| /services/ | Pass with notes — strong editorial layout, matches home page density | Pass — strong, distinctive voice; one truncation risk on card copy |
+| /tag/ai-in-hiring/ | **Fail — missing filter chip row, page is mostly dead whitespace for a single-post archive** | Copy file describes chips not present on screen (see below) |
+| /tag/candidate-experience/ | **Fail — same missing filter chip row as above** | Pass on the two rendered post cards; same chip discrepancy |
+
+---
+
+## High severity
+
+**1. Tag pages are missing their filter/category chip row — confirmed on both `/tag/ai-in-hiring/` and `/tag/candidate-experience/` (1520 and 390 screenshots).**
+The copy files for both tag pages list a row of filter pills — `All, Candidate Experience, Technical Hiring, AI & Assessment, Hiring Philosophy, Hiring Strategy, talent-acquisition, decision-infrastructure` — sitting between the hero subhead and the post grid. Neither screenshot at either width shows this row rendering. This is consistent across two separate tag pages, so it reads as a systemic bug (filter component not rendering, or copy file capturing a DOM state that never reached the visual layer) rather than a one-off. This is a design/code blocker — flagging for the owner to check the component, not something visible-only text can fix.
+
+**2. `/tag/ai-in-hiring/` has a severe content-density problem.** With only one post and no filter chips rendering, the page is roughly 70% empty white space between the header and a single small card in the far-left corner. Compare to `/tag/candidate-experience/`, which has two posts and reads much better balanced. If the chip row is truly gone, this page in particular needs either more posts, a "no more posts" state, or the missing filters restored to fill and justify that space.
+
+## Medium severity
+
+**3. Inconsistent tag naming convention (copy).** On both tag pages, the pill list mixes Title Case labels (`AI & Assessment`, `Hiring Philosophy`) with raw slugs (`talent-acquisition`, `decision-infrastructure`). If these chips are ever restored/fixed, they need consistent display casing — raw slugs reaching visible UI reads as unfinished.
+
+**4. Services page, card #03 ("Permanent hire") body copy is dense and close to overflow at 1520px** — "The classic engagement, and the right one for a role or two. Past about five a year the arithmetic changes and RPO does the same job for less, and we will say so on the first call." This is the longest paragraph of any of the four starter cards and visually crowds its card relative to the other three, which are noticeably shorter. Not a hard overflow at the resolution I can read, but it's the one card that looks unbalanced next to its siblings — worth a copy trim for visual parity (flagging as design observation, not a content error).
+
+## Low severity / polish
+
+**5. Security page "Last updated: May 27, 2026" is a future-looking date relative to file "last checked" conventions elsewhere** — Privacy is dated July 27, 2025, Security is dated May 27, 2026. Not inherently wrong (today is 2026-09-08, so both are in the past), but worth an owner check that this date is real and intentional rather than a placeholder that slipped in during a content pass.
+
+## What's solid
+
+- **Privacy and Security pages** are exemplary matches to the approved style: Fraunces heading, Inter Tight body, mono meta labels (`Last updated:`), consistent left-aligned legal structure, consistent black footer, no dead controls, no unreadable text at either resolution. Legal substance reads complete and untouched.
+- **Services page** hero, "Start where hiring gets stuck" four-card grid, "Eight more" accordion-style cards, founder quote block, and centered final CTA ("Tell us what is broken, not what you want to buy") all match the approved pattern: left section headings, intentional centered final CTA, restrained red accents, aligned card grid. Copy voice (confessional founder story, plainspoken service framing) is strong and consistent with the brand's directness.
+- **Header/footer** are consistent across all five routes at both widths — nav items, CTA button, and the four-column dark footer with LinkedIn/email links all match baseline.
+
+## Claims needing owner evidence (not a design/code issue)
+
+- Services page: "Roughly a third of the time, the hire is already sitting in the pile you rejected" and "Past about five a year the arithmetic changes" are specific stats presented without citation — confirm these are sourced/defensible claims, unlike the candidate-experience blog post which explicitly cites McKinsey/Deloitte/PwC for its stats.
+- Services "Bug Bounty" section on /security/ states no bounty program exists — confirm this is still accurate and not superseded by a program launched elsewhere on the site.
+
+## Visual resolution caveat
+
+All screenshots were read as static full-page PNGs; I could not click, hover, or trigger dynamic states (dropdowns, accordions, filter chip behavior). The "missing chips" finding is based on their total absence from the rendered screenshot, not a failed interaction — if they are meant to appear only on hover/JS-load, that would need separate confirmation, but their absence from both static captures is still worth a direct check against the live page.

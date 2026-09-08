@@ -1,0 +1,32 @@
+Reviewed all five routes' desktop/mobile screenshots and copy against the baseline home page and the correction disposition. Findings below.
+
+## Per-route verdicts
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/industries/manufacturing/` | **Pass.** Editorial hero, dark "example priorities" panel, cream/black/white section rhythm, left-aligned section heads, centered final CTA, uniform 4×2 role-card grid — all match the approved system and the other industry pages exactly. Mobile stacks cleanly, no overflow. | **Pass.** Priority bars sum to 100 (22+14+22+18+14+10). No corrupted words, no orphaned sentences. FAQ block shows collapsed `▸` triples on screenshot but copy capture includes full expanded answers — consistent with the disposition note, not a bug. |
+| `/industries/pharmaceutical/` | **Pass.** Same layout system, same card/section structure as manufacturing. Nothing sector-specific broken; dark bench-stats block and roles grid render identically in structure. | **Pass.** Weights sum to 100 (16+10+34+8+24+8). Sector-specific FAQ ("site-specific experience") correctly swapped in, expanded content present in copy capture. |
+| `/industries/private-equity-portfolio/` | **Pass.** Consistent with the other three sector pages; no layout drift on desktop or mobile. | **Pass.** Weights sum to 100 (20+14+10+32+8+16). Sector FAQ about mandate speed correctly differentiated from the other three pages, not copy-pasted boilerplate. |
+| `/industries/product-saas/` | **Pass.** Same card/grid/section treatment; 8 roles in 4×2 grid like the others, dark bench section intact. | **Pass.** Weights sum to 100 (22+18+6+20+8+26). Sector FAQ about "product sense vs. experience" is genuinely sector-specific. |
+| `/intelligence/` | **Pass.** Structure matches disposition claims: stat chart, four-finding grid, availability bar list, dark "method" numbered list, centered closing CTA. Both CTAs ("See what is scarce" / "How we know", and "Ask about the findings" / "Ask about your function") render as a real red button + underlined text link, not dead-looking controls. | **Pass on the fixes claimed.** Chart caption now explicitly reads "Share of recorded assessment gaps, scaled to the largest share. **These are not candidate pass rates**" — matches the disposition's claim that the false-pass-rate framing was removed. Availability section explicitly avoids a "largest pool" claim — copy instead flags the immediate band as unpredictable, not biggest. |
+
+## Concrete findings by severity
+
+**Blocking:** None found in this packet. All four industry templates are structurally identical and internally consistent (typography, card grid, color blocks, CTA centering); the intelligence page's two previously-flagged issues (caption and availability claim) read as corrected in this copy capture.
+
+**Minor / worth a second look, not confirmed defects:**
+- On the industry pages, the roles grid is 4 cards wide on desktop but the copy lists a mix of "Manager to head," "Lead to head," etc. as sub-labels — legible in the 1520 screenshot but I can't fully confirm sub-label kerning/wrapping at the exact 390 breakpoint from the compressed mobile screenshot resolution I was given. Not claiming a defect, flagging as a resolution limit (see below).
+- Intelligence page's function dropdown ("Backend & platform ▾") lists 8 functions in the copy capture but only the selected one is visible in the static screenshot — expected for a `<select>`, not a bug, consistent with the disposition's guidance not to treat collapsed/inactive UI states as missing content.
+
+**Visual resolution limits (honesty check):** The 390px mobile screenshots are heavily downscaled for display (~4x factor), so fine-grained text kerning, exact card-border alignment, and small caption legibility below the fold cannot be certified pixel-perfect from what I was given — I'm relying on the copy files for exact wording, as instructed, and on the 1520 desktop screenshots for layout structure, which are legible.
+
+## Not treated as bugs (per disposition, reconfirmed here)
+- Collapsed native FAQ `▸` states on all four industry pages and intelligence — expansion content is present in the copy captures; this is correct native `<details>` behavior, not missing content.
+- Role-card sub-labels not listing every possible seniority band — expected, matches the "cards don't list every tag" guidance applied analogously here.
+
+## Owner-evidence-required items (not a design/code review question)
+These are factual/statistical claims this visual+copy review cannot verify and are unchanged from the disposition's existing list:
+- Intelligence page: 4,820 scored interviews; 31%, 2.4×, 1-in-3, −9 pts stats; 1,240/2,870/3,410/1,180 candidate counts and clear-rates by notice band.
+- All four industry pages: "36 hours" shortlist timing claim, "interview three, hire one" guarantee, and the "operators, not recruiters" tenure figures (14 yrs, 15 yrs, 18 yrs, etc.) attributed to named bench experts.
+
+No files were edited. This review covers only the five routes and reference screenshots supplied in this packet.

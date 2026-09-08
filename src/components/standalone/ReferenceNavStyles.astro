@@ -28,7 +28,10 @@
     box-sizing: border-box;
     width: 76px;
     height: 20px;
-    font-family: 'Figtree', -apple-system, sans-serif !important;
+    font-family:
+      'Figtree',
+      -apple-system,
+      sans-serif !important;
     font-size: 20px !important;
     font-weight: 800 !important;
     line-height: 20px !important;
@@ -47,14 +50,49 @@
   }
 
   .nav__sw {
+    align-items: stretch !important;
+    background: #eceae4 !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    box-sizing: border-box !important;
+    box-shadow: none !important;
+    display: inline-grid !important;
     gap: 2px !important;
-    padding: 3px !important;
-    border-color: var(--cline, rgba(255, 255, 255, 0.1)) !important;
+    grid-auto-columns: 1fr !important;
+    grid-auto-flow: column !important;
+    height: 30px !important;
+    padding: 2px !important;
   }
 
   .nav__sw a {
-    padding: 6px 13px !important;
-    font-size: 13px !important;
+    align-items: center !important;
+    background: transparent !important;
+    border-radius: 999px !important;
+    border: 0 !important;
+    box-sizing: border-box !important;
+    color: #8d8c83 !important;
+    display: inline-flex !important;
+    font-family: var(--v58-ui, 'Inter Tight', ui-sans-serif, sans-serif) !important;
+    font-size: 12.5px !important;
+    font-weight: 500 !important;
+    height: 26px !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    padding: 0 12px !important;
+    width: auto !important;
+  }
+
+  .nav__sw a:hover:not(.is) {
+    background: transparent !important;
+    color: var(--v58-ink, #131313) !important;
+  }
+  .nav__sw a.is {
+    background: #fff !important;
+    box-shadow:
+      0 1px 1px rgba(19, 19, 19, 0.05),
+      0 2px 5px -1px rgba(19, 19, 19, 0.12) !important;
+    color: var(--v58-ink, #131313) !important;
+    font-weight: 500 !important;
   }
 
   @media (min-width: 1080px) {
@@ -87,10 +125,10 @@
   }
 
   .nav__cta {
-    flex: 0 0 125px !important;
+    flex: 0 0 auto !important;
     box-sizing: border-box;
-    width: 125px !important;
-    min-width: 125px !important;
+    width: auto !important;
+    min-width: 0 !important;
     min-height: 34px;
     padding: 9px 18px !important;
     font-size: 14px !important;
@@ -108,10 +146,6 @@
   /* Keep hero actions clear of the next section at every desktop height. */
   .hero {
     padding-bottom: clamp(36px, 4vw, 64px) !important;
-  }
-
-  .hero__p {
-    color: #bdbdb7 !important;
   }
 
   /* The two audience routes share one hero frame. Their copy and card content
@@ -218,7 +252,6 @@
     .tribera-candidates .hero__card .ftabs {
       margin-bottom: 24px;
     }
-
   }
 
   @media (min-width: 700px) and (max-width: 1151px) {
@@ -364,7 +397,6 @@
     display: flex;
     flex-direction: column;
   }
-
 
   .tribera-home .face--b .side,
   .tribera-candidates .face--b .side {

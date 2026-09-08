@@ -77,12 +77,8 @@ const resolvedTitle =
 // (triberaai.netlify.app) are all forced noindex.
 const isDevEnv =
   import.meta.env.DEV ||
-  (typeof process !== 'undefined' &&
-    process.env.CONTEXT !== undefined &&
-    process.env.CONTEXT !== 'production') ||
-  (typeof process !== 'undefined' &&
-    process.env.URL !== undefined &&
-    process.env.URL.includes('netlify.app'));
+  (typeof process !== 'undefined' && process.env.CONTEXT !== undefined && process.env.CONTEXT !== 'production') ||
+  (typeof process !== 'undefined' && process.env.URL !== undefined && process.env.URL.includes('netlify.app'));
 
 const robotsContent = `${isDevEnv || seoProps.noindex ? 'noindex' : 'index'}, ${seoProps.nofollow ? 'nofollow' : 'follow'}`;
 const resolvedTwitter = seoProps.twitter as MetaDataTwitter | undefined;

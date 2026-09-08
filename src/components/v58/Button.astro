@@ -1,0 +1,61 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+export interface Props extends HTMLAttributes<'a'> {
+  href: string;
+  variant?: 'primary' | 'secondary';
+}
+const { href, variant = 'primary', class: className, ...attributes } = Astro.props;
+---
+
+<a {...attributes} class:list={['v58-button', `v58-button--${variant}`, className]} href={href}><slot /></a>
+
+<style>
+  .v58-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 0.8em 1.5em;
+    font: 500 0.784rem/1.5 var(--v58-ui);
+    text-decoration: none;
+    transition:
+      transform 0.18s ease,
+      background 0.18s ease;
+  }
+  .v58-button:focus-visible {
+    outline: 2px solid var(--v58-red);
+    outline-offset: 3px;
+  }
+  .v58-button--primary {
+    background: var(--v58-red);
+    color: var(--v58-white);
+    box-shadow: 0 8px 20px -8px rgba(218, 0, 7, 0.5);
+  }
+  .v58-button--primary:hover {
+    background: #c10006;
+    transform: translateY(-1px);
+  }
+  .v58-button--secondary {
+    padding-inline: 0;
+    border-radius: 0;
+    color: var(--v58-muted);
+    font-size: 0.8rem;
+  }
+  .v58-button--secondary:hover {
+    color: var(--v58-red);
+  }
+  @media (max-width: 799px), (pointer: coarse) {
+    .v58-button {
+      min-height: 44px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v58-button {
+      transition: none;
+    }
+    .v58-button:hover {
+      transform: none;
+    }
+  }
+</style>

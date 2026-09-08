@@ -1,0 +1,35 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+## Scope note
+This review covers only the 5 routes listed below, using the provided 1520px/390px screenshots and copy dumps. I have not reviewed any other routes on the site. Visual assessment is limited by screenshot resolution — I cannot verify hover states, focus states, exact color hex values, or font-rendering artifacts, only what is legible in the static captures.
+
+## Route verdicts
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/tag/quality-of-hire/` | **Fail** — large broken/empty region where tag filter chips should render; single-card layout otherwise on-brand (Fraunces heading, mono eyebrow, red pill tags) | Pass — copy itself is fine, but chip labels exist in DOM/copy dump and aren't visually rendering |
+| `/tag/recruitment/` | **Fail** — identical missing-chips gap; otherwise on-brand | Pass, same caveat as above |
+| `/tag/signal-based-hiring/` | **Fail** — missing chips gap, plus the two post cards use two different internal layouts (card 1: image-left/text-right; card 2: image-top/text-below), breaking card consistency in the same grid row | Pass |
+| `/tag/structured-evaluation/` | **Fail** — same missing-chips gap and same mixed horizontal/vertical card layout issue as signal-based-hiring | Pass |
+| `/tag/talent-acquisition/` | **Fail (worst instance)** — the filter-chip bug manifests visibly here: a single red "talent-acquisition" pill floats isolated in the top-right whitespace of the hero, disconnected from the heading block and not aligned to anything; 4-post grid is an uneven masonry (one card runs very tall with big dead whitespace below its tags; another card sits alone in the left column, unaligned with its row partner on the right) | Pass |
+
+## Findings by severity
+
+**Blocker (design/code — needs engineering fix)**
+1. **Tag filter chips are broken across all 5 routes.** The copy dump for every route lists "All / Candidate Experience / Technical Hiring / AI & Assessment / Hiring Philosophy / Hiring Strategy / talent-acquisition / decision-infrastructure" as filter chips, but on 4 of 5 pages they render as nothing — just a large blank gap (roughly 300–400px tall on desktop) between the subtitle and the post card. On `/tag/talent-acquisition/`, one chip ("talent-acquisition") escapes into the top-right of the hero as an isolated red pill unrelated to any other UI element. This reads as a rendering/positioning bug, not a design choice — it wastes vertical space above the fold and makes the filter control unusable/absent.
+2. **Inconsistent card layout within the same grid** on `/tag/signal-based-hiring/` and `/tag/structured-evaluation/`. First card uses a horizontal split (image left, text right); the second card in the same row uses a vertical split (image on top, text below). This violates "aligned columns / consistent cards" and looks like a template mismatch rather than intentional variation.
+3. **Broken masonry grid on `/tag/talent-acquisition/`.** Four cards render in an uneven staggered layout: the first card has a large image that leaves substantial dead whitespace beneath its tag pills, and the fourth card ("Hiring Is Not a Transaction — It's a Relationship") sits alone in the left column with no aligned partner in the right column at that row — breaks the "aligned columns" requirement.
+
+**Moderate**
+4. All 5 pages are otherwise thin content pages (1 or 2 posts, one with 4) — acceptable if intentional for low-volume tags, but the large blank chip-gap makes the pages look unfinished/broken rather than sparse-by-design.
+5. Mobile (390px) screenshots correctly stack single-column and preserve the Fraunces/mono/red-pill styling, but inherit the same missing-chips gap and (on talent-acquisition) the same uneven card stacking, just in single-column form so less visually jarring but still present as extra whitespace before the first card.
+
+**Minor**
+6. Read time / date / category eyebrow formatting (mono caps + red category label) is consistent everywhere reviewed — no issue.
+7. Footer, nav, CTA pill ("Start with one role") match baseline home page styling on all 5 routes — no drift found.
+
+## Claims needing owner evidence (not a design/code issue)
+- None of the 5 tag pages contain quantitative or trust claims (stats, guarantees, "2,00,000 interviews" appears only via a linked post teaser, not a page-level claim) — no owner-evidence flags needed for these specific routes. The "2,00,000 interviews" and "327-profile / 22-day" figures are teaser copy for blog posts outside this packet's scope; flagging only that they'd need owner verification if/when those blog posts are reviewed directly.
+
+## Not found in this packet
+- No testimonials or legal content appear on any of these 5 tag pages, so nothing to preserve/flag there — testimonials live on baseline home per the reference screenshot, not on these routes.
+- No dead-looking or unreadable text was found beyond the missing-chips gap; all headings, dates, and card copy are legible at both resolutions provided.

@@ -1,0 +1,28 @@
+## Route-by-Route Verdict
+
+| Route | Visual (1520 / 390) | Copy | Verdict |
+|---|---|---|---|
+| `/` | Matches baseline pixel-for-pixel: Fraunces headings, mono eyebrow labels, red CTA restrained, editorial paper/charcoal alternation, aligned columns, testimonials intact. Mobile stacks cleanly, no overflow. | Consistent with disposition fixes — funnel numbers (126→40→14→5→2) match the copy's own math; slider percentages sum to 100% via the "how the score is calculated" breakdown. | **Pass.** No remaining defects found in this packet. |
+| `/404.html` | Clean, on-brand: mono "404 / PAGE NOT FOUND" label, Fraunces heading, red primary CTA + secondary text link, full footer. Mobile hamburger present, no overflow. | Short and clear, no dead links visible (both CTAs point to real destinations per nav). | **Pass.** |
+| `/about/` | Long editorial narrative page, consistent with home's typography/palette. Founder headshots, stat blocks, timeline, and "four things" numbered list all render without overlap at both widths. Mobile reflows the stat grid and quote blocks into single column without truncation. | Long-form founder narrative retained per disposition ("preserve published substance") — this is intentional, not a copy bug. Plain-facts block, team bios, and "two doors" closing block are consistent with site-wide copy used elsewhere. | **Pass.** Contains multiple factual claims requiring owner sign-off (see below) but no visual/copy defects. |
+| `/blog/` | Article list now uses one consistent single-column card pattern (fixed from prior asymmetric masonry per disposition). Filter pills show human-readable labels with counts ("All 7", "Hiring Strategy 1", etc.) and a clear active state ("All" pill filled). Newsletter block and two-doors CTA match site-wide styling. | 7 article links all present and match `blog-copy.txt`; the featured "Rethinking hiring metrics" teaser/read-time is consistent between hero and list entry. | **Pass.** |
+| `/blog/designing-ai-for-high-stakes-technical-assessment/` | Article page matches editorial article template: dark hero, mono metadata row (date · category · read time), pull-quote in red/black rule, tag row, share row, "three more" related-article cards, newsletter and two-doors blocks — all consistent with `/blog/` styling. No overlapping text at either width. | Teaser and reading-time metadata ("5 MIN READ", "AI AND ASSESSMENT") match how the article is represented elsewhere. Body content (three-things/one-thing/what-we-got-wrong/explainability) is coherent and complete top to bottom in both screenshots. | **Pass.** |
+
+## Findings by severity
+
+**Blocking (visual/code):** None found in this five-route packet.
+
+**Non-blocking / cosmetic:** None found. Font-loading, filter labels, card-grid consistency, and article-metadata mismatches called out in the original review appear resolved in these screenshots, consistent with `correction-disposition.md`.
+
+**Confirmed non-bugs (per disposition, not re-litigated):**
+- Coverage FAQ collapse behavior and candidate-form disabled submit button are out of scope for this packet (not present in these 5 routes) but the review methodology described in the disposition — treating collapsed `<details>` and pre-upload disabled buttons as correct states, not defects — is consistent with what I'd apply if I saw them elsewhere.
+- About page's long first-person founder narrative and the industry funnel/case-study numbers on the home page are preserved verbatim per instruction; not flagged as copy issues.
+
+## Owner-evidence-required items (not design/code blockers)
+
+These are factual/contractual claims visible in this packet that Claude's review cannot verify and should be confirmed by the business owner before release:
+- **Home:** "First shortlist in 36 hours," the client/mandate logo strip (Mizuho, Capco, Deloitte, ArcelorMittal, Flipkart, Myntra, Motherson, Publicis Sapient/Resources, Evident Microscopy, Antz), the 126→40→14→5→2 case funnel and "32 hours back" estimate, the "50+ profiles / six months / 4 interviews / 2 selected / 1 hired" second case, and all three named testimonials (Sashank Pappu/Antz AI, Anil Giri, Reema Mitra).
+- **About:** "200,000 interviews read," "twenty years each / sixty between us," founder bios and titles (Akshata Chandavarkar, Abhishek Prasad, Pranav Gandhi), the 2021–2025 hires-per-recruiter chart and "180%/40%" application/interview stat claims, "Founded 2024 — Eragina Digital Solutions Private Limited," "3 offices — Pune, Bengaluru, New Jersey," "50+ senior experts," and the client-worked-with list (Flipkart, Myntra, Heineken, Mizuho, ICICI Bank, Publicis Sapient, Capco, PayU, DSP Mutual Fund, ICICI Securities, Utkarsh Bank, Aeries, SplashBI, Aegon Life, Enpro).
+- **Blog articles:** Cited third-party research attributions ("research from McKinsey, Deloitte, and PwC" in the black-hole article referenced from the index) and the "327-profile search into a 22-day success" and "200,000 interviews" claims repeated in the featured post teaser.
+
+None of these are design or copy defects — they are claims this visual/copy review cannot substantiate and should be tracked separately for sign-off, consistent with `correction-disposition.md`.

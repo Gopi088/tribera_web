@@ -17,7 +17,7 @@ draft: false
 One of the biggest myths in technical hiring is that more sourcing equals faster results. In reality, high-volume sourcing often creates the exact opposite outcome — **more friction, longer time-to-hire, and lower confidence in decisions**.
 
 Karat’s data shows that **88%** of sourced technical candidates never even reach a technical interview.
-Glassdoor reports that **75%** of résumés are rejected by keyword-based filters, while **42%** of the résumés that do pass still end up being rejected after engineering review.
+Glassdoor reports that **75%** of resumes are rejected by keyword-based filters, while **42%** of the resumes that do pass still end up being rejected after engineering review.
 
 LinkedIn’s Talent Trends survey points out that **nearly 60%** of recruiters add candidates to the pipeline _“just in case”_ because the role expectations aren’t clear enough from the start.
 

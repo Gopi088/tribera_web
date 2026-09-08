@@ -1,0 +1,76 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+All 15 files read (5 routes × desktop + mobile + copy). Read-only; nothing edited.
+
+## Resolution honesty first
+
+| Capture | Native | As delivered to me | Usable for |
+|---|---|---|---|
+| `404.html-1520/390` | 1520×1380 / 390×1830 | ~1:1 | Everything, incl. type |
+| `blog-1520` | 1520×4005 | 2.0× down | Headings, most body |
+| `blog-390` | 390×6254 | 3.1× down | Layout + big type |
+| `post-1520` | 1520×6833 | 3.4× down | Layout, headings only |
+| `home-1520`, `baseline`, `about-1520` | ~1520×10.1–10.3k | 5.0–5.2× down | Section rhythm, colour, block alignment only |
+| `post-390`, `about-390`, `home-390` | tall mobile | 4.3–8.1× down | Stacking order only |
+
+So: no font-size, contrast-ratio, kerning, or 1–4px alignment claim below is made from the ≥3.4× images. Where I flag those, the source is the copy file or the 404/blog captures. Home-vs-baseline: **pixel-indistinguishable at 5×** — I cannot certify sub-5px parity.
+
+## Route verdicts
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/` | **Pass, on-style.** Matches baseline at available resolution. Correct alternation of paper/charcoal, left section headings, centered final CTA, restrained red. No overflow or broken block visible. Unverifiable: testimonial card baseline alignment, 5-step card parity. | **Revise.** One broken sentence (L136), one promise-undercutting case study, one ambiguous stat block, hyphens-for-dashes throughout while the blog uses em dashes. Score math (39/50 vs "out of 5") reads wrong without the explainer. |
+| `/404.html` | **Weak but not broken.** Only fully-legible capture; on-style but under-designed — ~900px band with the right half empty and an orphaned word. Mobile is clean. | **Pass.** Short, plain, correctly scoped. One label collision with the nav. |
+| `/about/` | **Pass, on-style** at 5× — longest page, no visible overflow, founder trio and stat rows read as aligned. Ends on a different closer pattern than `/`. | **Revise.** Substantively strong and worth preserving, but the 200,000 figure is used two incompatible ways, the client list contradicts the home marquee, and three set-pieces are told twice. |
+| `/blog/` | **Revise.** Filter chips centered on desktop / left on mobile; hero body is low-contrast grey; row thumbnails are meaningless noise; paired closing cards have mismatched CTA weights; hero CTA goes full-bleed on mobile against the site's pill norm. | **Fail on integrity.** Chip counts don't match the list, hero CTA promises a newsletter the page says doesn't exist yet, and one post's index deck describes a different article. |
+| `/blog/designing-ai-…/` | **Pass with defects.** Strongest editorial layout on the site. But "Two doors" is centered here and left-aligned on `/blog/`; tag/share row is cramped; related-card art is a third distinct abstract style. | **Revise.** Body copy is the best on the site. Metadata is wrong: read time contradicts the index, related-post teasers are reworded copies, "Belong. Build. Become." appears 3× on one page. |
+
+## Blockers (fix before ship)
+
+1. **`/blog/` chip counts include a post that isn't in the list.** Chips read All **6** / Hiring strategy **1** / Technical hiring **2** / Candidate experience **2** / AI and assessment **1** (sums to 6). The list below has **5** rows. The missing one is the featured card, *Rethinking hiring metrics* — which is the *only* Hiring strategy post. So "Hiring strategy (1)" very likely filters to an empty list, and "All (6)" renders 5. Static screenshots can't prove the JS behaviour; the count/row arithmetic is provable and wrong either way.
+2. **Read time contradicts itself.** Index: `Designing AI for high-stakes assessment — 10 MIN`. The post header: `5 MIN READ`.
+3. **Index deck for that post is from a different article.** Index subtitle: "Architecture, code quality, system design." The article covers what the engine may/may not do, a rubric that was wrong, and explainability. Nothing about code quality or system design.
+4. **Newsletter CTA contradicts the newsletter.** Blog hero offers "Get the next one by email"; the same page's band says "NEWSLETTER IN PREPARATION … we will send one note when the field notes newsletter opens." Two live email captures (`Notify me` on index, `Subscribe` on post) for a product that isn't open — obsolete promise plus a probable dead control. Same form, two button labels.
+5. **Broken sentence, home.** "Tell us your priorities sit differently, and this is what we recalibrate." Missing the conditional ("If your priorities sit differently, tell us — this is what we recalibrate to.").
+
+## Major
+
+6. **Same component, two alignments.** "Two doors. Same room." is left-aligned with a right-hand body column on `/blog/`, centered on the post (desktop *and* mobile). Pick one.
+7. **`/blog/` filter chips: centered on desktop, left-aligned on mobile.** Both break the left-heading rule on desktop; at minimum they must agree across breakpoints.
+8. **Home case study undercuts the core promise.** The section that proves the offer is prefaced "Our offer starts with a shortlist of three. This backend case involved five candidates sent to the team and two hires." The hero, `/about/`, and both blog closers all promise three. The proof point ships five. Either lead with a three-candidate mandate or make the sentence explain *why* five, not just concede it.
+9. **`/blog/` hero body is grey-on-near-white** (both breakpoints — visible even at 3.1×). This is the paragraph that explains what Field Notes is. Confirm against WCAG AA; the darker body colour used in the list rows below is the right value.
+10. **Home score panel invites the wrong arithmetic.** "INTERVIEW SCORES · OUT OF 5" over nine criteria sits beside "39.00 / 50". Readers compute 45. It's actually weighted (Σ score×weight ×10 = 39.0 — I verified, and the weights sum to exactly 100%). Correct, but only after the "How the score is calculated" link. Put "weighted" in the label.
+11. **Client lists disagree.** Home marquee: Mizuho, Capco, Deloitte, ArcelorMittal, Flipkart, Myntra, Motherson, Publicis Sapient, Publicis Resources, Evident Microscopy, Antz. About "Teams we have hired for": adds Heineken, ICICI Bank, PayU, DSP Mutual Fund, ICICI Securities, Utkarsh Bank, Aeries, SplashBI, Aegon Life, Enpro; drops Deloitte, ArcelorMittal, Motherson, Publicis Resources, Evident Microscopy, Antz. One source of truth.
+12. **Post tags have no home.** "Assessment design / Human in the loop / Explainability / Model limits" match none of the index's four categories. Verify they resolve; if not, they're four dead controls in a row.
+
+## Minor
+
+13. **404 desktop is the weakest page.** Body measure (~455px) is a third of the heading's (~1180px), orphaning "here." onto its own line; the right half and ~580px of vertical band are empty. Widen the measure to match the heading block.
+14. **404 label collision:** a red "I'm hiring" hero button and a grey "I'm hiring" nav toggle, same words, same viewport, different behaviours.
+15. **Paired cards, unequal CTAs** (both blog routes): "See how one role ran" is a red pill, "Create your profile" is a bare underline. Intentional hierarchy or an oversight — but they're visually presented as equals.
+16. **Mobile CTA width inconsistency:** blog hero button goes full-bleed; 404 hero and the blog newsletter button stay pills.
+17. **Dash and quote characters split by route.** Home uses hyphens as dashes ("open too long, the resumes you can't get through", "then submit only who clears it") and mixes straight/curly apostrophes; the blog post uses proper em dashes throughout. One pass to normalise.
+18. **Home repeats "Interview expertise" as a link label four times** under four different function groups — ambiguous destination, no differentiation.
+19. **About repeats three set-pieces**: "nobody outside the three of us could use" (×3), the cold coffee (×2), the two-hour table (×2). Each lands once.
+20. **"Belong. Build. Become." appears 3× on the post page** (article sign-off, two-doors closer, footer).
+21. **Related-post teasers are reworded duplicates**: index "Time-to-hire measures pace. Interview-to-hire ratio measures alignment." vs post "Time-to-hire measures your speed. Interview-to-hire measures your aim." Same for *Signal versus noise*.
+22. **Home's second case is ambiguous:** "50+ profiles over six months without a hire. 4 interviews · 2 selected · 1 hired." Reads as both "no hire" and "1 hired". Attribute the first half to the client's prior attempt explicitly.
+23. **Decorative art is three unrelated systems** — blog row sparklines, post related-card blobs, hero dot-matrices. At list-row size the sparklines read as noise. Not a blocker, but it's the one place the design language isn't unified.
+24. **About "Four things in five years"**: only row 01 carries a right-hand badge ("UNDER 2 TODAY"); 02–04 have none, so the row rhythm breaks. Low confidence — 5.2× capture.
+
+## Claims requiring owner evidence (separate from the above)
+
+These are not design or code defects. None should be treated as errors until the owner rules.
+
+- **200,000, used two ways.** About hero: "INTERVIEWS READ BEFORE LAUNCH." About facts: "200,000 / INTERVIEWS SCORED / Read before launch, **and every one since**." The same number can't be both a pre-launch total and a pre-launch-plus-since total. Blog hero and the post also both anchor on 200,000.
+- **Third-party statistics, uncited:** "Applications per hire are up around 180% on 2021", "Requisitions per recruiter up by half again", "Interviews per hire up 40%", the hires-per-recruiter chart (7 → 4 → 5.5), "the industry averages under two closes a month", "four hundred profiles in front of a hiring manager in an afternoon." (Internally, the chart and "under two a month" *are* consistent — 5.5/quarter.)
+- **"50+ senior experts" vs "Fifty of them" vs "The bench is fifty"** — three phrasings, and "50+" contradicts the flat fifty.
+- **"Across twelve sectors and eight functions"** — home shows 12 industries (✓) but only four function groups. Confirm the eight.
+- **"An estimated 32 hours back for their team"** — basis for the estimate.
+- **First-shortlist-in-36-hours** — consistent across home, about, and both blog closers (✓ good), but it's the load-bearing operational promise and should be one the owner will defend.
+- **Named testimonials** (Sashank Pappu/Antz AI, Anil Giri, Reema Mitra) — preserved verbatim as instructed; confirm consent to publish names is on file.
+- **Legal/data copy preserved as-is** and reads sound: the human-decision block, "Discuss recording, access, retention and deletion requirements with us", the privacy link, and the about page's unresolved retention argument. The about page dates that argument "judged in 2029 on a bad half hour in 2026" — accurate today, will need a refresh.
+- **Content freshness (editorial call):** newest post is Feb 15, 2026; today is Sept 8, 2026. Six published posts against a "two hundred thousand interviews, written down" masthead. "We publish when we have something to say" covers this deliberately — flagging so it's a choice, not drift.
+- **Pricing** is directional only ("per hire when we find them, per interview when you've sourced them"). No defect; a prospect can't self-qualify.
+- **Social proof balance:** 1 hiring-team testimonial to 2 candidate testimonials on a page selling to hiring teams.
+
+**Not reviewed:** every route outside this packet — including `/services`, `/intelligence`, `/contact`, `/careers`, `/candidates`, `/industries/*`, `/functions/*`, the other four blog posts, and all legal pages — plus all interactive states (nav dropdown, chip filtering, the bar-slider demo, form submission, hover/focus), which static full-page captures cannot exercise.

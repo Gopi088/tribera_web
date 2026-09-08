@@ -1,0 +1,25 @@
+## Review: Tag routes (corrected follow-up)
+
+All five routes share the same shared taxonomy shell (hero, filter pills, card, footer) confirmed against `/tmp/tribera-site-style/baseline/home-1520.png` styling — Fraunces italic headline, mono "FROM THE JOURNAL" eyebrow, red active-CTA button, warm-paper card background, dark footer. This matches the corrected shared shell described in the disposition doc.
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/tag/human-first-hiring/` | **Pass.** Desktop/mobile both clean; active pill (black) legible, filter row wraps correctly on mobile, card renders full-bleed illustration with proper aspect ratio. | **Pass.** Headline, dek, byline, excerpt all legible and on-voice. No claims beyond the article's own philosophy statement. |
+| `/tag/job-search-tips/` | **Pass.** Same shell, no overflow, mobile filter-pill wrap is fine. | **Pass**, with one owner-evidence flag: excerpt cites "research from McKinsey, Deloitte, and PwC" — named research requiring owner evidence per the disposition's release list. Not a design/copy defect, just needs sourcing before release. |
+| `/tag/platform-design/` | **Pass.** Card image (fingerprint, red/charcoal split) renders correctly at both widths. | **Pass.** Copy is legible and consistent with the article. |
+| `/tag/privacy-by-design/` | **Pass.** Identical shell/card to platform-design, correctly so — this is the same article carrying multiple tags, consistent with the disposition's "topic membership" note (cards show only category + up to two tags, not full membership). Not a bug. | **Pass.** |
+| `/tag/professional-respect/` | **Pass.** Same article/card again; third tag on the same piece. Rendering identical, no truncation or misalignment at 1520 or 390. | **Pass.** |
+
+### Findings by severity
+
+**Blocking (design/code):** None found across these five routes.
+
+**Owner-evidence-required (not a code/design blocker):**
+- `/tag/job-search-tips/` excerpt names McKinsey, Deloitte, and PwC as sources — falls under "Interview volume, market statistics... named research" in the disposition's owner-evidence list. Needs sourcing/permission confirmation before release, independent of this design review.
+
+**Not treated as bugs (per disposition, confirmed still true here):**
+- One article (`Designing for Trust...`) legitimately appears identically under three different tag pages (platform-design, privacy-by-design, professional-respect) because it carries all three tags. This is expected taxonomy behavior, not a duplicate-content defect.
+
+**General observation:** All five tag pages are single-article filtered views, so there's no dense-grid stress test here (no multi-card wrapping/alignment to check) — that scenario would need to be reviewed on a multi-article tag page, which isn't in this packet.
+
+No other routes were reviewed in this pass — this covers only the five `/tag/*` routes listed.

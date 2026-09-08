@@ -1,0 +1,10 @@
+Findings:
+
+- The `@media (max-width:389px) { #nav .nav__sw { display:none !important; } }` rule (line 140) now appears exactly once, at the end of the stylesheet, with no later `display:inline-grid` override at any width ≤389px re-enabling it. The only other `.nav__sw` display declarations are the base rule (line 19, `display:inline-grid`) and the duplicate-but-identical rule (line 51-65, also `inline-grid`, unconditional) — neither is scoped to a max-width, so cascade order correctly lets the 389px hide rule win at narrow widths via source order + specificity tie (all `!important`).
+- Tablet/desktop rules (`min-width:1080px`, `min-width:720px`) are untouched and still positioned before the final hide rule, so they aren't affected by it.
+- The 320px screenshot shows only the logo and burger icon — audience switcher (`.nav__sw`) is absent, mobile menu (burger) is visible. Consistent with the intended fix.
+- `site-style-audience-final.log` shows all nine widths (320–1920px) passing for audience switching, profile route, and navbar geometry, including the boundary widths 375/390 that bracket the 390px cutoff.
+
+Conclusion: this change closes the previously identified 320px overflow (duplicate override removed, single hide rule now takes effect below 390px) without touching desktop/tablet geometry rules or other prior visual/copy fixes — scope looks correctly isolated.
+
+Per your instructions, I have not edited anything, and this review is not a production approval — it's a read-only confirmation that this specific fix is structurally sound based on the code and the provided screenshot/log.

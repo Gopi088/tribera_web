@@ -23,6 +23,11 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
 export default defineConfig({
+  // It overlays interactive content in local visual reviews and is not part of the product UI.
+  devToolbar: {
+    enabled: false,
+  },
+
   output: 'static',
   trailingSlash: 'ignore',
 

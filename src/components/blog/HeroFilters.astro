@@ -11,6 +11,11 @@ const { activeType = 'all', activeSlug = '' } = Astro.props;
 
 const categories = await findCategories();
 const tags = await findTags();
+const displayLabel = (value: string) =>
+  value
+    .split(/[-\s]+/)
+    .map((word) => (word.toLowerCase() === 'ai' ? 'AI' : word.charAt(0).toUpperCase() + word.slice(1)))
+    .join(' ');
 
 const filters = [
   ...categories.slice(0, 5).map((category) => ({
@@ -29,12 +34,26 @@ const filters = [
       href: getPermalink(tag.slug, 'tag'),
     })),
 ];
+const activeTag = tags.find((tag) => tag.slug === activeSlug);
+if (
+  activeType === 'tag' &&
+  activeTag &&
+  !filters.some((filter) => filter.type === 'tag' && filter.slug === activeSlug)
+) {
+  filters.push({
+    label: activeTag.title,
+    slug: activeTag.slug,
+    type: 'tag',
+    href: getPermalink(activeTag.slug, 'tag'),
+  });
+}
 ---
 
-<div class="mt-8 flex flex-wrap items-center justify-center gap-3 blog-display">
+<nav class="topic-filters" aria-label="Browse field notes">
   <a
     href={getBlogPermalink()}
-    class={`px-4 py-2 rounded-full text-[13px] font-semibold transition-colors duration-200 ${activeType === 'all' ? 'bg-[#da0007] text-white' : 'border border-white/15 bg-white/5 text-white/70 hover:border-[#da0007]/40 hover:text-white'}`}
+    class:list={{ 'is-current': activeType === 'all' }}
+    aria-current={activeType === 'all' ? 'page' : undefined}
   >
     All
   </a>
@@ -43,10 +62,52 @@ const filters = [
     filters.map((filter) => (
       <a
         href={filter.href}
-        class={`px-4 py-2 rounded-full text-[13px] transition-colors duration-200 ${activeType === filter.type && activeSlug === filter.slug ? 'bg-[#da0007] text-white font-semibold' : 'border border-white/15 bg-white/5 text-white/70 hover:border-[#da0007]/40 hover:text-white'}`}
+        class:list={{ 'is-current': activeType === filter.type && activeSlug === filter.slug }}
+        aria-current={activeType === filter.type && activeSlug === filter.slug ? 'page' : undefined}
       >
-        {filter.label}
+        {displayLabel(filter.label)}
       </a>
     ))
   }
-</div>
+</nav>
+<style>
+  .topic-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-top: 28px;
+  }
+  .topic-filters a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 16px;
+    border: 1px solid rgba(19, 19, 19, 0.18);
+    border-radius: 999px;
+    color: #57565b;
+    background: #fff;
+    font:
+      400 13px/1.4 'Inter Tight',
+      sans-serif;
+    text-decoration: none;
+  }
+  .topic-filters a:not(.is-current):is(:hover, :focus-visible) {
+    color: #131313;
+    border-color: #131313;
+  }
+  .topic-filters .is-current {
+    color: #fff;
+    background: #131313;
+    border-color: #131313;
+  }
+  .topic-filters a.is-current:is(:hover, :focus-visible) {
+    color: #fff;
+    background: #333;
+    border-color: #333;
+  }
+  .topic-filters a:focus-visible {
+    outline: 2px solid #da0007;
+    outline-offset: 3px;
+  }
+</style>

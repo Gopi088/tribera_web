@@ -39,8 +39,7 @@ export const jobFunctions: JobFunction[] = [
     icon: `tabler:code`,
     seoTitle: `Engineering Hiring — tribera`,
     seoDescription: `AI-validated, advisor-interviewed engineering candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `Engineering hiring is the highest-stakes function in most technology organisations — and the most time-consuming to get right. Tribera’s AI validates what candidates have actually built before a single advisory interview begins. GitHub activity, open source depth, architecture patterns, and project complexity are cross-referenced against every claim in the profile. A Tribera technology advisor then runs a structured technical interview — scenario-based, not trivia. What reaches you is three engineering candidates your managers will want to interview, not three who cleared a keyword screen.`,
+    overview: `Engineering hiring is the highest-stakes function in most technology organisations — and the most time-consuming to get right. Tribera’s AI validates what candidates have actually built before a single advisory interview begins. GitHub activity, open source depth, architecture patterns, and project complexity are cross-referenced against every claim in the profile. A Tribera technology advisor then runs a structured technical interview — scenario-based, not trivia. What reaches you is three engineering candidates your managers will want to interview, not three who cleared a keyword screen.`,
     hiringChallenges: [
       {
         title: `Resume embellishment is systemic`,
@@ -112,8 +111,7 @@ export const jobFunctions: JobFunction[] = [
     icon: `tabler:brain`,
     seoTitle: `AI & Machine Learning Hiring — tribera`,
     seoDescription: `AI-validated, advisor-interviewed ML and AI candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `The AI hiring market is the most noise-to-signal-distorted segment in technology today. Bootcamp certifications, Kaggle rankings, and GPT wrapper projects have made it genuinely difficult to distinguish candidates with real production ML depth from those with polished presentation. Tribera’s AI validation layer cross-references research contributions, production system evidence, and genuine model deployment history before advisory interviews begin. The result is a shortlist of three candidates who have built at the depth you require — not three who have certified for it.`,
+    overview: `The AI hiring market is the most noise-to-signal-distorted segment in technology today. Bootcamp certifications, Kaggle rankings, and GPT wrapper projects have made it genuinely difficult to distinguish candidates with real production ML depth from those with polished presentation. Tribera’s AI validation layer cross-references research contributions, production system evidence, and genuine model deployment history before advisory interviews begin. The result is a shortlist of three candidates who have built at the depth you require — not three who have certified for it.`,
     hiringChallenges: [
       {
         title: `Credential inflation is at its worst in AI/ML`,
@@ -185,8 +183,7 @@ export const jobFunctions: JobFunction[] = [
     icon: `tabler:server`,
     seoTitle: `Platform & Infrastructure Hiring — tribera`,
     seoDescription: `AI-validated, advisor-interviewed platform and infrastructure candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `Platform and infrastructure roles are among the most difficult to assess correctly. The gap between someone who has operated systems at scale and someone who has read about it is enormous — and nearly invisible in a standard interview. Tribera advisors have built and run cloud infrastructure, designed reliability frameworks, and led platform engineering teams through real incidents. They probe for operational judgment — the kind that only comes from running production systems under real pressure.`,
+    overview: `Platform and infrastructure roles are among the most difficult to assess correctly. The gap between someone who has operated systems at scale and someone who has read about it is enormous — and nearly invisible in a standard interview. Tribera advisors have built and run cloud infrastructure, designed reliability frameworks, and led platform engineering teams through real incidents. They probe for operational judgment — the kind that only comes from running production systems under real pressure.`,
     hiringChallenges: [
       {
         title: `Cloud certification ≠ cloud operational depth`,
@@ -254,8 +251,7 @@ export const jobFunctions: JobFunction[] = [
     icon: `tabler:layout-kanban`,
     seoTitle: `Product Hiring — tribera`,
     seoDescription: `AI-validated, advisor-interviewed product managers and product leaders. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `Product management is the function where vocabulary is most systematically mistaken for capability. Every candidate talks about discovery, metrics, and trade-offs. Very few have exercised real product judgment under commercial pressure. Tribera advisors have built and shipped products — they can distinguish the PM who shaped strategy from the one who attended the roadmap review. Add AI validation of written output, community contributions, and product thinking evidence, and the shortlist you receive is genuinely different from anything a keyword search produces.`,
+    overview: `Product management is the function where vocabulary is most systematically mistaken for capability. Every candidate talks about discovery, metrics, and trade-offs. Very few have exercised real product judgment under commercial pressure. Tribera advisors have built and shipped products — they can distinguish the PM who shaped strategy from the one who attended the roadmap review. Add AI validation of written output, community contributions, and product thinking evidence, and the shortlist you receive is genuinely different from anything a keyword search produces.`,
     hiringChallenges: [
       {
         title: `Product vocabulary masquerades as product thinking`,
@@ -327,8 +323,7 @@ export const jobFunctions: JobFunction[] = [
     icon: `tabler:chart-bar`,
     seoTitle: `Data Hiring — tribera`,
     seoDescription: `AI-validated, advisor-interviewed data engineers, scientists, and analysts. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `Data hiring sits at the intersection of engineering rigour and analytical judgment — and most hiring processes assess only one of the two. Tribera evaluates both. Our AI validates production data system experience — pipeline reliability, data quality frameworks, storage architecture — before advisory interviews probe for analytical depth and business impact. The result is a shortlist of three candidates who can build the system and use it to drive decisions.`,
+    overview: `Data hiring sits at the intersection of engineering rigour and analytical judgment — and most hiring processes assess only one of the two. Tribera evaluates both. Our AI validates production data system experience — pipeline reliability, data quality frameworks, storage architecture — before advisory interviews probe for analytical depth and business impact. The result is a shortlist of three candidates who can build the system and use it to drive decisions.`,
     hiringChallenges: [
       {
         title: `Data engineering depth vs data science depth conflated`,
@@ -396,8 +391,7 @@ export const jobFunctions: JobFunction[] = [
     icon: `tabler:shield-check`,
     seoTitle: `Cybersecurity Hiring — tribera`,
     seoDescription: `AI-validated, advisor-interviewed cybersecurity candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `Security hiring has two failure modes: hiring a credentialed candidate without operational depth, or running a process too slow to catch the candidate before a competing offer lands. Tribera eliminates both. AI validates real incident response history, architecture depth, and operational security capability before advisory interviews probe the judgment behind the certifications. The shortlist you receive is three candidates ready to operate — not three who have studied for it.`,
+    overview: `Security hiring has two failure modes: hiring a credentialed candidate without operational depth, or running a process too slow to catch the candidate before a competing offer lands. Tribera eliminates both. AI validates real incident response history, architecture depth, and operational security capability before advisory interviews probe the judgment behind the certifications. The shortlist you receive is three candidates ready to operate — not three who have studied for it.`,
     hiringChallenges: [
       {
         title: `Certification ≠ operational security capability`,
@@ -465,8 +459,7 @@ export const jobFunctions: JobFunction[] = [
     icon: `tabler:crown`,
     seoTitle: `Technology Leadership Hiring — tribera`,
     seoDescription: `AI-validated, advisor-interviewed CTO, VP Engineering, and technology leadership candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `Technology leadership hiring is the highest-stakes search in most organisations. The wrong CTO or VP Engineering doesn’t just fail to deliver — they consume leadership bandwidth, erode team trust, and create technical debt that outlasts their tenure. Tribera’s approach to technology leadership is different: advisory interviews conducted by people who have held equivalent roles, AI validation of real technical impact and organisational influence, and a 1:3 guarantee that holds even at the C-suite level.`,
+    overview: `Technology leadership hiring is the highest-stakes search in most organisations. The wrong CTO or VP Engineering doesn’t just fail to deliver — they consume leadership bandwidth, erode team trust, and create technical debt that outlasts their tenure. Tribera’s approach to technology leadership is different: advisory interviews conducted by people who have held equivalent roles, AI validation of real technical impact and organisational influence, and a 1:3 guarantee that holds even at the C-suite level.`,
     hiringChallenges: [
       {
         title: `Technology leadership presence ≠ technology leadership capability`,
@@ -538,8 +531,7 @@ export const jobFunctions: JobFunction[] = [
     icon: `tabler:trending-up`,
     seoTitle: `Business & Strategy Hiring — tribera`,
     seoDescription: `AI-validated, advisor-interviewed business and strategy candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `Business and strategy roles are among the hardest to evaluate correctly. Consulting pedigree is overweighted, commercial outcome ownership is underweighted, and the ability to operate in an ambiguous, resource-constrained environment is almost never assessed. Tribera advisors have held P&L accountability, led commercial strategy, and navigated board-level decision-making. They probe for the depth behind the framework — separating consultants who describe strategy from operators who execute it.`,
+    overview: `Business and strategy roles are among the hardest to evaluate correctly. Consulting pedigree is overweighted, commercial outcome ownership is underweighted, and the ability to operate in an ambiguous, resource-constrained environment is almost never assessed. Tribera advisors have held P&L accountability, led commercial strategy, and navigated board-level decision-making. They probe for the depth behind the framework — separating consultants who describe strategy from operators who execute it.`,
     hiringChallenges: [
       {
         title: `Consulting pedigree masking execution deficit`,
@@ -607,8 +599,7 @@ export const jobFunctions: JobFunction[] = [
     icon: `tabler:speakerphone`,
     seoTitle: `Sales Hiring — tribera`,
     seoDescription: `AI-validated, advisor-interviewed sales candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `Sales hiring fails most often because interviewers are sold by the candidate’s interview performance rather than their actual revenue track record. Tribera advisors probe behind the numbers — deal cycle length, average contract value, competitive win rates, territory size, and the specific commercial decisions that drove outcomes. AI validates employment tenure, revenue claims, and LinkedIn activity against the narrative. What you receive is three sales candidates with verified track records — not three who interview well.`,
+    overview: `Sales hiring fails most often because interviewers are sold by the candidate’s interview performance rather than their actual revenue track record. Tribera advisors probe behind the numbers — deal cycle length, average contract value, competitive win rates, territory size, and the specific commercial decisions that drove outcomes. AI validates employment tenure, revenue claims, and LinkedIn activity against the narrative. What you receive is three sales candidates with verified track records — not three who interview well.`,
     hiringChallenges: [
       {
         title: `Revenue numbers are the easiest thing to inflate`,
@@ -676,8 +667,7 @@ export const jobFunctions: JobFunction[] = [
     icon: `tabler:users`,
     seoTitle: `Talent Advisory & HR Hiring — tribera`,
     seoDescription: `AI-validated, advisor-interviewed HR and talent candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `Talent and HR hiring is frequently circular — the people making the hire often don’t know what great looks like at the next level. Tribera provides an external perspective built on deep HR and talent practitioner experience. Our advisors have built TA functions, led HR transformations, and implemented people strategy at scale. They evaluate HR candidates on the outcomes they have actually driven — not the frameworks they can describe.`,
+    overview: `Talent and HR hiring is frequently circular — the people making the hire often don’t know what great looks like at the next level. Tribera provides an external perspective built on deep HR and talent practitioner experience. Our advisors have built TA functions, led HR transformations, and implemented people strategy at scale. They evaluate HR candidates on the outcomes they have actually driven — not the frameworks they can describe.`,
     hiringChallenges: [
       {
         title: `HR vocabulary is universal — outcomes are not`,
@@ -745,8 +735,7 @@ export const jobFunctions: JobFunction[] = [
     icon: `tabler:adjustments-horizontal`,
     seoTitle: `Operations Hiring — tribera`,
     seoDescription: `AI-validated, advisor-interviewed operations candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `Operations hiring suffers from a consistent failure mode: candidates who are fluent in the language of process improvement but light on evidence of actual delivery transformation. Tribera advisors have run operations at scale — managed supply chains, redesigned fulfilment networks, and led shared services transformations. They probe for real outcomes — cost reduction percentages, throughput improvements, error rate reduction — and the specific decisions that produced them.`,
+    overview: `Operations hiring suffers from a consistent failure mode: candidates who are fluent in the language of process improvement but light on evidence of actual delivery transformation. Tribera advisors have run operations at scale — managed supply chains, redesigned fulfilment networks, and led shared services transformations. They probe for real outcomes — cost reduction percentages, throughput improvements, error rate reduction — and the specific decisions that produced them.`,
     hiringChallenges: [
       {
         title: `Process framework fluency without delivery evidence`,
@@ -814,8 +803,7 @@ export const jobFunctions: JobFunction[] = [
     icon: `tabler:award`,
     seoTitle: `Executive Search — tribera`,
     seoDescription: `AI-validated, advisor-interviewed C-suite and board-level candidates. 1:3 selection guarantee. First shortlist in 36 hours.`,
-    overview:
-      `Executive search is the category where process quality matters most and is least often delivered. Traditional search firms are slow, opaque, and driven by placement incentives rather than hiring outcomes. Tribera’s executive search framework inverts this: AI validates organisational impact and leadership track record before advisory interviews conducted by people who have held equivalent roles. Every engagement is accountable to a 1:3 guarantee — even at the CEO and board level.`,
+    overview: `Executive search is the category where process quality matters most and is least often delivered. Traditional search firms are slow, opaque, and driven by placement incentives rather than hiring outcomes. Tribera’s executive search framework inverts this: AI validates organisational impact and leadership track record before advisory interviews conducted by people who have held equivalent roles. Every engagement is accountable to a 1:3 guarantee — even at the CEO and board level.`,
     hiringChallenges: [
       {
         title: `Leadership presence mistaken for leadership capability`,
@@ -881,8 +869,7 @@ export const jobFunctions: JobFunction[] = [
   },
 ];
 
-export const findFunctionBySlug = (slug: string): JobFunction | undefined =>
-  jobFunctions.find((f) => f.slug === slug);
+export const findFunctionBySlug = (slug: string): JobFunction | undefined => jobFunctions.find((f) => f.slug === slug);
 
 export const getStaticPathsFunctions = () =>
   jobFunctions.map((fn) => ({

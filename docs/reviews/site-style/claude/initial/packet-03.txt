@@ -1,0 +1,37 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+# Site Review — 5 routes vs. baseline (`home-1520.png`)
+
+**Method note:** I reviewed full-page desktop (1520px) + mobile (390px) screenshots and the copy dumps for each route below. I have not reviewed any route outside this packet. Screenshot resolution is adequate for layout, color, and hierarchy judgments but small type (labels, badges) was cross-checked against the copy files rather than read pixel-by-pixel — flagged explicitly where I relied on copy text instead of the image.
+
+## Route verdicts
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/blog/why-tech-hiring-really-takes-so-long/` | **Pass.** On-brand: Fraunces headline, mono eyebrow labels, red pull-quote accent, left-aligned sections, centered final "Two doors" CTA. Card row (3 related posts) is evenly aligned. Reading-progress bar in hero is a nice touch and consistent with editorial tone. | **Pass.** Distinctive, concrete, non-generic. Legal/testimonial substance N/A here. No overflow or truncation visible at 390px. |
+| `/candidates/` | **Pass, one flag.** Long page, consistent card/grid alignment (6-dimension score bars, "same experience/different picture" 2-up, "what candidates say" cards). Testimonials preserved with attribution. Logo strip marquee is a bit dense but on-brand mono style. | **Pass.** Copy is precise and consistent with the interview/evidence narrative. One line to verify with owner: "Teams we have worked with" logo list (Mizuho, Capco, Deloitte, ArcelorMittal, Flipkart, Myntra, Motherson, Publicis Sapient, Publicis Resources, Evident Microscopy, Antz) — **flag as claim needing owner evidence**, not a design issue. |
+| `/candidates/start/` | **Fail — CTA color regression.** "Submit profile" button renders in a washed-out/light pink, not the restrained solid red used everywhere else (home, candidates, careers). At both 1520 and 390 it reads as disabled/inactive. File-upload dropzone ("Choose your CV" / drag target) also has very low-contrast placeholder text bordering on unreadable against its light-grey field. | **Pass.** Copy is short, clear, functional; four-step "what happens next" is well scoped and honest (no fixed timeline, "not an offer" caveat is good expectation-setting). |
+| `/careers/` | **Pass, one flag.** Layout matches editorial system (left headings, numbered list blocks, black CTA band, centered "Belong · Build · Become" close). The hero scorecard widget shows a generic role selector with all dimensions at **0%** — reads as a broken/empty state rather than an intentional illustration, since nothing on-page explains why. "Open roles" section states "7, across 3 teams" but the page shows no actual list of the 7 roles/links to apply — only descriptive copy. If "See the roles" is meant to jump to a role grid, that grid is not visible anywhere in the full-page capture. | **Pass.** Voice is strong and consistent with the brand's blunt/honest positioning ("Silence isn't a process," "you would be right to notice"). No overflow issues found. |
+| `/careers/ai-ml-engineer/` | **Pass.** This confirms the scorecard widget *does* populate correctly (30/26/16/14/10/4%) when a specific role is loaded — so the all-0% state on `/careers/` is very likely just the unselected/default state of the same component, not a bug. Still recommend a design fix (see below) since it's the first thing visitors see. Layout, spacing, card alignment all consistent with the rest of the site. | **Pass.** Very well-written, specific role brief; weighting shown numerically and explained per-dimension — strong differentiator copy. No dead-looking controls; "Apply" button is properly styled solid red. |
+
+## Findings by severity
+
+**Blocker (visual/code)**
+- `/candidates/start/`: "Submit profile" button uses a light pink fill instead of the site's standard solid red CTA color. At a glance it looks disabled, which will suppress conversions on the one page whose entire job is to collect a submission. Recommend matching the red used on `/candidates/` "Create your profile" and `/careers/ai-ml-engineer/` "Apply."
+
+**High (visual/UX)**
+- `/careers/`: Hero scorecard shows an empty "ROLE" dropdown with every dimension at 0%, with no selected role and no visible instruction to pick one. Combined with the fact that no role list/cards appear later on the page despite the "7, across 3 teams" headline, a first-time visitor has no clear path to actually see or click into an open role from this page. Needs either a populated default role or a visible role grid under "Open roles."
+- `/candidates/start/`: The CV upload dropzone's placeholder text is very low-contrast (light grey on light grey) at both breakpoints — borderline unreadable, especially on mobile.
+
+**Medium**
+- `/careers/` mobile (390px): the same 0%-everywhere scorecard appears compressed under the hero copy; on a narrow viewport it reads even more like inert/broken UI since there's less surrounding context to signal it's illustrative.
+
+**Low / copy-owner verification (not a design blocker)**
+- `/candidates/`: Client logo list (Mizuho, Capco, Deloitte, ArcelorMittal, Flipkart, Myntra, Motherson, Publicis Sapient, Publicis Resources, Evident Microscopy, Antz) is a factual claim — flag for owner confirmation of current/permitted logo usage, separate from any code fix.
+- `/candidates/`: Sample profile ("Anirudh Mehta," 91.1 score) and CV/interview comparison examples are explicitly labeled "illustrative/sample" in copy — good practice, no action needed, noting only because it's adjacent to the logo claim above and worth keeping distinct (fictional example vs. real client claim).
+
+## Not flagged (checked, no issue)
+- Testimonials on `/candidates/` and legal/process substance on `/careers/` and `/careers/ai-ml-engineer/` are intact, attributed, and unedited from what the copy files show.
+- No text overflow, truncation, or broken wrapping found in either blog post or the two careers pages at 390px.
+- Typography system (Fraunces headings, Inter Tight body, mono eyebrow labels) and color palette (white/paper/charcoal, restrained red) are consistently applied across all five routes except the one CTA noted above.
+
+**Summary:** 4 of 5 routes match the approved style with no blocking issues; `/candidates/start/` has a CTA color bug that needs a code/design fix, and `/careers/` has a UX gap around the empty scorecard and missing visible role list that's worth a product decision (populate a default role, and/or add the role grid the "See the roles" button implies).

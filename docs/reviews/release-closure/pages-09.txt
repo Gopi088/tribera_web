@@ -1,0 +1,34 @@
+## Route Verdicts
+
+| Route | Visual | Copy |
+|---|---|---|
+| /industries/private-equity-portfolio/ | ✅ Consistent with hiring reference (Fraunces headings, mono labels, red accents, left-aligned sections, dark/light rhythm) | ✅ Clean, no corruption, matches sector-template pattern |
+| /industries/product-saas/ | ✅ Consistent, same template as PE page | ✅ Clean |
+| /intelligence/ | ✅ Consistent; chart caption and availability caption match the corrections already logged in `correction-disposition.md` | ✅ Clean; stat callouts read coherently |
+| /privacy/ | ✅ Consistent legal-page style (Fraunces H2s, left-aligned, restrained mono "Last updated" byline) | ✅ Clean, legal substance intact |
+| /security/ | ✅ Consistent legal-page style, matches privacy page structure | ✅ Clean |
+
+All five routes reuse the same shared shell (nav, footer, hiring toggle) confirmed against the home reference screenshots, and desktop/mobile layouts reflow correctly at both breakpoints. Mobile stacks the priorities widget, stat grids, and comparison table appropriately; no overflow, clipped text, or broken card heights observed at either width.
+
+## Actionable Findings
+
+None. I did not find any confirmed visual or copy defects across the five routes — no corrupted text, no broken headings, no color/typography drift from the hiring reference, no dead links visible in the crops, and no layout breakage at 1520px or 390px.
+
+## Optional Polish (not blockers)
+
+- None identified. The sector pages (PE/SaaS) are near-identical templates by design (shared "Things a CV cannot tell you," "Three questions," "Every level, one guarantee," "Operators, not recruiters" sections) — this is intentional shared structure per the style system, not a defect, consistent with the "do not demand identical layouts for different content" instruction (these two *are* the same content type, so identical structure is correct here).
+
+## Owner-Evidence Questions (not code/design defects — cannot be verified by visual/copy review)
+
+- **Intelligence page statistics**: "4,820 scored interviews," 31% cybersecurity ownership gap, 2.4× attrition figure, "1 in 3" rejected-pile claim, −9 pts systems-judgment gap, and all four availability-band percentages/counts (22%/31%/29%/34%, notice-period volumes). These are factual/market claims requiring owner sign-off, not something a screenshot review can confirm.
+- **Security page**: "Last updated: May 27, 2026" — confirm this is the actual intended/correct date (it is prior to today's date 2026-09-08 so not obviously wrong, but the site owner should confirm the field is being generated correctly rather than hardcoded).
+- **Privacy page**: legal entity name (Eragina Digital Solutions Private Limited), registered office address, "Last updated: July 27, 2025" — legal/factual accuracy is outside review scope.
+- **Both industry pages**: "36 hours" shortlist commitment, "restart at no cost" guarantee, and years-of-experience figures for bench experts (18 yrs, 15 yrs, 14 yrs, 13 yrs on PE page; 12/10/11/13 yrs on SaaS page) — contractual/staffing claims requiring owner confirmation, consistent with the standing note in `correction-disposition.md` that these categories are never covered by design review.
+
+## Scope Notes
+
+- All 5 routes were reviewed at both breakpoints using full-page screenshots; section crops were not needed since text was legible in the full screenshots provided.
+- I did not verify backend delivery, live data wiring for the intelligence dashboard/chart widget, or that collapsible FAQ interactions function beyond the closed-state text already captured in the copy files (no FAQ/collapsible content was present on privacy or security pages).
+- No files were edited; this is a read-only review.
+
+**Bottom line: no release-blocking visual or copy defects found on any of the 5 routes.** All outstanding items are owner-evidence/factual-verification questions already tracked in the existing correction disposition doc, not new engineering work.

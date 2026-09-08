@@ -1,0 +1,35 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+# Read-Only Review — 5 Routes
+
+**Scope note:** Only the five routes listed below were reviewed, using the provided 1520px/390px screenshots and copy files. No other routes, no live interaction, no code was inspected. Visual verdicts for small text rely on the accompanying copy files per instructions; where I could not confirm legibility from pixels alone, I say so explicitly rather than guessing.
+
+## Route-by-route verdicts
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/category/technical-hiring/` | **Pass, minor.** On-style (Fraunces hero, mono pill labels, warm-paper cards, black footer). Only 2 posts render; card layout is clean at both widths. Large blank space above the hero label at 1520 mirrors the homepage hero pattern — consistent, not a bug. | **Pass.** Copy is clean, no typos found. Excerpts are short and clear. |
+| `/contact/` | **Pass, minor.** Strong adherence to style: mono labels, red CTA, black form panel, centered final CTA ("Belong · Build · Become"). Accordion rows ("Six things people ask first") show a red `+` affordance — good, discoverable. Mobile stacks cleanly. | **Pass.** Confident, on-brand copy ("Silence isn't a process"). No errors found. |
+| `/functions/` | **Pass, with one real bug.** Layout, cards, dark "method" band, and centered final CTA all match style. Interactive comparison widget (top right) is the flagged item — see High severity below. | **Fail — data bug.** The Function A/Function B weighting bars do not sum to 100% for Function B (data-analytics side). See High severity. Minor grammar: "a 8-point swing" → "an 8-point swing." |
+| `/functions/data-analytics/` | **Pass, with one legibility/consistency note.** Bench section (black, "Operators, not recruiters") is unnamed/generic here — fine on its own, but inconsistent with the sibling page below. "Three things teams ask first" list uses a plain triangle glyph, not the same red-`+` accordion treatment used on `/contact/` — looks less clickable/dead by comparison. | **Fail — two copy corruptions.** See High severity (garbled text) and the same 24/20/10/16/18/14 = 102% bar-math bug, plus a labeling mismatch ("analytical judgment" referenced in prose isn't one of the six named bars — the second bar is literally labeled "Systems design"). |
+| `/functions/engineering-platform/` | **Pass, with one evidence flag.** Same layout as the sibling data page; math on this page's bars is internally consistent (sums to 100%). Bench section names real-sounding individuals with specific stats — flag below. | **Pass, mostly.** Bars sum correctly here. One number ("200 req/s") reads as an oddly unimpressive brag claim — see Medium below. |
+
+## Findings by severity
+
+### High
+1. **Corrupted copy on `/functions/data-analytics/`, Q1 "thin answer":** "no attзolution" — contains a stray Cyrillic "з" (should read "attribution"). This is visible, broken English on a public page.
+2. **Second corruption, same page, Q3 "evidence to listen for":** "a dashthat lies says all four unprompted" — missing word, reads as "dashthat" (should be "a dashboard that lies," or similar). Both errors are in the same section, suggesting a find/replace or encoding mishap that wasn't proofread.
+3. **Weighting-bar math doesn't sum to 100% for the "Data & analytics" function**, in two places: the `/functions/` comparison widget (Function B column) and the bar chart on `/functions/data-analytics/` itself. Values given: Core depth 24 + Systems design 20 + Controls and risk 10 + Delivery speed 16 + Documentation 18 + Stakeholder handling 14 = **102%**, not 100. By contrast, the Engineering & Platform side sums correctly to 100% in both places. Since this is the site's core "look how rigorous our weighting is" proof point, a visible arithmetic error undermines the exact claim it's trying to make. This is a data/content bug, not a design one — flagging for the content owner to correct the source numbers.
+
+### Medium
+4. **Prose/chart label mismatch on `/functions/data-analytics/`:** the callout text says "the column next to it — analytical judgment — is the one that separates dashboards from decisions," but the actual bar chart column is labeled "Systems design," not "analytical judgment." Reads as a copy edit that was never reconciled with the chart labels.
+5. **Named individuals with specific performance stats on `/functions/engineering-platform/`** ("Pratik — 11 years, owned a payments platform at 200 req/s"; "Meera…"; "Raghav…"; "Archana…") — flagging as a **claim needing owner evidence/consent**: (a) confirm these are real people who've consented to public naming, and (b) "200 req/s" is a modest number to hold up as a scale flex for a "payments platform" — worth double-checking it's the intended stat and not a typo (e.g., missing a "k"). Note the sibling `/functions/data-analytics/` bench section does **not** name individuals, so there's also a stylistic inconsistency between the two function pages worth resolving one way or the other.
+6. **Grammar on `/functions/`:** "a 8-point swing" should be "an 8-point swing."
+
+### Low
+7. **Interactive-affordance inconsistency:** `/contact/`'s FAQ accordion uses a clear red `+` marker per row (obviously clickable). The "Three things teams ask first" lists on both function detail pages use a plain small triangle/arrow glyph with no visible card/border treatment — from the screenshot alone these read as flatter, less "clickable" than the contact page's equivalent pattern. Can't confirm from a static image whether they actually expand; flagging only the visual inconsistency in affordance design between two components that appear to serve the same purpose.
+
+## What I could not verify
+- Whether the FAQ/accordion elements on the function pages and `/category/technical-hiring/` filter pills are actually interactive (no click-state screenshots provided).
+- Whether the two named blog posts under `/category/technical-hiring/` are the only posts in that category or whether pagination is being suppressed — only one screen state was provided.
+- Fine-grain contrast/legibility of the smallest mono labels in the comparison widget at 390px — copy file confirms the text content, but I can't independently confirm rendered font size from the compressed screenshot beyond what's visible.
+- No claims outside these five routes were reviewed, and nothing here reflects on the homepage beyond its use as a style baseline.

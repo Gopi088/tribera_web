@@ -1,10 +1,12 @@
 ---
 import StandaloneNavScripts from '~/components/standalone/StandaloneNavScripts.astro';
+import SharedNavFrame from '~/components/standalone/SharedNavFrame.astro';
+import NavWordmark from '~/components/standalone/NavWordmark.astro';
 const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const isCandidateRoute = path.startsWith('/candidates');
 const isHiringRoute = !isCandidateRoute;
-const ctaHref = isCandidateRoute ? '/candidates#apply' : '#contact';
-const ctaLabel = isCandidateRoute ? 'Create profile' : 'Talk to us';
+const ctaHref = '/contact';
+const ctaLabel = 'Start with one role';
 const isCandidatesPage = path.startsWith('/candidates');
 const isServicesPage = path === '/services' || path.startsWith('/services/');
 const isIntelligencePage = path === '/intelligence' || path.startsWith('/intelligence/');
@@ -15,73 +17,135 @@ const isCareersPage = path === '/careers' || path.startsWith('/careers/');
 const isIndustriesPage = path.startsWith('/industries') || path.startsWith('/functions');
 ---
 
-<nav class="nav" id="nav"><div class="wrap nav__in">
-  <a class="logo" href="/" data-astro-reload>tribera<i>.</i></a>
-  <span class="nav__sw">
-    <a href="/" class={isHiringRoute ? 'is' : undefined}>I’m hiring</a>
-    <a href="/candidates" class={isCandidatesPage ? 'is' : undefined}>I’m looking</a>
-  </span>
-  <span class="nav__links"><span class="dd">
-    <a href="/industries" class="nav__l dd__t" aria-current={isIndustriesPage ? 'page' : undefined}>Coverage<i></i></a>
-    <span class="dd__p" role="menu">
-      <span class="dd__g">
-        <span class="dd__c"><p class="dd__k">Industries</p><a href="/industries/banking-financial-services">Banking &amp; financial services</a><a href="/industries/enterprise-technology">Enterprise technology</a><a href="/industries/product-saas">Product &amp; SaaS</a><a href="/industries/ai-data">AI &amp; data</a><a href="/industries/cybersecurity">Cybersecurity</a><a href="/industries/healthcare-life-sciences">Healthcare &amp; life sciences</a><a href="/industries/pharmaceutical">Pharmaceutical</a><a href="/industries/manufacturing">Manufacturing</a><a href="/industries/industrial-engineering">Industrial &amp; engineering</a><a href="/industries/global-capability-centres">Global capability centres</a><a href="/industries/consumer-digital-commerce">Consumer &amp; digital commerce</a><a href="/industries/private-equity-portfolio">Private equity portfolio</a></span>
-        <span class="dd__c"><p class="dd__k">Functions</p><a href="/functions/engineering-platform">Engineering &amp; platform</a><a href="/functions/data-analytics">Data &amp; analytics</a><a href="/functions/infrastructure-sre">Infrastructure &amp; SRE</a><a href="/functions/security">Security</a><a href="/functions/finance-risk">Finance &amp; risk</a><a href="/functions/product-design">Product &amp; design</a><a href="/functions/operations">Operations</a><a href="/functions/leadership">Leadership</a></span>
-      </span>
-      <span class="dd__f">Not listed? <a href="/contact">Ask us</a> — we say no when it is not our ground.</span>
+<nav class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a class="logo" href="/" aria-label="tribera home" data-astro-reload><NavWordmark /></a>
+    <span class="nav__sw">
+      <a href="/" class={isHiringRoute ? 'is' : undefined}>I’m hiring</a>
+      <a href="/candidates" class={isCandidatesPage ? 'is' : undefined}>I’m looking</a>
     </span>
-  </span><a class="nav__l" href="/services" aria-current={isServicesPage ? 'page' : undefined}>Services</a><a class="nav__l" href="/intelligence" aria-current={isIntelligencePage ? 'page' : undefined}>Intelligence</a><a class="nav__l" href="/blog" aria-current={isBlogPage ? 'page' : undefined}>Blog</a><a class="nav__l" href="/about" aria-current={isAboutPage ? 'page' : undefined}>About</a><a class="nav__l" href="/contact" aria-current={isContactPage ? 'page' : undefined}>Contact</a><a class="nav__l" href="/careers" aria-current={isCareersPage ? 'page' : undefined}>Careers</a></span>
-  <span class="nav__end">
-    <a class="nav__login" href="https://app.tribera.ai/auth/login">Log in</a>
-    <a href={ctaHref} class="btn btn--light nav__cta" data-form-intent={!isCandidateRoute ? 'demo' : undefined} data-form-source={!isCandidateRoute ? 'header' : undefined}>{ctaLabel}</a>
-    <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navp">
-      <span></span><span></span><span></span>
-    </button>
-  </span>
-</div>
-<div class="navp" id="navp"><div class="wrap navp__in">
-  <div class="navp__sw"><a href="/" class={isHiringRoute ? 'is' : undefined}>I’m hiring</a><a href="/candidates" class={isCandidatesPage ? 'is' : undefined}>I’m looking</a></div>
-  <div class="navp__coverage">
-    <a class="navp__coverage-link" href="/industries" aria-current={isIndustriesPage ? 'page' : undefined}>Coverage</a>
-    <button class="navp__t" type="button" aria-label="Expand Coverage" aria-expanded="false" aria-controls="navp-cov"><i></i></button>
-  </div>
-  <div class="navp__cov" id="navp-cov">
-  <span class="navp__cols">
-    <span class="navp__c">
-      <p class="navp__k">Industries</p>
-      <a href="/industries/banking-financial-services">Banking &amp; financial services</a>
-      <a href="/industries/enterprise-technology">Enterprise technology</a>
-      <a href="/industries/product-saas">Product &amp; SaaS</a>
-      <a href="/industries/ai-data">AI &amp; data</a>
-      <a href="/industries/cybersecurity">Cybersecurity</a>
-      <a href="/industries/healthcare-life-sciences">Healthcare &amp; life sciences</a>
-      <a href="/industries/pharmaceutical">Pharmaceutical</a>
-      <a href="/industries/manufacturing">Manufacturing</a>
-      <a href="/industries/industrial-engineering">Industrial &amp; engineering</a>
-      <a href="/industries/global-capability-centres">Global capability centres</a>
-      <a href="/industries/consumer-digital-commerce">Consumer &amp; digital commerce</a>
-      <a href="/industries/private-equity-portfolio">Private equity portfolio</a>
+    <span class="nav__links"
+      ><span class="dd">
+        <a href="/industries" class="nav__l dd__t" aria-current={isIndustriesPage ? 'page' : undefined}
+          >Coverage<i></i></a
+        >
+        <span class="dd__p" role="menu">
+          <span class="dd__g">
+            <span class="dd__c"
+              ><p class="dd__k">Industries</p><a href="/industries/banking-financial-services"
+                >Banking &amp; financial services</a
+              ><a href="/industries/enterprise-technology">Enterprise technology</a><a href="/industries/product-saas"
+                >Product &amp; SaaS</a
+              ><a href="/industries/ai-data">AI &amp; data</a><a href="/industries/cybersecurity">Cybersecurity</a><a
+                href="/industries/healthcare-life-sciences">Healthcare &amp; life sciences</a
+              ><a href="/industries/pharmaceutical">Pharmaceutical</a><a href="/industries/manufacturing"
+                >Manufacturing</a
+              ><a href="/industries/industrial-engineering">Industrial &amp; engineering</a><a
+                href="/industries/global-capability-centres">Global capability centres</a
+              ><a href="/industries/consumer-digital-commerce">Consumer &amp; digital commerce</a><a
+                href="/industries/private-equity-portfolio">Private equity portfolio</a
+              ></span
+            >
+            <span class="dd__c"
+              ><p class="dd__k">Functions</p><a href="/functions/engineering-platform">Engineering &amp; platform</a><a
+                href="/functions/data-analytics">Data &amp; analytics</a
+              ><a href="/functions/infrastructure-sre">Infrastructure &amp; SRE</a><a href="/functions/security"
+                >Security</a
+              ><a href="/functions/finance-risk">Finance &amp; risk</a><a href="/functions/product-design"
+                >Product &amp; design</a
+              ><a href="/functions/operations">Operations</a><a href="/functions/leadership">Leadership</a></span
+            >
+          </span>
+          <span class="dd__f">Not listed? <a href="/contact">Ask us</a> — we say no when it is not our ground.</span>
+        </span>
+      </span><a class="nav__l" href="/services" aria-current={isServicesPage ? 'page' : undefined}>Services</a><a
+        class="nav__l"
+        href="/intelligence"
+        aria-current={isIntelligencePage ? 'page' : undefined}>Intelligence</a
+      ><a class="nav__l" href="/blog" aria-current={isBlogPage ? 'page' : undefined}>Blog</a><a
+        class="nav__l"
+        href="/about"
+        aria-current={isAboutPage ? 'page' : undefined}>About</a
+      ><a class="nav__l" href="/contact" aria-current={isContactPage ? 'page' : undefined}>Contact</a><a
+        class="nav__l"
+        href="/careers"
+        aria-current={isCareersPage ? 'page' : undefined}>Careers</a
+      ></span
+    >
+    <span class="nav__end">
+      <a class="nav__login" href="https://app.tribera.ai/auth/login">Log in</a>
+      <a href={ctaHref} class="btn btn--light nav__cta" data-form-intent="role" data-form-source="header">{ctaLabel}</a>
+      <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navp">
+        <span></span><span></span><span></span>
+      </button>
     </span>
-    <span class="navp__c">
-      <p class="navp__k">Functions</p>
-      <a href="/functions/engineering-platform">Engineering &amp; platform</a>
-      <a href="/functions/data-analytics">Data &amp; analytics</a>
-      <a href="/functions/infrastructure-sre">Infrastructure &amp; SRE</a>
-      <a href="/functions/security">Security</a>
-      <a href="/functions/finance-risk">Finance &amp; risk</a>
-      <a href="/functions/product-design">Product &amp; design</a>
-      <a href="/functions/operations">Operations</a>
-      <a href="/functions/leadership">Leadership</a>
-    </span>
-  </span>
   </div>
-  <p class="navp__k">Company</p>
-  <a href="/services" aria-current={isServicesPage ? 'page' : undefined}>Services</a><a href="/intelligence" aria-current={isIntelligencePage ? 'page' : undefined}>Intelligence</a><a href="/blog" aria-current={isBlogPage ? 'page' : undefined}>Blog</a><a href="/about" aria-current={isAboutPage ? 'page' : undefined}>About</a><a href="/contact" aria-current={isContactPage ? 'page' : undefined}>Contact</a>
-  <a href="/careers" aria-current={isCareersPage ? 'page' : undefined}>Careers</a>
-  <a href="https://app.tribera.ai/auth/login" class="navp__login">Log in</a>
-  <div class="navp__cta">
-    <a href={ctaHref} class="btn btn--light" data-form-intent={!isCandidateRoute ? 'demo' : undefined} data-form-source={!isCandidateRoute ? 'header' : undefined}>{ctaLabel}</a>
+  <div class="navp" id="navp">
+    <div class="wrap navp__in">
+      <div class="navp__sw">
+        <a href="/" class={isHiringRoute ? 'is' : undefined}>I’m hiring</a><a
+          href="/candidates"
+          class={isCandidatesPage ? 'is' : undefined}>I’m looking</a
+        >
+      </div>
+      <div class="navp__coverage">
+        <a class="navp__coverage-link" href="/industries" aria-current={isIndustriesPage ? 'page' : undefined}
+          >Coverage</a
+        >
+        <button
+          class="navp__t"
+          type="button"
+          aria-label="Expand Coverage"
+          aria-expanded="false"
+          aria-controls="navp-cov"><i></i></button
+        >
+      </div>
+      <div class="navp__cov" id="navp-cov">
+        <span class="navp__cols">
+          <span class="navp__c">
+            <p class="navp__k">Industries</p>
+            <a href="/industries/banking-financial-services">Banking &amp; financial services</a>
+            <a href="/industries/enterprise-technology">Enterprise technology</a>
+            <a href="/industries/product-saas">Product &amp; SaaS</a>
+            <a href="/industries/ai-data">AI &amp; data</a>
+            <a href="/industries/cybersecurity">Cybersecurity</a>
+            <a href="/industries/healthcare-life-sciences">Healthcare &amp; life sciences</a>
+            <a href="/industries/pharmaceutical">Pharmaceutical</a>
+            <a href="/industries/manufacturing">Manufacturing</a>
+            <a href="/industries/industrial-engineering">Industrial &amp; engineering</a>
+            <a href="/industries/global-capability-centres">Global capability centres</a>
+            <a href="/industries/consumer-digital-commerce">Consumer &amp; digital commerce</a>
+            <a href="/industries/private-equity-portfolio">Private equity portfolio</a>
+          </span>
+          <span class="navp__c">
+            <p class="navp__k">Functions</p>
+            <a href="/functions/engineering-platform">Engineering &amp; platform</a>
+            <a href="/functions/data-analytics">Data &amp; analytics</a>
+            <a href="/functions/infrastructure-sre">Infrastructure &amp; SRE</a>
+            <a href="/functions/security">Security</a>
+            <a href="/functions/finance-risk">Finance &amp; risk</a>
+            <a href="/functions/product-design">Product &amp; design</a>
+            <a href="/functions/operations">Operations</a>
+            <a href="/functions/leadership">Leadership</a>
+          </span>
+        </span>
+      </div>
+      <p class="navp__k">Company</p>
+      <a href="/services" aria-current={isServicesPage ? 'page' : undefined}>Services</a><a
+        href="/intelligence"
+        aria-current={isIntelligencePage ? 'page' : undefined}>Intelligence</a
+      ><a href="/blog" aria-current={isBlogPage ? 'page' : undefined}>Blog</a><a
+        href="/about"
+        aria-current={isAboutPage ? 'page' : undefined}>About</a
+      ><a href="/contact" aria-current={isContactPage ? 'page' : undefined}>Contact</a>
+      <a href="/careers" aria-current={isCareersPage ? 'page' : undefined}>Careers</a>
+      <a href="https://app.tribera.ai/auth/login" class="navp__login">Log in</a>
+      <div class="navp__cta">
+        <a href={ctaHref} class="btn btn--light" data-form-intent="role" data-form-source="page">{ctaLabel}</a>
+      </div>
+    </div>
   </div>
-</div></div></nav>
+</nav>
 
 <StandaloneNavScripts />
+<SharedNavFrame />

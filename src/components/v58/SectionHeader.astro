@@ -1,0 +1,48 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+export interface Props extends HTMLAttributes<'header'> {
+  layout?: 'stacked' | 'split';
+}
+const { layout = 'stacked', class: className, ...attributes } = Astro.props;
+---
+
+<header {...attributes} class:list={['v58-section-header', `v58-section-header--${layout}`, className]}>
+  {
+    Astro.slots.has('eyebrow') && (
+      <div class="v58-section-header__eyebrow">
+        <slot name="eyebrow" />
+      </div>
+    )
+  }
+  <div class="v58-section-header__heading"><slot /></div>
+  {
+    Astro.slots.has('description') && (
+      <div class="v58-section-header__description">
+        <slot name="description" />
+      </div>
+    )
+  }
+</header>
+
+<style>
+  .v58-section-header {
+    display: grid;
+    gap: 24px;
+    text-align: left;
+    margin-bottom: clamp(32px, 3vw, 48px);
+  }
+  .v58-section-header__eyebrow {
+    grid-column: 1/-1;
+  }
+  .v58-section-header__description {
+    max-width: 60ch;
+    font: 400 clamp(16px, 1.1vw, 19px)/1.55 var(--v58-ui);
+  }
+  @media (min-width: 900px) {
+    .v58-section-header--split {
+      grid-template-columns: 1.04fr 0.96fr;
+      column-gap: 34px;
+      align-items: start;
+    }
+  }
+</style>

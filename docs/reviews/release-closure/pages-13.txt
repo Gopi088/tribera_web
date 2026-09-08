@@ -1,0 +1,27 @@
+All 5 routes reviewed at both breakpoints, plus copy files. All are identical in structure/style to the shared tag-page template and consistent with the home page reference (Fraunces headings, Inter Tight body, mono labels/counts, left-aligned headings, red accent, restrained cards, shared header/footer).
+
+## Summary
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| /tag/structured-evaluation/ | Pass — matches template | Pass |
+| /tag/talent-acquisition/ | Pass — 2×2 grid consistent | Pass |
+| /tag/technical-assessment/ | Pass — single-card layout consistent (per disposition: uneven counts are expected, not bugs) | Pass |
+| /tag/technical-hiring/ | Pass — matches template | Pass |
+| /tag/thought-leadership/ | Pass — single-card layout consistent | Pass |
+
+## Findings
+
+No release-blocking visual or copy defects found across any of the 5 routes, desktop or mobile.
+
+**Note, not a defect (per prior disposition):** on `/tag/thought-leadership/`, the one listed article is tagged "HIRING PHILOSOPHY," not "Thought Leadership." This mirrors the already-confirmed "topic membership" behavior in `correction-disposition.md` (cards show category + up to two tags; a different active topic can legitimately contain the article). No action needed.
+
+**Optional polish (non-blocking):**
+- All five pages repeat the identical hero copy "Notes on hiring, assessment and the candidate experience." regardless of tag. This is consistent by design across the tag template, not a bug — flagging only as a possible future content enhancement (tag-specific subheads) if the team wants more differentiated SEO/landing copy per tag. Not required for release.
+
+**Owner-evidence items (not code/design defects, carried from prior disposition, still applicable to copy on these pages):**
+- "2,00,000 structured interviews" statistic (appears on structured-evaluation and talent-acquisition cards) — numeric claim needs owner sign-off, not a visual/copy bug.
+- "327-profile search into a 22-day success" and similar named-outcome claims (technical-hiring, talent-acquisition) — factual/case claims requiring owner confirmation, already tracked previously.
+
+## Coverage note
+All 5 routes' desktop and mobile full-page screenshots plus copy files were read directly; section crops were not needed since full screenshots were legible. No route or image was unreadable or skipped.

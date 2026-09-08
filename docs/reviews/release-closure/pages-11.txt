@@ -1,0 +1,26 @@
+All 5 tag routes reviewed at desktop and mobile, with copy files. No section crops were needed — full-page text was legible.
+
+## Route summary
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| /tag/hiring-insights/ | Pass — matches shared shell/typography/palette | Pass |
+| /tag/hiring-metrics/ | Pass | Pass (see numeral-format question below) |
+| /tag/human-first-hiring/ | Pass | Pass |
+| /tag/job-search-tips/ | Pass | Pass |
+| /tag/platform-design/ | Pass | Pass |
+
+All five are structurally identical tag-listing templates (hero, filter pills, single article card, shared dark footer) at both 1520px and 390px. Fraunces headings, mono eyebrow/meta labels, Inter Tight body, red active-filter/category accents, and the shared header/footer all match the hiring reference and each other. No layout breakage, overflow, or truncation observed at either breakpoint. Filter pills wrap correctly on mobile; active tag pill is legibly styled (dark fill/white text) at both sizes, consistent with `docs/reviews/site-style/correction-disposition.md`'s "readable foregrounds, active states" fix.
+
+## Actionable findings
+
+None are release blockers. One item for owner confirmation:
+
+1. **Optional polish — numeral formatting, `/tag/hiring-metrics/`.** Headline and description both read "2,00,000 Interviews" / "2,00,000 structured interviews" (Indian digit-grouping: lakhs). Screenshot: `tag__hiring-metrics-1520.png`, article card. This isn't a code/design defect — it's a copy-style consistency question: confirm whether Indian numeral grouping is the intended house style here versus "200,000" used elsewhere on the site (e.g., other stat callouts on the homepage reference, `home-1520.png`). Flagging for the copy owner, not treating as a bug.
+
+## Owner-evidence items (not visual/code defects)
+- The "2,00,000 structured interviews" figure itself is a statistical/research claim — per the disposition doc, interview-volume statistics require owner evidence, not a design review call.
+- Both `/tag/hiring-insights/` and `/tag/job-search-tips/` correctly share the same single article ("When Job Hunting Feels Like a Black Hole") under the "Candidate Experience" category — this is expected per the disposition doc's note that topic membership can legitimately overlap across tags; not a duplication bug.
+
+## Coverage note
+All 5 routes were reviewed at both breakpoints (desktop 1520px, mobile 390px) plus their copy files — full-page images were readable without needing the optional section crops. No route or image was skipped.

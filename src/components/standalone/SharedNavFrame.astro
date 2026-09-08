@@ -1,0 +1,322 @@
+<style is:global>
+  /* Navigation geometry belongs to the shell, never to an audience page. */
+  #nav {
+    --wrap: 1280px;
+    --gut: 24px;
+    background: #fff !important;
+    border-bottom: 1px solid rgba(19, 19, 19, 0.1) !important;
+    font-family:
+      'Inter Tight',
+      -apple-system,
+      sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #nav .wrap {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: var(--wrap);
+    padding-inline: var(--gut);
+    margin-inline: auto;
+  }
+  #nav .logo,
+  #nav .nav__l,
+  #nav .nav__login {
+    color: #131313 !important;
+  }
+  #nav .nav__l:hover,
+  #nav .nav__login:hover {
+    background: transparent !important;
+    color: #131313 !important;
+  }
+  #nav .dd__t i {
+    border-color: #57565b !important;
+  }
+  #nav .dd__t:hover i,
+  #nav .dd.open .dd__t i {
+    border-color: #131313 !important;
+  }
+  /* Legacy page palettes must not change contrast in the shared light menu. */
+  #nav .dd__p {
+    background: #fff !important;
+  }
+  #nav .dd__p a {
+    color: #57565b !important;
+    transition:
+      background 0.18s,
+      color 0.18s !important;
+  }
+  #nav .dd__c a {
+    font-size: 14.72px !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    padding-inline: 8px !important;
+  }
+  #nav .dd__p--sm a {
+    padding-inline: 10px !important;
+  }
+  #nav .dd__f a {
+    padding-inline: 0 !important;
+  }
+  #nav .dd__p a:hover,
+  #nav .dd__p a:focus-visible {
+    background: #f1f1f1 !important;
+    color: #131313 !important;
+  }
+  #nav .dd__p a:focus-visible {
+    outline: 2px solid #da0007;
+    outline-offset: 2px;
+  }
+  #nav .dd__p a b {
+    color: inherit !important;
+  }
+  #nav .dd__p a span {
+    color: #57565b !important;
+  }
+  #nav .navp {
+    background: #fff !important;
+  }
+  #nav .navp a:not(.btn),
+  #nav .navp__t {
+    color: #57565b !important;
+  }
+  #nav .navp a:not(.btn):is(:hover, :focus-visible, [aria-current='page']),
+  #nav .navp__t:is(:hover, :focus-visible) {
+    color: #131313 !important;
+    background: #f1f1f1 !important;
+  }
+  #nav .navp__t i {
+    border-color: #57565b !important;
+  }
+  #nav .navp .navp__sw a {
+    background: #eceae4 !important;
+    color: #57565b !important;
+  }
+  #nav .navp .navp__sw a.is {
+    background: #131313 !important;
+    color: #fff !important;
+  }
+  #nav .navp .navp__sw a.is:is(:hover, :focus-visible) {
+    background: #333 !important;
+    color: #fff !important;
+  }
+  #nav .navp :is(a, button):focus-visible {
+    outline: 2px solid #da0007;
+    outline-offset: 2px;
+  }
+  #nav .nav__sw a:not(.is):focus-visible {
+    color: #131313 !important;
+    outline: 2px solid #da0007;
+    outline-offset: 2px;
+  }
+  #nav .burger span,
+  #nav .burger:hover span {
+    background: #131313 !important;
+  }
+  #nav .burger {
+    margin: 0 !important;
+  }
+  #nav .nav__sw {
+    align-items: stretch !important;
+    background: #eceae4 !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    box-sizing: border-box !important;
+    box-shadow: none !important;
+    display: inline-grid !important;
+    gap: 2px !important;
+    grid-auto-columns: 1fr !important;
+    grid-auto-flow: column !important;
+    grid-template-columns: none !important;
+    height: 30px !important;
+    padding: 2px !important;
+  }
+  #nav .nav__sw a {
+    align-items: center !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    box-sizing: border-box !important;
+    color: #8d8c83 !important;
+    display: inline-flex !important;
+    font-family: 'Inter Tight', sans-serif !important;
+    font-size: 12.5px !important;
+    font-weight: 500 !important;
+    height: 26px !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    padding: 0 12px !important;
+    width: auto !important;
+  }
+  #nav .nav__sw a:hover:not(.is) {
+    color: #131313 !important;
+  }
+  #nav .nav__sw a.is {
+    background: #fff !important;
+    box-shadow:
+      0 1px 1px rgba(19, 19, 19, 0.05),
+      0 2px 5px -1px rgba(19, 19, 19, 0.12) !important;
+    color: #131313 !important;
+  }
+  @media (min-width: 1536px) {
+    #nav {
+      --wrap: 1600px;
+      --gut: 30px;
+    }
+  }
+  /* Keep the shared header stable before deferred component styles arrive. */
+  #nav .nav__in {
+    min-height: 64px !important;
+    height: 64px !important;
+    gap: 20px !important;
+    padding-block: 0 !important;
+  }
+  #nav .logo {
+    display: inline-flex !important;
+    flex: 0 0 76px !important;
+    align-items: baseline !important;
+    box-sizing: border-box !important;
+    width: 76px !important;
+    height: 20px !important;
+    font-family:
+      'Figtree',
+      -apple-system,
+      sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    line-height: 20px !important;
+    letter-spacing: -0.055em !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+  }
+  #nav .logo i {
+    display: inline-block !important;
+    flex: 0 0 auto !important;
+    font: inherit !important;
+    font-style: normal !important;
+    line-height: 1 !important;
+    transform: none !important;
+  }
+  /* The audience switcher is shared by both V58 audience routes. Keep it
+         independent of route-local legacy navigation styles. */
+  #nav .nav__sw {
+    align-items: stretch !important;
+    background: #eceae4 !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    box-sizing: border-box !important;
+    box-shadow: none !important;
+    display: inline-grid !important;
+    gap: 2px !important;
+    grid-auto-columns: 1fr !important;
+    grid-auto-flow: column !important;
+    grid-template-columns: none !important;
+    height: 30px !important;
+    padding: 2px !important;
+  }
+  #nav .nav__sw a {
+    align-items: center !important;
+    background: transparent !important;
+    border-radius: 999px !important;
+    border: 0 !important;
+    box-sizing: border-box !important;
+    color: #8d8c83 !important;
+    display: inline-flex !important;
+    font-family: var(--v58-ui, 'Inter Tight', ui-sans-serif, sans-serif) !important;
+    font-size: 12.5px !important;
+    font-weight: 500 !important;
+    height: 26px !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    padding: 0 12px !important;
+    width: auto !important;
+  }
+  #nav .nav__sw a:hover:not(.is) {
+    background: transparent !important;
+    color: var(--v58-ink, #131313) !important;
+  }
+  #nav .nav__sw a.is {
+    background: #fff !important;
+    box-shadow:
+      0 1px 1px rgba(19, 19, 19, 0.05),
+      0 2px 5px -1px rgba(19, 19, 19, 0.12) !important;
+    color: var(--v58-ink, #131313) !important;
+    font-weight: 500 !important;
+  }
+  #nav .nav__cta {
+    background: var(--v58-red, #da0007) !important;
+    border: 1px solid transparent !important;
+    border-radius: 100px !important;
+    box-shadow: 0 8px 20px -8px rgba(218, 0, 7, 0.5) !important;
+    font-family: var(--v58-ui, 'Inter Tight', system-ui, sans-serif) !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.01em !important;
+    line-height: normal !important;
+    padding: 0.58em 1.25em !important;
+    transition:
+      transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 0.25s ease,
+      background 0.2s !important;
+  }
+  #nav .nav__cta::after {
+    display: none !important;
+  }
+  #nav .nav__cta:hover {
+    background: #c10006 !important;
+    box-shadow: 0 18px 44px -14px rgba(218, 0, 7, 0.55) !important;
+    transform: translateY(-2px) scale(1.025) !important;
+  }
+  #nav .nav__cta:active {
+    transform: translateY(0) scale(0.99) !important;
+  }
+  @media (min-width: 1080px) {
+    #nav .nav__end {
+      width: auto !important;
+      justify-content: flex-end !important;
+      gap: 12px !important;
+      margin-left: 10px !important;
+    }
+    #nav .nav__login {
+      display: inline-flex !important;
+      flex: 0 0 37px !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+      padding: 0 4px !important;
+      line-height: 1 !important;
+      white-space: nowrap !important;
+    }
+  }
+  @media (min-width: 720px) {
+    #nav .nav__cta {
+      display: inline-flex !important;
+      flex: 0 0 auto !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+      width: auto !important;
+      min-width: 0 !important;
+      min-height: 34px !important;
+      white-space: nowrap !important;
+    }
+  }
+  @media (min-width: 1080px) {
+    #nav .nav__links {
+      gap: 0 !important;
+    }
+    #nav .nav__l,
+    #nav .dd__t {
+      padding: 7px 8px !important;
+      font-size: 13px !important;
+    }
+    #nav .nav__login {
+      font-size: 13px !important;
+    }
+  }
+  @media (max-width: 389px) {
+    #nav .nav__sw {
+      display: none !important;
+    }
+  }
+</style>

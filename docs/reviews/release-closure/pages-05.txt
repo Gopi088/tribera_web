@@ -1,0 +1,32 @@
+## Release Review — Functions Routes (5 of 5 reviewed)
+
+All screenshots and copy files were read in full for all 5 routes; nothing was un-reviewable.
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| /functions/ | Pass — matches hiring style (Fraunces headings, mono eyebrow labels, restrained red, left-aligned headings, dark/light section rhythm) | Pass — weights sum to 100, caption math checks out (10→18%, 8pp diff) |
+| /functions/data-analytics/ | Pass — consistent card/nav/footer, weight bars render correctly at both widths | Pass — weights sum to 100 (23+19+10+16+18+14) |
+| /functions/engineering-platform/ | Pass | Pass — weights sum to 100 (26+22+10+18+10+14) |
+| /functions/finance-risk/ | Pass | Pass — weights sum to 100 (22+12+26+14+18+8) |
+| /functions/infrastructure-sre/ | Pass | Pass — weights sum to 100 (18+26+14+12+12+18) |
+
+## Findings
+
+No release-blocking defects found. All four detail pages follow one consistent template (hero, weighting card, "things a CV cannot tell you," Q&A, roles table, "operators not recruiters" dark band, FAQ, CTA, footer), and this shared structure across different function content is intentional per the correction disposition — not a defect (per prior "shared style does not require identical page contents" ruling).
+
+### Optional polish (non-blocking)
+- **/functions/** — Card grid ends with 6 full rows + a final row of only 2 cards (Operations, Leadership) out of 8, leaving visible whitespace on desktop. This mirrors the previously-accepted "seven roles, one short row" pattern on Careers, so I'm not flagging it as a defect — noting only as optional visual balance if the design wants an even grid.
+- Mono "WEIGHTED HEAVIEST" labels and bar-chart mini visualizations on function cards are small at 1520px; legible but tight. Consider slightly larger tap/read targets on mobile bar rows if any user testing surfaces friction (I did not observe actual illegibility in the screenshots).
+
+### Owner-evidence questions (not code/design defects — separate from this review)
+Per docs/reviews/site-style/correction-disposition.md, these are factual/contractual claims Claude's review cannot verify and are unchanged by this pass:
+- "Three names in 36 hours" — timing SLA claim, repeated on all 4 detail pages.
+- Named example people in "bench you get" lists (Pratik, Meera, Raghav, Archana / Bharat B. on the hiring page, etc.) — tenure and specific achievement figures (e.g., "11 years," "200 req/s," "10x," "8 years across three continents") require owner sign-off that these are real, consented, and accurate.
+- Specific numeric claims in question/answer copy (e.g., "wrong by more than 10%," "99.7% availability," "closed a month... fourteen times") — illustrative examples, not verified statistics.
+- "Example weights" disclaimers are present and correctly worded on all four function pages, which properly scopes the percentage bars as illustrative rather than a hiring standard — this satisfies the prior correction, no further action needed.
+
+### Explicitly not verified
+- I did not verify backend behavior of "Brief a role," "Ask about your function," or CTA buttons — only static screenshots and copy were reviewed, per scope. No claim is made about form submission or downstream delivery.
+- Collapsible FAQ content was reviewed from the copy file's closed-state text extracts (all three FAQs per page have full answers present and coherent) — consistent with the prior "collapsed state is not evidence of missing answers" note.
+
+**Summary: no visual-consistency or copy defects found across any of the 5 routes at either breakpoint. All five are release-ready from a design/copy-QA standpoint; the only open items are the pre-existing owner-evidence questions listed above, which are unchanged by this refactor and were already tracked separately.**

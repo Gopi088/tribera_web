@@ -1,0 +1,29 @@
+## Route-by-Route Verdicts
+
+| Route | Visual | Copy |
+|---|---|---|
+| `/blog/why-tech-hiring-really-takes-so-long/` | **Pass.** Fraunces headline, mono eyebrow (date · category · read time), left-aligned headings, red pull-quote accent, aligned "keep reading" cards, centered final CTA — all on-style at both breakpoints. | **Pass.** Reads as intended editorial voice; no dead/obsolete claims in this packet. |
+| `/candidates/` | **Pass.** Score panel, taxonomy chips, testimonial cards, four-step "what happens next" grid all consistent card sizing; mobile stacks cleanly. | **Pass.** Consistent with disposition notes — logos section doesn't claim to be exhaustive, testimonials preserved verbatim. |
+| `/candidates/start/` | **Pass.** Two-column form matches editorial system; submit button shown in a lighter/disabled red — **this is the intentional pre-upload disabled state per correction-disposition.md, not a bug.** Four-step process footer aligned. | **Pass.** Copy is clear on what submitting does/doesn't do ("does not publish a public profile," "not an offer"). |
+| `/careers/` | **Pass.** Role cards uniform, scorecard panel matches hiring-page pattern, timeline row aligned at both widths. | **Remaining issue (copy, minor):** last sentence before the "Write anyway" section is a comma splice that muddies the point: *"Those get the same process and the same written feedback, the people with the least leverage in a hiring process are the ones it usually treats worst."* Two independent clauses jammed together — needs a period or em-dash after "feedback." Not a factual/legal issue, just a readability fix. |
+| `/careers/ai-ml-engineer/` | **Pass.** Scorecard weights sum to 100 (30/26/16/14/10/4); dimension bars, "what you bring / nice to have" two-column layout, and process timeline all match the careers index pattern. Mobile stack is clean, no overlap. | **Pass.** No corrupted words or incomplete sentences found; nice-to-have disclaimer present and consistent with careers index framing. |
+
+## Findings by Severity
+
+**Blocking:** None found in this packet.
+
+**Should-fix (copy):**
+- `/careers/`: comma splice in the closing line of the "how we hire" section (quoted above) — reads as two run-on statements. Low effort, improves clarity.
+
+**Not bugs (confirmed per correction-disposition.md):**
+- `/candidates/start/` disabled "Submit profile" button before a CV is attached — correctly disabled, matches documented intent.
+
+**Owner-evidence-required (not a design/copy defect, flagging separately per your instruction):**
+- `/candidates/start/`: "36 hours" and 10 MB/file-type limits — confirm these are current operational commitments.
+- `/careers/`: "7 roles," headcounts, "3 teams," and the "within 3 days / two weeks" hiring-process SLAs — confirm these are live and accurate at publish time.
+- `/careers/ai-ml-engineer/`: "1 position," "2–5 years," and weighting percentages — confirm these reflect the actual open req, not illustrative copy.
+- `/blog/...`: named case details (327 profiles, 5 months → 22 days, named panel/candidate counts) — factual claims outside review scope.
+- `/candidates/`: client/logo names (Mizuho, Capco, Deloitte, etc.) and both testimonials (Anil Giri, Reema Mitra) — need logo-usage and consent confirmation.
+
+## Resolution limits
+All screenshots were read at full page height at the provided resolutions (1520px and 390px viewports). Body copy at these page lengths renders small in the raw screenshots for the longer pages (candidates, careers); I cross-checked against the accompanying copy files for exact text rather than relying on OCR-by-eye, so wording accuracy is verified, but I can't rule out sub-pixel rendering issues (font hinting, exact spacing) that wouldn't show at this resolution. No overflow, clipped text, or broken card grids were visible in any of the five routes at either breakpoint.

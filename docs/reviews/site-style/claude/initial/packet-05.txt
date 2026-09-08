@@ -1,0 +1,35 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+## Review Scope
+Reviewed only the 5 routes in this packet (Talent Associate careers page + 4 category/journal listing pages), against `/tmp/tribera-site-style/baseline/home-1520.png` as the style reference. No other routes were opened or assessed. No files were edited.
+
+## Route-by-Route Verdicts
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/careers/talent-associate/` | **Pass.** On-brand: Fraunces heading, mono red eyebrows ("WHAT YOU WILL OWN", "THE PROCESS"), dark scorecard widget echoes homepage's "Move the bar" module, red CTA + underlined secondary link, clean left-aligned sections, centered final CTA ("Someone will write back"). Mobile reflows cleanly, no overflow. | **Strong.** Distinctive, consistent voice ("Silence isn't a process"), transparent scoring weights, clear process timeline. No dead promises spotted. |
+| `/category/ai-and-assessment/` | **Pass, but thin.** Single post rendered in a wide horizontal split-card (image left ~45%, text right). Matches homepage typography/red pill filters. Mobile stacks image-on-top correctly. | **Pass.** Short, clear dek. Only one article — page reads sparse. |
+| `/category/candidate-experience/` | **Pass, but inconsistent card component (see High finding below).** Two posts render in a *different* card template (square/portrait image-on-top, 2-col grid) than the single-post pages. | **Pass.** Copy fine, but see claim-evidence flag on the "Black Hole" article dek. |
+| `/category/hiring-philosophy/` | **Pass.** Same single-post horizontal card as AI & Assessment. Consistent nav/footer/filters. | **Pass.** Clear, on-voice. Only one article. |
+| `/category/hiring-strategy/` | **Pass.** Same single-post horizontal card layout. | **Pass**, but see claim-evidence flag below (interview count stat). |
+
+## Findings by Severity
+
+**High**
+- **Two different card templates for the same content type.** Pages with 1 post (AI & Assessment, Hiring Philosophy, Hiring Strategy) render a horizontal split card (image left, text right, full-bleed height). The page with 2 posts (Candidate Experience) renders a completely different card shape (image-on-top square, 2-column grid). This isn't just a column-count difference — the aspect ratio and composition of the card itself changes. If a third post is added to any "single-post" category, confirm which template is authoritative; right now the two coexist and would look like two different features if a user browsed categories back-to-back.
+
+**Medium**
+- **Eyebrow label breaks the mono/red-caps convention.** "From the journal" (all four category pages) is lowercase, grey, and not monospace — inconsistent with the established pattern of uppercase red mono labels used everywhere else (e.g., "WHAT YOU WILL OWN" on the careers page, "AI & ASSESSMENT" on the post-card metadata directly below it on the same page). Worth aligning to the rest of the system or confirming it's an intentional exception.
+- **Thin category pages.** 3 of 4 categories (AI & Assessment, Hiring Philosophy, Hiring Strategy) show only a single article. Not a code bug, but it reads as unfinished/empty next to Candidate Experience's fuller grid — flag to content owner as a coverage gap, not a design blocker.
+
+**Low**
+- Numeral formatting "2,00,000" (Indian lakh-style grouping) in the Hiring Strategy headline/dek may read oddly to a non-Indian audience expecting "200,000." Minor, but worth a style-guide decision if the site targets a global audience.
+
+**Claims needing owner evidence (not a design/code issue)**
+- "2,00,000 structured interviews across domains" (Hiring Strategy category, headline claim) — large statistical claim, no citation/link visible.
+- "Backed by research from McKinsey, Deloitte, and PwC" (Candidate Experience, "Black Hole" article dek) — named third-party research citation with no link or footnote on the listing page; confirm the linked article actually cites sources, since the claim is prominent enough to read as an endorsement.
+- Talent Associate JD lists "1 POSITION" — confirm this headcount is still accurate/live before/after any redesign push, since stale headcounts on a live requisition page are a credibility risk.
+
+**No issues found in these routes**
+- No unreadable text, no overflow, no dead-looking (unstyled) controls, no obsolete promise language, no broken alignment at either breakpoint. Legal/testimonial content wasn't present on any of these 5 pages, so nothing to preserve-check here.
+
+**Resolution caveat:** All screenshots were legible at both 1520px and 390px; no zoom-dependent guessing was required for this batch, so the above findings are based on directly readable text/layout, not inference.

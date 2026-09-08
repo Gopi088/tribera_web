@@ -1,0 +1,37 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+## Review scope
+Reviewed against `/tmp/tribera-site-style/baseline/home-1520.png` only the 5 routes below (desktop 1520px, mobile 390px screenshots, plus extracted copy). No other routes were opened or assessed.
+
+**Resolution caveat:** at 1520px→~490px and 390px→~95px display scale, fine details (exact kerning, small mono-label sizes, precise card padding) are not reliably verifiable from the images alone. Where text was too small to judge visually, I cross-checked against the accompanying copy.txt files, which I treat as authoritative for content but not for rendering fidelity.
+
+## Route-by-route verdict
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| /industries/cybersecurity/ | Pass — matches baseline system (Fraunces italic-red headline, mono micro-labels, dark bar-chart hero card, red CTAs, left headers, centered final CTA). No overflow/broken cards visible at either width. | Pass, one flagged item: Q1 "thin answer" quote has a **doubled opening curly-quote** (`““We followed...`) — see Medium finding below. |
+| /industries/enterprise-technology/ | Pass — consistent with template, desktop and mobile stacking looks clean. | Pass, no defects found. |
+| /industries/global-capability-centres/ | Pass — consistent. | Pass, no defects found. |
+| /industries/healthcare-life-sciences/ | Pass — consistent. | Pass, no defects found. |
+| /industries/industrial-engineering/ | Pass — consistent. | Pass, no defects found. |
+
+All five pages share one template (hero → "Things a CV cannot tell you" → "Three questions" → role grid → "Operators, not recruiters" → "Three things teams ask" → final CTA → "We hire like you think" footer). Style is faithfully on-brand throughout: Fraunces serif headlines with italic red emphasis, Inter Tight body copy, tracked mono section eyebrows, warm-paper/charcoal alternating sections, restrained red CTA buttons, left-aligned section headers with a genuinely centered final CTA — all matching the homepage baseline. Nothing in these five routes broke that system.
+
+## Findings by severity
+
+**Medium**
+- **Duplicated open-quote on cybersecurity page, Q1 "thin answer":** copy text shows `““We followed the incident response playbook and contained it.”` — two opening curly quotes before one closing quote. None of the other four pages' equivalent quotes have this. Could be a real markup/typography bug (e.g. stray literal character in the CMS field) or a copy-extraction artifact — flag to the owner to check the live DOM/CMS field for this specific string.
+
+**Low / consistency**
+- **CTA label mismatch:** the persistent top-nav button reads "Start with one role" while every industry page's hero/footer CTA button reads "Brief a role." If these trigger the same action, consider unifying the label — two near-synonymous CTAs on the same screen can read as two different offers.
+- **High template repetition across industries:** the sentence "A correct answer with no reasoning behind it is not evidence of anything. That sentence is written into the method, and this is the sector where it earns its keep." and the full "Operators, not recruiters" / "What that changes" bullet list are verbatim identical on all 5 pages. Intentional and fine in isolation, but a visitor comparing two industry pages back-to-back will notice the boilerplate. Not a blocker, just a note for anyone iterating on differentiation later.
+
+**None found**
+- No unreadable/overflowing text, no broken or misaligned cards, no dead-looking controls, and no obviously stale/placeholder copy across any of the 5 routes at either breakpoint.
+- The "THE BAR IN THIS SECTOR" percentage weightings each correctly sum to 100% (cyber 24/16/32/12/10/6; enterprise-tech 26/26/10/20/10/8; GCC 22/18/12/20/10/18; healthcare 18/12/30/10/22/8; industrial 24/18/18/18/14/8) — no arithmetic errors.
+
+## Claims that need owner evidence (not a design/code issue — flagging separately as requested)
+- **"Three names in 36 hours"** — repeated verbatim as a hard SLA on every page's final CTA. Needs confirmation this is a commitment the team actually delivers on, since it reads as a specific, checkable promise.
+- **"If none of the three fit, we restart at no cost"** guarantee — repeated on every role-grid section; should be backed by actual terms somewhere (T&Cs, contract language) so it isn't just marketing copy with no substance behind it.
+- **Named expert tenures** (e.g., "Detection and response, 14 yrs," "GCC build-out and leadership, 18 yrs") — specific, verifiable claims about real people on the bench; owner should confirm these are current and accurate per sector.
+- **"Same six dimensions in every sector; only the shape changes — set with you at intake"** and the specific percentage weightings — implies a defined, real scoring methodology. Worth owner sign-off that these numbers reflect an actual internal framework rather than illustrative placeholder values, since they're precise enough (e.g., 32%, 30%) to invite scrutiny.
+- **"Outcomes come back to the expert who ran the interview — who got hired, who was still there a year later"** — a retention-tracking claim; needs evidence this feedback loop is real and operating, not aspirational.

@@ -1,0 +1,50 @@
+<style is:inline>
+  /* Candidate hero geometry is critical to first paint. */
+  @media (min-width: 1000px) {
+    .tribera-candidates .hero {
+      padding-block: clamp(44px, 5.6vw, 80px) clamp(36px, 4vw, 64px) !important;
+    }
+    .tribera-candidates .hero__top {
+      display: grid !important;
+      grid-template-columns: 0.9fr 1.1fr !important;
+      align-items: center !important;
+      gap: clamp(30px, 3.4vw, 52px) !important;
+    }
+    .tribera-candidates .hero h1 {
+      font-size: clamp(36px, 4.6vw, 54px) !important;
+    }
+    .tribera-candidates .hero [data-rv] {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+  @media (min-width: 1152px) {
+    .tribera-candidates .hero__top {
+      grid-template-columns: minmax(0, 46fr) minmax(0, 54fr) !important;
+      gap: clamp(64px, 7.5vw, 144px) !important;
+    }
+    .tribera-candidates .hero h1 {
+      /* Match the shared hero rule before deferred page CSS is parsed. */
+      font-size: clamp(52px, 3.125vw, 60px) !important;
+      line-height: 1.02 !important;
+      letter-spacing: -0.025em !important;
+    }
+  }
+  @media (min-width: 700px) and (max-width: 1151px) {
+    .tribera-candidates .hero {
+      padding-block: 72px 56px !important;
+    }
+    .tribera-candidates .hero__top {
+      min-height: 1087px !important;
+      grid-template-columns: minmax(0, 1fr) !important;
+      align-items: start !important;
+      gap: 56px !important;
+    }
+    .tribera-candidates .hero__card {
+      width: 100% !important;
+      max-width: 620px !important;
+      margin-inline: auto !important;
+    }
+  }
+</style>

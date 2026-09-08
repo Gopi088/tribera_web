@@ -1,0 +1,37 @@
+## Cross-Site Visual/Copy Review — Verdict
+
+**Overall: Not clean.** The shared shell (nav, typography, color restraint, CTA styling) holds up consistently across all eight sampled sections at both widths, but this pass surfaces one real UI rendering bug and copy that the disposition explicitly claims was fixed and isn't.
+
+### Confirmed issues
+
+**1. (Moderate) Candidate profile upload zone has overlapping/illegible text — `candidate-enabled-390.png` and `candidate-enabled-1520.png`.**
+Above the readable "PDF, DOC or DOCX · up to 10 MB" line there is a faint band of smeared, unreadable text — looks like two text layers (an icon/label and a filename hint) stacked with a z-index or opacity collision. Present at both widths, in the state the disposition explicitly told me to check ("test the enabled state after a valid upload"). This is a genuine rendering defect, not a screenshot artifact of the intentional disabled state.
+
+**2. (Moderate) Copy is still garbled in places, contradicting the disposition's "corrupted words and incomplete sentences corrected" claim** — found by reading the copy text files directly, not screenshots:
+- `functions/security`: *"Disconnect, disconnect, disconnect — a rehearsed answer without evidence that kills the evidence and alerts the attacker that they've been seen."* — "evidence" used twice in a way that doesn't parse.
+- `functions/security`: *"An actual removal with trade-offs named, and the burden for the business line explain that."* — not grammatical English.
+- `functions/finance-risk`: *"Where it shows up: the time they stood the funding question was real."* — missing words; "stood" has no object.
+
+These are live, published sentences, not collapsed FAQ edge cases — they undercut the specific claim that this category of bug was closed.
+
+**3. (Minor, likely acceptable) `career-roles-1520.png`:** 7 roles in a 2-column grid leaves a lone card in the final row with a large empty gap beside it. This is a content-count artifact (odd number of roles), not a layout bug, but it's the one page that visibly breaks the "equal card rows" pattern services (4 cards, clean 2×2) establishes.
+
+**4. (Minor, flag not fix) Contact page is fully dark regardless of the "I'm hiring / I'm looking" toggle**, while every other "I'm hiring"-side page sampled (hiring-work, services, career-roles, topic) is light. May be a deliberate one-off treatment, but it breaks the light/dark = audience convention visible everywhere else, and nothing in the disposition calls this out as intentional.
+
+### What checked out
+
+- Nav geometry (logo width, switcher pill, link spacing, active-link underline, burger margin) is pixel-consistent across all four probed routes at both 390 and 1520 — `SharedNavFrame.astro`'s `margin:0` on `.burger` matches the stated fix.
+- The neutral candidate sample does **not** inherit hiring pass/fail verdict colors: it uses red for importance-weight bars and amber only as an explicit "relatively weaker areas" legend, distinct from a verdict scheme.
+- Fraunces headlines, Inter Tight body/UI, and mono tracked eyebrow labels are consistent across all eight sections at both widths.
+- Red stays restrained (CTAs, small accents) and CTA pill styling/hover states are consistent.
+- The one FAQ example inspected (data-analytics "engineering vs analytics engineering") renders clearly at both widths; the collapsible-content blocks I read directly in five other copy files (careers, contact, security, infrastructure, leadership, operations) are coherent except the three sentences flagged above.
+- Disabled pre-upload button and dark test-state screenshots were correctly treated as intentional per your instructions, not scored as defects.
+
+### Limits of this review
+
+- No source copy file for `/functions/data-analytics/` was provided, so its FAQ could only be checked as rendered pixels, not against source text — can't rule out corruption elsewhere on that page.
+- Only four routes' nav crops were sampled; the brief itself says an independent full-route automated comparison is still outstanding, and screenshots alone don't establish every route.
+- No business facts (36-hour targets, weight authority, headcounts, pricing, legal entity/address) are endorsed here — those remain owner-evidence items, unaffected by this pass.
+- I did not audit component code beyond the one nav file, so I can't rule out related spacing regressions elsewhere.
+
+This is a partial pass with one clear rendering bug and confirmed copy corruption — it should not be read as sign-off for release.

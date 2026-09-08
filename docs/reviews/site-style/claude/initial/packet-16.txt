@@ -1,0 +1,29 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+## Route Review — /terms/
+
+Only one route was included in this packet (`/terms/`), reviewed against `/tmp/tribera-site-style/baseline/home-1520.png` as the style reference. I did not review any other routes.
+
+| Route | Visual verdict (1520 / 390) | Copy verdict |
+|---|---|---|
+| `/terms/` | **Pass** — Fraunces serif headings, Inter body, left-aligned section headings, charcoal/red-accent footer with mono-style nav labels all match the baseline. No overflow, clipping, or broken layout observed at either width; mobile reflows cleanly with hamburger nav and stacked footer. | **Pass with minor bugs** — legal substance is intact and comprehensive, but has one real typo and several facts that need owner sign-off (see below). |
+
+### Findings by severity
+
+**Bug (design/code, fix directly)**
+- Curly-quote typo in the disclaimer heading: `”AS IS” and “AS AVAILABLE” Disclaimer` — the quote mark before "AS IS" is a *closing* curly quote (”) instead of an opening one (“). Visible on both desktop and mobile screenshots and in the copy source (line 47).
+
+**Copy polish (low severity, no owner input needed)**
+- "Country refers to: India." reads as an unedited template fragment rather than a full definition sentence (contrast with the other bulleted definitions, which are all complete sentences).
+
+**Flag for owner/legal evidence (do not guess-fix)**
+- Liability cap is set to a flat **INR 8,000** — unusually specific/low; confirm this is the intended current figure and not a leftover template placeholder.
+- Entity name **"Eragina Digital Solutions Private Limited"** — confirm correct spelling; "Eragina" is an unusual name and worth a sanity check against the actual incorporation documents.
+- Registered office address (`#507, Zenith Complex, Shivaji Nagar, Pune, Maharashtra – 411015`) is a factual claim I can't verify — confirm it's current.
+- "Last updated: July 27, 2025" — over a year stale relative to today (2026-09-08); confirm whether the terms need a refresh/re-review before this ships.
+
+**Not an issue**
+- No dead-looking controls or broken CTAs observed; the single red "Start with one role" header CTA is appropriately restrained for a legal page, consistent with the "restrained red CTA" guideline.
+- The page correctly omits a centered marketing-style final CTA before the footer — appropriate for a terms page, not a gap.
+- Testimonials/marketing content don't apply here (legal-only page); legal substance appears fully preserved from the copy file with no truncation.
+
+**Resolution caveat**: the 1520px full-page screenshot was heavily downscaled (to ~301–779px displayed width), so I cross-referenced against `terms-copy.txt` as the source of truth for exact wording rather than relying on screenshot legibility alone. Layout/spacing/color judgments are based on the screenshots directly.

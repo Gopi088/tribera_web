@@ -1,0 +1,37 @@
+## Release Review — Compact Summary
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| /functions/leadership/ | Pass — matches hiring-page style | Pass |
+| /functions/operations/ | Pass | Pass |
+| /functions/product-design/ | Pass | Pass |
+| /functions/security/ | Pass | Pass |
+| /industries/ | Pass with one confirmed contrast defect (below) | Pass |
+
+All five routes reuse the shared header/footer, Fraunces headings, Inter Tight body, mono eyebrow labels, left-aligned section headings, and the same dark/light alternation pattern as the hiring page. Card layouts, question/answer blocks, and role-grid tables are internally consistent across the four function pages (same section order: hero → priorities panel → "CV can't tell you" → three questions → roles → "operators not recruiters" → FAQ → CTA → "why tribera"). The industries page intentionally differs in structure (comparison chart + 12-card grid instead of the four-function template), which is appropriate for different content and not a defect.
+
+Copy across all five pages is coherent, on-voice, free of the corrupted-word/incomplete-sentence patterns flagged in prior reviews, and consistent with `correction-disposition.md`'s "example weights, not a fixed hiring standard" disclaimers.
+
+### Confirmed actionable findings
+
+**1. (Release blocker — accessibility/contrast) Industries page, "The method is the same in all twelve" dark section — step numbers 01–04 and body text.**
+- Evidence: `industries-1520-section-2.png` and `industries-390-section-2.png`.
+- The numerals (01/02/03/04), step titles, and descriptions render in a dark, low-contrast gray against the near-black background — visibly fainter than the equivalent white/light-gray bullet lists on the "Operators, not recruiters" dark sections of the four function pages (e.g. `functions__leadership-1520.png`). Reproduced identically at both breakpoints, so this is a genuine styling regression on this specific section, not a screenshot artifact.
+- Recommendation: raise the foreground color of the step numbers/copy in this component to match the contrast level used in the "Operators, not recruiters" bullet lists elsewhere on the site.
+
+No other visual or copy defects were confirmed. The sector-card icon bar charts (12-up grid) were reviewed at legible crop resolution and appear plausible per sector but exact bar-height-to-percentage correspondence cannot be verified pixel-for-pixel from a downscaled icon — not asserting a defect there, just noting the limit of visual verification.
+
+### Optional polish (not blockers)
+- None identified beyond the contrast item above; no other spacing, alignment, or type-scale inconsistencies were found across the five routes at either breakpoint.
+
+### Owner-evidence questions (not code/design defects — separate from this review)
+Per `correction-disposition.md`, the following remain factual/contractual claims requiring owner sign-off, not something this review can verify:
+- "36 hours" shortlist timing (all four function pages, industries).
+- Example priority-weighting percentages per function/sector (leadership, operations, product & design, security, industries comparison chart) — confirmed internally consistent and summing to 100, but the underlying methodology/accuracy is a business claim, not a rendering issue.
+- Security page's incident-response and CISO-experience claims, and "stay discreet on security searches" confidentiality practice.
+- Industries page's 12-sector coverage claims and "vetted people," "cost more than a quarter" type figures.
+
+### Review scope / limitations
+- All 5 routes' desktop and mobile screenshots and copy files were read; no route was skipped.
+- No files were edited. No backend/data delivery (e.g., live shortlist timing, actual weighting logic) was verified — only rendered markup and copy as captured in the provided screenshots.
+- Sector-card icon bar heights were reviewed only at crop resolution, not pixel-measured against the stated percentages.

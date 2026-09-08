@@ -1,0 +1,30 @@
+## Release Review — 5 Routes
+
+| Route | Visual Verdict | Copy Verdict |
+|---|---|---|
+| /tag/time-to-hire/ | ✅ Consistent (Fraunces heading, mono labels, red accent, left-aligned, matches home) | ✅ Clean, tag count (1 article) matches content |
+| /tag/trust-in-hiring/ | ✅ Consistent | ✅ Clean |
+| /terms/ | ✅ Consistent, legal content preserved, heading hierarchy correct | ✅ Legal substance intact, no corruption found |
+| /404.html | ✅ Consistent, restrained CTA styling matches brand | ✅ Clean, concise |
+| /blog/ | ✅ Consistent (hero + list layout differs from tag pages' card grid — legitimate design variation for a different view type, not a defect) | ✅ Filter counts (Hiring Strategy 1 + Candidate Experience 2 + AI & Assessment 1 + Technical Hiring 2 + Hiring Philosophy 1 = 7) match "All 7" |
+
+**All 5 routes reviewed at both breakpoints (1520px desktop, 390px mobile), plus copy files.** No route or image was unreadable or skipped; section crops were not needed since full-page screenshots were legible.
+
+### Actionable Findings
+No confirmed visual or copy defects found on these five routes. Typography (Fraunces headings / Inter Tight body / mono micro-labels), palette (white/paper/charcoal with restrained red), left-aligned section headings, card/list consistency, nav geometry, and footer are uniform with the home-page reference and with each other. This matches the prior review's disposition that a shared editorial shell, font loading, and nav geometry were already fixed sitewide.
+
+### Optional Polish (non-blocking)
+- **/blog/ vs /tag/*/ layout difference**: Blog index uses a hero-card + row-list pattern for its 7-article list, while tag pages use the single-card grid pattern. This is a reasonable content-driven distinction (index/overview vs. filtered single-topic view) rather than a defect, per the instruction not to demand identical layouts for different content — flagging only so the team can confirm it's intentional, not something to "fix."
+
+### Owner-Evidence-Required (not code/design defects — cannot be verified visually)
+These are factual/business claims embedded in copy that require confirmation from the business owner, consistent with the prior disposition:
+- **/tag/time-to-hire/**: "327-profile search into a 22-day success" — recruiting statistic.
+- **/tag/trust-in-hiring/**: 7-min read time, "Feb 8, 2026" publish date (future-dated relative to today, 2026-09-08 — plausible if scheduled, but worth confirming it's not a placeholder).
+- **/blog/**: "200,000 interviews taught us about signal efficiency," "2,00,000 structured interviews," "36 hours" intake-to-shortlist SLA, "45-minute intake call," McKinsey/Deloitte/PwC research attribution — all statistics/SLA claims needing owner sign-off, not something this review can validate.
+- **/terms/**: Entity name (Eragina Digital Solutions Private Limited), registered office address, INR 8,000 liability cap, "Last updated: July 27, 2025," governing law/jurisdiction (Bengaluru) — legal/contractual facts requiring legal sign-off, not evidence this review can supply.
+
+### Not Treated As Defects
+- Blog "Feb 15, 2026" latest post date is forward of some other Aug 2025 posts but internally consistent with the site's stated current date context; not a rendering bug.
+- Terms page omits the "I'm hiring / I'm looking" audience toggle's practical relevance (legal content doesn't branch by audience) — this is expected for a legal page, not a missing feature.
+
+**Summary**: No release-blocking visual or copy defects identified across these 5 routes. All items above are either optional polish or require owner-supplied evidence (statistics, dates, legal facts) rather than code changes. No files were edited.

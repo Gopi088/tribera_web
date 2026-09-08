@@ -1,7 +1,7 @@
 ---
 title: 'Designing AI for High-Stakes Technical Assessment'
 
-excerpt: 'How Tribera engineers AI systems to evaluate architecture discussions, code quality, and system design with structured signal integrity and explainable decision frameworks.'
+excerpt: 'What an assessment engine should do, where human judgment belongs, and why a score needs evidence you can question.'
 
 permalinkSlug: 'blog/designing-ai-for-high-stakes-technical-assessment'
 
@@ -14,7 +14,7 @@ tags: ['ai-in-hiring', 'technical-assessment', 'structured-evaluation', 'decisio
 
 image: '~/assets/images/blog/ai-technical-assessment.png'
 
-readingTime: '10 min'
+readingTime: '5 min'
 ---
 
 Technical hiring is different.

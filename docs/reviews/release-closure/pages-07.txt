@@ -1,0 +1,39 @@
+## Release Review — /industries/* (5 routes)
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| ai-data | ✅ Consistent with hiring reference (Fraunces/Inter Tight/mono labels, red accents, left headings, centered hero+CTA) | ✅ Clean — 3 "cannot tell you" items, 3 Q&As, 3 FAQ questions all match their labels |
+| banking-financial-services | ✅ Consistent | ⚠️ Heading/count mismatch (see below) |
+| consumer-digital-commerce | ✅ Consistent | ✅ Clean |
+| cybersecurity | ✅ Consistent | ✅ Clean |
+| enterprise-technology | ✅ Consistent | ✅ Clean |
+
+All 5 desktop and mobile screenshots were reviewed in full (no crops needed — text was legible at both widths). Layout, type, spacing, card grids, dark/light section alternation, and nav/footer match the hiring reference exactly; differences between pages are attributable to content length only, not template drift. Example-priority weights sum to 100% on every page (ai-data 30/26/10/16/10/8, banking 20/14/30/10/18/8, consumer 30/24/8/22/6/10, cybersecurity 24/16/32/12/10/6, enterprise 26/26/10/20/10/8).
+
+### Actionable findings
+
+**1. Release blocker — copy/heading mismatch**
+- Route: `/industries/banking-financial-services/`
+- Element: "BEFORE YOU BRIEF US" section heading
+- Text: heading reads "**Three things teams ask first**" but four questions are listed immediately below and in the matching FAQ accordion: *"Do your experts actually have BFSI backgrounds?", "Can you cover both business and technology roles?", "How do you handle confidential mandates?", "What is a realistic time to offer?"*
+- Evidence: `industries__banking-financial-services-copy.txt` lines 184–191 and 214–220; visible in both `-1520.png` and `-390.png` under the "BEFORE YOU BRIEF US" eyebrow.
+- Every other reviewed route (ai-data, consumer-digital-commerce, cybersecurity, enterprise-technology) has exactly 3 questions matching a "Three things" heading — this route is the outlier.
+- Recommendation: either change the heading to "Four things teams ask first" or drop one question (most likely the confidential-mandates one, since it's unique to this sector and could instead be folded into the backgrounds answer). This is a straightforward text fix, no layout change needed.
+
+No other copy or visual defects were found across the five routes. Numbering/counts, weight totals, guarantee language, and section-heading alignment (left-aligned except hero and final CTA) all check out.
+
+### Owner-evidence items (not code/design defects — already tracked in `correction-disposition.md`)
+These appear on all 5 routes and require business/legal sign-off, not engineering changes:
+- "Interview three, hire one; if none of the three fit, we restart at no cost" (restart guarantee)
+- "Three names in 36 hours" (SLA claim)
+- Bench tenure figures (e.g. "ML engineering, 9 yrs", "Risk and compliance leads, 13–15 yrs") — expert experience claims
+- Any implicit claims about expert headcount/coverage per sector
+
+I have not verified these against any backend or roster data — flagging only that they are factual/contractual claims outside the scope of a visual/copy review.
+
+### Not reviewed / limitations
+- All 10 screenshots (5 routes × desktop/mobile) and all 5 copy files were read in full; no route was skipped.
+- Section crops were available but not needed since full-page screenshots were legible.
+- I did not click through live interactive states (accordion open/close, hover, form submission) — only static screenshots and copy text were assessed, consistent with the read-only scope of this review.
+
+**Summary: 5/5 routes pass visual consistency. 1 copy defect (banking-financial-services FAQ count vs. heading) is a release blocker; everything else is clean or owner-evidence-gated, not a code/design defect.**

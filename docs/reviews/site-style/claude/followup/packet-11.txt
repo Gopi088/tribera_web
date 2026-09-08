@@ -1,0 +1,29 @@
+All five routes reviewed. Here's the decisive verdict.
+
+## Route verdicts
+
+| Route | Visual | Copy |
+|---|---|---|
+| **/privacy/** | **Pass.** Editorial Fraunces H1/H2, Inter Tight body, consistent left-aligned numbered sections, shared header/footer, mono eyebrow spacing intact at both widths. No overflow or unreadable text. | **Pass.** Clear, standard structure. No outstanding copy defects. |
+| **/security/** | **Pass.** Clean single-column legal layout, consistent with privacy/terms pattern, holds at mobile width. | **Pass.** Straightforward, internally consistent (no bug-bounty promise contradicted elsewhere on page). |
+| **/services/** | **Pass.** Left headings, centered final CTA ("Tell us what is broken...") matches approved pattern, four starter-service cards and eight specialist cards share one consistent card treatment at both widths, red accents restrained. Accordion "+" affordance on the eight specialist cards is a legitimate expand control per the disposition (not verifiable as functional from a static screenshot, but that's a known/accepted limitation, not a defect). | **Pass.** Permanent-hire copy is now short per disposition. No corrupted text. |
+| **/tag/ai-in-hiring/** | **Pass.** Single-card grid, pill filter row with correct active/inactive contrast, consistent with the fixed topic-filter pattern. | **Pass.** Card badge reads "AI & Assessment" while active filter is "AI In Hiring" — this is the disclosed taxonomy behavior (card shows ≤2 tags, not a membership bug). Not a defect. |
+| **/tag/candidate-experience/** | **Pass.** Two-card grid, consistent image treatment, filter pills render identically to the other tag page at both widths. | **Pass.** No copy issues found. |
+
+## Findings by severity
+
+**Blocking:** None.
+
+**Non-blocking / cosmetic:** None observed in this packet — all five routes hold the shared boundary, typography, and card system with no overflow, unreadable text, or dead-looking controls at either 1520px or 390px.
+
+**Not a bug (per correction disposition, confirmed here):**
+- Topic-filter cards showing only 1–2 tags while the active filter differs from the badge shown — intentional taxonomy display, not miscategorization.
+- Services page accordion "+" affordances shown collapsed — cannot visually confirm expand behavior from a static screenshot, but this matches the disclosed "accordions now operate" fix, not a regression.
+
+## Owner-evidence items surfaced in this packet (separate from design/code)
+- Services: "36 hrs" turnaround claim for permanent-hire (3 candidates to interview) — falls under the disposition's flagged "36-hour targets" category, needs owner substantiation.
+- Services: named client outcome in the founder quote ("ninety-one profiles," "week three") and named individual (Pranav Gandhi, Chief Success Officer) — needs consent/accuracy confirmation per the disposition's testimonial/expert-name category.
+- Candidate Experience tag article citing "research from McKinsey, Deloitte, and PwC" — falls under the disposition's "named research" category, needs sourcing confirmation.
+- Privacy/Security: "Last updated" dates (July 27, 2025 / May 27, 2026) and legal entity/registered office details — need owner confirmation these are current, per the disposition's legal-entity/date category.
+
+No other issues found in this five-route packet; I have not reviewed routes outside it.

@@ -2,84 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Figtree";
-  font-style: normal;
-  font-weight: 400;
-  font-display: optional;
-  src: url("/fonts/figtree-400.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Figtree";
-  font-style: normal;
-  font-weight: 500;
-  font-display: optional;
-  src: url("/fonts/figtree-500.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Figtree";
-  font-style: normal;
-  font-weight: 600;
-  font-display: optional;
-  src: url("/fonts/figtree-600.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Figtree";
-  font-style: normal;
-  font-weight: 700;
-  font-display: optional;
-  src: url("/fonts/figtree-700.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Figtree";
-  font-style: normal;
-  font-weight: 800;
-  font-display: optional;
-  src: url("/fonts/figtree-800.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Inter Tight";
-  font-style: normal;
-  font-weight: 400;
-  font-display: optional;
-  src: url("/fonts/inter-tight-400.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Inter Tight";
-  font-style: normal;
-  font-weight: 500;
-  font-display: optional;
-  src: url("/fonts/inter-tight-500.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Inter Tight";
-  font-style: normal;
-  font-weight: 600;
-  font-display: optional;
-  src: url("/fonts/inter-tight-600.woff2") format("woff2");
-}
-@font-face {
-  font-family: "JetBrains Mono";
-  font-style: normal;
-  font-weight: 400;
-  font-display: optional;
-  src: url("/fonts/jetbrains-mono-400.woff2") format("woff2");
-}
-@font-face {
-  font-family: "JetBrains Mono";
-  font-style: normal;
-  font-weight: 500;
-  font-display: optional;
-  src: url("/fonts/jetbrains-mono-500.woff2") format("woff2");
-}
-@font-face {
-  font-family: "JetBrains Mono";
-  font-style: normal;
-  font-weight: 700;
-  font-display: optional;
-  src: url("/fonts/jetbrains-mono-700.woff2") format("woff2");
-}
-
 @layer utilities {
   .bg-page {
     background-color: var(--aw-color-bg-page);
@@ -791,10 +713,23 @@ html {
   --line-v58: rgba(19, 19, 19, 0.1);
   --line-v58-strong: rgba(19, 19, 19, 0.16);
   --ink-v58-muted: #57565b;
-  --display-editorial: "Fraunces", Georgia, serif;
-  --display: "Figtree", -apple-system, sans-serif;
-  --ui: "Inter Tight", -apple-system, sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --display-editorial: 'Fraunces', Georgia, serif;
+  --v58-white: #ffffff;
+  --v58-paper: #f4f3f0;
+  --v58-charcoal: #121212;
+  --v58-ink: #131313;
+  --v58-muted: #57565b;
+  --v58-faint: #9a998f;
+  --v58-red: #da0007;
+  --v58-line: rgba(19, 19, 19, 0.1);
+  --v58-line-strong: rgba(19, 19, 19, 0.16);
+  --v58-display: 'Fraunces', Georgia, serif;
+  --v58-ui: 'Inter Tight', -apple-system, sans-serif;
+  --v58-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --v58-wrap: 1160px;
+  --display: 'Figtree', -apple-system, sans-serif;
+  --ui: 'Inter Tight', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --spring: cubic-bezier(0.34, 1.42, 0.64, 1);
   --wrap: 1280px;
@@ -823,7 +758,12 @@ html {
   padding: 12px 22px;
   border-radius: 999px;
   border: 1px solid transparent;
-  transition: transform 0.18s var(--ease), background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.25s;
+  transition:
+    transform 0.18s var(--ease),
+    background 0.2s,
+    border-color 0.2s,
+    color 0.2s,
+    box-shadow 0.25s;
   cursor: pointer;
   line-height: 1;
 }
@@ -853,12 +793,15 @@ html {
 }
 .nav .btn::after,
 .navp .btn::after {
-  content: "→";
+  content: '→';
   font-size: 14px;
   opacity: 0;
   width: 0;
   margin-left: -10px;
-  transition: opacity 0.22s var(--ease), width 0.22s var(--ease), margin 0.22s var(--ease);
+  transition:
+    opacity 0.22s var(--ease),
+    width 0.22s var(--ease),
+    margin 0.22s var(--ease);
 }
 .nav .btn:hover::after,
 .navp .btn:hover::after {
@@ -873,13 +816,15 @@ html {
   background: #000;
 
   transition: background 0.3s var(--ease);
-}.nav__in {
+}
+.nav__in {
   display: flex;
   align-items: center;
   gap: 18px;
   padding-block: clamp(7px, 0.9vw, 8px);
   transition: padding-block 0.3s var(--ease);
-}.nav .logo {
+}
+.nav .logo {
   font-family: var(--display);
   font-weight: 800;
   font-size: 21px;
@@ -920,7 +865,10 @@ html {
   text-decoration: none;
   white-space: nowrap;
   overflow: hidden;
-  transition: background 0.3s var(--spring), color 0.22s, transform 0.2s var(--spring);
+  transition:
+    background 0.3s var(--spring),
+    color 0.22s,
+    transform 0.2s var(--spring);
 }
 .nav__sw a:hover {
   color: #fff;
@@ -952,17 +900,19 @@ html {
   text-decoration: none;
   padding: 8px 12px;
   border-radius: 8px;
-  transition: color 0.22s var(--ease), background 0.22s;
+  transition:
+    color 0.22s var(--ease),
+    background 0.22s;
 }
 .nav__l:hover {
   color: #fff;
   background: rgba(255, 255, 255, 0.05);
 }
-.nav__l[aria-current="page"] {
+.nav__l[aria-current='page'] {
   color: #fff;
 }
-.nav__l[aria-current="page"]::after {
-  content: "";
+.nav__l[aria-current='page']::after {
+  content: '';
   position: absolute;
   left: 12px;
   right: 12px;
@@ -1125,7 +1075,7 @@ html.nlock {
 .navp a:not(.btn):hover {
   color: #fff;
 }
-.navp a[aria-current="page"] {
+.navp a[aria-current='page'] {
   color: #fff;
 }
 .navp__login {
@@ -1151,7 +1101,7 @@ html.nlock {
 .navp__t:hover {
   color: #fff;
 }
-.navp__t[aria-current="page"] {
+.navp__t[aria-current='page'] {
   color: #fff;
 }
 .navp__t i {
@@ -1164,7 +1114,7 @@ html.nlock {
   margin-right: 6px;
   flex: none;
 }
-.navp__t[aria-expanded="true"] i {
+.navp__t[aria-expanded='true'] i {
   transform: rotate(-135deg);
 }
 .navp__cov {
@@ -1224,7 +1174,9 @@ html.nlock {
   cursor: pointer;
   padding: 8px 12px;
   border-radius: 8px;
-  transition: color 0.22s, background 0.22s;
+  transition:
+    color 0.22s,
+    background 0.22s;
 }
 .dd__t:hover,
 .dd.open .dd__t {
@@ -1256,7 +1208,10 @@ html.nlock {
   opacity: 0;
   visibility: hidden;
   transform: translateY(-6px);
-  transition: opacity 0.24s var(--ease), transform 0.28s var(--spring), visibility 0.24s;
+  transition:
+    opacity 0.24s var(--ease),
+    transform 0.28s var(--spring),
+    visibility 0.24s;
 }
 .dd.open .dd__p {
   opacity: 1;
@@ -1292,7 +1247,10 @@ html.nlock {
   padding: 6px 8px;
   margin-inline: -8px;
   border-radius: 7px;
-  transition: background 0.18s, color 0.18s, padding-left 0.22s var(--ease);
+  transition:
+    background 0.18s,
+    color 0.18s,
+    padding-left 0.22s var(--ease);
 }
 .dd__p a:hover {
   background: rgba(255, 255, 255, 0.06);
@@ -1485,7 +1443,7 @@ html.nlock {
   position: relative;
 }
 .ft__col a::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   right: 100%;
@@ -1502,4 +1460,221 @@ html.nlock {
   .ft__col a::after {
     transition: none;
   }
+}
+
+/* ---- V58 shell: visual migration only; existing navigation behavior remains intact. ---- */
+.nav {
+  background: rgba(255, 255, 255, 0.86);
+  background: color-mix(in srgb, var(--v58-white) 86%, transparent);
+  border-bottom: 1px solid var(--v58-line);
+  backdrop-filter: saturate(1.4) blur(16px);
+}
+.nav__in {
+  gap: 26px;
+  height: 62px;
+  min-height: 62px;
+  padding-block: 0;
+}
+.nav .logo {
+  color: var(--v58-ink);
+  font-family: var(--v58-ui);
+  font-size: 1.34rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  width: auto;
+}
+.nav__sw {
+  background: var(--v58-paper);
+  border-color: var(--v58-line);
+}
+.nav__sw a {
+  color: var(--v58-muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 6px 13px;
+  width: auto;
+}
+.nav__sw a:hover {
+  background: var(--v58-white);
+  color: var(--v58-ink);
+}
+.nav__sw a.is {
+  background: var(--v58-white);
+  color: var(--v58-ink);
+  box-shadow: 0 1px 2px rgba(19, 19, 19, 0.08);
+}
+.nav__links {
+  gap: 10px;
+}
+.nav__l,
+.dd__t,
+.nav__login {
+  color: var(--v58-muted);
+  font-size: 0.92rem;
+}
+.nav__l,
+.dd__t {
+  padding: 7px 0;
+}
+.nav__l:hover,
+.dd__t:hover {
+  color: var(--v58-ink);
+  background: transparent;
+}
+.nav__l[aria-current='page'],
+.nav__login:hover {
+  color: var(--v58-ink);
+}
+.nav .btn--light {
+  background: var(--v58-red);
+  border-radius: 999px;
+  color: var(--v58-white);
+  font-size: 0.9rem;
+  padding: 0.58em 1.25em;
+}
+.nav .btn--light:hover {
+  background: #bd0006;
+  color: var(--v58-white);
+}
+.burger {
+  border-radius: 0;
+  height: 40px;
+  width: 40px;
+}
+.burger:hover {
+  background: var(--v58-paper);
+}
+.burger span {
+  background: var(--v58-ink);
+  height: 1.5px;
+  width: 22px;
+}
+.navp {
+  background: var(--v58-white);
+  border-top-color: var(--v58-line);
+  box-shadow: 0 18px 40px -20px rgba(19, 19, 19, 0.25);
+}
+.navp__k {
+  color: var(--faint);
+}
+.navp a:not(.btn),
+.navp__t {
+  color: var(--v58-muted);
+}
+.navp a:not(.btn):hover,
+.navp a[aria-current='page'],
+.navp__t:hover,
+.navp__t[aria-current='page'] {
+  color: var(--v58-ink);
+}
+.navp__t i {
+  border-color: var(--v58-muted);
+}
+.navp__cov {
+  border-left-color: var(--v58-line);
+}
+.navp .btn--light {
+  background: var(--v58-red);
+  color: var(--v58-white);
+}
+.dd__t {
+  color: var(--v58-muted) !important;
+  font-size: 0.92rem;
+  padding: 7px 0;
+}
+.dd__t:hover,
+.dd.open .dd__t {
+  background: transparent !important;
+  color: var(--v58-ink) !important;
+}
+.dd__p {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-color: var(--v58-line) !important;
+  border-radius: 12px;
+  box-shadow: 0 24px 50px -24px rgba(19, 19, 19, 0.25) !important;
+  padding: 18px;
+}
+.dd__g {
+  grid-template-columns: 220px 200px;
+  gap: 0 28px;
+}
+.dd__k {
+  color: var(--v58-red);
+  font-size: 0.58rem;
+}
+.dd__p a {
+  color: var(--v58-muted) !important;
+  font-size: 0.82rem;
+  padding: 6px 8px;
+}
+.dd__p a:hover {
+  background: var(--v58-paper) !important;
+  color: var(--v58-ink) !important;
+  padding-left: 10px;
+}
+.dd__f {
+  border-top-color: var(--v58-line) !important;
+  color: var(--v58-muted) !important;
+  font-size: 0.76rem;
+}
+.dd__p--sm b {
+  color: var(--v58-ink);
+  font-family: var(--v58-display);
+  font-weight: 500;
+}
+.dd__p--sm span {
+  color: var(--v58-muted);
+}
+.ft {
+  background: var(--v58-charcoal);
+}
+.ft__bbb {
+  font-family: var(--v58-display);
+  font-weight: 500;
+}
+
+/* ---- V58 route bridge: shared presentation for templates still carrying their
+   established content and interaction markup. Individual V58 homepage components
+   own their local visuals; this layer keeps every public route in one system. ---- */
+html {
+  background: var(--v58-white);
+}
+body {
+  background: var(--v58-white);
+  color: var(--v58-ink);
+  font-family: var(--v58-ui);
+}
+::selection {
+  background: var(--v58-red);
+  color: var(--v58-white);
+}
+:focus-visible {
+  outline: 2px solid var(--v58-red);
+  outline-offset: 3px;
+}
+.v58-route {
+  background: var(--v58-white);
+  color: var(--v58-ink);
+  font-family: var(--v58-ui);
+}
+.v58-route :is(h1, h2):not(.tribera-home h1):not(.tribera-home h2) {
+  font-family: var(--v58-display);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+.v58-route :is(input, textarea, select) {
+  border-color: var(--v58-line-strong);
+  border-radius: 0.5rem;
+  font-family: var(--v58-ui);
+}
+.v58-route :is(input, textarea, select):focus {
+  border-color: var(--v58-red);
+  box-shadow: 0 0 0 3px rgba(218, 0, 7, 0.12);
+  outline: 0;
+}
+.v58-route :is(button, [role='button'], .btn) {
+  font-family: var(--v58-ui);
+}
+.v58-route :is(a, button, input, textarea, select) {
+  -webkit-tap-highlight-color: rgba(218, 0, 7, 0.16);
 }

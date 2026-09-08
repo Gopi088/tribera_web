@@ -2,3 +2,12 @@ dist
 node_modules
 .github
 .changeset
+
+# Generated output and preserved external design references, not source code.
+.astro
+.netlify
+artifacts
+tmp
+sample_data
+functions-preview.html
+industries-preview.html

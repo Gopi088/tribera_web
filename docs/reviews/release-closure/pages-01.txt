@@ -1,0 +1,34 @@
+## Release Review — 5 Blog Routes
+
+All screenshots (desktop 1520px, mobile 390px) and copy files were read for all 5 routes. No section crops were needed — full-page images were legible.
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| /blog/designing-for-trust-privacy-transparency-respect/ | ✅ Consistent | ✅ Consistent |
+| /blog/hiring-is-not-a-transaction-its-a-relationship/ | ✅ Consistent | ✅ Consistent |
+| /blog/rethinking-hiring-metrics-signal-efficiency/ | ✅ Consistent | ✅ Consistent |
+| /blog/signal-vs-noise-technical-hiring/ | ✅ Consistent | ✅ Consistent |
+| /blog/when-job-hunting-feels-like-a-black-hole/ | ✅ Consistent | ✅ Consistent |
+
+### Findings
+
+No confirmed actionable design/copy defects across any of the 5 routes. All pages share: Fraunces display headings, mono eyebrow labels (date · category · read time), left-aligned section headings, consistent pull-quote treatment (red bar + bold red second line), consistent article-card grid in "Three more that came out of real mandates," consistent dark newsletter/CTA band, consistent "Two doors. Same room." module, and consistent footer. Desktop and mobile layouts reflow correctly with no overlap, truncation, or broken components observed at either width.
+
+### Optional polish (not blockers)
+
+- Chart/data captions embedded mid-paragraph in the copy extraction (e.g. rethinking-hiring-metrics: "Relative strength of association, our own mandates.") render as intended small-print captions under the inline charts in the screenshots — this matches the caption pattern used across other articles (e.g. "Same forty days..." on the same page, "Opt-in privacy, then default privacy..." on designing-for-trust). Not a defect; flagging only so the caption-in-paragraph copy-extraction artifact isn't mistaken for a content bug in a future pass.
+
+### Owner-evidence items (not code/design defects — separate from this review)
+
+Per `docs/reviews/site-style/correction-disposition.md`, the following are factual/business claims embedded in this batch's copy that require owner sign-off, not engineering fixes:
+- "200,000 interviews," "twenty years of enterprise hiring," and the correlation claim in *Rethinking hiring metrics*.
+- "A 327-profile search that closed in 22 days," "45-minute intake call," "three names back inside 36 hours," and "fifteen minutes to set up" (recurring in the shared "Two doors" module on all 5 routes).
+- Named individual case studies (Arjun's 140 applications/3 replies; Abhishek Prasad, Akshata Chandavarkar bylines and titles).
+
+### Coverage notes
+
+- All 10 screenshots (5 desktop + 5 mobile) and all 5 copy files were reviewed in full; none were unreadable or required section crops.
+- Hiring reference (`home-1520.png`, `home-390.png`) reviewed for style baseline — blog routes match its typography, palette, and spacing conventions.
+- This review covers rendered markup/copy only; no backend, form submission, or newsletter-subscribe delivery was tested or verified.
+
+**Summary: no release blockers found on any of the 5 routes.**

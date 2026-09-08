@@ -1,0 +1,33 @@
+## Scope note
+
+Reviewed only the 5 routes below, using the listed screenshots/copy files, against `baseline/home-1520.png` and `correction-disposition.md`. No other routes assessed. Screenshots are full-page downscaled PNGs — small print (bench years, chart % labels) was read from the copy files, not eyeballed at full fidelity; flagged where that matters.
+
+## Per-route verdicts
+
+| Route | Visual | Copy |
+|---|---|---|
+| `/industries/cybersecurity/` | **Pass.** Matches home baseline: left-aligned section headings, centered final CTA/testimonial-style band, Fraunces serif headline with red italic pull-phrase, mono eyebrow labels, consistent white/paper/charcoal rhythm. 8-role grid fills evenly (4×2, no orphan cells). Mobile stacks cleanly, no overflow. | **Pass.** Chart weights sum to 100 (24+16+32+12+10+6). FAQ shown collapsed with disclosure arrows (▶) — correctly a native details/summary, not a dead control, per disposition. No corrupted words. |
+| `/industries/enterprise-technology/` | **Pass.** Same shared shell as above; 8-role grid full. Mobile fine. | **Pass.** Weights sum to 100 (26+26+10+20+10+8). Copy distinct and sector-appropriate, no leftover template placeholders. |
+| `/industries/global-capability-centres/` | **Pass.** Same shell; 8-role grid full; mobile fine. | **Pass.** Weights sum to 100 (22+18+12+20+10+18). |
+| `/industries/healthcare-life-sciences/` | **Pass.** Same shell; 8-role grid full; mobile fine. | **Pass.** Weights sum to 100 (18+12+30+10+22+8). |
+| `/industries/industrial-engineering/` | **Pass.** Same shell; 8-role grid full; mobile fine. | **Pass.** Weights sum to 100 (24+18+18+18+14+8). |
+
+All five are visually and structurally identical templates with sector-specific copy substituted — that consistency is correct and intended, not a defect.
+
+## Remaining actionable issues (design/code)
+
+None found across these 5 routes. No unreadable text, no card asymmetry, no dead-looking controls, no overflow, no corrupted copy detected at the resolution available. The collapsed-FAQ disclosure triangles are the only thing that could be *mistaken* for a bug — they aren't; confirmed intentional per disposition and consistent across all 5 pages.
+
+One thing I can't verify from a static screenshot: actual FAQ expand/collapse interaction. Disposition already states this was interaction-tested; I'm not re-litigating it, just noting a static image can't confirm click behavior either way.
+
+## Owner-evidence-required claims (not a design/code question)
+
+These recur verbatim on every one of the 5 pages and need business sign-off before release, consistent with the disposition's existing list — not new findings, just flagging where they appear on this route set:
+
+- "Interview three, hire one; if none of the three fit, we restart at no cost." — restart guarantee.
+- "Three names in 36 hours." — response SLA/turnaround target.
+- Named bench tenures ("Detection and response, 14 yrs," etc.) — expert experience figures.
+- "Outcomes come back to the expert who ran the interview — who got hired, who was still there a year later." — outcome/retention-style claim.
+- Sector "example priorities" percentages — labelled as illustrative, not a hiring standard, which is the correct hedge already in place; no change needed, just noting it's a claim about methodology rather than a hard commitment.
+
+No speculative defects are being reported as confirmed; every item above is either a clean pass or an existing owner-evidence category, not a new visual/code bug.

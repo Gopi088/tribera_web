@@ -1,0 +1,28 @@
+## Verdict Table
+
+| Route | Visual | Copy |
+|---|---|---|
+| `/category/technical-hiring/` | **Pass** — editorial boundary, Fraunces heading, mono eyebrow, left-aligned headings, consistent 2-card grid, footer/header match baseline, desktop and mobile both clean | **Pass** — filter labels human-readable, active state visible, teaser copy matches article count (2 articles, 2 cards) |
+| `/contact/` | **Pass** — dark form panel on white page reads correctly, left section headings, centered final "Someone will write back" CTA, two-address block aligned columns, FAQ accordion shows closed (expected, not a bug per correction log) | **Pass** — reply-time claims, fee claims and FAQ answers are internally consistent; two-column hiring/looking timeline reads clearly at both widths |
+| `/functions/` (index) | **Pass** — 8/8 function cards render in a clean 3-3-2 grid, each with one red-weighted bar consistent with its detail page; dark "method" block and centered final CTA match style | **Pass** — comparator sums to 100/100 (26+22+10+18+10+14 and 23+19+10+16+18+14), caption explicitly frames it as "example weights," not a universal claim |
+| `/functions/data-analytics/` | **Pass** — hero comparator chart legible, "Things a CV cannot tell you" numbered list well-aligned, dark "Operators, not recruiters" split-column block reads on both breakpoints | **Pass** — weights sum to 100 (23+19+10+16+18+14), FAQ collapsed-state content present and answers the visible questions, no corrupted words found |
+| `/functions/engineering-platform/` | **Pass** — same template as data-analytics, renders consistently, no overflow or clipped text at 390 or 1520 | **Pass** — weights sum to 100 (26+22+10+18+10+14), bench examples (Pratik, Meera, Raghav, Archana) are internally consistent with the function's framing |
+
+## Findings
+
+**Blocking:** None found in this packet.
+
+**Non-blocking observations:**
+- `/functions/` index: the 8-card grid ends in a partial row (3-3-2). This is a natural consequence of 8 items in 3 columns, not a template inconsistency — the two remaining cards (Operations, Leadership) still use the same card component as the other six. Not a defect.
+- Collapsed FAQ accordions on `/contact/`, `/functions/data-analytics/`, `/functions/engineering-platform/` are the expected native `details/summary` closed state, consistent with the correction log's note — not treating these as bugs.
+
+**Not re-flagged as confirmed defects (per correction log, still speculative if raised again):** disabled candidate submit button, topic-card tag subsets, five-vs-three funnel history — none of these appear on this packet's five routes anyway.
+
+## Owner-Evidence Required (not a design/code issue)
+These claims render and read correctly but need factual sign-off before release, independent of this visual/copy check:
+- `/contact/`: 36-hour "Three names" turnaround, "<24hrs"/"<48hrs" reply SLAs, the two office addresses, and the "no fee for candidates, ever" claim.
+- `/functions/` and both detail pages: "Three names in 36 hours" claim; the named bench examples (Pratik, Meera, Raghav, Archana) need consent/accuracy confirmation since they read as real people with tenure/employer-adjacent details.
+- `/category/technical-hiring/`: the "327-profile search into a 22-day success" statistic in the article teaser needs a source check (article content itself is out of scope for this packet).
+
+## Resolution limits
+All screenshots were legible at both listed resolutions; no text required guessing from pixel-level zoom. I did not open or interact with the live site — verdicts are based solely on the provided screenshots and copy captures, not runtime behavior (e.g., I can't confirm hover/focus states, actual API responses, or real accordion animation from a static image).

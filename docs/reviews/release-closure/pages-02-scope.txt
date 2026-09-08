@@ -1,0 +1,33 @@
+Read-only final release review of ALL 5 routes listed below. Use the Read tool to inspect BOTH screenshots and the copy file for EVERY route. Use section crops when full-page text is too small. Hiring reference: /tmp/tribera-release-priority/home-1520.png and /tmp/tribera-release-priority/home-390.png.
+/blog/why-tech-hiring-really-takes-so-long/
+Desktop: /tmp/tribera-release-review/blog__why-tech-hiring-really-takes-so-long-1520.png
+Mobile: /tmp/tribera-release-review/blog__why-tech-hiring-really-takes-so-long-390.png
+Copy: /tmp/tribera-release-review/blog__why-tech-hiring-really-takes-so-long-copy.txt
+Optional readable section crops: /tmp/tribera-release-review/blog__why-tech-hiring-really-takes-so-long-1520-section-0.png, /tmp/tribera-release-review/blog__why-tech-hiring-really-takes-so-long-1520-section-1.png, /tmp/tribera-release-review/blog__why-tech-hiring-really-takes-so-long-1520-section-2.png, /tmp/tribera-release-review/blog__why-tech-hiring-really-takes-so-long-1520-section-3.png, /tmp/tribera-release-review/blog__why-tech-hiring-really-takes-so-long-1520-section-4.png, /tmp/tribera-release-review/blog__why-tech-hiring-really-takes-so-long-390-section-0.png, /tmp/tribera-release-review/blog__why-tech-hiring-really-takes-so-long-390-section-1.png, /tmp/tribera-release-review/blog__why-tech-hiring-really-takes-so-long-390-section-2.png, /tmp/tribera-release-review/blog__why-tech-hiring-really-takes-so-long-390-section-3.png, /tmp/tribera-release-review/blog__why-tech-hiring-really-takes-so-long-390-section-4.png
+
+/candidates/start/
+Desktop: /tmp/tribera-release-review/candidates__start-1520.png
+Mobile: /tmp/tribera-release-review/candidates__start-390.png
+Copy: /tmp/tribera-release-review/candidates__start-copy.txt
+Optional readable section crops: /tmp/tribera-release-review/candidates__start-1520-section-0.png, /tmp/tribera-release-review/candidates__start-1520-section-1.png, /tmp/tribera-release-review/candidates__start-390-section-0.png, /tmp/tribera-release-review/candidates__start-390-section-1.png
+
+/careers/
+Desktop: /tmp/tribera-release-review/careers-1520.png
+Mobile: /tmp/tribera-release-review/careers-390.png
+Copy: /tmp/tribera-release-review/careers-copy.txt
+Optional readable section crops: /tmp/tribera-release-review/careers-1520-section-0.png, /tmp/tribera-release-review/careers-1520-section-1.png, /tmp/tribera-release-review/careers-1520-section-2.png, /tmp/tribera-release-review/careers-1520-section-3.png, /tmp/tribera-release-review/careers-1520-section-4.png, /tmp/tribera-release-review/careers-1520-section-5.png, /tmp/tribera-release-review/careers-390-section-0.png, /tmp/tribera-release-review/careers-390-section-1.png, /tmp/tribera-release-review/careers-390-section-2.png, /tmp/tribera-release-review/careers-390-section-3.png, /tmp/tribera-release-review/careers-390-section-4.png, /tmp/tribera-release-review/careers-390-section-5.png
+
+/careers/ai-ml-engineer/
+Desktop: /tmp/tribera-release-review/careers__ai-ml-engineer-1520.png
+Mobile: /tmp/tribera-release-review/careers__ai-ml-engineer-390.png
+Copy: /tmp/tribera-release-review/careers__ai-ml-engineer-copy.txt
+Optional readable section crops: /tmp/tribera-release-review/careers__ai-ml-engineer-1520-section-0.png, /tmp/tribera-release-review/careers__ai-ml-engineer-1520-section-1.png, /tmp/tribera-release-review/careers__ai-ml-engineer-1520-section-2.png, /tmp/tribera-release-review/careers__ai-ml-engineer-1520-section-3.png, /tmp/tribera-release-review/careers__ai-ml-engineer-1520-section-4.png, /tmp/tribera-release-review/careers__ai-ml-engineer-1520-section-5.png, /tmp/tribera-release-review/careers__ai-ml-engineer-1520-section-6.png, /tmp/tribera-release-review/careers__ai-ml-engineer-390-section-0.png, /tmp/tribera-release-review/careers__ai-ml-engineer-390-section-1.png, /tmp/tribera-release-review/careers__ai-ml-engineer-390-section-2.png, /tmp/tribera-release-review/careers__ai-ml-engineer-390-section-3.png, /tmp/tribera-release-review/careers__ai-ml-engineer-390-section-4.png, /tmp/tribera-release-review/careers__ai-ml-engineer-390-section-5.png, /tmp/tribera-release-review/careers__ai-ml-engineer-390-section-6.png
+
+/careers/backend-engineer/
+Desktop: /tmp/tribera-release-review/careers__backend-engineer-1520.png
+Mobile: /tmp/tribera-release-review/careers__backend-engineer-390.png
+Copy: /tmp/tribera-release-review/careers__backend-engineer-copy.txt
+Optional readable section crops: /tmp/tribera-release-review/careers__backend-engineer-1520-section-0.png, /tmp/tribera-release-review/careers__backend-engineer-1520-section-1.png, /tmp/tribera-release-review/careers__backend-engineer-1520-section-2.png, /tmp/tribera-release-review/careers__backend-engineer-1520-section-3.png, /tmp/tribera-release-review/careers__backend-engineer-1520-section-4.png, /tmp/tribera-release-review/careers__backend-engineer-1520-section-5.png, /tmp/tribera-release-review/careers__backend-engineer-1520-section-6.png, /tmp/tribera-release-review/careers__backend-engineer-390-section-0.png, /tmp/tribera-release-review/careers__backend-engineer-390-section-1.png, /tmp/tribera-release-review/careers__backend-engineer-390-section-2.png, /tmp/tribera-release-review/careers__backend-engineer-390-section-3.png, /tmp/tribera-release-review/careers__backend-engineer-390-section-4.png, /tmp/tribera-release-review/careers__backend-engineer-390-section-5.png, /tmp/tribera-release-review/careers__backend-engineer-390-section-6.png
+
+Critically review visual consistency and copy. Approved style: Fraunces headings, Inter Tight body, mono labels, white/warm paper/charcoal, restrained red accents, left-aligned section headings except intentional centered hero/final CTA, consistent gutters/cards/nav. Do not demand identical layouts for different content. Preserve testimonials/legal substance. A recent refactor changed only executable scripts, not markup or copy. Previous review context: docs/reviews/site-style/correction-disposition.md.
+Return a compact row per route: visual verdict, copy verdict. Then list only confirmed actionable findings, ordered by severity, with route, exact text/element, screenshot evidence and concrete recommendation. Separate owner-evidence questions (statistics, SLA, permissions, legal facts) from code/design defects. Do not invent a defect from cropped/downscaled images or claim backend delivery was verified. Do not edit any files. Distinguish optional polish from release blockers. Explicitly state if any route/image could not be reviewed. Keep the report under 700 words. Complete within 36 turns.

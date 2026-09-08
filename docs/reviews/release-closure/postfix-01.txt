@@ -1,0 +1,37 @@
+## Release Review — 5 Routes
+
+All 5 routes fully reviewed (desktop 1520px + mobile 390px screenshots + copy files). No route or image failed to load.
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/` | Consistent (Fraunces headings, mono labels, red accents, left-aligned headings, intentional centered hero/CTA, dark/light alternation matches hiring reference) | Clean, no corruption found |
+| `/blog/` | Consistent | Clean; Feb 2026 dates are correctly past relative to 2026-09-08, not a defect (per prior disposition) |
+| `/industries/` | Consistent; 12 sector cards match "twelve sectors" copy | Clean |
+| `/industries/banking-financial-services/` | Consistent; FAQ heading correctly reads "What teams ask first" (prior fix holding) | Clean |
+| `/candidates/` | Consistent | Clean |
+
+## Confirmed Actionable Findings
+
+None. Across all 5 routes at both breakpoints I found no visual regressions (no broken layout, overflow, misaligned cards, mismatched fonts/colors, or centered-vs-left heading violations) and no copy corruption, broken sentences, or mismatched counts. This aligns with the prior disposition docs, which record these issues as already resolved (shared fonts, banking FAQ heading, industries method contrast, etc.) — this pass did not reproduce any of them, nor find new ones.
+
+## Optional Polish (non-blocking)
+
+- None identified this pass. If a stricter pixel-level check is wanted (e.g., verifying the amber/bright-border legend on the candidates-page score chart against actual computed colors, or exact gutter widths across all 5 routes), that would require live-DOM inspection, not just these screenshots — the crops are readable but not pixel-precise for color-legend verification.
+
+## Owner-Evidence Questions (not code/design defects — carried forward, unchanged)
+
+These recur across the reviewed routes and still require owner sign-off before release, not a visual/copy fix:
+
+- **36-hour shortlist SLA** (home, banking-financial-services) — needs confirmation this is a real, deliverable commitment.
+- **"Interview three, hire one; if none of the three fit, we restart at no cost"** (banking-financial-services) — a contractual guarantee claim; needs legal/sales sign-off.
+- **Client/logo names** (Mizuho, Capco, Deloitte, ArcelorMittal, Flipkart, Myntra, Motherson, Publicis Sapient, Publicis Resources, Evident Microscopy, Antz — home, candidates) — needs confirmed permission to display.
+- **Testimonial names/attributions** (Sashank Pappu/Antz AI, Anil Giri, Reema Mitra — home, candidates) — needs confirmed consent.
+- **Interview volume/statistics** ("200,000 interviews," "2,00,000 structured interviews," "126 profiles / 40 HR interviews / 14 technical / 5 passed / 2 hired," "50+ profiles over six months," "327-profile search," "22-day success" — home, blog) — needs source verification, not visual review.
+- **"No candidate fee"** and pricing model description (candidates, home "Ways to work with us") — needs commercial confirmation.
+- **Privacy/data-handling claims** ("Clear data-handling terms," "Read our privacy policy" links) — needs confirmation the linked policy is current and accurate.
+
+## Scope Note
+
+This review is visual/copy only against static screenshots and copy files. It does not verify backend behavior, form submission, autofill wiring, or that linked pages (e.g., privacy policy, "See how one role ran") resolve correctly — those require live interaction testing, not screenshot review.
+
+**Bottom line: no release blockers found in this pass.** All prior confirmed corrections (fonts, banking FAQ heading, industries contrast) are holding in the current screenshots. Remaining open items are all owner-evidence/legal, not code or design defects.

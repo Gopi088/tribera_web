@@ -1,0 +1,23 @@
+## Route Review Summary
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| /category/ai-and-assessment/ | ✅ Consistent (matches home reference) | ✅ Matches screenshot exactly |
+| /category/candidate-experience/ | ✅ Consistent | ✅ Matches screenshot exactly |
+| /category/hiring-philosophy/ | ✅ Consistent | ✅ Matches screenshot exactly |
+| /category/hiring-strategy/ | ✅ Consistent | ✅ Matches screenshot exactly |
+| /category/technical-hiring/ | ✅ Consistent | ✅ Matches screenshot exactly |
+
+All five are the same category-listing template, and all correctly show: mono "FROM THE JOURNAL" eyebrow, left-aligned Fraunces H1, Inter Tight body, warm-paper card section, black-pill active filter state matching the audience toggle, and shared dark footer with tribera./Belong·Build·Become — consistent with the home-page reference at both 1520px and 390px. No layout, font, color, or spacing regressions found on desktop or mobile for any of the five routes. All 10 screenshots (5 routes × 2 breakpoints) and all 5 copy files were reviewed in full; no crops were needed since text was legible at full size.
+
+### Findings
+
+No actionable defects found. Nothing here rises to a release blocker or even optional polish — templates and copy are clean and consistent across all five routes.
+
+### Not a defect — noting for awareness only
+
+- **"2,00,000" numbering format** (`/category/hiring-strategy/` headline "Rethinking Hiring Metrics: What 2,00,000 Interviews Taught Us..." and body copy, both desktop/mobile). This is Indian numbering convention (2,00,000 = 200,000) rather than international grouping (200,000). It renders identically and consistently in both the card title and description, so it's not a code/markup bug — just worth confirming it's the intended convention for the target audience rather than a typo. This is an **owner-evidence/copy-style question**, not a visual or code defect, and per the interview-volume line in `docs/reviews/site-style/correction-disposition.md`, the underlying "2,00,000 interviews" figure itself is already flagged there as requiring owner evidence — not re-litigated here.
+
+### Could not be reviewed
+
+Nothing — all requested assets (10 screenshots, 5 copy files, 2 hiring-reference images) loaded and were inspected at full resolution; no section crops were required.

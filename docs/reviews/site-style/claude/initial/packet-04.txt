@@ -1,0 +1,36 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+## Route-by-route verdicts
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/careers/backend-engineer/` | Pass — matches baseline style (Fraunces hero, mono tag row, dark scorecard card, warm-paper sections, centered final CTA, aligned two-column blocks). Desktop and mobile both clean, no overflow. | Pass — specific, role-accurate, no reused-boilerplate issues found. |
+| `/careers/growth-intern/` | Pass on layout/style, but hero tag row has a **data bug**: "INTERNSHIP" appears twice (employment type slot + the slot that holds seniority/years on other roles, e.g. "3–6 YEARS"). | Mostly strong and role-specific, **except** the "One conversation" step still says "an engineer who has built what you would be building" — wrong for a BD/outreach hire. |
+| `/careers/senior-delivery-partner/` | Pass — style and structure consistent, no visual defects at either breakpoint. | Strong, delivery-specific copy throughout, **except** same reused "an engineer" line in the process step — mismatched for a Talent Advisory hire. |
+| `/careers/software-intern/` | Pass — consistent styling, tag row correctly uses "STUDENT OR RECENT GRADUATE" in the seniority slot (no duplication bug here). | Strong, role-specific. Process-step "engineer" line is at least plausible here (engineering role), so lower concern. |
+| `/careers/talent-advisor/` | Pass — consistent styling, no visual defects observed. | Strong, judgment/communication-focused copy is well-written and specific, **except** same reused "an engineer" line — mismatched for this role. |
+
+## Findings by severity
+
+**High**
+- **Growth Intern hero tags duplicate "INTERNSHIP"** (career__growth-intern-1520.png, tag row under H1): looks like the seniority/years-of-experience field was left unfilled and fell back to repeating the employment-type value. Reads as a template bug, not a deliberate choice — every other role has a distinct 5th tag (years or "student or recent graduate").
+- **"One conversation" step copy is not customized per role.** All five pages read: *"With an engineer who has built what you would be building."* This is accurate for Backend Engineer and defensible for Software Intern, but wrong/confusing for Growth Intern (BD), Senior Delivery Partner and Talent Advisor (talent advisory) — none of those interviewers are plausibly "an engineer." This undercuts the page's own promise of specificity (echoed literally in the same block: "Questions from your CV, not from a list").
+
+**Medium**
+- Possible low-contrast risk on the hero scorecard bars for the smallest weighted dimensions (e.g., Commercial sense at 4–6%, Speed at 8%). At this screenshot resolution the fill for the lowest bars is very faint against the dark card — worth a real-device contrast check rather than treating this as confirmed, since I can't fully verify exact colors from a compressed screenshot.
+
+**Low / no action needed**
+- The "Two weeks, four steps" process block, footer, and final CTA sections are byte-identical in structure across all five roles — consistent with an intentional shared component, not a defect.
+- No overflow, clipped text, or broken card alignment observed on any of the 5 desktop or mobile captures.
+
+## Visual resolution caveat
+Screenshots are large (up to 1520×10101), so fine-grained kerning, exact hex values, and sub-pixel spacing can't be fully verified from these images — I relied on the copy .txt files to confirm word-for-word text since some mono-label and score-percentage text was near the edge of legibility in the screenshots themselves.
+
+## Claims needing owner evidence (not a design/code issue)
+These are operational promises repeated verbatim on every role page — flagging for the business owner to confirm they're actually true today, not something I can verify from the site:
+- "a reply within three days, either way"
+- "One panel round, then an answer. No take-home that eats your weekend."
+- "Nobody has been rejected here for a missing line in this column."
+- "Someone will write back" / "Silence isn't a process."
+- The six-dimension scoring weights (e.g., Craft 30% on Backend Engineer) presented as the actual rubric candidates will be scored against — confirm this matches the real internal process before it's published as a commitment.
+
+No files were edited; this is a read-only review limited to the 5 routes listed.

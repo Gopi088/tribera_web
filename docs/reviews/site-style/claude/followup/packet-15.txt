@@ -1,0 +1,33 @@
+## Site-Wide Corrected Review — Tag Routes Only
+
+Scope: `/tag/technical-assessment/`, `/tag/technical-hiring/`, `/tag/thought-leadership/`, `/tag/time-to-hire/`, `/tag/trust-in-hiring/` at 1520px and 390px, plus their copy captures. No other routes reviewed. No files edited.
+
+### Per-route verdicts
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/tag/technical-assessment/` | **Pass.** Fraunces headline, mono eyebrow, filter pills, single card all match baseline grid/spacing at both widths. | **Pass.** Teaser and metadata are coherent; no orphaned promises. |
+| `/tag/technical-hiring/` | **Pass.** Two-card grid aligns cleanly, consistent card chrome, mobile stacks without overflow. | **Pass.** Both teasers read clearly; stats (327 profiles, 22 days) are specific claims — see owner-evidence note below. |
+| `/tag/thought-leadership/` | **Pass.** Single card renders correctly; image, badge, and copy block align to grid. | **Pass.** Card badge reads "HIRING PHILOSOPHY" while the active filter is "Thought Leadership" — this is the documented two-tag/category display behavior (disposition item on topic membership), not a bug. |
+| `/tag/time-to-hire/` | **Pass.** Active pill "Time To Hire" sits inline at the end of the filter row at 1520px (fits without wrapping) and correctly wraps to its own line on mobile — both are legitimate flex-wrap outcomes, not misalignment. | **Pass.** Card badge shows "TECHNICAL HIRING" under the "Time To Hire" filter — same intentional category/tag display as above. |
+| `/tag/trust-in-hiring/` | **Pass.** Longer H1 ("Trust In Hiring") and longer card title wrap without collision at either width; heading, filters, and footer all match baseline geometry. | **Pass.** Teaser is clear; "Feb 8, 2026" is a future-dated publish date — flagged as an owner-content question, not a code defect. |
+
+All five pages share identical header/footer, filter-pill styling, card shadow/radius, and Fraunces/Inter Tight/mono type roles consistent with the home baseline. I found no unreadable text, no overflow, no broken card grids, and no dead-looking controls on any of these five routes at either breakpoint.
+
+### Findings by severity
+
+**Blocking:** None found in this packet.
+
+**Non-blocking / cosmetic:**
+- None worth flagging — the pill-wrap variance across `/time-to-hire/` and `/trust-in-hiring/` (due to differing tag-name lengths) is expected responsive behavior, not an inconsistency.
+
+**Not bugs (per disposition, reconfirmed against screenshots):**
+- Card category/tag badges not matching the page's active filter name (`thought-leadership`, `time-to-hire`) — confirmed as intended per the "topic membership" note; cards show category + up to two tags, not the full taxonomy.
+
+### Owner-evidence questions (not design/code issues)
+- `/tag/technical-hiring/` and `/tag/time-to-hire/`: the "327-profile search into a 22-day success" figures are specific claims that need sourcing/owner sign-off before release.
+- `/tag/trust-in-hiring/`: publish date "Feb 8, 2026" is later than today (2026-09-08 is current, so this date is actually in the past — no issue; disregard, date is valid).
+
+Correcting myself: Feb 8, 2026 is before today's date (Sep 8, 2026), so it's a valid past date — not an issue. No owner-evidence date concern there.
+
+**Overall:** All five tag routes pass visual and copy review. No remaining actionable design/code defects found in this packet.

@@ -1,0 +1,40 @@
+## Release Review Summary
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/` | Pass — matches hiring reference (Fraunces/Inter Tight, left headings, restrained red) | Pass |
+| `/about/` | Pass — consistent editorial style, chart/copy match | Pass |
+| `/candidates/` | Pass with one spacing defect (below) | Pass |
+| `/contact/` | Pass, one minor inconsistency (below) | Pass |
+| `/services/` | Pass | Pass |
+
+All 10 screenshots (desktop + mobile ×5) and all 5 copy files were reviewed, plus about/contact section crops. No route or image was unreadable/unreviewable.
+
+### Actionable findings
+
+**1. (Release blocker, needs confirmation) `/candidates/` desktop — excessive whitespace before footer**
+Evidence: `candidates-1520.png`, between the "Give the right teams more reasons to meet you" CTA block and the footer, there is a disproportionately large blank paper-colored gap (roughly 1,200px of an 8,131px page — much larger than the equivalent CTA→footer transitions on `/contact/` and `/services/`, which sit flush). Home's CTA→footer join is seamless because both are dark; here it looks like leftover margin/empty section rather than a deliberate spacing choice.
+Recommendation: Inspect the DOM for an empty/collapsed element or excess bottom margin on the final CTA section of the candidates page and bring the gap in line with the contact/services pattern. Note: this is inferred from a full-page thumbnail, not a code diff — verify in-browser before treating as confirmed.
+
+**2. (Optional polish) `/contact/` desktop — inconsistent card top-border color**
+Evidence: `contact-1520-section-3.png` ("Two rooms, both real."): the Pune and Bengaluru office cards have plain black top-border accents, while the third "Anything else" card has a red top-border. Could be intentional (distinguishing a non-office contact channel) or a stray accent color.
+Recommendation: Confirm with design intent; if unintentional, align all three to the same accent treatment.
+
+### Owner-evidence questions (not code/design defects)
+Per `correction-disposition.md`, these remain unverifiable from a visual/copy review and are already logged as owner responsibilities — re-flagging only because they appear across the reviewed routes:
+- 36-hour shortlist SLA, response-time SLAs (`<24hrs`/`<48hrs` on `/contact/`), and specific case-study numbers (126 profiles, 40/14/5, 32 hours saved) on `/` and `/about/`.
+- Client/testimonial names (Sashank Pappu, Anil Giri, Reema Mitra) and logos (Mizuho, Capco, Deloitte, etc.) — consent/permissions not verifiable here.
+- 200,000-interview figure, 50+ senior experts, office addresses, and "no candidate fee ever" claim on `/about/` and `/contact/`.
+- Service pricing/fee percentages (15–20% on hire, retained fees, etc.) on `/services/`.
+
+### Not treated as defects (consistent with prior disposition)
+- Candidates page marquee duplicating the home page's client-logo list — same content reused across different pages is expected, not a bug.
+- Testimonials repeated verbatim on `/` and `/candidates/` (Anil Giri, Reema Mitra) — legitimate reuse of legal/consent-cleared copy, not duplication to fix.
+- Section background alternation (dark/light) differs page to page (e.g., `/services/` stays mostly light, `/candidates/` and `/` alternate dark) — this reflects section purpose per prior disposition, not an inconsistency.
+- No new corrupted text, incomplete sentences, or broken chart captions found in any of the five routes' copy files.
+
+### Not reviewed / could not confirm
+- No section crops were supplied for `/`, `/candidates/`, or `/services/` mobile — mobile review for those routes relied on the full-page screenshot only, which is sufficient for structural verification but not for pixel-level type-legibility claims.
+- Interactive states (accordion open states, form validation, hover states) were not exercised — screenshots only show default/closed states, consistent with `correction-disposition.md`'s existing guidance not to treat closed FAQ crops as evidence of missing content.
+
+No files were edited; this is a read-only review.

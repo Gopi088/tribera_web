@@ -1,0 +1,27 @@
+## Verified
+
+**Upload zone bug (candidate-enabled-390.png, -1520.png) — fixed.** Both screenshots show "Choose your CV" and "sample.pdf" in solid dark text on the light dashed panel, no smearing, no overlapping layers, at both widths.
+
+**Copy corruption — 2 of 3 flagged sentences fixed, 1 still open.**
+- `functions/finance-risk` "the time they stood the funding question was real" → now reads "how they responded when funding was at risk." Fixed.
+- `functions/security` "the burden for the business line explain that" → now reads "a clear explanation of the burden on the business." Fixed.
+- `functions/security` Q1 thin-answer line — **still garbled, unchanged**: *"a rehearsed answer without evidence that kills the evidence and alerts the attacker that they've been seen."* Same double use of "evidence" that doesn't parse, exact text as originally flagged. This blocker is not closed.
+
+**Infrastructure-sre, leadership, operations, careers copy** — read in full; all collapsible/FAQ content and body copy is coherent, grammatical, no dangling clauses or corrupted words found.
+
+**Tag heading casing (empathy, engineering, recruitment)** — fixed. All three render as single capitalized words ("Empathy," "Engineering," "Recruitment"), not lowercase or garbled.
+
+**Nav geometry** — `site-style-nav-results.json` confirms 76 routes × 3 widths (390/1080/1520), `failures: []`. Zero geometry differences, matches the claim.
+
+**Contextual corrections applied per your instructions:** dark/light in these pages is a section-purpose signal, not a hiring/candidate split (leadership, operations, security etc. dark sections are expected, not a bug), and the 7-role careers grid with a lone 7th card is legitimate content — not evidence of a missing 8th role.
+
+## Remaining concrete issue
+
+Only one confirmed blocker is still open: the `functions/security` Q1 thin-answer sentence is still ungrammatical/corrupted as written above. Everything else checked in this pass — the upload rendering bug, the other two copy sentences, tag heading casing, and nav geometry across all routes — is closed.
+
+## Kept separate (not evaluated here)
+
+- **Owner factual evidence** (36-hour turnaround claims, weighting authority, headcounts, pricing, legal entity/address) — untouched by this review, still requires owner sign-off.
+- **Full repository static-check debt** (broader code/lint/type issues beyond the specific pages sampled) — out of scope for this visual/copy pass, not assessed.
+
+This is not a production approval — it's confirmation of what was and wasn't fixed in the specific items you asked me to recheck.

@@ -1,0 +1,35 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+# Tag Route Review — `/tag/technical-assessment/`, `/tag/technical-hiring/`, `/tag/thought-leadership/`, `/tag/time-to-hire/`, `/tag/trust-in-hiring/`
+
+Reviewed against `/tmp/tribera-site-style/baseline/home-1520.png`. Only these 5 routes are assessed — no claims made about any other route.
+
+## Route-by-route verdicts
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/tag/technical-assessment/` | **Fail (structural bug)** — Fraunces heading, mono eyebrow, card styling all match baseline. But there's a large empty white gap (~250–300px equivalent) between the subhead and the card grid, and the taxonomy filter row (visible in the copy dump) never renders. Single-card layout is otherwise clean on desktop and mobile. | Pass. Eyebrow, title, one-line dek, dated/labelled card metadata all read cleanly and match tone of other journal entries. |
+| `/tag/technical-hiring/` | **Fail (structural bug)**, same missing-filters/whitespace issue. Two-card grid is well-aligned, consistent card proportions, illustration style matches home page's sketch/red-accent motif. Mobile stacks cleanly, no overflow. | Pass. Both excerpts are concrete and specific (327-profile/22-day stat is a strong proof point) — see "claims needing evidence" below. |
+| `/tag/thought-leadership/` | **Fail (structural bug)**, same missing-filters/whitespace issue. Single card, illustration and layout consistent with sibling pages. | Pass. Copy is on-voice ("It's not about closing roles — it's about opening relationships") and consistent with the brand's relationship-first positioning stated on the homepage. |
+| `/tag/time-to-hire/` | **Fail (structural bug)**, same missing-filters/whitespace issue. Card visually fine and legible on both breakpoints. | **Questionable — taxonomy mismatch.** The only post shown is labelled `TECHNICAL HIRING` and tagged "Signal Based Hiring / Technical Hiring" — nothing on the card is tagged "time-to-hire." Either this post is miscategorized under this tag, or the tag page is pulling from the wrong taxonomy field. Needs owner check. |
+| `/tag/trust-in-hiring/` | **Fail (structural bug)**, same missing-filters/whitespace issue. Card, fingerprint illustration, and copy block are clean and well-aligned on both breakpoints. | Pass. Copy is specific and on-brand ("Trust is built into Tribera's architecture..."). |
+
+## Findings by severity
+
+**Critical**
+- **Filter/taxonomy row is present in markup but invisible on-screen, on all 5 routes.** The copy dump for every single tag page includes a full filter chip set (`All`, `Candidate Experience`, `Technical Hiring`, `AI & Assessment`, `Hiring Philosophy`, `Hiring Strategy`, `talent-acquisition`, `decision-infrastructure`) sitting right after the subhead — but none of it appears in any desktop or mobile screenshot. Instead there's a large dead whitespace band between the hero subhead and the card grid. This is either a CSS visibility/contrast bug (e.g., white-on-white chips) or a component failing to mount, and it repeats identically across every route reviewed — a systemic defect, not a one-off. It also means users landing on a tag page have no visible way to browse to other tags, which defeats the purpose of a tag/taxonomy page.
+
+**High**
+- **`/tag/time-to-hire/` content mismatch (owner-check item, not a design blocker):** the single article shown has no visible "time-to-hire" tag/category — it's labelled Technical Hiring / Signal Based Hiring. Verify this is intentional data (e.g., an internal tag not rendered as a pill) vs. a taxonomy bug before treating the page as correct.
+
+**Medium**
+- **Disproportionate whitespace makes near-empty pages look broken.** Every one of these tag pages has only 1–2 posts. Combined with the missing filter row, the hero-to-content gap reads as an unfinished/broken page rather than a sparse index — this will get worse, not better, as more tags exist with zero or one post.
+
+**Low / none observed**
+- No unreadable text, no overflow, no card misalignment, no obsolete promises, and no dead-looking controls found on these 5 routes at either breakpoint. Header, hamburger nav, and footer are all consistent with the homepage baseline (Fraunces headings, mono red eyebrow/section labels, red accent pills, dark footer with correct link columns).
+- No testimonials or legal copy appear on these routes, so nothing to flag there.
+
+## Claims needing owner evidence (flagged separately, not a design/code issue)
+- `/tag/technical-hiring/`: "a 327-profile search into a 22-day success" — specific enough that it should be backed by a case study or client reference if used as marketing proof, since it repeats verbatim across two different tag pages (`technical-hiring` and `time-to-hire`).
+
+## Visual-resolution caveat
+Screenshots were read as static PNGs, not interacted with — so the "missing filters" conclusion is based on the row simply not being visible in the rendered pixels, at either breakpoint, across all 5 pages. I can't confirm from an image alone whether this is a CSS bug, an unmounted JS component, or the row being deliberately hidden by the current filter selection; recommend inspecting the live DOM to confirm root cause before fixing.

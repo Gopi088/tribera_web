@@ -1,0 +1,79 @@
+---
+import type { Post } from '~/types';
+interface Props {
+  posts: Post[];
+}
+const { posts } = Astro.props;
+const categories = ['All', ...new Set(posts.map((post) => post.category?.title || 'Field notes'))];
+---
+
+<div class="fbar" role="group" aria-label="Filter field notes">
+  {
+    categories.map((category) => (
+      <button
+        type="button"
+        class:list={['fchip', { on: category === 'All' }]}
+        data-c={category}
+        aria-pressed={category === 'All'}
+      >
+        {category}{' '}
+        <span>
+          {category === 'All'
+            ? posts.length
+            : posts.filter((post) => (post.category?.title || 'Field notes') === category).length}
+        </span>
+      </button>
+    ))
+  }
+</div>
+<div class="posts" id="posts">
+  {
+    posts.map((post) => (
+      <a class="post" href={`/${post.permalink}`} data-c={post.category?.title || 'Field notes'}>
+        <span class="post__meta">
+          <>
+            <span class="post__d">
+              {post.publishDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+            </span>
+            <span class="post__cat">{post.category?.title || 'Field notes'}</span>
+          </>
+        </span>
+        <span class="post__body">
+          <>
+            <span class="post__t">{post.title}</span>
+            <span class="post__x">{post.excerpt}</span>
+          </>
+        </span>
+        <span class="post__min">
+          Read article <span aria-hidden="true">&rarr;</span>
+        </span>
+      </a>
+    ))
+  }
+</div>
+<p class="posts__none" id="postsNone" role="status">Nothing in that category yet.</p>
+<style>
+  .fbar {
+    justify-content: flex-start;
+  }
+  .post {
+    grid-template-columns: 140px minmax(0, 1fr) auto;
+  }
+  .post__t {
+    font: 500 clamp(1.25rem, 2vw, 1.5rem)/1.25 var(--display);
+  }
+  .post__min {
+    font: 400 12px/1.5 var(--ui);
+  }
+  @media (max-width: 699px) {
+    .post {
+      grid-template-columns: 1fr;
+    }
+    .post__min {
+      justify-self: start;
+    }
+    .fchip {
+      min-height: 44px;
+    }
+  }
+</style>

@@ -1,6 +1,8 @@
 ---
+import SiteFooter from '~/components/widgets/Footer.astro';
+import EditorialPage from '~/components/v58/EditorialPage.astro';
+import SiteHeader from '~/components/widgets/Header.astro';
 import ContactSalesModal from '../../components/ContactSalesModal.astro';
-import StandaloneNavScripts from '../../components/standalone/StandaloneNavScripts.astro';
 import StandaloneMetadata from '../../components/standalone/StandaloneMetadata.astro';
 import StandalonePrefetchScripts from '../../components/standalone/StandalonePrefetchScripts.astro';
 ---
@@ -6251,1271 +6253,469 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
     </style>
   </head>
   <body>
-    <nav class="nav" id="nav">
-      <div class="wrap nav__in">
-        <a class="logo" href="/" data-astro-reload>tribera<i>.</i></a>
-        <span class="nav__sw">
-          <a href="/">I’m hiring</a>
-          <a href="/candidates">I’m looking</a>
-        </span>
-        <span class="nav__links"
-          ><span class="dd">
-            <a href="/functions" class="nav__l dd__t" aria-current="page">Coverage<i></i></a>
-            <span class="dd__p" role="menu">
-              <span class="dd__g">
-                <span class="dd__c"
-                  ><p class="dd__k">Industries</p><a href="/industries/banking-financial-services"
-                    >Banking & financial services</a
-                  ><a href="/industries/enterprise-technology">Enterprise technology</a><a
-                    href="/industries/product-saas">Product & SaaS</a
-                  ><a href="/industries/ai-data">AI & data</a><a href="/industries/cybersecurity">Cybersecurity</a><a
-                    href="/industries/healthcare-life-sciences">Healthcare & life sciences</a
-                  ><a href="/industries/pharmaceutical">Pharmaceutical</a><a href="/industries/manufacturing"
-                    >Manufacturing</a
-                  ><a href="/industries/industrial-engineering">Industrial & engineering</a><a
-                    href="/industries/global-capability-centres">Global capability centres</a
-                  ><a href="/industries/consumer-digital-commerce">Consumer & digital commerce</a><a
-                    href="/industries/private-equity-portfolio">Private equity portfolio</a
-                  ></span
+    <SiteHeader />
+    <EditorialPage as="main">
+      <header class="hero hero--bare" id="top">
+        <div class="wrap">
+          <div class="hero__top">
+            <div class="hero__copy">
+              <p class="eyebrow" data-rv>Functions</p>
+              <h1 class="h1" data-rv style="--d:60ms">The same role is never the <em>same role</em>.</h1>
+              <p class="hero__p" data-rv style="--d:110ms">
+                A data lead and a head of infrastructure share a title.<br />The method is identical everywhere.<br /><b
+                  >The weighting is not.</b
                 >
-                <span class="dd__c"
-                  ><p class="dd__k">Functions</p><a href="/functions/engineering-platform">Engineering & platform</a><a
-                    href="/functions/data-analytics">Data & analytics</a
-                  ><a href="/functions/infrastructure-sre">Infrastructure & SRE</a><a href="/functions/security"
-                    >Security</a
-                  ><a href="/functions/finance-risk">Finance & risk</a><a href="/functions/product-design"
-                    >Product & design</a
-                  ><a href="/functions/operations">Operations</a><a href="/functions/leadership">Leadership</a></span
-                >
-              </span>
-              <span class="dd__f">Not listed? <a href="/contact">Ask us</a>: we say no when it is not our ground.</span>
-            </span>
-          </span><a class="nav__l" href="/services">Services</a><a class="nav__l" href="/intelligence">Intelligence</a
-          ><a class="nav__l" href="/blog">Blog</a><a class="nav__l" href="/about">About</a><a
-            class="nav__l"
-            href="/contact">Contact</a
-          ></span
-        >
-        <span class="nav__end">
-          <a class="nav__login" href="https://app.tribera.ai/auth/login">Log in</a>
-          <a href="/contact" data-form-intent="demo" data-form-source="page" class="btn btn--light nav__cta"
-            >Talk to us</a
-          >
-          <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="navp">
-            <span></span><span></span><span></span></button
-          >
-        </span>
-      </div>
-      <div class="navp" id="navp">
-        <div class="wrap navp__in">
-          <div class="navp__sw"><a href="/">I’m hiring</a><a href="/candidates">I’m looking</a></div>
-          <div class="navp__coverage">
-            <a class="navp__coverage-link" href="/functions" aria-current="page">Coverage</a><button
-              class="navp__t"
-              type="button"
-              aria-label="Expand Coverage"
-              aria-expanded="false"
-              aria-controls="navp-cov"><i></i></button>
-          </div>
-          <div class="navp__cov" id="navp-cov">
-            <span class="navp__cols">
-              <span class="navp__c">
-                <p class="navp__k">Industries</p>
-                <a href="/industries/banking-financial-services">Banking &amp; financial services</a><a
-                  href="/industries/enterprise-technology">Enterprise technology</a
-                ><a href="/industries/product-saas">Product &amp; SaaS</a><a href="/industries/ai-data">AI &amp; data</a
-                ><a href="/industries/cybersecurity">Cybersecurity</a><a href="/industries/healthcare-life-sciences"
-                  >Healthcare &amp; life sciences</a
-                ><a href="/industries/pharmaceutical">Pharmaceutical</a><a href="/industries/manufacturing"
-                  >Manufacturing</a
-                ><a href="/industries/industrial-engineering">Industrial &amp; engineering</a><a
-                  href="/industries/global-capability-centres">Global capability centres</a
-                ><a href="/industries/consumer-digital-commerce">Consumer &amp; digital commerce</a><a
-                  href="/industries/private-equity-portfolio">Private equity portfolio</a
-                >
-              </span>
-              <span class="navp__c">
-                <p class="navp__k">Functions</p>
-                <a href="/functions/engineering-platform">Engineering &amp; platform</a><a
-                  href="/functions/data-analytics">Data &amp; analytics</a
-                ><a href="/functions/infrastructure-sre">Infrastructure &amp; SRE</a><a href="/functions/security"
-                  >Security</a
-                ><a href="/functions/finance-risk">Finance &amp; risk</a><a href="/functions/product-design"
-                  >Product &amp; design</a
-                ><a href="/functions/operations">Operations</a><a href="/functions/leadership">Leadership</a>
-              </span>
-            </span>
-          </div>
-          <p class="navp__k">Company</p>
-          <a href="/services">Services</a><a href="/intelligence">Intelligence</a><a href="/blog">Blog</a><a
-            href="/about">About</a
-          ><a href="/contact">Contact</a>
-          <a href="/careers">Careers</a>
-          <a href="https://app.tribera.ai/auth/login" class="navp__login">Log in</a>
-          <div class="navp__cta">
-            <a href="#contact" data-form-intent="demo" data-form-source="page" class="btn btn--light">Talk to us</a>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <header class="hero hero--bare" id="top">
-      <div class="wrap">
-        <div class="hero__top">
-          <div class="hero__copy">
-            <p class="eyebrow" data-rv>Functions</p>
-            <h1 class="h1" data-rv style="--d:60ms">The same role is never the <em>same role</em>.</h1>
-            <p class="hero__p" data-rv style="--d:110ms">
-              A data lead and a head of infrastructure share a title.<br />The method is identical everywhere.<br /><b
-                >The weighting is not.</b>
-            </p>
-            <p class="hero__p" data-rv style="--d:150ms">
-              Our first question is never the job description.<br />It’s what your function punishes when you get it
-              wrong.
-            </p>
-            <div class="btns" data-rv style="--d:190ms">
-              <a href="#all" class="btn btn--light">See the eight</a>
-              <a href="/contact" class="btn btn--wire">Ask about yours</a>
-            </div>
-          </div>
-          <div class="hero__card" data-rv style="--d:150ms">
-            <p class="feat__k">One title, any two functions</p>
-            <div class="cmpw">
-              <span class="feat__glint"></span>
-              <div class="cmpw__sel">
-                <label class="sel"
-                  ><span>Function A</span>
-                  <select id="secA"
-                    ><option value="engineering-platform" selected>Engineering & platform</option><option
-                      value="data-analytics">Data & analytics</option
-                    ><option value="infrastructure-sre">Infrastructure & SRE</option><option value="security"
-                      >Security</option
-                    ><option value="finance-risk">Finance & risk</option><option value="product-design"
-                      >Product & design</option
-                    ><option value="operations">Operations</option><option value="leadership">Leadership</option
-                    ></select
-                  ></label
-                >
-                <label class="sel sel--b"
-                  ><span>Function B</span>
-                  <select id="secB"
-                    ><option value="engineering-platform">Engineering & platform</option><option
-                      value="data-analytics"
-                      selected>Data & analytics</option
-                    ><option value="infrastructure-sre">Infrastructure & SRE</option><option value="security"
-                      >Security</option
-                    ><option value="finance-risk">Finance & risk</option><option value="product-design"
-                      >Product & design</option
-                    ><option value="operations">Operations</option><option value="leadership">Leadership</option
-                    ></select
-                  ></label
-                >
+              </p>
+              <p class="hero__p" data-rv style="--d:150ms">
+                Our first question is never the job description.<br />It’s what your function punishes when you get it
+                wrong.
+              </p>
+              <div class="btns" data-rv style="--d:190ms">
+                <a href="#all" class="btn btn--light">See the eight</a>
+                <a href="/contact" class="btn btn--wire">Ask about yours</a>
               </div>
-              <div class="cmpw__g">
-                <div class="bw" id="bw0">
-                  <span class="bw__n">Core depth</span><span class="bw__pair"
-                    ><span class="bw__b"><span class="bw__f" id="fa0"></span></span><span class="bw__b"
-                      ><span class="bw__f bw__f--b" id="fb0"></span></span
-                    ></span
-                  ><span class="bw__v"><i id="va0">0</i><b id="vb0">0</b></span>
-                </div><div class="bw" id="bw1">
-                  <span class="bw__n">Systems design</span><span class="bw__pair"
-                    ><span class="bw__b"><span class="bw__f" id="fa1"></span></span><span class="bw__b"
-                      ><span class="bw__f bw__f--b" id="fb1"></span></span
-                    ></span
-                  ><span class="bw__v"><i id="va1">0</i><b id="vb1">0</b></span>
-                </div><div class="bw" id="bw2">
-                  <span class="bw__n">Controls and risk</span><span class="bw__pair"
-                    ><span class="bw__b"><span class="bw__f" id="fa2"></span></span><span class="bw__b"
-                      ><span class="bw__f bw__f--b" id="fb2"></span></span
-                    ></span
-                  ><span class="bw__v"><i id="va2">0</i><b id="vb2">0</b></span>
-                </div><div class="bw" id="bw3">
-                  <span class="bw__n">Delivery speed</span><span class="bw__pair"
-                    ><span class="bw__b"><span class="bw__f" id="fa3"></span></span><span class="bw__b"
-                      ><span class="bw__f bw__f--b" id="fb3"></span></span
-                    ></span
-                  ><span class="bw__v"><i id="va3">0</i><b id="vb3">0</b></span>
-                </div><div class="bw" id="bw4">
-                  <span class="bw__n">Documentation</span><span class="bw__pair"
-                    ><span class="bw__b"><span class="bw__f" id="fa4"></span></span><span class="bw__b"
-                      ><span class="bw__f bw__f--b" id="fb4"></span></span
-                    ></span
-                  ><span class="bw__v"><i id="va4">0</i><b id="vb4">0</b></span>
-                </div><div class="bw" id="bw5">
-                  <span class="bw__n">Stakeholder handling</span><span class="bw__pair"
-                    ><span class="bw__b"><span class="bw__f" id="fa5"></span></span><span class="bw__b"
-                      ><span class="bw__f bw__f--b" id="fb5"></span></span
-                    ></span
-                  ><span class="bw__v"><i id="va5">0</i><b id="vb5">0</b></span>
+            </div>
+            <div class="hero__card" data-rv style="--d:150ms">
+              <p class="feat__k">One title, any two functions</p>
+              <div class="cmpw">
+                <span class="feat__glint"></span>
+                <div class="cmpw__sel">
+                  <label class="sel"
+                    ><span>Function A</span>
+                    <select id="secA"
+                      ><option value="engineering-platform" selected>Engineering & platform</option><option
+                        value="data-analytics">Data & analytics</option
+                      ><option value="infrastructure-sre">Infrastructure & SRE</option><option value="security"
+                        >Security</option
+                      ><option value="finance-risk">Finance & risk</option><option value="product-design"
+                        >Product & design</option
+                      ><option value="operations">Operations</option><option value="leadership">Leadership</option
+                      ></select
+                    ></label
+                  >
+                  <label class="sel sel--b"
+                    ><span>Function B</span>
+                    <select id="secB"
+                      ><option value="engineering-platform">Engineering & platform</option><option
+                        value="data-analytics"
+                        selected>Data & analytics</option
+                      ><option value="infrastructure-sre">Infrastructure & SRE</option><option value="security"
+                        >Security</option
+                      ><option value="finance-risk">Finance & risk</option><option value="product-design"
+                        >Product & design</option
+                      ><option value="operations">Operations</option><option value="leadership">Leadership</option
+                      ></select
+                    ></label
+                  >
                 </div>
+                <div class="cmpw__g">
+                  <div class="bw" id="bw0">
+                    <span class="bw__n">Core depth</span><span class="bw__pair"
+                      ><span class="bw__b"><span class="bw__f" id="fa0"></span></span><span class="bw__b"
+                        ><span class="bw__f bw__f--b" id="fb0"></span></span
+                      ></span
+                    ><span class="bw__v"><i id="va0">0</i><b id="vb0">0</b></span>
+                  </div><div class="bw" id="bw1">
+                    <span class="bw__n">Systems design</span><span class="bw__pair"
+                      ><span class="bw__b"><span class="bw__f" id="fa1"></span></span><span class="bw__b"
+                        ><span class="bw__f bw__f--b" id="fb1"></span></span
+                      ></span
+                    ><span class="bw__v"><i id="va1">0</i><b id="vb1">0</b></span>
+                  </div><div class="bw" id="bw2">
+                    <span class="bw__n">Controls and risk</span><span class="bw__pair"
+                      ><span class="bw__b"><span class="bw__f" id="fa2"></span></span><span class="bw__b"
+                        ><span class="bw__f bw__f--b" id="fb2"></span></span
+                      ></span
+                    ><span class="bw__v"><i id="va2">0</i><b id="vb2">0</b></span>
+                  </div><div class="bw" id="bw3">
+                    <span class="bw__n">Delivery speed</span><span class="bw__pair"
+                      ><span class="bw__b"><span class="bw__f" id="fa3"></span></span><span class="bw__b"
+                        ><span class="bw__f bw__f--b" id="fb3"></span></span
+                      ></span
+                    ><span class="bw__v"><i id="va3">0</i><b id="vb3">0</b></span>
+                  </div><div class="bw" id="bw4">
+                    <span class="bw__n">Documentation</span><span class="bw__pair"
+                      ><span class="bw__b"><span class="bw__f" id="fa4"></span></span><span class="bw__b"
+                        ><span class="bw__f bw__f--b" id="fb4"></span></span
+                      ></span
+                    ><span class="bw__v"><i id="va4">0</i><b id="vb4">0</b></span>
+                  </div><div class="bw" id="bw5">
+                    <span class="bw__n">Stakeholder handling</span><span class="bw__pair"
+                      ><span class="bw__b"><span class="bw__f" id="fa5"></span></span><span class="bw__b"
+                        ><span class="bw__f bw__f--b" id="fb5"></span></span
+                      ></span
+                    ><span class="bw__v"><i id="va5">0</i><b id="vb5">0</b></span>
+                  </div>
+                </div>
+                <p class="cmpw__ft" id="cmpFt"></p>
               </div>
-              <p class="cmpw__ft" id="cmpFt"></p>
             </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
 
-    <section class="band band--w" id="all">
-      <div class="wrap">
-        <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
-          <div>
-            <p class="eyebrow eyebrow--red" data-rv>Where we run mandates</p>
-            <h2 class="h2" data-rv style="--d:60ms;max-width:none">Eight functions, eight different bars.</h2>
-          </div>
-          <p class="dek" data-rv style="--d:100ms;max-width:none">
-            The six bars on each card are that function’s weighting:
-            <b>the tall red one is what it punishes hardest when someone gets it wrong.</b><br />Scan them and the
-            clusters show up on their own.
-          </p>
-        </div>
-        <div class="inds2" data-rv style="--d:140ms">
-          <a class="ind" href="/functions/engineering-platform"
-            ><svg class="isp" viewBox="0 0 66 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-              ><rect x="0" y="2" width="7" height="24" rx="2" fill="#DA0007"></rect><rect
-                x="11"
-                y="5.7"
-                width="7"
-                height="20.3"
-                rx="2"
-                fill="#C6C2B8"></rect><rect x="22" y="16.8" width="7" height="9.2" rx="2" fill="#C6C2B8"></rect><rect
-                x="33"
-                y="9.4"
-                width="7"
-                height="16.6"
-                rx="2"
-                fill="#C6C2B8"></rect><rect x="44" y="16.8" width="7" height="9.2" rx="2" fill="#C6C2B8"></rect><rect
-                x="55"
-                y="13.1"
-                width="7"
-                height="12.9"
-                rx="2"
-                fill="#C6C2B8"></rect></svg
-            ><span class="ind__hd"
-              ><span class="ind__n">Engineering & platform</span><span class="ind__ar">→</span></span
-            ><span class="ind__x"
-              >Engineers hired on what shipped and what broke — not what the CV says they built.</span
-            ><span class="ind__w"><i>Weighted heaviest</i>Core depth, and what it cost to ship</span></a
-          ><a class="ind" href="/functions/data-analytics"
-            ><svg class="isp" viewBox="0 0 66 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-              ><rect x="0" y="2" width="7" height="24" rx="2" fill="#DA0007"></rect><rect
-                x="11"
-                y="6"
-                width="7"
-                height="20"
-                rx="2"
-                fill="#C6C2B8"></rect><rect x="22" y="16" width="7" height="10" rx="2" fill="#C6C2B8"></rect><rect
-                x="33"
-                y="10"
-                width="7"
-                height="16"
-                rx="2"
-                fill="#C6C2B8"></rect><rect x="44" y="8" width="7" height="18" rx="2" fill="#C6C2B8"></rect><rect
-                x="55"
-                y="12"
-                width="7"
-                height="14"
-                rx="2"
-                fill="#C6C2B8"></rect></svg
-            ><span class="ind__hd"><span class="ind__n">Data & analytics</span><span class="ind__ar">→</span></span
-            ><span class="ind__x">People who move business numbers, not people who move charts.</span><span
-              class="ind__w"><i>Weighted heaviest</i>Whether the number moved after the slide</span
-            ></a
-          ><a class="ind" href="/functions/infrastructure-sre"
-            ><svg class="isp" viewBox="0 0 66 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-              ><rect x="0" y="9.4" width="7" height="16.6" rx="2" fill="#C6C2B8"></rect><rect
-                x="11"
-                y="2"
-                width="7"
-                height="24"
-                rx="2"
-                fill="#DA0007"></rect><rect x="22" y="13.1" width="7" height="12.9" rx="2" fill="#C6C2B8"></rect><rect
-                x="33"
-                y="14.9"
-                width="7"
-                height="11.1"
-                rx="2"
-                fill="#C6C2B8"></rect><rect x="44" y="14.9" width="7" height="11.1" rx="2" fill="#C6C2B8"></rect><rect
-                x="55"
-                y="9.4"
-                width="7"
-                height="16.6"
-                rx="2"
-                fill="#C6C2B8"></rect></svg
-            ><span class="ind__hd"><span class="ind__n">Infrastructure & SRE</span><span class="ind__ar">→</span></span
-            ><span class="ind__x">The people you call at 3am, validated before we send them.</span><span class="ind__w"
-              ><i>Weighted heaviest</i>Reliability owned, not rotated</span
-            ></a
-          ><a class="ind" href="/functions/security"
-            ><svg class="isp" viewBox="0 0 66 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-              ><rect x="0" y="14.9" width="7" height="11.1" rx="2" fill="#C6C2B8"></rect><rect
-                x="11"
-                y="14.9"
-                width="7"
-                height="11.1"
-                rx="2"
-                fill="#C6C2B8"></rect><rect x="22" y="2" width="7" height="24" rx="2" fill="#DA0007"></rect><rect
-                x="33"
-                y="16.8"
-                width="7"
-                height="9.2"
-                rx="2"
-                fill="#C6C2B8"></rect><rect x="44" y="7.5" width="7" height="18.5" rx="2" fill="#C6C2B8"></rect><rect
-                x="55"
-                y="20.5"
-                width="7"
-                height="5.5"
-                rx="2"
-                fill="#C6C2B8"></rect></svg
-            ><span class="ind__hd"><span class="ind__n">Security</span><span class="ind__ar">→</span></span><span
-              class="ind__x">Incident behaviour, not certifications — validated before your room.</span
-            ><span class="ind__w"><i>Weighted heaviest</i>Incident behaviour over certifications</span></a
-          ><a class="ind" href="/functions/finance-risk"
-            ><svg class="isp" viewBox="0 0 66 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-              ><rect x="0" y="5.7" width="7" height="20.3" rx="2" fill="#C6C2B8"></rect><rect
-                x="11"
-                y="14.9"
-                width="7"
-                height="11.1"
-                rx="2"
-                fill="#C6C2B8"></rect><rect x="22" y="2" width="7" height="24" rx="2" fill="#DA0007"></rect><rect
-                x="33"
-                y="13.1"
-                width="7"
-                height="12.9"
-                rx="2"
-                fill="#C6C2B8"></rect><rect x="44" y="9.4" width="7" height="16.6" rx="2" fill="#C6C2B8"></rect><rect
-                x="55"
-                y="18.6"
-                width="7"
-                height="7.4"
-                rx="2"
-                fill="#C6C2B8"></rect></svg
-            ><span class="ind__hd"><span class="ind__n">Finance & risk</span><span class="ind__ar">→</span></span><span
-              class="ind__x">Controllers and CFO-track leaders who have closed hard months.</span
-            ><span class="ind__w"><i>Weighted heaviest</i>The control that held in a bad month</span></a
-          ><a class="ind" href="/functions/product-design"
-            ><svg class="isp" viewBox="0 0 66 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-              ><rect x="0" y="5.2" width="7" height="20.8" rx="2" fill="#C6C2B8"></rect><rect
-                x="11"
-                y="18"
-                width="7"
-                height="8"
-                rx="2"
-                fill="#C6C2B8"></rect><rect x="22" y="19.6" width="7" height="6.4" rx="2" fill="#C6C2B8"></rect><rect
-                x="33"
-                y="11.6"
-                width="7"
-                height="14.4"
-                rx="2"
-                fill="#C6C2B8"></rect><rect x="44" y="19.6" width="7" height="6.4" rx="2" fill="#C6C2B8"></rect><rect
-                x="55"
-                y="2"
-                width="7"
-                height="24"
-                rx="2"
-                fill="#DA0007"></rect></svg
-            ><span class="ind__hd"><span class="ind__n">Product & design</span><span class="ind__ar">→</span></span
-            ><span class="ind__x">Taste, evidence and refusal — the product signals that survive.</span><span
-              class="ind__w"><i>Weighted heaviest</i>What they refused, in the words they used</span
-            ></a
-          ><a class="ind" href="/functions/operations"
-            ><svg class="isp" viewBox="0 0 66 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-              ><rect x="0" y="3.8" width="7" height="22.2" rx="2" fill="#C6C2B8"></rect><rect
-                x="11"
-                y="16.8"
-                width="7"
-                height="9.2"
-                rx="2"
-                fill="#C6C2B8"></rect><rect x="22" y="9.4" width="7" height="16.6" rx="2" fill="#C6C2B8"></rect><rect
-                x="33"
-                y="2"
-                width="7"
-                height="24"
-                rx="2"
-                fill="#DA0007"></rect><rect x="44" y="16.8" width="7" height="9.2" rx="2" fill="#C6C2B8"></rect><rect
-                x="55"
-                y="14.9"
-                width="7"
-                height="11.1"
-                rx="2"
-                fill="#C6C2B8"></rect></svg
-            ><span class="ind__hd"><span class="ind__n">Operations</span><span class="ind__ar">→</span></span><span
-              class="ind__x">The leaders who run the recovery when it stops running to plan.</span
-            ><span class="ind__w"><i>Weighted heaviest</i>What the plan missed first</span></a
-          ><a class="ind" href="/functions/leadership"
-            ><svg class="isp" viewBox="0 0 66 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-              ><rect x="0" y="9.4" width="7" height="16.6" rx="2" fill="#C6C2B8"></rect><rect
-                x="11"
-                y="18.6"
-                width="7"
-                height="7.4"
-                rx="2"
-                fill="#C6C2B8"></rect><rect x="22" y="11.2" width="7" height="14.8" rx="2" fill="#C6C2B8"></rect><rect
-                x="33"
-                y="7.5"
-                width="7"
-                height="18.5"
-                rx="2"
-                fill="#C6C2B8"></rect><rect x="44" y="16.8" width="7" height="9.2" rx="2" fill="#C6C2B8"></rect><rect
-                x="55"
-                y="2"
-                width="7"
-                height="24"
-                rx="2"
-                fill="#DA0007"></rect></svg
-            ><span class="ind__hd"><span class="ind__n">Leadership</span><span class="ind__ar">→</span></span><span
-              class="ind__x">The decision with no cover, and the count afterwards.</span
-            ><span class="ind__w"><i>Weighted heaviest</i>The decision nobody else would take</span></a>
-        </div>
-      </div>
-
-      <section class="fn band" id="same">
+      <section class="band band--w" id="all">
         <div class="wrap">
           <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
             <div>
-              <p class="eyebrow eyebrow--red" data-rv>What doesn’t move</p>
-              <h2 class="h2" data-rv style="--d:60ms;max-width:none">The method is the same in all eight.</h2>
+              <p class="eyebrow eyebrow--red" data-rv>Where we run mandates</p>
+              <h2 class="h2" data-rv style="--d:60ms;max-width:none">Eight functions, eight different bars.</h2>
             </div>
-            <p class="fn__dek" data-rv style="--d:100ms;max-width:none">
-              Function context changes the weighting, the questions and who does the interviewing. <b
-                >It never changes how the decision gets made, or who makes it.</b>
+            <p class="dek" data-rv style="--d:100ms;max-width:none">
+              The six bars on each card are that function’s weighting:
+              <b>the tall red one is what it punishes hardest when someone gets it wrong.</b><br />Scan them and the
+              clusters show up on their own.
             </p>
           </div>
-          <div class="steps" data-rv style="--d:140ms">
-            <div class="step">
-              <span class="step__n">01</span>
-              <span class="step__t">A hundred signals <em class="own">engine</em></span>
-              <span class="step__d">Read before anyone picks up the phone, everywhere.</span>
-            </div>
-            <div class="step">
-              <span class="step__n">02</span>
-              <span class="step__t">Thirty minutes with a peer <em class="own">expert</em></span>
-              <span class="step__d">Someone who has worked your function, on questions written from the CV.</span>
-            </div>
-            <div class="step">
-              <span class="step__n">03</span>
-              <span class="step__t">Scored against your bar <em class="own">engine</em></span>
-              <span class="step__d">The rubric is yours. The function only sets its starting position.</span>
-            </div>
-            <div class="step">
-              <span class="step__n">04</span>
-              <span class="step__t">You decide <em class="own own--you">yours</em></span>
-              <span class="step__d">Three names, all hireable, and the reasoning behind each rank.</span>
-            </div>
+          <div class="inds2" data-rv style="--d:140ms">
+            <a class="ind" href="/functions/engineering-platform"
+              ><svg class="isp" viewBox="0 0 66 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                ><rect x="0" y="2" width="7" height="24" rx="2" fill="#DA0007"></rect><rect
+                  x="11"
+                  y="5.7"
+                  width="7"
+                  height="20.3"
+                  rx="2"
+                  fill="#C6C2B8"></rect><rect x="22" y="16.8" width="7" height="9.2" rx="2" fill="#C6C2B8"></rect><rect
+                  x="33"
+                  y="9.4"
+                  width="7"
+                  height="16.6"
+                  rx="2"
+                  fill="#C6C2B8"></rect><rect x="44" y="16.8" width="7" height="9.2" rx="2" fill="#C6C2B8"></rect><rect
+                  x="55"
+                  y="13.1"
+                  width="7"
+                  height="12.9"
+                  rx="2"
+                  fill="#C6C2B8"></rect></svg
+              ><span class="ind__hd"
+                ><span class="ind__n">Engineering & platform</span><span class="ind__ar">→</span></span
+              ><span class="ind__x"
+                >Engineers hired on what shipped and what broke — not what the CV says they built.</span
+              ><span class="ind__w"><i>Weighted heaviest</i>Core depth, and what it cost to ship</span></a
+            ><a class="ind" href="/functions/data-analytics"
+              ><svg class="isp" viewBox="0 0 66 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                ><rect x="0" y="2" width="7" height="24" rx="2" fill="#DA0007"></rect><rect
+                  x="11"
+                  y="6"
+                  width="7"
+                  height="20"
+                  rx="2"
+                  fill="#C6C2B8"></rect><rect x="22" y="16" width="7" height="10" rx="2" fill="#C6C2B8"></rect><rect
+                  x="33"
+                  y="10"
+                  width="7"
+                  height="16"
+                  rx="2"
+                  fill="#C6C2B8"></rect><rect x="44" y="8" width="7" height="18" rx="2" fill="#C6C2B8"></rect><rect
+                  x="55"
+                  y="12"
+                  width="7"
+                  height="14"
+                  rx="2"
+                  fill="#C6C2B8"></rect></svg
+              ><span class="ind__hd"><span class="ind__n">Data & analytics</span><span class="ind__ar">→</span></span
+              ><span class="ind__x">People who move business numbers, not people who move charts.</span><span
+                class="ind__w"><i>Weighted heaviest</i>Whether the number moved after the slide</span
+              ></a
+            ><a class="ind" href="/functions/infrastructure-sre"
+              ><svg class="isp" viewBox="0 0 66 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                ><rect x="0" y="9.4" width="7" height="16.6" rx="2" fill="#C6C2B8"></rect><rect
+                  x="11"
+                  y="2"
+                  width="7"
+                  height="24"
+                  rx="2"
+                  fill="#DA0007"></rect><rect x="22" y="13.1" width="7" height="12.9" rx="2" fill="#C6C2B8"></rect><rect
+                  x="33"
+                  y="14.9"
+                  width="7"
+                  height="11.1"
+                  rx="2"
+                  fill="#C6C2B8"></rect><rect x="44" y="14.9" width="7" height="11.1" rx="2" fill="#C6C2B8"></rect><rect
+                  x="55"
+                  y="9.4"
+                  width="7"
+                  height="16.6"
+                  rx="2"
+                  fill="#C6C2B8"></rect></svg
+              ><span class="ind__hd"
+                ><span class="ind__n">Infrastructure & SRE</span><span class="ind__ar">→</span></span
+              ><span class="ind__x">The people you call at 3am, validated before we send them.</span><span
+                class="ind__w"><i>Weighted heaviest</i>Reliability owned, not rotated</span
+              ></a
+            ><a class="ind" href="/functions/security"
+              ><svg class="isp" viewBox="0 0 66 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                ><rect x="0" y="14.9" width="7" height="11.1" rx="2" fill="#C6C2B8"></rect><rect
+                  x="11"
+                  y="14.9"
+                  width="7"
+                  height="11.1"
+                  rx="2"
+                  fill="#C6C2B8"></rect><rect x="22" y="2" width="7" height="24" rx="2" fill="#DA0007"></rect><rect
+                  x="33"
+                  y="16.8"
+                  width="7"
+                  height="9.2"
+                  rx="2"
+                  fill="#C6C2B8"></rect><rect x="44" y="7.5" width="7" height="18.5" rx="2" fill="#C6C2B8"></rect><rect
+                  x="55"
+                  y="20.5"
+                  width="7"
+                  height="5.5"
+                  rx="2"
+                  fill="#C6C2B8"></rect></svg
+              ><span class="ind__hd"><span class="ind__n">Security</span><span class="ind__ar">→</span></span><span
+                class="ind__x">Incident behaviour, not certifications — validated before your room.</span
+              ><span class="ind__w"><i>Weighted heaviest</i>Incident behaviour over certifications</span></a
+            ><a class="ind" href="/functions/finance-risk"
+              ><svg class="isp" viewBox="0 0 66 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                ><rect x="0" y="5.7" width="7" height="20.3" rx="2" fill="#C6C2B8"></rect><rect
+                  x="11"
+                  y="14.9"
+                  width="7"
+                  height="11.1"
+                  rx="2"
+                  fill="#C6C2B8"></rect><rect x="22" y="2" width="7" height="24" rx="2" fill="#DA0007"></rect><rect
+                  x="33"
+                  y="13.1"
+                  width="7"
+                  height="12.9"
+                  rx="2"
+                  fill="#C6C2B8"></rect><rect x="44" y="9.4" width="7" height="16.6" rx="2" fill="#C6C2B8"></rect><rect
+                  x="55"
+                  y="18.6"
+                  width="7"
+                  height="7.4"
+                  rx="2"
+                  fill="#C6C2B8"></rect></svg
+              ><span class="ind__hd"><span class="ind__n">Finance & risk</span><span class="ind__ar">→</span></span
+              ><span class="ind__x">Controllers and CFO-track leaders who have closed hard months.</span><span
+                class="ind__w"><i>Weighted heaviest</i>The control that held in a bad month</span
+              ></a
+            ><a class="ind" href="/functions/product-design"
+              ><svg class="isp" viewBox="0 0 66 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                ><rect x="0" y="5.2" width="7" height="20.8" rx="2" fill="#C6C2B8"></rect><rect
+                  x="11"
+                  y="18"
+                  width="7"
+                  height="8"
+                  rx="2"
+                  fill="#C6C2B8"></rect><rect x="22" y="19.6" width="7" height="6.4" rx="2" fill="#C6C2B8"></rect><rect
+                  x="33"
+                  y="11.6"
+                  width="7"
+                  height="14.4"
+                  rx="2"
+                  fill="#C6C2B8"></rect><rect x="44" y="19.6" width="7" height="6.4" rx="2" fill="#C6C2B8"></rect><rect
+                  x="55"
+                  y="2"
+                  width="7"
+                  height="24"
+                  rx="2"
+                  fill="#DA0007"></rect></svg
+              ><span class="ind__hd"><span class="ind__n">Product & design</span><span class="ind__ar">→</span></span
+              ><span class="ind__x">Taste, evidence and refusal — the product signals that survive.</span><span
+                class="ind__w"><i>Weighted heaviest</i>What they refused, in the words they used</span
+              ></a
+            ><a class="ind" href="/functions/operations"
+              ><svg class="isp" viewBox="0 0 66 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                ><rect x="0" y="3.8" width="7" height="22.2" rx="2" fill="#C6C2B8"></rect><rect
+                  x="11"
+                  y="16.8"
+                  width="7"
+                  height="9.2"
+                  rx="2"
+                  fill="#C6C2B8"></rect><rect x="22" y="9.4" width="7" height="16.6" rx="2" fill="#C6C2B8"></rect><rect
+                  x="33"
+                  y="2"
+                  width="7"
+                  height="24"
+                  rx="2"
+                  fill="#DA0007"></rect><rect x="44" y="16.8" width="7" height="9.2" rx="2" fill="#C6C2B8"></rect><rect
+                  x="55"
+                  y="14.9"
+                  width="7"
+                  height="11.1"
+                  rx="2"
+                  fill="#C6C2B8"></rect></svg
+              ><span class="ind__hd"><span class="ind__n">Operations</span><span class="ind__ar">→</span></span><span
+                class="ind__x">The leaders who run the recovery when it stops running to plan.</span
+              ><span class="ind__w"><i>Weighted heaviest</i>What the plan missed first</span></a
+            ><a class="ind" href="/functions/leadership"
+              ><svg class="isp" viewBox="0 0 66 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                ><rect x="0" y="9.4" width="7" height="16.6" rx="2" fill="#C6C2B8"></rect><rect
+                  x="11"
+                  y="18.6"
+                  width="7"
+                  height="7.4"
+                  rx="2"
+                  fill="#C6C2B8"></rect><rect x="22" y="11.2" width="7" height="14.8" rx="2" fill="#C6C2B8"></rect><rect
+                  x="33"
+                  y="7.5"
+                  width="7"
+                  height="18.5"
+                  rx="2"
+                  fill="#C6C2B8"></rect><rect x="44" y="16.8" width="7" height="9.2" rx="2" fill="#C6C2B8"></rect><rect
+                  x="55"
+                  y="2"
+                  width="7"
+                  height="24"
+                  rx="2"
+                  fill="#DA0007"></rect></svg
+              ><span class="ind__hd"><span class="ind__n">Leadership</span><span class="ind__ar">→</span></span><span
+                class="ind__x">The decision with no cover, and the count afterwards.</span
+              ><span class="ind__w"><i>Weighted heaviest</i>The decision nobody else would take</span></a
+            >
           </div>
-          <p class="fn__line" style="text-align:center;margin-inline:auto;max-width:none" data-rv>
-            Eight functions. One way of <em>making the call</em>.
-          </p>
         </div>
-      </section>
 
-      <section class="wrap band close" id="contact">
-        <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
-          <div>
-            <p class="eyebrow eyebrow--red" data-rv>Not listed</p>
-            <h2 class="h2" data-rv style="max-width:none">We cover more than we list, but not everything.</h2>
-          </div>
-          <p class="dek" data-rv style="--d:60ms;max-width:none">
-            Tell us the function and the mandate.
-            <b>If it isn’t our ground we will say so on the first call</b>, which is cheaper for both of us than finding
-            out in week three.
-          </p>
-        </div>
-        <div class="btns" data-rv style="--d:110ms;justify-content:center;display:flex">
-          <a href="/contact" class="btn btn--dark">Ask about your function</a>
-          <a href="/functions" class="btn btn--ghost">Browse by function</a>
-        </div>
-      </section>
-
-      <footer class="ft">
-        <div class="wrap">
-          <div class="ft__top">
-            <div class="ft__brand">
-              <a class="logo" href="#top" data-astro-reload style="font-size:22px">tribera<i>.</i></a>
-              <p class="ft__line">
-                <b>AI reads the signal. Senior experts add the judgment. You make the call.</b> The bar is yours, and every
-                candidate is held to the same one.
+        <section class="fn band" id="same">
+          <div class="wrap">
+            <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
+              <div>
+                <p class="eyebrow eyebrow--red" data-rv>What doesn’t move</p>
+                <h2 class="h2" data-rv style="--d:60ms;max-width:none">The method is the same in all eight.</h2>
+              </div>
+              <p class="fn__dek" data-rv style="--d:100ms;max-width:none">
+                Function context changes the weighting, the questions and who does the interviewing. <b
+                  >It never changes how the decision gets made, or who makes it.</b
+                >
               </p>
-              <p class="ft__tribe">Tribe + Era</p>
-              <p class="ft__bbb"><em>Belong</em><i></i>Build<i></i>Become</p>
-              <div class="ft__social">
-                <a href="https://linkedin.com/company/triberaai">LinkedIn</a>
-                <a href="mailto:hello@tribera.ai">hello@tribera.ai</a>
+            </div>
+            <div class="steps" data-rv style="--d:140ms">
+              <div class="step">
+                <span class="step__n">01</span>
+                <span class="step__t">A hundred signals <em class="own">engine</em></span>
+                <span class="step__d">Read before anyone picks up the phone, everywhere.</span>
+              </div>
+              <div class="step">
+                <span class="step__n">02</span>
+                <span class="step__t">Thirty minutes with a peer <em class="own">expert</em></span>
+                <span class="step__d">Someone who has worked your function, on questions written from the CV.</span>
+              </div>
+              <div class="step">
+                <span class="step__n">03</span>
+                <span class="step__t">Scored against your bar <em class="own">engine</em></span>
+                <span class="step__d">The rubric is yours. The function only sets its starting position.</span>
+              </div>
+              <div class="step">
+                <span class="step__n">04</span>
+                <span class="step__t">You decide <em class="own own--you">yours</em></span>
+                <span class="step__d">Three names, all hireable, and the reasoning behind each rank.</span>
               </div>
             </div>
-
-            <nav class="ft__col" aria-label="For hiring teams">
-              <p class="ft__ttl">For hiring teams</p>
-              <a href="/#run">How it works</a>
-              <a href="/#lab">The bar</a>
-              <a href="/#guarantee">The guarantee</a>
-              <a href="/#guarantee">Plans</a>
-              <a href="/industries">Industries</a>
-              <a href="/functions">Functions</a>
-            </nav>
-
-            <nav class="ft__col" aria-label="For candidates">
-              <p class="ft__ttl">For candidates</p>
-              <a href="/#apply">Create your profile</a>
-              <a href="/candidates">How it works</a>
-              <a href="/careers#roles">Open roles</a>
-              <a href="/candidates#privacy">Privacy controls</a>
-            </nav>
-
-            <nav class="ft__col" aria-label="Company">
-              <p class="ft__ttl">Company</p>
-              <a href="/about">About</a>
-              <a href="/blog">Blog</a>
-              <a href="/careers">Careers</a>
-              <a href="/contact">Contact</a>
-              <a href="https://app.tribera.ai/auth/login">Log in</a>
-            </nav>
-
-            <nav class="ft__col" aria-label="Legal">
-              <p class="ft__ttl">Legal</p>
-              <a href="/security">Security</a>
-              <a href="/terms">Terms</a>
-              <a href="/privacy">Privacy</a>
-            </nav>
+            <p class="fn__line" style="text-align:center;margin-inline:auto;max-width:none" data-rv>
+              Eight functions. One way of <em>making the call</em>.
+            </p>
           </div>
+        </section>
 
-          <div class="ft__bar">
-            <span>© 2026 Tribera · Eragina Digital Solutions Private Limited</span>
-            <span class="ft__made">Bengaluru</span>
+        <section class="wrap band close" id="contact">
+          <div class="shead" style="grid-template-columns:1fr;text-align:center;justify-items:center;gap:8px">
+            <div>
+              <p class="eyebrow eyebrow--red" data-rv>Not listed</p>
+              <h2 class="h2" data-rv style="max-width:none">We cover more than we list, but not everything.</h2>
+            </div>
+            <p class="dek" data-rv style="--d:60ms;max-width:none">
+              Tell us the function and the mandate.
+              <b>If it isn’t our ground we will say so on the first call</b>, which is cheaper for both of us than
+              finding out in week three.
+            </p>
           </div>
-        </div>
-      </footer>
-      <script>
-        (function () {
-          const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+          <div class="btns" data-rv style="--d:110ms;justify-content:center;display:flex">
+            <a href="/contact" class="btn btn--dark">Ask about your function</a>
+            <a href="/functions" class="btn btn--ghost">Browse by function</a>
+          </div>
+        </section>
+      </section>
+    </EditorialPage>
+    <SiteFooter />
+    <script>
+      import { initReferenceInteractions } from '~/scripts/reference';
 
-          /* ══ THE DEAL: pick your volume, the shape resolves ══ */
-          (function () {
-            const V = [
-         {
-           nm: 'Project-based',
-           v: '10–50',
-           d: 'One role you\u2019re stuck on, or a burst of them: permanent, contract or executive.',
-           p: ['Per hire, 15–20%', 'Nothing owed until you hire', 'Your bar written on the first brief'],
-         },
-         {
-           nm: 'Scale',
-           v: '50–200',
-           d: 'Several functions running at once, with one bar carried across all of them.',
-           p: ['Volume rate per hire', 'A named expert bench for your stack', 'Your bar reused on every brief'],
-         },
-         {
-           nm: 'Full RPO',
-           v: '200–500+',
-           d: 'Your whole talent function, run alongside your team rather than outside it.',
-           p: [
-             'Experts embedded in your team',
-             'Subscription plus a reduced rate',
-             'Quarterly recalibration of the bar',
-           ],
-         },
-       ];
-            const segs = [].slice.call(document.querySelectorAll('.vseg')),
-         out = document.getElementById('volOut');
-            if (!segs.length || !out) return;
-            const nm = document.getElementById('volNm'),
-         vv = document.getElementById('volV'),
-         dd = document.getElementById('volD'),
-         pts = document.getElementById('volPts');
-            function pick(i) {
-              const s = V[i];
-              segs.forEach(function (b, j) {
-                b.classList.toggle('is', j === i);
-                b.setAttribute('aria-selected', String(j === i));
-              });
-              nm.textContent = s.nm;
-              vv.innerHTML = s.v + ' <span>hires a year</span>';
-              dd.textContent = s.d;
-              pts.innerHTML = s.p
-                .map(function (t) {
-                  return '<li>' + t + '</li>';
-                })
-                .join('');
-              out.classList.remove('swap-in');
-              void out.offsetWidth;
-              out.classList.add('swap-in');
+      import { functionPages } from '~/data/function-pages';
+      initReferenceInteractions();
+
+      /* ══ FUNCTIONS: the same six dimensions, any two functions ══ */
+      (function () {
+        const W = Object.fromEntries(
+          functionPages.map((page) => [
+            page.slug,
+            { n: page.heroEyebrow, w: page.bars.map((bar) => parseFloat(bar.v)) },
+          ])
+        );
+        const D = [
+          'Core depth',
+          'Systems design',
+          'Controls and risk',
+          'Delivery speed',
+          'Documentation',
+          'Stakeholder handling',
+        ];
+        const a = document.querySelector<HTMLSelectElement>('#secA'),
+          b = document.querySelector<HTMLSelectElement>('#secB'),
+          ft = document.getElementById('cmpFt');
+        if (!a || !b) return;
+        function paint() {
+          if (!a || !b || !ft) return;
+          const A = W[a.value],
+            B = W[b.value];
+          let mx = 0,
+            gap = -1,
+            gi = 0;
+          D.forEach(function (_, i) {
+            mx = Math.max(mx, A.w[i], B.w[i]);
+            const g = Math.abs(A.w[i] - B.w[i]);
+            if (g > gap) {
+              gap = g;
+              gi = i;
             }
-            segs.forEach(function (b, i) {
-              b.addEventListener('click', function () {
-                pick(i);
-              });
-              b.addEventListener('mouseenter', function () {
-                pick(i);
-              });
-            });
-            pick(1);
-          })();
-
-          /* ══ THE LAB: the visitor moves the bar, the verdict follows ══ */
-          (function () {
-            const D = [
-         { k: 'A', n: 'Core networking, TCP/IP', w: 6.25, s: 5 },
-         { k: 'B', n: 'Routing and BGP depth', w: 6.25, s: 5 },
-         { k: 'C', n: 'Data-centre networks', w: 6.25, s: 3 },
-         { k: 'D', n: 'Hybrid, DCI and WAN', w: 3.75, s: 4 },
-         { k: 'E', n: 'Troubleshooting and RCA', w: 6.25, s: 5 },
-         { k: 'F', n: 'Performance and optimisation', w: 5.0, s: 4 },
-         { k: 'G', n: 'Change and runbook discipline', w: 5.0, s: 4 },
-         { k: 'H', n: 'ISP and carrier coordination', w: 2.5, s: 4 },
-         { k: 'I', n: 'Operations and ownership', w: 3.75, s: 4 },
-         { k: 'J', n: 'Linux, scripting, automation', w: 1.25, s: 2 },
-         { k: 'K', n: 'Authenticity', w: 3.75, s: 4 },
-       ];
-            const BASE = D.map(function (d) {
-         return d.w;
-       });
-            const PRE = {
-         brief: BASE.slice(),
-         auto: [2, 2, 3, 2, 2, 2, 2, 1, 2, 12, 2],
-         fabric: [2, 2, 12, 2, 2, 2, 2, 1, 2, 3, 2],
-         ops: [7, 7, 1, 3, 9, 5, 8, 3, 7, 0.5, 4],
-       };
-            const NOTE = {
-         brief:
-           'As briefed: fundamentals, troubleshooting and performance carry the weight. Automation is deliberately weighted so it cannot carry a profile.',
-         auto: 'Weight automation above everything and he drops out of Select. He scored 2 there, and it was the one thing he could not evidence. On this brief he is a no.',
-         fabric:
-           'Weight fabric depth and he falls to the bottom of Select. He describes the estate; he has not operated the fabric himself.',
-         ops: 'Weight the day job (troubleshooting, change discipline, ownership) and he climbs. That is where the evidence actually sat.',
-       };
-            const rows = document.getElementById('labRows'),
-         tiles = document.getElementById('labTiles'),
-         elScore = document.getElementById('labScore'),
-         elBand = document.getElementById('labBand'),
-         elPin = document.getElementById('labPin'),
-         elTot = document.getElementById('labTotal'),
-         elNote = document.getElementById('labNote');
-            if (!rows) return;
-
-            rows.innerHTML = D.map(function (d, i) {
-              return (
-                '<div class="row" id="row' +
-                i +
-                '" data-i="' +
-                i +
-                '"><span class="row__k">' +
-                d.k +
-                '</span>' +
-                '<span class="row__n">' +
-                d.n +
-                '</span>' +
-                '<input type="range" min="0" max="12" step="0.25" value="' +
-                d.w +
-                '" data-i="' +
-                i +
-                '" ' +
-                'aria-label="Weight for ' +
-                d.n +
-                '">' +
-                '<span class="row__p" id="pts' +
-                i +
-                '">0.00</span></div>'
-              );
-            }).join('');
-            tiles.innerHTML = D.map(function (d, i) {
-              return (
-                '<span class="lt' +
-                (d.s <= 2 ? ' low' : '') +
-                '" id="tile' +
-                i +
-                '" data-i="' +
-                i +
-                '" style="--s:' +
-                d.s +
-                '" ' +
-                'tabindex="0" title="' +
-                d.n +
-                ' — ' +
-                d.s +
-                ' of 5"><i>' +
-                d.k +
-                '</i><b>' +
-                d.s +
-                '</b></span>'
-              );
-            }).join('');
-
-            let shown = 42,
-              raf = null;
-            function paint() {
-              let tw = 0,
-                got = 0,
-                max = 0;
-              D.forEach(function (d) {
-                tw += d.w;
-                got += (d.w * d.s) / 5;
-                if (d.w > max) max = d.w;
-              });
-              const score = tw > 0 ? (got / tw) * 50 : 0;
-              D.forEach(function (d, i) {
-                document.getElementById('pts' + i).textContent = ((d.w * d.s) / 5).toFixed(2);
-                const heavy = d.w >= Math.max(7, max * 0.92);
-                document.getElementById('row' + i).classList.toggle('heavy', heavy);
-                document.getElementById('tile' + i).classList.toggle('heavy', heavy);
-              });
-              elTot.textContent = tw.toFixed(2);
-              elPin.style.left = Math.max(1, Math.min(99, (score / 50) * 100)) + '%';
-              const band = score >= 34 ? ['SELECT', 'b-sel'] : score >= 28 ? ['GREY', 'b-grey'] : ['REJECT', 'b-rej'];
-              elBand.textContent = band[0];
-              elBand.className = 'verd__band ' + band[1];
-              /* count the number rather than snapping it */
-              cancelAnimationFrame(raf);
-              (function step() {
-                const diff = score - shown;
-                if (Math.abs(diff) < 0.02) {
-                  shown = score;
-                  elScore.textContent = score.toFixed(2);
-                  return;
-                }
-                shown += diff * 0.22;
-                elScore.textContent = shown.toFixed(2);
-                raf = requestAnimationFrame(step);
-              })();
-            }
-
-            /* hover either half, the other half answers */
-            function link(i, on) {
-              const t = document.getElementById('tile' + i),
-           r = document.getElementById('row' + i);
-              if (t) t.classList.toggle('lit', on);
-              if (r) r.classList.toggle('lit', on);
-            }
-            function bind(host, sel) {
-              host.addEventListener('mouseover', function (e) {
-                const el = e.target.closest(sel);
-                if (el) link(+el.dataset.i, true);
-              });
-              host.addEventListener('mouseout', function (e) {
-                const el = e.target.closest(sel);
-                if (el) link(+el.dataset.i, false);
-              });
-              host.addEventListener('focusin', function (e) {
-                const el = e.target.closest(sel);
-                if (el) link(+el.dataset.i, true);
-              });
-              host.addEventListener('focusout', function (e) {
-                const el = e.target.closest(sel);
-                if (el) link(+el.dataset.i, false);
-              });
-            }
-            bind(tiles, '.lt');
-            bind(rows, '.row');
-
-            rows.addEventListener('input', function (e) {
-              const t = e.target;
-              if (t.type !== 'range') return;
-              D[+t.dataset.i].w = parseFloat(t.value);
-              document.querySelectorAll('.pre').forEach(function (b) {
-                b.classList.remove('on');
-              });
-              paint();
-            });
-            document.querySelectorAll('.pre').forEach(function (btn) {
-              btn.addEventListener('click', function () {
-                const set = PRE[btn.dataset.pre];
-                D.forEach(function (d, i) {
-                  d.w = set[i];
-                  rows.querySelector('input[data-i="' + i + '"]').value = set[i];
-                });
-                document.querySelectorAll('.pre').forEach(function (b) {
-                  b.classList.remove('on');
-                });
-                btn.classList.add('on');
-                elNote.textContent = NOTE[btn.dataset.pre];
-                paint();
-              });
-            });
-            paint();
-          })();
-
-          /* the score tiles name themselves */
-          const tiles = document.getElementById('tiles'),
-       tcap = document.getElementById('tilesCap');
-          if (tiles && tcap) {
-            const base = tcap.textContent;
-            function show(t) {
-              tcap.classList.add('is');
-              tcap.innerHTML = t.dataset.n + ' — <b style="color:#fff">' + t.dataset.s + ' of 5</b>';
-            }
-            function clear() {
-              tcap.classList.remove('is');
-              tcap.textContent = base;
-            }
-            tiles.addEventListener('mouseover', function (e) {
-              const t = e.target.closest('.tl');
-              if (t) show(t);
-            });
-            tiles.addEventListener('focusin', function (e) {
-              const t = e.target.closest('.tl');
-              if (t) show(t);
-            });
-            tiles.addEventListener('mouseleave', clear);
-            tiles.addEventListener('focusout', clear);
-          }
-
-          /* the card behaves like an object: it tilts toward you and catches light */
-          const cardWrap = document.querySelector('.hero__card'),
-       tilt = document.getElementById('tilt');
-          if (cardWrap && tilt && !reduce && matchMedia('(hover:hover) and (pointer:fine)').matches) {
-            let raf = null;
-            cardWrap.addEventListener('pointermove', function (e) {
-              if (raf) return;
-              raf = requestAnimationFrame(function () {
-                raf = null;
-                const r = cardWrap.getBoundingClientRect(),
-             px = (e.clientX - r.left) / r.width,
-             py = (e.clientY - r.top) / r.height;
-                tilt.classList.add('live');
-                tilt.style.setProperty('--ry', ((px - 0.5) * 11).toFixed(2) + 'deg');
-                tilt.style.setProperty('--rx', ((0.5 - py) * 8).toFixed(2) + 'deg');
-                cardWrap.querySelectorAll('.face').forEach(function (f) {
-                  f.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
-                  f.style.setProperty('--my', (py * 100).toFixed(1) + '%');
-                });
-              });
-            });
-            cardWrap.addEventListener('pointerleave', function () {
-              tilt.classList.remove('live');
-              tilt.style.setProperty('--ry', '0deg');
-              tilt.style.setProperty('--rx', '0deg');
-            });
-          }
-
-          /* the card has two faces — demo the flip once, then it’s yours */
-          const flip = document.getElementById('flip'),
-            tA = document.getElementById('tabA'),
-            tB = document.getElementById('tabB'),
-            fA = document.getElementById('faceA'),
-            fB = document.getElementById('faceB');
-          let took = false;
-          function face(b) {
-            if (!flip) return;
-            flip.classList.toggle('is-b', b);
-            if (cardWrap) cardWrap.classList.toggle('is-flipped', b);
-            tA.classList.toggle('is', !b);
-            tB.classList.toggle('is', b);
-            tA.setAttribute('aria-selected', String(!b));
-            tB.setAttribute('aria-selected', String(b));
-            fA.setAttribute('aria-hidden', String(b));
-            fB.setAttribute('aria-hidden', String(!b));
-          }
-          if (flip && cardWrap) {
-            tA.addEventListener('click', function () {
-              took = true;
-              face(false);
-            });
-            tB.addEventListener('click', function () {
-              took = true;
-              face(true);
-            });
-            cardWrap.addEventListener('click', function (e) {
-              if (e.target.closest('.ftab')) return;
-              took = true;
-              face(!flip.classList.contains('is-b'));
-            });
-            if (!reduce && 'IntersectionObserver' in window) {
-              new IntersectionObserver(
-                function (es, ob) {
-                  es.forEach(function (e) {
-                    if (!e.isIntersecting) return;
-                    ob.disconnect();
-                    setTimeout(function () {
-                      if (!took) face(true);
-                    }, 2600);
-                    setTimeout(function () {
-                      if (!took) face(false);
-                    }, 5200);
-                  });
-                },
-                { threshold: 0.4 }
-              ).observe(flip);
-            }
-          }
-          const GROUPS = [
-       [86, 1],
-       [26, 2],
-       [9, 3],
-       [3, 4],
-       [2, 5],
-     ];
-          const grid = document.getElementById('grid');
-          let sqs = [];
-          if (grid) {
-            let html = '';
-            GROUPS.forEach(function (g) {
-              for (let i = 0; i < g[0]; i++) html += '<span class="sq g' + g[1] + '" data-drop="' + g[1] + '"></span>';
-            });
-            grid.innerHTML = html;
-            sqs = [].slice.call(grid.children);
-          }
-
-          const DOT = { 1: '#3A3A37', 2: '#5A5A55', 3: '#8A8A85', 4: '#D8D8D3', 5: '#DA0007' };
-          /* hovering a STAGE shows everyone who got that far */
-          const REACH = {
-       1: '<b>All 126.</b> Everything the requirement returned.',
-       2: '<b>40 reached an expert interview.</b> Eighty-six never did.',
-       3: '<b>14 cleared the bar</b> on their own answers.',
-       4: '<b>5 names reached them</b>, the first people the team ever saw.',
-       5: '<b>2 hired,</b> out of five interviews.',
-     };
-          /* hovering a SQUARE shows where that person stopped */
-          const STOP = {
-       1: '<b>86 stopped here</b>, screened out before anyone spent time on them.',
-       2: '<b>26 stopped here</b>, interviewed by an expert, didn\u2019t clear the bar.',
-       3: '<b>9 stopped here</b>, cleared the bar, ranked below the top five.',
-       4: '<b>3 stopped here</b>, sent, hireable, not chosen this time.',
-       5: '<b>Hired.</b> One of the two.',
-     };
-          const REST = {
-       1: '126 people, shaded by how far each one got. <b>The two in red were hired.</b>',
-       2: '<b>86 have dropped away.</b> Screened out before anyone spent time on them.',
-       3: '<b>26 more gone.</b> Interviewed by a person, didn\u2019t clear the bar.',
-       4: '<b>9 more.</b> Good. Ranked below the top five. They never reached the team.',
-       5: '<b>Two hired, out of five interviews.</b> Everything else never left our desk.',
-     };
-
-          const field = document.getElementById('field'),
-            fN = document.getElementById('fieldN'),
-            fL = document.getElementById('fieldLbl'),
-            fF = document.getElementById('fieldFt');
-          let stage = 0;
-
-          function setStage(n) {
-            if (n === stage || !sqs.length) return;
-            stage = n;
-            sqs.forEach(function (s) {
-              s.classList.toggle('out', +s.dataset.drop < n);
-            });
-            field.classList.toggle('at5', n === 5);
-            const st = document.querySelector('.step[data-n="' + n + '"]');
-            if (st) {
-              fN.textContent = st.dataset.count;
-              fL.textContent = st.dataset.lbl;
-            }
-            fF.innerHTML = REST[n];
-          }
-          setStage(1);
-
-          /* hover trace — subtle, on squares and on the step text */
-          function peek(n, mode) {
-            if (!grid) return;
-            const reached = mode !== 'stopped';
-            grid.classList.add('peek');
-            sqs.forEach(function (s) {
-              const d = +s.dataset.drop;
-              s.classList.toggle('co', reached ? d >= n : d === n);
-            });
-            fF.innerHTML = '<i style="background:' + DOT[n] + '"></i>' + (reached ? REACH : STOP)[n];
-          }
-          function unpeek() {
-            if (!grid) return;
-            grid.classList.remove('peek');
-            sqs.forEach(function (s) {
-              s.classList.remove('co');
-            });
-            fF.innerHTML = REST[stage];
-          }
-          if (grid) {
-            grid.addEventListener('mouseover', function (e) {
-              const s = e.target.closest('.sq');
-              if (s) peek(+s.dataset.drop, 'stopped');
-            });
-            grid.addEventListener('mouseleave', unpeek);
-          }
-
-          const steps = [].slice.call(document.querySelectorAll('.step'));
-          let userTook = false;
-          steps.forEach(function (st) {
-            const n = +st.dataset.n;
-            st.setAttribute('tabindex', '0');
-            st.setAttribute('role', 'button');
-            function take() {
-              userTook = true;
-              mark(n);
-            }
-            st.addEventListener('mouseenter', function () {
-              take();
-              peek(n, 'reached');
-            });
-            st.addEventListener('mouseleave', unpeek);
-            st.addEventListener('focus', function () {
-              take();
-              peek(n, 'reached');
-            });
-            st.addEventListener('blur', unpeek);
-            st.addEventListener('click', take);
-            st.addEventListener('keydown', function (e) {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                take();
-              }
-            });
           });
-
-          function mark(n) {
-            steps.forEach(function (s) {
-              s.classList.toggle('on', +s.dataset.n === n);
-            });
-            setStage(n);
-          }
-
-          /* it narrows itself once when you arrive — then it’s yours to poke at */
-          const fn = document.getElementById('run');
-          let played = false;
-          if (fn && steps.length && 'IntersectionObserver' in window) {
-            new IntersectionObserver(
-              function (es, ob) {
-                es.forEach(function (e) {
-                  if (!e.isIntersecting || played) return;
-                  played = true;
-                  ob.disconnect();
-                  if (reduce) {
-                    mark(5);
-                    return;
-                  }
-                  [2, 3, 4, 5].forEach(function (n, i) {
-                    setTimeout(
-                      function () {
-                        if (!userTook) mark(n);
-                      },
-                      900 + i * 780
-                    );
-                  });
-                });
-              },
-              { threshold: 0.35 }
-            ).observe(fn);
-          } else if (steps.length) {
-            mark(5);
-          }
-
-          const io = new IntersectionObserver(
-            function (es) {
-              es.forEach(function (e) {
-                if (e.isIntersecting) {
-                  e.target.classList.add('in');
-                  io.unobserve(e.target);
-                }
-              });
-            },
-            { threshold: 0.14, rootMargin: '0px 0px -8% 0px' }
-          );
-          document.querySelectorAll('[data-rv]').forEach(function (el) {
-            io.observe(el);
+          D.forEach(function (n, i) {
+            {
+              const node = document.getElementById('fa' + i);
+              if (node) node.style.width = A.w[i] + '%';
+            }
+            {
+              const node = document.getElementById('fb' + i);
+              if (node) node.style.width = B.w[i] + '%';
+            }
+            {
+              const node = document.getElementById('va' + i);
+              if (node) node.textContent = String(A.w[i]);
+            }
+            {
+              const node = document.getElementById('vb' + i);
+              if (node) node.textContent = String(B.w[i]);
+            }
+            {
+              const node = document.getElementById('bw' + i);
+              if (node) node.classList.toggle('key', i === gi);
+            }
           });
-
-          /* signal tags act as filters over the table */
-          const swap = document.querySelector('.swap'),
-       keyBar = document.querySelector('.key');
-          if (swap && keyBar) {
-            const rows = [].slice.call(swap.querySelectorAll('.swap__row'));
-            function apply(k) {
-              if (!k) {
-                swap.classList.remove('dim');
-                rows.forEach(function (r) {
-                  r.classList.remove('hit');
-                });
-                return;
-              }
-              const want = k.querySelector('.tag').textContent.trim().toLowerCase();
-              swap.classList.add('dim');
-              rows.forEach(function (r) {
-                const t = r.querySelector('.tag');
-                r.classList.toggle('hit', !!t && t.textContent.trim().toLowerCase() === want);
-              });
-            }
-            keyBar.querySelectorAll('.key__i').forEach(function (k) {
-              k.setAttribute('tabindex', '0');
-              k.setAttribute('role', 'button');
-              k.addEventListener('mouseenter', function () {
-                apply(k);
-              });
-            });
-            /* one authority for clearing — the bar itself */
-            keyBar.addEventListener('mouseleave', function () {
-              apply(null);
-            });
-            keyBar.addEventListener('focusin', function (e) {
-              const k = e.target.closest('.key__i');
-              apply(k || null);
-            });
-            keyBar.addEventListener('focusout', function (e) {
-              if (!keyBar.contains(e.relatedTarget)) apply(null);
-            });
+          if (A.n === B.n) {
+            ft.innerHTML = 'Same function both sides. <b>Pick two and the bar moves.</b>';
+            return;
           }
-
-          /* the tally draws once, slowly, then the three land at speed */
-          const fan = document.querySelector('.fan'),
-       tN = document.getElementById('tallyN');
-          if (fan) {
-            new IntersectionObserver(
-              function (es, ob) {
-                es.forEach(function (e) {
-                  if (!e.isIntersecting) return;
-                  ob.disconnect();
-                  if (reduce) return;
-                  fan.classList.add('go');
-                  if (!tN) return;
-                  let t0 = null;
-                  const DUR = 1800;
-                  tN.textContent = '0';
-                  requestAnimationFrame(function step(ts) {
-                    if (t0 === null) t0 = ts;
-                    const u = Math.min((ts - t0) / DUR, 1);
-                    tN.textContent = Math.round(Math.pow(u, 1 / 0.62) * 140);
-                    if (u < 1) requestAnimationFrame(step);
-                    else tN.textContent = '140';
-                  });
-                });
-              },
-              { threshold: 0.35 }
-            ).observe(fan);
-          }
-
-          const deskBlk = document.querySelector('.desk');
-          if (deskBlk)
-            new IntersectionObserver(
-              function (es, ob) {
-                es.forEach(function (e) {
-                  if (e.isIntersecting) {
-                    deskBlk.classList.add('in');
-                    ob.disconnect();
-                  }
-                });
-              },
-              { threshold: 0.4 }
-            ).observe(deskBlk);
-
-          const ramp = document.getElementById('ramp');
-          if (ramp)
-            new IntersectionObserver(
-              function (es, ob) {
-                es.forEach(function (e) {
-                  if (e.isIntersecting) {
-                    ramp.classList.add('in');
-                    ob.disconnect();
-                  }
-                });
-              },
-              { threshold: 0.3 }
-            ).observe(ramp);
-
-          /* nav switcher reflects where you are */
-          const cand = document.getElementById('candidates'),
-       bar = document.getElementById('stickcta'),
-       applyBox = document.getElementById('apply');
-
-          /* sticky apply bar: only while the candidate section is on screen,
-     and never on top of the apply card itself */
-          if (cand && bar && applyBox) {
-            let inSection = false,
-              atForm = false;
-            function sync() {
-              bar.classList.toggle('show', inSection && !atForm);
-            }
-            new IntersectionObserver(
-              function (es) {
-                es.forEach(function (e) {
-                  inSection = e.isIntersecting;
-                  sync();
-                });
-              },
-              { threshold: 0.12 }
-            ).observe(cand);
-            new IntersectionObserver(
-              function (es) {
-                es.forEach(function (e) {
-                  atForm = e.isIntersecting;
-                  sync();
-                });
-              },
-              { threshold: 0.3 }
-            ).observe(applyBox);
-          }
-
-          /* a filename is better feedback than a silent upload */
-          const fileIn = document.querySelector('.apply__file input');
-          if (fileIn)
-            fileIn.addEventListener('change', function () {
-              const lbl = fileIn.parentNode.querySelector('span');
-              if (fileIn.files && fileIn.files[0]) lbl.textContent = fileIn.files[0].name;
-            });
-        })();
-
-        /* ══ FUNCTIONS: the same six dimensions, any two functions ══ */
-        (function () {
-          const W = {
-       'engineering-platform': { n: 'Engineering & platform', w: [26, 22, 10, 18, 10, 14] },
-       'data-analytics': { n: 'Data & analytics', w: [24, 20, 10, 16, 18, 14] },
-       'infrastructure-sre': { n: 'Infrastructure & SRE', w: [18, 26, 14, 12, 12, 18] },
-       security: { n: 'Security', w: [12, 12, 26, 10, 20, 6] },
-       'finance-risk': { n: 'Finance & risk', w: [22, 12, 26, 14, 18, 8] },
-       'product-design': { n: 'Product & design', w: [26, 10, 8, 18, 8, 30] },
-       operations: { n: 'Operations', w: [24, 10, 18, 26, 10, 12] },
-       leadership: { n: 'Leadership', w: [18, 8, 16, 20, 10, 26] },
-     };
-          const D = [
-       'Core depth',
-       'Systems design',
-       'Controls and risk',
-       'Delivery speed',
-       'Documentation',
-       'Stakeholder handling',
-     ];
-          const a = document.getElementById('secA'),
-       b = document.getElementById('secB'),
-       ft = document.getElementById('cmpFt');
-          if (!a || !b) return;
-          function paint() {
-            const A = W[a.value],
-              B = W[b.value];
-            let mx = 0,
-              gap = -1,
-              gi = 0;
-            D.forEach(function (_, i) {
-              mx = Math.max(mx, A.w[i], B.w[i]);
-              const g = Math.abs(A.w[i] - B.w[i]);
-              if (g > gap) {
-                gap = g;
-                gi = i;
-              }
-            });
-            D.forEach(function (n, i) {
-              document.getElementById('fa' + i).style.width = (A.w[i] / mx) * 100 + '%';
-              document.getElementById('fb' + i).style.width = (B.w[i] / mx) * 100 + '%';
-              document.getElementById('va' + i).textContent = A.w[i];
-              document.getElementById('vb' + i).textContent = B.w[i];
-              document.getElementById('bw' + i).classList.toggle('key', i === gi);
-            });
-            if (A.n === B.n) {
-              ft.innerHTML = 'Same function both sides. <b>Pick two and the bar moves.</b>';
-              return;
-            }
-            ft.innerHTML =
-              '<b>' +
-              D[gi] +
-              '</b> moves from ' +
-              Math.min(A.w[gi], B.w[gi]) +
-              '% to ' +
-              Math.max(A.w[gi], B.w[gi]) +
-              '%: a ' +
-              gap +
-              '-point swing, and <b>a different person wins</b>.';
-          }
-          a.addEventListener('change', paint);
-          b.addEventListener('change', paint);
-          paint();
-        })();
-      </script>
-      <StandaloneNavScripts />
-      <ContactSalesModal />
-      <StandalonePrefetchScripts />
-    </section>
+          ft.innerHTML =
+            '<b>' +
+            D[gi] +
+            '</b> moves from ' +
+            Math.min(A.w[gi], B.w[gi]) +
+            '% to ' +
+            Math.max(A.w[gi], B.w[gi]) +
+            '%. Difference: ' +
+            gap +
+            ' percentage points. Example weights; your hiring manager sets the actual priorities.';
+        }
+        a.addEventListener('change', paint);
+        b.addEventListener('change', paint);
+        paint();
+      })();
+    </script>
+    <ContactSalesModal />
+    <StandalonePrefetchScripts />
   </body>
 </html>

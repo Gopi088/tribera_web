@@ -1,4 +1,14 @@
 export const formIntentConfigs = {
+  role: {
+    audienceLabel: 'For hiring teams',
+    title: 'Start with one role',
+    body: 'Tell us about the role and the hiring manager who owns it. We will confirm the brief, interviewer coverage and next steps with you.',
+    submitLabel: 'Discuss this role',
+    formType: 'sales',
+    successTitle: 'Role enquiry submitted',
+    successBody: 'Our team will contact you to discuss the role and agree the next steps.',
+    responseNote: 'We typically respond within 24 hours.',
+  },
   demo: {
     audienceLabel: 'For hiring teams',
     title: 'Book a demo',

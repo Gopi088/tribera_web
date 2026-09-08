@@ -1,0 +1,28 @@
+No defect — that was the breadcrumb "ALL ROLES / ENGINEERING", not stray nav content. All 5 routes now reviewed.
+
+## Release Review Summary
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| /blog/why-tech-hiring-really-takes-so-long/ | Pass — consistent typography, palette, left headings, intentional centered CTAs | Pass — no defects found |
+| /candidates/start/ | Pass — form/timeline styling consistent; disabled submit state is confirmed correct behavior, not a bug | Pass |
+| /careers/ | Pass — scorecard bars sum to 100%, uneven last grid row is confirmed intentional | Pass |
+| /careers/ai-ml-engineer/ | Pass — weights sum to 100%, bar/list order matches | Pass |
+| /careers/backend-engineer/ | Pass — weights sum to 100%, bar/list order matches; "ALL ROLES / ENGINEERING" breadcrumb (initially misread as stray text) confirmed correct on crop | Pass |
+
+## Actionable findings
+None. No confirmed visual or copy defects across these 5 routes. All screenshots (desktop, mobile, and section crops where checked) rendered as expected with Fraunces headings, Inter Tight body, mono labels, and the established red-accent/dark-light section pattern.
+
+## Not defects (matches prior disposition)
+- Candidates/start: pink/muted "Submit profile" button before a CV is chosen — confirmed intentional disabled state.
+- Careers index: 7 roles leaving one card alone in the last row — confirmed intentional, no placeholder invented.
+- Scorecard weight sets (Backend Engineer, AI/ML Engineer, careers index) each total exactly 100%.
+
+## Owner-evidence items (not code/design defects, cannot be verified by this review)
+- Blog post: "327 profiles," "22 days," "45 minutes," named case details — factual/statistical claims requiring owner sign-off.
+- Careers pages: "3-day reply," "45-minute conversation," "two-week decision," headcount ("7 roles, 1 position each"), and "read by one of the three founders" — SLA/operational claims.
+- Candidates/start: "up to 10 MB" file limit and privacy policy link destination — should be confirmed against actual backend limits/policy page, not verifiable from screenshots alone.
+
+## Scope notes
+- All 10 screenshots (5 routes × desktop/mobile) plus copy files were read; no route or image was unreadable or skipped.
+- This review did not verify backend form submission, file upload limits, or link destinations — only visual rendering and static copy as captured in screenshots.

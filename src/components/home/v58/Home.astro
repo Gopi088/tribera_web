@@ -1,0 +1,2866 @@
+---
+const coverageGroups = [
+  {
+    name: 'Engineering & infrastructure',
+    roles: [
+      'Software engineering',
+      'Platform & infrastructure',
+      'Data engineering & analytics',
+      'AI & machine learning',
+      'Cybersecurity',
+      'Networks & DC',
+    ],
+    focus:
+      'System design and scale, pipelines and modelling, incidents and reliability, threat models and response, model design and evaluation, routing and fabric.',
+  },
+  {
+    name: 'Finance & risk',
+    roles: [
+      'Finance & accounting systems',
+      'Finance operations',
+      'Risk, controls & compliance',
+      'Commercial & revenue analytics',
+      'Capital markets',
+    ],
+    focus: 'Controls and transformation, audits and exposure, risk and the trade lifecycle.',
+  },
+  {
+    name: 'Operations',
+    roles: ['Supply chain & planning', 'Procurement & sourcing', 'HR operations', 'Manufacturing'],
+    focus:
+      'Planning and cost in supply chain and manufacturing. We confirm the expertise needed for procurement and HR operations on the first call.',
+  },
+  {
+    name: 'Product & leadership',
+    roles: ['Product & design', 'Technology leadership'],
+    focus: 'Product judgment and design craft.',
+  },
+];
+const rubricDimensions: Array<[string, string, string, number, number]> = [
+  ['A', 'System building & ownership', 'Systems built', 5, 7],
+  ['B', 'Detection & prevention design', 'Detection', 5, 7],
+  ['C', 'AI / LLM security basics', 'LLM security', 2, 6],
+  ['D', 'ML / LLM pipeline fundamentals', 'ML pipeline', 5, 6],
+  ['E', 'Python automation & tooling', 'Python', 4, 5],
+  ['F', 'Secure data access', 'Data access', 2, 4],
+  ['G', 'Cloud deployment & runtime', 'Cloud runtime', 4, 4],
+  ['H', 'Incident handling & ownership', 'Incidents', 3, 5],
+  ['I', 'Authenticity', 'Authenticity', 4, 6],
+];
+const funnelStages = [
+  ['126', 'Sourced & screened', 'Every CV reviewed. Forty worth a conversation.', 'tribera'],
+  ['40', 'A first conversation', 'An HR interview. Fourteen progressed to an expert.', 'tribera'],
+  ['14', 'Interviewed by an expert', 'Forty-five minutes on the technical work. Five cleared the bar.', 'tribera'],
+  ['5', 'Sent to their team', 'Five qualified candidates. The first names their team saw.', 'their team'],
+  ['2', 'They hired two', 'Five interviews. Two hires.', 'their team'],
+];
+const funnelTiers = Array.from({ length: 126 }, (_, index): number => {
+  return index < 86 ? 1 : index < 112 ? 2 : index < 121 ? 3 : index < 124 ? 4 : 5;
+});
+// Seeded Fisher-Yates keeps the scatter stable across renders and stage changes.
+let funnelSeed = 0x58f126;
+for (let index = funnelTiers.length - 1; index > 0; index -= 1) {
+  funnelSeed ^= funnelSeed << 13;
+  funnelSeed ^= funnelSeed >>> 17;
+  funnelSeed ^= funnelSeed << 5;
+  const swapIndex = Math.floor(((funnelSeed >>> 0) / 4294967296) * (index + 1));
+  [funnelTiers[index], funnelTiers[swapIndex]] = [funnelTiers[swapIndex], funnelTiers[index]];
+}
+const funnelColors = ['#3a3a37', '#585852', '#8a8a83', '#d7d7d1', '#DA0007'];
+const heroFieldSquares = Array.from({ length: 306 }, (_, index) => index);
+const heroFieldAccents = new Set([3, 32, 275, 302]);
+const heroClients = [
+  'Mizuho',
+  'Capco',
+  'Deloitte',
+  'ArcelorMittal',
+  'Flipkart',
+  'Myntra',
+  'Motherson',
+  'Publicis Sapient',
+  'Publicis Resources',
+  'Evident Microscopy',
+  'Antz',
+];
+const testimonials = [
+  [
+    'Hiring team',
+    'The profiles were consistently high quality and well matched to what we were looking for. Your team stayed proactive throughout - anticipating our needs, responding quickly and staying closely engaged until every candidate was onboarded. That responsiveness made a real difference in helping us meet our customer commitments on time.',
+    'Sashank Pappu',
+    'Founder & CEO, Antz AI',
+  ],
+  [
+    'Candidate',
+    'From the very first conversation, the process was handled with professionalism, transparency and steady communication. A special mention to Chyna from Tribera, who understood my background and stayed with me the whole way - coordinating interviews, sharing timely updates and offering guidance at every stage. She made a stressful process feel genuinely smooth.',
+    'Anil Giri',
+    'Placed through Tribera',
+  ],
+  [
+    'Candidate',
+    'From the initial shortlisting of my profile to coordinating the discussions and interview rounds, the team kept a high level of professionalism, responsiveness and transparency. Expectations, timelines, feedback and next steps were communicated clearly at every stage - which made the whole process feel smooth, structured and genuinely well-run.',
+    'Reema Mitra',
+    'Placed through Tribera',
+  ],
+];
+---
+
+<div class="v58-home">
+  <header class="v58-hero-c" id="top" aria-labelledby="v58-home-title">
+    <div class="v58-hero-c__field" aria-hidden="true">
+      <div>{heroFieldSquares.map((index) => <i class:list={{ 'is-accent': heroFieldAccents.has(index) }} />)}</div>
+    </div>
+    <div class="v58-hero-c__main">
+      <div class="v58-wrap v58-hero-c__copy">
+        <p class="v58-kicker"><span>\</span> A shortlist worth your time</p>
+        <h1 id="v58-home-title">
+          Three candidates.<br />Every one <span class="v58-hd-word"
+            >worth the interview.<svg
+              class="v58-hd-underline"
+              viewBox="0 0 120 12"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+              ><path d="M2,8 C26,3.5 54,9.5 84,6 C104,3.6 116,8 118,5" pathLength="1" stroke-width="2.6"></path></svg
+            ></span
+          >
+        </h1>
+        <p class="v58-lead">
+          You know the role - open too long, the resumes you can't get through. We take it off you and send three worth
+          the interview - found by us, or from your own pipeline. Your team focuses on the interviews.
+        </p>
+        <div class="v58-actions">
+          <a href="/contact" data-form-intent="role" data-form-source="v58-hero" class="v58-primary"
+            >Start with one role</a
+          ><a href="#proof" class="v58-link">Move the bar yourself <span aria-hidden="true">&rsaquo;</span></a>
+        </div>
+        <p class="v58-micro"><i></i> First shortlist in <b data-v58-count="36">36</b> hours</p>
+      </div>
+    </div>
+    <a class="v58-hero-c__cue" href="#proof"
+      ><span>It&rsquo;s live &mdash; move the bar</span><svg viewBox="0 0 18 22" aria-hidden="true"
+        ><path d="M9,2 L9,15"></path><path d="M3.5,10 L9,16.5 L14.5,10"></path></svg
+      ></a
+    >
+  </header>
+
+  <div class="v58-logo-strip">
+    <div class="v58-wrap">
+      <span>Mandates run for</span><div class="v58-logo-strip__window">
+        <div class="v58-logo-strip__track" aria-label="Client examples">
+          {
+            [...heroClients, ...heroClients].map((client) => (
+              <span>
+                {client}
+                <i aria-hidden="true">&middot;</i>
+              </span>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="v58-section v58-thesis" id="what">
+    <div class="v58-wrap v58-two">
+      <div>
+        <p class="v58-kicker"><span>\</span> What this is</p><h2>
+          Three candidates.<br />Each has cleared your bar.
+        </h2><p class="v58-thesis__body">
+          A resume tells you who applied. Finding out who can do the job takes interviews, round after round. We do that
+          work first, screening and interviewing against the bar your hiring manager sets. You meet three candidates,
+          each with evidence behind every score.
+        </p><p class="v58-thesis__claim"><span>Three worth meeting.</span> <span>The proof to choose.</span></p>
+      </div><figure class="v58-barcard">
+        <span>One bar · every candidate</span><svg
+          viewBox="0 0 530 190"
+          role="img"
+          aria-label="One bar. Eight candidates measured the same way. Three clear it."
+          ><path
+            d="M28,96 Q150,92 275,95 T502,93.5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"></path><text x="502" y="82" text-anchor="end">YOUR BAR</text><g
+            stroke="#E4E3DE"
+            stroke-width="1.4"
+            ><line x1="62" y1="95" x2="62" y2="132"></line><line x1="120" y1="95" x2="120" y2="132"></line><line
+              x1="178"
+              y1="61"
+              x2="178"
+              y2="95"></line><line x1="236" y1="95" x2="236" y2="132"></line><line x1="294" y1="61" x2="294" y2="95"
+            ></line><line x1="352" y1="95" x2="352" y2="132"></line><line x1="410" y1="61" x2="410" y2="95"></line><line
+              x1="468"
+              y1="95"
+              x2="468"
+              y2="132"></line></g
+          ><g fill="none" stroke="#DA0007" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"
+            ><path d="M167,27 Q171,32 175,36 Q184,23 192,11"></path><path d="M283,28 Q287,32 291,36 Q300,22 308,12"
+            ></path><path d="M399,26 Q404,33 407,36 Q416,24 423,11"></path></g
+          ><g
+            >{
+              [
+                [54, 132, '#CFCEC9'],
+                [112, 132, '#CFCEC9'],
+                [169, 43, '#DA0007'],
+                [228, 132, '#CFCEC9'],
+                [285, 43, '#DA0007'],
+                [344, 132, '#CFCEC9'],
+                [401, 43, '#DA0007'],
+                [460, 132, '#CFCEC9'],
+              ].map(([x, y, color]) => <rect x={x} y={y} width="16" height="16" rx="4" fill={String(color)} />)
+            }</g
+          ></svg
+        ><figcaption><span><b>Three clear it.</b> Five don't.</span> <span>Same bar for all eight.</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="v58-dark v58-proof" id="proof">
+    <div class="v58-wrap">
+      <div class="v58-proof__head">
+        <div><p class="v58-kicker"><span>\</span> How it works</p><h2>Move the bar. Watch the verdict move.</h2></div>
+        <div class="v58-proof-intro">
+          <p class="v58-lead">
+            An anonymised AI-security candidate, scored on nine criteria. The interview evidence behind those scores
+            never changes.
+          </p>
+          <p class="v58-lead v58-proof-intro__action">
+            What changes is your brief. <span class="v58-proof-emphasis"
+              >Set your priorities<svg viewBox="0 0 240 8" preserveAspectRatio="none" aria-hidden="true"
+                ><path d="M2 5 Q48 2 100 4 T181 3 Q219 2 238 4"></path></svg
+              ></span
+            > and the verdict follows.
+          </p>
+        </div>
+      </div>
+      <div class="v58-lab" data-v58-lab>
+        <article class="v58-verdict">
+          <div class="v58-verdict__who">
+            <div><b>Bharat R.</b><span>AI Senior Security Engineer · 5 yrs · Bengaluru</span></div><em
+              data-band
+              data-band-state="select">SELECT</em
+            >
+          </div>
+          <div class="v58-verdict__score"><b data-verdict-score>39.00</b><span>/ 50</span></div>
+          <div class="v58-verdict__track"><i></i><i></i><i></i><b data-pin></b></div><p class="v58-verdict__axis">
+            <span>0</span><span>Reject · 26 · Grey · 34 · Select</span><span>50</span>
+          </p>
+          <p class="v58-side-label">Individual scores · <strong>out of 5</strong></p>
+          <div class="v58-score-tiles">
+            {
+              rubricDimensions.map(([, label, short, score]) => (
+                <span
+                  tabindex="0"
+                  role="group"
+                  aria-label={`${label}: evidence score ${score} out of 5`}
+                  title={`${label}: ${score} out of 5`}
+                  class:list={{ low: score === 2 }}
+                >
+                  <>
+                    <i>{short}</i>
+                    <b>{score}</b>
+                  </>
+                </span>
+              ))
+            }
+          </div>
+          <p class="v58-verdict__note" data-note>
+            As briefed: building production detection systems carries the weight. AI security controls are the evidence
+            to probe further.
+          </p>
+        </article>
+        <div class="v58-controls">
+          <div class="v58-mobile-verdict" aria-label="Current verdict">
+            <span>Current verdict</span><strong data-mobile-score>39.00 <small>/ 50</small></strong><em
+              data-mobile-band
+              data-band-state="select">SELECT</em
+            >
+          </div><p class="v58-sr-status" role="status" aria-atomic="true" data-verdict-status></p><p
+            class="v58-side-label"
+          >
+            Choose a brief
+          </p><div class="v58-presets" role="group" aria-label="Weighting presets">
+            <button type="button" class="is-active" data-preset="brief" aria-pressed="true">As briefed</button><button
+              type="button"
+              data-preset="detection"
+              aria-pressed="false">Detection first</button
+            ><button type="button" data-preset="llm" aria-pressed="false">LLM security</button><button
+              type="button"
+              data-preset="ownership"
+              aria-pressed="false">Ownership</button
+            >
+          </div><div class="v58-weights-panel">
+            <p class="v58-weight-instruction" id="weight-instruction">
+              Adjust the sliders to set what matters most.
+            </p><div class="v58-priorities-heading">
+              <h3 class="v58-priorities-title">Your priorities</h3><span>Importance</span>
+            </div><div class="v58-priority-rows">
+              {
+                rubricDimensions.map(([code, label, , score, weight]) => (
+                  <label data-row>
+                    <>
+                      <i>{code}</i>
+                      <span>{label}</span>
+                      <input
+                        type="range"
+                        min="0"
+                        max="12"
+                        step="0.25"
+                        value={weight}
+                        data-default={weight}
+                        data-score={score}
+                        aria-label={`Importance of ${label}`}
+                        aria-describedby="weight-instruction"
+                      />
+                      <b data-share>{(Number(weight) * 2).toFixed(1)}%</b>
+                    </>
+                  </label>
+                ))
+              }
+            </div><p class="v58-share-status" data-share-status hidden>
+              Move a slider above zero to set your priorities.
+            </p><details class="v58-calculation">
+              <summary>How the score is calculated</summary><p>
+                Each skill contributes its share of importance multiplied by the candidate's evidence score out of 5.
+                The result is expressed out of 50.
+              </p><p>
+                Displayed shares are rounded to total 100% when priorities are set. Scoring uses exact shares.
+              </p><table>
+                <thead
+                  ><tr><th scope="col">Skill</th><th scope="col">Evidence</th><th scope="col">Points / 50</th></tr
+                  ></thead
+                ><tbody
+                  >{
+                    rubricDimensions.map(([, label, , score, weight]) => (
+                      <tr>
+                        <>
+                          <th scope="row">{label}</th>
+                          <td>{score}/5</td>
+                          <td data-calculated-points>{((Number(weight) * score) / 5).toFixed(2)}</td>
+                        </>
+                      </tr>
+                    ))
+                  }</tbody
+                >
+              </table>
+            </details>
+          </div>
+        </div>
+      </div>
+      <div class="v58-proof__closure">
+        <p class="v58-lab-foot">Tell us what matters most. <em>This is what we recalibrate.</em></p><div
+          class="v58-proof-checks"
+        >
+          <div><h3>Every score points to the exact line behind it.</h3><p>Evidence you can review.</p></div><div>
+            <h3>We name what we didn't test.</h3><p>So your own round knows exactly where to look.</p>
+          </div><div>
+            <h3>Resume claims checked against the evidence.</h3><p>
+              Experience, skills and the work behind each claim.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="v58-paper v58-experts" id="experts">
+    <div class="v58-wrap">
+      <p class="v58-kicker"><span>\</span> The people who make the call</p><h2>
+        Senior experts who've done the job, and one bar. <span class="v58-hd-word"
+          >Yours.<svg class="v58-hd-underline" viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true"
+            ><path d="M2,8 C26,3.5 54,9.5 84,6 C104,3.6 116,8 118,5" pathLength="1" stroke-width="2.6"></path></svg
+          ></span
+        >
+      </h2><p class="v58-lead">
+        An expert matched to your role probes the candidate's answers for practical depth. Questions are tailored to
+        your brief and the candidate's experience.
+      </p><div class="v58-experts__coverage" id="cover">
+        <p class="v58-coverage__label">Functions we interview for</p>
+        <div class="v58-coverage" role="list" aria-label="Expertise available">
+          {
+            coverageGroups.map(({ name, roles, focus }) => (
+              <div role="listitem">
+                <h3>{name}</h3>
+                <p class="v58-coverage__roles">{roles.join('\u00a0· ')}</p>
+                <details class="v58-coverage__detail">
+                  <summary>Interview expertise</summary>
+                  <p>{focus}</p>
+                </details>
+              </div>
+            ))
+          }
+        </div>
+        <p class="v58-experts__confirmation">We confirm interviewer coverage on the first call.</p>
+      </div>
+      <p class="v58-experts__note">
+        <strong>The engine handles sourcing and scoring. The expert runs the interview.</strong>
+      </p><div class="v58-industries">
+        <p>Industries we run mandates in</p>{
+          [
+            'Banking & financial services',
+            'Enterprise technology',
+            'Product & SaaS',
+            'AI & data',
+            'Cybersecurity',
+            'Healthcare & life sciences',
+            'Pharmaceutical',
+            'Manufacturing',
+            'Industrial & engineering',
+            'Global capability centres',
+            'Consumer & digital commerce',
+            'Private equity portfolio',
+          ].map((industry) => <span>{industry}</span>)
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="v58-dark v58-funnel-section" id="funnel">
+    <div class="v58-wrap">
+      <p class="v58-kicker"><span>\</span> One role, start to finish</p><h2>Nobody shows you the funnel.</h2><p
+        class="v58-lead"
+      >
+        Our offer starts with a shortlist of three. This backend case involved five candidates sent to the team and two
+        hires. The role in Bengaluru had been open for nine months. We reopened the exact same brief. <strong
+          >126 profiles came back.</strong
+        > We screened every CV, held 40 HR interviews and interviewed 14 candidates technically. <strong
+          >Five passed the technical interview and met their team.</strong
+        >
+      </p><div class="v58-funnel-layout" data-v58-funnel>
+        <div class="v58-funnel-field">
+          <div class="v58-funnel-field__head">
+            <span data-funnel-label>Sourced &amp; screened</span><span>126 total profiles</span>
+          </div><b data-funnel-number>126</b><div class="v58-square-grid" aria-hidden="true">
+            {
+              funnelTiers.map((tier, index) => (
+                <i data-square={index} data-tier={tier} style={{ backgroundColor: funnelColors[tier - 1] }} />
+              ))
+            }
+          </div>
+        </div><div class="v58-funnel-steps">
+          {
+            funnelStages.map(([number, title, description, owner], index) => (
+              <>
+                <button
+                  type="button"
+                  class:list={{ 'v58-funnel-step': true, 'is-active': index === 0 }}
+                  data-stage={index}
+                  data-count={number}
+                  data-label={title}
+                  aria-pressed={index === 0 ? 'true' : 'false'}
+                >
+                  <>
+                    <b class:list={{ 'v58-funnel-step__number': true, 'v58-funnel-step__number--hired': index === 4 }}>
+                      {number}
+                      {index === 4 && (
+                        <svg class="v58-hd-ring" viewBox="0 0 80 60" preserveAspectRatio="none" aria-hidden="true">
+                          <path
+                            d="M42,7 C64,5 77,20 73,33 C69,49 44,55 24,52 C6,49 3,33 8,22 C13,10 32,6 46,9"
+                            stroke-width="2.4"
+                          />
+                        </svg>
+                      )}
+                    </b>
+                    <span>
+                      <>
+                        <strong>
+                          {title} <em>{owner}</em>
+                        </strong>
+                        <small>{description}</small>
+                      </>
+                    </span>
+                  </>
+                </button>
+                {index === 2 && <p class="v58-funnel-divider">All of this before the team saw a single name.</p>}
+              </>
+            ))
+          }
+        </div>
+      </div><div class="v58-funnel-close">
+        <p>Five qualified candidates.<br />Their team <em>chose two.</em></p><span
+          >An estimated <b>32 hours</b> back for their team across screening, interviews and coordination.</span
+        >
+      </div><div class="v58-funnel-case">
+        <span>Another role, the same approach</span><div>
+          <b>AI security · Engineering · Bengaluru</b><p>
+            50+ profiles over six months without a hire. <strong>4 interviews · 2 selected · 1 hired.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="v58-section v58-work" id="work">
+    <div class="v58-wrap">
+      <div class="v58-work__head">
+        <p class="v58-kicker"><span>\</span> The work</p><h2>You set the bar. We do the work to it.</h2><p
+          class="v58-lead"
+        >
+          One call sets the standard. Then we handle the finding, the checking and the interview - all to that one bar.
+        </p>
+      </div><div class="v58-work__flow">
+        <article>
+          <span class="yours">Yours</span><h3>Set the bar</h3><p>Your hiring manager. One call per role.</p>
+        </article><span class="v58-flow-arrow" aria-hidden="true"
+          ><svg viewBox="0 0 42 24"
+            ><path d="M3,12.5 C13,9.5 25,15 34,12"></path><path d="M28.5,7 L37,12 L28.5,17"></path></svg
+          ></span
+        ><article>
+          <span>Ours</span><h3>Find &amp; check</h3><p>
+            We source candidates and check the experience behind their claims.
+          </p>
+        </article><span class="v58-flow-arrow" aria-hidden="true"
+          ><svg viewBox="0 0 42 24"
+            ><path d="M3,12.5 C13,9.5 25,15 34,12"></path><path d="M28.5,7 L37,12 L28.5,17"></path></svg
+          ></span
+        ><article>
+          <span>Ours</span><h3>Interview</h3><p>A senior advisor who has held the role. Scored to your bar.</p>
+        </article><span class="v58-flow-arrow" aria-hidden="true"
+          ><svg viewBox="0 0 42 24"
+            ><path d="M3,12.5 C13,9.5 25,15 34,12"></path><path d="M28.5,7 L37,12 L28.5,17"></path></svg
+          ></span
+        ><article>
+          <span>Ours</span><h3>Send three</h3><p>The three that clear it, ranked, with the proof.</p>
+        </article><span class="v58-flow-arrow" aria-hidden="true"
+          ><svg viewBox="0 0 42 24"
+            ><path d="M3,12.5 C13,9.5 25,15 34,12"></path><path d="M28.5,7 L37,12 L28.5,17"></path></svg
+          ></span
+        ><article>
+          <span class="yours">Yours</span><h3>Decide</h3><p>You interview the three. The hire is your call.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="v58-paper v58-benefits" id="benefits" aria-labelledby="v58-benefits-title">
+    <div class="v58-wrap">
+      <p class="v58-kicker"><span>\</span> What this means for your team</p>
+      <h2 id="v58-benefits-title">One call from you. Three interviews to run.</h2>
+      <div class="v58-benefits__grid">
+        <article>
+          <span>Your time</span><h3>Focused on qualified candidates.</h3><p>
+            Your team spends its interview time with candidates who have cleared the agreed bar.
+          </p>
+        </article>
+        <article>
+          <span>Our work</span><h3>The shortlist, handled.</h3><p>
+            From sourcing to expert interviews, we prepare your shortlist. We can also work with your existing pipeline.
+          </p>
+        </article>
+        <article>
+          <span>Your decision</span><h3>Ranked, with the evidence.</h3><p>
+            Three candidates in order, with the scores and what sits behind them. The hire is your call.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="v58-section v58-ways" id="ways">
+    <div class="v58-wrap">
+      <div>
+        <p class="v58-kicker"><span>\</span> Ways to work with us</p><h2>One hiring bar. Two ways to work with us.</h2>
+      </div><div class="v58-ways__grid">
+        <article>
+          <span>Recruitment</span><h3>We find them</h3><p>
+            Give us a role, or a whole function. We source the market, vet every candidate, and interview against your
+            bar - then submit only who clears it.
+          </p><small>You interview the three who clear your bar.</small>
+        </article><article>
+          <span>Interview as a service</span><h3>You've sourced them</h3><p>
+            Bring your own pipeline - your team, your agencies, your boards. We interview and score every candidate
+            against your bar, and hand back one ranked list.
+          </p><small>You supply the pipeline. We return the ranked list.</small>
+        </article>
+      </div><p class="v58-ways__foot">Same bar. Same proof. <em>You decide.</em></p><p class="v58-ways__diff">
+        You pay <strong>per hire</strong> when we find them, <strong>per interview</strong> when you've sourced them - with
+        pricing agreed for the engagement.
+      </p><p class="v58-ways__link"><a href="/services">See how we engage &rsaquo;</a></p>
+    </div>
+  </section>
+
+  <section class="v58-dark v58-results" id="results" aria-labelledby="v58-results-title">
+    <div class="v58-wrap">
+      <div class="v58-results__head">
+        <p class="v58-kicker"><span>\</span> In their words</p>
+        <h2 id="v58-results-title">What teams and candidates say.</h2>
+      </div>
+      <div class="v58-testimonials">
+        {
+          testimonials.map(([kind, quote, name, role]) => (
+            <figure class="v58-testimonial">
+              <span class:list={{ 'v58-testimonial__tag': true, 'is-team': kind === 'Hiring team' }}>{kind}</span>
+              <blockquote>&ldquo;{quote}&rdquo;</blockquote>
+              <figcaption>
+                <>
+                  <b>{name}</b>
+                  <span>{role}</span>
+                </>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="v58-paper v58-trust" id="trust">
+    <div class="v58-wrap">
+      <div class="v58-proof__head">
+        <div>
+          <p class="v58-kicker"><span>\</span> How decisions are made</p><h2>
+            <span>The engine scores.</span><span class="v58-trust__decision"
+              >A person decides.<svg
+                class="v58-hd-underline"
+                viewBox="0 0 120 12"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+                ><path d="M2,8 C26,3.5 54,9.5 84,6 C104,3.6 116,8 118,5" pathLength="1" stroke-width="2.6"></path></svg
+              ></span
+            >
+          </h2>
+        </div><p class="v58-lead">
+          The engine supports scoring. Our team reviews the evidence before shortlisting. Your hiring manager interviews
+          the shortlist and makes the hiring decision.
+        </p>
+      </div><div class="v58-trust__grid">
+        <article>
+          <h3>A human-reviewed shortlist.</h3><p>
+            Our team reviews interview evidence against the agreed role requirements before sending candidates to you.
+          </p>
+        </article><article>
+          <h3>Evidence alongside the score.</h3><p>
+            Interview answers support the assessment, with areas for your team to probe in its own conversations.
+          </p>
+        </article><article>
+          <h3>Criteria agreed for the role.</h3><p>
+            Your hiring manager sets the skills and experience the assessment should focus on.
+          </p>
+        </article><article>
+          <h3>Clear data-handling terms.</h3><p>
+            Discuss recording, access, retention and deletion requirements with us before the engagement.
+          </p>
+        </article>
+      </div><p class="v58-trust__privacy"><a href="/privacy">Read our privacy policy</a></p>
+    </div>
+  </section>
+
+  <section class="v58-section v58-start" id="start">
+    <div class="v58-wrap v58-center">
+      <p class="v58-kicker"><span>\</span> Stop screening. Start choosing.</p><h2>
+        Give us the role you're stuck on.
+      </h2><div class="v58-start__copy">
+        <p class="v58-lead">
+          Your hiring manager sets the bar. Within 36 hours, <span class="v58-start__phrase">your first shortlist</span> lands:
+          three candidates worth interviewing, each with the evidence your team needs to choose.
+        </p>
+      </div><div class="v58-actions">
+        <a href="/contact" data-form-intent="role" data-form-source="v58-final" class="v58-primary"
+          >Start with one role</a
+        ><a href="/contact" data-form-intent="demo" data-form-source="v58-walkthrough" class="v58-link"
+          >Book a walkthrough &rsaquo;</a
+        >
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .v58-home {
+    --v58-wrap: 1160px;
+    background: var(--v58-white);
+    color: var(--v58-ink);
+    font-family: var(--v58-ui);
+  }
+  .v58-wrap {
+    width: min(100% - clamp(44px, 10vw, 144px), var(--v58-wrap));
+    margin: auto;
+  }
+  .v58-home :is(h1, h2) {
+    font-family: var(--v58-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+    margin: 0;
+  }
+  h1 {
+    font-size: clamp(2.6rem, 5.6vw, 4.15rem);
+  }
+  h2 {
+    font-size: clamp(2rem, 3.9vw, 3rem);
+  }
+  h3 {
+    margin: 0.55rem 0;
+  }
+  .v58-hero-c {
+    background: radial-gradient(1100px 520px at 50% 6%, rgba(218, 0, 7, 0.05), transparent 60%), var(--v58-white);
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100svh - 126px);
+    overflow: hidden;
+    padding-block: clamp(24px, 3.5vw, 44px);
+    position: relative;
+    text-align: center;
+  }
+  .v58-hero-c__field {
+    left: 50%;
+    mask-image: radial-gradient(115% 120% at 50% 50%, #000 42%, transparent 92%);
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(1040px, 96vw);
+  }
+  .v58-hero-c__field > div {
+    display: grid;
+    gap: calc(min(1040px, 96vw) * 0.01081);
+    grid-template-columns: repeat(34, calc(min(1040px, 96vw) * 0.01892));
+  }
+  .v58-hero-c__field i {
+    background: rgba(19, 19, 19, 0.02);
+    border-radius: 3px;
+    display: block;
+    height: auto;
+    aspect-ratio: 1;
+    width: 100%;
+  }
+  .v58-hero-c__field i.is-accent {
+    background: rgba(218, 0, 7, 0.11);
+  }
+  .v58-hero-c__main {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+  }
+  .v58-hero-c__copy {
+    max-width: 1040px;
+  }
+  .v58-hero-c__copy h1 {
+    font-size: clamp(2.08rem, 4.48vw, 3.32rem);
+    margin-inline: auto;
+    max-width: 20ch;
+  }
+  @media (max-width: 359px) {
+    .v58-hero-c__copy h1 {
+      font-size: 26px;
+    }
+  }
+  .v58-hero-c__copy .v58-kicker {
+    justify-content: center;
+  }
+  .v58-hero-c__copy .v58-lead {
+    margin: 1.28rem auto 0;
+    max-width: 56ch;
+  }
+  .v58-two {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 6rem);
+  }
+  .v58-lead {
+    color: var(--v58-muted);
+    font-size: clamp(0.864rem, 1.24vw, 1.024rem);
+    line-height: 1.5;
+    max-width: 42ch;
+    margin: 1.28rem 0 0;
+  }
+  .v58-kicker {
+    color: var(--v58-faint);
+    font-family: var(--v58-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin: 0 0 1.28rem;
+  }
+  .v58-kicker span {
+    color: var(--v58-red);
+  }
+  .v58-actions {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1.76rem;
+  }
+  .v58-primary {
+    background: var(--v58-red);
+    border: 1px solid transparent;
+    border-radius: 999px;
+    box-shadow: 0 8px 20px -8px rgba(218, 0, 7, 0.5);
+    color: #fff;
+    display: inline-block;
+    font-size: 0.784rem;
+    font-weight: 500;
+    line-height: 1.5;
+    padding: 0.8em 1.5em;
+    text-decoration: none;
+    transition:
+      transform 0.18s ease,
+      background 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+  .v58-primary:hover {
+    background: #c10006;
+    transform: translateY(-1px);
+  }
+  .v58-link {
+    color: var(--v58-faint);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .v58-link:hover {
+    color: var(--v58-red);
+  }
+  .v58-micro {
+    align-items: center;
+    color: var(--v58-faint);
+    display: flex;
+    font-family: var(--v58-mono);
+    font-size: 0.592rem;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-top: 1.6rem;
+  }
+  .v58-micro i {
+    background: #3e9e63;
+    border-radius: 50%;
+    display: inline-block;
+    height: 0.35rem;
+    width: 0.35rem;
+  }
+  .v58-micro b {
+    color: var(--v58-ink);
+  }
+  .v58-hd-word {
+    display: inline-block;
+    font-family: var(--v58-display);
+    font-optical-sizing: auto;
+    font-style: italic;
+    font-weight: 500;
+    position: relative;
+    white-space: nowrap;
+  }
+  .v58-hd-underline {
+    bottom: -0.16em;
+    height: 0.34em;
+    left: -1%;
+    overflow: visible;
+    position: absolute;
+    right: -1%;
+    width: 102%;
+  }
+  .v58-hd-underline path {
+    animation: v58-underline-draw 0.8s cubic-bezier(0.62, 0.04, 0.2, 1) 0.25s both;
+    fill: none;
+    stroke: var(--v58-red);
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  @keyframes v58-underline-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  .v58-hero-c__cue {
+    align-items: center;
+    color: var(--v58-faint);
+    display: flex;
+    flex-direction: column;
+    font-family: var(--v58-mono);
+    font-size: 10px;
+    gap: 6px;
+    letter-spacing: 0.16em;
+    line-height: 1.5;
+    margin: 0 auto;
+    padding-top: clamp(10px, 2vh, 22px);
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    z-index: 1;
+  }
+  .v58-hero-c__cue svg {
+    fill: none;
+    height: auto;
+    stroke: var(--v58-red);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+    width: 19px;
+    animation: v58-cue-bob 2.4s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+  }
+  .v58-hero-c__cue:hover {
+    color: var(--v58-red);
+  }
+  .v58-logo-strip {
+    background: var(--v58-paper);
+    border-block: 1px solid var(--v58-line);
+    overflow: hidden;
+  }
+  .v58-logo-strip .v58-wrap {
+    align-items: center;
+    display: flex;
+    gap: clamp(16px, 3vw, 34px);
+    padding-block: 18px;
+  }
+  .v58-logo-strip > .v58-wrap > span {
+    color: var(--v58-faint);
+    flex: none;
+    font-family: var(--v58-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .v58-logo-strip__window {
+    flex: 1;
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    min-width: 0;
+    overflow: hidden;
+  }
+  .v58-logo-strip__track {
+    animation: v58-client-move 50s linear infinite;
+    display: flex;
+    min-width: max-content;
+    width: max-content;
+  }
+  .v58-logo-strip__window:hover .v58-logo-strip__track {
+    animation-play-state: paused;
+  }
+  .v58-logo-strip__track > span {
+    color: var(--v58-muted);
+    font-family: var(--v58-display);
+    font-size: clamp(0.8rem, 1.7vw, 1rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    padding-right: 0.85em;
+    white-space: nowrap;
+  }
+  .v58-logo-strip__track i {
+    color: var(--v58-red);
+    font-style: normal;
+    margin: 0 0.8em;
+  }
+  @keyframes v58-cue-bob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(4px);
+    }
+  }
+  @keyframes v58-client-move {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v58-hero-c__cue svg,
+    .v58-logo-strip__track,
+    .v58-hd-underline path {
+      animation: none;
+      stroke-dashoffset: 0;
+    }
+  }
+  @media (min-width: 900px) {
+    .v58-hero-c__copy h1 {
+      white-space: nowrap;
+    }
+  }
+  .v58-section,
+  .v58-paper,
+  .v58-dark {
+    padding: clamp(76px, 10vw, 140px) 0;
+  }
+  .v58-home section[id] {
+    scroll-margin-top: clamp(72px, 9vh, 96px);
+  }
+  .v58-paper {
+    background: var(--v58-paper);
+  }
+  .v58-dark {
+    background: var(--v58-charcoal);
+    color: #fff;
+  }
+  .v58-dark .v58-kicker,
+  .v58-dark .v58-lead {
+    color: rgba(255, 255, 255, 0.62);
+  }
+  .v58-proof__head {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: clamp(2rem, 3vw, 3rem);
+  }
+  .v58-proof__head h2 {
+    font-size: clamp(32px, 3.1vw, 48px);
+    max-width: 20ch;
+  }
+  .v58-proof__head .v58-lead {
+    font-size: clamp(16px, 1.1vw, 19px);
+    line-height: 1.55;
+    margin: 0;
+    max-width: 60ch;
+  }
+  .v58-proof .v58-proof__head h2 {
+    max-width: 14ch;
+  }
+  .v58-lab {
+    display: grid;
+    gap: clamp(20px, 2.6vw, 34px);
+    margin-top: clamp(20px, 2.6vw, 34px);
+  }
+  .v58-verdict {
+    background: linear-gradient(158deg, #232320, #1a1a18 46%, #141413);
+    border: 1px solid #33332e;
+    border-radius: 1rem;
+    box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.7);
+    padding: 1.5rem 1.6rem;
+  }
+  .v58-verdict__who {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .v58-verdict__who b {
+    display: block;
+    font-family: var(--v58-display);
+    font-size: 1.25rem;
+  }
+  .v58-verdict__who span {
+    color: rgba(255, 255, 255, 0.62);
+    display: block;
+    font-size: 0.76rem;
+    margin-top: 0.3rem;
+  }
+  .v58-verdict__who em {
+    border: 1px solid rgba(63, 190, 124, 0.4);
+    border-radius: 7px;
+    color: #5cc98a;
+    font-family: var(--v58-mono);
+    font-size: 0.6rem;
+    font-style: normal;
+    letter-spacing: 0.13em;
+    padding: 0.42em 0.72em;
+    text-transform: uppercase;
+  }
+  .v58-verdict__who em[data-band-state='grey'] {
+    border-color: rgba(198, 197, 190, 0.42);
+    color: #c6c5be;
+  }
+  .v58-verdict__who em[data-band-state='reject'] {
+    border-color: rgba(229, 72, 77, 0.42);
+    color: #e5484d;
+  }
+  .v58-verdict__score {
+    align-items: baseline;
+    display: flex;
+    gap: 0.45rem;
+    margin-top: 1.2rem;
+  }
+  .v58-verdict__score b {
+    font-family: var(--v58-mono);
+    font-size: clamp(2.7rem, 5vw, 3.4rem);
+    line-height: 1;
+  }
+  .v58-verdict__score span {
+    color: rgba(255, 255, 255, 0.62);
+    font-family: var(--v58-mono);
+    font-size: 0.8rem;
+  }
+  .v58-verdict__track {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+    display: flex;
+    height: 6px;
+    margin: 1rem 0 0.4rem;
+    overflow: visible;
+    position: relative;
+  }
+  .v58-verdict__track i:nth-child(1) {
+    background: rgba(229, 72, 77, 0.18);
+    width: 52%;
+  }
+  .v58-verdict__track i:nth-child(2) {
+    background: rgba(255, 255, 255, 0.18);
+    width: 16%;
+  }
+  .v58-verdict__track i:nth-child(3) {
+    background: rgba(63, 190, 124, 0.32);
+    border-radius: 0 3px 3px 0;
+    flex: 1;
+  }
+  .v58-verdict__track b {
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    height: 14px;
+    left: 78%;
+    position: absolute;
+    top: -4px;
+    transition: left 0.35s ease;
+    width: 3px;
+  }
+  .v58-verdict__axis {
+    color: rgba(255, 255, 255, 0.62);
+    display: flex;
+    font-family: var(--v58-mono);
+    font-size: 10px;
+    justify-content: space-between;
+    letter-spacing: 0.05em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .v58-side-label {
+    color: rgba(255, 255, 255, 0.62);
+    font-family: var(--v58-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    margin: 1.2rem 0 0.75rem;
+    text-transform: uppercase;
+  }
+  .v58-side-label strong {
+    color: #fff;
+    font-weight: 500;
+  }
+  .v58-score-tiles {
+    display: grid;
+    gap: 3px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .v58-score-tiles span {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 7px;
+    display: flex;
+    gap: 0.4rem;
+    min-width: 0;
+    padding: 0.36rem 0.45rem;
+  }
+  .v58-score-tiles i {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.61rem;
+    font-style: normal;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .v58-score-tiles b {
+    color: #fff;
+    flex: none;
+    font-family: var(--v58-mono);
+    font-size: 0.72rem;
+    margin-left: auto;
+  }
+  .v58-score-tiles .low b {
+    color: #e8a33d;
+  }
+  .v58-verdict__note {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    margin: 1.35rem 0 0;
+  }
+  .v58-controls {
+    align-self: start;
+  }
+  .v58-controls .v58-side-label {
+    margin: 0 0 0.75rem;
+  }
+  .v58-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .v58-presets button {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    font: 500 13.12px var(--v58-ui);
+    padding: 0.5em 0.9em;
+    appearance: none;
+    transition:
+      background 0.18s,
+      color 0.18s,
+      border-color 0.18s;
+  }
+  .v58-presets button.is-active {
+    background: #fff;
+    border-color: #fff;
+    color: #141413;
+  }
+  .v58-presets button:hover {
+    border-color: rgba(255, 255, 255, 0.62);
+  }
+  .v58-presets button.is-active:hover {
+    border-color: #fff;
+  }
+  .v58-presets button:focus-visible {
+    outline: 2px solid var(--v58-red);
+    outline-offset: 2px;
+  }
+  @media (pointer: coarse) {
+    .v58-presets button {
+      min-height: 44px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v58-presets button {
+      transition: none;
+    }
+  }
+  .v58-weights-panel {
+    margin-top: 1.75rem;
+  }
+  .v58-proof__closure {
+    margin-top: clamp(22px, 3vw, 36px);
+  }
+  .v58-lab-foot {
+    color: #fff;
+    font-family: var(--v58-display);
+    font-size: clamp(17.6px, 2vw, 23.2px);
+    margin: 0;
+  }
+  .v58-lab-foot em {
+    color: var(--v58-red);
+  }
+  .v58-proof-checks {
+    display: grid;
+    gap: 14px;
+    margin-top: clamp(20px, 2.6vw, 32px);
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.11);
+  }
+  .v58-proof-checks h3 {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.45;
+    margin: 0 0 6px;
+  }
+  .v58-proof-checks p {
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 14.4px;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .v58-thesis__body {
+    color: var(--v58-muted);
+    font-size: clamp(1.02rem, 1.4vw, 1.16rem);
+    line-height: 1.6;
+    margin: 1.6rem 0 0;
+  }
+  .v58-thesis__claim {
+    font-family: var(--v58-display);
+    font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+    font-weight: 500;
+    line-height: 1.22;
+    margin: 2.4rem 0 0;
+    max-width: 22ch;
+  }
+  .v58-thesis__claim .v58-hd-word {
+    color: var(--v58-red);
+  }
+  .v58-barcard {
+    background: #fff;
+    border: 1px solid var(--v58-line);
+    border-radius: 16px;
+    box-shadow: 0 30px 60px -30px rgba(19, 19, 19, 0.22);
+    margin: 0;
+    padding: 1.8rem 1.7rem;
+  }
+  .v58-barcard > span {
+    color: var(--v58-faint);
+    display: block;
+    font-family: var(--v58-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 1.4rem;
+    text-transform: uppercase;
+  }
+  .v58-barcard svg {
+    display: block;
+    width: 100%;
+  }
+  .v58-barcard text {
+    fill: var(--v58-muted);
+    font-family: var(--v58-mono);
+    font-size: 10.5px;
+    letter-spacing: 2.5px;
+  }
+  .v58-barcard figcaption {
+    color: var(--v58-muted);
+    font-family: var(--v58-mono);
+    font-size: 0.72rem;
+    margin-top: 1.2rem;
+    text-align: center;
+  }
+  .v58-barcard figcaption b {
+    color: var(--v58-ink);
+    font-weight: 500;
+  }
+  .v58-funnel-section .v58-lead {
+    max-width: 56ch;
+  }
+  .v58-funnel-section .v58-lead strong {
+    color: #fff;
+  }
+  .v58-funnel-layout {
+    display: grid;
+    gap: clamp(2rem, 4vw, 3.6rem);
+    margin-top: clamp(2.4rem, 4.5vw, 3.9rem);
+  }
+  .v58-funnel-field {
+    background: #191917;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1rem;
+    padding: 1.5rem 1.6rem;
+  }
+  .v58-funnel-field__head {
+    color: rgba(255, 255, 255, 0.62);
+    display: flex;
+    font-family: var(--v58-mono);
+    font-size: 0.64rem;
+    justify-content: space-between;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .v58-funnel-field > b {
+    display: block;
+    font-family: var(--v58-mono);
+    font-size: clamp(2.4rem, 4.2vw, 3.3rem);
+    line-height: 1;
+    margin: 0.55rem 0 1.15rem;
+    transition: color 0.25s ease;
+  }
+  .v58-funnel-field.is-hired > b {
+    color: var(--v58-red);
+  }
+  .v58-square-grid {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(18, 1fr);
+  }
+  .v58-square-grid i {
+    aspect-ratio: 1;
+    border-radius: 1px;
+    transition: opacity 0.35s ease;
+  }
+  .v58-square-grid.is-dim i.is-out {
+    opacity: 0.12;
+  }
+  .v58-funnel-steps {
+    display: flex;
+    flex-direction: column;
+  }
+  .v58-funnel-step {
+    align-items: baseline;
+    appearance: none;
+    background: transparent;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    display: grid;
+    font: inherit;
+    gap: 1px 16px;
+    grid-template-columns: 60px 1fr;
+    padding: 0.85rem 0.6rem;
+    text-align: left;
+    transition: background 0.15s ease;
+  }
+  .v58-funnel-step:hover,
+  .v58-funnel-step.is-active {
+    background: rgba(255, 255, 255, 0.055);
+  }
+  .v58-funnel-step__number {
+    align-self: center;
+    font-family: var(--v58-mono);
+    font-size: 24px;
+    font-weight: 500;
+    grid-row: span 2;
+    line-height: 36px;
+    position: relative;
+  }
+  .v58-funnel-step__number--hired {
+    color: var(--v58-red);
+    display: inline-block;
+  }
+  .v58-hd-ring {
+    height: auto;
+    inset: -38% -22% -34%;
+    overflow: visible;
+    pointer-events: none;
+    position: absolute;
+    width: 144%;
+    z-index: 0;
+  }
+  .v58-hd-ring path {
+    fill: none;
+    stroke: var(--v58-red);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .v58-funnel-step strong {
+    align-items: center;
+    display: flex;
+    flex-wrap: nowrap;
+    font-family: var(--v58-ui);
+    font-size: 0.776rem;
+    font-weight: 600;
+    gap: 0.5em;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .v58-funnel-step em {
+    background: rgba(255, 255, 255, 0.09);
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.7);
+    flex: none;
+    font-family: var(--v58-mono);
+    font-size: 9px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    padding: 0.28em 0.55em;
+    text-transform: uppercase;
+  }
+  .v58-funnel-step[data-stage='3'] em,
+  .v58-funnel-step[data-stage='4'] em {
+    background: rgba(218, 0, 7, 0.2);
+    color: #ff7a7d;
+  }
+  .v58-funnel-step small {
+    color: rgba(255, 255, 255, 0.62);
+    display: block;
+    font-family: var(--v58-ui);
+    font-size: 0.656rem;
+    font-weight: 400;
+    line-height: 1.45;
+    margin-top: 0.12rem;
+  }
+  .v58-funnel-divider {
+    align-items: center;
+    color: rgba(255, 255, 255, 0.62);
+    display: flex;
+    font-family: var(--v58-mono);
+    font-size: 10px;
+    gap: 14px;
+    letter-spacing: 0.06em;
+    margin: 0.55rem 0.6rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .v58-funnel-divider::before,
+  .v58-funnel-divider::after {
+    background: rgba(255, 255, 255, 0.13);
+    content: '';
+    flex: 1;
+    height: 1px;
+  }
+  .v58-funnel-close {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    display: grid;
+    gap: 1.4rem;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    padding-top: clamp(1.8rem, 3.5vw, 2.8rem);
+  }
+  .v58-funnel-close p {
+    color: #fff;
+    font-family: var(--v58-display);
+    font-size: clamp(1.3rem, 2.4vw, 2rem);
+    line-height: 1.24;
+    margin: 0;
+  }
+  .v58-funnel-close em {
+    color: var(--v58-red);
+    display: inline;
+  }
+  .v58-funnel-close span {
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+  .v58-funnel-close b {
+    color: #fff;
+  }
+  .v58-funnel-case {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: grid;
+    gap: 0.55rem;
+    margin-top: clamp(1.9rem, 3.5vw, 2.75rem);
+    padding-top: 1.4rem;
+  }
+  .v58-funnel-case > span {
+    color: rgba(255, 255, 255, 0.62);
+    font-family: var(--v58-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .v58-funnel-case > div {
+    display: grid;
+    gap: 6px;
+  }
+  .v58-funnel-case b {
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .v58-funnel-case p {
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .v58-funnel-case p strong {
+    color: #fff;
+    font-weight: 600;
+  }
+  .v58-experts h2 {
+    max-width: 20ch;
+  }
+  .v58-experts .v58-lead {
+    max-width: 62ch;
+  }
+  .v58-experts__coverage {
+    margin-top: clamp(32px, 4vw, 52px);
+    scroll-margin-top: 100px;
+  }
+  .v58-coverage__label {
+    color: var(--v58-muted);
+    font: 400 11px/1.5 var(--v58-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 0 0 24px;
+  }
+  .v58-coverage {
+    display: grid;
+    gap: 32px 56px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .v58-coverage > div {
+    min-width: 0;
+  }
+  .v58-coverage h3 {
+    color: var(--v58-ink);
+    font: 500 clamp(24px, 2vw, 28px)/1.2 var(--v58-display);
+    margin: 0 0 12px;
+  }
+  .v58-coverage__roles {
+    color: var(--v58-muted);
+    font: 400 17px/1.65 var(--v58-ui);
+    margin: 0;
+  }
+  .v58-coverage__detail {
+    color: var(--v58-muted);
+    font: 400 14px/1.6 var(--v58-ui);
+    margin-top: 12px;
+  }
+  .v58-coverage__detail summary {
+    cursor: pointer;
+    width: fit-content;
+    padding: 8px 0;
+  }
+  .v58-coverage__detail summary::marker {
+    color: var(--v58-red);
+  }
+  .v58-coverage__detail summary:focus-visible {
+    outline: 2px solid var(--v58-red);
+    outline-offset: 4px;
+  }
+  .v58-coverage__detail p {
+    margin: 4px 0 0;
+  }
+  .v58-experts__confirmation {
+    color: var(--v58-muted);
+    font: 400 15px/1.6 var(--v58-ui);
+    margin: 28px 0 0;
+  }
+  .v58-experts__note {
+    color: var(--v58-muted);
+    line-height: 1.55;
+    margin: 1.7rem 0 0;
+    max-width: 62ch;
+  }
+  .v58-experts__note strong {
+    color: var(--v58-ink);
+  }
+  .v58-industries {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 2.2rem;
+  }
+  .v58-industries p {
+    color: var(--v58-faint);
+    flex-basis: 100%;
+    font-family: var(--v58-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    margin: 0 0 0.44rem;
+    text-transform: uppercase;
+  }
+  .v58-industries span {
+    border: 1px solid var(--v58-line);
+    border-radius: 999px;
+    color: var(--v58-muted);
+    font-family: var(--v58-mono);
+    font-size: 0.73rem;
+    padding: 0.42em 0.82em;
+  }
+  .v58-work__head {
+    max-width: 640px;
+  }
+  .v58-work__flow {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: clamp(2rem, 3vw, 3rem);
+    max-width: 640px;
+  }
+  .v58-work__flow article {
+    background: #fff;
+    border: 1px solid var(--v58-line);
+    border-radius: 14px;
+    box-shadow:
+      0 1px 2px rgba(19, 19, 19, 0.04),
+      0 30px 60px -30px rgba(19, 19, 19, 0.22);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px;
+    transition:
+      transform 0.24s ease,
+      box-shadow 0.24s ease,
+      border-color 0.24s ease;
+  }
+  .v58-work__flow article:hover {
+    border-color: #dcdbd6;
+    box-shadow: 0 14px 32px -14px rgba(19, 19, 19, 0.18);
+    transform: translateY(-3px);
+  }
+  .v58-work__flow article span {
+    color: var(--v58-faint);
+    font-family: var(--v58-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .v58-work__flow article span.yours {
+    color: var(--v58-red);
+  }
+  .v58-work__flow article p {
+    color: var(--v58-muted);
+    font-size: 14px;
+    line-height: 1.45;
+    margin: 0;
+  }
+  .v58-work__flow article h3 {
+    font-family: var(--v58-ui);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    margin: 0;
+  }
+  .v58-work__flow article:has(.yours) {
+    box-shadow:
+      inset 0 3px 0 var(--v58-red),
+      0 1px 2px rgba(19, 19, 19, 0.04),
+      0 30px 60px -30px rgba(19, 19, 19, 0.22);
+  }
+  .v58-work__flow article span.yours {
+    font-weight: 600;
+  }
+  .v58-center {
+    margin-inline: auto;
+    max-width: 920px;
+    text-align: center;
+  }
+  .v58-center .v58-kicker {
+    justify-content: center;
+  }
+  .v58-center .v58-lead {
+    margin-inline: auto;
+  }
+  .v58-trust__grid {
+    display: grid;
+    gap: 14px;
+    margin-top: clamp(2rem, 3vw, 2.8rem);
+  }
+  .v58-trust__grid article {
+    background: #fff;
+    border: 1px solid var(--v58-line);
+    border-radius: 14px;
+    box-shadow: 0 20px 36px -28px rgba(19, 19, 19, 0.22);
+    padding: 1.55rem;
+  }
+  .v58-trust__grid article {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    transition:
+      transform 0.24s ease,
+      box-shadow 0.24s ease,
+      border-color 0.24s ease;
+  }
+  .v58-trust__grid article:hover {
+    border-color: #dcdbd6;
+    box-shadow: 0 14px 32px -14px rgba(19, 19, 19, 0.18);
+    transform: translateY(-3px);
+  }
+  .v58-trust__grid span,
+  .v58-ways__grid article > span {
+    color: var(--v58-red);
+    font-family: var(--v58-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .v58-trust__grid p {
+    color: var(--v58-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .v58-ways__grid {
+    display: grid;
+    gap: 18px;
+    margin-top: 3rem;
+  }
+  .v58-ways__grid article {
+    background: #fff;
+    border: 1px solid var(--v58-line);
+    border-radius: 16px;
+    box-shadow: 0 20px 36px -28px rgba(19, 19, 19, 0.22);
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    min-height: 212px;
+    padding: 2rem 1.9rem;
+    transition:
+      transform 0.24s ease,
+      border-color 0.24s ease,
+      box-shadow 0.24s ease;
+  }
+  .v58-ways__grid article:hover {
+    border-color: #dcdbd6;
+    box-shadow: 0 18px 40px -18px rgba(19, 19, 19, 0.16);
+    transform: translateY(-4px);
+  }
+  .v58-ways__grid h3 {
+    font-family: var(--v58-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+  }
+  .v58-ways__grid p {
+    color: var(--v58-muted);
+    font-size: 0.98rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .v58-ways__grid small {
+    border-top: 1px solid var(--v58-line);
+    color: var(--v58-ink);
+    font-family: var(--v58-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    margin-top: auto;
+    padding-top: 0.9rem;
+    text-transform: uppercase;
+  }
+  .v58-ways__foot {
+    color: var(--v58-muted);
+    font-family: var(--v58-display);
+    font-size: clamp(1.05rem, 1.9vw, 1.35rem);
+    font-weight: 500;
+    line-height: 1.32;
+    margin: clamp(40px, 4.3vw, 64px) 0 0;
+    max-width: 52ch;
+    text-align: left;
+    text-wrap: pretty;
+  }
+  .v58-results .v58-lead {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .v58-trust__grid h3 {
+    font-family: var(--v58-display);
+    font-size: 1.35rem;
+    font-weight: 500;
+    margin: 0;
+  }
+  .v58-start .v58-lead {
+    margin-inline: auto;
+    max-width: 46ch;
+  }
+  .v58-ways__diff {
+    color: var(--v58-muted);
+    font-family: var(--v58-ui);
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 1.6;
+    margin: 0.75rem 0 0;
+    max-width: 58ch;
+    text-align: left;
+  }
+  .v58-ways__diff strong {
+    color: var(--v58-red);
+    font-style: normal;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .v58-ways__foot em {
+    color: var(--v58-red);
+    font-style: italic;
+  }
+  .v58-ways__link a {
+    color: var(--v58-ink);
+    font-family: var(--v58-ui);
+    font-size: 0.86rem;
+    text-decoration-thickness: 1px;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+  .v58-ways__link {
+    margin: 16px 0 0;
+    text-align: left;
+  }
+  .v58-ways__link a {
+    display: inline-block;
+    white-space: nowrap;
+    padding: 8px 0;
+  }
+  @media (max-width: 600px), (pointer: coarse) {
+    .v58-ways__link a {
+      min-height: 44px;
+      padding-block: 12px;
+    }
+  }
+  .v58-results__head {
+    max-width: 670px;
+  }
+  .v58-testimonials {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    margin-top: clamp(32px, 4vw, 48px);
+  }
+  .v58-testimonial {
+    background: #191917;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0;
+    min-width: 0;
+    padding: 24px;
+  }
+  .v58-testimonial__tag {
+    align-self: flex-start;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.72);
+    font: 400 10px/1.4 var(--v58-mono);
+    letter-spacing: 0.1em;
+    padding: 5px 8px;
+    text-transform: uppercase;
+  }
+  .v58-testimonial__tag.is-team {
+    background: #fff;
+    border-color: #fff;
+    color: #171716;
+  }
+  .v58-testimonial blockquote {
+    color: rgba(255, 255, 255, 0.76);
+    font: 400 16px/1.55 var(--v58-ui);
+    margin: 0;
+  }
+  .v58-testimonial figcaption {
+    border-top: 1px solid rgba(255, 255, 255, 0.11);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: auto;
+    padding-top: 16px;
+  }
+  .v58-testimonial figcaption b {
+    color: #fff;
+    font: 600 14px/1.5 var(--v58-ui);
+  }
+  .v58-testimonial figcaption span {
+    color: rgba(255, 255, 255, 0.65);
+    font: 400 13px/1.5 var(--v58-ui);
+  }
+  @media (min-width: 1100px) {
+    .v58-testimonials {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .v58-trust__grid article {
+    gap: 0.65rem;
+    padding: 1.25rem 1.3rem 2.8rem;
+    position: relative;
+  }
+  .v58-trust__grid h3 {
+    font-size: 1.1rem;
+  }
+  .v58-flow-arrow {
+    align-self: center;
+    display: block;
+    flex: 0 0 auto;
+    height: 24px;
+    transform: rotate(90deg);
+    width: 42px;
+  }
+  .v58-flow-arrow svg {
+    display: block;
+    height: 100%;
+    overflow: visible;
+    width: 100%;
+  }
+  .v58-flow-arrow path {
+    fill: none;
+    stroke: var(--v58-red);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.45;
+  }
+  .v58-flow-arrow path:first-child {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+  .v58-hero-c::before {
+    background: radial-gradient(600px 440px at 34% 42%, rgba(218, 0, 7, 0.062), transparent 66%);
+    content: '';
+    filter: blur(26px);
+    inset: -28% -16%;
+    pointer-events: none;
+    position: absolute;
+  }
+  .v58-hero-c__main,
+  .v58-hero-c__cue {
+    position: relative;
+  }
+  @media (min-width: 720px) {
+    .v58-proof-checks {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (min-width: 720px) {
+    .v58-trust__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 768px) {
+    .v58-coverage {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 820px) {
+    .v58-funnel-close {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+    .v58-funnel-case > div {
+      align-items: baseline;
+      gap: 8px 32px;
+      grid-template-columns: 1fr auto;
+    }
+    .v58-funnel-case p {
+      text-align: right;
+    }
+    .v58-proof__head {
+      align-items: end;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 6vw, 7.5rem);
+    }
+    .v58-proof .v58-proof__head {
+      gap: clamp(30px, 4vw, 64px);
+      grid-template-columns: 1.05fr 1fr;
+    }
+  }
+  @media (min-width: 901px) {
+    .v58-ways__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 901px) {
+    .v58-two {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+  }
+  @media (min-width: 680px) and (max-width: 1179px) {
+    .v58-work__head,
+    .v58-work__flow {
+      margin-inline: auto;
+    }
+  }
+  @media (min-width: 1180px) {
+    .v58-work__flow {
+      align-items: stretch;
+      flex-direction: row;
+      gap: 8px;
+      max-width: none;
+    }
+    .v58-work__flow article {
+      flex: 1 1 0;
+      min-height: 190px;
+      min-width: 0;
+      padding: 20px;
+    }
+    .v58-flow-arrow {
+      transform: none;
+      width: 36px;
+    }
+    .v58-work .v58-flow-arrow path {
+      stroke-width: 1.9;
+    }
+  }
+  @media (min-width: 900px) {
+    .v58-lab {
+      grid-template-columns: 1.04fr 0.96fr;
+      align-items: start;
+    }
+  }
+  @media (min-width: 960px) {
+    .v58-controls {
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .v58-weights-panel {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+    }
+    .v58-funnel-layout {
+      grid-template-columns: 1.28fr 0.72fr;
+      align-items: start;
+    }
+  }
+  .v58-trust h2 > span {
+    display: block;
+    text-wrap: balance;
+  }
+  .v58-trust__decision {
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+  }
+  .v58-trust__decision .v58-hd-underline {
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+  @media (max-width: 520px) {
+    .v58-ways__grid article {
+      padding: 1.6rem 1.4rem;
+    }
+  }
+  .v58-weights-panel {
+    min-width: 0;
+  }
+  .v58-weight-instruction {
+    color: rgba(255, 255, 255, 0.7);
+    font: 400 14px/1.5 var(--v58-ui);
+    margin: 0 0 14px;
+  }
+  .v58-sr-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+  .v58-mobile-verdict {
+    display: none;
+  }
+  @media (max-width: 899px) {
+    .v58-mobile-verdict {
+      position: sticky;
+      top: 72px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      margin-bottom: 18px;
+      background: #111;
+      border-block: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .v58-mobile-verdict > span {
+      color: rgba(255, 255, 255, 0.65);
+      font: 10px/1.4 var(--v58-mono);
+      text-transform: uppercase;
+      max-width: 8ch;
+    }
+    .v58-mobile-verdict strong {
+      margin-left: auto;
+      color: #fff;
+      font: 500 24px/1.2 var(--v58-mono);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .v58-mobile-verdict small {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 12px;
+    }
+    .v58-mobile-verdict em {
+      color: #5cc98a;
+      border: 1px solid currentColor;
+      border-radius: 6px;
+      padding: 5px 7px;
+      font: 10px/1.4 var(--v58-mono);
+      letter-spacing: 0.08em;
+    }
+    .v58-mobile-verdict em[data-band-state='grey'] {
+      color: #c6c5be;
+    }
+    .v58-mobile-verdict em[data-band-state='reject'] {
+      color: #e5484d;
+    }
+    .v58-priority-rows input {
+      scroll-margin-top: 150px;
+    }
+  }
+  @media (min-width: 900px) {
+    .v58-verdict {
+      padding: 22px;
+    }
+    .v58-verdict__who b {
+      font-size: 22px;
+      line-height: 1.2;
+    }
+    .v58-verdict__who span {
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .v58-verdict__score {
+      margin-top: 16px;
+    }
+    .v58-verdict__score b {
+      font-size: 60px;
+    }
+    .v58-verdict__track {
+      margin-top: 16px;
+    }
+    .v58-verdict .v58-side-label {
+      margin: 20px 0 12px;
+    }
+    .v58-score-tiles > span {
+      min-height: 34px;
+      padding: 6px 9px;
+    }
+    .v58-score-tiles i,
+    .v58-score-tiles b {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .v58-verdict__note {
+      font-size: 14px;
+      margin-top: 16px;
+    }
+  }
+  .v58-controls .v58-side-label {
+    position: static;
+    white-space: normal;
+    line-height: 1.6;
+  }
+  .v58-priorities-title {
+    color: rgba(255, 255, 255, 0.8);
+    font: 500 10px/1.5 var(--v58-mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+  }
+  .v58-priorities-title span {
+    color: rgba(255, 255, 255, 0.62);
+  }
+  .v58-priority-rows {
+    border-top: 1px solid rgba(255, 255, 255, 0.11);
+  }
+  .v58-priority-rows label {
+    display: grid;
+    grid-template-columns: 14px minmax(0, 1fr) minmax(70px, 110px) 52px;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 0;
+    min-height: 36px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .v58-thesis__claim > span {
+    display: block;
+  }
+  .v58-barcard figcaption > span {
+    display: inline-block;
+  }
+  .v58-proof-intro .v58-lead + .v58-lead {
+    margin-top: 0.85em;
+  }
+  .v58-proof-intro .v58-proof-intro__action {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .v58-proof-emphasis {
+    position: relative;
+    display: inline-block;
+  }
+  .v58-proof-emphasis svg {
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 6px;
+    overflow: visible;
+    pointer-events: none;
+  }
+  .v58-proof-emphasis path {
+    fill: none;
+    stroke: var(--v58-red);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .v58-verdict__who em[data-band-state='select'],
+  .v58-mobile-verdict em[data-band-state='select'] {
+    background: rgba(63, 190, 124, 0.14);
+  }
+  .v58-verdict__who em[data-band-state='grey'],
+  .v58-mobile-verdict em[data-band-state='grey'] {
+    background: rgba(198, 197, 190, 0.14);
+  }
+  .v58-verdict__who em[data-band-state='reject'],
+  .v58-mobile-verdict em[data-band-state='reject'] {
+    background: rgba(229, 72, 77, 0.16);
+  }
+  .v58-score-tiles > span,
+  .v58-priority-rows label {
+    transition:
+      background 0.2s,
+      border-color 0.2s;
+  }
+  .v58-score-tiles > span.is-priority {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  .v58-priority-rows label.is-priority > span {
+    color: #fff;
+  }
+  .v58-score-tiles > span.is-linked {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.65);
+  }
+  .v58-score-tiles > span:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.65);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v58-score-tiles > span,
+    .v58-priority-rows label,
+    .v58-verdict__track b {
+      transition: none;
+    }
+  }
+  .v58-priority-rows label.is-linked {
+    background: rgba(255, 255, 255, 0.035);
+  }
+  .v58-priority-rows i {
+    color: var(--v58-red);
+    font: 10px var(--v58-mono);
+  }
+  .v58-priority-rows span {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .v58-priority-rows b {
+    color: #fff;
+    font: 500 12px/1.5 var(--v58-mono);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .v58-priority-rows input {
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: 100%;
+    min-width: 0;
+    height: 24px;
+    margin: 0;
+  }
+  .v58-priority-rows input::-webkit-slider-runnable-track {
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 2px;
+    height: 4px;
+  }
+  .v58-priority-rows input::-moz-range-track {
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 2px;
+    height: 4px;
+  }
+  .v58-priority-rows input::-webkit-slider-thumb {
+    appearance: none;
+    background: #fff;
+    border: 0;
+    border-radius: 50%;
+    height: 14px;
+    width: 14px;
+    margin-top: -5px;
+  }
+  .v58-priority-rows input::-moz-range-thumb {
+    background: #fff;
+    border: 0;
+    border-radius: 50%;
+    height: 14px;
+    width: 14px;
+  }
+  .v58-priority-rows input:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.6);
+    outline-offset: 3px;
+  }
+  .v58-share-status,
+  .v58-calculation {
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 18px 0 0;
+  }
+  .v58-calculation summary {
+    cursor: pointer;
+    width: fit-content;
+  }
+  .v58-calculation p {
+    margin: 12px 0;
+  }
+  .v58-calculation table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .v58-calculation th,
+  .v58-calculation td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 4px;
+    text-align: right;
+    font-weight: 400;
+  }
+  .v58-calculation th:first-child {
+    text-align: left;
+  }
+  @media (max-width: 600px) {
+    .v58-priority-rows label {
+      grid-template-columns: 14px minmax(0, 1fr) 52px;
+      padding: 12px 0;
+      min-height: 48px;
+    }
+    .v58-priority-rows i {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .v58-priority-rows span {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .v58-priority-rows b {
+      grid-column: 3;
+      grid-row: 1;
+    }
+    .v58-priority-rows input {
+      grid-column: 2/-1;
+      grid-row: 2;
+    }
+  }
+  @media (pointer: coarse) {
+    .v58-priority-rows label {
+      min-height: 48px;
+    }
+    .v58-priority-rows input {
+      height: 44px;
+    }
+  }
+  .v58-start__copy {
+    font: 400 19px/1.6 var(--v58-ui);
+    max-width: 46ch;
+    margin: 24px auto 0;
+  }
+  .v58-start .v58-start__copy p {
+    color: var(--v58-muted);
+    font: inherit;
+    max-width: none;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .v58-start__phrase {
+    white-space: nowrap;
+  }
+  .v58-start .v58-actions {
+    margin-top: 40px;
+    gap: 16px 36px;
+  }
+  .v58-start .v58-link {
+    color: var(--v58-red);
+    font-size: 14px;
+    font-weight: 500;
+    padding-block: 10px;
+  }
+  .v58-start .v58-link:hover {
+    color: #b60006;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .v58-priorities-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 52px;
+    gap: 10px;
+    align-items: end;
+    margin-bottom: 10px;
+  }
+  .v58-priorities-heading h3 {
+    margin: 0;
+  }
+  .v58-priorities-heading > span {
+    color: rgba(255, 255, 255, 0.62);
+    font: 400 9px/1.5 var(--v58-mono);
+    text-transform: uppercase;
+    text-align: right;
+  }
+  [data-band-state='unset'] {
+    color: rgba(255, 255, 255, 0.7) !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    background: transparent !important;
+  }
+  .v58-trust__grid article {
+    padding-bottom: 1.3rem;
+  }
+  .v58-trust__privacy {
+    margin: 16px 0 0;
+  }
+  .v58-trust__privacy a {
+    color: var(--v58-ink);
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font: 400 14px/1.5 var(--v58-ui);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  @media (min-width: 900px) {
+  }
+  .v58-home h2 {
+    text-wrap: balance;
+  }
+  .v58-home :is(.v58-link, .v58-hero-c__cue):focus-visible {
+    color: var(--v58-muted);
+  }
+  .v58-funnel-divider {
+    flex-wrap: wrap;
+  }
+  .v58-funnel-step strong {
+    flex-wrap: wrap;
+  }
+  @media (max-width: 600px) {
+    .v58-funnel-step {
+      grid-template-columns: 40px minmax(0, 1fr);
+      column-gap: 12px;
+    }
+  }
+  .v58-testimonial__tag {
+    justify-self: start;
+    width: fit-content;
+  }
+  .v58-funnel-step__number--hired {
+    justify-self: start;
+  }
+  .v58-funnel-step__number--hired .v58-hd-ring {
+    inset: auto;
+    top: 50%;
+    left: 50%;
+    width: 64px;
+    height: 48px;
+    transform: translate(-50%, -50%);
+  }
+  @media (max-width: 899px) {
+    .v58-hero-c {
+      min-height: 0;
+      padding-block: 64px 28px;
+    }
+    .v58-hero-c__cue {
+      margin-top: 40px;
+    }
+  }
+  .v58-benefits {
+    padding-block: clamp(52px, 6vw, 80px);
+  }
+  .v58-benefits h2 {
+    font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+    max-width: 24ch;
+  }
+  .v58-benefits__grid {
+    border-top: 1px solid var(--v58-line);
+    display: grid;
+    gap: 26px;
+    margin-top: clamp(22px, 2.8vw, 32px);
+    padding-top: 26px;
+  }
+  .v58-benefits__grid article > span {
+    color: var(--v58-red);
+    font-family: var(--v58-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .v58-benefits__grid h3 {
+    font-family: var(--v58-display);
+    font-size: 1.12rem;
+    font-weight: 500;
+    margin: 0.5rem 0 0;
+  }
+  .v58-benefits__grid p {
+    color: var(--v58-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0.45rem 0 0;
+  }
+  @media (min-width: 720px) {
+    .v58-benefits__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 34px;
+    }
+  }
+  /* Shared alignment rails for section introductions and the content below. */
+  .v58-home {
+    --section-content-gap: clamp(32px, 4vw, 48px);
+    --section-column-gap: 32px;
+  }
+  .v58-proof__head {
+    margin-bottom: var(--section-content-gap);
+  }
+  .v58-proof__head h2 {
+    font-size: clamp(2rem, 3.9vw, 3rem);
+  }
+  .v58-lab,
+  .v58-trust__grid {
+    margin-top: 0;
+  }
+  .v58-experts__coverage,
+  .v58-funnel-layout,
+  .v58-work__flow,
+  .v58-ways__grid,
+  .v58-testimonials {
+    margin-top: var(--section-content-gap);
+  }
+  @media (min-width: 820px) {
+    .v58-proof__head,
+    .v58-proof .v58-proof__head {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--section-column-gap);
+    }
+    .v58-trust__grid {
+      column-gap: var(--section-column-gap);
+    }
+  }
+  @media (min-width: 900px) {
+    .v58-lab {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--section-column-gap);
+    }
+  }
+  @media (min-width: 901px) {
+    .v58-two,
+    .v58-coverage,
+    .v58-ways__grid {
+      column-gap: var(--section-column-gap);
+    }
+  }
+  @media (min-width: 680px) and (max-width: 1179px) {
+    .v58-work__head,
+    .v58-work__flow {
+      margin-inline: 0;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-v58-count]').forEach((counter) => {
+    const target = Number(counter.dataset.v58Count);
+    const finish = () => {
+      counter.textContent = String(target);
+    };
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      finish();
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        const startedAt = performance.now();
+        const tick = (now: number) => {
+          const progress = Math.min((now - startedAt) / 1100, 1);
+          counter.textContent = String(Math.round((1 - (1 - progress) ** 3) * target));
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        observer.disconnect();
+      },
+      { threshold: 0.7 }
+    );
+    observer.observe(counter);
+  });
+
+  const lab = document.querySelector('[data-v58-lab]');
+
+  if (lab instanceof HTMLElement) {
+    const inputs = [...lab.querySelectorAll<HTMLInputElement>('input[type="range"]')];
+    const evidenceTiles = [...lab.querySelectorAll<HTMLElement>('.v58-score-tiles > span')];
+    const highlightEvidence = (activeIndex: number) => {
+      evidenceTiles.forEach((tile, index) => tile.classList.toggle('is-linked', index === activeIndex));
+      inputs.forEach((input, index) => input.parentElement?.classList.toggle('is-linked', index === activeIndex));
+    };
+    let hoveredIndex = -1;
+    let focusedIndex = -1;
+    const refreshHighlight = () => highlightEvidence(hoveredIndex >= 0 ? hoveredIndex : focusedIndex);
+    inputs.forEach((input, index) => {
+      [input.parentElement, evidenceTiles[index]].forEach((element) => {
+        element?.addEventListener('pointerenter', (event) => {
+          if (event.pointerType !== 'mouse') return;
+          hoveredIndex = index;
+          refreshHighlight();
+        });
+        element?.addEventListener('pointerleave', () => {
+          if (hoveredIndex === index) hoveredIndex = -1;
+          refreshHighlight();
+        });
+        element?.addEventListener('focusin', () => {
+          focusedIndex = index;
+          refreshHighlight();
+        });
+        element?.addEventListener('focusout', () => {
+          focusedIndex = -1;
+          refreshHighlight();
+        });
+      });
+    });
+    const scoreOutput = lab.querySelector<HTMLElement>('[data-verdict-score]');
+    const mobileScore = lab.querySelector<HTMLElement>('[data-mobile-score]');
+    const mobileBand = lab.querySelector<HTMLElement>('[data-mobile-band]');
+    const verdictStatus = lab.querySelector<HTMLElement>('[data-verdict-status]');
+    let announcementTimer: ReturnType<typeof setTimeout>;
+    const shareStatus = lab.querySelector<HTMLElement>('[data-share-status]');
+    const calculatedPoints = [...lab.querySelectorAll<HTMLElement>('[data-calculated-points]')];
+    const bandOutput = lab.querySelector<HTMLElement>('[data-band]');
+    const pin = lab.querySelector<HTMLElement>('[data-pin]');
+    const note = lab.querySelector<HTMLElement>('[data-note]');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let shownScore = Number(scoreOutput?.textContent ?? 39);
+    let targetScore = shownScore;
+    let hasPriorities = true;
+    let scoreFrame = 0;
+    const paintScore = (value: number) => {
+      shownScore = value;
+      if (pin) pin.hidden = !hasPriorities;
+      if (!hasPriorities) {
+        if (scoreOutput) scoreOutput.textContent = '-';
+        if (mobileScore?.firstChild) mobileScore.firstChild.textContent = '- ';
+        [bandOutput, mobileBand].forEach((output) => {
+          if (output) {
+            output.textContent = 'SET PRIORITIES';
+            output.dataset.bandState = 'unset';
+          }
+        });
+        return;
+      }
+      const band = value >= 34 ? 'SELECT' : value >= 26 ? 'GREY' : 'REJECT';
+      if (scoreOutput) scoreOutput.textContent = value.toFixed(2);
+      if (mobileScore?.firstChild) mobileScore.firstChild.textContent = `${value.toFixed(2)} `;
+      [bandOutput, mobileBand].forEach((output) => {
+        if (!output) return;
+        output.textContent = band;
+        output.dataset.bandState = band.toLowerCase();
+      });
+      if (pin) pin.style.left = `${Math.max(1, Math.min(99, value * 2))}%`;
+    };
+    const moveScore = (target: number, animate: boolean) => {
+      cancelAnimationFrame(scoreFrame);
+      targetScore = target;
+      if (!animate || reducedMotion.matches) {
+        paintScore(target);
+        return;
+      }
+      const from = shownScore;
+      const started = performance.now();
+      const tick = (now: number) => {
+        const progress = Math.min(1, (now - started) / 220);
+        paintScore(progress === 1 ? target : from + (target - from) * (1 - (1 - progress) ** 3));
+        if (progress < 1) scoreFrame = requestAnimationFrame(tick);
+      };
+      scoreFrame = requestAnimationFrame(tick);
+    };
+    reducedMotion.addEventListener('change', () => {
+      if (reducedMotion.matches) {
+        cancelAnimationFrame(scoreFrame);
+        paintScore(targetScore);
+      }
+    });
+    const presets: Record<string, number[]> = {
+      brief: [7, 7, 6, 6, 5, 4, 4, 5, 6],
+      detection: [8, 10, 6, 4, 4, 3, 3, 4, 8],
+      llm: [3, 3, 12, 5, 4, 10, 4, 3, 6],
+      ownership: [8, 8, 4, 8, 6, 3, 5, 5, 3],
+    };
+    const notes: Record<string, string> = {
+      brief:
+        'As briefed: building production detection systems carries the weight. AI security controls are the evidence to probe further.',
+      detection:
+        'Detection becomes decisive. The production threat-detection work carries the verdict; the AI-security detail remains the next-round probe.',
+      llm: 'LLM security becomes decisive. The candidate names risks, but the transcript does not establish a specific control and test in production - the verdict moves to GREY.',
+      ownership:
+        'Production ownership rewards the deployed system, iteration and operating context. The verdict remains above the select threshold.',
+    };
+
+    const update = (announce = true) => {
+      const total = inputs.reduce((sum, input) => sum + Number(input.value), 0);
+      const score = inputs.reduce((sum, input) => sum + (Number(input.value) * Number(input.dataset.score)) / 5, 0);
+      const normalized = total ? (score / total) * 50 : 0;
+      const strongest = Math.max(...inputs.map((input) => Number(input.value)));
+      const band = normalized >= 34 ? 'SELECT' : normalized >= 26 ? 'GREY' : 'REJECT';
+
+      const shares = inputs.map((input) => (total ? (Number(input.value) / total) * 1000 : 0));
+      const roundedShares = shares.map(Math.floor);
+      // Allocate rounding tenths without changing the exact shares used for scoring.
+      const remainder = total ? 1000 - roundedShares.reduce((sum, value) => sum + value, 0) : 0;
+      const order = shares
+        .map((value, index) => ({ index, fraction: value - roundedShares[index] }))
+        .sort((a, b) => b.fraction - a.fraction || a.index - b.index);
+      order.slice(0, remainder).forEach(({ index }) => {
+        roundedShares[index] += 1;
+      });
+      inputs.forEach((input, index) => {
+        const share = (roundedShares[index] / 10).toFixed(1);
+        const output = input.parentElement?.querySelector<HTMLElement>('[data-share]');
+        if (output) output.textContent = `${share}%`;
+        input.setAttribute('aria-valuetext', `${share}% share of importance`);
+        if (calculatedPoints[index])
+          calculatedPoints[index].textContent = (
+            total ? (((Number(input.value) / total) * Number(input.dataset.score)) / 5) * 50 : 0
+          ).toFixed(2);
+        input.parentElement?.toggleAttribute('data-changed', Number(input.value) !== Number(input.dataset.default));
+        // Emphasise the leading priorities using relative weights, independent of their scale.
+        const isPriority =
+          total > 0 && Number(input.value) > total / inputs.length && Number(input.value) >= strongest * 0.92;
+        input.parentElement?.classList.toggle('is-priority', isPriority);
+        evidenceTiles[index]?.classList.toggle('is-priority', isPriority);
+      });
+      hasPriorities = total > 0;
+      moveScore(normalized, announce && hasPriorities);
+      // Announce the settled verdict once, rather than every intermediate drag value.
+      clearTimeout(announcementTimer);
+      if (announce)
+        announcementTimer = setTimeout(() => {
+          if (verdictStatus)
+            verdictStatus.textContent = total
+              ? `${normalized.toFixed(2)} out of 50. ${band.toLowerCase()}.`
+              : 'Set a priority above zero to calculate a verdict.';
+        }, 300);
+      if (shareStatus) shareStatus.hidden = total > 0;
+    };
+
+    inputs.forEach((input, index) => {
+      input.addEventListener('input', () => {
+        highlightEvidence(index);
+        lab.querySelectorAll('[data-preset]').forEach((button) => {
+          button.classList.remove('is-active');
+          button.setAttribute('aria-pressed', 'false');
+        });
+        if (note) note.textContent = 'Your priorities determine the verdict. Interview scores stay the same.';
+        update();
+      });
+    });
+    lab.querySelectorAll<HTMLButtonElement>('[data-preset]').forEach((button) =>
+      button.addEventListener('click', () => {
+        const key = button.dataset.preset ?? 'brief';
+        hoveredIndex = focusedIndex = -1;
+        highlightEvidence(-1);
+        presets[key].forEach((value, index) => {
+          inputs[index].value = String(value);
+        });
+        lab.querySelectorAll('[data-preset]').forEach((item) => {
+          item.classList.toggle('is-active', item === button);
+          item.setAttribute('aria-pressed', String(item === button));
+        });
+        if (note) note.textContent = notes[key];
+        update();
+      })
+    );
+    update(false);
+  }
+
+  const funnel = document.querySelector('[data-v58-funnel]');
+  if (funnel instanceof HTMLElement) {
+    const buttons = [...funnel.querySelectorAll<HTMLButtonElement>('[data-stage]')];
+    const squares = [...funnel.querySelectorAll<HTMLElement>('[data-square]')];
+    const label = funnel.querySelector<HTMLElement>('[data-funnel-label]');
+    const number = funnel.querySelector<HTMLElement>('[data-funnel-number]');
+    const field = funnel.querySelector<HTMLElement>('.v58-funnel-field');
+    const grid = funnel.querySelector<HTMLElement>('.v58-square-grid');
+    const stages = buttons.map((button) => ({
+      count: button.dataset.count ?? '',
+      label: button.dataset.label ?? '',
+    }));
+    let stage = 1;
+    const draw = (nextStage: number) => {
+      const data = stages[nextStage - 1];
+      buttons.forEach((button, index) => button.classList.toggle('is-active', index + 1 === nextStage));
+      squares.forEach((square) => square.classList.toggle('is-out', Number(square.dataset.tier) < nextStage));
+      grid?.classList.add('is-dim');
+      field?.classList.toggle('is-hired', nextStage === 5);
+      if (label) label.textContent = data.label;
+      if (number) number.textContent = data.count;
+    };
+    const restore = () => {
+      draw(stage);
+    };
+    const activate = (nextStage: number) => {
+      stage = nextStage;
+      buttons.forEach((button, index) => {
+        button.setAttribute('aria-pressed', String(index + 1 === stage));
+      });
+      restore();
+    };
+    buttons.forEach((button, index) => {
+      button.addEventListener('click', () => activate(index + 1));
+      const preview = () => draw(index + 1);
+      button.addEventListener('mouseenter', preview);
+      button.addEventListener('mouseleave', restore);
+      button.addEventListener('focus', preview);
+      button.addEventListener('blur', restore);
+    });
+    grid?.addEventListener('mouseover', (event) => {
+      const square = (event.target as HTMLElement).closest<HTMLElement>('[data-square]');
+      const tier = Number(square?.dataset.tier);
+      if (!square || !tier) return;
+      draw(tier);
+    });
+    grid?.addEventListener('mouseleave', restore);
+    activate(1);
+  }
+</script>

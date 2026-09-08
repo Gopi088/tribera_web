@@ -1,9 +1,11 @@
 ---
 import '~/assets/styles/tailwind.css';
+import CandidateCriticalStyles from '~/components/candidates/CriticalStyles.astro';
 
 import { I18N } from 'astrowind:config';
 
 import CommonMeta from '~/components/common/CommonMeta.astro';
+import SiteFonts from '~/components/common/SiteFonts.astro';
 import Favicons from '~/components/Favicons.astro';
 import CustomStyles from '~/components/CustomStyles.astro';
 import ApplyColorMode from '~/components/common/ApplyColorMode.astro';
@@ -21,72 +23,37 @@ export interface Props {
 
 const { metadata = {} } = Astro.props;
 const { language, textDirection } = I18N;
-const isChatEnabledHost = Astro.url.hostname === 'www.tribera.ai';
 const isCandidateRoute = Astro.url.pathname.startsWith('/candidates');
-const isAboutRoute = Astro.url.pathname === '/about' || Astro.url.pathname === '/about/';
 ---
 
 <!doctype html>
 <html lang={language} dir={textDirection} class="2xl:text-[20px]">
   <head>
     <CommonMeta />
-    <link
-      rel="preload"
-      href="/fonts/figtree-800.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link rel="preload" href="/fonts/fraunces-400.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="preload" href="/fonts/fraunces-500.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="preload" href="/fonts/fraunces-600.ttf" as="font" type="font/ttf" crossorigin />
-    <link
-      rel="preload"
-      href="/fonts/inter-tight-600.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/inter-tight-400.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/figtree-400.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link rel="preload" href="/fonts/figtree-700.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/inter-tight-500.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/jetbrains-mono-400.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/jetbrains-mono-500.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/jetbrains-mono-700.woff2" as="font" type="font/woff2" crossorigin />
-    {isAboutRoute && (
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" />
-    )}
+    <SiteFonts />
     <style is:inline>
-      /* Define the hero fonts in the document head. The page CSS repeats these
-         faces, but it can load later without causing the hero to swap metrics. */
-      @font-face { font-family: 'Figtree'; font-style: normal; font-weight: 400; font-display: optional; src: url('/fonts/figtree-400.woff2') format('woff2'); }
-      @font-face { font-family: 'Figtree'; font-style: normal; font-weight: 700; font-display: optional; src: url('/fonts/figtree-700.woff2') format('woff2'); }
-      @font-face { font-family: 'Figtree'; font-style: normal; font-weight: 800; font-display: optional; src: url('/fonts/figtree-800.woff2') format('woff2'); }
-      @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/fraunces-400.ttf') format('truetype'); }
-      @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/fraunces-500.ttf') format('truetype'); }
-      @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/fraunces-600.ttf') format('truetype'); }
-      @font-face { font-family: 'Inter Tight'; font-style: normal; font-weight: 400; font-display: optional; src: url('/fonts/inter-tight-400.woff2') format('woff2'); }
-      @font-face { font-family: 'Inter Tight'; font-style: normal; font-weight: 500; font-display: optional; src: url('/fonts/inter-tight-500.woff2') format('woff2'); }
-      @font-face { font-family: 'Inter Tight'; font-style: normal; font-weight: 600; font-display: optional; src: url('/fonts/inter-tight-600.woff2') format('woff2'); }
-      @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: optional; src: url('/fonts/jetbrains-mono-400.woff2') format('woff2'); }
-      @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 500; font-display: optional; src: url('/fonts/jetbrains-mono-500.woff2') format('woff2'); }
-      @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 700; font-display: optional; src: url('/fonts/jetbrains-mono-700.woff2') format('woff2'); }
+      html {
+        font-size: 16px;
+      }
+      @media (min-width: 1536px) {
+        html {
+          font-size: 20px;
+        }
+      }
+      /* Above-the-fold content should not replay a blank-to-visible reveal. */
+      :root .site-editorial .hero [data-rv] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
 
       /* Keep the shared header stable before deferred component styles arrive. */
-      .nav__in { min-height: 64px !important; height: 64px !important; gap: 20px !important; padding-block: 0 !important; }
+      .nav__in {
+        min-height: 64px !important;
+        height: 64px !important;
+        gap: 20px !important;
+        padding-block: 0 !important;
+      }
       .nav .logo {
         display: inline-flex !important;
         flex: 0 0 76px !important;
@@ -94,13 +61,24 @@ const isAboutRoute = Astro.url.pathname === '/about' || Astro.url.pathname === '
         box-sizing: border-box !important;
         width: 76px !important;
         height: 20px !important;
-        font-family: 'Figtree', -apple-system, sans-serif !important;
+        font-family:
+          'Figtree',
+          -apple-system,
+          sans-serif !important;
         font-size: 20px !important;
         font-weight: 800 !important;
         line-height: 20px !important;
         letter-spacing: -0.055em !important;
         text-decoration: none !important;
         white-space: nowrap !important;
+      }
+      #nav .logo svg {
+        display: block !important;
+        flex: 0 0 76px !important;
+        width: 76px !important;
+        height: 20px !important;
+        max-width: none !important;
+        transform: none !important;
       }
       .nav .logo i {
         display: inline-block !important;
@@ -110,32 +88,86 @@ const isAboutRoute = Astro.url.pathname === '/about' || Astro.url.pathname === '
         line-height: 1 !important;
         transform: none !important;
       }
+      /* The audience switcher is shared by both V58 audience routes. Keep it
+         independent of route-local legacy navigation styles. */
       .nav__sw {
+        align-items: stretch !important;
+        background: #eceae4 !important;
+        border: 0 !important;
+        border-radius: 999px !important;
+        box-sizing: border-box !important;
+        box-shadow: none !important;
         display: inline-grid !important;
-        grid-template-columns: repeat(2, 90px) !important;
-        align-items: center !important;
-        height: 40px !important;
         gap: 2px !important;
-        padding: 3px !important;
+        grid-auto-columns: 1fr !important;
+        grid-auto-flow: column !important;
+        grid-template-columns: none !important;
+        height: 30px !important;
+        padding: 2px !important;
       }
       .nav__sw a {
-        display: inline-flex !important;
         align-items: center !important;
-        justify-content: center !important;
+        background: transparent !important;
+        border-radius: 999px !important;
+        border: 0 !important;
         box-sizing: border-box !important;
-        width: 90px !important;
-        height: 32px !important;
-        padding: 6px 8px !important;
-        font-family: ui-sans-serif, system-ui, sans-serif !important;
-        font-size: 13px !important;
-        font-weight: 600 !important;
+        color: #8d8c83 !important;
+        display: inline-flex !important;
+        font-family: var(--v58-ui, 'Inter Tight', ui-sans-serif, sans-serif) !important;
+        font-size: 12.5px !important;
+        font-weight: 500 !important;
+        height: 26px !important;
+        justify-content: center !important;
         line-height: 1 !important;
+        padding: 0 12px !important;
+        width: auto !important;
+      }
+      .nav__sw a:hover:not(.is) {
+        background: transparent !important;
+        color: var(--v58-ink, #131313) !important;
+      }
+      .nav__sw a.is {
+        background: #fff !important;
+        box-shadow:
+          0 1px 1px rgba(19, 19, 19, 0.05),
+          0 2px 5px -1px rgba(19, 19, 19, 0.12) !important;
+        color: var(--v58-ink, #131313) !important;
+        font-weight: 500 !important;
+      }
+      .nav .nav__cta {
+        background: var(--v58-red, #da0007) !important;
+        border: 1px solid transparent !important;
+        border-radius: 100px !important;
+        box-shadow: 0 8px 20px -8px rgba(218, 0, 7, 0.5) !important;
+        font-family: var(--v58-ui, 'Inter Tight', system-ui, sans-serif) !important;
+        font-size: 13px !important;
+        font-weight: 500 !important;
         letter-spacing: -0.01em !important;
-        text-align: center !important;
-        white-space: nowrap !important;
+        line-height: normal !important;
+        padding: 0.58em 1.25em !important;
+        transition:
+          transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+          box-shadow 0.25s ease,
+          background 0.2s !important;
+      }
+      .nav .nav__cta::after {
+        display: none !important;
+      }
+      .nav .nav__cta:hover {
+        background: #c10006 !important;
+        box-shadow: 0 18px 44px -14px rgba(218, 0, 7, 0.55) !important;
+        transform: translateY(-2px) scale(1.025) !important;
+      }
+      .nav .nav__cta:active {
+        transform: translateY(0) scale(0.99) !important;
       }
       @media (min-width: 1080px) {
-        .nav__end { width: 178px !important; justify-content: flex-end !important; gap: 12px !important; margin-left: 10px !important; }
+        .nav__end {
+          width: auto !important;
+          justify-content: flex-end !important;
+          gap: 12px !important;
+          margin-left: 10px !important;
+        }
         .nav__login {
           display: inline-flex !important;
           flex: 0 0 37px !important;
@@ -150,12 +182,12 @@ const isAboutRoute = Astro.url.pathname === '/about' || Astro.url.pathname === '
       @media (min-width: 720px) {
         .nav__cta {
           display: inline-flex !important;
-          flex: 0 0 125px !important;
+          flex: 0 0 auto !important;
           align-items: center !important;
           justify-content: center !important;
           box-sizing: border-box !important;
-          width: 125px !important;
-          min-width: 125px !important;
+          width: auto !important;
+          min-width: 0 !important;
           min-height: 34px !important;
           white-space: nowrap !important;
         }
@@ -167,7 +199,10 @@ const isAboutRoute = Astro.url.pathname === '/about' || Astro.url.pathname === '
         color: var(--onc, #f3f3f0);
         padding-block: clamp(44px, 5.6vw, 80px) 0;
       }
-      .hero__top { display: grid; gap: clamp(26px, 3vw, 44px); }
+      .hero__top {
+        display: grid;
+        gap: clamp(26px, 3vw, 44px);
+      }
       .hero h1 {
         color: #fff;
         font-family: 'Figtree', ui-sans-serif, system-ui, sans-serif;
@@ -252,60 +287,7 @@ const isAboutRoute = Astro.url.pathname === '/about' || Astro.url.pathname === '
         }
       }
     </style>
-    {
-      isCandidateRoute && (
-        <style is:inline>
-          /* Candidate hero geometry is critical to first paint. */
-          @media (min-width: 1000px) {
-            .tribera-candidates .hero {
-              padding-block: clamp(44px, 5.6vw, 80px) clamp(36px, 4vw, 64px) !important;
-            }
-            .tribera-candidates .hero__top {
-              display: grid !important;
-              grid-template-columns: 0.9fr 1.1fr !important;
-              align-items: center !important;
-              gap: clamp(30px, 3.4vw, 52px) !important;
-            }
-            .tribera-candidates .hero h1 {
-              font-size: clamp(36px, 4.6vw, 54px) !important;
-            }
-            .tribera-candidates .hero [data-rv] {
-              opacity: 1 !important;
-              transform: none !important;
-              transition: none !important;
-            }
-          }
-          @media (min-width: 1152px) {
-            .tribera-candidates .hero__top {
-              grid-template-columns: minmax(0, 46fr) minmax(0, 54fr) !important;
-              gap: clamp(64px, 7.5vw, 144px) !important;
-            }
-            .tribera-candidates .hero h1 {
-              /* Match the shared hero rule before deferred page CSS is parsed. */
-              font-size: clamp(52px, 3.125vw, 60px) !important;
-              line-height: 1.02 !important;
-              letter-spacing: -0.025em !important;
-            }
-          }
-          @media (min-width: 700px) and (max-width: 1151px) {
-            .tribera-candidates .hero {
-              padding-block: 72px 56px !important;
-            }
-            .tribera-candidates .hero__top {
-              min-height: 1087px !important;
-              grid-template-columns: minmax(0, 1fr) !important;
-              align-items: start !important;
-              gap: 56px !important;
-            }
-            .tribera-candidates .hero__card {
-              width: 100% !important;
-              max-width: 620px !important;
-              margin-inline: auto !important;
-            }
-          }
-        </style>
-      )
-    }
+    {isCandidateRoute && <CandidateCriticalStyles />}
     <Favicons />
     <CustomStyles />
     <ApplyColorMode />
@@ -705,12 +687,6 @@ const isAboutRoute = Astro.url.pathname === '/about' || Astro.url.pathname === '
           }
         };
 
-        const reinitChatbotOnPageShow = () => {
-          reattachPreservedArtifacts();
-          ensureChatbotScript();
-          ensurePrewarmFrame();
-        };
-
         chatRuntime.handlePageVisit = (source = 'runtime:handlePageVisit') => {
           reattachPreservedArtifacts();
           initChatbot(source);
@@ -806,6 +782,7 @@ const isAboutRoute = Astro.url.pathname === '/about' || Astro.url.pathname === '
 
             const link = target.closest('a[href]');
             if (!(link instanceof HTMLAnchorElement)) return;
+            if (link.matches('[data-form-intent], [data-open-sales], [data-open-demo], #contactSalesBtn')) return;
             if (!link.href) return;
             if (link.target && link.target !== '_self') return;
             if (link.hasAttribute('download')) return;
@@ -835,7 +812,11 @@ const isAboutRoute = Astro.url.pathname === '/about' || Astro.url.pathname === '
     <slot />
     <BasicScripts />
 
-    <div id="demoModal" class="fixed inset-0 z-[1200] hidden overflow-y-auto bg-black/55 px-4 py-6 sm:px-6 sm:py-8" hidden>
+    <div
+      id="demoModal"
+      class="fixed inset-0 z-[1200] hidden overflow-y-auto bg-black/55 px-4 py-6 sm:px-6 sm:py-8"
+      hidden
+    >
       <div class="pointer-events-none flex min-h-full items-center justify-center">
         <div
           class="pointer-events-auto relative w-full max-w-[560px] overflow-hidden rounded-[30px] border border-white/10 bg-[#0a0a0a] px-6 py-6 text-white shadow-[0_28px_100px_rgba(0,0,0,0.45)] sm:px-8 sm:py-8"
@@ -935,7 +916,7 @@ const isAboutRoute = Astro.url.pathname === '/about' || Astro.url.pathname === '
               </button>
             </div>
 
-                        <p id="demoErrorMsg" class="hidden text-[13px] text-white/55">
+            <p id="demoErrorMsg" class="hidden text-[13px] text-white/55">
               Something went wrong while submitting your request. Please try again or email sales@tribera.ai.
             </p>
             <div id="successMsg" class="hidden pt-2 text-center" hidden>
@@ -957,7 +938,6 @@ const isAboutRoute = Astro.url.pathname === '/about' || Astro.url.pathname === '
                 Thanks for reaching out. Our team will contact you shortly.
               </p>
             </div>
-
           </form>
         </div>
       </div>

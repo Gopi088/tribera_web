@@ -18,7 +18,9 @@ const shouldRenderAnalytics = Astro.url.pathname !== '/intelligence';
     border-bottom: 1px solid var(--cline, rgba(255, 255, 255, 0.1));
   }
 
-  .nav::after { display: none; }
+  .nav::after {
+    display: none;
+  }
 
   .nav a,
   .nav a:visited {
@@ -48,7 +50,9 @@ const shouldRenderAnalytics = Astro.url.pathname !== '/intelligence';
   }
 
   .dd__c a:hover,
-  .dd__c a:focus-visible { color: #fff !important; }
+  .dd__c a:focus-visible {
+    color: #fff !important;
+  }
 
   .navp__in > a,
   .navp__in > a:visited {
@@ -58,7 +62,9 @@ const shouldRenderAnalytics = Astro.url.pathname !== '/intelligence';
 
   .navp__in > a:hover,
   .navp__in > a:focus-visible,
-  .navp__in > a[aria-current='page'] { color: #fff !important; }
+  .navp__in > a[aria-current='page'] {
+    color: #fff !important;
+  }
 
   .nav__in {
     min-height: 64px;
@@ -74,7 +80,10 @@ const shouldRenderAnalytics = Astro.url.pathname !== '/intelligence';
     box-sizing: border-box;
     width: 76px;
     height: 20px;
-    font-family: 'Figtree', -apple-system, sans-serif !important;
+    font-family:
+      'Figtree',
+      -apple-system,
+      sans-serif !important;
     font-size: 20px !important;
     font-weight: 800 !important;
     line-height: 20px !important;
@@ -93,11 +102,13 @@ const shouldRenderAnalytics = Astro.url.pathname !== '/intelligence';
 
   .nav__sw {
     display: inline-grid !important;
-    grid-template-columns: repeat(2, 90px);
-    align-items: center;
-    height: 40px;
+    grid-auto-flow: column !important;
+    grid-auto-columns: 1fr !important;
+    grid-template-columns: none !important;
+    align-items: stretch !important;
+    height: 30px !important;
     gap: 2px !important;
-    padding: 3px !important;
+    padding: 2px !important;
     border-color: var(--cline, rgba(255, 255, 255, 0.1)) !important;
   }
 
@@ -106,8 +117,8 @@ const shouldRenderAnalytics = Astro.url.pathname !== '/intelligence';
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    width: 90px;
-    height: 32px;
+    width: auto !important;
+    height: 26px !important;
     font-family: ui-sans-serif, system-ui, sans-serif !important;
     padding: 6px 8px !important;
     font-size: 13px !important;
@@ -119,7 +130,9 @@ const shouldRenderAnalytics = Astro.url.pathname !== '/intelligence';
   }
 
   @media (min-width: 1080px) {
-    .nav__links { gap: 0 !important; }
+    .nav__links {
+      gap: 0 !important;
+    }
 
     .nav__l,
     .dd__t {
@@ -141,7 +154,7 @@ const shouldRenderAnalytics = Astro.url.pathname !== '/intelligence';
     }
 
     .nav__end {
-      width: 178px;
+      width: auto;
       justify-content: flex-end;
       gap: 12px !important;
       margin-left: 10px !important;
@@ -161,10 +174,10 @@ const shouldRenderAnalytics = Astro.url.pathname !== '/intelligence';
   }
 
   .nav__cta {
-    flex: 0 0 125px !important;
+    flex: 0 0 auto !important;
     box-sizing: border-box;
-    width: 125px !important;
-    min-width: 125px !important;
+    width: auto !important;
+    min-width: 0 !important;
     min-height: 34px;
     padding: 9px 18px !important;
     font-size: 14px !important;
@@ -374,7 +387,10 @@ const shouldRenderAnalytics = Astro.url.pathname !== '/intelligence';
     const desktopLinks = nav?.querySelector('.nav__links');
     if (desktopLinks instanceof HTMLElement) {
       desktopLinks.querySelectorAll('.nav__l:not(.dd__t)').forEach((link) => link.remove());
-      desktopLinks.insertAdjacentHTML('beforeend', primaryLinks.map(([href, label]) => `<a class="nav__l" href="${href}">${label}</a>`).join(''));
+      desktopLinks.insertAdjacentHTML(
+        'beforeend',
+        primaryLinks.map(([href, label]) => `<a class="nav__l" href="${href}">${label}</a>`).join('')
+      );
       const dropdownGroups = desktopLinks.querySelector('.dd__g');
       if (dropdownGroups instanceof HTMLElement) {
         dropdownGroups.innerHTML = `<span class="dd__c"><p class="dd__k">Industries</p>${linkMarkup(industries)}</span><span class="dd__c"><p class="dd__k">Functions</p>${linkMarkup(functions)}</span>`;
@@ -397,15 +413,10 @@ const shouldRenderAnalytics = Astro.url.pathname !== '/intelligence';
 
     document.querySelectorAll('.nav__cta, .navp__cta .btn').forEach((link) => {
       if (!(link instanceof HTMLAnchorElement)) return;
-      link.href = isCandidateRoute ? '/candidates#apply' : '/contact';
-      link.textContent = isCandidateRoute ? 'Create profile' : 'Talk to us';
-      if (isCandidateRoute) {
-        link.removeAttribute('data-form-intent');
-        link.removeAttribute('data-form-source');
-      } else {
-        link.dataset.formIntent = 'demo';
-        link.dataset.formSource = link.classList.contains('nav__cta') ? 'header' : 'page';
-      }
+      link.href = '#contact';
+      link.textContent = 'Start with one role';
+      link.dataset.formIntent = 'demo';
+      link.dataset.formSource = link.classList.contains('nav__cta') ? 'header' : 'page';
     });
 
     const markPage = (selector, active) => {

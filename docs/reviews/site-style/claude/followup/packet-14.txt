@@ -1,0 +1,26 @@
+## Route-by-Route Verdict
+
+| Route | Visual (1520/390) | Copy | Verdict |
+|---|---|---|---|
+| `/tag/quality-of-hire/` | Editorial heading, mono eyebrow, cream chip row, black active pill, single card matches shared grid card style. Mobile stacks cleanly, chips wrap, footer intact. | Heading Title Case, filter labels human-readable, teaser text clean. | **Pass** |
+| `/tag/recruitment/` | Same shell/grid, single card. No layout defects. | Heading and active pill render lowercase ("recruitment") vs. Title Case everywhere else. | **Pass, one minor polish item** — see Low severity below |
+| `/tag/signal-based-hiring/` | Two-card grid, aligned columns, consistent card proportions at both breakpoints. | Title Case heading, teasers clean. | **Pass** |
+| `/tag/structured-evaluation/` | Two-card grid, consistent imagery/card treatment, no overflow. | Title Case heading, teasers clean. | **Pass** |
+| `/tag/talent-acquisition/` | Four-card 2×2 grid at desktop, single column at mobile, all cards same aspect ratio/padding — no asymmetric masonry regression. | Title Case heading, four distinct teasers, no truncation or overlap. | **Pass** |
+
+All five pages share the same header/footer, mono "FROM THE JOURNAL" eyebrow, Fraunces heading, cream chip filters with one black active pill, and warm-paper card background — consistent with the home baseline and with the disposition's "Implemented" list (shared shell, readable filter foregrounds/active states, consistent card grid).
+
+## Findings by Severity
+
+**Low**
+- `/tag/recruitment/`: the tag name renders lowercase ("recruitment") in both the H1 and the active filter pill, while every other tag on this list (Quality Of Hire, Signal Based Hiring, Structured Evaluation, Talent Acquisition) renders Title Case. This is a data-formatting inconsistency (likely the raw tag slug/label wasn't title-cased for this one entry), not a layout bug — cosmetic only.
+
+**None found (visual)**: no unreadable text, no overflow, no broken/dead-looking controls, no inconsistent card sizing across any of the five routes at either breakpoint I reviewed.
+
+**None found (copy)**: teaser repetition across tag pages is expected shared-taxonomy behavior per the disposition ("cards show the category and at most two tags... a different active topic can legitimately contain that same article") — not a defect, not repeating it as one.
+
+## Owner-Evidence Flags (pass-through, not visual/copy defects)
+These routes surface teaser copy citing interview-volume and search-outcome figures ("2,00,000 structured interviews," "327-profile search into a 22-day success") that fall under the disposition's existing "Owner Evidence Required" category (interview volume, market statistics, named research, restart/SLA-style outcome claims). No new claims found beyond what's already tracked there.
+
+## Scope note
+This review covers only the five `/tag/...` routes and files listed above, cross-referenced against the home baseline and the correction-disposition doc. No other routes were reviewed in this pass.

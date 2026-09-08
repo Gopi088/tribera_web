@@ -1,0 +1,37 @@
+## Release Review: Industries Routes (5 routes)
+
+All 5 routes reviewed at desktop (1520px) and mobile (390px), plus copy files. Home (1520/390) used only as the hiring-page style reference. No files edited.
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| /industries/global-capability-centres/ | Pass — matches shared template (Fraunces headings, mono eyebrows, red italic emphasis, dark/light alternating sections, left-aligned headings) | Pass — coherent, sector-specific, no corruption |
+| /industries/healthcare-life-sciences/ | Pass | Pass |
+| /industries/industrial-engineering/ | Pass | Pass |
+| /industries/manufacturing/ | Pass | Pass |
+| /industries/pharmaceutical/ | Pass — longer 5-line hero headline wraps further than siblings; acceptable content-length variance, not a layout bug | Pass |
+
+All five routes share one consistent page architecture: hero with weighted-priorities card, "Things a CV cannot tell you" (3 items), "Three questions" thin-answer/evidence table, roles grid with guarantee line, "Operators, not recruiters" dark section with bench experience + "what that changes" list, FAQ triad, final CTA band, "We hire like you think" belong/build/become closer, shared dark footer. This matches the approved hiring-page style system (Fraunces/Inter Tight, mono labels, white/paper/charcoal surfaces, restrained red accents, left-aligned section headings with centered hero/final CTA). No layout drift, no rogue fonts, no misaligned gutters/cards found on any of the 10 screenshots.
+
+### Actionable findings
+
+None. No visual or copy defects were found across the five routes that meet the bar of "confirmed" (i.e., visible in full-resolution evidence and clearly wrong relative to the approved style or the page's own internal logic). Per the correction-disposition record, the recent refactor touched only executable scripts, and nothing in these screenshots suggests markup/copy regressed as a result — consistent with what was observed here.
+
+### Optional polish (not blockers)
+
+- Priorities card contrast on smaller devices: the dark "Example priorities for this sector" card renders correctly on all five routes at both breakpoints, but the percentage labels are small even in the full-size screenshots (e.g., industrial-engineering, manufacturing). This is a general legibility observation, not a confirmed defect — recommend a follow-up zoomed crop of that one component if finer contrast/kerning review is wanted, since downscaled full-page images aren't sufficient evidence to call it a bug.
+
+### Owner-evidence items (not code/design defects — separate track)
+
+These recur identically on every route and are factual/business claims that this review cannot verify from screenshots or copy alone, consistent with the existing owner-evidence list in `correction-disposition.md`:
+
+- "Interview three, hire one; if none of the three fit, we restart at no cost" — commercial guarantee terms.
+- "Three names in 36 hours" — SLA/turnaround claim.
+- Named years of experience for bench experts (e.g., "GCC build-out and leadership, 18 yrs," "Quality assurance and audit, 15 yrs") — credential accuracy.
+- "Example priorities for this sector" percentage weightings on every hero card — methodology figures, not owner-approved universal standards (copy already self-qualifies this correctly with the "example weights, not a fixed hiring standard" disclaimer).
+- Role-level range claims in the roles grids (e.g., "Mid to director," "CRA to director") — scope accuracy per sector.
+
+None of the above should block release on copy/design grounds; they are flagged only because they are factual assertions this review is not positioned to confirm.
+
+### Review scope note
+
+All 10 requested screenshots (5 routes × desktop/mobile) and all 5 copy files were successfully read and reviewed in full; no route or image was unreadable or skipped. Section crops were not needed — full-page screenshots were legible enough for heading/body-level review; finer-grain contrast/kerning claims would require the crops and are called out above as optional, not asserted as fact.

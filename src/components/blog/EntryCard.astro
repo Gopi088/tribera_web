@@ -20,7 +20,7 @@ const link = getPermalink(post.permalink, 'post');
 const formatLabel = (value: string) =>
   value
     .split('-')
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .map((part) => (part.toLowerCase() === 'ai' ? 'AI' : part.charAt(0).toUpperCase() + part.slice(1)))
     .join(' ');
 
 const metaLabel = post.category?.title ?? (post.tags?.[0]?.title ? formatLabel(post.tags[0].title) : undefined);
@@ -39,7 +39,7 @@ const readTime = toMinutes(post.readingTime);
 
 <a
   href={link}
-  class={`group relative overflow-hidden rounded-[20px] border border-[#da0007]/15 bg-white transition-all duration-500 hover:-translate-y-1 hover:border-[#da0007]/35 hover:shadow-[0_18px_48px_-24px_rgba(218,0,7,0.28)] ${layout === 'long' ? `block ${equalized ? 'h-full min-h-0' : ''}` : `flex h-full min-h-0 flex-col`}`}
+  class={`group relative overflow-hidden rounded-[14px] border border-black/10 bg-white shadow-[0_20px_36px_-28px_rgba(19,19,19,0.22)] focus-visible:outline-2 focus-visible:outline-[#da0007] ${layout === 'long' ? `block ${equalized ? 'h-full min-h-0' : ''}` : `flex h-full min-h-0 flex-col`}`}
 >
   {
     layout === 'long' ? (
@@ -107,7 +107,7 @@ const readTime = toMinutes(post.readingTime);
         </div>
 
         <div class="flex flex-1 flex-col p-5 sm:p-6">
-          <div class="mb-3 flex flex-wrap items-center gap-x-2 gap-y-2 text-[12px] text-black/42">
+          <div class="mb-3 flex flex-wrap items-center gap-x-2 gap-y-2 text-[12px] text-black/65">
             <span>{getFormattedDate(post.publishDate)}</span>
             <span class="text-black/25">·</span>
             {metaLabel && (
@@ -121,7 +121,7 @@ const readTime = toMinutes(post.readingTime);
             )}
           </div>
 
-          <h3 class="blog-display text-[1.15rem] font-[700] leading-[1.15] tracking-[-0.02em] text-black transition-colors duration-300 group-hover:text-[#da0007]">
+          <h3 class="blog-display text-[1.5rem] font-[500] leading-[1.15] tracking-[-0.01em] text-black">
             {post.title}
           </h3>
 
@@ -131,3 +131,8 @@ const readTime = toMinutes(post.readingTime);
     )
   }
 </a>
+<style>
+  .blog-body {
+    font-family: var(--ui, 'Inter Tight', sans-serif);
+  }
+</style>

@@ -1,0 +1,30 @@
+## Release Review — 5 Career Role Pages
+
+| Route | Visual | Copy |
+|---|---|---|
+| /careers/growth-intern/ | ✅ Pass | ✅ Pass |
+| /careers/senior-delivery-partner/ | ✅ Pass | ✅ Pass |
+| /careers/software-intern/ | ✅ Pass | ✅ Pass |
+| /careers/talent-advisor/ | ✅ Pass | ✅ Pass |
+| /careers/talent-associate/ | ✅ Pass | ✅ Pass |
+
+**All 5 routes reviewed at both breakpoints, plus copy files. No image or route was unreviewable.**
+
+### Findings
+No actionable design or copy defects found across any of the five routes. Specifically verified:
+
+- **Layout/style consistency**: All five follow the same shared template — dark hero with breadcrumb, title, one-line pitch, tags, dual CTAs, and scorecard panel; light "What you will own / Why this role matters" two-column section; warm-paper "What we score" section with left-aligned heading and six weighted dimension rows; "What you bring / Nice to have" two-column section; process timeline; dark CTA band; centered "Someone will write back" closer; shared dark footer. This matches the approved hiring page pattern (Fraunces headings, mono labels, red rule accents, left-aligned section heads except intentional centered hero/CTA sections) and is consistent with `/home` reference screenshots.
+- **Scorecard math**: Each role's six weighted dimensions sum to exactly 100% (growth-intern 28/18/16/16/12/10; senior-delivery-partner 24/24/20/12/10/10; software-intern 22/22/20/16/16/4; talent-advisor 28/26/16/16/8/6; talent-associate 30/20/18/14/12/6), and the hero scorecard bars match the "What we score" section values on all five pages, desktop and mobile.
+- **Copy quality**: Role-specific pitches, ownership bullets, "why it matters," scoring rationale, and CV-paragraph prompts are all differentiated per role (no templated leftovers or corrupted text), consistent with prior corrections noted for growth-intern in the disposition doc. Shared boilerplate (process steps, "Nice to have means nice to have," "Someone will write back," footer) is identical across roles, which is expected shared content, not a defect.
+- **Mobile responsiveness**: All five mobile screenshots stack correctly with no overlapping/clipped text or broken card boundaries in the full-page captures.
+
+### Optional polish (not blockers)
+None identified beyond what's already noted in `correction-disposition.md` (e.g., the seven-role grid leaving one card in the last row — explicitly accepted there as intentional, not a defect).
+
+### Owner-evidence items (not code/design defects)
+These are unchanged from the prior disposition doc and apply to this batch as boilerplate text repeated on every role page — not something this review can verify:
+- "A reply within three days, either way" / "One panel round" / "45 MINUTES" timing claims — SLA commitments requiring owner confirmation of actual practice.
+- "1 POSITION" headcount tags — current-opening accuracy requires owner/ATS confirmation.
+- Scoring weightings themselves (e.g., "Judgment carries 28%") — reflect stated hiring policy, not verifiable from screenshots.
+
+No backend/form submission behavior was tested; only rendered markup/copy was reviewed.

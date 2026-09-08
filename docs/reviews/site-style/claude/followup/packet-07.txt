@@ -1,0 +1,36 @@
+## Correction Disposition Context
+
+Per `docs/reviews/site-style/correction-disposition.md`, this pass claims function-page corrupted words/incomplete sentences were fixed and example weights now sum to 100. I verified weights (all five pages sum exactly to 100%) — **confirmed fixed**. However, corrupted-word cleanup was **incomplete**: 3 of 5 pages still contain garbled text (below).
+
+## Route Verdicts
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| /functions/finance-risk/ | **Pass** — consistent editorial template, aligned cards, chart bars readable, dark/paper sections match baseline | **Remaining issue** — one corrupted word in FAQ |
+| /functions/infrastructure-sre/ | **Pass** — same shared template, no overflow/misalignment at 1520 or 390 | **Remaining issue** — two corruption/truncation defects in FAQ |
+| /functions/leadership/ | **Pass** | **Pass** — no corruption found |
+| /functions/operations/ | **Pass** | **Pass, with one confusing term to check** — possible leftover corruption, lower confidence |
+| /functions/product-design/ | **Pass** | **Pass** — no corruption found |
+
+All five pages share the same structural template as `/functions/*`: Fraunces headline with red italic emphasis, mono eyebrow labels, left-aligned section headings, consistent 4-across/2-row role-level card grid, black "Operators, not recruiters" band, centered black final CTA band, shared header/footer. I found no card-grid inconsistency, no overflow, and no dead-looking controls across any of the five routes at either resolution. Collapsed FAQs on all five pages are native-looking accordions consistent with the disposition's note that collapsed state is not a bug — I did not treat them as missing content since the copy dump includes their expanded text.
+
+## Findings by Severity
+
+**High (confirmed text corruption, not speculative — visible verbatim in the copy files)**
+- `/functions/finance-risk/` FAQ 3 ("How do you evaluate risk culture…"): *"whether the international stopped when the number went the other way"* — "international" doesn't fit; reads as a corrupted word, same category the disposition claims was already fixed for function pages.
+- `/functions/infrastructure-sre/` FAQ 1 ("Do you hire SREs who never write code?"): *"we state the split in the brief and weered probe both"* — "weered" is not a word (likely "we'd").
+- `/functions/infrastructure-sre/` FAQ 2 ("How do you evaluate incident command experience?"): *"the first action, the first wrong…, and the change that stuck"* — trailing ellipsis mid-sentence reads as truncated/incomplete, the exact defect class the disposition says was corrected.
+
+**Medium (confusing, lower confidence — flagging for owner judgment, not asserting as bug)**
+- `/functions/operations/` Q3 evidence line: *"what they did that the scarcity chart didn't say was theirs"* — given the preceding thin-answer quote references "RASCI assignments," "scarcity chart" reads like a corrupted/mismatched term rather than intentional wording. Worth a quick author check; I'm not certain this is a defect versus a deliberate phrase.
+
+**Low**
+- None observed beyond the above — no unreadable text, no layout breakage, no obsolete promises found on any of the five routes in this packet.
+
+## Not Treated As Bugs (per disposition, confirmed consistent with this packet)
+- Collapsed "Three things teams ask first" accordions on all five routes — closed by default, expected native behavior, not evidence of missing content.
+- Absence of testimonials on function pages — shared style doesn't require identical page contents to the homepage.
+- "Roles we run here" cards showing a level range, not every possible title — consistent with the taxonomy-card precedent already logged (not every tag/role need be listed).
+
+## Owner Evidence Required (separate from design/code)
+These function pages make no new claims beyond what's already tracked in the disposition's "Owner Evidence Required" list (36-hour turnaround, "three names," expert-bench descriptions like "SREs who have carried a pager for years," named certifications CA/CPA/CFA, etc.) — all fall under existing owner-evidence categories (interview volume/expert tenure claims, SLA/turnaround commitments) and are not newly introduced here.

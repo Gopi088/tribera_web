@@ -1,0 +1,36 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+## Review scope
+Reviewed only the 5 routes below, each at desktop (1520px) and mobile (390px), cross-checked against copy files and the home baseline (`home-1520.png`). No other routes assessed. No files edited.
+
+## Route verdicts
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/industries/manufacturing/` | Pass — matches baseline system (Fraunces italic-red headline, mono eyebrow labels, dark "bar" card, aligned 2×4 role grid, centered final CTA). | Pass — voice is consistent, specific, non-generic. One structural gap (see Medium findings). |
+| `/industries/pharmaceutical/` | Pass — identical template, correctly re-skinned with sector-specific dimension weights (Controls & risk 34%). | Pass — same quality bar as manufacturing. |
+| `/industries/private-equity-portfolio/` | Pass — identical template, weights correctly shifted (Delivery speed 32%). | Pass. |
+| `/industries/product-saas/` | Pass — identical template, weights correctly shifted (Stakeholder handling 26%). Note: hero headline wraps to 3 lines on desktop (longest of the four verticals) — still legible, not overflowing. | Pass. |
+| `/intelligence/` | Mostly pass, one style inconsistency (see High findings) — otherwise strong use of the editorial-numerals treatment (large serif red stats) consistent with the home page's "39.00" score module. | Pass, but carries the heaviest unverified-claim load of the packet (see Claims section). |
+
+All five routes reuse the same dark "operators, not recruiters" band, the same closing "Belong / Build / Become" motif, and the same footer — all consistent with the baseline and with each other. Card grids are aligned, section headings are left-set, final CTAs are centered, exactly per the approved style rules.
+
+## Findings by severity
+
+**High**
+- `/intelligence/`: the hero differentiator phrase "what is scarce" is colored red but **not italicized**, breaking the established convention (every industry page italicizes *and* reddens its differentiator phrase, matching the home page's "*worth the interview*"). This is the one page in the packet that doesn't fully match the type system — worth fixing for consistency.
+
+**Medium**
+- All four industry pages, "Three things teams ask first" section: three list items render with a small arrow/chevron glyph but **no visible answer content** beneath them in either desktop or mobile screenshots, and the copy dump confirms only the three questions exist with no accompanying answer text. If this is meant to be an accordion, it reads as a dead/inert control in a static screenshot; if it's intentional (teams call to get the answer), the visual affordance (chevron) still implies expandability. Flag for the owner to confirm intended behavior — as shipped it looks unfinished.
+
+**Low**
+- Repetition across the four industry pages is by design (shared template), but it does mean any error in the shared copy (e.g., the guarantee line, the "operators not recruiters" block) will propagate to all four — worth a single careful proofread pass on the template rather than four separate ones.
+- `/industries/product-saas/`: three-line hero headline is the longest in the set; fine at 1520px and 390px in these screenshots, but worth a check at intermediate tablet widths (not in this packet, so not confirmed either way).
+
+**Visual resolution caveat**
+At the delivered image sizes (1520px screenshot compressed to ~490–685px display, 390px screenshot compressed to ~95–120px display), body copy below ~14px is not independently legible from the images alone — I cross-referenced against the copy .txt files to confirm content, but I cannot personally certify pixel-level kerning, exact color hex values, or sub-pixel alignment from these images. No overflow, clipped text, or broken cards were visible at the resolution available on any of the 10 screenshots.
+
+## Claims needing owner evidence (not a design/code blocker — flagging separately per instructions)
+
+- `/intelligence/`: "31% of technically strong cybersecurity candidates cannot evidence ownership," "2.4× more likely to leave... when stakeholder handling scored below band," "1 in 3 hires were already in the client's rejected pile," "−9 pts systems judgment... 8+ years versus 5–7," and "4,820 scored interviews" — five specific quantitative claims presented as fact. These need a data source the owner can stand behind if challenged (this is exactly the kind of "number without a method" the page itself warns against in its own copy — good that the page addresses methodology, but the four "Four Findings" stats aren't sourced beyond the general rubric explanation).
+- All four industry pages: "Interview three, hire one; if none of the three fit, we restart at no cost" and "Three names in 36 hours" — these are operational/SLA guarantees repeated verbatim across every vertical. Confirm these are current, honored commitments before publishing broadly (not a copy quality issue — a business-substance one).
+- All four industry pages, "ON THIS BENCH" experience-year figures (e.g., "Plant operations, 14 yrs," "Quality assurance and audit, 15 yrs") — confirm these correspond to real, current bench members rather than being illustrative placeholders, since they read as specific factual claims about named-role tenure.

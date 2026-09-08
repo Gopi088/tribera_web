@@ -36,8 +36,7 @@ export const CAREER_ROLES: CareerRole[] = [
     mode: 'Onsite',
     exp: '3–6 years',
     feat: true,
-    blurb:
-      'Great hiring products feel simple on the surface. That simplicity is earned in the backend.',
+    blurb: 'Great hiring products feel simple on the surface. That simplicity is earned in the backend.',
     w: [26, 30, 16, 10, 14, 4],
     own: [
       'Build the APIs and services behind the hiring workflows',
@@ -80,8 +79,7 @@ export const CAREER_ROLES: CareerRole[] = [
     mode: 'Onsite',
     exp: '2–5 years',
     feat: true,
-    blurb:
-      'Practical AI systems that make hiring decisions clearer, more structured, and easier to trust.',
+    blurb: 'Practical AI systems that make hiring decisions clearer, more structured, and easier to trust.',
     w: [30, 26, 14, 10, 16, 4],
     own: [
       'Build AI and ML workflows that improve candidate evaluation and decision support',
@@ -124,8 +122,7 @@ export const CAREER_ROLES: CareerRole[] = [
     mode: 'Onsite',
     exp: 'Student or recent graduate',
     feat: false,
-    blurb:
-      'This is not a shadowing internship. You will do real work, ship real output, and learn in context.',
+    blurb: 'This is not a shadowing internship. You will do real work, ship real output, and learn in context.',
     w: [20, 22, 22, 16, 16, 4],
     own: [
       'Contribute to feature work, fixes, and internal tooling',
@@ -290,10 +287,9 @@ export const CAREER_ROLES: CareerRole[] = [
     type: 'Internship',
     loc: 'Bengaluru',
     mode: 'Onsite',
-    exp: 'Internship',
+    exp: 'Entry level',
     feat: false,
-    blurb:
-      'Not every conversation closes a deal. The best ones open a door. That is the whole job, and it matters.',
+    blurb: 'Not every conversation closes a deal. The best ones open a door. That is the whole job, and it matters.',
     w: [16, 10, 18, 28, 12, 16],
     own: [
       'Identify the right person and find your way to them — the approach is yours',

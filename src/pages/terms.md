@@ -52,7 +52,7 @@ To the fullest extent permitted by applicable law, tribera and its affiliates sh
 
 Our maximum liability for any claim related to your use of the Service shall not exceed the amount you paid (if any) or INR 8,000.
 
-## "AS IS" and "AS AVAILABLE" Disclaimer
+## AS IS and AS AVAILABLE Disclaimer
 
 The Service is provided on an "AS IS" and "AS AVAILABLE" basis. We do not make any warranties or representations, express or implied, regarding the reliability, availability, or accuracy of the Service.
 

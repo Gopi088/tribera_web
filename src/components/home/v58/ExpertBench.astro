@@ -1,0 +1,320 @@
+---
+const expertise = [
+  ['Backend & platform', '11 yrs'],
+  ['Data & analytics', '9 yrs'],
+  ['SRE & infrastructure', '13 yrs'],
+  ['Cybersecurity', '14 yrs'],
+  ['AI & machine learning', '9 yrs'],
+  ['Networks & DC', '12 yrs'],
+  ['Finance & transformation', '15 yrs'],
+  ['Risk & compliance', '13 yrs'],
+  ['Capital markets', '12 yrs'],
+  ['Product & design', '10 yrs'],
+  ['Supply chain & manufacturing', '14 yrs'],
+  ['Leadership & GCC build-out', '18 yrs'],
+];
+
+const industries = [
+  ['Banking & financial services', 'banking-financial-services'],
+  ['Enterprise technology', 'enterprise-technology'],
+  ['Product & SaaS', 'product-saas'],
+  ['AI & data', 'ai-data'],
+  ['Cybersecurity', 'cybersecurity'],
+  ['Healthcare & life sciences', 'healthcare-life-sciences'],
+  ['Pharmaceutical', 'pharmaceutical'],
+  ['Manufacturing', 'manufacturing'],
+  ['Industrial & engineering', 'industrial-engineering'],
+  ['Global capability centres', 'global-capability-centres'],
+  ['Consumer & digital commerce', 'consumer-digital-commerce'],
+  ['Private equity portfolio', 'private-equity-portfolio'],
+];
+
+const leaders = [
+  [
+    '/akshata.png',
+    'Akshata Chandavarkar',
+    'Founder & CEO',
+    'Twenty years of enterprise hiring across GCCs, BFSI and deep-tech. Ran talent acquisition at GCC scale.',
+  ],
+  [
+    '/abhishek.png',
+    'Abhishek Prasad',
+    'Co-founder & CBO',
+    'Two decades building products used by millions. Built the signal engine: what a CV hides, join probability, retention.',
+  ],
+  [
+    '/pranav.png',
+    'Pranav Gandhi',
+    'Chief Success Officer',
+    'Twenty years scaling companies from nothing. Runs client delivery and the quality bar behind every mandate.',
+  ],
+];
+---
+
+<section class="v58-bench" id="experts" aria-labelledby="experts-title">
+  <div class="v58-bench__wrap">
+    <header class="v58-bench__header">
+      <div>
+        <p class="v58-bench__eyebrow">The people who make the call</p>
+        <h2 id="experts-title">Senior experts.<br />One bar: yours.</h2>
+      </div>
+      <p class="v58-bench__dek">
+        A verdict is only worth what the person behind it is worth. Not a generic handoff: <strong
+          >senior talent advisors</strong
+        >, working across engineering, finance, operations and leadership.
+      </p>
+    </header>
+
+    <div class="v58-bench__expertise" aria-label="Expertise coverage">
+      {
+        expertise.map(([field, years]) => (
+          <div class="v58-bench__expert">
+            <>
+              <b>{field}</b>
+              <span>{years}</span>
+            </>
+          </div>
+        ))
+      }
+      <div class="v58-bench__more">
+        <b>+38 more</b><span>across engineering, finance, operations and leadership</span>
+      </div>
+    </div>
+
+    <div class="v58-bench__industries">
+      <p>Industries we run mandates in</p>
+      <nav aria-label="Industries we support">
+        <ul>
+          {
+            industries.map(([name, slug]) => (
+              <li>
+                <a href={`/industries/${slug}`}>{name}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <div class="v58-bench__leaders">
+      <p>And the people the bench answers to</p>
+      <div>
+        {
+          leaders.map(([photo, name, role, bio]) => (
+            <article>
+              <img src={photo} alt={name} width="74" height="74" loading="lazy" />
+              <div>
+                <>
+                  <h3>{name}</h3>
+                  <span>{role}</span>
+                  <p>{bio}</p>
+                </>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .v58-bench {
+    background: var(--v58-white);
+    color: var(--v58-ink);
+    padding-block: clamp(78px, 10vw, 144px);
+  }
+  .v58-bench__wrap {
+    width: min(100% - clamp(44px, 10vw, 144px), var(--v58-wrap));
+    margin-inline: auto;
+  }
+  .v58-bench__header {
+    display: grid;
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+  }
+  .v58-bench__eyebrow,
+  .v58-bench__industries > p,
+  .v58-bench__leaders > p {
+    color: var(--v58-muted);
+    font-family: var(--v58-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    margin: 0 0 1.4rem;
+    text-transform: uppercase;
+  }
+  .v58-bench__eyebrow {
+    color: var(--v58-red);
+  }
+  h2,
+  h3,
+  p {
+    margin-top: 0;
+  }
+  h2 {
+    font-family: var(--v58-display);
+    font-size: clamp(2.45rem, 5.1vw, 4.3rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 0.96;
+    margin-bottom: 0;
+  }
+  .v58-bench__dek {
+    color: var(--v58-muted);
+    font-size: clamp(1.1rem, 1.7vw, 1.38rem);
+    line-height: 1.45;
+    margin: 0;
+    max-width: 32rem;
+  }
+  .v58-bench__dek strong {
+    color: var(--v58-ink);
+  }
+  .v58-bench__expertise {
+    border: 1px solid var(--v58-line);
+    border-radius: 1rem;
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(2, 1fr);
+    overflow: hidden;
+    background: var(--v58-line);
+  }
+  .v58-bench__expert,
+  .v58-bench__more {
+    background: var(--v58-white);
+    display: grid;
+    gap: 0.4rem;
+    padding: clamp(1rem, 2vw, 1.5rem);
+  }
+  .v58-bench__expert {
+    min-height: 6.4rem;
+    transition:
+      background 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+  .v58-bench__expert:hover {
+    background: var(--v58-paper);
+    box-shadow: inset 3px 0 var(--v58-red);
+  }
+  .v58-bench__expert b {
+    font-family: var(--v58-ui);
+    font-size: 0.96rem;
+  }
+  .v58-bench__expert span {
+    color: var(--v58-muted);
+    font-family: var(--v58-mono);
+    font-size: 0.7rem;
+  }
+  .v58-bench__more {
+    align-items: baseline;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    grid-column: 1 / -1;
+  }
+  .v58-bench__more b {
+    color: var(--v58-red);
+    font-family: var(--v58-mono);
+    font-size: 0.85rem;
+  }
+  .v58-bench__more span {
+    color: var(--v58-muted);
+    font-size: 0.9rem;
+  }
+  .v58-bench__industries,
+  .v58-bench__leaders {
+    border-top: 1px solid var(--v58-line);
+    margin-top: clamp(2.8rem, 5vw, 4.5rem);
+    padding-top: clamp(2rem, 3vw, 3rem);
+  }
+  .v58-bench__industries ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .v58-bench__industries a {
+    border: 1px solid var(--v58-line-strong);
+    border-radius: 999px;
+    color: var(--v58-ink);
+    display: block;
+    font-size: 0.88rem;
+    padding: 0.6rem 0.9rem;
+    text-decoration: none;
+    transition:
+      background 0.18s ease,
+      border-color 0.18s ease;
+  }
+  .v58-bench__industries a:hover {
+    background: var(--v58-paper);
+    border-color: var(--v58-ink);
+  }
+  .v58-bench__industries a:focus-visible {
+    outline: 2px solid var(--v58-red);
+    outline-offset: 3px;
+  }
+  .v58-bench__leaders > div {
+    display: grid;
+    gap: 2rem;
+  }
+  .v58-bench__leaders article {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 4.625rem 1fr;
+  }
+  .v58-bench__leaders img {
+    background: #dededb;
+    border-radius: 50%;
+    display: block;
+    filter: grayscale(1);
+    height: 4.625rem;
+    object-fit: cover;
+    width: 4.625rem;
+  }
+  .v58-bench__leaders h3 {
+    font-family: var(--v58-ui);
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+  }
+  .v58-bench__leaders span {
+    color: var(--v58-red);
+    font-family: var(--v58-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .v58-bench__leaders article p {
+    color: var(--v58-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0.55rem 0 0;
+  }
+  @media (min-width: 760px) {
+    .v58-bench__header {
+      grid-template-columns: minmax(0, 1fr) minmax(17rem, 30rem);
+    }
+    .v58-bench__expertise {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .v58-bench__leaders > div {
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(2rem, 4vw, 4rem);
+    }
+  }
+  @media (min-width: 1040px) {
+    .v58-bench__expertise {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .v58-bench__industries ul {
+      gap: 0.85rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v58-bench__expert,
+    .v58-bench__industries a {
+      transition: none;
+    }
+  }
+</style>

@@ -1,0 +1,34 @@
+## Scope note
+This pass covers only the 5 routes in this packet, cross-checked against `docs/reviews/site-style/correction-disposition.md` and the homepage baseline. I have not re-reviewed any other route.
+
+## Per-route verdicts
+
+| Route | Visual | Copy | Verdict |
+|---|---|---|---|
+| `/blog/designing-for-trust-privacy-transparency-respect/` | Matches baseline: Fraunces headings, Inter Tight body, mono labels/tags, red pull-quotes, left headings, centered final "Belong Build Become." No overflow/clipping visible desktop or mobile. | Clean, well-formed, no corrupted words. Byline/read-time consistent. | **Pass.** No remaining issue found in this packet. |
+| `/blog/hiring-is-not-a-transaction-its-a-relationship/` | Same editorial system holds. Pull-quote, recirc cards (3-col desktop → stacked mobile) aligned and equal height. | Clean prose, tags/share row intact. | **Pass.** No remaining issue found. |
+| `/blog/rethinking-hiring-metrics-signal-efficiency/` | Consistent with system; chart-style bar graphic in body renders as a simple illustrative visual, correctly labeled as example data in the article text, not a dashboard claim. | Clean; numbers ("what 200,000 interviews taught us") sit in body copy, not surfaced as a sourced stat block. | **Pass.** No remaining design/code issue. Flagging the "200,000 interviews" figure under owner evidence below. |
+| `/blog/signal-vs-noise-technical-hiring/` | Consistent styling; hero motif, pull-quote, recirc grid all match sibling pages. | Clean prose, tags/share intact. | **Pass.** No remaining issue found. |
+| `/blog/when-job-hunting-feels-like-a-black-hole/` | Consistent styling; the composite hero graphic (rows of ticks with red highlights) reads as decorative texture, not truncated content. | Clean; the Arjun anecdote reads as a named case study, consistent with the disposition note that this shortlist/case history is user-confirmed and not to be altered. | **Pass.** No remaining issue found. |
+
+## Findings by severity
+
+**Blocking:** None found in this packet.
+
+**Notable (non-blocking):**
+- `designing-for-trust…` ends its recirculation with a candidate-specific "Hidden from the first second" CTA block instead of the "Get notified when it is ready" newsletter block that appears on the other four articles. This is a real content difference, but per the disposition doc's standing note that shared style doesn't require identical page contents, and since this article's whole subject is candidate privacy, the candidate CTA here reads as a deliberate substitution rather than a missing component. Confirm with the content owner whether this was intentional; if so, no action needed.
+
+**Cosmetic:** None observed at this screenshot resolution beyond the above.
+
+## Owner-evidence required (not a design/code defect, per disposition doc)
+- "What 200,000 interviews taught us about signal efficiency" (Rethinking hiring metrics) — interview-volume claim.
+- "36-hour" and "45-minute intake" language repeated in the "Two doors" CTA block on every article — response/SLA claim.
+- Named individuals' titles/tenure in bylines (e.g., "twenty years of enterprise hiring," "built the signal engine") — needs owner confirmation, not visually verifiable.
+- Newsletter "Subscribe" control's backend wiring (it visually reads as an active, styled CTA, not dead — whether it actually submits is a functional/owner question, not something determinable from screenshots).
+
+## What I did not re-flag as bugs (per correction-disposition.md)
+- The Arjun five-vs-three-person case history in the black-hole article — preserved per prior user confirmation, not rewritten.
+- Any collapsed/native accordion state — none of these 5 routes contain FAQ accordions, so this doesn't apply here.
+- Recirculation cards showing a different 3-article subset per page — each simply excludes its own article; not evidence of missing content.
+
+**Bottom line:** all 5 routes in this packet pass the visual/copy review against the approved hiring style and the corrections already logged. The only open item is confirming intent behind the one CTA-block substitution on the trust/privacy article, plus the standing owner-evidence questions already tracked site-wide.

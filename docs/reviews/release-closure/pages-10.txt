@@ -1,0 +1,27 @@
+## Review Summary
+
+All 5 routes render as the same tag-index template (hero + filter pills + article grid + shared footer), differing only in populated content. Desktop and mobile screenshots were reviewed for every route; nothing required section crops (text was legible at full resolution).
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| /tag/ai-in-hiring/ | ✅ Consistent w/ hiring style | ✅ Clean, matches article |
+| /tag/candidate-experience/ | ✅ Consistent | ✅ Clean, both teasers match articles |
+| /tag/decision-infrastructure/ | ✅ Consistent | ✅ Clean |
+| /tag/empathy/ | ✅ Consistent | ✅ Clean |
+| /tag/engineering/ | ✅ Consistent | ✅ Clean |
+
+## Findings
+
+**No release-blocking visual or copy defects found** on any of the 5 tag routes. Typography (Fraunces headings, mono "FROM THE JOURNAL" eyebrow, Inter Tight body), warm-paper section background, left-aligned headings, card styling, dark footer, and nav/header geometry all match the approved hiring reference and are identical across routes on both breakpoints. Filter pills wrap correctly on mobile with the active tag (black pill) rendered as the last item in the list — consistent on every route, so this is the established pattern, not a per-page bug.
+
+**Optional polish (non-blocking):**
+- All 5 tags currently show only 1–2 articles reused across multiple tags (e.g., "Designing AI for High-Stakes Technical Assessment" appears on ai-in-hiring, decision-infrastructure, and engineering; the empathy tag has only 1 article). This is a content-coverage/editorial-calendar matter, not a code defect — per `correction-disposition.md`, topic membership showing overlapping tags on different pages is expected behavior, not a bug to fix by altering taxonomy.
+- "2,00,000" (Indian digit grouping) in the Decision Infrastructure article teaser is a stylistic choice, not an error — flagging only for owner awareness if the target audience expects standard "200,000" grouping.
+
+## Owner-evidence items (not code/design defects — cannot be verified via screenshots)
+- Interview volume "2,00,000" and the "8 min read" / "5 min read" timings.
+- Cited research attribution (McKinsey, Deloitte, PwC) in the "Black Hole" article teaser.
+- Article publish dates (Jan/Feb 2026, Aug 2025) — accuracy not verifiable from a design review.
+
+## Coverage note
+All 5 requested routes were fully reviewed at both breakpoints plus their copy files; no route or image was skipped or unreadable. Hiring reference screenshots (home-1520.png, home-390.png) were used for style comparison only, per instructions — no defects were found relative to that baseline.

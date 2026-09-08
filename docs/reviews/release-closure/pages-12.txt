@@ -1,0 +1,26 @@
+All 5 routes reviewed on desktop, mobile, and copy. All follow the shared tag-page template consistently.
+
+## Summary Table
+
+| Route | Visual Verdict | Copy Verdict |
+|---|---|---|
+| /tag/privacy-by-design/ | ✅ Pass | ✅ Pass |
+| /tag/professional-respect/ | ✅ Pass | ✅ Pass |
+| /tag/quality-of-hire/ | ✅ Pass | ✅ Pass |
+| /tag/recruitment/ | ✅ Pass | ✅ Pass |
+| /tag/signal-based-hiring/ | ✅ Pass | ✅ Pass |
+
+## Findings
+
+**No actionable defects found.** All 5 tag pages use the identical, correctly-implemented template: Fraunces serif H1, mono "FROM THE JOURNAL" eyebrow label, left-aligned heading block, pill-shaped topic filter row with the active tag correctly highlighted in black, consistent card grid on the warm-paper section, shared dark footer, and consistent nav/header — matching the hiring-page reference and each other. Desktop and mobile layouts reflow appropriately (filter pills wrap to multiple rows on mobile, cards stack single-column) without breaking the visual system. This matches the disposition doc's note that the recent refactor touched only scripts, not markup/copy.
+
+Copy is clean across all 5: article titles, dates, category badges, read times, and teaser text all render correctly with no truncation, corruption, or duplication. Article card imagery differs appropriately per tag (fingerprint art for privacy/respect, red-square/line art for quality-of-hire, torn-paper/waveform art for recruitment/signal-based-hiring) — this is intentional content variation, not an inconsistency.
+
+**Optional polish (not a blocker):** The `/tag/quality-of-hire/` and `/tag/recruitment/` articles both cite specific interview-volume/case statistics ("2,00,000 structured interviews," "327-profile search into a 22-day success"). Per the disposition doc, these figures are **owner-evidence items**, not code/design defects — I did not verify or invent any backend/data claim here; flag to the business owner for confirmation before wide distribution, not to me for a fix.
+
+## Owner-evidence questions (separate from design/code)
+- Accuracy of "2,00,000 interviews" and "327-profile / 22-day" statistics (recruitment, quality-of-hire articles).
+- Currency of Feb 2026 / Aug 2025 publish dates relative to actual release date.
+
+## Coverage note
+All 5 routes were reviewed via both full desktop (1520px) and mobile (390px) screenshots plus their copy files. Section crops were not needed — full-page screenshots were legible at the sizes provided. No route or image was skipped.

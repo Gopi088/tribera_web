@@ -1,0 +1,37 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+## Scope note
+This review covers only the 5 routes in this packet (finance-risk, infrastructure-sre, leadership, operations, product-design), each judged against the /home baseline for style conformance. I did not open any other route. Screenshots are full-page renders; at this resolution I can confirm layout/structure/alignment reliably, but exact pixel-level font-weight/kerning is not fully verifiable — copy accuracy is checked against the provided `.txt` files, which I treat as source of truth.
+
+## Route verdicts
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/functions/finance-risk/` | Pass — matches baseline (Fraunces headings, mono eyebrow labels, left-aligned section heads, centered black final-CTA, aligned 4-col role grid, dark "bar" stat card). No testimonials block (baseline has one; see note below). | Fail — contains a literal unrendered template artifact `{the}` in body copy, plus one grammar slip. |
+| `/functions/infrastructure-sre/` | Pass — same template, consistent spacing/typography/mobile stacking. | Minor fail — one incomplete/garbled sentence fragment. |
+| `/functions/leadership/` | Pass — visually consistent. | Minor fail — stat bar percentages don't sum to 100 (data integrity), plus one awkward sentence. |
+| `/functions/operations/` | Pass — fully consistent with template and baseline styling. | Pass — no errors found. |
+| `/functions/product-design/` | Pass — fully consistent, percentages sum correctly (100). | Pass — no errors found. |
+
+All five routes share one template, so layout, red CTA restraint, mono/Fraunces/Inter Tight pairing, warm-paper/charcoal blocks, and left-heading/centered-final-CTA rules from the style guide are applied uniformly. Mobile screenshots show correct single-column stacking of the stat card, four-card question blocks, and the 4×2 role grid collapsing to single column — no visible overflow in any of the five.
+
+## Findings by severity
+
+**Blocker (content bug)**
+- `/functions/finance-risk/` copy line 112: *"what they did the next quarter to ring {the} risk back."* — literal, unrendered template/placeholder syntax leaking into live copy. This must be a code/CMS templating bug, not just a wording issue — flag to engineering, not just copy owner.
+
+**High (data integrity — needs owner check)**
+- `/functions/leadership/` "THE BAR IN THIS FUNCTION": Core depth 18 + Systems design 8 + Controls and risk 16 + Delivery speed 20 + Documentation 10 + Stakeholder handling 26 = **98%**, not 100%. Every other function page I checked sums correctly (finance-risk, infrastructure-sre, operations, product-design all = 100%). Either a copy typo or a component that should validate/derive this sum. Flag to whoever owns the "six bars" dataset per function.
+
+**Medium (grammar/clarity — copy fixes, no code involved)**
+- `/functions/finance-risk/`: "How do you hire finance leaders for startups where the P&L is a shared?" — broken grammar ("is a shared" — missing noun, e.g. "is shared" or "is a shared responsibility").
+- `/functions/infrastructure-sre/`: "a choice about a platform, and the cost of the platform came to be" — sentence fragment reads as unfinished/garbled; likely dropped a word (e.g. "...the cost the platform came to have" or similar).
+- `/functions/leadership/`: "Leadership mostly happens in rooms that opened without theirs." — unclear referent for "theirs"; reads as a typo (possibly "opened without them" or "without their being called").
+
+**Low / design-consistency note (not a blocker)**
+- The homepage baseline includes a "What teams and candidates say" testimonials block; none of the five function pages carry a testimonials section at all — this appears to be intentional for this template (not a removed/broken element), but worth confirming with the design owner that testimonials were deliberately scoped out of function pages rather than dropped. I'm flagging this as a question, not asserting it's wrong, since I have no evidence testimonials ever existed here.
+
+## Claims needing owner evidence (separate from design/code blockers)
+- "Three names in 36 hours" (repeated on all 5 pages, plus homepage) — a specific SLA promise. Needs confirmation from the business owner that this is a currently honored commitment, not a legacy/aspirational figure.
+- The percentage weightings in "THE BAR IN THIS FUNCTION" (e.g., "Controls and risk carries 26% here," "Stakeholder handling carries 30% here") imply a real, defensible scoring methodology — worth confirming these are actual/current weights and not placeholder figures, especially given the leadership page's sum error above.
+
+No dead-looking controls, unreadable text, or card-alignment inconsistencies were found across the five routes — the template renders uniformly at both breakpoints.

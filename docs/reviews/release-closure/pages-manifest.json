@@ -1,0 +1,170 @@
+[
+  {
+    "name": "pages-01",
+    "routes": [
+      "/blog/designing-for-trust-privacy-transparency-respect/",
+      "/blog/hiring-is-not-a-transaction-its-a-relationship/",
+      "/blog/rethinking-hiring-metrics-signal-efficiency/",
+      "/blog/signal-vs-noise-technical-hiring/",
+      "/blog/when-job-hunting-feels-like-a-black-hole/"
+    ],
+    "completed": true,
+    "exitCode": 0
+  },
+  {
+    "name": "pages-02",
+    "routes": [
+      "/blog/why-tech-hiring-really-takes-so-long/",
+      "/candidates/start/",
+      "/careers/",
+      "/careers/ai-ml-engineer/",
+      "/careers/backend-engineer/"
+    ],
+    "completed": true,
+    "exitCode": 0
+  },
+  {
+    "name": "pages-03",
+    "routes": [
+      "/careers/growth-intern/",
+      "/careers/senior-delivery-partner/",
+      "/careers/software-intern/",
+      "/careers/talent-advisor/",
+      "/careers/talent-associate/"
+    ],
+    "completed": true,
+    "exitCode": 0
+  },
+  {
+    "name": "pages-04",
+    "routes": [
+      "/category/ai-and-assessment/",
+      "/category/candidate-experience/",
+      "/category/hiring-philosophy/",
+      "/category/hiring-strategy/",
+      "/category/technical-hiring/"
+    ],
+    "completed": true,
+    "exitCode": 0
+  },
+  {
+    "name": "pages-05",
+    "routes": [
+      "/functions/",
+      "/functions/data-analytics/",
+      "/functions/engineering-platform/",
+      "/functions/finance-risk/",
+      "/functions/infrastructure-sre/"
+    ],
+    "completed": true,
+    "exitCode": 0
+  },
+  {
+    "name": "pages-06",
+    "routes": [
+      "/functions/leadership/",
+      "/functions/operations/",
+      "/functions/product-design/",
+      "/functions/security/",
+      "/industries/"
+    ],
+    "completed": true,
+    "exitCode": 0
+  },
+  {
+    "name": "pages-07",
+    "routes": [
+      "/industries/ai-data/",
+      "/industries/banking-financial-services/",
+      "/industries/consumer-digital-commerce/",
+      "/industries/cybersecurity/",
+      "/industries/enterprise-technology/"
+    ],
+    "completed": true,
+    "exitCode": 0
+  },
+  {
+    "name": "pages-08",
+    "routes": [
+      "/industries/global-capability-centres/",
+      "/industries/healthcare-life-sciences/",
+      "/industries/industrial-engineering/",
+      "/industries/manufacturing/",
+      "/industries/pharmaceutical/"
+    ],
+    "completed": true,
+    "exitCode": 0
+  },
+  {
+    "name": "pages-09",
+    "routes": [
+      "/industries/private-equity-portfolio/",
+      "/industries/product-saas/",
+      "/intelligence/",
+      "/privacy/",
+      "/security/"
+    ],
+    "completed": true,
+    "exitCode": 0
+  },
+  {
+    "name": "pages-10",
+    "routes": [
+      "/tag/ai-in-hiring/",
+      "/tag/candidate-experience/",
+      "/tag/decision-infrastructure/",
+      "/tag/empathy/",
+      "/tag/engineering/"
+    ],
+    "completed": true,
+    "exitCode": 0
+  },
+  {
+    "name": "pages-11",
+    "routes": [
+      "/tag/hiring-insights/",
+      "/tag/hiring-metrics/",
+      "/tag/human-first-hiring/",
+      "/tag/job-search-tips/",
+      "/tag/platform-design/"
+    ],
+    "completed": true,
+    "exitCode": 0
+  },
+  {
+    "name": "pages-12",
+    "routes": [
+      "/tag/privacy-by-design/",
+      "/tag/professional-respect/",
+      "/tag/quality-of-hire/",
+      "/tag/recruitment/",
+      "/tag/signal-based-hiring/"
+    ],
+    "completed": true,
+    "exitCode": 0
+  },
+  {
+    "name": "pages-13",
+    "routes": [
+      "/tag/structured-evaluation/",
+      "/tag/talent-acquisition/",
+      "/tag/technical-assessment/",
+      "/tag/technical-hiring/",
+      "/tag/thought-leadership/"
+    ],
+    "completed": true,
+    "exitCode": 0
+  },
+  {
+    "name": "pages-14",
+    "routes": ["/tag/time-to-hire/", "/tag/trust-in-hiring/", "/terms/", "/404.html", "/blog/"],
+    "completed": true,
+    "exitCode": 0
+  },
+  {
+    "name": "pages-15",
+    "routes": ["/blog/designing-ai-for-high-stakes-technical-assessment/"],
+    "completed": true,
+    "exitCode": 0
+  }
+]

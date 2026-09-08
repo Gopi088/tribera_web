@@ -1,0 +1,220 @@
+---
+const assuranceGroups: [string, string[]][] = [
+  [
+    'Data and consent · DPDP Act',
+    [
+      'Candidate consent captured before any evaluation',
+      'Data resident in India, encrypted in transit and at rest',
+      'Purpose-limited: transcripts held on a defined clock, then purged',
+      'Right to access, correct and erase, honoured',
+    ],
+  ],
+  [
+    'Fair and defensible AI',
+    [
+      'Human in the loop by design: <b>the AI never auto-rejects</b>',
+      'Every score explainable: rubric, evidence, transcript',
+      'Signals are role-relevant only; protected attributes excluded',
+      'Adverse impact reviewed, rubrics audited',
+    ],
+  ],
+];
+
+const decisionPath: [string, string, string, string, boolean][] = [
+  ['01', 'The engine surfaces', 'Scores, ranks and explains. <b>It cannot reject anyone.</b>', 'machine', false],
+  [
+    '02',
+    'An expert judges',
+    'A person reads the transcript and writes the verdict, in their own words.',
+    'human',
+    false,
+  ],
+  ['03', 'You decide', 'Every hire and every no is yours. We never make one on your behalf.', 'yours', true],
+];
+---
+
+<section class="v58-trust" id="trust" aria-labelledby="trust-title">
+  <div class="v58-trust__wrap">
+    <header class="v58-trust__header">
+      <div><p>Trust and compliance</p><h2 id="trust-title">The AI recommends.<br />A person decides. Always.</h2></div>
+      <p class="v58-trust__dek">
+        Built for a world of candidate data, consent and fair evaluation: <strong
+          >the questions your legal team and DPO ask before the first brief.</strong
+        >
+      </p>
+    </header>
+
+    <div class="v58-trust__assurances">
+      {
+        assuranceGroups.map(([title, items]) => (
+          <section aria-labelledby={title.replaceAll(/[^a-z]+/gi, '-').toLowerCase()}>
+            <>
+              <h3 id={title.replaceAll(/[^a-z]+/gi, '-').toLowerCase()}>{title}</h3>
+              <ul>
+                {items.map((item) => (
+                  <li set:html={item} />
+                ))}
+              </ul>
+            </>
+          </section>
+        ))
+      }
+    </div>
+
+    <div class="v58-trust__path">
+      <p>Where a decision can actually be made</p>
+      <ol>
+        {
+          decisionPath.map(([number, title, description, tag, yours]) => (
+            <li class:list={{ 'v58-trust__step': true, 'v58-trust__step--yours': yours }}>
+              <>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p set:html={description} />
+                <em>{tag}</em>
+              </>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .v58-trust {
+    background: var(--v58-charcoal);
+    color: var(--v58-white);
+    padding-block: clamp(78px, 10vw, 144px);
+  }
+  .v58-trust__wrap {
+    width: min(100% - clamp(44px, 10vw, 144px), var(--v58-wrap));
+    margin-inline: auto;
+  }
+  .v58-trust__header {
+    display: grid;
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: clamp(2.6rem, 5vw, 4.5rem);
+  }
+  .v58-trust__header > div > p,
+  .v58-trust__path > p {
+    color: color-mix(in srgb, var(--v58-white) 56%, transparent);
+    font-family: var(--v58-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    margin: 0 0 1.4rem;
+    text-transform: uppercase;
+  }
+  h2,
+  h3,
+  p {
+    margin-top: 0;
+  }
+  h2 {
+    font-family: var(--v58-display);
+    font-size: clamp(2.4rem, 4.8vw, 4rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 0.98;
+    margin-bottom: 0;
+  }
+  .v58-trust__dek {
+    color: color-mix(in srgb, var(--v58-white) 70%, transparent);
+    font-size: clamp(1.08rem, 1.7vw, 1.35rem);
+    line-height: 1.45;
+    margin: 0;
+    max-width: 34rem;
+  }
+  .v58-trust__dek strong,
+  .v58-trust b {
+    color: var(--v58-white);
+  }
+  .v58-trust__assurances {
+    border-top: 1px solid color-mix(in srgb, var(--v58-white) 18%, transparent);
+    display: grid;
+    gap: 2rem;
+    padding-top: clamp(1.8rem, 3vw, 2.8rem);
+  }
+  .v58-trust__assurances h3 {
+    font-family: var(--v58-ui);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .v58-trust__assurances ul {
+    color: color-mix(in srgb, var(--v58-white) 72%, transparent);
+    display: grid;
+    font-size: 0.92rem;
+    gap: 0.75rem;
+    line-height: 1.45;
+    margin: 0;
+    padding-left: 1.1rem;
+  }
+  .v58-trust__assurances li::marker {
+    color: var(--v58-red);
+  }
+  .v58-trust__path {
+    border-top: 1px solid color-mix(in srgb, var(--v58-white) 18%, transparent);
+    margin-top: clamp(2.8rem, 5vw, 4.5rem);
+    padding-top: clamp(1.8rem, 3vw, 2.8rem);
+  }
+  .v58-trust__path ol {
+    display: grid;
+    gap: 1px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: color-mix(in srgb, var(--v58-white) 13%, transparent);
+  }
+  .v58-trust__step {
+    background: var(--v58-charcoal);
+    display: grid;
+    gap: 0.55rem;
+    padding: clamp(1.2rem, 2vw, 1.7rem);
+    position: relative;
+  }
+  .v58-trust__step--yours {
+    background: color-mix(in srgb, var(--v58-white) 7%, var(--v58-charcoal));
+  }
+  .v58-trust__step > span,
+  .v58-trust__step em {
+    font-family: var(--v58-mono);
+    font-size: 0.62rem;
+    font-style: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .v58-trust__step > span {
+    color: var(--v58-red);
+  }
+  .v58-trust__step h3 {
+    font-family: var(--v58-ui);
+    font-size: 1rem;
+    margin-bottom: 0;
+  }
+  .v58-trust__step p {
+    color: color-mix(in srgb, var(--v58-white) 70%, transparent);
+    font-size: 0.9rem;
+    line-height: 1.46;
+    margin-bottom: 0;
+  }
+  .v58-trust__step em {
+    color: color-mix(in srgb, var(--v58-white) 48%, transparent);
+    margin-top: 0.4rem;
+  }
+  .v58-trust__step--yours em {
+    color: var(--v58-red);
+  }
+  @media (min-width: 760px) {
+    .v58-trust__header {
+      grid-template-columns: minmax(0, 1fr) minmax(17rem, 34rem);
+    }
+    .v58-trust__assurances {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4rem;
+    }
+    .v58-trust__path ol {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

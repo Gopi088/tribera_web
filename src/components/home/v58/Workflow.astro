@@ -1,0 +1,293 @@
+---
+const steps = [
+  [
+    'Day 0',
+    '45 min',
+    'Intake call',
+    'We learn your yes: the role, the manager, the culture, the bar.',
+    'You brief · we listen',
+  ],
+  [
+    '36 hours',
+    'shortlist',
+    'Three names',
+    'Decision-ready candidates, each scored and explained.',
+    'We deliver · you review',
+  ],
+  [
+    'Week 1',
+    'interviews',
+    'Your panel runs it',
+    'You meet three, not twelve, and we prep your panel with the rubric.',
+    'You interview · we support',
+  ],
+  [
+    'At offer',
+    'close',
+    'Risk flagged first',
+    'Join-probability and offer-risk surfaced before you extend.',
+    'You decide · we de-risk',
+  ],
+  [
+    'Safety net',
+    'SLA',
+    'If it falls through',
+    'Drop-out or no-show, we restart free and go priority queue.',
+    'Guaranteed in writing',
+  ],
+];
+
+const stats = [
+  ['36', 'hrs', 'from the intake call to three names, scored and explained'],
+  ['3', 'people', 'is the whole ask of your panel, not twelve'],
+  ['~90', '%', 'of the briefs we take on, we close'],
+];
+
+const notes = [
+  [
+    'Your recruiter still owns the relationship',
+    'We arm your team. We do not replace them, and we do not touch the candidate relationship you own.',
+  ],
+  [
+    'Fits your ATS',
+    'Shortlists export to Workday, Greenhouse, Lever and SuccessFactors, or to a shared workspace if you would rather.',
+  ],
+];
+---
+
+<section class="v58-workflow" id="engage" aria-labelledby="workflow-title">
+  <div class="v58-workflow__wrap">
+    <header class="v58-workflow__header">
+      <div><p>How we engage</p><h2 id="workflow-title">From brief to hire,<br />and who does what.</h2></div>
+      <p class="v58-workflow__dek">
+        Forty-five minutes to learn your yes. Thirty-six hours to the shortlist. <strong
+          >Then your team runs the interviews, with the rubric already in their hands.</strong
+        >
+      </p>
+    </header>
+
+    <ol class="v58-workflow__steps">
+      {
+        steps.map(([date, suffix, title, description, owner], index) => (
+          <li class:list={{ 'v58-workflow__step': true, 'v58-workflow__step--decision': index === steps.length - 1 }}>
+            <span class="v58-workflow__rule" aria-hidden="true" />
+            <p class="v58-workflow__date">
+              {date} <i>· {suffix}</i>
+            </p>
+            <>
+              <h3>{title}</h3>
+              <p class="v58-workflow__description">{description}</p>
+              <p class="v58-workflow__owner">{owner}</p>
+            </>
+          </li>
+        ))
+      }
+    </ol>
+
+    <dl class="v58-workflow__stats">
+      {
+        stats.map(([number, unit, description], index) => (
+          <div class:list={{ 'v58-workflow__stat': true, 'v58-workflow__stat--accent': index === 0 }}>
+            <>
+              <dt>
+                {number}
+                <i>{unit}</i>
+              </dt>
+              <dd>{description}</dd>
+            </>
+          </div>
+        ))
+      }
+    </dl>
+
+    <div class="v58-workflow__notes">
+      {
+        notes.map(([title, body]) => (
+          <article>
+            <>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .v58-workflow {
+    background: var(--v58-paper);
+    color: var(--v58-ink);
+    padding-block: clamp(78px, 10vw, 144px);
+  }
+  .v58-workflow__wrap {
+    width: min(100% - clamp(44px, 10vw, 144px), var(--v58-wrap));
+    margin-inline: auto;
+  }
+  .v58-workflow__header {
+    display: grid;
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: clamp(2.6rem, 5vw, 4.5rem);
+  }
+  .v58-workflow__header > div > p {
+    color: var(--v58-red);
+    font-family: var(--v58-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    margin: 0 0 1.4rem;
+    text-transform: uppercase;
+  }
+  h2,
+  h3,
+  p,
+  dl,
+  dd {
+    margin-top: 0;
+  }
+  h2 {
+    font-family: var(--v58-display);
+    font-size: clamp(2.4rem, 4.8vw, 4rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 0.98;
+    margin-bottom: 0;
+  }
+  .v58-workflow__dek {
+    color: var(--v58-muted);
+    font-size: clamp(1.08rem, 1.7vw, 1.35rem);
+    line-height: 1.45;
+    margin: 0;
+    max-width: 34rem;
+  }
+  .v58-workflow__dek strong {
+    color: var(--v58-ink);
+  }
+  .v58-workflow__steps {
+    display: grid;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .v58-workflow__step {
+    display: grid;
+    gap: 0.5rem;
+    align-content: start;
+  }
+  .v58-workflow__rule {
+    background: var(--v58-line-strong);
+    border-radius: 2px;
+    height: 4px;
+    margin-bottom: 0.5rem;
+  }
+  .v58-workflow__step--decision .v58-workflow__rule {
+    background: var(--v58-red);
+  }
+  .v58-workflow__date,
+  .v58-workflow__owner {
+    font-family: var(--v58-mono);
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+  .v58-workflow__date {
+    color: var(--v58-ink);
+    font-size: 0.64rem;
+    margin-bottom: 0.1rem;
+  }
+  .v58-workflow__step--decision .v58-workflow__date {
+    color: var(--v58-red);
+  }
+  .v58-workflow__date i {
+    color: var(--v58-muted);
+    font-style: normal;
+  }
+  .v58-workflow__step h3,
+  .v58-workflow__notes h3 {
+    font-family: var(--v58-ui);
+    font-size: 1rem;
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+  .v58-workflow__description {
+    color: var(--v58-muted);
+    font-size: 0.9rem;
+    line-height: 1.48;
+    margin-bottom: 0;
+  }
+  .v58-workflow__owner {
+    border-top: 1px solid var(--v58-line);
+    color: var(--v58-muted);
+    font-size: 0.58rem;
+    margin: 0.4rem 0 0;
+    padding-top: 0.65rem;
+  }
+  .v58-workflow__stats,
+  .v58-workflow__notes {
+    border-top: 1px solid var(--v58-line);
+    display: grid;
+    gap: 1.5rem 2rem;
+    margin: clamp(2.8rem, 5vw, 4.5rem) 0 0;
+    padding-top: clamp(1.8rem, 3vw, 2.8rem);
+  }
+  .v58-workflow__stat dt {
+    font-family: var(--v58-mono);
+    font-size: clamp(2.3rem, 4vw, 3.25rem);
+    font-weight: 700;
+    letter-spacing: -0.07em;
+    line-height: 1;
+  }
+  .v58-workflow__stat--accent dt {
+    color: var(--v58-red);
+  }
+  .v58-workflow__stat dt i {
+    color: var(--v58-muted);
+    font-family: var(--v58-ui);
+    font-size: 0.85rem;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0;
+    margin-left: 0.45rem;
+  }
+  .v58-workflow__stat dd,
+  .v58-workflow__notes p {
+    color: var(--v58-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0.55rem 0 0;
+    max-width: 28rem;
+  }
+  .v58-workflow__notes article h3 {
+    padding-left: 1.15rem;
+    position: relative;
+  }
+  .v58-workflow__notes article h3::before {
+    background: var(--v58-red);
+    border-radius: 50%;
+    content: '';
+    height: 0.5rem;
+    left: 0;
+    position: absolute;
+    top: 0.25rem;
+    width: 0.5rem;
+  }
+  .v58-workflow__notes article p {
+    padding-left: 1.15rem;
+  }
+  @media (min-width: 760px) {
+    .v58-workflow__header {
+      grid-template-columns: minmax(0, 1fr) minmax(17rem, 34rem);
+    }
+    .v58-workflow__steps {
+      gap: 1.25rem;
+      grid-template-columns: repeat(5, 1fr);
+    }
+    .v58-workflow__stats {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .v58-workflow__notes {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

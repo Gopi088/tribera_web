@@ -1,0 +1,5 @@
+The Q1 thin-answer sentence now reads exactly as expected: "Disconnect everything, without explaining containment, evidence preservation or the order of actions." — confirmed both in the copy file (line 86) and rendered in the screenshot, in the correct card position, no smearing or overlap, layout otherwise matches the rest of the coherent page.
+
+That closes the last confirmed blocker from `cross-site-second.txt`. Combined with the prior review's findings, all three flagged copy corruptions, the upload-zone bug, tag heading casing, and nav geometry are now verified fixed — no open items remain from that pass.
+
+This is still not a production sign-off: owner factual evidence (36-hour turnaround, weighting authority, headcounts, pricing, legal entity/address) remains unverified and requires owner confirmation, and repository-wide static-check/lint/type debt beyond these sampled pages was not assessed here.

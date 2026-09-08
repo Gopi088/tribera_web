@@ -1,0 +1,39 @@
+## Review Summary — 5 Routes (Corrected Follow-up)
+
+Read: correction-disposition.md, baseline home-1520.png, and all 15 screenshot/copy files listed for the 5 routes. No other routes were examined.
+
+### Route verdicts
+
+| Route | Visual | Copy | Verdict |
+|---|---|---|---|
+| `/functions/security/` | Pass — Fraunces headings, mono eyebrow labels, left-aligned section heads, centered final CTA, aligned card grid, black "Operators, not recruiters" band matches baseline pattern. Mobile stacks cleanly, no overflow. | One confirmed defect (below) | **Decisive pass, one remaining copy bug** |
+| `/industries/` | Pass — twelve cards evenly aligned (4 cols desktop → 1 col mobile), dual-sector comparison panel readable, numbered 01–04 "method" band consistent with security page's band. | Clean | **Pass** |
+| `/industries/ai-data/` | Pass — identical template to security/banking/consumer pages, weights sum to 100%, cards aligned 4-up desktop / 1-up mobile. | Clean | **Pass** |
+| `/industries/banking-financial-services/` | Pass — same template, four-item "cannot tell you" list (one more than other sector pages, intentional per that sector's copy), no layout break from the extra item. | Clean | **Pass** |
+| `/industries/consumer-digital-commerce/` | Pass — same template, three-item list, roles grid 4-up/2-row, all aligned. | Clean | **Pass** |
+
+All five follow the shared editorial system from the baseline (Fraunces display type, Inter Tight body, mono uppercase eyebrows, warm paper/charcoal/white sections, single red CTA button + underlined secondary link, left-aligned section heads, centered final "Tell us the role" CTA). No asymmetric cards, no font-swap layout shift, no dead-looking controls, no overflow at 1520 or 390 in any of the five captures.
+
+### Confirmed issues by severity
+
+**Medium — copy defect**
+- `/functions/security/` FAQ (collapsed content, capture confirms it's real rendered text, not a screenshot artifact): *"The candidate applies that **e6vel** privacy is part of the profile we protect."* — corrupted word, same class of defect the disposition says was corrected elsewhere on function pages. This instance was missed.
+
+**Low — copy roughness**
+- `/functions/security/`, "Removing controls, not only adding them" card: *"An actual removal with trade-offs named, and the burden for the business line explain that."* — the second clause doesn't parse (subject/verb mismatch). Worth a tighten, not a data problem.
+
+### Not bugs (per disposition, re-confirmed here)
+- FAQ accordions on all four sector pages and the security page render collapsed with a `▶` marker at both viewport widths — this is the intentional native-details collapsed state, not missing content; the copy captures include the expanded text.
+- Industry cards on `/industries/` show one bolded "weighted heaviest" line, not a full tag list — consistent with the taxonomy note in the disposition; not a completeness bug.
+- No upload controls or disabled-button states appear on any of these five routes, so that disposition item doesn't apply here.
+
+### Owner-evidence-required (not a design/code defect — flagging separately, not re-litigated as bugs)
+- "Three names in 36 hours" appears on all 5 routes — SLA claim.
+- "Interview three, hire one; if none of the three fit, we restart at no cost" (all 4 sector pages) — restart guarantee.
+- Named expert tenures ("Risk and compliance leads, 13–15 yrs," "ML engineering, 9 yrs," etc. — all 4 sector pages) — named/tenure claims.
+- Example weighting percentages (e.g., Controls & risk 8%→30% swing) — labelled "example," but the specific numbers still originate from a claimed methodology, not obviously fabricated for the mockup.
+
+None of these are visual or copy-quality problems; they're factual/contractual claims outside what a screenshot review can verify, consistent with the disposition's existing owner-evidence list.
+
+### Resolution caveat
+Screenshots were read at the provided 1520px and 390px captures plus the accompanying copy `.txt` files for exact text; I did not zoom into sub-pixel detail beyond what the image tool renders, so any hairline color/contrast issue smaller than that would not be visible to me.

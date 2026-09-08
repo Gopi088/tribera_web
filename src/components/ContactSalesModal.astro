@@ -2,6 +2,7 @@
 import { defaultHiringFormIntent, formIntentConfigs } from '~/config/formIntents';
 
 const hiringIntentConfigs = {
+  role: formIntentConfigs.role,
   demo: formIntentConfigs.demo,
   sales: formIntentConfigs.sales,
 };
@@ -9,227 +10,235 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
 ---
 
 <style>
-#contactSalesModal {
-  position: fixed;
-  inset: 0;
-  z-index: 1200;
-  display: block;
-  overflow-y: auto;
-  background: rgba(0, 0, 0, 0.55);
-  padding: clamp(18px, 4vw, 40px);
-}
-#contactSalesModal.hidden {
-  display: none;
-}
-.cs__wrap {
-  pointer-events: none;
-  min-height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.cs__card {
-  pointer-events: auto;
-  position: relative;
-  width: 100%;
-  max-width: 560px;
-  background: linear-gradient(158deg, #232320 0%, #1a1a18 42%, #141413 100%);
-  border: 1px solid #33332e;
-  border-radius: 18px;
-  padding: clamp(24px, 3vw, 40px);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 24px 56px rgba(0, 0, 0, 0.45);
-  overflow: hidden;
-}
-.cs__glint {
-  position: absolute;
-  top: 0;
-  left: 8%;
-  right: 8%;
-  height: 1px;
-  pointer-events: none;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-}
-.cs__close {
-  position: absolute;
-  right: 16px;
-  top: 16px;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--cline);
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--onc3);
-  cursor: pointer;
-  padding: 0;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
-}
-.cs__close:hover {
-  border-color: rgba(218, 0, 7, 0.45);
-  color: #fff;
-  background: rgba(218, 0, 7, 0.1);
-}
-.cs__close svg {
-  width: 18px;
-  height: 18px;
-}
-.cs__aud {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--red);
-  margin: 0 0 14px;
-}
-.cs__ttl {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: clamp(26px, 3.4vw, 34px);
-  line-height: 1.05;
-  letter-spacing: -0.035em;
-  color: #fff;
-  margin: 0;
-  padding-right: 44px;
-}
-.cs__bd {
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--onc2);
-  margin: 16px 0 0;
-  max-width: 40ch;
-}
-.cs__f {
-  position: relative;
-  margin-top: clamp(22px, 2.6vw, 30px);
-  display: grid;
-  gap: 14px;
-}
-.cs__row {
-  display: grid;
-  gap: 14px;
-}
-@media (min-width: 640px) {
-  .cs__row--2 {
-    grid-template-columns: 1fr 1fr;
+  #contactSalesModal {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: block;
+    overflow-y: auto;
+    background: rgba(18, 18, 18, 0.56);
+    padding: clamp(18px, 4vw, 40px);
   }
-}
-.cs__in {
-  width: 100%;
-  font-family: var(--ui);
-  font-size: 15px;
-  color: var(--onc);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--cline);
-  border-radius: 12px;
-  padding: 13px 15px;
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.3s var(--spring);
-}
-.cs__in::placeholder {
-  color: var(--onc3);
-}
-.cs__in:focus {
-  border-color: var(--onc2);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
-}
-.cs__in--ta {
-  resize: vertical;
-  min-height: 88px;
-}
-.cs__ft {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding-top: 2px;
-}
-@media (min-width: 640px) {
-  .cs__ft {
-    flex-direction: row;
+  #contactSalesModal.hidden {
+    display: none;
+  }
+  .cs__wrap {
+    pointer-events: none;
+    min-height: 100%;
+    display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
   }
-}
-.cs__note {
-  font-size: 12.5px;
-  line-height: 1.6;
-  color: var(--onc3);
-  margin: 0;
-}
-.cs__go {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  width: 100%;
-  border-radius: 999px;
-  border: 0;
-  background: var(--onc);
-  color: var(--char);
-  font-family: var(--ui);
-  font-weight: 600;
-  font-size: 15px;
-  padding: 15px 28px;
-  cursor: pointer;
-  line-height: 1;
-  white-space: nowrap;
-  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.14);
-  transition: transform 0.18s var(--ease), box-shadow 0.25s, background 0.2s, color 0.2s;
-}
-.cs__go:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-}
-@media (min-width: 640px) {
+  .cs__card {
+    pointer-events: auto;
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    background: var(--v58-white);
+    border: 1px solid var(--v58-line-strong);
+    border-radius: 12px;
+    padding: clamp(24px, 3vw, 40px);
+    box-shadow: 0 24px 56px rgba(0, 0, 0, 0.28);
+    overflow: hidden;
+  }
+  .cs__glint {
+    position: absolute;
+    top: 0;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgba(218, 0, 7, 0.42), transparent);
+  }
+  .cs__close {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--v58-line-strong);
+    background: var(--v58-white);
+    color: var(--v58-muted);
+    cursor: pointer;
+    padding: 0;
+    transition:
+      border-color 0.2s,
+      color 0.2s,
+      background 0.2s;
+  }
+  .cs__close:hover {
+    border-color: var(--v58-red);
+    color: var(--v58-red);
+    background: var(--v58-paper);
+  }
+  .cs__close svg {
+    width: 18px;
+    height: 18px;
+  }
+  .cs__aud {
+    font-family: var(--v58-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--v58-red);
+    margin: 0 0 14px;
+  }
+  .cs__ttl {
+    font-family: var(--v58-display);
+    font-weight: 500;
+    font-size: clamp(26px, 3.4vw, 34px);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: var(--v58-ink);
+    margin: 0;
+    padding-right: 44px;
+  }
+  .cs__bd {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--v58-muted);
+    margin: 16px 0 0;
+    max-width: 40ch;
+  }
+  .cs__f {
+    position: relative;
+    margin-top: clamp(22px, 2.6vw, 30px);
+    display: grid;
+    gap: 14px;
+  }
+  .cs__row {
+    display: grid;
+    gap: 14px;
+  }
+  @media (min-width: 640px) {
+    .cs__row--2 {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .cs__in {
+    width: 100%;
+    font-family: var(--v58-ui);
+    font-size: 15px;
+    color: var(--v58-ink);
+    background: var(--v58-paper);
+    border: 1px solid var(--v58-line-strong);
+    border-radius: 8px;
+    padding: 13px 15px;
+    outline: none;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s,
+      transform 0.3s var(--spring);
+  }
+  .cs__in::placeholder {
+    color: var(--v58-muted);
+  }
+  .cs__in:focus {
+    border-color: var(--v58-red);
+    box-shadow: 0 0 0 3px rgba(218, 0, 7, 0.12);
+  }
+  .cs__in--ta {
+    resize: vertical;
+    min-height: 88px;
+  }
+  .cs__ft {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-top: 2px;
+  }
+  @media (min-width: 640px) {
+    .cs__ft {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  .cs__note {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--v58-muted);
+    margin: 0;
+  }
   .cs__go {
-    width: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    border-radius: 7px;
+    border: 0;
+    background: var(--v58-red);
+    color: var(--v58-white);
+    font-family: var(--v58-ui);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 15px 28px;
+    cursor: pointer;
+    line-height: 1;
+    white-space: nowrap;
+    box-shadow: none;
+    transition:
+      transform 0.18s var(--ease),
+      background 0.2s;
   }
-}
-.cs__err {
-  font-size: 13px;
-  line-height: 1.6;
-  color: #e0484e;
-  margin: 12px 0 0;
-}
-.cs__ok {
-  padding-top: 8px;
-  text-align: center;
-}
-.cs__ok.on {
-  display: block;
-}
-.cs__ok__i {
-  margin: 0 auto 16px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(218, 0, 7, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.cs__ok__i svg {
-  width: 24px;
-  height: 24px;
-  color: var(--red);
-}
-.cs__ok h4 {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 20px;
-  letter-spacing: -0.02em;
-  color: #fff;
-  margin: 0;
-}
-.cs__ok p {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--onc2);
-  margin: 8px 0 0;
-}
+  .cs__go:hover {
+    transform: translateY(-1px);
+    background: #bd0006;
+  }
+  @media (min-width: 640px) {
+    .cs__go {
+      width: auto;
+    }
+  }
+  .cs__err {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #e0484e;
+    margin: 12px 0 0;
+  }
+  .cs__ok {
+    padding-top: 8px;
+    text-align: center;
+  }
+  .cs__ok.on {
+    display: block;
+  }
+  .cs__ok__i {
+    margin: 0 auto 16px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(218, 0, 7, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cs__ok__i svg {
+    width: 24px;
+    height: 24px;
+    color: var(--red);
+  }
+  .cs__ok h4 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 0;
+  }
+  .cs__ok p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--onc2);
+    margin: 8px 0 0;
+  }
 </style>
 
 <div id="contactSalesModal" class="hidden" hidden>
@@ -249,12 +258,7 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
         <p data-form-body class="cs__bd">{defaultIntentConfig.body}</p>
       </div>
 
-      <form
-        id="contactSalesForm"
-        action="/.netlify/functions/site-inquiry"
-        method="POST"
-        class="cs__f"
-      >
+      <form id="contactSalesForm" action="/.netlify/functions/site-inquiry" method="POST" class="cs__f">
         <input type="hidden" name="form_type" value={defaultIntentConfig.formType} data-form-type />
         <input type="hidden" name="form_intent" value={defaultHiringFormIntent} data-form-intent-input />
         <input type="hidden" name="form_source" value="" data-form-source-input />
@@ -263,42 +267,17 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
         <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
 
         <div class="cs__row cs__row--2">
-          <input
-            type="text"
-            name="name"
-            placeholder="Full name"
-            autocomplete="name"
-            required
-            class="cs__in"
-          />
+          <input type="text" name="name" placeholder="Full name" autocomplete="name" required class="cs__in" />
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Work email"
-            autocomplete="email"
-            required
-            class="cs__in"
-          />
+          <input type="email" name="email" placeholder="Work email" autocomplete="email" required class="cs__in" />
         </div>
 
-        <input
-          type="text"
-          name="company"
-          placeholder="Company name"
-          autocomplete="organization"
-          class="cs__in"
-        />
+        <input type="text" name="company" placeholder="Company name" autocomplete="organization" class="cs__in" />
 
-        <input
-          type="tel"
-          name="phone"
-          placeholder="Phone number"
-          autocomplete="tel"
-          class="cs__in"
-        />
+        <input type="tel" name="phone" placeholder="Phone number" autocomplete="tel" class="cs__in" />
 
-        <textarea rows="3" name="message" autocomplete="off" placeholder="How can we help?" class="cs__in cs__in--ta"></textarea>
+        <textarea rows="3" name="message" autocomplete="off" placeholder="How can we help?" class="cs__in cs__in--ta"
+        ></textarea>
 
         <div class="cs__ft">
           <p data-form-response-note class="cs__note">{defaultIntentConfig.responseNote}</p>
@@ -499,7 +478,7 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
               : 'Something went wrong while submitting your request. Please try again or email sales@tribera.ai.';
         }
         errorMsg?.classList.remove('hidden');
-          errorMsg?.removeAttribute('hidden');
+        errorMsg?.removeAttribute('hidden');
       } finally {
         if (submitBtn) {
           submitBtn.textContent = originalText;
@@ -511,4 +490,5 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
 
   document.addEventListener('astro:page-load', initContactSalesModal);
   document.addEventListener('DOMContentLoaded', initContactSalesModal);
+  initContactSalesModal();
 </script>

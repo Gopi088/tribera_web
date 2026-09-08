@@ -1,0 +1,25 @@
+## Tag Route Review — Corrected Follow-Up
+
+All five routes share the same template (header, "FROM THE JOURNAL" eyebrow, Fraunces H1, filter pill row, warm-paper article grid, black footer), consistent with `home-1520.png` baseline. Reviewed at 1520 and 390, cross-checked against copy captures.
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/tag/decision-infrastructure/` | **Pass.** 2-card grid renders cleanly, images bleed full-width, active pill correctly bolded black, no overflow at either width. | **Pass.** Title Case heading, teasers match article copy, dates/read-times present. |
+| `/tag/empathy/` | **Pass** on layout/cards, but heading casing is a **remaining actionable issue**: "empathy" renders lowercase, breaking editorial Title Case convention. | **Pass** on card content; same lowercase-heading issue applies to on-page H1 copy. |
+| `/tag/engineering/` | Same as empathy — layout is a **pass**, heading casing is the **remaining actionable issue** ("engineering" lowercase). | **Pass** on card teaser/date content; heading casing issue as above. |
+| `/tag/hiring-insights/` | **Pass.** Correct Title Case heading, single-card layout unbroken, mobile filter pills wrap cleanly. | **Pass.** Teaser and research-attribution line intact (McKinsey/Deloitte/PwC — owner-evidence item, not a defect). |
+| `/tag/hiring-metrics/` | **Pass.** Identical clean rendering to hiring-insights/decision-infrastructure. | **Pass.** Teaser matches the canonical article copy verified on decision-infrastructure. |
+
+### Findings by severity
+
+**Medium — confirmed, actionable**
+- Single-word tag labels ("empathy," "engineering") render lowercase in the H1 and in their filter pill, while multi-word tags ("Decision Infrastructure," "Hiring Insights," "Hiring Metrics") render Title Case. This is inconsistent with the Fraunces editorial heading convention used everywhere else on the site (see baseline). Likely the tag-label formatting isn't title-casing single-token slugs. Confirmed visually and in copy captures across both breakpoints — not speculative.
+
+**Low / non-issues (per disposition, not to be re-raised as bugs)**
+- Card counts of 1 article on empathy, engineering, hiring-insights, hiring-metrics vs. 2 on decision-infrastructure are correct data-driven states, not a layout defect.
+- Filter pill sets on each tag page do not list every tag a card is filed under — expected per the taxonomy note in the disposition, not a bug.
+
+**Owner-evidence required (not a design/code blocker)**
+- The hiring-insights article teaser cites "research from McKinsey, Deloitte, and PwC" — sourcing/permission for these named-research claims is unverified by this review, consistent with the disposition's owner-evidence list.
+
+No unreadable text, overflow, broken cards, or dead-looking controls found on any of the five routes at either breakpoint. Only the tag-casing inconsistency needs a fix before calling this tranche fully resolved.

@@ -1,0 +1,35 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+# Read-Only Review: Blog Tag Routes (5 routes)
+
+**Scope note:** Only the 5 routes listed below were reviewed, using the provided 1520px/390px screenshots and copy files, compared against `/tmp/tribera-site-style/baseline/home-1520.png`. No other routes were inspected. Visual assessment is limited to what's legible in static screenshots — no interaction/hover states, no live DOM/console access, so I can't confirm *why* the filter pills are invisible, only that they don't render.
+
+## Route-by-route verdicts
+
+| Route | Visual verdict | Copy verdict |
+|---|---|---|
+| `/tag/human-first-hiring/` | **Pass, with defect.** Layout matches home baseline (Fraunces hero heading, mono "From the journal" eyebrow, warm-paper card on off-white section, dark footer with mono column labels). Card, image, and typography are consistent with the design system on both 1520 and 390. | **Fail.** Category filter pills ("All / Candidate Experience / Technical Hiring / AI & Assessment / Hiring Philosophy / Hiring Strategy / talent-acquisition / decision-infrastructure") are present in the extracted copy but **completely absent from both screenshots** — dead/invisible control. |
+| `/tag/job-search-tips/` | **Pass.** Same template, single post card, red/black editorial illustration, consistent spacing on desktop and mobile. | **Same filter-pill defect** as above. Additionally, the post body claims "Backed by research from McKinsey, Deloitte, and PwC" — a specific, high-profile citation claim with no visible source link/footnote in the screenshot. Flagging as a claim needing owner evidence. |
+| `/tag/platform-design/` | **Pass on layout, fails on relevance.** Template renders cleanly, but the single post shown ("Designing for Trust: Privacy, Transparency, and Professional Respect") is tagged only "Candidate Experience" / "Privacy By Design" — **not** "Platform Design." This tag page is showing unrelated content. | Same invisible filter-pill defect. Copy itself ("Trust is built into Tribera's architecture...") is fine on its own merits. |
+| `/tag/privacy-by-design/` | **Pass on layout.** Identical rendering to `/tag/platform-design/` — pixel-for-pixel same post, image, date, tags. | Same filter-pill defect. This is the one tag page where the shown post's actual tag ("Privacy By Design") matches the route, so this is likely the "correct" one and the other two are duplicating it in error. |
+| `/tag/professional-respect/` | **Fail — wrong content.** Same identical post/image/card as the two routes above. Nothing on the page is tagged "Professional Respect" (its pills read "Candidate Experience" / "Privacy By Design"). | Same filter-pill defect. Heading "professional-respect" is a raw slug, not human-readable copy (see below). |
+
+## Findings by severity
+
+**Blocker (functional/content bugs)**
+1. **Broken tag filtering / duplicate content:** `/tag/platform-design/`, `/tag/privacy-by-design/`, and `/tag/professional-respect/` all render the exact same single post, and only one of the three tag labels ("Privacy By Design") actually matches it. This looks like the tag→post query is falling back to an unfiltered/incorrect result set for at least two of the three slugs. Needs an engineering fix, not a copy fix.
+2. **Invisible/dead filter control:** All five routes' copy dumps list a full row of category filter pills (All, Candidate Experience, Technical Hiring, AI & Assessment, Hiring Philosophy, Hiring Strategy, talent-acquisition, decision-infrastructure) that never appear in any screenshot at 1520px or 390px. Either the markup is present but styled invisible (e.g., white-on-white, zero height, or off-canvas), or it's rendering behind/above the hero and getting clipped. This is a dead-looking control at best and a rendering bug at worst — worth a DOM/CSS check.
+
+**Major (content/trust)**
+3. **Unsourced statistic-style claim:** job-search-tips post cites "research from McKinsey, Deloitte, and PwC" with no visible link, footnote, or attribution in the rendered card/excerpt. Flag for owner: confirm this citation is substantiated (linked source or footnote) elsewhere in the full article; as shown on the tag-listing page it reads as an unverified name-drop.
+4. **Raw-slug headings:** All five pages use the literal URL slug as the H1 ("human-first-hiring", "job-search-tips", "platform-design", "privacy-by-design", "professional-respect") rather than a formatted, editorial title (e.g., "Human-First Hiring"). This breaks the Fraunces-editorial voice used elsewhere on the site (compare to the polished, sentence-case headlines in the home baseline) and reads as unfinished/placeholder copy.
+
+**Minor**
+5. **Generic, non-differentiated subhead:** every tag page shares the identical description "Notes on hiring, assessment and the candidate experience." — no tag-specific framing, so five different tag pages feel like one templated page with a different word swapped in the title. Low cost to make each subhead reflect its actual tag topic.
+6. Single-post pages: each tag currently has exactly one matching article, so the page reads sparse (a lot of empty white space below on desktop 1520, particularly on the home page cushion). Not broken, but worth flagging to the owner as content-coverage thin — more posts per tag, or a "no more posts yet" treatment, would look more intentional than a mostly-blank page.
+
+## What's working well
+- Header, hero band, warm-paper article-card section, and dark footer are all pixel-consistent with the home baseline across all five routes and both breakpoints — no layout regressions, no overflow, no broken images.
+- Mobile (390px) reflow is clean: image stacks above metadata, tag pills wrap properly, footer columns stack in a readable order.
+- CTA/nav bar (mono "Coverage / Services / Intelligence" etc., red "Start with one role" button) renders correctly and consistently — no dead-looking primary CTAs found on these five routes.
+
+No files were edited as part of this review.

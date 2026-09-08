@@ -1,0 +1,8 @@
+[
+  {
+    "name": "postfix-01",
+    "routes": ["/", "/blog/", "/industries/", "/industries/banking-financial-services/", "/candidates/"],
+    "completed": true,
+    "exitCode": 0
+  }
+]
