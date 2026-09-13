@@ -12,9 +12,9 @@ try {
     assert.equal(await grid.locator('[role=listitem]').count(), 4);
     assert.equal(await page.locator('.v58-cover').count(), 0);
     assert.equal(await page.locator('#cover').count(), 1);
-    const roles = await grid.locator('.v58-coverage__roles').allTextContents();
+    const roles = await grid.locator('.v58-coverage__roles li').allTextContents();
     assert.deepEqual(
-      roles.flatMap((text) => text.split('\u00a0· ')).sort(),
+      roles.map((text) => text.trim()).sort(),
       [
         'Finance & accounting systems',
         'Data engineering & analytics',

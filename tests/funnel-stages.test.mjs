@@ -7,8 +7,8 @@ const labels = [
   'Sourced & screened',
   'A first conversation',
   'Interviewed by an expert',
-  'Sent to their team',
-  'They hired two',
+  'Sent to the hiring team',
+  'The hiring team chose two',
 ];
 
 try {
@@ -30,7 +30,11 @@ try {
       return position < 86 ? 1 : position < 112 ? 2 : position < 121 ? 3 : position < 124 ? 4 : 5;
     });
     assert.notDeepEqual(tiers, oldDiagonalPattern, 'Squares no longer follow the old diagonal pattern');
-    assert.match(await page.locator('#funnel .v58-lead').textContent(), /40 HR interviews.*14 candidates technically/);
+    assert.match(
+      await page.locator('#funnel .v58-lead').textContent(),
+      /126 possible candidates.*hiring team met five/
+    );
+    assert.match(await steps.first().textContent(), /126 CVs.*Forty candidates progressed to HR interviews/);
     assert.match(await steps.nth(1).textContent(), /An HR interview.*Fourteen progressed to an expert/);
     assert.match(await steps.nth(2).textContent(), /Forty-five minutes on the technical work.*Five cleared the bar/);
     assert.match(await steps.nth(3).textContent(), /Five qualified candidates/);

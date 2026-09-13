@@ -27,13 +27,12 @@ const coverageGroups = [
   {
     name: 'Operations',
     roles: ['Supply chain & planning', 'Procurement & sourcing', 'HR operations', 'Manufacturing'],
-    focus:
-      'Planning and cost in supply chain and manufacturing. We confirm the expertise needed for procurement and HR operations on the first call.',
+    focus: 'Planning and cost in supply chain and manufacturing.',
   },
   {
     name: 'Product & leadership',
     roles: ['Product & design', 'Technology leadership'],
-    focus: 'Product judgment and design craft.',
+    focus: 'Product judgment, design craft and technology leadership.',
   },
 ];
 const rubricDimensions: Array<[string, string, string, number, number]> = [
@@ -48,11 +47,16 @@ const rubricDimensions: Array<[string, string, string, number, number]> = [
   ['I', 'Authenticity', 'Authenticity', 4, 6],
 ];
 const funnelStages = [
-  ['126', 'Sourced & screened', 'Every CV reviewed. Forty worth a conversation.', 'tribera'],
+  [
+    '126',
+    'Sourced & screened',
+    'We reviewed 126 CVs for this role. Forty candidates progressed to HR interviews.',
+    'tribera',
+  ],
   ['40', 'A first conversation', 'An HR interview. Fourteen progressed to an expert.', 'tribera'],
   ['14', 'Interviewed by an expert', 'Forty-five minutes on the technical work. Five cleared the bar.', 'tribera'],
-  ['5', 'Sent to their team', 'Five qualified candidates. The first names their team saw.', 'their team'],
-  ['2', 'They hired two', 'Five interviews. Two hires.', 'their team'],
+  ['5', 'Sent to the hiring team', 'Five qualified candidates. The first names the hiring team saw.', 'hiring team'],
+  ['2', 'The hiring team chose two', 'Five interviews. Two hires.', 'hiring team'],
 ];
 const funnelTiers = Array.from({ length: 126 }, (_, index): number => {
   return index < 86 ? 1 : index < 112 ? 2 : index < 121 ? 3 : index < 124 ? 4 : 5;
@@ -68,7 +72,7 @@ for (let index = funnelTiers.length - 1; index > 0; index -= 1) {
 }
 const funnelColors = ['#3a3a37', '#585852', '#8a8a83', '#d7d7d1', '#DA0007'];
 const heroFieldSquares = Array.from({ length: 306 }, (_, index) => index);
-const heroFieldAccents = new Set([3, 32, 275, 302]);
+const heroFieldAccents = new Set([3, 32, 275]);
 const heroClients = [
   'Mizuho',
   'Capco',
@@ -124,22 +128,22 @@ const testimonials = [
           >
         </h1>
         <p class="v58-lead">
-          You know the role - open too long, the resumes you can't get through. We take it off you and send three worth
-          the interview - found by us, or from your own pipeline. Your team focuses on the interviews.
+          Tell us the role. We find candidates or interview the ones you already have. You get three who meet your
+          requirements, with evidence behind every score.
         </p>
         <div class="v58-actions">
           <a href="/contact" data-form-intent="role" data-form-source="v58-hero" class="v58-primary"
             >Start with one role</a
-          ><a href="#proof" class="v58-link">Move the bar yourself <span aria-hidden="true">&rsaquo;</span></a>
+          ><a href="#proof" class="v58-link">See it live <span aria-hidden="true">&rsaquo;</span></a>
         </div>
         <p class="v58-micro"><i></i> First shortlist in <b data-v58-count="36">36</b> hours</p>
+        <a class="v58-hero-c__cue" href="#proof"
+          ><span>It&rsquo;s live &mdash; see it yourself</span><svg viewBox="0 0 18 22" aria-hidden="true"
+            ><path d="M9,2 L9,15"></path><path d="M3.5,10 L9,16.5 L14.5,10"></path></svg
+          ></a
+        >
       </div>
     </div>
-    <a class="v58-hero-c__cue" href="#proof"
-      ><span>It&rsquo;s live &mdash; move the bar</span><svg viewBox="0 0 18 22" aria-hidden="true"
-        ><path d="M9,2 L9,15"></path><path d="M3.5,10 L9,16.5 L14.5,10"></path></svg
-      ></a
-    >
   </header>
 
   <div class="v58-logo-strip">
@@ -159,6 +163,36 @@ const testimonials = [
     </div>
   </div>
 
+  <section class="v58-intro" id="in-three-steps" aria-labelledby="v58-intro-title">
+    <div class="v58-wrap">
+      <h2 class="v58-kicker" id="v58-intro-title"><span>\</span> In three steps</h2>
+      <div class="v58-intro__grid">
+        <div class="v58-intro__step">
+          <span class="v58-intro__number" aria-hidden="true">1</span>
+          <h3>Tell us the role</h3>
+          <p>
+            One call with the hiring manager. They set <b
+              >the bar &mdash; what &ldquo;good&rdquo; looks like for this role.</b
+            >
+          </p>
+        </div>
+        <div class="v58-intro__step">
+          <span class="v58-intro__number" aria-hidden="true">2</span>
+          <h3>We do the work</h3>
+          <p>
+            We find the candidates &mdash; <b>or interview the ones you already have</b> &mdash; and score every one against
+            that bar.
+          </p>
+        </div>
+        <div class="v58-intro__step">
+          <span class="v58-intro__number" aria-hidden="true">3</span>
+          <h3>You choose</h3>
+          <p>Three worth the interview reach you, each with the proof. You interview three, not thirty.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="v58-section v58-thesis" id="what">
     <div class="v58-wrap v58-two">
       <div>
@@ -168,13 +202,15 @@ const testimonials = [
           A resume tells you who applied. Finding out who can do the job takes interviews, round after round. We do that
           work first, screening and interviewing against the bar your hiring manager sets. You meet three candidates,
           each with evidence behind every score.
-        </p><p class="v58-thesis__claim"><span>Three worth meeting.</span> <span>The proof to choose.</span></p>
+        </p><p class="v58-thesis__claim">Three to interview. Evidence to decide.</p>
       </div><figure class="v58-barcard">
         <span>One bar · every candidate</span><svg
           viewBox="0 0 530 190"
           role="img"
           aria-label="One bar. Eight candidates measured the same way. Three clear it."
           ><path
+            class="v58-bar-line"
+            pathLength="1"
             d="M28,96 Q150,92 275,95 T502,93.5"
             fill="none"
             stroke="currentColor"
@@ -192,9 +228,18 @@ const testimonials = [
               y1="95"
               x2="468"
               y2="132"></line></g
-          ><g fill="none" stroke="#DA0007" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"
-            ><path d="M167,27 Q171,32 175,36 Q184,23 192,11"></path><path d="M283,28 Q287,32 291,36 Q300,22 308,12"
-            ></path><path d="M399,26 Q404,33 407,36 Q416,24 423,11"></path></g
+          ><g
+            class="v58-bar-checks"
+            fill="none"
+            stroke="#DA0007"
+            stroke-width="2.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><path pathLength="1" d="M167,27 Q171,32 175,36 Q184,23 192,11"></path><path
+              pathLength="1"
+              d="M283,28 Q287,32 291,36 Q300,22 308,12"></path><path
+              pathLength="1"
+              d="M399,26 Q404,33 407,36 Q416,24 423,11"></path></g
           ><g
             >{
               [
@@ -206,10 +251,21 @@ const testimonials = [
                 [344, 132, '#CFCEC9'],
                 [401, 43, '#DA0007'],
                 [460, 132, '#CFCEC9'],
-              ].map(([x, y, color]) => <rect x={x} y={y} width="16" height="16" rx="4" fill={String(color)} />)
+              ].map(([x, y, color], index) => (
+                <rect
+                  class="v58-bar-square"
+                  style={`--square-index:${index}`}
+                  x={x}
+                  y={y}
+                  width="16"
+                  height="16"
+                  rx="4"
+                  fill={String(color)}
+                />
+              ))
             }</g
           ></svg
-        ><figcaption><span><b>Three clear it.</b> Five don't.</span> <span>Same bar for all eight.</span></figcaption>
+        ><figcaption><b>Three clear it.</b> Five don't.</figcaption>
       </figure>
     </div>
   </section>
@@ -220,15 +276,15 @@ const testimonials = [
         <div><p class="v58-kicker"><span>\</span> How it works</p><h2>Move the bar. Watch the verdict move.</h2></div>
         <div class="v58-proof-intro">
           <p class="v58-lead">
-            An anonymised AI-security candidate, scored on nine criteria. The interview evidence behind those scores
-            never changes.
+            A strong candidate for one role may not fit another. This AI-security example shows how your priorities
+            change the shortlist, not the candidate's interview scores.
           </p>
           <p class="v58-lead v58-proof-intro__action">
-            What changes is your brief. <span class="v58-proof-emphasis"
-              >Set your priorities<svg viewBox="0 0 240 8" preserveAspectRatio="none" aria-hidden="true"
+            Choose a brief or <span class="v58-proof-emphasis"
+              >adjust the sliders<svg viewBox="0 0 240 8" preserveAspectRatio="none" aria-hidden="true"
                 ><path d="M2 5 Q48 2 100 4 T181 3 Q219 2 238 4"></path></svg
               ></span
-            > and the verdict follows.
+            > to see whether this candidate meets your requirements.
           </p>
         </div>
       </div>
@@ -264,8 +320,8 @@ const testimonials = [
             }
           </div>
           <p class="v58-verdict__note" data-note>
-            As briefed: building production detection systems carries the weight. AI security controls are the evidence
-            to probe further.
+            This brief favours the candidate's strengths in building systems and detecting threats. LLM security and
+            data access scored lower: ask about those in your interview.
           </p>
         </article>
         <div class="v58-controls">
@@ -347,9 +403,9 @@ const testimonials = [
         </div>
       </div>
       <div class="v58-proof__closure">
-        <p class="v58-lab-foot">Tell us what matters most. <em>This is what we recalibrate.</em></p><div
-          class="v58-proof-checks"
-        >
+        <p class="v58-lab-foot">
+          Tell us what matters most &mdash; <em>and we adjust the assessment to match.</em>
+        </p><div class="v58-proof-checks">
           <div><h3>Every score points to the exact line behind it.</h3><p>Evidence you can review.</p></div><div>
             <h3>We name what we didn't test.</h3><p>So your own round knows exactly where to look.</p>
           </div><div>
@@ -365,8 +421,12 @@ const testimonials = [
   <section class="v58-paper v58-experts" id="experts">
     <div class="v58-wrap">
       <p class="v58-kicker"><span>\</span> The people who make the call</p><h2>
-        Senior experts who've done the job, and one bar. <span class="v58-hd-word"
-          >Yours.<svg class="v58-hd-underline" viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true"
+        Experts who've done the job.<br />Interviewing to <span class="v58-hd-word"
+          >your requirements.<svg
+            class="v58-hd-underline"
+            viewBox="0 0 120 12"
+            preserveAspectRatio="none"
+            aria-hidden="true"
             ><path d="M2,8 C26,3.5 54,9.5 84,6 C104,3.6 116,8 118,5" pathLength="1" stroke-width="2.6"></path></svg
           ></span
         >
@@ -374,13 +434,17 @@ const testimonials = [
         An expert matched to your role probes the candidate's answers for practical depth. Questions are tailored to
         your brief and the candidate's experience.
       </p><div class="v58-experts__coverage" id="cover">
-        <p class="v58-coverage__label">Functions we interview for</p>
+        <p class="v58-coverage__label">Roles we cover, grouped by specialism</p>
         <div class="v58-coverage" role="list" aria-label="Expertise available">
           {
             coverageGroups.map(({ name, roles, focus }) => (
               <div role="listitem">
                 <h3>{name}</h3>
-                <p class="v58-coverage__roles">{roles.join('\u00a0· ')}</p>
+                <ul class="v58-coverage__roles">
+                  {roles.map((role) => (
+                    <li>{role}</li>
+                  ))}
+                </ul>
                 <details class="v58-coverage__detail">
                   <summary>Interview expertise</summary>
                   <p>{focus}</p>
@@ -419,16 +483,15 @@ const testimonials = [
       <p class="v58-kicker"><span>\</span> One role, start to finish</p><h2>Nobody shows you the funnel.</h2><p
         class="v58-lead"
       >
-        Our offer starts with a shortlist of three. This backend case involved five candidates sent to the team and two
-        hires. The role in Bengaluru had been open for nine months. We reopened the exact same brief. <strong
-          >126 profiles came back.</strong
-        > We screened every CV, held 40 HR interviews and interviewed 14 candidates technically. <strong
-          >Five passed the technical interview and met their team.</strong
-        >
+        A backend role in Bengaluru, open nine months without a hire. We took the same requirement back to market.
+        <strong>126 possible candidates. The hiring team met five.</strong>
+      </p><p class="v58-funnel-context">
+        Every square below is one candidate. This case resulted in five introductions and two hires; our offer starts
+        with a shortlist of three.
       </p><div class="v58-funnel-layout" data-v58-funnel>
         <div class="v58-funnel-field">
           <div class="v58-funnel-field__head">
-            <span data-funnel-label>Sourced &amp; screened</span><span>126 total profiles</span>
+            <span data-funnel-label>Sourced &amp; screened</span><span>From 126 candidates sourced for this role</span>
           </div><b data-funnel-number>126</b><div class="v58-square-grid" aria-hidden="true">
             {
               funnelTiers.map((tier, index) => (
@@ -476,8 +539,8 @@ const testimonials = [
           }
         </div>
       </div><div class="v58-funnel-close">
-        <p>Five qualified candidates.<br />Their team <em>chose two.</em></p><span
-          >An estimated <b>32 hours</b> back for their team across screening, interviews and coordination.</span
+        <p>Five qualified candidates.<br />The hiring team <em>chose two.</em></p><span
+          >An estimated <b>32 hours</b> back for the hiring team across screening, interviews and coordination.</span
         >
       </div><div class="v58-funnel-case">
         <span>Another role, the same approach</span><div>
@@ -492,7 +555,7 @@ const testimonials = [
   <section class="v58-section v58-work" id="work">
     <div class="v58-wrap">
       <div class="v58-work__head">
-        <p class="v58-kicker"><span>\</span> The work</p><h2>You set the bar. We do the work to it.</h2><p
+        <p class="v58-kicker"><span>\</span> The work</p><h2>You set the bar.<br />We do the work to it.</h2><p
           class="v58-lead"
         >
           One call sets the standard. Then we handle the finding, the checking and the interview - all to that one bar.
@@ -876,8 +939,8 @@ const testimonials = [
     gap: 6px;
     letter-spacing: 0.16em;
     line-height: 1.5;
-    margin: 0 auto;
-    padding-top: clamp(10px, 2vh, 22px);
+    margin: 28px auto 0;
+    width: fit-content;
     position: relative;
     text-decoration: none;
     text-transform: uppercase;
@@ -895,6 +958,54 @@ const testimonials = [
   }
   .v58-hero-c__cue:hover {
     color: var(--v58-red);
+  }
+  .v58-intro {
+    background: var(--v58-white);
+    padding-block: clamp(46px, 5.2vw, 78px);
+  }
+  .v58-home .v58-intro h2 {
+    font: 500 11px/1.5 var(--v58-mono);
+    letter-spacing: 0.2em;
+    color: var(--v58-muted);
+    text-transform: uppercase;
+  }
+  .v58-intro__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(26px, 3vw, 52px);
+    margin-top: clamp(26px, 3vw, 42px);
+  }
+  .v58-intro__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--v58-ink);
+    color: var(--v58-white);
+    font: 700 14px/1 var(--v58-mono);
+    margin-bottom: 15px;
+  }
+  .v58-intro__step h3 {
+    font: 600 clamp(20px, 1.9vw, 24px)/1.2 var(--v58-display);
+    letter-spacing: -0.01em;
+    margin: 0 0 9px;
+  }
+  .v58-intro__step p {
+    font: 400 15.5px/1.55 var(--v58-ui);
+    color: var(--v58-muted);
+    margin: 0;
+  }
+  .v58-intro__step b {
+    color: var(--v58-ink);
+    font-weight: 600;
+  }
+  @media (max-width: 760px) {
+    .v58-intro__grid {
+      grid-template-columns: 1fr;
+      gap: 26px;
+    }
   }
   .v58-logo-strip {
     background: var(--v58-paper);
@@ -1265,7 +1376,7 @@ const testimonials = [
     font-weight: 500;
     line-height: 1.22;
     margin: 2.4rem 0 0;
-    max-width: 22ch;
+    max-width: 32ch;
   }
   .v58-thesis__claim .v58-hd-word {
     color: var(--v58-red);
@@ -1307,6 +1418,41 @@ const testimonials = [
   .v58-barcard figcaption b {
     color: var(--v58-ink);
     font-weight: 500;
+  }
+  /* Visible by default; only an active observer prepares the draw-in state. */
+  @media (prefers-reduced-motion: no-preference) {
+    .v58-barcard.is-animated :is(.v58-bar-line, .v58-bar-checks path) {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+    }
+    .v58-barcard.is-animated .v58-bar-square {
+      opacity: 0;
+      transform: scale(0.4);
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+    .v58-barcard.drawn .v58-bar-line {
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset 0.6s ease;
+    }
+    .v58-barcard.drawn .v58-bar-square {
+      opacity: 1;
+      transform: scale(1);
+      transition:
+        opacity 0.35s ease,
+        transform 0.5s cubic-bezier(0.34, 1.5, 0.5, 1);
+      transition-delay: calc(0.46s + var(--square-index) * 0.06s);
+    }
+    .v58-barcard.drawn .v58-bar-checks path {
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset 0.5s ease 1.05s;
+    }
+    .v58-barcard.drawn .v58-bar-checks path:nth-child(2) {
+      transition-delay: 1.22s;
+    }
+    .v58-barcard.drawn .v58-bar-checks path:nth-child(3) {
+      transition-delay: 1.39s;
+    }
   }
   .v58-funnel-section .v58-lead {
     max-width: 56ch;
@@ -1560,6 +1706,18 @@ const testimonials = [
     color: var(--v58-muted);
     font: 400 17px/1.65 var(--v58-ui);
     margin: 0;
+    padding-left: 1.1em;
+    list-style: disc;
+  }
+  .v58-coverage__roles li::marker {
+    color: var(--v58-red);
+  }
+  .v58-funnel-context {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 72ch;
+    margin: 16px 0 0;
   }
   .v58-coverage__detail {
     color: var(--v58-muted);
@@ -2502,10 +2660,7 @@ const testimonials = [
   @media (max-width: 899px) {
     .v58-hero-c {
       min-height: 0;
-      padding-block: 64px 28px;
-    }
-    .v58-hero-c__cue {
-      margin-top: 40px;
+      padding-block: 64px;
     }
   }
   .v58-benefits {
@@ -2601,6 +2756,23 @@ const testimonials = [
 </style>
 
 <script>
+  document.querySelectorAll<HTMLElement>('.v58-barcard').forEach((card) => {
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      card.classList.add('drawn');
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        card.classList.add('drawn');
+        observer.disconnect();
+      },
+      { threshold: 0.35 }
+    );
+    card.classList.add('is-animated');
+    observer.observe(card);
+  });
+
   document.querySelectorAll<HTMLElement>('[data-v58-count]').forEach((counter) => {
     const target = Number(counter.dataset.v58Count);
     const finish = () => {
@@ -2729,12 +2901,12 @@ const testimonials = [
     };
     const notes: Record<string, string> = {
       brief:
-        'As briefed: building production detection systems carries the weight. AI security controls are the evidence to probe further.',
+        "This brief favours the candidate's strengths in building systems and detecting threats. LLM security and data access scored lower: ask about those in your interview.",
       detection:
-        'Detection becomes decisive. The production threat-detection work carries the verdict; the AI-security detail remains the next-round probe.',
-      llm: 'LLM security becomes decisive. The candidate names risks, but the transcript does not establish a specific control and test in production - the verdict moves to GREY.',
+        'Detection matters most in this brief, and the candidate scored 5 out of 5 there. Use your interview to explore the lower scores in LLM security and data access.',
+      llm: 'This brief puts more weight on LLM security and data access, both scored 2 out of 5. The same candidate now falls in the GREY band: those gaps need a closer look.',
       ownership:
-        'Production ownership rewards the deployed system, iteration and operating context. The verdict remains above the select threshold.',
+        'This brief puts more weight on building and running systems. The candidate meets the select threshold; incident handling, scored 3 out of 5, is worth exploring further.',
     };
 
     const update = (announce = true) => {

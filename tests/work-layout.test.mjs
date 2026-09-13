@@ -20,14 +20,14 @@ try {
       const arrow = element.querySelector('.v58-flow-arrow');
       return {
         direction: getComputedStyle(flow).flexDirection,
-        centreDifference: Math.abs((rect.left + rect.right - wrap.left - wrap.right) / 2),
+        leftDifference: Math.abs(rect.left - wrap.left),
         arrowWidth: getComputedStyle(arrow).width,
         stroke: getComputedStyle(arrow.querySelector('path')).strokeWidth,
         cardsFit: [...flow.querySelectorAll('article')].every((card) => card.scrollWidth <= card.clientWidth),
       };
     });
     assert.equal(layout.direction, width >= 1180 ? 'row' : 'column');
-    if (width >= 680 && width < 1180) assert.ok(layout.centreDifference < 1);
+    if (width >= 680 && width < 1180) assert.ok(layout.leftDifference < 1, 'Flow follows the section left edge');
     assert.equal(layout.arrowWidth, width >= 1180 ? '36px' : '42px');
     assert.equal(layout.stroke, width >= 1180 ? '1.9px' : '1.45px');
     assert.ok(layout.cardsFit);
