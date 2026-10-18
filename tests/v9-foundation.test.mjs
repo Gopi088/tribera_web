@@ -10,7 +10,7 @@ assert.ok(engine, `Unsupported browser: ${browserName}`);
 const port = 4331 + ['chromium', 'firefox', 'webkit'].indexOf(browserName);
 const base = process.env.TEST_BASE_URL || `http://127.0.0.1:${port}`;
 
-test(`v9 foundation behavior (${browserName})`, async () => {
+test(`v9 foundation behavior (${browserName})`, { timeout: 120000 }, async () => {
   let server;
   let browser;
   let serverLog = '';
@@ -51,7 +51,7 @@ test(`v9 foundation behavior (${browserName})`, async () => {
         [200, 304].includes(response.status()),
         'Preview fixture must load (including a validated cached response)'
       );
-      await page.evaluate(() => document.fonts.ready);
+      await page.waitForFunction(() => document.fonts.status === 'loaded', null, { timeout: 15000 });
       assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex, nofollow');
       assert.equal(await page.locator('.v9-hero').count(), 3);
       assert.equal(

@@ -11,7 +11,7 @@ assert.ok(engine, `Unsupported browser: ${browserName}`);
 const port = 4341 + ['chromium', 'firefox', 'webkit'].indexOf(browserName);
 const base = process.env.TEST_BASE_URL || `http://127.0.0.1:${port}`;
 
-test(`v9 editorial content (${browserName})`, async () => {
+test(`v9 editorial content (${browserName})`, { timeout: 120000 }, async () => {
   let server;
   let browser;
   let log = '';
@@ -51,7 +51,7 @@ test(`v9 editorial content (${browserName})`, async () => {
         await page.setViewportSize({ width, height: 900 });
         const response = await page.goto(`${base}/__v9/content`);
         assert.ok([200, 304].includes(response.status()));
-        await page.evaluate(() => document.fonts.ready);
+        await page.waitForFunction(() => document.fonts.status === 'loaded', null, { timeout: 15000 });
         assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex, nofollow');
         assert.equal(await page.locator('h1').count(), 1);
         assert.equal(
