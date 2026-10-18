@@ -155,18 +155,16 @@ try {
             timeout: remaining,
           });
         } catch (cause) {
-          const images = await page
-            .locator('img')
-            .evaluateAll((images) =>
-              images
-                .filter((image) => !image.complete || !image.naturalWidth)
-                .map((image) => ({
-                  url: image.currentSrc || image.src,
-                  complete: image.complete,
-                  naturalWidth: image.naturalWidth,
-                  loading: image.loading,
-                }))
-            );
+          const images = await page.locator('img').evaluateAll((images) =>
+            images
+              .filter((image) => !image.complete || !image.naturalWidth)
+              .map((image) => ({
+                url: image.currentSrc || image.src,
+                complete: image.complete,
+                naturalWidth: image.naturalWidth,
+                loading: image.loading,
+              }))
+          );
           throw new Error(
             `${slug} ${JSON.stringify(size)} JS=${javaScriptEnabled}: image readiness failed: ${JSON.stringify(images)}`,
             { cause }
