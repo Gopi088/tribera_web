@@ -59,11 +59,11 @@ test(`v9 editorial content (${browserName})`, { timeout: 120000 }, async () => {
           '24px',
           'Foundation reset must preserve article lead spacing'
         );
-        assert.equal(
-          await page.locator('.v9-author-meta').evaluate((el) => getComputedStyle(el).marginTop),
-          '6.4px',
-          'Author metadata spacing must survive the shared reset'
-        );
+        const metadataMargin = await page
+          .locator('.v9-author-meta')
+          .evaluate((el) => parseFloat(getComputedStyle(el).marginTop));
+        // WebKit quantizes layout to 1/64px; zero spacing still fails this bound.
+        assert.ok(Math.abs(metadataMargin - 6.4) < 1 / 64, 'Author metadata spacing must survive the shared reset');
         if (javaScriptEnabled && [390, 1366].includes(width)) {
           const output = `artifacts/v9-g1/content-${browserName}`;
           fs.mkdirSync(output, { recursive: true });
