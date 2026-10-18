@@ -60,5 +60,6 @@
     "This records typography provenance, not a blanket accessibility approval.",
     "Preexisting About .step opacity 0.4 can dim claim text even under reduced motion; tracked separately from these style tuples."
   ],
-  "reviewCandidateCommit": "6952a45 (documentation-only changes after artifact source)"
+  "reviewStartCommit": "6952a45",
+  "artifactSha256": "470c2a837ebfcd68b30616941373e012ec896d73112639679570eba282a6fc47"
 }
