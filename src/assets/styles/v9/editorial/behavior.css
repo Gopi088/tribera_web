@@ -91,3 +91,13 @@
     grid-column: 1;
   }
 }
+/* Keep citation numerals readable throughout hover/focus, not only after the
+   inherited prose-link color transition has finished against its new background. */
+.v9-editorial-article .fn-r {
+  transition: none !important;
+}
+.v9-editorial-article .fn-r:hover,
+.v9-editorial-article .fn-r:focus-visible {
+  color: #fff;
+  background: var(--ink);
+}

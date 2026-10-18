@@ -136,3 +136,11 @@
   margin-top: 12px;
   line-height: 1.6;
 }
+/* G2 contrast review: below-bar rank remains encoded by position and verdict.
+   Group opacity compounded the already muted label/metadata colors. */
+.v9-home .hc-row.hc-below > * {
+  opacity: 1;
+}
+.v9-home .hc-pill.hc-rej {
+  color: var(--ink-3);
+}
