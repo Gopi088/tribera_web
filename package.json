@@ -27,7 +27,7 @@
     "test:migration:static": "node scripts/v9-gate.mjs static",
     "test:migration:browser": "node scripts/v9-gate.mjs browser",
     "test:migration:foundation": "node tests/v9-foundation.test.mjs && node tests/v9-content.test.mjs && node tests/v9-reference.test.mjs && node tests/v9-content-reference.mjs",
-    "test:migration:pages": "node tests/v9-pages.test.mjs"
+    "test:migration:pages": "node tests/v9-pages.test.mjs && node tests/v9-native-form-browser.test.mjs"
   },
   "dependencies": {
     "@astrojs/node": "^10.1.2",
