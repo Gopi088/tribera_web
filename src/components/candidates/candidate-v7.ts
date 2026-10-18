@@ -181,7 +181,10 @@ const setupCandidatePage = () => {
     };
     animate();
   };
-  presets.forEach((button, index) => button.addEventListener('click', () => paintScore(index)));
+  presets.forEach((button, index) => {
+    button.addEventListener('click', () => paintScore(index));
+    if (scoreElement && bandElement && pinElement && noteElement) button.disabled = false;
+  });
   if (presets.length && scoreElement) paintScore(0);
 
   const drop = root.querySelector<HTMLElement>('#drop');
