@@ -1,0 +1,60 @@
+---
+interface Props {
+  audience?: 'hiring' | 'candidate';
+  activeRoute?: string;
+  cta?: { label: string; href: string };
+}
+const { audience = 'hiring', activeRoute = '', cta } = Astro.props;
+const links =
+  audience === 'candidate'
+    ? [
+        ['/candidates#proof', 'How it works'],
+        ['/candidates#controls', 'Your controls'],
+        ['/candidates#when', 'What happens'],
+        ['/about', 'About'],
+        ['/', 'For hiring teams'],
+      ]
+    : [
+        ['/#proof', 'How it works'],
+        ['/services', 'Services'],
+        ['/intelligence', 'Intelligence'],
+        ['/about', 'About'],
+        ['/candidates', 'For candidates'],
+      ];
+const action =
+  cta ??
+  (audience === 'candidate'
+    ? { label: 'Create your profile', href: '/candidates#apply' }
+    : { label: 'Start with one role', href: '/#start' });
+---
+
+<header class="v9-nav">
+  <div class="v9-wrap v9-nav-row">
+    <a class="v9-brand" href="/" aria-label="Tribera, home"
+      ><img src="/brand/v9/tribera-logo-black.png" alt="Tribera" width="83" height="22" /></a
+    >
+    <nav class="v9-desktop-nav" aria-label="Primary">
+      {
+        links.map(([href, label]) => (
+          <a href={href} aria-current={href === activeRoute ? 'page' : undefined}>
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+    <a class="v9-button v9-nav-cta" href={action.href}>{action.label}</a>
+    <details class="v9-menu" data-v9-menu>
+      <summary aria-label="Menu"><span aria-hidden="true">☰</span><span>Menu</span></summary>
+      <nav aria-label="Mobile primary">
+        {
+          links.map(([href, label]) => (
+            <a href={href} aria-current={href === activeRoute ? 'page' : undefined}>
+              {label}
+            </a>
+          ))
+        }
+        <a class="v9-button v9-button-primary" href={action.href}>{action.label}</a>
+      </nav>
+    </details>
+  </div>
+</header>

@@ -1,0 +1,90 @@
+---
+import V9Layout from '../../layouts/V9Layout.astro';
+import Hero from '../../components/v9/Hero.astro';
+import FAQ from '../../components/v9/FAQ.astro';
+import SourceNote from '../../components/v9/SourceNote.astro';
+import ClientStrip from '../../components/v9/ClientStrip.astro';
+export function getStaticPaths() {
+  return import.meta.env.DEV || process.env.V9_PREVIEW === '1'
+    ? ['foundation', 'candidate'].map((fixture) => ({ params: { preview: '__v9', fixture } }))
+    : [];
+}
+const candidate = Astro.params.fixture === 'candidate';
+---
+
+<V9Layout
+  title="Tribera v9 foundation preview"
+  description="Private component review for the Tribera v9 migration."
+  audience={candidate ? 'candidate' : 'hiring'}
+  noindex
+  footerLinkOverrides={{ '/case-study': '/services', '/how-we-work-with-numbers': '/about', '/dpa': '/privacy' }}
+  cta={{ label: 'Review components', href: '#components' }}
+>
+  <Hero
+    variant="product"
+    eyebrow={candidate ? 'For candidates' : 'For hiring teams'}
+    title="Three candidates. Every one worth the interview."
+    description="We interview every candidate against your hiring manager’s bar and send the three who clear it, with reasons."
+    cta={{ label: 'Explore the foundation', href: '#components' }}
+  >
+    <div slot="aside" class="fixture-card">
+      <p class="v9-eyebrow">Product visual slot</p><h2>Evidence before the interview.</h2><p>
+        This private fixture exercises shared geometry. The page-specific scorecard is a later migration batch.
+      </p>
+    </div>
+  </Hero>
+  <ClientStrip />
+  <section class="v9-paper" id="components">
+    <Hero
+      variant="editorial"
+      eyebrow="About tribera"
+      title="This industry gave us everything."
+      description="Sixty years of hiring between the three of us. The searches, the misses, the hires that held and the ones that quietly didn’t."
+      ><p slot="aside">Every scorecard we write is an attempt at one question: who will actually belong here?</p></Hero
+    >
+  </section>
+  <Hero
+    variant="compact"
+    eyebrow="Contact"
+    title="Start with one role."
+    description="A compact hero for a direct conversation."
+  />
+  <section class="v9-section v9-paper">
+    <div class="v9-wrap">
+      <h2>Questions, answered.</h2><FAQ
+        items={[
+          {
+            question: 'Can I use these components without JavaScript?',
+            answer: 'Navigation, questions and source notes use native disclosure controls.',
+          },
+          {
+            question: 'Does reduced motion stop the client strip?',
+            answer: 'Yes. The client list becomes static and wraps so every name remains readable.',
+          },
+        ]}
+      /><div>
+        Design reference <SourceNote
+          number={1}
+          title="Tribera"
+          href="/about"
+          context="Source notes retain a keyboard-accessible link."
+        />
+      </div>
+    </div>
+  </section>
+</V9Layout>
+<style>
+  .fixture-card {
+    background: #121212;
+    color: #fff;
+    border-radius: 16px;
+    padding: clamp(24px, 4vw, 48px);
+  }
+  .fixture-card .v9-eyebrow {
+    color: #ffffffa0;
+  }
+  .fixture-card p:last-child {
+    margin-top: 24px;
+    color: #ffffffb3;
+  }
+</style>

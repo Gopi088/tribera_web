@@ -1,0 +1,64 @@
+---
+interface Props {
+  linkOverrides?: Record<string, string>;
+}
+const { linkOverrides = {} } = Astro.props;
+const destination = (href: string) => linkOverrides[href] ?? href;
+---
+
+<footer class="v9-ft">
+  <div class="v9-wrap">
+    <div class="v9-ft-top">
+      <div class="v9-ft-brand">
+        <a class="v9-brand" href={destination('/')} aria-label="Tribera, home"
+          ><img src="/brand/v9/tribera-logo-white.png" alt="Tribera" width="106" height="28" /></a
+        >
+        <p class="v9-ft-line"><b>Hiring you can prove.</b></p>
+        <p class="v9-ft-tribe">Tribe + Era</p>
+        <p class="v9-ft-bbb"><em>Belong</em><i></i>Build<i></i>Become</p>
+        <div class="v9-ft-social">
+          <a href={destination('https://linkedin.com/company/triberaai')}>LinkedIn</a>
+          <a href={destination('mailto:hello@tribera.ai')}>hello@tribera.ai</a>
+        </div>
+      </div>
+      <nav class="v9-ft-col" aria-label="For hiring teams">
+        <p class="v9-ft-ttl">For hiring teams</p>
+        <a href={destination('/#proof')}>How it works</a>
+        <a href={destination('/case-study')}>Case study</a>
+        <a href={destination('/services')}>Services</a>
+        <a href={destination('/intelligence')}>Intelligence</a>
+        <a href={destination('/industries')}>Industries</a>
+      </nav>
+      <nav class="v9-ft-col" aria-label="For candidates">
+        <p class="v9-ft-ttl">For candidates</p>
+        <a href={destination('/candidates#apply')}>Create your profile</a>
+        <a href={destination('/candidates')}>How it works</a>
+        <a href={destination('/candidates#when')}>What happens</a>
+        <a href={destination('/candidates#controls')}>Privacy controls</a>
+      </nav>
+      <nav class="v9-ft-col" aria-label="Company">
+        <p class="v9-ft-ttl">Company</p>
+        <a href={destination('/about')}>About</a>
+        <a href={destination('/blog')}>Blog</a>
+        <a href={destination('/how-we-work-with-numbers')}>Our numbers</a>
+        <a href={destination('/careers')}>Careers</a>
+        <a href={destination('/contact')}>Contact</a>
+        <a href={destination('https://app.tribera.ai/auth/login')}>Log in</a>
+      </nav>
+      <nav class="v9-ft-col" aria-label="Legal">
+        <p class="v9-ft-ttl">Legal</p>
+        <a href={destination('/security')}>Security</a>
+        <a href={destination('/terms')}>Terms</a>
+        <a href={destination('/privacy')}>Privacy</a>
+        <a href={destination('/dpa')}>Data processing</a>
+      </nav>
+    </div>
+    <div class="v9-ft-bar">
+      <span>© 2026 Tribera · Eragina Digital Solutions Private Limited</span>
+      <span class="v9-ft-bar-r">
+        <span class="v9-ft-made">Pune · Bengaluru · New Jersey</span>
+        <a class="v9-ft-up" href={destination('#top')}>Back to top <span aria-hidden="true">↑</span></a>
+      </span>
+    </div>
+  </div>
+</footer>

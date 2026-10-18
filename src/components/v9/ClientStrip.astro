@@ -1,0 +1,30 @@
+---
+const clients = [
+  'Mizuho',
+  'Capco',
+  'Deloitte',
+  'Flipkart',
+  'Myntra',
+  'Motherson',
+  'Publicis Sapient',
+  'Publicis Resources',
+  'Heineken',
+  'Ascendion',
+  'Evident Microscopy',
+  'CMART',
+  'Antz',
+];
+---
+
+<div class="v9-client-strip" data-v9-strip>
+  <div class="v9-wrap">
+    <p class="v9-eyebrow">Teams we work with</p>
+    <div class="v9-client-window">
+      <div class="v9-client-track">
+        <ul>{clients.map((name) => <li>{name}</li>)}</ul>
+        <ul aria-hidden="true">{clients.map((name) => <li>{name}</li>)}</ul>
+      </div>
+    </div>
+    <button type="button" class="v9-strip-toggle" aria-pressed="false" hidden>Pause client strip</button>
+  </div>
+</div>

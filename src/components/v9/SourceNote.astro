@@ -1,0 +1,15 @@
+---
+interface Props {
+  number: number;
+  title: string;
+  href: string;
+  context?: string;
+}
+const { number, title, href, context } = Astro.props;
+---
+
+<details class="v9-source">
+  <summary aria-label={`Source ${number}`}>{number}</summary><div>
+    <a href={href}>{title}</a>{context && <p>{context}</p>}
+  </div>
+</details>
