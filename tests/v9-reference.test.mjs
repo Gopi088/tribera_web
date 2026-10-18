@@ -12,6 +12,7 @@ let server;
 const browser = await { chromium, firefox, webkit }[browserName].launch();
 const output = `artifacts/v9-g1/reference-${browserName}`;
 fs.mkdirSync(output, { recursive: true });
+fs.rmSync(path.join(output, 'result.json'), { force: true });
 const records = [];
 try {
   if (!process.env.TEST_BASE_URL) {
@@ -41,7 +42,7 @@ try {
     .readFileSync('src/assets/styles/v9/fonts.css', 'utf8')
     .replaceAll("url('/", `url('${base}/`)
     .replaceAll('url("/', `url("${base}/`);
-  const properties = ['fontSize', 'fontWeight', 'lineHeight', 'letterSpacing'];
+  const properties = ['fontSize', 'fontWeight', 'lineHeight', 'letterSpacing', 'fontFamily'];
   const snapshot = (locator) =>
     locator.evaluate((el, properties) => {
       const style = getComputedStyle(el);
@@ -52,6 +53,12 @@ try {
     await reference.setViewportSize({ width, height: 900 });
     await migrated.goto(`${base}/__v9/foundation`);
     await migrated.evaluate(() => document.fonts.ready);
+    assert.ok(
+      await migrated.evaluate(() =>
+        [...document.fonts].some((face) => face.family.includes('V9 Fraunces') && face.status === 'loaded')
+      ),
+      'Pinned Fraunces must load'
+    );
     for (const [file, variant] of [
       ['index', 'product'],
       ['about', 'editorial'],
@@ -62,7 +69,7 @@ try {
         .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
       await reference.setContent(html, { waitUntil: 'domcontentloaded' });
       await reference.addStyleTag({
-        content: `${fonts}\n:root { --display: 'V9 Fraunces', Georgia, serif; --body: 'V9 Inter Tight', sans-serif; --mono: 'V9 JetBrains Mono', monospace; }`,
+        content: `${fonts}\n:root { --display: 'V9 Fraunces', Georgia, serif; --body: 'V9 Inter Tight', system-ui, sans-serif; --mono: 'V9 JetBrains Mono', monospace; }`,
       });
       await reference.evaluate(() => document.fonts.ready);
       const expected = await snapshot(reference.locator('h1').first());
@@ -112,6 +119,12 @@ try {
     )
   );
   console.log(`Passed ${records.length} final-cascade typography comparisons (${browserName})`);
+} catch (error) {
+  fs.writeFileSync(
+    path.join(output, 'result.json'),
+    JSON.stringify({ status: 'failed', browser: browserName, records, error: error.stack }, null, 2)
+  );
+  throw error;
 } finally {
   await browser.close();
   if (server && server.exitCode === null) {

@@ -246,7 +246,8 @@
   border-top: 1px solid var(--ink);
   align-items: start;
 }
-.v9-hero-editorial .v9-eyebrow {
+.v9-hero-editorial .v9-eyebrow,
+.v9-hero-compact .v9-eyebrow {
   margin-bottom: clamp(1.4rem, 2.4vw, 2.2rem) !important;
 }
 .v9-editorial-row .v9-lead {
@@ -684,36 +685,12 @@
 .v9-ft a {
   color: var(--pw);
 }
-/* Editorial titles span the page; the ruled supporting row is shared with the aside. */
-.v9-hero-editorial .v9-hero-copy {
-  display: contents;
-}
-.v9-hero-editorial h1 {
-  grid-column: 1 / -1;
-}
-.v9-hero-editorial .v9-hero-grid {
-  align-items: start;
-  row-gap: 0;
-}
-.v9-hero-editorial .v9-hero-description,
-.v9-hero-editorial .v9-hero-aside {
-  margin-top: clamp(30px, 4.4vw, 60px);
-  padding-top: clamp(20px, 2.4vw, 30px);
-  border-top: 1px solid var(--ink);
-}
 .v9-client-strip:not([data-ready]) .v9-client-track {
   width: auto;
 }
 .v9-client-strip:not([data-ready]) .v9-client-track ul {
   flex-wrap: wrap;
   gap: 10px;
-}
-@media (max-width: 700px) {
-  .v9-hero-editorial .v9-hero-aside {
-    margin-top: 24px;
-    border: 0;
-    padding-top: 0;
-  }
 }
 
 .v9-source > div {
@@ -801,4 +778,18 @@
 .v9-source[data-below] > div {
   top: calc(100% + 10px);
   bottom: auto;
+}
+
+.v9-hero-compact .v9-hero-aside {
+  margin-top: 0.35rem;
+}
+@media (max-width: 860px) {
+  .v9-hero-compact .v9-hero-aside {
+    margin-top: 1.6rem;
+    max-width: 520px;
+  }
+}
+.v9-source[data-ready] > div {
+  max-height: calc(100dvh - 100px);
+  overflow-y: auto;
 }
