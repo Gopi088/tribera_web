@@ -33,30 +33,26 @@
 .v9 * {
   box-sizing: border-box;
 }
-.v9 h1,
-.v9 h2,
-.v9 h3,
-.v9 p {
+:where(.v9 h1, .v9 h2, .v9 h3, .v9 p) {
   margin: 0;
 }
-.v9 h1,
-.v9 h2 {
+:where(.v9 h1, .v9 h2) {
   font-family: var(--display);
   font-weight: 400;
   line-height: 1.08;
   text-wrap: balance;
   font-optical-sizing: auto;
 }
-.v9 h2 {
+:where(.v9) h2 {
   font-size: clamp(2rem, 3.9vw, 3rem);
 }
-.v9 p {
+:where(.v9) p {
   text-wrap: pretty;
 }
-.v9 a {
+:where(.v9) a {
   color: inherit;
 }
-.v9 img {
+:where(.v9) img {
   max-width: 100%;
   height: auto;
 }
