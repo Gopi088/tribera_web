@@ -63,7 +63,7 @@
 .v9 ::selection {
   background: #da000729;
 }
-.v9 [id] {
+:where(.v9) [id] {
   scroll-margin-top: 80px;
 }
 .v9-wrap {
@@ -788,4 +788,8 @@
 .v9-source[data-ready] > div {
   max-height: calc(100dvh - 100px);
   overflow-y: auto;
+}
+
+.v9-hero-editorial .v9-hero-aside {
+  line-height: 1.6;
 }

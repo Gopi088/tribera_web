@@ -88,6 +88,39 @@ try {
       const expectedGrid = await gridSnapshot(referenceGrid);
       const actualGrid = await gridSnapshot(migratedGrid);
       assert.deepEqual(actualGrid, expectedGrid, `${browserName} ${width}px ${variant}: final handoff column geometry`);
+      if (variant === 'editorial') {
+        const boxStyle = (locator) =>
+          locator.evaluate((el) => {
+            const s = getComputedStyle(el);
+            return {
+              marginTop: s.marginTop,
+              paddingTop: s.paddingTop,
+              borderTopWidth: s.borderTopWidth,
+              lineHeight: s.lineHeight,
+            };
+          });
+        assert.deepEqual(
+          await boxStyle(migrated.locator('.v9-hero-editorial .v9-hero-aside')),
+          await boxStyle(reference.locator('.hx-side')),
+          'Editorial aside must not repeat the row rule or spacing'
+        );
+      }
+      if (variant === 'compact' && width > 860) {
+        const offset = (page, heading, aside) =>
+          page.evaluate(
+            ({ heading, aside }) =>
+              document.querySelector(aside).getBoundingClientRect().top -
+              document.querySelector(heading).getBoundingClientRect().top,
+            { heading, aside }
+          );
+        assert.ok(
+          Math.abs(
+            (await offset(migrated, '.v9-hero-compact h1', '.v9-hero-compact aside')) -
+              (await offset(reference, '.hx h1', '.hx-c-g > aside'))
+          ) < 1,
+          'Compact supporting card aligns below the eyebrow'
+        );
+      }
       const expectedLead = await snapshot(
         reference.locator(variant === 'product' ? '.hero-two .lead' : '.hx .lead').first()
       );

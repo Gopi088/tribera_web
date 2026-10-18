@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import fs from 'node:fs';
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 import { chromium, firefox, webkit } from 'playwright';
@@ -53,6 +54,22 @@ test(`v9 editorial content (${browserName})`, async () => {
         await page.evaluate(() => document.fonts.ready);
         assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex, nofollow');
         assert.equal(await page.locator('h1').count(), 1);
+        assert.equal(
+          await page.locator('.v9-article-lead').evaluate((el) => getComputedStyle(el).marginTop),
+          '24px',
+          'Foundation reset must preserve article lead spacing'
+        );
+        assert.equal(
+          await page.locator('.v9-author-meta').evaluate((el) => getComputedStyle(el).marginTop),
+          '6.4px',
+          'Author metadata spacing must survive the shared reset'
+        );
+        if (javaScriptEnabled && [390, 1366].includes(width)) {
+          const output = `artifacts/v9-g1/content-${browserName}`;
+          fs.mkdirSync(output, { recursive: true });
+          await page.locator('.v9-article-header').screenshot({ path: `${output}/${width}-article.png` });
+          await page.locator('.v9-content-quotes').screenshot({ path: `${output}/${width}-testimonials.png` });
+        }
         assert.match(await page.locator('h1').textContent(), /Seventeen interviews/);
         assert.equal(await page.locator('.v9-testimonial').count(), 5);
         assert.equal(await page.locator('.v9-testimonial blockquote').count(), 5);
