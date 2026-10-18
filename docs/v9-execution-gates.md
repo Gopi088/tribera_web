@@ -114,3 +114,34 @@ Stop integration for a broken route, failed primary CTA, incorrect scoring, reje
 The coordinator's update after each batch should state the candidate revision, completed routes, gates passed, gates pending, observed regressions, evidence location and next assignment. Do not report a percentage complete based solely on edited files.
 
 Begin implementation with the bootstrap wave: coordinator freezes the contracts, one worker builds the foundation, one handles backend contracts, and one builds independent validation. This makes parallelism useful immediately while keeping the shared dependencies controlled.
+
+## Bootstrap implementation — 18 October 2026
+
+The workflow now covers migration branches and runs separate checks, handler/gate unit tests, production and preview builds, six browser shards (three engines × two artifacts), and the legacy regression runner. `migration-required` rejects any required job that failed, was cancelled, or was skipped. Remote branch protection still needs to require this status; local YAML cannot enforce merge permissions.
+
+Reproduce the controls locally in this order:
+
+```sh
+npm run check
+npm run test:migration:unit
+npm run build
+node scripts/check-migration-build.mjs
+npm run test:migration:static
+V9_BROWSER=chromium npm run test:migration:browser
+V9_BROWSER=firefox npm run test:migration:browser
+V9_BROWSER=webkit npm run test:migration:browser
+node scripts/test-reviewed-site.mjs
+V9_PREVIEW=1 npm run build
+node scripts/check-migration-build.mjs --preview
+V9_EVIDENCE=artifacts/v9-gates/preview npm run test:migration:static
+V9_REQUIRE_FOUNDATION=1 V9_BROWSER=chromium npm run test:migration:browser
+BROWSER=chromium npm run test:migration:foundation
+```
+
+Repeat the final two commands for Firefox and WebKit. Install each engine using `npx playwright install --with-deps <engine>` first. Concurrent local browser shards need distinct `TEST_PORT` values and evidence directories; CI isolates them by job. Preserve production evidence before the preview build replaces `dist`. The browser audit stores revision, dependency/build hashes, execution counts, errors, screenshots and traces under `artifacts/v9-gates`; a missing browser or empty expected coverage fails.
+
+The v9 CV adapters have dedicated function names (`candidate-profile-v9`, `careers-apply-v9`) and preserve the existing endpoints. They support the CV-first field contracts while retaining origin, timing, rate, honeypot, signature and scanner checks. Career identity must match an open role in the trusted catalog. They reject unexpected/additional files and support HTML responses for native submission. Provider delivery is mocked in local tests. Public aliases, UI wiring, fresh timing tokens without JavaScript and hosted delivery remain pending; an HTML response alone does not complete no-JavaScript submission support.
+
+The foundation is exercised only in `/__v9/foundation` and `/__v9/candidate`, enabled with `V9_PREVIEW=1`. Production build checks reject these routes, preview sitemap entries, internal documentation paths and the supplied full sample PDF (including renamed identical bytes or full base64 embedding). This guard is not a general detector for transformed copies of private documents. Fixtures use explicit valid footer destinations for pages not yet migrated; shared v9 defaults remain subject to later route acceptance.
+
+These controls establish the bootstrap, not G1–G7 acceptance. Full handoff visual comparisons, font provenance/parity, remaining foundation components, all route/content migrations, publication scheduling, endpoint aliases, sample delivery, hosted redirects and scanner/provider checks still require their named gates. Do not begin broad page migration merely because the bootstrap tests pass.
