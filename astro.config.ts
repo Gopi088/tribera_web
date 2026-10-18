@@ -95,6 +95,8 @@ export default defineConfig({
   },
 
   vite: {
+    // Keep concurrent worktree builds isolated even when dependencies are shared.
+    cacheDir: path.resolve(__dirname, '.astro/vite-cache'),
     css: {
       postcss: {
         plugins: [tailwindcss(), autoprefixer()],
