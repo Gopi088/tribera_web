@@ -33,17 +33,17 @@ correctness and exact copy, not the complete reader journey.
 
 ## Recommended Story and Visual Chapters
 
-| Order | Chapter | Question answered | Treatment |
-| --- | --- | --- | --- |
-| 1 | Hero and logos | What result do I get? | White; existing red accents. |
-| 2 | Concise thesis plus five-step workflow | What is Tribera, and who does what? | One introductory white chapter, not two full-height restarts. Acknowledge sourcing or an existing pipeline briefly. |
-| 3 | Scoring lab | How do role priorities change the assessment? | Dark. Do not describe weighting alone as proof that the underlying interview evidence is trustworthy. |
-| 4 | Experts plus Coverage | Who assesses candidates, and can you cover my role? | Paper. Four specialisms with all 17 roles grouped locally; regular columns or accessible grouped disclosures on mobile, not ragged chips. Include the human-review explanation here. |
-| 5 | Case funnel plus concise benefits | What work happens before my team sees candidates? | Dark. Preserve interactions/counts; attach buyer payoff directly to the case. No independent Savings chapter repeating the process. |
-| 6 | Ways to engage | Which service fits my situation, and how is it charged? | White. Preserve approved per-hire/per-interview wording and the ranked-list distinction. |
-| 7 | Compact assurances | What is agreed and checked before we start? | Paper. Retain an easily scanned assurance/privacy block, but stop re-teaching the engine-versus-person story. No new compliance claims. |
-| 8 | Testimonials | Has the experience worked for others? | Dark. Preserve approved quotes and attribution. |
-| 9 | Closing action | What do I do next? | White. Short request, not another full pitch. |
+| Order | Chapter                                | Question answered                                       | Treatment                                                                                                                                                                            |
+| ----- | -------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1     | Hero and logos                         | What result do I get?                                   | White; existing red accents.                                                                                                                                                         |
+| 2     | Concise thesis plus five-step workflow | What is Tribera, and who does what?                     | One introductory white chapter, not two full-height restarts. Acknowledge sourcing or an existing pipeline briefly.                                                                  |
+| 3     | Scoring lab                            | How do role priorities change the assessment?           | Dark. Do not describe weighting alone as proof that the underlying interview evidence is trustworthy.                                                                                |
+| 4     | Experts plus Coverage                  | Who assesses candidates, and can you cover my role?     | Paper. Four specialisms with all 17 roles grouped locally; regular columns or accessible grouped disclosures on mobile, not ragged chips. Include the human-review explanation here. |
+| 5     | Case funnel plus concise benefits      | What work happens before my team sees candidates?       | Dark. Preserve interactions/counts; attach buyer payoff directly to the case. No independent Savings chapter repeating the process.                                                  |
+| 6     | Ways to engage                         | Which service fits my situation, and how is it charged? | White. Preserve approved per-hire/per-interview wording and the ranked-list distinction.                                                                                             |
+| 7     | Compact assurances                     | What is agreed and checked before we start?             | Paper. Retain an easily scanned assurance/privacy block, but stop re-teaching the engine-versus-person story. No new compliance claims.                                              |
+| 8     | Testimonials                           | Has the experience worked for others?                   | Dark. Preserve approved quotes and attribution.                                                                                                                                      |
+| 9     | Closing action                         | What do I do next?                                      | White. Short request, not another full pitch.                                                                                                                                        |
 
 The colours express purpose rather than strict alternating bands: white for
 orientation/engagement, paper for people/assurances, dark for demonstrations and
@@ -78,19 +78,19 @@ Current order does match v60, but v60's own ordering has two real faults (Expert
 
 ## Recommended order (one coherent journey)
 
-| # | Section | Job it does | Bg |
-|---|---|---|---|
-| 1 | Hero + logo strip | The promise, and who trusts it | white |
-| 2 | Thesis `#what` | What we actually do | white |
-| 3 | Proof lab `#proof` | Why the score is trustworthy | dark |
-| 4 | Funnel `#funnel` | What that costs on one real role | dark |
-| 5 | **Experts + Coverage merged** `#experts` | Who makes the call, and for which roles | paper |
-| 6 | Work `#work` | How the engagement runs | white |
-| 7 | **Ways** `#ways` (moved up) | Two shapes of that same process | paper |
-| 8 | Savings `#savings` | The payoff | white |
-| 9 | Testimonials | Other people confirm it | dark |
-| 10 | Trust | How it stays defensible | paper |
-| 11 | Start | Ask | white |
+| #   | Section                                  | Job it does                             | Bg    |
+| --- | ---------------------------------------- | --------------------------------------- | ----- |
+| 1   | Hero + logo strip                        | The promise, and who trusts it          | white |
+| 2   | Thesis `#what`                           | What we actually do                     | white |
+| 3   | Proof lab `#proof`                       | Why the score is trustworthy            | dark  |
+| 4   | Funnel `#funnel`                         | What that costs on one real role        | dark  |
+| 5   | **Experts + Coverage merged** `#experts` | Who makes the call, and for which roles | paper |
+| 6   | Work `#work`                             | How the engagement runs                 | white |
+| 7   | **Ways** `#ways` (moved up)              | Two shapes of that same process         | paper |
+| 8   | Savings `#savings`                       | The payoff                              | white |
+| 9   | Testimonials                             | Other people confirm it                 | dark  |
+| 10  | Trust                                    | How it stays defensible                 | paper |
+| 11  | Start                                    | Ask                                     | white |
 
 Only change vs today: Cover merges into Experts, Ways moves ahead of Savings (and swaps bg with it). No new alternation invented; paper/serif/red untouched.
 
@@ -117,14 +117,13 @@ No — it's the differentiator and it earns the scroll. But it's labelled "How i
 
 Nothing here needs new claims, and the lab/funnel interactions, 17 roles, testimonials, pricing wording and legal gates all stay as they are.
 
-
 ### Second Pass: Narrative Challenge
 
 I re-read the source before answering; both challenges land.
 
 ## (1) No — renaming the lab was not enough
 
-I was wrong that a kicker change fixes the collision. The lab isn't ambiguous about *topic*, it's ambiguous about *what you buy*: nine weighted dimensions and a live verdict read as a SaaS tool. A buyer who hasn't met the five-step Work can't tell whether Tribera sells scoring software or a staffed service — and `Home.astro:490` ("the engine handles sourcing and scoring") only sharpens that question. Work at #6 leaves it open for ~5000px. Your fused chapter fixes the actual fault, not the label.
+I was wrong that a kicker change fixes the collision. The lab isn't ambiguous about _topic_, it's ambiguous about _what you buy_: nine weighted dimensions and a live verdict read as a SaaS tool. A buyer who hasn't met the five-step Work can't tell whether Tribera sells scoring software or a staffed service — and `Home.astro:490` ("the engine handles sourcing and scoring") only sharpens that question. Work at #6 leaves it open for ~5000px. Your fused chapter fixes the actual fault, not the label.
 
 ## (2) Chips conceded — the grid already exists
 
@@ -132,9 +131,9 @@ I was wrong that a kicker change fixes the collision. The lab isn't ambiguous ab
 
 ## Verdict: adopt your structure, with one amendment
 
-It is more coherent than my reorder, for a reason my version missed: it resolves duplication by *ownership* rather than adjacency. Experts+Coverage becomes "who decides," Ways becomes "engagement terms," and Funnel→Savings finally reads as case-then-payoff instead of Savings restating Work.
+It is more coherent than my reorder, for a reason my version missed: it resolves duplication by _ownership_ rather than adjacency. Experts+Coverage becomes "who decides," Ways becomes "engagement terms," and Funnel→Savings finally reads as case-then-payoff instead of Savings restating Work.
 
-**Amendment — keep Trust, slimmed.** You're right that Trust's "A person decides" (`651–664`) duplicates Experts' note (`490`); move that *narrative* into Experts. But keep a compact late Trust holding the four assurance cards as terms, not story. Two reasons: procurement and legal scan for AI oversight as a block, not inside a roles section; and your pending owner gates stay in one place instead of split across two sections and re-reviewed twice.
+**Amendment — keep Trust, slimmed.** You're right that Trust's "A person decides" (`651–664`) duplicates Experts' note (`490`); move that _narrative_ into Experts. But keep a compact late Trust holding the four assurance cards as terms, not story. Two reasons: procurement and legal scan for AI oversight as a block, not inside a roles section; and your pending owner gates stay in one place instead of split across two sections and re-reviewed twice.
 
 ## Tradeoffs
 
@@ -144,7 +143,6 @@ It is more coherent than my reorder, for a reason my version missed: it resolves
 
 No code changed, no claims added, gates untouched.
 
-
 ## Visual Evidence
 
 Fresh captures: /tmp/flow-home-1520.png, /tmp/flow-home-390.png and
@@ -152,4 +150,3 @@ Fresh captures: /tmp/flow-home-1520.png, /tmp/flow-home-390.png and
 Full-page images were used for colour rhythm; readable section crops and source
 were used for copy/hierarchy assessment. No tests were rerun for this review and
 no implementation or launch approval is implied.
-

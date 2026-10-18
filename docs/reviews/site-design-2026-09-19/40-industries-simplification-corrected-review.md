@@ -12,18 +12,19 @@ Both offending `padding-inline` rules are gone. The hero rule (source 4374–438
 
 Measured, `heroLeft === sectorLeft` at every viewport:
 
-| Viewport | 320 | 390 | 768 | 1520 | 1920 |
-|---|---|---|---|---|---|
-| heroLeft | 22 | 22 | 38 | 173 | 373 |
-| sectorLeft | 22 | 22 | 38 | 173 | 373 |
+| Viewport   | 320 | 390 | 768 | 1520 | 1920 |
+| ---------- | --- | --- | --- | ---- | ---- |
+| heroLeft   | 22  | 22  | 38  | 173  | 373  |
+| sectorLeft | 22  | 22  | 38  | 173  | 373  |
 
-The 72px desktop / 22px mobile offset is gone. Confirmed visually in both renders: `COVERAGE`, the H1, the lead, the CTA, `WHERE WE RUN MANDATES`, "Twelve sectors.", the card column, and `WHAT DOESN'T MOVE` all sit on one rule. Note the hero left also moved 252px → 173px, i.e. the *hero* was corrected down to the page edge rather than the page being pushed out to meet it — the right direction.
+The 72px desktop / 22px mobile offset is gone. Confirmed visually in both renders: `COVERAGE`, the H1, the lead, the CTA, `WHERE WE RUN MANDATES`, "Twelve sectors.", the card column, and `WHAT DOESN'T MOVE` all sit on one rule. Note the hero left also moved 252px → 173px, i.e. the _hero_ was corrected down to the page edge rather than the page being pushed out to meet it — the right direction.
 
 ## Required item 2 — Hover outline removed, focus ring intact ✅
 
 `.secx__link:is(:hover, :focus-visible)` (4481–4484) now contains only `border-color` and `box-shadow`. Both `outline` declarations are deleted. Validation records `hoverOutline: "none"` at 1520.
 
 Keyboard focus is still supplied, from two independent sources, and nothing suppresses it — there is no `outline: none` on `.secx__link` anywhere:
+
 - `EditorialPage` 318–321: `:root .site-editorial :is(a, button, input, select, textarea):focus-visible { outline: 2px solid var(--red); outline-offset: 3px }`. `.secx__link` is an `<a>`, so it matches.
 - The page's own global `:focus-visible { outline: 2px solid var(--red); outline-offset: 3px }` (75–78) as a floor.
 
@@ -32,12 +33,20 @@ The system's 3px offset is restored. Hover is now four coordinated signals (bord
 ## Required item 3 — Duplicates removed, mobile card metrics correct ✅
 
 One mobile block survives, and it is the intended one (4518–4527):
+
 ```css
 @media (max-width: 759px) {
-  .secx { grid-template-columns: 1fr; gap: 14px; }
-  .secx__link { min-height: 0; padding: 20px; }
+  .secx {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .secx__link {
+    min-height: 0;
+    padding: 20px;
+  }
 }
 ```
+
 The `max-width: 767px` block (4554–4570) now contains **only** hero rules — no `.secx` or `.secx__link` declarations. The `min-height: 112px` override that was silently beating `min-height: 0` is gone, and there is exactly one industries `@media (prefers-reduced-motion: reduce)` block (4528–4534) targeting `.secx__link, .secx__name, .secx__arrow`; the dead `::before` duplicate is deleted.
 
 Measured `cardMinHeight`: `0px` at 320 and 390, `152px` at 768/1520/1920 — the rule now applies where intended and only there. The 390 render confirms the behavioural payoff: short-description cards (Product & SaaS, Pharmaceutical, Industrial & engineering, AI & data, GCC) now hug their text and are visibly shorter than the two-line cards. The dead space is gone.
@@ -55,7 +64,7 @@ Source 4433–4435: `.industries-sectors { background: var(--paper) }`. Within `
 - **One section-heading size.** `.industries-sectors__head h2` (4444–4448) now sets only `max-width: none`, `margin`, `color`. Size, weight, tracking and leading all fall through to `EditorialPage`'s `:is(h2, .h2)` → `--type-section-size` / `--type-display-weight` / `--type-display-tracking` / `--type-section-leading`. In the 1520 render all three H2s — "Twelve sectors.", "The method is the same in all twelve.", "We cover more than we list, but not everything." — now render at the same size. The one-H2-outranking-the-others tell is resolved.
 - **Hero wash.** No `background` override remains on `.industries-hero`, so `EditorialPage`'s `radial-gradient(ellipse at 35% 0%, rgba(218,0,7,.035), transparent 60%), #fff` (line 72) shows through. Visible in the desktop render as the faint warm bloom above the H1. Ties the hero to the homepage at zero added noise.
 - **Tokens over literals.** `font-weight: var(--type-display-weight)`, `letter-spacing: var(--type-display-tracking)`, `color: var(--type-kicker-neutral, #6b6a61)`, and the lead's `color: var(--grey)` all now reference the system.
-- **Hero lead shortened.** Now one sentence — *"What we ask a candidate to evidence changes with the sector."* The verbatim restatement of "how the decision gets made does not" 1,100px later is gone; the method dek is the only place that claim lands, and it lands with four steps behind it.
+- **Hero lead shortened.** Now one sentence — _"What we ask a candidate to evidence changes with the sector."_ The verbatim restatement of "how the decision gets made does not" 1,100px later is gone; the method dek is the only place that claim lands, and it lands with four steps behind it.
 
 ## Non-blocking residue (do not hold the ship)
 
@@ -74,7 +83,7 @@ Source 4433–4435: `.industries-sectors { background: var(--paper) }`. Within `
 
 **"AI generated."** The four-field template is two fields deep, the aphorism layer is deleted, antitheses are down from seven to three (and only where the recommendation said to keep them), "twelve" from six to two, and the page no longer narrates itself. The hero lead shortening removed the last verbatim self-echo.
 
-**"Too much noise."** 84 marks and 12 resting red ticks became 36 marks and none. The last piece of gratuitous red — the hover ring on all 12 cards — is now gone too, which was the one noise defect the *corrected* build had introduced on the page that was rejected for noise.
+**"Too much noise."** 84 marks and 12 resting red ticks became 36 marks and none. The last piece of gratuitous red — the hover ring on all 12 cards — is now gone too, which was the one noise defect the _corrected_ build had introduced on the page that was rejected for noise.
 
 **"The old Netlify page looked cleaner."** That was about containment, and it's recovered: a real `--paper` band with a hard edge, white cards with 16px radius, hairline and shadow — the Netlify discipline without its sparklines, keeping the stronger point Netlify lacked. With the band now on the same off-white as the closing band and the hero sharing the page's left rule, the page finally reads as one grid instead of three.
 

@@ -7,6 +7,7 @@ Two concrete corrections; the design itself is a clear improvement and I would n
 ## Measured facts
 
 **Verified against the brief**
+
 - Comparison card, both `<select>`s, `.cmpw`/picker, all six-bar `.isp` sparklines and every percentage are gone. `final-validation.json`: `dropdowns: 0` at 320/390/768/1520/1920.
 - 12 sector links, unique, all HTTP 200 (`statuses`). Descriptions and evidence phrases render verbatim; row label is `Evidence that matters` as intended (code 6245–6372).
 - Columns 3 / 2 / 1 at 1520 / 768 / 390; `pageOverflow: false` everywhere; `minLinkWidth` 217px at 320.
@@ -16,6 +17,7 @@ Two concrete corrections; the design itself is a clear improvement and I would n
 - Page height at 390: 5,289px, down from 6,965px.
 
 **Defects**
+
 1. **No-JS completeness fails in code.** `[data-rv] { opacity: 0 }` (217–224) is cleared only by `.in`, added only by `initReveals` (`scripts/reference/index.ts:20`). The only exemption is `prefers-reduced-motion` (229–242, EditorialPage 348–359). There is no `<noscript>` anywhere in the page — head is `StandaloneMetadata` + one preload + a single `<style is:global>`; body is header/main/footer. Every element on the page carries `data-rv` (6219, 6220, 6221, 6225, 6233, 6385–6436). With JS disabled the page renders blank. `validation.md:9` asserts the opposite; that assertion is not supported by the source.
 2. **Dead CSS was not removed.** Markup begins at line 6213 of a 6,452-line file. Still present and unused: the `.hero__top` min-height ladder (381–457), `.hero__card`/`.flip`/`.face`/`.tiles`/`.sig` (531–1067), `.logos` (1069–1139), `.swap` (1200–1306), `.desk` (1714–1859), `.lab`/`.verd` (1861+), `.cases` (1614–1708). Brief §4 required these deleted.
 3. Minor: `.step:hover { background: rgba(255,255,255,.04) }` (1502) still fires on non-interactive `<div class="step">`. Mono keys ship at 11px (5972, 6042, 6148) against the brief's ≥12px.

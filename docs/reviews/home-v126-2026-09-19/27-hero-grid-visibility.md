@@ -5,6 +5,7 @@
 - **1440px (desktop):** field is evenly visible, red cells (3 marked squares) read as light pink accents, not alarming or attention-stealing. No clipping/overflow at grid edges; mask radial gradient still fades correctly into the whitespace.
 
 **Concrete observations:**
+
 - No legibility regression on any headline, subhead, eyebrow, or CTA text at any of the three widths.
 - No overflow, clipping, or stacking issues; CTA button and marquee footer render normally at 1440px.
 - Opacity increase (0.028→0.04 neutral, →0.17 red) is subtle but clearly restores visibility versus the "before" screenshot, matching the sample's intended light-box field without becoming a busy or distracting pattern.

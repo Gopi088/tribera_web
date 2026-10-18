@@ -10,7 +10,7 @@ The trial reads as one journey rather than nine restarts, and the core narrative
 
 **Medium — no role name is visible without interaction.** All four groups are closed `<details>` (465). A buyer scanning "can you cover my role?" sees four headings and four "View N roles" summaries and nothing else (`/tmp/handoff-experts-1520.png`). Minimal fix: add `open` to the first group only (Engineering, 6 roles) — one SSR attribute, keeps the block regular, no chips.
 
-**Medium — human-review narrative still appears three times.** Experts lead (452–455 "Our team reviews the evidence before shortlisting"), Experts note (481–482 "The engine supports scoring…"), then Trust card one (627–629 "A human-reviewed shortlist… reviews interview evidence"). The proposal moved the narrative into Experts and left Trust as *terms*; card one is still story. Cut the review clause from the Experts lead, or reduce Trust card one to the agreed-criteria/oversight statement.
+**Medium — human-review narrative still appears three times.** Experts lead (452–455 "Our team reviews the evidence before shortlisting"), Experts note (481–482 "The engine supports scoring…"), then Trust card one (627–629 "A human-reviewed shortlist… reviews interview evidence"). The proposal moved the narrative into Experts and left Trust as _terms_; card one is still story. Cut the review clause from the Experts lead, or reduce Trust card one to the agreed-criteria/oversight statement.
 
 **Low-medium — Experts' lower third is left-pinned.** 478–499 (confirmation, note, industries) stack in the narrow column while the right half is blank below y≈780 in the 1520 crop, the exact fault finding 3 targeted. Pair 478–480 and 481–482 on the two-column head grid at ≥820px.
 
@@ -25,4 +25,3 @@ The trial reads as one journey rather than nine restarts, and the core narrative
 ## Suitability
 
 Yes, as a reversible user trial. The change surface is one component plus four home tests; revert is a single-file checkout. Model, weights, funnel counts, pricing wording, quotes and legal gates are untouched, and no new compliance or accuracy claims appear. Caveat as stated: only home-handoff/home-audit/v60-copy are green; the production build and the full eight-suite run are still in flight, so nothing here certifies build health or launch readiness, and the owner/legal/deployment gates plus Excel's accepted baseline remain open by design.
-

@@ -3,7 +3,7 @@
 Measured, from source and the 1520 capture:
 
 1. **One template, filled twelve times.** Every row is the identical four-part stack: name + `→`, description, hairline, red tick + `EVIDENCE THAT MATTERS` + bold phrase. That's 48 text elements and 12 red ticks in one block. Humans vary; generators don't.
-2. **The same rhetorical figure in 7 of 12 phrases** — "Control failure, *not* framework recall", "Time on the floor, *not* time in the plan", "Incident response *over* certification", "who ship — *not* people who clear a screen", "who run plants, *not* ones who describe them", "Product thinkers. *Not just* product managers". The X-not-Y antithesis repeated is the strongest tell on the page.
+2. **The same rhetorical figure in 7 of 12 phrases** — "Control failure, _not_ framework recall", "Time on the floor, _not_ time in the plan", "Incident response _over_ certification", "who ship — _not_ people who clear a screen", "who run plants, _not_ ones who describe them", "Product thinkers. _Not just_ product managers". The X-not-Y antithesis repeated is the strongest tell on the page.
 3. **The page narrates itself.** "All twelve sectors we run mandates in are listed below" tells the reader what they can already see.
 4. **One idea stated four times:** H1 → hero lead ("how the decision gets made… does not") → method dek ("It never changes how the decision gets made") → closing line. "Twelve" appears 6×.
 5. **Two eyebrows back-to-back** (`\ COVERAGE — TWELVE SECTORS`, then `TWELVE SECTORS · CHOOSE YOURS`) with no band between them.
@@ -14,7 +14,7 @@ Measured, from source and the 1520 capture:
 **Hero** — white band, ends at a hard edge.
 
 - Eyebrow: `Coverage`
-- H1 (keep): `What counts as proof` / *`changes with the sector.`*
+- H1 (keep): `What counts as proof` / _`changes with the sector.`_
 - Lead, one sentence: `What we ask a candidate to evidence changes with the sector. How the decision gets made does not.`
 - Single CTA: `Ask about your sector` → `/contact`
 

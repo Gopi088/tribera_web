@@ -1,6 +1,6 @@
 # REMOVE
 
-Remove the choose-two-sectors comparison from the page. Keep the weighting *idea*; it already lives, better, in the twelve-card grid.
+Remove the choose-two-sectors comparison from the page. Keep the weighting _idea_; it already lives, better, in the twelve-card grid.
 
 ---
 
@@ -8,7 +8,7 @@ Remove the choose-two-sectors comparison from the page. Keep the weighting *idea
 
 **Page structure (index.astro).** Four blocks only: hero + comparison card; "Twelve sectors, twelve different bars." (12 linked cards, 6738–7058); "The method is the same in all twelve." (4 steps, 7060–7101); "Not listed" CTA (7103–7119); footer.
 
-**The card's own disclaimer.** The comparison footer reads: *"Controls and risk moves from 8% to 30%. Difference: 22 percentage points. **Example weights; your hiring manager sets the actual priorities.**"* The hero's primary visual object declares itself illustrative.
+**The card's own disclaimer.** The comparison footer reads: _"Controls and risk moves from 8% to 30%. Difference: 22 percentage points. **Example weights; your hiring manager sets the actual priorities.**"_ The hero's primary visual object declares itself illustrative.
 
 **The numbers.** Six dimensions — Core depth, Systems design, Controls and risk, Delivery speed, Documentation, Stakeholder handling. Default A sums to 100 (30+24+8+22+6+10); B sums to 100 (20+14+30+10+18+8). They are weight percentages. Source is `industryPages[].bars` via `chart-series.ts`; that file's own comment at line 13 says provenance "remains an owner-review item." No methodology, sample size, date, or author anywhere on the page. Bars render with `data-scale="relative"` (6609), so bar length ≠ the printed percentage.
 
@@ -24,13 +24,13 @@ Remove the choose-two-sectors comparison from the page. Keep the weighting *idea
 
 ## Answers
 
-**1 — Does it deserve the hero? No.** *Judgment.* A buyer arriving at /industries is asking one question: *do you work in my sector, and are you any good at it?* The comparison answers neither. It requires the visitor to select a sector they don't care about in order to see a contrast they didn't request. It establishes no credibility — it is a rendering of our own opinion, self-labelled "example." It moves nobody toward contact: the hero's dominant action is a scroll. It reads as an invented demo because it functionally is one — an interaction built to be looked at, with no downstream consequence.
+**1 — Does it deserve the hero? No.** _Judgment._ A buyer arriving at /industries is asking one question: _do you work in my sector, and are you any good at it?_ The comparison answers neither. It requires the visitor to select a sector they don't care about in order to see a contrast they didn't request. It establishes no credibility — it is a rendering of our own opinion, self-labelled "example." It moves nobody toward contact: the hero's dominant action is a scroll. It reads as an invented demo because it functionally is one — an interaction built to be looked at, with no downstream consequence.
 
-**2 — Credibility of the six dimensions: low, and the page admits it.** *Fact:* percentages sum to 100 with no source. *Judgment:* precise-looking integers (8%, 30%, 22 points) invoke measurement, then the caption withdraws the claim. That combination is worse than either alone — it signals *we made this up but styled it like data.* A sophisticated hiring lead will read "Documentation 6% vs 18%" and ask "measured across how many mandates, when?" There is no answer. Risk of looking arbitrary: high. The relative bar scaling compounds it — bar lengths don't match the printed numbers.
+**2 — Credibility of the six dimensions: low, and the page admits it.** _Fact:_ percentages sum to 100 with no source. _Judgment:_ precise-looking integers (8%, 30%, 22 points) invoke measurement, then the caption withdraws the claim. That combination is worse than either alone — it signals _we made this up but styled it like data._ A sophisticated hiring lead will read "Documentation 6% vs 18%" and ask "measured across how many mandates, when?" There is no answer. Risk of looking arbitrary: high. The relative bar scaling compounds it — bar lengths don't match the printed numbers.
 
 **3 — Is a dropdown right? No, on four counts.** Discoverability: two closed chevrons in a dark card read as a filter, not a story. Cognitive load: the user must hold two sectors, six dimensions, and twelve numbers in mind to extract one sentence the caption already writes for them. Mobile: choosing hides the result (measured above) — the cardinal sin of a comparison UI. Motivation: buyers operate in one sector. The genuine comparison audience is roughly nobody. Note this is not a craft failure — the picker is well built (grouping, typeahead, swap-not-duplicate, no-JS fallback). It is a well-executed answer to a question no visitor asked.
 
-**4 — Narrative and IA.** The page is thin and circular: *weighting differs by sector* (hero) → *weighting differs by sector* (12 cards) → *but the method doesn't* (steps) → *ask us*. One idea, stated three times, then a CTA. The 12-sector grid is the strongest thing here and is buried below a 1,321px hero. Copy is confident but unsupported — "Three vetted people for roles where the wrong hire costs more than a quarter," "Precision hiring for an industry where accuracy is the whole job" — assertions a competitor could paste verbatim. Missing entirely: any evidence of having done this work. Coverage is presented adequately (clear names, sparkline, "weighted heaviest") but without volume, geography, seniority, or a single outcome.
+**4 — Narrative and IA.** The page is thin and circular: _weighting differs by sector_ (hero) → _weighting differs by sector_ (12 cards) → _but the method doesn't_ (steps) → _ask us_. One idea, stated three times, then a CTA. The 12-sector grid is the strongest thing here and is buried below a 1,321px hero. Copy is confident but unsupported — "Three vetted people for roles where the wrong hire costs more than a quarter," "Precision hiring for an industry where accuracy is the whole job" — assertions a competitor could paste verbatim. Missing entirely: any evidence of having done this work. Coverage is presented adequately (clear names, sparkline, "weighted heaviest") but without volume, geography, seniority, or a single outcome.
 
 ---
 
@@ -41,6 +41,7 @@ Remove the choose-two-sectors comparison from the page. Keep the weighting *idea
 New hero (dark, full-bleed, as now): eyebrow `INDUSTRIES` → H1 kept (`The sector changes / what the role demands.`) → one sentence → **the 12 sectors as a live, clickable index in the hero right column**, each a link with its sparkline and "weighted heaviest" line on hover. Primary CTA becomes solid red `Ask about your sector`; secondary `See how the method works`. The hero now answers coverage instantly, is fully usable with no JavaScript, has zero invented data, and every pixel of it is a navigation target.
 
 **Revised sequence**
+
 1. Hero + 12-sector index (above).
 2. **Proof band** (new, dark→paper): mandates run, sectors live, median time-to-shortlist, offer-accept or 12-month retention; 3 anonymised mandate lines ("Series C fintech, Bengaluru — Head of Risk Engineering, 19 days, 3 shortlisted, 1 hired, still in seat").
 3. The twelve, expanded — cards as today, now the elaboration rather than the repeat.

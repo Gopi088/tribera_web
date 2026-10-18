@@ -9,7 +9,7 @@ Two narrow items; the redesign itself is sound and largely ships as recommended.
 
 Note the ambiguity: `maxOptionTextWidth` is exactly 209 at 320, 390, 768, 1520 and 1920, despite the 320 breakpoint overriding `font-size` to 11.5px from 14px. That strongly suggests the measurement was taken at a single 14px assumption and does not reflect the 320px render — in which case the real width is ~172px and there is no clip. In `card-320.png` the label reads end-to-end but terminates hard against the caret with no visible gap, which I cannot resolve by eye at this resolution. Re-measure at the applied computed font and correct `validation.md`; if the deficit is real, dropping to 11px or trimming the 24px right padding closes it.
 
-**2. The no-JS artifact is unusable.** `after/card-390-nojs.png` renders as an empty gradient — no card, no controls. It substantiates nothing. The *code* is sound: `index.astro:6395,6440` keep both selects `disabled`, the swap button ships `hidden disabled`, `.sel__swap[hidden]{display:none}` holds without JS, and `charts.ts:38` removes `#comparisonHint` only after init — so the hint persists. Re-capture against `after-final`.
+**2. The no-JS artifact is unusable.** `after/card-390-nojs.png` renders as an empty gradient — no card, no controls. It substantiates nothing. The _code_ is sound: `index.astro:6395,6440` keep both selects `disabled`, the swap button ships `hidden disabled`, `.sel__swap[hidden]{display:none}` holds without JS, and `charts.ts:38` removes `#comparisonHint` only after init — so the hint persists. Re-capture against `after-final`.
 
 ## Verified good
 

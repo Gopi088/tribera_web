@@ -27,4 +27,3 @@ The first response misread the dangling prose reference as an HTML form-label qu
 **1. Dangling reference — yes, resolved.** Line 477 now reads "Four groups, spanning the roles listed below." It points at the list rendered immediately beneath it (line 478's `v58-coverage` listitems) rather than naming a "Coverage" heading that never existed. The nearby text at line 476 is a descriptive label ("Interview expertise, grouped by specialism"), not a section-name reference either. No remaining pointer to a nonexistent heading.
 
 **2. Payoff class — confirmed.** Line 160 opens `<p class="v58-thesis__claim">`, containing the "Three worth meeting" payoff with the `v58-hd-underline` SVG. So it matches the selector the scoped underline fix targets.
-

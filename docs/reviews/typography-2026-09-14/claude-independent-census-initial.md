@@ -15,16 +15,16 @@ No broken layouts, no oversized/undersized prose, no clipped or overflowing text
 **1. The `groups.tsv` capture predates the "final CSS additions" — the 8 newest selectors cannot be verified from this data.**
 Cross-checking the 8 classes you said were just added (`oc__m, jd__k, crumb, ind__w i, qq__k, rec__k, atag, door__next>span`) against their actual recorded sizes in `groups.tsv`:
 
-| selector | CSS target | groups.tsv actual |
-|---|---|---|
-| `.jd__k` (`/careers/ai-ml-engineer/`) | 12px | 10px |
-| `.crumb` (`/careers/ai-ml-engineer/`) | 12px | 10px |
-| `.ind__w i` (`/functions/`) | 12px | 8.5px |
-| `.qq__k` (`/functions/data-analytics/`) | 12px | 8.5px |
-| `.rec__k` (`/services/`) | 12px | 8.5px |
-| `.oc__m` (`/services/`) | 12px | 9.5px |
-| `.atag` (blog post) | 12px | 10px |
-| `.door__next > span` (`/about/`) | 12px | 8.5px |
+| selector                                | CSS target | groups.tsv actual |
+| --------------------------------------- | ---------- | ----------------- |
+| `.jd__k` (`/careers/ai-ml-engineer/`)   | 12px       | 10px              |
+| `.crumb` (`/careers/ai-ml-engineer/`)   | 12px       | 10px              |
+| `.ind__w i` (`/functions/`)             | 12px       | 8.5px             |
+| `.qq__k` (`/functions/data-analytics/`) | 12px       | 8.5px             |
+| `.rec__k` (`/services/`)                | 12px       | 8.5px             |
+| `.oc__m` (`/services/`)                 | 12px       | 9.5px             |
+| `.atag` (blog post)                     | 12px       | 10px              |
+| `.door__next > span` (`/about/`)        | 12px       | 8.5px             |
 
 Every one of these still shows its pre-fix size in the dataset. This is exactly consistent with your note that the screenshot/inventory metadata may predate just those additions — but it means **none of these 8 fixes are confirmed by this audit pass**. They need a fresh capture before you can call them done.
 
@@ -32,6 +32,7 @@ Every one of these still shows its pre-fix size in the dataset. This is exactly 
 `.door__k` renders as `"JetBrains Mono"` on `/about/` (id 82) but as `Fraunces, Georgia, serif` on `/blog/` (id 131), same class, same text "If you're hiring." Font-size matches (12px both), so it wouldn't fail a size-only check, but since the fix mandate is "preserve family/weight/italic/colors," this is a pre-existing family inconsistency that a pure size audit would never surface. Not something I'm attributing to your recent change — just noting it's an existing blind spot in a size-only review.
 
 **3. Several elements record two different sizes at the same route+width** — these look like legitimate interactive-state pairs, not confirmed bugs:
+
 - `p.bbb2 span` "Belong" (`/about/`): 20px and 24/30/40px at the same widths — almost certainly active vs inactive scroll-tracker state.
 - Candidate-page score widgets (`h3` "Anirudh Mehta", `.c-priorities dt`, `.bw__n`-style weight labels): pairs like `320:24,320:18` — consistent with the "is-priority" emphasis toggle when a preset brief is chosen.
 

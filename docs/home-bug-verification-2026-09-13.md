@@ -11,26 +11,26 @@ those areas are copy and presentation only, not new scoring or coverage data.
 
 ## Final checklist
 
-| Item | Resolution | Claude review |
-| --- | --- | --- |
-| 1 | Hero subtitle shortened to three direct sentences. | PASS |
-| 2 | Secondary hero link is "See it live". | PASS |
-| 3 | Scroll cue no longer mentions an undefined bar. | PASS |
-| 4 | Cue sits with hero copy, separated from logos, linking to `#proof`. | PASS |
-| 5 | Caption reads "Three clear it. Five don't." | PASS |
-| 6 | Payoff reads "Three to interview. Evidence to decide." | PASS |
-| 7 | Lab introduction explains why role priorities change fit. | PASS |
-| 8 | Brief notes explain strengths and gaps using existing scores. | PASS |
-| 9 | Footer promises to adjust the assessment to match priorities. | PASS |
-| 10 | Expert heading explicitly refers to the user's requirements. | PASS |
-| 11 | Seventeen roles displayed individually under four named groups. | PASS |
-| 12 | Short case introduction; separate clarification of five introductions. | PASS |
-| 13 | CV screening explicitly connects 126 CVs to 40 HR interviews. | PASS |
-| 14 | Stable pool label: "From 126 candidates sourced for this role". | PASS |
-| 15 | Hiring team named explicitly, including in the time estimate. | PASS |
-| 16 | Workflow heading breaks between its two sentences. | PASS |
-| 17 | Exactly three red hero accents. | PASS |
-| 18 | Scroll-triggered drawing and stagger restored; reduced-motion/no-JS fallbacks retained. | PASS |
+| Item | Resolution                                                                              | Claude review |
+| ---- | --------------------------------------------------------------------------------------- | ------------- |
+| 1    | Hero subtitle shortened to three direct sentences.                                      | PASS          |
+| 2    | Secondary hero link is "See it live".                                                   | PASS          |
+| 3    | Scroll cue no longer mentions an undefined bar.                                         | PASS          |
+| 4    | Cue sits with hero copy, separated from logos, linking to `#proof`.                     | PASS          |
+| 5    | Caption reads "Three clear it. Five don't."                                             | PASS          |
+| 6    | Payoff reads "Three to interview. Evidence to decide."                                  | PASS          |
+| 7    | Lab introduction explains why role priorities change fit.                               | PASS          |
+| 8    | Brief notes explain strengths and gaps using existing scores.                           | PASS          |
+| 9    | Footer promises to adjust the assessment to match priorities.                           | PASS          |
+| 10   | Expert heading explicitly refers to the user's requirements.                            | PASS          |
+| 11   | Seventeen roles displayed individually under four named groups.                         | PASS          |
+| 12   | Short case introduction; separate clarification of five introductions.                  | PASS          |
+| 13   | CV screening explicitly connects 126 CVs to 40 HR interviews.                           | PASS          |
+| 14   | Stable pool label: "From 126 candidates sourced for this role".                         | PASS          |
+| 15   | Hiring team named explicitly, including in the time estimate.                           | PASS          |
+| 16   | Workflow heading breaks between its two sentences.                                      | PASS          |
+| 17   | Exactly three red hero accents.                                                         | PASS          |
+| 18   | Scroll-triggered drawing and stagger restored; reduced-motion/no-JS fallbacks retained. | PASS          |
 
 ## Protected exclusions
 

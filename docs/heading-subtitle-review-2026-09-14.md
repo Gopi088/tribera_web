@@ -40,6 +40,7 @@ Candidate's sections mostly use 48px / 30px, but Expert Conversation falls to
 identical H2 scale at 48px / 32px instead.
 
 Source causes:
+
 - `src/components/home/v58/Home.astro:2683` and the Workflow/Trust overrides near
   lines 2734 and 2800 duplicate/override the section scale.
 - `src/components/candidates/Candidates.astro:569` defines the main H2 scale;
@@ -153,16 +154,16 @@ for a scorecard, coverage group and process step are not inherently wrong.
 
 These are recommendations, not changes made or approved blanket requirements.
 
-| Role | Desktop target | Mobile target | Leading / treatment |
-|---|---:|---:|---|
-| Marketing hero | about 52-56px default | 32-36px | 1.08-1.15; explicit larger variant only if justified |
-| Peer marketing section | 36px | 28px | about 1.15; natural wrapping |
-| Article-body subhead | 28-32px | 24-26px | about 1.2 |
-| Legal-document subhead | retain current 32px cap | retain current document scale | 1.2 |
-| Editorial card title | 22-24px | 20-24px | 1.2-1.3; preserve a gap below its parent heading |
-| Process/UI label | retain contextual 16-18px | retain contextual 16-18px | sans/mono as appropriate |
-| True section subtitle | about 18px | at least 16px | 1.55-1.65; readable measure |
-| Supporting statement | retain current ~22px | retain current 18px | current serif/underline treatment |
+| Role                   |            Desktop target |                 Mobile target | Leading / treatment                                  |
+| ---------------------- | ------------------------: | ----------------------------: | ---------------------------------------------------- |
+| Marketing hero         |     about 52-56px default |                       32-36px | 1.08-1.15; explicit larger variant only if justified |
+| Peer marketing section |                      36px |                          28px | about 1.15; natural wrapping                         |
+| Article-body subhead   |                   28-32px |                       24-26px | about 1.2                                            |
+| Legal-document subhead |   retain current 32px cap | retain current document scale | 1.2                                                  |
+| Editorial card title   |                   22-24px |                       20-24px | 1.2-1.3; preserve a gap below its parent heading     |
+| Process/UI label       | retain contextual 16-18px |     retain contextual 16-18px | sans/mono as appropriate                             |
+| True section subtitle  |                about 18px |                 at least 16px | 1.55-1.65; readable measure                          |
+| Supporting statement   |      retain current ~22px |           retain current 18px | current serif/underline treatment                    |
 
 A 36/28 section trial is reasonable given the user's preference for less dominant
 titles, but Claude correctly cautions against replacing every H2 with that value.

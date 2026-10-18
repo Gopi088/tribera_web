@@ -1,11 +1,13 @@
 ## Corrected findings
 
 **Mobile H1 (390px, experts-390.png) — re-transcribed:**
+
 ```
 Senior experts who've
 done the job — held to
 one bar: the one you set.
 ```
+
 This is **3 lines**, not 4, and there is no orphaned "one" on its own line — "one bar:" and the italic "the one you set." wrap onto the same third line. The prior report's transcription was wrong. **No orphan exists; no nowrap/non-breaking-space fix is warranted.**
 
 **Heading level:** Confirmed the prior report mislabeled this as an H1. Per your instruction, the source defines it as an H2 — treat it as a section-level heading, not a hero H1. The full-width title with subtitle below (user-approved layout) is unaffected and should be retained as-is.

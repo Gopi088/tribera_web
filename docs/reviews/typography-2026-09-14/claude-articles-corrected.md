@@ -20,10 +20,11 @@ Internal consistency across body/related/CTA H2 is real, but it's not the same a
 - **Mobile: H1 33.28 vs H2 32 → only ~4% gap (1.28px).** H1 appears once per page; H2 recurs repeatedly (every body section, plus related/CTA). A one-time page title barely distinguishable in size from a heading repeated 4-8+ times flattens the page outline, especially on mobile where readers scan by size.
 
 Against the proposed role-based alternative (article-body H2 28-32 desktop / 24-26 mobile, 1.2 line-height; marketing-section 36 desktop / 28 mobile, 1.15):
+
 - Desktop H1-to-body-H2 gap becomes 21-25px (40-47%).
 - Mobile gap becomes 7-9px (24-28%), clearly perceivable vs. the current ~4%.
 
-That's a genuine improvement for in-body subheads. But applying role-based sizing uniformly to *all three* contexts isn't obviously right either — related-articles and CTA headers are discrete UI modules, not sequential prose, so they don't need to defer to the article's H1 the way body subheads do. The marketing-section scale (36/28) is arguably the better fit for them.
+That's a genuine improvement for in-body subheads. But applying role-based sizing uniformly to _all three_ contexts isn't obviously right either — related-articles and CTA headers are discrete UI modules, not sequential prose, so they don't need to defer to the article's H1 the way body subheads do. The marketing-section scale (36/28) is arguably the better fit for them.
 
 ### Recommendation
 

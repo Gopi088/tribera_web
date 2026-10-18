@@ -4,12 +4,12 @@ PASS
 
 **1. Typography/overflow gap — closed.** `measurements.json` now reports computed-font measurements with headroom at every width:
 
-| Width | Longest option | Available | Reserve |
-|---|---|---|---|
-| 320 | 152px | 203px | 51px |
-| 390 | 188px | 209px | 21px |
-| 768 | 188px | 554px | 366px |
-| 1520/1920 | 188px | 368px | 180px |
+| Width     | Longest option | Available | Reserve |
+| --------- | -------------- | --------- | ------- |
+| 320       | 152px          | 203px     | 51px    |
+| 390       | 188px          | 209px     | 21px    |
+| 768       | 188px          | 554px     | 366px   |
+| 1520/1920 | 188px          | 368px     | 180px   |
 
 `pageOverflow: false` at all five widths. The specificity fix is visible in the diff (`:root body .site-editorial .sel select`), and the screenshots corroborate it: `card-320.png` and `card-390.png` render "Consumer & digital commerce" in full with no ellipsis or clip. The 320 stacked fallback (chip on its own row, 11.5px, caret bottom-right) renders cleanly inside the 295px card.
 

@@ -5,6 +5,7 @@ Verified against source, tests, and the five screenshots. No blockers found; bel
 ## Verification notes
 
 **Confirmed fixed in source + pixels**
+
 - Payoff: `max-width: 30ch` (`Home.astro:1326`) + NBSP moved inside `.v58-hd-word` (`:168`). `/tmp/handoff-thesis-390.png` and `/tmp/handoff-thesis-1520.png` both render two lines, dash trailing line 1, no leading indent. Whitespace-blind gap closed by the per-glyph line-box assertions in `home-handoff.test.mjs:59-84`.
 - Coverage grid: `repeat(auto-fit, minmax(min(100%,260px),1fr))` (`Home.astro:2613-2616`); `/tmp/v60-cover-390.png` shows one aligned role per row, 17 items; geometry pinned at `home-handoff.test.mjs:49-58`.
 - Experts vs Coverage: `/tmp/experts-grouped-1607.png` shows four specialisms with focus text and no role inventory; roles appear once at `Home.astro:616-618`. Locked by `v60-copy.test.mjs:45-50` (`#experts ul` count 0, 17 unique roles).
@@ -23,23 +24,22 @@ Verified against source, tests, and the five screenshots. No blockers found; bel
 
 ## Verdict per finding
 
-| # | Verdict |
-| --- | --- |
-| 1 Payoff wrapping | **ACCEPT** |
-| 2 Mobile coverage | **ACCEPT** |
-| 3 Duplicated coverage/copy | **ACCEPT** |
-| 4 Funnel lead (R13) | **ACCEPT** |
-| 5 Candidate readiness | **ACCEPT** |
-| 6 Home lab readiness | **ACCEPT** |
-| 7 Indexing default | **ACCEPT** |
-| 8 Evidence citations | **ACCEPT** (tests now assert what R31/R25 cite; manifest text refresh still outstanding) |
-| 9 Workbook preservation | **ACCEPT** |
-| 10 Unsupported-claims guard | **ACCEPT** |
-| 11 Marquee a11y | **ACCEPT** (disposition wording overstated, see 6 above) |
-| 12 CTA/modal label | **ACCEPT** |
-| 13 Apostrophes | No verdict — optional style, retention is a legitimate call |
-| 14 Case provenance | **Correctly left open** under R33; I did not close it and no methodology was invented. The hedging asymmetry (`Home.astro:393`, `:453` vs `:448`) is still live and unresolved by design |
-| 15 Minor checks | **ACCEPT** (cover added to sweep `home-audit.test.mjs:43`; empty media query gone; article rewrapped at `:7056`; hero capped `Home.astro:740` + gap bound) |
+| #                           | Verdict                                                                                                                                                                                  |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1 Payoff wrapping           | **ACCEPT**                                                                                                                                                                               |
+| 2 Mobile coverage           | **ACCEPT**                                                                                                                                                                               |
+| 3 Duplicated coverage/copy  | **ACCEPT**                                                                                                                                                                               |
+| 4 Funnel lead (R13)         | **ACCEPT**                                                                                                                                                                               |
+| 5 Candidate readiness       | **ACCEPT**                                                                                                                                                                               |
+| 6 Home lab readiness        | **ACCEPT**                                                                                                                                                                               |
+| 7 Indexing default          | **ACCEPT**                                                                                                                                                                               |
+| 8 Evidence citations        | **ACCEPT** (tests now assert what R31/R25 cite; manifest text refresh still outstanding)                                                                                                 |
+| 9 Workbook preservation     | **ACCEPT**                                                                                                                                                                               |
+| 10 Unsupported-claims guard | **ACCEPT**                                                                                                                                                                               |
+| 11 Marquee a11y             | **ACCEPT** (disposition wording overstated, see 6 above)                                                                                                                                 |
+| 12 CTA/modal label          | **ACCEPT**                                                                                                                                                                               |
+| 13 Apostrophes              | No verdict — optional style, retention is a legitimate call                                                                                                                              |
+| 14 Case provenance          | **Correctly left open** under R33; I did not close it and no methodology was invented. The hedging asymmetry (`Home.astro:393`, `:453` vs `:448`) is still live and unresolved by design |
+| 15 Minor checks             | **ACCEPT** (cover added to sweep `home-audit.test.mjs:43`; empty media query gone; article rewrapped at `:7056`; hero capped `Home.astro:740` + gap bound)                               |
 
 Approved. Seven owner/legal/deployment gates remain open and untouched; I ran nothing and read no binary workbook — all test results cited are from your logs plus the test sources.
-

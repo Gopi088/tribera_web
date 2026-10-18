@@ -7,23 +7,23 @@ historical evidence, not evidence for this revision.
 
 ## Dispositions
 
-| Finding | Change or disposition |
-| --- | --- |
-| 1. Payoff wrapping | Widened the measure to 30ch and moved the nonbreaking space inside the underlined phrase. Added glyph-position assertions: no line starts with a dash, and 390/1520px have two lines. |
-| 2. Mobile coverage | Replaced wrapping flex with a responsive grid: one aligned role per row on narrow screens. Added geometry assertions. |
-| 3. Repeated coverage/copy | Experts now shows the four specialisms and their interview focus; the complete 17-role inventory appears only in Coverage. Removed the repeated confirmation sentence and repeated funnel-close qualification sentence. |
-| 4. Funnel intro | Removed the 126/five summary from the lead, leaving role context above the visual. Regression rejects repeated counts in that lead. |
-| 5. Candidate readiness | Disabled controls have dashed borders, reduced opacity and a not-allowed cursor. A server-rendered static-example explanation remains visible until handlers attach, including CSP-blocked scripts. |
-| 6. Home readiness | Presets and sliders now ship disabled, with the same static-example explanation. Enabled only after event handlers and initial calculation succeed. |
-| 7. Indexing | Unknown or empty build contexts now default to noindex. Indexable releases require explicit CONTEXT=production; Netlify preview hosts and route-level exceptions remain noindex. R20 still requires deployed robots/canonical/sitemap verification. |
-| 8. Evidence citations | Added actual rendered career-card city assertions and both demos' scale/comparability caveat assertions to reviewed-bugs. |
-| 9. Workbook preservation | Removed fixture replacement of real review verdicts. New test validates the real manifest and compares the current workbook with the original backup, including A-E XML, original status in L and unrelated ZIP parts. |
-| 10. Unsupported claims guard | Widened the Functions assertion from .steps to body. |
-| 11. Accessible marquee | Second copy is aria-hidden; the named track has role=group. Tests require eleven unhidden DOM copies, eleven hidden copies, and each client name exactly once in the ARIA snapshot. |
-| 12. CTA consistency | Closing secondary CTA now says Book a demo, matching the existing shared modal without changing other pages' modal naming or submission intents. |
-| 13. Apostrophe glyphs | Optional typography suggestion, not a behavioral defect. Retained existing ASCII contractions and original testimonial punctuation; no site-wide punctuation migration in this bug pass. |
-| 14. Case provenance | Still pending R33 owner evidence. Counts are not estimates merely because the time saving is estimated: changing their labels to estimated would invent a methodology. No factual sign-off or new guarantee added. |
-| 15. Minor checks | Added Coverage to heading-alignment sweep; removed empty media query; wrapped the article edit; capped desktop hero minimum height at 760px and added a bound on the gap above the cue. |
+| Finding                      | Change or disposition                                                                                                                                                                                                                               |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Payoff wrapping           | Widened the measure to 30ch and moved the nonbreaking space inside the underlined phrase. Added glyph-position assertions: no line starts with a dash, and 390/1520px have two lines.                                                               |
+| 2. Mobile coverage           | Replaced wrapping flex with a responsive grid: one aligned role per row on narrow screens. Added geometry assertions.                                                                                                                               |
+| 3. Repeated coverage/copy    | Experts now shows the four specialisms and their interview focus; the complete 17-role inventory appears only in Coverage. Removed the repeated confirmation sentence and repeated funnel-close qualification sentence.                             |
+| 4. Funnel intro              | Removed the 126/five summary from the lead, leaving role context above the visual. Regression rejects repeated counts in that lead.                                                                                                                 |
+| 5. Candidate readiness       | Disabled controls have dashed borders, reduced opacity and a not-allowed cursor. A server-rendered static-example explanation remains visible until handlers attach, including CSP-blocked scripts.                                                 |
+| 6. Home readiness            | Presets and sliders now ship disabled, with the same static-example explanation. Enabled only after event handlers and initial calculation succeed.                                                                                                 |
+| 7. Indexing                  | Unknown or empty build contexts now default to noindex. Indexable releases require explicit CONTEXT=production; Netlify preview hosts and route-level exceptions remain noindex. R20 still requires deployed robots/canonical/sitemap verification. |
+| 8. Evidence citations        | Added actual rendered career-card city assertions and both demos' scale/comparability caveat assertions to reviewed-bugs.                                                                                                                           |
+| 9. Workbook preservation     | Removed fixture replacement of real review verdicts. New test validates the real manifest and compares the current workbook with the original backup, including A-E XML, original status in L and unrelated ZIP parts.                              |
+| 10. Unsupported claims guard | Widened the Functions assertion from .steps to body.                                                                                                                                                                                                |
+| 11. Accessible marquee       | Second copy is aria-hidden; the named track has role=group. Tests require eleven unhidden DOM copies, eleven hidden copies, and each client name exactly once in the ARIA snapshot.                                                                 |
+| 12. CTA consistency          | Closing secondary CTA now says Book a demo, matching the existing shared modal without changing other pages' modal naming or submission intents.                                                                                                    |
+| 13. Apostrophe glyphs        | Optional typography suggestion, not a behavioral defect. Retained existing ASCII contractions and original testimonial punctuation; no site-wide punctuation migration in this bug pass.                                                            |
+| 14. Case provenance          | Still pending R33 owner evidence. Counts are not estimates merely because the time saving is estimated: changing their labels to estimated would invent a methodology. No factual sign-off or new guarantee added.                                  |
+| 15. Minor checks             | Added Coverage to heading-alignment sweep; removed empty media query; wrapped the article edit; capped desktop hero minimum height at 760px and added a bound on the gap above the cue.                                                             |
 
 The seven owner/legal/deployment gates remain open. R34 also needs disclosure
 review for the existing per-score transcript-traceability claims. The approved

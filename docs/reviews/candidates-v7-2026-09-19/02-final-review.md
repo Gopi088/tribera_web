@@ -9,6 +9,7 @@ Candidates.astro only imports scoped candidate-v7 assets — no touch to SharedN
 **No defects found within the candidate-v7 task delta.**
 
 Minor/non-blocking (unchanged from prior review):
+
 - JS-referenced IDs (`#tallyN`, `#sScore`, `#wr0`, etc.) are unscoped — fine for single render, worth noting if the block is ever duplicated.
 
 **Verdict: PASS.** The navbar color diff is confirmed pre-existing, unrelated, out-of-scope work; no candidate-v7 file disturbs navbar appearance or behavior, and the integration fulfills the supplied sample.

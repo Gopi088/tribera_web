@@ -4,16 +4,16 @@
 
 All eight are at 12px across all four widths (320/390/768/1520) in the latest `groups.tsv`. This reverses the prior census's finding #1, which was reading a pre-fix capture.
 
-| selector | route | sizes | family |
-|---|---|---|---|
-| `span.oc__m` (×8 cards) | `/services/` | 12/12/12/12 | JetBrains Mono |
-| `p.rec__k` | `/services/` | 12/12/12/12 | JetBrains Mono |
-| `p.jd__k` (×2) | `/careers/ai-ml-engineer/` | 12/12/12/12 | JetBrains Mono |
-| `p.crumb` (+ `a`, `i` children) | `/careers/ai-ml-engineer/` | 12/12/12/12 | JetBrains Mono |
-| `i` in `span.ind__w` | `/functions/` | 12/12/12/12 | JetBrains Mono |
-| `span.qq__k` (×2) | `/functions/data-analytics/` | 12/12/12/12 | JetBrains Mono |
-| `a.atag` | `/blog/designing-ai-for-high-stakes-technical-assessment/` | 12/12/12/12 | JetBrains Mono |
-| `span` in `p.door__next` | `/about/` and `/blog/` | 12/12/12/12 | JetBrains Mono |
+| selector                        | route                                                      | sizes       | family         |
+| ------------------------------- | ---------------------------------------------------------- | ----------- | -------------- |
+| `span.oc__m` (×8 cards)         | `/services/`                                               | 12/12/12/12 | JetBrains Mono |
+| `p.rec__k`                      | `/services/`                                               | 12/12/12/12 | JetBrains Mono |
+| `p.jd__k` (×2)                  | `/careers/ai-ml-engineer/`                                 | 12/12/12/12 | JetBrains Mono |
+| `p.crumb` (+ `a`, `i` children) | `/careers/ai-ml-engineer/`                                 | 12/12/12/12 | JetBrains Mono |
+| `i` in `span.ind__w`            | `/functions/`                                              | 12/12/12/12 | JetBrains Mono |
+| `span.qq__k` (×2)               | `/functions/data-analytics/`                               | 12/12/12/12 | JetBrains Mono |
+| `a.atag`                        | `/blog/designing-ai-for-high-stakes-technical-assessment/` | 12/12/12/12 | JetBrains Mono |
+| `span` in `p.door__next`        | `/about/` and `/blog/`                                     | 12/12/12/12 | JetBrains Mono |
 
 Two notes on reading that table:
 
@@ -49,7 +49,7 @@ Per your constraint I am not reading these as interactive states. They are sibli
 
 ## 5. Automated scope vs. visual scope
 
-**Short labels are now covered.** The contract keys every text row regardless of length, and `tests/text-inventory-contract.test.mjs` proves an unreviewed short label is rejected (`new-short-label` mutation). That is real coverage the ≥50-character prose test never had. You report the current page-specific contract at 17468 keys with new-label/size/weight/color/italics mutations all passing — I read the contract *before* that rewrite, so I am taking the key count and the five mutation results from you rather than confirming them. The version I read keyed on `[width, selector, context, kind]` with no route; adding the page dimension addresses the cross-route blind spot I would otherwise have raised here, so I am not raising it.
+**Short labels are now covered.** The contract keys every text row regardless of length, and `tests/text-inventory-contract.test.mjs` proves an unreviewed short label is rejected (`new-short-label` mutation). That is real coverage the ≥50-character prose test never had. You report the current page-specific contract at 17468 keys with new-label/size/weight/color/italics mutations all passing — I read the contract _before_ that rewrite, so I am taking the key count and the five mutation results from you rather than confirming them. The version I read keyed on `[width, selector, context, kind]` with no route; adding the page dimension addresses the cross-route blind spot I would otherwise have raised here, so I am not raising it.
 
 **Interactive states are captured but not asserted.** In the version I read, `scripts/test-reviewed-site.mjs:56` runs the CI capture with `AUDIT_STATES: '0'`, and `scripts/text-inventory-contract.mjs:10` filters to `s.name === 'default'`. If that is still true, the 751 states in `/tmp/tribera-all-text-states-final` are a manual artifact with no automated gate behind them — a typography regression in a hover, expanded panel, tab, preset or slider state would not fail CI. This is the largest remaining gap between your visual/manual scope and your automated scope.
 

@@ -23,7 +23,10 @@ try {
     assert.equal(await page.locator('main').count(), 1);
     assert.equal(await page.locator('.candidate-v7').count(), 1);
     assert.equal(await page.locator('.candidate-v7 h1').count(), 1);
-    assert.match(await page.locator('.candidate-v7 h1').innerText(), /Interviewed once\.\s*Shortlisted everywhere\s*\./);
+    assert.match(
+      await page.locator('.candidate-v7 h1').innerText(),
+      /Interviewed once\.\s*Shortlisted everywhere\s*\./
+    );
     assert.equal(await page.locator('.candidate-v7 > .nav').count(), 0, 'Standalone sample nav is excluded');
     assert.equal(await page.locator('.candidate-v7 > .ft').count(), 0, 'Standalone sample footer is excluded');
     assert.equal(await page.locator('#nav').count(), 1, 'Shared navbar remains the only primary navbar');

@@ -26,21 +26,21 @@ intentionally changed in this pass. The application edits are font-size override
 
 ## Evidence
 
-| Check | Result |
-| --- | --- |
-| Independent default-state census | 304 route/width records; 1,001 contextual groups |
-| Independent interaction census | 152 route/width records; 751 states; 1,096 groups |
-| Independently discovered long explanatory copy | 5,656 default-state occurrences passed |
-| Interaction-state explanatory copy | 16,225 occurrences passed |
-| Shared-role computed font sizes | 13,668 assertions passed |
-| Page-specific text-style contract | 17,468 context/width combinations recorded |
-| Mutation checks | New short label, wrong size, changed weight, color and italics correctly rejected |
-| Capture-health mutations | Missing route, failed capture and missing default state correctly rejected |
-| Baseline-to-final style preservation | 17,788 matched occurrences; 3,347 size changes; zero family/weight/style/color differences |
-| Repeat-crawl stability | 18,332 matched occurrences; zero size or other style differences |
-| Targeted visual captures | 34 section crops across 17 sections at two widths |
-| Astro check | Zero errors and warnings; 146 hints |
-| Production build | 76 pages built successfully |
+| Check                                          | Result                                                                                     |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Independent default-state census               | 304 route/width records; 1,001 contextual groups                                           |
+| Independent interaction census                 | 152 route/width records; 751 states; 1,096 groups                                          |
+| Independently discovered long explanatory copy | 5,656 default-state occurrences passed                                                     |
+| Interaction-state explanatory copy             | 16,225 occurrences passed                                                                  |
+| Shared-role computed font sizes                | 13,668 assertions passed                                                                   |
+| Page-specific text-style contract              | 17,468 context/width combinations recorded                                                 |
+| Mutation checks                                | New short label, wrong size, changed weight, color and italics correctly rejected          |
+| Capture-health mutations                       | Missing route, failed capture and missing default state correctly rejected                 |
+| Baseline-to-final style preservation           | 17,788 matched occurrences; 3,347 size changes; zero family/weight/style/color differences |
+| Repeat-crawl stability                         | 18,332 matched occurrences; zero size or other style differences                           |
+| Targeted visual captures                       | 34 section crops across 17 sections at two widths                                          |
+| Astro check                                    | Zero errors and warnings; 146 hints                                                        |
+| Production build                               | 76 pages built successfully                                                                |
 
 Heading/subtitle, Services letter, hero viewport, candidate layout, navbar/font
 loading, Home refresh, experts and funnel checks also passed individually. The

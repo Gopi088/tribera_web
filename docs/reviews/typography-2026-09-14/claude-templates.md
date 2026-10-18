@@ -33,13 +33,13 @@ The page has an H1 ("Candidate Experience") and a subtitle (`hero__p`), then jum
 
 ### Route dispositions
 
-| Route | Disposition |
-|---|---|
-| `/services/` | Retain — hierarchy and subtitle/card-lead distinction correct at all breakpoints. |
-| `/intelligence/` | **Fix** — remove legacy local `.h2` override causing 30px vs 32px mobile H2. |
-| `/contact/` | Retain — optional cosmetic grey normalization on `.dek`, not urgent. |
-| `/careers/talent-associate/` | Retain — distinct JD template, internally consistent, hierarchy intact. |
-| `/functions/data-analytics/` | Retain (sample only) — matches shared vertical-page pattern. |
-| `/industries/banking-financial-services/` | Retain (sample only) — matches shared vertical-page pattern; likely applies to sibling function/industry pages but not individually confirmed. |
-| `/privacy/` | Retain — doc template scale behaving as designed. |
-| `/category/candidate-experience/` | Retain, with low-priority note on H1→H3 skip; likely applies to other `/category/*` and taxonomy pages via shared `TopicIndex`/`EntryCard`, not individually confirmed. |
+| Route                                     | Disposition                                                                                                                                                             |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/services/`                              | Retain — hierarchy and subtitle/card-lead distinction correct at all breakpoints.                                                                                       |
+| `/intelligence/`                          | **Fix** — remove legacy local `.h2` override causing 30px vs 32px mobile H2.                                                                                            |
+| `/contact/`                               | Retain — optional cosmetic grey normalization on `.dek`, not urgent.                                                                                                    |
+| `/careers/talent-associate/`              | Retain — distinct JD template, internally consistent, hierarchy intact.                                                                                                 |
+| `/functions/data-analytics/`              | Retain (sample only) — matches shared vertical-page pattern.                                                                                                            |
+| `/industries/banking-financial-services/` | Retain (sample only) — matches shared vertical-page pattern; likely applies to sibling function/industry pages but not individually confirmed.                          |
+| `/privacy/`                               | Retain — doc template scale behaving as designed.                                                                                                                       |
+| `/category/candidate-experience/`         | Retain, with low-priority note on H1→H3 skip; likely applies to other `/category/*` and taxonomy pages via shared `TopicIndex`/`EntryCard`, not individually confirmed. |

@@ -8,11 +8,11 @@
 
 Keep both `<select>`s in the DOM as the value store. `initComparison` adds `hidden` to each and injects a `<button role="combobox" aria-expanded aria-controls aria-haspopup="listbox">` styled exactly as today's `.sel` (chip + label + `.sel__car`), then writes `select.value` and dispatches `change` on commit. Swap, series data, note text and the 12 options are untouched.
 
-**Geometry.** The panel is `position:absolute` *inside* `.cmpw` — so `overflow:hidden` contains it rather than clipping it, no z-index war with the navbar (z-index 5 within the card's stacking context). Top = trigger bottom + 6px; `left/right` = card padding; background `#1a1a18`, 1px `--cline`, radius 10px, the same 0 24px 56px shadow. Bars beneath get `opacity:.35` — the chart is visibly *behind*, not overlapped by a foreign surface. Nothing reflows, so the card height never jumps.
+**Geometry.** The panel is `position:absolute` _inside_ `.cmpw` — so `overflow:hidden` contains it rather than clipping it, no z-index war with the navbar (z-index 5 within the card's stacking context). Top = trigger bottom + 6px; `left/right` = card padding; background `#1a1a18`, 1px `--cline`, radius 10px, the same 0 24px 56px shadow. Bars beneath get `opacity:.35` — the chart is visibly _behind_, not overlapped by a foreign surface. Nothing reflows, so the card height never jumps.
 
-**Columns/grouping.** ≥560px: two columns inside three labelled bands (mono 9.5px, `--onc3`): *Technology & product* (4), *Regulated & scientific* (4), *Industrial & capital* (4). At the measured 1520 card, column width ≈208px against the 188px longest label — fits. <560px: one column, 44px rows, `max-height:58vh`, internal scroll.
+**Columns/grouping.** ≥560px: two columns inside three labelled bands (mono 9.5px, `--onc3`): _Technology & product_ (4), _Regulated & scientific_ (4), _Industrial & capital_ (4). At the measured 1520 card, column width ≈208px against the 188px longest label — fits. <560px: one column, 44px rows, `max-height:58vh`, internal scroll.
 
-**Typography/state.** Options `--ui` 13.5px/500, `#c9c9c2`; hover/active `rgba(255,255,255,.07)` + `#fff`. Selected row shows a 12px check in the owner's colour and `aria-selected="true"`. The option held by the *other* selector carries its chip badge; choosing it performs a swap rather than duplicating.
+**Typography/state.** Options `--ui` 13.5px/500, `#c9c9c2`; hover/active `rgba(255,255,255,.07)` + `#fff`. Selected row shows a 12px check in the owner's colour and `aria-selected="true"`. The option held by the _other_ selector carries its chip badge; choosing it performs a swap rather than duplicating.
 
 **A/B identity.** 2px top accent on the panel — `#c9c9c2` for A, `#ff6b6f` for B — matching the existing chips and `.bw__f` bars.
 

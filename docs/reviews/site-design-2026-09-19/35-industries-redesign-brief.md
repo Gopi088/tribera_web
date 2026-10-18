@@ -19,7 +19,7 @@
 
 ### 2. Hero composition
 
-White field (`--white`), left-aligned, no dot-matrix, no glow, no card — deliberately *not* the homepage's centred hero. Section padding-block `clamp(56px, 7vw, 104px)` top, `clamp(40px, 5vw, 72px)` bottom. **No `min-height` at any breakpoint** — delete the entire `1576px…calc(100svh)` ladder (`index.astro:385–465`).
+White field (`--white`), left-aligned, no dot-matrix, no glow, no card — deliberately _not_ the homepage's centred hero. Section padding-block `clamp(56px, 7vw, 104px)` top, `clamp(40px, 5vw, 72px)` bottom. **No `min-height` at any breakpoint** — delete the entire `1576px…calc(100svh)` ladder (`index.astro:385–465`).
 
 **≥1000px:** copy block constrained to `max-width: 760px` inside `.wrap` (`--wrap: 1160px`, `--pad: clamp(22px,5vw,72px)`). H1 `clamp(2.6rem, 5.6vw, 4.15rem)`, `max-width: 16ch`, line-height 1.08. Lead `clamp(1.08rem,1.55vw,1.28rem)`, `--ink-2`, `max-width: 52ch`, `margin-top: 1.5rem`. CTA row `margin-top: 2.3rem`, gap `12px 24px`. Copy block ends ~465px below the 62px header, so the first index row sits at ~530px — visible at 1520×900.
 
@@ -34,6 +34,7 @@ White field (`--white`), left-aligned, no dot-matrix, no glow, no card — delib
 Markup: `<nav aria-label="Sectors"><ul class="secx">` → 12 `<li><a>`. Each `<a>` is the whole row. **No JS, no hover-only content, no truncation.**
 
 **Row contents, in order:**
+
 1. `ind__n` — sector name, Inter Tight 600, `1.05rem`, `--ink`.
 2. `ind__x` — the existing sector description verbatim (e.g. `Three vetted people for roles where the wrong hire costs more than a quarter.`), `0.92rem`, `--ink-2`, 2 lines max.
 3. Hairline `1px solid var(--line)`, `margin: 0.75rem 0 0.6rem`.
@@ -43,10 +44,11 @@ Markup: `<nav aria-label="Sectors"><ul class="secx">` → 12 `<li><a>`. Each `<a
 **Delete every `.isp` six-bar SVG** (`index.astro:6753–7055`). They are the unsourced weighting rendered as a chart; the red bar in item 4 carries the same emphasis without implying measurement. Remove the "six bars / tall red one" explanation copy too.
 
 **Grid:** `display: grid; gap: 0` with 1px `--line` separators drawn as row/column borders (rules, not cards — cards are the old look).
+
 - ≥1200px: 3 columns, 4 rows.
 - 768–1199px: 2 columns, 6 rows.
 - <768px: 1 column, 12 rows.
-Row padding `clamp(18px, 1.6vw, 24px)`; min-height 132px desktop, 112px mobile. Column gaps `clamp(24px, 3vw, 44px)`; vertical rules via `border-left` on non-first columns.
+  Row padding `clamp(18px, 1.6vw, 24px)`; min-height 132px desktop, 112px mobile. Column gaps `clamp(24px, 3vw, 44px)`; vertical rules via `border-left` on non-first columns.
 
 **Hover/focus (identical for both):** background `--paper` (#f1eee7); left inset 3px red bar animating `height 0 → 100%` in 180ms `--ease`; `ind__n` → `--red`; arrow translates `4px`. `transition: background .18s var(--ease)`. Focus uses `outline: 2px solid var(--red); outline-offset: -2px` (inset so it isn't clipped by the rule grid). No transform on the row; no scale.
 
@@ -67,18 +69,18 @@ Keep `id="all"` on this `<nav>` so existing `#all` links resolve.
 
 ### 5. Component tokens
 
-| Role | Value |
-|---|---|
-| Hero field | `--white #ffffff`; method band `--charcoal #121212`; not-listed band `--paper #f1eee7` |
-| Rules | `--line rgba(19,19,19,.1)`; dark band `--line-d rgba(255,255,255,.11)` |
-| Text | `--ink #131313`, `--ink-2 #57565b`, `--ink-3-strong #6b6a61`; dark band `--pw / --pw2` |
-| Accent | `--red #da0007` — italic H1 line, hover bar, weighted-heaviest tick, focus ring, primary button |
-| Display | Fraunces 500, `letter-spacing -.01em`, `line-height 1.08` |
-| Body | Inter Tight 400/600 |
-| Mono | JetBrains Mono, 12px, `letter-spacing .2em` (eyebrows) / `.14em` (row keys), uppercase |
-| Radii | buttons `100px`; index rows `0` (rules, not cards); any chip `100px` |
-| Shadow | primary button only: `0 8px 20px -8px rgba(218,0,7,.5)` |
-| Motion | reveal `[data-rv]` 18px/0.9s `--ease`, stagger 60/120/180ms; hover 180ms; nothing else |
+| Role       | Value                                                                                           |
+| ---------- | ----------------------------------------------------------------------------------------------- |
+| Hero field | `--white #ffffff`; method band `--charcoal #121212`; not-listed band `--paper #f1eee7`          |
+| Rules      | `--line rgba(19,19,19,.1)`; dark band `--line-d rgba(255,255,255,.11)`                          |
+| Text       | `--ink #131313`, `--ink-2 #57565b`, `--ink-3-strong #6b6a61`; dark band `--pw / --pw2`          |
+| Accent     | `--red #da0007` — italic H1 line, hover bar, weighted-heaviest tick, focus ring, primary button |
+| Display    | Fraunces 500, `letter-spacing -.01em`, `line-height 1.08`                                       |
+| Body       | Inter Tight 400/600                                                                             |
+| Mono       | JetBrains Mono, 12px, `letter-spacing .2em` (eyebrows) / `.14em` (row keys), uppercase          |
+| Radii      | buttons `100px`; index rows `0` (rules, not cards); any chip `100px`                            |
+| Shadow     | primary button only: `0 8px 20px -8px rgba(218,0,7,.5)`                                         |
+| Motion     | reveal `[data-rv]` 18px/0.9s `--ease`, stagger 60/120/180ms; hover 180ms; nothing else          |
 
 ---
 

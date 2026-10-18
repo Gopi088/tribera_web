@@ -5,6 +5,7 @@
 2. **Redundant stacked dividers**: the card now closes with three consecutive top-border rules in quick succession — the verdict-panel border, then `.verd-note`'s implicit spacing, then `.lab-key`'s own `border-top` (sample.css:4739). Not broken, but the bottom of the card reads as slightly divider-heavy at 1450px; worth confirming intentional.
 
 **Checks that passed:**
+
 - Contrast: `--pw2` (rgba(255,255,255,.58)) on the dark card composites to roughly 6.9:1 against the card background — clears AA for the 10px text.
 - Mobile (390px): labels wrap to their own lines cleanly, no overflow/clipping, matches screenshot.
 - `aria-describedby="labKey"` still correctly targets the moved element; screen-reader association is unaffected by the DOM repositioning itself.
