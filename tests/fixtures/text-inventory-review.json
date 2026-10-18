@@ -1,0 +1,63 @@
+{
+  "purpose": "Reconcile stale pre-v9 text snapshots with independently reviewed source already present at checkpoint b684330. This is not acceptance of v9 designs.",
+  "sourceCheckpoint": "b684330",
+  "artifactSourceCommit": "6952a45",
+  "independentReviewer": "bootstrap_forms",
+  "scope": "Only the recorded old/new context and style tuples were replaced. No record mode, route-wide exemption, source CSS change, or blanket snapshot acceptance was used. Future unknown/changed contexts still fail.",
+  "fixture": {
+    "path": "tests/fixtures/text-inventory-contract.json",
+    "previousSha256": "3804559c3a1c767cdc6b1afc2d2c9c71d8a7ac8c843693d4da2b516da5fd840b",
+    "reviewedSha256": "2dea282787df0d690eed88bf5ac2098bb0acc3b18080912f9ef001e8998ef940",
+    "previousContexts": 17520,
+    "reviewedContexts": 18556,
+    "unchangedContextsPreserved": 12120,
+    "reviewedChanges": 8024
+  },
+  "dispositions": [
+    {
+      "count": 3185,
+      "scope": "Recorded changes on home, candidates and industries only",
+      "reason": "Home v58 was replaced by v126, candidates by candidate v7, and the industries comparison by the twelve-sector index before the migration checkpoint.",
+      "sources": [
+        "src/components/home/v126/Home.astro",
+        "src/components/home/v126/sample.css",
+        "sample_data/tribera-home-v126.html",
+        "src/components/candidates/candidate-v7.html",
+        "src/components/candidates/candidate-v7.css",
+        "sample_data/tribera-candidates-v7.html",
+        "src/pages/industries/index.astro"
+      ]
+    },
+    {
+      "count": 4599,
+      "scope": "Identical reviewed shared footer/navigation old/new tuples on other routes",
+      "reason": "Existing shared footer style, logo, city-line wrapper and navigation audience color differed from the old snapshot.",
+      "sources": ["src/components/widgets/Footer.astro", "src/components/widgets/Header.astro"]
+    },
+    {
+      "count": 240,
+      "scope": "Eight 404 eyebrow, four About badge, two hundred editorial eyebrow and twenty-eight career note tuples",
+      "reason": "Preexisting typography/contrast overrides already in the checkpoint; source and representative screenshots independently reviewed.",
+      "sources": [
+        "src/components/v58/Eyebrow.astro",
+        "src/components/v58/EditorialPage.astro",
+        "src/pages/about.astro",
+        "src/pages/careers/[slug].astro"
+      ]
+    }
+  ],
+  "validation": {
+    "defaultCensusRecords": 304,
+    "defaultCensusErrors": 0,
+    "independentTextContexts": 18556,
+    "proseOccurrences": 5648,
+    "fullTextSizeChecks": 12820,
+    "contractMutationTests": "Unchanged accepted; new label, wrong size, lost emphasis, color, italic, missing route, failed capture and empty state rejected.",
+    "preciseProseMutationTests": "Wrong reviewed size and unknown context rejected; reviewed route/width/selector/context sizes are exact."
+  },
+  "reviewEvidence": "Local artifacts/v9-bootstrap/independent-review contains desktop/mobile hero, body, footer and additional-context screenshots and source dispositions; inventory-diff.json records the complete reviewed changes.",
+  "limitations": [
+    "This records typography provenance, not a blanket accessibility approval.",
+    "Preexisting About .step opacity 0.4 can dim claim text even under reduced motion; tracked separately from these style tuples."
+  ]
+}
