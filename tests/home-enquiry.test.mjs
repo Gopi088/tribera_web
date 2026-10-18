@@ -29,8 +29,10 @@ try {
       } else await route.abort();
     });
     await page.goto(base, { waitUntil: 'networkidle' });
-    const hero = page.locator('.v58-hero-c .v58-primary');
-    const demo = page.locator('.v58-start .v58-link');
+    // The v126 hero scrolls to the start section; its CTA opens the retained dialog.
+    await page.locator('.hero-c .btn-primary').click();
+    const hero = page.locator('#start .btn-primary');
+    const demo = page.locator('#start .link');
     const modal = page.locator('#contactSalesModal');
     const form = modal.locator('form');
     const submit = modal.locator('[type=submit]');
@@ -57,7 +59,7 @@ try {
     await submit.click();
     await modal.locator('#contactSalesErrorMsg').waitFor({ state: 'visible' });
     assert.equal(await form.locator('[name=name]').inputValue(), 'QA Test');
-    assert.match(body, /name="form_source"\r\n\r\nv58-hero/);
+    assert.match(body, /name="form_source"\r\n\r\nv126-start/);
     assert.match(body, /name="form_intent"\r\n\r\nrole/);
     assert.match(body, /name="form_loaded_at"\r\n\r\n\d+/);
     fail = false;

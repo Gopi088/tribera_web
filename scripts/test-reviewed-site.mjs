@@ -1,3 +1,4 @@
+import { mkdir } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
 import { setTimeout as delay } from 'node:timers/promises';
 
@@ -32,18 +33,16 @@ try {
     await delay(500);
   }
   if (!ready) throw new Error('Preview server did not become ready');
+  // Retired pre-v126 assertions and their replacements are recorded in
+  // tests/reviewed-suite-migration.json; do not silently drop coverage.
   for (const test of [
     'hero-viewport',
-    'home-handoff',
-    'home-audit',
+    'home-v126',
     'home-enquiry',
-    'proof-responsive',
-    'home-operations',
-    'home-savings',
-    'v61-approvals',
-    'v60-copy',
-    'experts-layout',
-    'funnel-stages',
+    'candidate-start',
+    'contact-journey',
+    'newsletter-journey',
+    'v9-nav-fallback',
     'reviewed-bugs',
     'client-publication',
     'reviewed-route-audit',
@@ -53,7 +52,8 @@ try {
   ]) {
     await run(`tests/${test}.test.mjs`);
   }
-  const out = `/tmp/tribera-release-text-${port}`;
+  const out = `artifacts/reviewed-site-${port}/text`;
+  await mkdir(out, { recursive: true });
   await run('scripts/audit-all-text.mjs', {
     AUDIT_OUT: out,
     AUDIT_WIDTHS: '320,390,768,1520',

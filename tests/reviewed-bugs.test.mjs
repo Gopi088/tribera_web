@@ -21,7 +21,7 @@ for (const [options, expected] of [
 console.log('Index policy: local, preview, branch, production, Netlify host, route exception passed');
 
 const { CAREER_ROLES, CAREER_DIMENSIONS } = await moduleAt('src/data/careers.ts');
-const { functionSeries, industrySeries, intelligenceSeries } = await moduleAt('src/data/chart-series.ts');
+const { functionSeries, intelligenceSeries } = await moduleAt('src/data/chart-series.ts');
 const { briefs, weightedScore } = await moduleAt('src/components/candidates/model.ts');
 const base = process.env.TEST_BASE_URL || 'http://127.0.0.1:4331';
 const browser = await chromium.launch();
@@ -49,10 +49,16 @@ try {
       });
       const errors = [];
       page.on('pageerror', (error) => errors.push(error.message));
-      for (const [path, series] of [
-        ['functions', functionSeries],
-        ['industries', industrySeries],
-      ]) {
+      // Industries now presents a sector index, not the removed comparison chart.
+      await page.goto(base + '/industries', { waitUntil: 'networkidle' });
+      const sectorLinks = page.locator('.sector-index .secx__link');
+      assert.equal(await sectorLinks.count(), 12);
+      const sectorPaths = await sectorLinks.evaluateAll((links) => links.map((link) => link.getAttribute('href')));
+      assert.equal(new Set(sectorPaths).size, 12);
+      for (const link of await sectorLinks.all()) assert.equal(await link.isVisible(), true);
+      assert.equal(await page.locator('.industries-hero__primary').getAttribute('href'), '/contact');
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+      for (const [path, series] of [['functions', functionSeries]]) {
         assert.equal((await page.goto(base + '/' + path, { waitUntil: 'networkidle' })).status(), 200);
         const a = page.locator('#secA'),
           b = page.locator('#secB');
@@ -91,51 +97,39 @@ try {
       }
       assert.ok((await page.locator('#intelFt').innerText()).length > 30);
       await page.goto(base + '/candidates', { waitUntil: 'networkidle' });
-      assert.ok(await page.locator('[data-score]').isVisible(), 'Candidate fallback is visible');
-      for (const button of await page.locator('[data-brief]').all()) {
-        assert.equal(await button.isDisabled(), mode !== 'enabled');
-      }
-      assert.equal(await page.locator('[data-brief-unavailable]').isVisible(), mode !== 'enabled');
-      assert.match(
-        await page
-          .locator('.c-small')
-          .allTextContents()
-          .then((texts) => texts.join(' ')),
-        /scores from different examples are not directly comparable/
-      );
-      if (mode !== 'enabled') {
+      assert.ok(await page.locator('#sScore').isVisible(), 'Candidate fallback is visible');
+      const candidatePresets = page.locator('.candidate-v7 .pre2');
+      assert.equal(await candidatePresets.count(), briefs.length);
+      for (const button of await candidatePresets.all()) {
         assert.equal(
-          await page
-            .locator('[data-brief]')
-            .first()
-            .evaluate((el) => getComputedStyle(el).cursor),
-          'not-allowed'
+          await button.isDisabled(),
+          mode !== 'enabled',
+          'Inactive candidate controls must not imply an interaction is available'
         );
       }
       if (mode === 'enabled') {
         for (let i = 0; i < briefs.length; i++) {
-          await page.locator('[data-brief]').nth(i).focus();
+          await candidatePresets.nth(i).focus();
           await page.keyboard.press('Enter');
-          assert.equal(await page.locator('[data-score]').innerText(), weightedScore(briefs[i].weights).toFixed(1));
+          const expected = weightedScore(briefs[i].weights).toFixed(1);
+          await page.waitForFunction((value) => document.querySelector('#sScore').textContent === value, expected);
+          assert.equal(await page.locator('#sScore').innerText(), expected);
         }
-      } else assert.equal(await page.locator('[data-score]').innerText(), '91.1');
+      } else assert.equal(await page.locator('#sScore').innerText(), '91.1');
       await page.goto(base, { waitUntil: 'networkidle' });
-      for (const control of await page.locator('[data-v58-lab] input[type="range"], [data-preset]').all()) {
+      const weights = page.locator('#proof input[type="range"]');
+      assert.equal(await weights.count(), 9, 'Nine rendered weights: empty selectors cannot pass');
+      for (const control of await weights.all()) {
         assert.equal(await control.isDisabled(), mode !== 'enabled');
-        if (mode !== 'enabled')
-          assert.equal(await control.evaluate((el) => getComputedStyle(el).cursor), 'not-allowed');
       }
-      assert.equal(await page.locator('[data-lab-unavailable]').isVisible(), mode !== 'enabled');
-      assert.equal(
-        await page.locator('#weight-instruction').innerText(),
-        mode === 'enabled'
-          ? 'Adjust the sliders to set what matters most.'
-          : 'Importance shows how much each skill counts in this example.'
-      );
-      assert.match(
-        await page.locator('.v58-calculation').textContent(),
-        /scores from different examples are not directly comparable/
-      );
+      assert.equal(await page.locator('#labScore').innerText(), '39.00');
+      assert.equal(await page.locator('#labTiles .lt').count(), 9);
+      assert.match(await page.locator('#proof .verd-ax').innerText(), /Reject.*26.*Grey.*34.*Select/);
+      if (mode === 'enabled') {
+        await page.locator('[data-pre="llm"]').click();
+        assert.equal(await page.locator('#labScore').innerText(), '32.80');
+        assert.equal(await page.locator('#labBand').innerText(), 'Grey');
+      }
       assert.deepEqual(errors, []);
       console.log(`${width}px / ${mode}: comparison selections, SSR values, narrative, candidate scores passed`);
       await page.close();

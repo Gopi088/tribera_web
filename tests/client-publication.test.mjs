@@ -49,14 +49,17 @@ try {
       });
     }
     await page.goto(base, { waitUntil: 'networkidle' });
-    assert.equal(await page.locator('.v58-logo-strip__track > span:not([aria-hidden="true"])').count(), 11);
-    assert.equal(await page.locator('.v58-logo-strip__track > span[aria-hidden="true"]').count(), 11);
-    const accessibleText = await page.locator('.v58-logo-strip__track').ariaSnapshot();
+    assert.equal(await page.locator('.cl-track > .cl-item:not([aria-hidden="true"])').count(), 1);
+    assert.equal(await page.locator('.cl-track > .cl-item[aria-hidden="true"]').count(), 1);
+    const accessibleText = await page.locator('.cl-track').ariaSnapshot();
     for (const name of home)
       assert.equal(accessibleText.split(name).length - 1, 1, `${name} exposed once in the ARIA snapshot`);
     assert.deepEqual(
-      (await page.locator('.v58-logo-strip__track > span').allTextContents()).map((text) =>
-        text.replace(/\s*·\s*$/, '').trim()
+      (await page.locator('.cl-track > .cl-item').allTextContents()).flatMap((text) =>
+        text
+          .split('·')
+          .map((name) => name.replace(/\s+/g, ' ').trim())
+          .filter(Boolean)
       ),
       [...home, ...home]
     );

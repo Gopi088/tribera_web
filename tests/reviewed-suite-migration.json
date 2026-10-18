@@ -1,0 +1,21 @@
+{
+  "reason": "The current homepage renders v126; the reviewed runner still invoked suites written for removed v58/v60/v61 DOM and copy. Original suite files remain available as historical references.",
+  "replacements": {
+    "home-handoff": "home-v126: sample heading parity, section order, scores, navigation, FAQ, no-JS and motion. Old barcard drawing choreography and old copy are obsolete.",
+    "home-audit": "home-v126 plus hero-viewport: current section order, responsive bounds, scores, controls and fallback. v58 dark-section adjacency is obsolete.",
+    "proof-responsive": "home-v126: all four preset scores/verdicts, fixed candidate evidence, range interactions, aria state and responsive clipping.",
+    "home-operations": "home-v126: current sample headings and content clipping. Legacy operations geometry is obsolete.",
+    "home-savings": "home-v126: current sample headings and content clipping. Legacy savings card geometry is obsolete.",
+    "v61-approvals": "home-v126: v126 sample heading and section parity. v61 exact copy approval assertions are obsolete.",
+    "v60-copy": "home-v126: current sample heading parity and lead. v60 exact copy is obsolete.",
+    "experts-layout": "home-v126: twelve expert areas, responsive clipping and current section parity. v58 expert-card layout is obsolete.",
+    "funnel-stages": "home-v126: all stage counts, keyboard selection and protection against autoplay overwriting user selection. v58 selectors obsolete."
+  },
+  "adaptations": {
+    "hero-viewport": "Current hero, cue, client strip and proof selectors; retain adjacency, content bounds, no-JS and overflow checks. Exact viewport-height locking was a v58 design requirement and is removed.",
+    "home-enquiry": "Follow current hero anchor to start CTA, then retain dialog focus trap, validation, provider error/retry, stale request/timer and focus restoration assertions.",
+    "client-publication": "Current client track groups names into two spans; retain exact ordered names and single ARIA exposure.",
+    "reviewed-bugs": "Replace v58 weight instruction/calculation copy checks with nine weight controls, static score/thresholds and interactive v126 preset; retain all non-home checks. Industries comparison chart was also removed before v9; assert all twelve unique visible sector destinations and hiring CTA in enabled, disabled and blocked-script modes instead. Candidate v7 uses #sScore and .pre2; preserve independent weighted-score verification and inactive-control requirement. Removed old explanatory copy selectors are obsolete. No-JS inactive controls remain a potential real failure, not waived."
+  },
+  "limits": "This reconciles baseline version mismatches, not v9 acceptance. New v9 routes require separate reviewed coverage and visual comparisons. Remaining real baseline failures must be recorded, not suppressed."
+}
