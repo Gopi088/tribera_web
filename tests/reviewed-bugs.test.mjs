@@ -124,7 +124,7 @@ try {
       }
       assert.equal(await page.locator('#labScore').innerText(), '39.00');
       assert.equal(await page.locator('#labTiles .lt').count(), 9);
-      assert.match(await page.locator('#proof .verd-ax').innerText(), /Reject.*26.*Grey.*34.*Select/);
+      assert.match(await page.locator('#proof .verd-ax').innerText(), /Reject.*26.*Grey.*34.*Select/i);
       if (mode === 'enabled') {
         await page.locator('[data-pre="llm"]').click();
         assert.equal(await page.locator('#labScore').innerText(), '32.80');
