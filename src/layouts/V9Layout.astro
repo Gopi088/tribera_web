@@ -12,6 +12,7 @@ interface Props {
   canonicalPath?: string;
   noindex?: boolean;
   footerLinkOverrides?: Record<string, string>;
+  headerLinkOverrides?: Record<string, string>;
 }
 const {
   title,
@@ -22,6 +23,7 @@ const {
   canonicalPath = Astro.url.pathname,
   noindex = false,
   footerLinkOverrides,
+  headerLinkOverrides,
 } = Astro.props;
 const canonical = new URL(canonicalPath, 'https://www.tribera.ai');
 ---
@@ -41,7 +43,7 @@ const canonical = new URL(canonicalPath, 'https://www.tribera.ai');
   </head>
   <body class="v9" id="top">
     <a class="v9-skip" href="#main">Skip to content</a>
-    <Header {audience} {activeRoute} {cta} />
+    <Header {audience} {activeRoute} {cta} linkOverrides={headerLinkOverrides} />
     <main id="main" tabindex="-1"><slot /></main>
     <Footer linkOverrides={footerLinkOverrides} />
     <script>

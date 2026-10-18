@@ -14,8 +14,8 @@ import {
 import { JOB_CATALOG } from './job-catalog.mjs';
 
 // Native POSTs receive a readable result; enhanced clients must request JSON.
-// The UI must still provide botcheck and a fresh form_loaded_at. Static build-time
-// timestamps are not a no-JS solution: they expire under the existing guards.
+// The UI must still provide botcheck and a fresh form_loaded_at. The candidate
+// native form issues that timestamp at request time in candidate-form-v9.mjs.
 const negotiateResponse = (event, response) => {
   const accept = event.headers?.accept || event.headers?.Accept || '';
   if (!accept.includes('text/html') || accept.includes('application/json')) return response;

@@ -23,10 +23,11 @@
     "fix": "npm run fix:eslint && npm run fix:prettier",
     "fix:eslint": "eslint --fix .",
     "fix:prettier": "prettier -w .",
-    "test:migration:unit": "node --test tests/netlify-functions.test.mjs tests/v9-form-adapters.test.mjs tests/v9-gate.test.mjs tests/migration-build-boundary.test.mjs tests/v9-assets.test.mjs tests/v9-evidence.test.mjs",
+    "test:migration:unit": "node --test tests/netlify-functions.test.mjs tests/v9-form-adapters.test.mjs tests/v9-gate.test.mjs tests/migration-build-boundary.test.mjs tests/v9-assets.test.mjs tests/v9-evidence.test.mjs tests/v9-native-form.test.mjs",
     "test:migration:static": "node scripts/v9-gate.mjs static",
     "test:migration:browser": "node scripts/v9-gate.mjs browser",
-    "test:migration:foundation": "node tests/v9-foundation.test.mjs && node tests/v9-content.test.mjs && node tests/v9-reference.test.mjs && node tests/v9-content-reference.mjs"
+    "test:migration:foundation": "node tests/v9-foundation.test.mjs && node tests/v9-content.test.mjs && node tests/v9-reference.test.mjs && node tests/v9-content-reference.mjs",
+    "test:migration:pages": "node tests/v9-pages.test.mjs"
   },
   "dependencies": {
     "@astrojs/node": "^10.1.2",

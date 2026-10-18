@@ -88,6 +88,14 @@ export function checkReference(root, pages, from, href, extraOrigin) {
     return `Invalid URL encoding ${href}`;
   }
   const page = pages.get(normalize(pathname));
+  // This native form is generated per request, so it cannot exist in dist.
+  // Only this exact implemented endpoint is allowed; hosting remains a G5 check.
+  if (
+    pathname === '/.netlify/functions/candidate-form-v9' &&
+    !fragment &&
+    fs.existsSync(new URL('../netlify/functions/candidate-form-v9.mjs', import.meta.url))
+  )
+    return null;
   const target = path.resolve(root, '.' + pathname);
   if (!target.startsWith(path.resolve(root) + path.sep) && target !== path.resolve(root))
     return `Escaping path ${href}`;

@@ -40,3 +40,12 @@ test('untracked generated routes fail', (t) => {
   assert.match(audit(dir, map).errors.join(), /Untracked built route/);
 });
 test('quoted CSV cells are parsed', () => assert.equal(csv('route,note\n/,"one, two"\n')[0].note, 'one, two'));
+test('only the implemented request-time native form is a server-side link exception', (t) => {
+  const { dir, map } = fixture(
+    t,
+    '<a href="/.netlify/functions/candidate-form-v9">Native form</a><a href="/.netlify/functions/missing">Missing</a><a href="/.netlify/functions/candidate-form-v9#missing">Bad fragment</a>'
+  );
+  const result = audit(dir, map);
+  assert.equal(result.errors.length, 2);
+  assert.ok(result.errors.every((error) => /Missing target/.test(error)));
+});
