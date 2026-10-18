@@ -4,6 +4,7 @@ import { readFile, readdir } from 'node:fs/promises';
 // This gate consumes a DOM census, never the selectors in the implementation CSS.
 const file = process.env.TEXT_INVENTORY || '/tmp/tribera-all-text-after/inventory.json';
 const records = JSON.parse(await readFile(file, 'utf8'));
+const { contexts: reviewedProse } = JSON.parse(await readFile('tests/fixtures/reviewed-prose-contexts.json', 'utf8'));
 if (process.env.TEXT_PARTIAL !== '1') {
   async function routes(dir = 'dist') {
     const paths = [];
@@ -31,7 +32,13 @@ for (const record of records) {
       if (!row.family.includes('Inter Tight') || row.text.length < 50) continue;
       if (!/^(p|li|dd|figcaption)([.#]|$)/.test(row.selector)) continue;
       prose++;
-      if (![14, 16, 18].some((size) => Math.abs(size - row.size) < 0.1)) {
+      const contextKey = [record.route, record.width, row.selector, row.context].join('|');
+      const reviewedSize = reviewedProse[contextKey];
+      const validSize =
+        reviewedSize === undefined
+          ? [14, 16, 18].some((size) => Math.abs(size - row.size) < 0.1)
+          : Math.abs(reviewedSize - row.size) < 0.01;
+      if (!validSize) {
         failures.push(
           `${record.route} ${record.width} ${state.name}: ${row.selector} ${row.size}px: ${row.text.slice(0, 90)}`
         );
