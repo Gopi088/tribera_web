@@ -1,0 +1,87 @@
+route,baseline_present,handoff_source,planned_action,target_route,indexing,release_condition,status
+/,yes,index.html,replace,/,index,content and functional checks,not started
+/404,yes,404.html,replace,/404,noindex,serve HTTP 404,not started
+/about,yes,about.html,replace,/about,index,content and functional checks,not started
+/blog,yes,blog/index.html,replace,/blog,index,content and functional checks,not started
+/blog/designing-ai-for-high-stakes-technical-assessment,yes,blog/designing-ai-for-high-stakes-technical-assessment.html,replace,/blog/designing-ai-for-high-stakes-technical-assessment,index,content and functional checks,not started
+/blog/designing-for-trust-privacy-transparency-respect,yes,blog/designing-for-trust-privacy-transparency-respect.html,replace,/blog/designing-for-trust-privacy-transparency-respect,index,content and functional checks,not started
+/blog/gcc-hiring-india-leadership-roles,no,blog/gcc-hiring-india-leadership-roles.html,add,/blog/gcc-hiring-india-leadership-roles,index,content and functional checks,not started
+/blog/hiring-ai-engineers-india,no,blog/hiring-ai-engineers-india.html,add,/blog/hiring-ai-engineers-india,index,content and functional checks,not started
+/blog/hiring-is-not-a-transaction-its-a-relationship,yes,blog/hiring-is-not-a-transaction-its-a-relationship.html,replace,/blog/hiring-is-not-a-transaction-its-a-relationship,index,content and functional checks,not started
+/blog/rethinking-hiring-metrics-signal-efficiency,yes,blog/rethinking-hiring-metrics-signal-efficiency.html,replace,/blog/rethinking-hiring-metrics-signal-efficiency,index,content and functional checks,not started
+/blog/seventeen-interviews-one-hire,no,blog/seventeen-interviews-one-hire.html,add,/blog/seventeen-interviews-one-hire,index,publication date 2026-10-19; evidence review,not started
+/blog/signal-vs-noise-technical-hiring,yes,blog/signal-vs-noise-technical-hiring.html,replace,/blog/signal-vs-noise-technical-hiring,index,content and functional checks,not started
+/blog/when-job-hunting-feels-like-a-black-hole,yes,blog/when-job-hunting-feels-like-a-black-hole.html,replace,/blog/when-job-hunting-feels-like-a-black-hole,index,content and functional checks,not started
+/blog/why-tech-hiring-really-takes-so-long,yes,blog/why-tech-hiring-really-takes-so-long.html,replace,/blog/why-tech-hiring-really-takes-so-long,index,confirm shared 22-day case claims,not started
+/candidates,yes,candidates.html,replace,/candidates,index,content and functional checks,not started
+/candidates/start,yes,,retain GET during migration,/candidates/start,noindex,resolve GET and POST routing together,not started
+/careers,yes,careers/index.html,replace,/careers,index,content and functional checks,not started
+/careers/ai-ml-engineer,yes,careers/backend-engineer.html (template),adapt existing role,/careers/ai-ml-engineer,index,confirm open role and adapt existing role copy,not started
+/careers/backend-engineer,yes,careers/backend-engineer.html,replace,/careers/backend-engineer,index,content and functional checks,not started
+/careers/growth-intern,yes,careers/backend-engineer.html (template),adapt existing role,/careers/growth-intern,index,confirm open role and adapt existing role copy,not started
+/careers/senior-delivery-partner,yes,careers/backend-engineer.html (template),adapt existing role,/careers/senior-delivery-partner,index,confirm open role and adapt existing role copy,not started
+/careers/software-intern,yes,careers/backend-engineer.html (template),adapt existing role,/careers/software-intern,index,confirm open role and adapt existing role copy,not started
+/careers/talent-advisor,yes,careers/backend-engineer.html (template),adapt existing role,/careers/talent-advisor,index,confirm open role and adapt existing role copy,not started
+/careers/talent-associate,yes,careers/backend-engineer.html (template),adapt existing role,/careers/talent-associate,index,confirm open role and adapt existing role copy,not started
+/case-study,no,case-study.html,add,/case-study,index,confirm shared 22-day case claims,not started
+/category/ai-and-assessment,yes,,retain collection archive,/category/ai-and-assessment,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/category/candidate-experience,yes,,retain collection archive,/category/candidate-experience,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/category/hiring-philosophy,yes,,retain collection archive,/category/hiring-philosophy,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/category/hiring-strategy,yes,,retain collection archive,/category/hiring-strategy,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/category/technical-hiring,yes,,retain collection archive,/category/technical-hiring,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/contact,yes,contact.html,replace,/contact,index,content and functional checks,not started
+/decapcms,yes,,retain existing admin asset,/decapcms,noindex,verify active editor usage and compatibility before retiring,not started
+/dpa,no,dpa.html,add,/dpa,index,legal and operational review,not started
+/functions,yes,,retain and restyle proposed,/functions,index,owner decision on retention; existing content review,not started
+/functions/data-analytics,yes,,retain and restyle proposed,/functions/data-analytics,index,owner decision on retention; existing content review,not started
+/functions/engineering-platform,yes,,retain and restyle proposed,/functions/engineering-platform,index,owner decision on retention; existing content review,not started
+/functions/finance-risk,yes,,retain and restyle proposed,/functions/finance-risk,index,owner decision on retention; existing content review,not started
+/functions/infrastructure-sre,yes,,retain and restyle proposed,/functions/infrastructure-sre,index,owner decision on retention; existing content review,not started
+/functions/leadership,yes,,retain and restyle proposed,/functions/leadership,index,owner decision on retention; existing content review,not started
+/functions/operations,yes,,retain and restyle proposed,/functions/operations,index,owner decision on retention; existing content review,not started
+/functions/product-design,yes,,retain and restyle proposed,/functions/product-design,index,owner decision on retention; existing content review,not started
+/functions/security,yes,,retain and restyle proposed,/functions/security,index,owner decision on retention; existing content review,not started
+/how-we-work-with-numbers,no,how-we-work-with-numbers.html,add,/how-we-work-with-numbers,index,Akshata approval of public commitments,not started
+/industries,yes,industries/index.html,replace,/industries,index,content and functional checks,not started
+/industries/ai-data,yes,industries/ai-data.html,replace,/industries/ai-data,index,content and functional checks,not started
+/industries/banking-financial-services,yes,industries/banking-financial-services.html,replace,/industries/banking-financial-services,index,content and functional checks,not started
+/industries/consumer-digital-commerce,yes,industries/consumer-digital-commerce.html,replace,/industries/consumer-digital-commerce,index,content and functional checks,not started
+/industries/cybersecurity,yes,industries/cybersecurity.html,replace,/industries/cybersecurity,index,content and functional checks,not started
+/industries/enterprise-technology,yes,industries/enterprise-technology.html,replace,/industries/enterprise-technology,index,content and functional checks,not started
+/industries/global-capability-centers,no,industries/global-capability-centers.html,add,/industries/global-capability-centers,index,content and functional checks,not started
+/industries/global-capability-centres,yes,,redirect 301,/industries/global-capability-centers,exclude,verify old inbound links and single hop redirect,not started
+/industries/healthcare-life-sciences,yes,industries/healthcare-life-sciences.html,replace,/industries/healthcare-life-sciences,index,content and functional checks,not started
+/industries/industrial-engineering,yes,industries/industrial-engineering.html,replace,/industries/industrial-engineering,index,content and functional checks,not started
+/industries/manufacturing,yes,industries/manufacturing.html,replace,/industries/manufacturing,index,content and functional checks,not started
+/industries/pharmaceutical,yes,industries/pharmaceutical.html,replace,/industries/pharmaceutical,index,content and functional checks,not started
+/industries/private-equity-portfolio,yes,industries/private-equity-portfolio.html,replace,/industries/private-equity-portfolio,index,content and functional checks,not started
+/industries/product-saas,yes,industries/product-saas.html,replace,/industries/product-saas,index,content and functional checks,not started
+/intelligence,yes,intelligence.html,replace,/intelligence,index,real scarcity data or explicit alternate publication treatment,not started
+/interview-as-a-service,no,interview-as-a-service.html,add,/interview-as-a-service,index,content and functional checks,not started
+/privacy,yes,privacy.html,replace,/privacy,index,legal and operational review,not started
+/sample-write-up,no,sample-write-up.html,add,/sample-write-up,index,content and functional checks,not started
+/security,yes,security.html,replace,/security,index,legal and operational review,not started
+/services,yes,services.html,replace,/services,index,confirm shared 22-day case claims,not started
+/tag/ai-in-hiring,yes,,retain collection archive,/tag/ai-in-hiring,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/candidate-experience,yes,,retain collection archive,/tag/candidate-experience,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/decision-infrastructure,yes,,retain collection archive,/tag/decision-infrastructure,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/empathy,yes,,retain collection archive,/tag/empathy,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/engineering,yes,,retain collection archive,/tag/engineering,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/hiring-insights,yes,,retain collection archive,/tag/hiring-insights,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/hiring-metrics,yes,,retain collection archive,/tag/hiring-metrics,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/human-first-hiring,yes,,retain collection archive,/tag/human-first-hiring,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/job-search-tips,yes,,retain collection archive,/tag/job-search-tips,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/platform-design,yes,,retain collection archive,/tag/platform-design,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/privacy-by-design,yes,,retain collection archive,/tag/privacy-by-design,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/professional-respect,yes,,retain collection archive,/tag/professional-respect,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/quality-of-hire,yes,,retain collection archive,/tag/quality-of-hire,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/recruitment,yes,,retain collection archive,/tag/recruitment,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/signal-based-hiring,yes,,retain collection archive,/tag/signal-based-hiring,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/structured-evaluation,yes,,retain collection archive,/tag/structured-evaluation,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/talent-acquisition,yes,,retain collection archive,/tag/talent-acquisition,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/technical-assessment,yes,,retain collection archive,/tag/technical-assessment,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/technical-hiring,yes,,retain collection archive,/tag/technical-hiring,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/thought-leadership,yes,,retain collection archive,/tag/thought-leadership,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/time-to-hire,yes,,retain collection archive,/tag/time-to-hire,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/tag/trust-in-hiring,yes,,retain collection archive,/tag/trust-in-hiring,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
+/terms,yes,terms.html,replace,/terms,index,legal and operational review,not started
