@@ -23,7 +23,7 @@ const report = {
   buildHash: null,
   browser: process.env.BROWSER || 'chromium',
   base,
-  expectedSuites: 8,
+  expectedSuites: 10,
   suites: [],
   errors: [],
 };
@@ -65,6 +65,8 @@ try {
     'tests/v9-home.test.mjs',
     'tests/v9-preview-navigation.test.mjs',
     'tests/v9-contrast.test.mjs',
+    'tests/v9-editorial-visual.test.mjs',
+    'tests/v9-candidates-faq.test.mjs',
   ]) {
     console.log(`Running ${suite} against ${base}`);
     const startedAt = new Date().toISOString();
