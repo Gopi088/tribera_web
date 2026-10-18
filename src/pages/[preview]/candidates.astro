@@ -2,7 +2,6 @@
 import V9Layout from '../../layouts/V9Layout.astro';
 import { previewLinks } from '../../data/v9/preview-links';
 import ClientStrip from '../../components/v9/ClientStrip.astro';
-import FAQ from '../../components/v9/FAQ.astro';
 import Testimonial from '../../components/v9/Testimonial.astro';
 import CandidateHero from '../../components/v9/candidates/CandidateHero.astro';
 import CandidateScorer from '../../components/v9/candidates/CandidateScorer.astro';
@@ -14,6 +13,7 @@ import CandidateUpload from '../../components/v9/candidates/CandidateUpload.astr
 import demo from '../../data/v9/candidate-demo.json';
 import testimonials from '../../../sample_data/tribera-web-handoff-v9/data/testimonials.json';
 import '../../assets/styles/v9/candidates.css';
+import '../../assets/styles/v9/candidates-faq.css';
 export function getStaticPaths() {
   return import.meta.env.DEV || process.env.V9_PREVIEW === '1' ? [{ params: { preview: '__v9' } }] : [];
 }
@@ -52,14 +52,36 @@ export function getStaticPaths() {
     </section>
     <CandidateUpload />
     <section class="faq g-paper">
-      <div class="wrap candidate-faq-grid">
-        <div>
-          <div class="eyebrow"><span class="tick">\</span> 08 · Questions</div><h2>
-            What people ask before they start.
-          </h2><p class="faq-ask-q">Didn’t see yours?</p><a class="link" href="mailto:hello@tribera.ai"
-            >Ask us anything <span aria-hidden="true">→</span></a
-          >
-        </div><FAQ items={demo.faqs} />
+      <div class="wrap">
+        <div class="faq-top">
+          <div class="faq-aside">
+            <div class="eyebrow"><span class="tick">\</span> 08 · Questions</div>
+            <h2>What people ask before they start.</h2>
+            <div class="faq-ask">
+              <p class="faq-ask-q">Didn’t see yours?</p>
+              <a href="mailto:hello@tribera.ai">Ask us anything <span class="ar" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          <div class="faq-list">
+            {
+              demo.faqs.map(({ question, answer }, index) => (
+                <details class="faq-item" name="candidate-questions" open={index === 0}>
+                  <summary class="faq-q">
+                    <>
+                      <span>{question}</span>
+                      <span class="faq-ic" aria-hidden="true" />
+                    </>
+                  </summary>
+                  <div class="faq-a">
+                    <div>
+                      <p>{answer}</p>
+                    </div>
+                  </div>
+                </details>
+              ))
+            }
+          </div>
+        </div>
       </div>
     </section>
     <section class="start g-white" id="start">

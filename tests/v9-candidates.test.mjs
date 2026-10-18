@@ -46,7 +46,7 @@ test(`private candidate journey (${browserName})`, async () => {
       );
       assert.equal(await page.locator('[data-weight]').count(), 9);
       assert.equal(await page.locator('.v9-testimonial').count(), 4);
-      assert.equal(await page.locator('.v9-faq details').count(), 7);
+      assert.equal(await page.locator('.faq-list details').count(), 7);
       await page.screenshot({ path: `${artifact}/candidates-${width}.png`, fullPage: true });
     }
     await page.setViewportSize({ width: 390, height: 844 });
@@ -165,8 +165,11 @@ test(`private candidate journey (${browserName})`, async () => {
       await native.getByRole('link', { name: 'Open the CV submission form', exact: true }).getAttribute('href'),
       '/.netlify/functions/candidate-form-v9'
     );
-    await native.locator('.v9-faq summary').first().click();
-    assert.equal(await native.locator('.v9-faq details').first().getAttribute('open'), '');
+    assert.equal(await native.locator('.faq-list details').first().getAttribute('open'), '');
+    await native.locator('.faq-list summary').first().click();
+    assert.equal(await native.locator('.faq-list details').first().getAttribute('open'), null);
+    await native.locator('.faq-list summary').first().click();
+    assert.equal(await native.locator('.faq-list details').first().getAttribute('open'), '');
     assert.equal(await native.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
     await nojs.close();
     const reduced = await browser.newContext({ reducedMotion: 'reduce', viewport: { width: 390, height: 844 } });
