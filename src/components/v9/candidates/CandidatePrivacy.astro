@@ -1,0 +1,78 @@
+---
+const controls = [
+  {
+    title: 'Anonymous by default',
+    text: 'Your name, employer and contact stay hidden until you release them to a specific team.',
+    on: 'Hidden',
+    off: 'Visible',
+  },
+  {
+    title: 'Block by name',
+    text: "Name your current employer, or anyone else. They can't see your profile.",
+    on: '3 blocked',
+    off: '0 blocked',
+  },
+  {
+    title: 'No direct contact',
+    text: "Companies can't message you. Every request comes through us first.",
+    on: 'Routed',
+    off: 'Open',
+  },
+  {
+    title: 'Pause in one click',
+    text: 'Got an offer? Make the profile invisible, and turn it back on whenever you like.',
+    on: 'Live',
+    off: 'Paused',
+  },
+];
+---
+
+<section class="g-dark" id="controls">
+  <div class="wrap">
+    <div class="eyebrow"><span class="tick">\</span> 04 · Your controls</div><h2>
+      Your current employer can't see you.
+    </h2><p class="lead">Most people look while they're employed. Try these illustrative switches.</p><p
+      class="candidate-demo-note"
+      id="candidate-privacy-note"
+    >
+      Demo only: these switches do not change an account, block an employer, or publish a profile. Nothing is saved.
+    </p>
+    <div class="sws">
+      {
+        controls.map((c, i) => (
+          <div class="sw-row">
+            <>
+              <div>
+                <>
+                  <b id={`privacy-label-${i}`}>{c.title}</b>
+                  <span>{c.text}</span>
+                </>
+              </div>
+              <button
+                type="button"
+                class="sw"
+                role="switch"
+                aria-checked="true"
+                aria-labelledby={`privacy-label-${i}`}
+                aria-describedby="candidate-privacy-note"
+                data-demo-switch
+                data-on={c.on}
+                data-off={c.off}
+                disabled
+              >
+                <>
+                  <i />
+                  <em>{c.on}</em>
+                </>
+              </button>
+            </>
+          </div>
+        ))
+      }
+    </div>
+    <p class="decide decide--d">
+      <b>Free for you, always.</b> Companies pay us when they hire. We ask for your consent before anything is evaluated,
+      your data stays in India, and you can ask for all of it back, or deleted, at any time.
+    </p>
+  </div>
+</section>

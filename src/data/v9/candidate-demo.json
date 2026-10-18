@@ -1,0 +1,162 @@
+{
+  "dimensions": [
+    {
+      "k": "A",
+      "n": "Pipeline design & ownership",
+      "sn": "Pipelines",
+      "w": 14,
+      "s": 5,
+      "ev": "Designed and ran the batch and streaming pipelines for a payments ledger, and owned them in production."
+    },
+    {
+      "k": "B",
+      "n": "Data modelling",
+      "sn": "Modelling",
+      "w": 12,
+      "s": 4,
+      "ev": "Modelled the warehouse layer cleanly. One fact table still carries a design she said she would change."
+    },
+    {
+      "k": "C",
+      "n": "SQL & query performance",
+      "sn": "SQL",
+      "w": 12,
+      "s": 5,
+      "ev": "Took a nightly job from four hours to forty minutes and could explain every step of it."
+    },
+    {
+      "k": "D",
+      "n": "Streaming (Kafka / Spark)",
+      "sn": "Streaming",
+      "w": 10,
+      "s": 3,
+      "ev": "Has run Kafka in production. The Spark streaming work was mostly a teammate’s."
+    },
+    {
+      "k": "E",
+      "n": "Data quality & testing",
+      "sn": "Data quality",
+      "w": 14,
+      "s": 5,
+      "ev": "Built the checks that catch silent row drops before anyone downstream sees them."
+    },
+    {
+      "k": "F",
+      "n": "Cloud warehouse",
+      "sn": "Warehouse",
+      "w": 10,
+      "s": 4,
+      "ev": "Confident on Snowflake. Lighter on cost controls."
+    },
+    {
+      "k": "G",
+      "n": "ML data readiness",
+      "sn": "ML data",
+      "w": 8,
+      "s": 2,
+      "ev": "Has fed features to a model team, but has not owned a feature store."
+    },
+    {
+      "k": "H",
+      "n": "Stakeholder communication",
+      "sn": "Communication",
+      "w": 8,
+      "s": 4,
+      "ev": "Explained trade-offs to the finance team clearly. Slips into jargon now and then."
+    },
+    {
+      "k": "I",
+      "n": "Authenticity",
+      "sn": "Authenticity",
+      "w": 12,
+      "s": 5,
+      "ev": "Every answer matched the CV, with the dates and numbers to back it."
+    }
+  ],
+  "questions": [
+    {
+      "a": "Which pipeline broke first in production, and what did you change after?",
+      "f": "Who noticed it before you did?",
+      "s": "Pipelines",
+      "n": "She scored 5 of 5. She designed and ran them, and owned them in production.",
+      "line": "Built the batch and streaming pipelines for a payments ledger."
+    },
+    {
+      "a": "What was taking the four hours, and how did you find out?",
+      "f": "What did you try first that didn’t work?",
+      "s": "SQL",
+      "n": "She scored 5 of 5. She could explain every step from four hours to forty minutes.",
+      "line": "Cut a nightly reconciliation job from four hours to forty minutes."
+    },
+    {
+      "a": "Which check caught something real, and what would have happened without it?",
+      "f": "Who owned the fix when it fired?",
+      "s": "Data quality",
+      "n": "She scored 5 of 5. Her checks catch silent row drops before anyone downstream sees them.",
+      "line": "Owned data-quality checks across the finance warehouse."
+    },
+    {
+      "a": "What did you leave behind in the old warehouse, and why?",
+      "f": "What did the move cost that nobody planned for?",
+      "s": "Warehouse",
+      "n": "She scored 4 of 5. Confident on Snowflake, lighter on cost controls.",
+      "line": "Led the move from an on-premise warehouse to Snowflake."
+    }
+  ],
+  "presets": [
+    {
+      "id": "brief",
+      "label": "Fintech platform",
+      "weights": [14, 12, 12, 10, 14, 10, 8, 8, 12],
+      "note": "For a fintech platform team, her pipeline and data-quality work carry her to a Select."
+    },
+    {
+      "id": "detect",
+      "label": "Analytics team",
+      "weights": [8, 22, 20, 4, 10, 14, 2, 14, 6],
+      "note": "An analytics team weights modelling and SQL. She lands near the top of their list."
+    },
+    {
+      "id": "llm",
+      "label": "Real-time app",
+      "weights": [6, 4, 6, 40, 6, 6, 14, 6, 12],
+      "note": "A real-time team weights streaming. She stays a Select, and her Spark depth is what they would probe."
+    },
+    {
+      "id": "own",
+      "label": "ML platform",
+      "weights": [4, 4, 4, 10, 6, 6, 50, 4, 12],
+      "note": "An ML platform team weights feature work. She drops to Grey: she has fed a model team but has not owned a feature store."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Will my current employer find out?",
+      "answer": "Not from us. Your profile is anonymous by default, and you can block your employer by name so they can’t see it at all. Your name and contact go to a team only when you release them."
+    },
+    {
+      "question": "Is it really free?",
+      "answer": "Yes, always. Companies pay us when they hire."
+    },
+    {
+      "question": "What happens to my recording?",
+      "answer": "It is made with your consent and goes to teams that ask for you, with your name hidden until you release it. We hold transcripts for a set period, then delete them. You can ask us to delete them sooner."
+    },
+    {
+      "question": "Do I keep my score if nobody hires me?",
+      "answer": "Yes. The score and the reasons behind it are yours, whatever happens next."
+    },
+    {
+      "question": "What if no team asks for me?",
+      "answer": "If your area isn’t one we cover yet, we tell you on day one instead of sitting on your CV."
+    },
+    {
+      "question": "Which roles do you cover?",
+      "answer": "Mid-level and up, across engineering, data, infrastructure, finance, operations and leadership."
+    },
+    {
+      "question": "Can I pause while I think about an offer?",
+      "answer": "Yes. One switch hides your profile, and you can turn it back on whenever you like."
+    }
+  ]
+}

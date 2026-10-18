@@ -1,0 +1,86 @@
+---
+import V9Layout from '../../layouts/V9Layout.astro';
+import { previewLinks } from '../../data/v9/preview-links';
+import ClientStrip from '../../components/v9/ClientStrip.astro';
+import FAQ from '../../components/v9/FAQ.astro';
+import Testimonial from '../../components/v9/Testimonial.astro';
+import CandidateHero from '../../components/v9/candidates/CandidateHero.astro';
+import CandidateScorer from '../../components/v9/candidates/CandidateScorer.astro';
+import CandidateQuestions from '../../components/v9/candidates/CandidateQuestions.astro';
+import CandidateTeamChecks from '../../components/v9/candidates/CandidateTeamChecks.astro';
+import CandidatePrivacy from '../../components/v9/candidates/CandidatePrivacy.astro';
+import CandidateTimeline from '../../components/v9/candidates/CandidateTimeline.astro';
+import CandidateUpload from '../../components/v9/candidates/CandidateUpload.astro';
+import demo from '../../data/v9/candidate-demo.json';
+import testimonials from '../../../sample_data/tribera-web-handoff-v9/data/testimonials.json';
+import '../../assets/styles/v9/candidates.css';
+export function getStaticPaths() {
+  return import.meta.env.DEV || process.env.V9_PREVIEW === '1' ? [{ params: { preview: '__v9' } }] : [];
+}
+---
+
+<V9Layout
+  title="Interviewed once, shortlisted everywhere | Tribera — private preview"
+  description="One 30 to 45-minute conversation with someone who has done your job. Teams read it before they ask for you. Free and anonymous."
+  audience="candidate"
+  activeRoute="/__v9/candidates"
+  noindex
+  cta={{ label: 'Create your profile', href: '#apply' }}
+  headerLinkOverrides={previewLinks}
+  footerLinkOverrides={previewLinks}
+>
+  <div class="v9-candidates" data-v9-candidates>
+    <CandidateHero />
+    <ClientStrip />
+    <CandidateScorer />
+    <CandidateQuestions />
+    <CandidateTeamChecks />
+    <CandidatePrivacy />
+    <CandidateTimeline />
+    <section class="tm g-dark" id="results">
+      <div class="wrap">
+        <div class="eyebrow"><span class="tick">\</span> 06 · In their words</div><h2>
+          From people who have been through it.
+        </h2><div class="v9-testimonials-grid">
+          {
+            testimonials.testimonials
+              .filter((item) => item.side === 'candidate')
+              .map((item) => <Testimonial {...item} side="candidate" />)
+          }
+        </div><p class="tm-count">4 people, in their own words</p>
+      </div>
+    </section>
+    <CandidateUpload />
+    <section class="faq g-paper">
+      <div class="wrap candidate-faq-grid">
+        <div>
+          <div class="eyebrow"><span class="tick">\</span> 08 · Questions</div><h2>
+            What people ask before they start.
+          </h2><p class="faq-ask-q">Didn’t see yours?</p><a class="link" href="mailto:hello@tribera.ai"
+            >Ask us anything <span aria-hidden="true">→</span></a
+          >
+        </div><FAQ items={demo.faqs} />
+      </div>
+    </section>
+    <section class="start g-white" id="start">
+      <div class="wrap">
+        <div class="start-head">
+          <div class="eyebrow"><span class="tick">\</span> Get started</div><h2>
+            One conversation. Then teams come to you.
+          </h2>
+        </div><p class="lead">
+          Fifteen minutes to set up. An expert calls within a week, and you keep the score whatever happens next.
+        </p><div class="cta-row">
+          <a class="btn btn-primary" href="#apply">Create your profile</a><a class="link" href="/__v9/home"
+            >I'm hiring ›</a
+          >
+        </div><p class="start-note">Free for you, always.</p><div class="candidate-closing-field" aria-hidden="true">
+          {Array.from({ length: 36 }, (_, i) => <i class:list={{ red: [7, 22, 28].includes(i) }} />)}
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+    import '../../assets/scripts/v9/candidates';
+  </script>
+</V9Layout>

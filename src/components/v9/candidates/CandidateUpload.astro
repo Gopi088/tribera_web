@@ -1,0 +1,70 @@
+<section class="g-white" id="apply">
+  <div class="wrap">
+    <div class="eyebrow"><span class="tick">\</span> 07 · Start here</div><h2>Send your CV. We'll call you.</h2><p
+      class="lead"
+    >
+      If you're open to a move, drop your CV. We take your details from it, and a Tribera recruiter calls to talk it
+      through and set up your interview when you're ready.
+    </p>
+    <p class="candidate-preview-notice">
+      Private migration preview. Submitting this form sends your CV to the Tribera team.
+    </p>
+    <form
+      class="drop-grid"
+      data-candidate-upload
+      action="/.netlify/functions/candidate-profile-v9"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <input type="hidden" name="form_loaded_at" value="" /><div class="candidate-trap" aria-hidden="true">
+        <label>Leave this blank<input name="botcheck" type="text" tabindex="-1" autocomplete="off" /></label>
+      </div>
+      <div class="drop">
+        <label class="drop-zone" for="candidate-cv" data-drop-zone
+          ><span class="drop-cell" aria-hidden="true"></span><b data-file-title>Drop your CV here</b><span
+            >PDF or Word, or <u>choose a file</u></span
+          ><input
+            id="candidate-cv"
+            name="cv"
+            type="file"
+            accept=".pdf,.doc,.docx"
+            required
+            aria-describedby="candidate-upload-help"
+          /></label
+        ><p class="drop-priv" id="candidate-upload-help">
+          PDF, DOC or DOCX. We keep your CV so we can call you about roles. Ask us at any time and we delete it.
+        </p>
+      </div>
+      <div class="qs">
+        <span class="pf-k">One question</span><fieldset class="fld fld--opt">
+          <legend>Where are you?</legend><label
+            ><input type="radio" name="intent" value="active" checked required /><span>Actively looking</span></label
+          ><label><input type="radio" name="intent" value="open" /><span>Open to the right role</span></label>
+        </fieldset><div class="fld">
+          <label for="candidate-phone">Best number <i class="fld-opt">optional</i></label><input
+            id="candidate-phone"
+            name="phone"
+            type="tel"
+            maxlength="32"
+            autocomplete="tel"
+            placeholder="Only if it isn’t the one on your CV"
+          />
+        </div><button class="btn btn-primary qs-go" type="submit" disabled>Send my CV</button><span class="qs-note"
+          >A reply within a day either way. Anonymous until you choose a team.</span
+        ><p data-upload-status role="status" aria-live="polite"></p>
+      </div>
+    </form>
+    <noscript
+      ><p>
+        <a href="/.netlify/functions/candidate-form-v9">Open the CV submission form</a> to submit without JavaScript, or <a
+          href="mailto:careers@tribera.ai">email your CV to careers@tribera.ai</a
+        >.
+      </p></noscript
+    >
+    <p class="candidate-upload-alternative">
+      Having trouble? <a href="/.netlify/functions/candidate-form-v9">Use the simple CV submission form</a> or <a
+        href="mailto:careers@tribera.ai">email your CV</a
+      >.
+    </p>
+  </div>
+</section>

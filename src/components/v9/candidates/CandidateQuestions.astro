@@ -1,0 +1,76 @@
+---
+import demo from '../../../data/v9/candidate-demo.json';
+---
+
+<section class="g-white" id="cv">
+  <div class="wrap">
+    <div class="eyebrow"><span class="tick">\</span> 02 · The interview</div><h2>
+      Every question comes off your own CV.
+    </h2><p class="lead">
+      A recruiter gives your CV a few seconds. Our interviewer has done your job, and turns each line into a question
+      only the person who did the work could answer. Here is Meera’s.
+    </p>
+    <div class="cvx" data-candidate-questions>
+      <div class="cvx-doc">
+        <div class="cvx-head">
+          <span class="pf-k"><span class="pf-dot"></span> Example CV · Meera K.</span><span class="cvx-tag"
+            >Senior Data Engineer</span>
+        </div><p class="cvx-sec">Experience</p>
+        <div data-question-tabs aria-label="Lines from Meera's CV">
+          {
+            demo.questions.map((q, i) => (
+              <button
+                type="button"
+                class:list={['cvx-line', { on: i === 0 }]}
+                id={`candidate-question-${i}`}
+                data-question={i}
+                disabled
+              >
+                <>
+                  <span>{q.line}</span>
+                  <svg class="cvx-ink" viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M2,8 C26,3.5 54,9.5 84,6 C104,3.6 116,8 118,5 C116,8.9 104,6.6 84,8.6 C54,12.2 26,6.2 2,8.6 Z" />
+                  </svg>
+                </>
+              </button>
+            ))
+          }
+        </div><p class="cvx-hint">Tap a line</p><button
+          type="button"
+          class="candidate-play"
+          data-question-play
+          aria-pressed="false"
+          hidden>Play question demo</button>
+      </div>
+      <div class="candidate-question-panels">
+        {
+          demo.questions.map((q, i) => (
+            <div class="cvx-q" id={`candidate-answer-${i}`} data-question-panel={i}>
+              <>
+                <span class="pf-k">What the interviewer asks</span>
+                <p class="cvx-ask">{q.a}</p>
+                <div class="cvx-fu">
+                  <>
+                    <span class="pf-k">Then</span>
+                    <p>{q.f}</p>
+                  </>
+                </div>
+                <div class="cvx-feeds">
+                  <>
+                    <span class="pf-k">Feeds her score for</span>
+                    <b>{q.s}</b>
+                    <span class="cvx-ans">{q.n}</span>
+                  </>
+                </div>
+              </>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+    <p class="decide">
+      <b>Once, 30 to 45 minutes.</b> The conversation is recorded and transcribed. It goes to every team that asks for you,
+      so you never answer the same question twice.
+    </p>
+  </div>
+</section>

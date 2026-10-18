@@ -1,0 +1,140 @@
+---
+import demo from '../../../data/v9/candidate-demo.json';
+const { dimensions, presets } = demo;
+---
+
+<section class="proof g-dark" id="proof" data-candidate-scorer>
+  <div class="wrap">
+    <div class="proof-head">
+      <div>
+        <div class="eyebrow"><span class="tick">\</span> 01 · Where you'd land</div><h2>
+          Pick a team and see where Meera lands.
+        </h2>
+      </div><p class="lead">
+        Meera answered once, and her scores stay fixed. Each team weighs the skills differently, so the same interview
+        reads as a Select for one team and a Grey for another. Yours works the same way.
+      </p>
+    </div>
+    <p class="candidate-demo-note">
+      Illustrative profile and team weights. This does not evaluate you or change an account.
+    </p>
+    <div class="lab-grid play">
+      <div class="verd">
+        <div class="verd-who">
+          <div><p class="verd-nm">Meera K.</p><p class="verd-sub">Senior Data Engineer · 7 yrs · Pune</p></div><span
+            class="verd-band b-sel"
+            data-score-band>Select</span
+          >
+        </div>
+        <div class="verd-big"><b data-score-value>43</b><i>/ 50</i></div>
+        <div class="verd-track" aria-hidden="true">
+          <span class="verd-red"></span><span class="verd-grey"></span><span class="verd-sel"></span><span
+            class="verd-pin"
+            data-score-pin
+            style="left:85.2%"></span>
+        </div>
+        <div class="verd-ax"><span>0</span><span>Reject · 26 · Grey · 34 · Select</span><span>50</span></div><div
+          class="side-k"
+        >
+          Her scores · out of 5
+        </div>
+        <div class="verd-tiles">
+          {
+            dimensions.map((d, i) => (
+              <button
+                class:list={['lt', { low: d.s <= 2 }]}
+                type="button"
+                data-evidence={i}
+                aria-label={`${d.n}: ${d.s} of 5. Read evidence`}
+                aria-pressed="false"
+                disabled
+              >
+                <>
+                  <i>{d.sn}</i>
+                  <b>{d.s}</b>
+                </>
+              </button>
+            ))
+          }
+        </div>
+        <div class="verd-ev" data-score-evidence aria-live="polite">
+          <span class="verd-ev-cue">Tap any score</span> to see the reason behind it.
+        </div>
+        <p class="verd-note" data-score-note>{presets[0].note}</p>
+        <p class="candidate-sr" data-score-status role="status"></p>
+      </div>
+      <div class="ctrl">
+        <div class="side-k">Pick a team, <b>watch her verdict change</b></div><div class="ctrl-hd">
+          {
+            presets.map((p, i) => (
+              <button
+                class:list={['pre', { on: i === 0 }]}
+                type="button"
+                data-preset={p.id}
+                aria-pressed={i === 0 ? 'true' : 'false'}
+                disabled
+              >
+                {p.label}
+              </button>
+            ))
+          }
+        </div>
+        <button type="button" class="candidate-play" data-score-play aria-pressed="false" hidden>Play team demo</button>
+        <details class="candidate-weights" open>
+          <summary class="side-k">Or adjust any weight yourself</summary><div class="rows">
+            {
+              dimensions.map((d, i) => (
+                <div class="row">
+                  <>
+                    <span class="rk">{d.k}</span>
+                    <label class="rn" for={`candidate-weight-${i}`}>
+                      {d.n}
+                    </label>
+                    <input
+                      id={`candidate-weight-${i}`}
+                      type="range"
+                      min="0"
+                      max="50"
+                      step="1"
+                      value={d.w}
+                      data-weight={i}
+                      disabled
+                    />
+                    <output class="rp" data-weight-share={i} for={`candidate-weight-${i}`}>
+                      {d.w}%
+                    </output>
+                  </>
+                </div>
+              ))
+            }
+          </div>
+        </details>
+        <div class="rows-ft">Normalized weights add to <b data-score-total>100</b>%</div>
+      </div>
+    </div>
+    <noscript
+      ><p>
+        Enable JavaScript to adjust weights. Meera’s fintech score is 43/50 (Select). Her interview evidence remains
+        available below.
+      </p><ul class="candidate-evidence-list">
+        {
+          dimensions.map((d) => (
+            <li>
+              <b>
+                {d.n} · {d.s}/5
+              </b>{' '}
+              — {d.ev}
+            </li>
+          ))
+        }
+      </ul></noscript
+    >
+    <div class="proof-checks">
+      <div><h3>Every score links to your transcript.</h3><p>Teams read your exact answer, word for word.</p></div><div>
+        <h3>You keep your score.</h3><p>Whether or not anyone hires you.</p>
+      </div><div>
+        <h3>You see what moved it.</h3><p>Each score comes with the reason, so you know what to work on.</p>
+      </div>
+    </div>
+  </div>
+</section>
