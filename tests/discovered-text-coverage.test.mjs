@@ -16,10 +16,16 @@ if (process.env.TEXT_PARTIAL !== '1') {
     }
     return paths;
   }
+  const widths = (process.env.TEXT_WIDTHS || '320,390,768,1520').split(',').map(Number);
+  assert(
+    widths.length > 0 && widths.every((width) => Number.isInteger(width) && width > 0),
+    'Invalid required text widths'
+  );
+  assert.equal(new Set(widths).size, widths.length, 'Duplicate required text widths');
   const actual = new Set(records.map((r) => `${r.route}|${r.width}`));
+  assert.equal(actual.size, records.length, 'Duplicate route/width records');
   for (const route of await routes())
-    for (const width of [320, 390, 768, 1520])
-      assert(actual.has(`${route}|${width}`), `Missing inventory: ${route} ${width}`);
+    for (const width of widths) assert(actual.has(`${route}|${width}`), `Missing inventory: ${route} ${width}`);
 }
 const failures = [];
 let prose = 0;

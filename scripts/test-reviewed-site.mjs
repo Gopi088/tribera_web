@@ -84,7 +84,7 @@ try {
     });
     await run('tests/discovered-text-coverage.test.mjs', {
       TEXT_INVENTORY: `${states}/inventory.json`,
-      TEXT_PARTIAL: '1',
+      TEXT_WIDTHS: '390,1520',
     });
   }
 } finally {
