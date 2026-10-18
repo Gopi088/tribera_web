@@ -413,7 +413,7 @@ const shouldRenderAnalytics = Astro.url.pathname !== '/intelligence';
 
     document.querySelectorAll('.nav__cta, .navp__cta .btn').forEach((link) => {
       if (!(link instanceof HTMLAnchorElement)) return;
-      link.href = '#contact';
+      link.href = '/contact';
       link.textContent = 'Start with one role';
       link.dataset.formIntent = 'demo';
       link.dataset.formSource = link.classList.contains('nav__cta') ? 'header' : 'page';
