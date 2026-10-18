@@ -107,6 +107,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [journeys, text]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -118,10 +122,12 @@ jobs:
           path: dist/
       - run: npx playwright install --with-deps chromium
       - run: node scripts/test-reviewed-site.mjs
+        env:
+          LEGACY_SUITE_GROUP: ${{ matrix.group }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: legacy-regression-evidence
+          name: legacy-regression-${{ matrix.group }}-evidence
           path: artifacts/
 
   migration-required:
