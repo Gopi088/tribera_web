@@ -58,20 +58,43 @@ try {
                     : 'section';
           const css = getComputedStyle(el);
           const label = el.textContent.trim().slice(0, 65);
-          if (!near(parseFloat(css.fontSize), size(role)))
-            issues.push(`${label}: ${css.fontSize}, expected ${role} ${size(role)}`);
+          const clamp = (min, vw, max) => Math.max(min, Math.min(max, (innerWidth * vw) / 100));
+          let expectedSize = size(role);
+          let expectedWeight = '500';
+          let expectedTracking = -0.01;
           const leadingRole = role === 'document' ? 'article' : role;
-          const leading = parseFloat(
+          let leading = parseFloat(
             getComputedStyle(document.documentElement).getPropertyValue(`--type-${leadingRole}-leading`)
           );
+          // Explicit version contracts from sample.css, candidate-v7.css and the
+          // current industries hero. These routes intentionally predate v9 with
+          // their own scales; shared editorial tokens still govern other routes.
+          if (el.closest('.v126-home') && ['H1', 'H2'].includes(el.tagName)) {
+            expectedSize = el.tagName === 'H1' ? clamp(41.6, 5.6, 66.4) : clamp(32, 3.9, 48);
+            leading = 1.08;
+            if (el.matches('.ops h2')) {
+              expectedSize = clamp(26, 3, 40);
+              expectedWeight = '600';
+              expectedTracking = -0.02;
+            }
+            if (el.matches('.proc h2')) expectedSize = clamp(24, 2.6, 32.8);
+          } else if (el.closest('.candidate-v7') && ['H1', 'H2'].includes(el.tagName)) {
+            expectedSize = el.tagName === 'H1' ? clamp(36, 4.6, 62) : clamp(30, 4.2, 54);
+            leading = el.tagName === 'H1' ? 1.02 : 1.08;
+          } else if (el.matches('.industries-hero h1')) {
+            expectedSize = clamp(41.6, 5.6, 66.4);
+            leading = 1.08;
+          }
+          if (!near(parseFloat(css.fontSize), expectedSize))
+            issues.push(`${label}: ${css.fontSize}, expected ${role} ${expectedSize}`);
           if (!near(parseFloat(css.lineHeight), parseFloat(css.fontSize) * leading))
             issues.push(`${label}: wrong ${role} leading ${css.lineHeight}`);
           if (!css.fontFamily.includes('Fraunces')) issues.push(`${label}: wrong display family`);
-          if (el.tagName !== 'H3' && css.fontWeight !== '500')
+          if (el.tagName !== 'H3' && css.fontWeight !== expectedWeight)
             issues.push(`${label}: wrong heading weight ${css.fontWeight}`);
           if (
             ['hero', 'section', 'article'].includes(role) &&
-            !near(parseFloat(css.letterSpacing), -0.01 * parseFloat(css.fontSize))
+            !near(parseFloat(css.letterSpacing), expectedTracking * parseFloat(css.fontSize))
           )
             issues.push(`${label}: wrong display tracking ${css.letterSpacing}`);
         }
