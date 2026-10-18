@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { setTimeout as delay } from 'node:timers/promises';
 import { test } from 'node:test';
 import { chromium, firefox, webkit } from 'playwright';
-import { waitForFonts } from '../scripts/v9-browser-readiness.mjs';
+import { waitForFonts, waitForPageCondition } from '../scripts/v9-browser-readiness.mjs';
 const base = process.env.TEST_BASE_URL || 'http://127.0.0.1:4390';
 const engine = process.env.BROWSER || 'chromium';
 
@@ -74,6 +74,66 @@ test(`font readiness observes delayed native fonts with JavaScript disabled (${e
     );
   } finally {
     release();
+    await browser.close();
+  }
+});
+
+test('generic readiness preserves deadlines, arguments and evaluation errors', async () => {
+  const start = performance.now();
+  await assert.rejects(
+    waitForPageCondition({ evaluate: async () => false }, () => false, null, { timeout: 120 }),
+    (error) => {
+      assert.equal(error.name, 'PageConditionTimeoutError');
+      assert.equal(error.lastValue, false);
+      return true;
+    }
+  );
+  assert.ok(performance.now() - start >= 120);
+  await assert.rejects(
+    waitForPageCondition({ evaluate: () => new Promise(() => {}) }, () => true, null, { timeout: 120 }),
+    /within 120ms/
+  );
+  await assert.rejects(
+    waitForPageCondition(
+      {
+        evaluate: async () => {
+          throw new Error('evaluation failed');
+        },
+      },
+      () => true
+    ),
+    /evaluation failed/
+  );
+});
+
+test(`generic readiness observes delayed native disclosure rendering without JavaScript (${engine})`, async () => {
+  const browser = await { chromium, firefox, webkit }[engine].launch();
+  try {
+    const page = await browser.newPage({ javaScriptEnabled: false, reducedMotion: 'no-preference' });
+    await page.setContent(`<style>
+      @keyframes reveal { from { opacity: 0; } to { opacity: 1; } }
+      details[open] .answer { animation: reveal 800ms linear both; }
+      </style><details><summary>Read the answer</summary><p class="answer">Native disclosure answer</p></details>`);
+    await page.locator('summary').click();
+    assert.equal(await page.locator('details').getAttribute('open'), '');
+    assert.ok(
+      await page.locator('.answer').evaluate((el) => Number(getComputedStyle(el).opacity) < 1),
+      'start while the native CSS animation is unfinished'
+    );
+    await waitForPageCondition(
+      page,
+      (selector) => Number(getComputedStyle(document.querySelector(selector)).opacity) === 1,
+      '.answer',
+      { timeout: 5000 }
+    );
+    assert.equal(await page.locator('.answer').isVisible(), true);
+    assert.equal(await page.locator('.answer').evaluate((el) => getComputedStyle(el).opacity), '1');
+    // A permanently false condition must still reject on the actual no-JS page.
+    await assert.rejects(
+      waitForPageCondition(page, () => document.querySelector('details').open === false, null, { timeout: 120 }),
+      /within 120ms/
+    );
+  } finally {
     await browser.close();
   }
 });
