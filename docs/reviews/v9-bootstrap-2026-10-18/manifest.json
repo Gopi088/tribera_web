@@ -24,5 +24,17 @@
     "report": "claude-foundation-baselines.txt",
     "reportSha256": "a807a53fade1b6af229b992a018261e12e66ab0189918db231997a4a56302987",
     "rawResult": "artifacts/v9-claude-review/raw/claude-foundation-baselines.json"
+  },
+  {
+    "name": "claude-followup",
+    "revision": "339264f",
+    "exitCode": 0,
+    "isError": false,
+    "subtype": "success",
+    "sessionId": "7220211c-2e72-405a-882a-f33565e9cc65",
+    "models": ["claude-sonnet-5"],
+    "report": "claude-followup.txt",
+    "reportSha256": "1fddb52840a2d47e7341bcd2ac67dcd66cf833f50efe1a05b242526a9026c401",
+    "rawResult": "artifacts/v9-claude-review/raw/claude-followup.json"
   }
 ]

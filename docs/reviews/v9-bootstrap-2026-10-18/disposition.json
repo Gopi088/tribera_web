@@ -8,7 +8,7 @@
   "findings": [
     {
       "id": "foundation-1",
-      "status": "fixed; three-browser rerun passed",
+      "status": "fixed and accepted by Claude follow-up",
       "finding": "Animated client strip screenshots were nondeterministic",
       "resolution": "Browser checks remain in normal motion; screenshot capture emulates reduced motion and waits two animation frames; evidence records screenshotReducedMotion."
     },
@@ -38,7 +38,7 @@
     },
     {
       "id": "contracts-3",
-      "status": "fixed; follow-up review pending",
+      "status": "fixed and accepted by Claude follow-up",
       "finding": "Legacy career lookup accepts inherited object keys",
       "resolution": "findJobBySlug now requires Object.hasOwn. Legacy handler regression tests cover constructor, toString and __proto__, alongside unknown roles and existing valid submissions."
     }
@@ -60,5 +60,11 @@
     "lintAndFormatting": "passed",
     "evidence": "artifacts/v9-claude-review/",
     "note": "Browser evidence captured the unchanged preview site artifact with the corrected capture script; the only product-source change is the separately tested Netlify role lookup."
+  },
+  "followup": {
+    "report": "claude-followup.txt",
+    "reviewedRevision": "339264f",
+    "verdict": "ACCEPT",
+    "bootstrapBlockers": 0
   }
 }

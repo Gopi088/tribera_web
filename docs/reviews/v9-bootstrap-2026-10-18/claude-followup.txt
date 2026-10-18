@@ -1,0 +1,20 @@
+All 87 tests pass, including the 4 new untrusted-role rejections (unknown-role, constructor, toString, __proto__), test 52 (trusted slug ignores spoofed metadata), and test 35/39 (valid legacy role submissions still succeed). Everything checks out.
+
+## Verdict: **ACCEPT**
+
+**contracts-3 (inherited role-key acceptance) — confirmed closed.** `job-catalog.mjs:11-14` now uses `Object.hasOwn(JOB_CATALOG, key)` instead of bracket access, blocking prototype-chain hits. `tests/netlify-functions.test.mjs:1789-1817` parametrically rejects `constructor`, `toString`, `__proto__`, and `unknown-role` (400, generic message, no catalog leak) — tests 53–56 in `unit-committed.log`. Valid legacy roles are unaffected: test 35 ("accepts a valid application with resume") and test 39 ("accepts trusted role submissions without client job_title") still pass, and the untouched earlier assertion confirms `ai-ml-engineer` resolves correctly with real Role/Department in the outbound email. `unit-committed.log` shows 87/87 passing, 0 failed/skipped — matches disposition.
+
+**foundation-1 (screenshot determinism) — confirmed.** `scripts/v9-browser.mjs:58-97`: all interactive/link/overflow checks run before `emulateMedia({reducedMotion:'reduce'})` is set (line 89); it's restored to `'no-preference'` at line 97 immediately after the screenshot. Only capture is frozen; navigation/behavior checks run in normal motion. Both new screenshots (`chromium-390`/`chromium-1366-___v9_foundation.png`) show "Mizuho" fully rendered at the strip's left edge — no mid-animation truncation, confirming `screenshotReducedMotion: true` is real, not just labeled.
+
+**Browser gate JSONs** — chromium/firefox/webkit all `"status": "passed"`, 16/16 checks each, 1730 rendered references, 0 errors, same commit (`cabcd11a...`) and buildHash across all three. Limitations are honestly scoped (hosted delivery, smoke-not-journey, no CSS-URL parsing).
+
+**Accuracy notes verified** — candidate fix is correctly in `src/components/candidates/candidate-v7.html/.ts` (not home/v58); disposition's correction is accurate per the foundation report's own citations.
+
+**Remaining blockers:** none for this bootstrap scope.
+
+**Non-blocking follow-ups (carried forward, unchanged):**
+1. Summary-generator automation (contracts-2) — still unimplemented; raw gate JSON/logs/CI remain the authoritative source, not `bootstrap-status.json`/`baseline-result.json`.
+2. G1/representative-page footer-route acceptance (foundation-2) — deferred as before, no live breakage.
+3. Full migration/G1–G7 gates (visual parity, accessibility, hosted delivery, font/asset provenance, branch protection) — out of bootstrap scope, correctly untouched.
+
+No independent execution was performed; this verdict is based on reading source, tests, and the committed logs/JSON/screenshots as evidence.
