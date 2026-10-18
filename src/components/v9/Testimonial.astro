@@ -1,0 +1,15 @@
+---
+import '../../assets/styles/v9/content.css';
+interface Props {
+  side: 'hiring' | 'candidate';
+  quote: string;
+  name: string;
+  role: string;
+}
+const { side, quote, name, role } = Astro.props;
+---
+
+<figure class="v9-testimonial">
+  <span class="v9-testimonial-tag">{side === 'hiring' ? 'Hiring team' : 'Candidate'}</span>
+  <blockquote>{quote}</blockquote><figcaption><b>{name}</b><span>{role}</span></figcaption>
+</figure>

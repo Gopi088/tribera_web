@@ -1,0 +1,29 @@
+---
+import '../../assets/styles/v9/content.css';
+interface Props {
+  items: { id: string; title: string; href: string; context?: string }[];
+  methodology?: { label: string; href: string };
+}
+const { items, methodology } = Astro.props;
+---
+
+<section class="v9-sources" aria-label="Sources">
+  <h2>Sources</h2>
+  <ol>
+    {
+      items.map((item) => (
+        <li id={item.id}>
+          <a href={item.href}>{item.title}</a>
+          {item.context && <span> — {item.context}</span>}
+        </li>
+      ))
+    }
+  </ol>
+  {
+    methodology && (
+      <a class="v9-sources-methodology" href={methodology.href}>
+        {methodology.label} <span aria-hidden="true">›</span>
+      </a>
+    )
+  }
+</section>

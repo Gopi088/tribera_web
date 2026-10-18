@@ -1,0 +1,21 @@
+---
+import '../../assets/styles/v9/content.css';
+interface Props {
+  name: string;
+  role: string;
+  image: string;
+  date: string;
+  dateLabel: string;
+  readingTime: string;
+}
+const { name, role, image, date, dateLabel, readingTime } = Astro.props;
+---
+
+<div class="v9-author">
+  <img src={image} alt={name} width="44" height="44" loading="lazy" />
+  <div>
+    <b>{name}</b><span>{role}</span><p class="v9-author-meta">
+      <time datetime={date}>{dateLabel}</time><span>{readingTime}</span>
+    </p>
+  </div>
+</div>

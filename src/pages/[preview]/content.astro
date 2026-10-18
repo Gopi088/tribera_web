@@ -1,0 +1,61 @@
+---
+import V9Layout from '../../layouts/V9Layout.astro';
+import ArticleHeader from '../../components/v9/ArticleHeader.astro';
+import AuthorBlock from '../../components/v9/AuthorBlock.astro';
+import SourceList from '../../components/v9/SourceList.astro';
+import Testimonial from '../../components/v9/Testimonial.astro';
+import testimonials from '../../../sample_data/tribera-web-handoff-v9/data/testimonials.json';
+export function getStaticPaths() {
+  return import.meta.env.DEV || process.env.V9_PREVIEW === '1' ? [{ params: { preview: '__v9' } }] : [];
+}
+const sourceUrl = 'https://www.ashbyhq.com/talent-trends-report/reports/2023-recruiter-productivity-trends-report';
+---
+
+<V9Layout
+  title="Tribera v9 content preview"
+  description="Private review of editorial components."
+  noindex
+  footerLinkOverrides={{ '/case-study': '/services', '/how-we-work-with-numbers': '/about', '/dpa': '/privacy' }}
+  cta={{ label: 'Review sources', href: '#content-source-1' }}
+>
+  <ArticleHeader
+    title="Seventeen interviews for one hire. Here’s where the hours go."
+    summary="Interview loads have risen by half since 2021. In my experience, most of the extra hours go to people who were never going to clear the bar."
+    category="Hiring strategy"
+    cover={{ issue: 'No. 10', value: '17.6', caption: 'interviews for every technical hire' }}
+  >
+    <AuthorBlock
+      slot="author"
+      name="Akshata Chandavarkar"
+      role="Founder & CEO · twenty years of enterprise hiring"
+      image="/brand/v9/authors/akshata-chandavarkar.jpg"
+      date="2026-10-19"
+      dateLabel="Oct 19, 2026"
+      readingTime="3 min read"
+    />
+  </ArticleHeader>
+  <section class="v9-section">
+    <div class="v9-wrap">
+      <p class="v9-content-citation">Source reference <a href="#content-source-1" aria-label="Read source 1">[1]</a></p>
+      <SourceList
+        items={[
+          { id: 'content-source-1', title: 'Ashby Talent Trends Report, Q1 2026', href: sourceUrl },
+          {
+            id: 'content-source-url',
+            title: sourceUrl,
+            href: sourceUrl,
+            context: 'URL display stress case for this private component preview.',
+          },
+        ]}
+        methodology={{ label: 'About our approach', href: '/about' }}
+      />
+    </div>
+  </section>
+  <section class="v9-content-quotes v9-section" aria-labelledby="content-quotes-title">
+    <div class="v9-wrap">
+      <h2 id="content-quotes-title">From both sides of the table.</h2><div class="v9-testimonials-grid">
+        {testimonials.testimonials.map((item) => <Testimonial {...item} side={item.side as 'hiring' | 'candidate'} />)}
+      </div>
+    </div>
+  </section>
+</V9Layout>
