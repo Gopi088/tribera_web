@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { test } from 'node:test';
 import { chromium, firefox, webkit } from 'playwright';
+import { skills } from '../src/scripts/v9/home/model.mjs';
 const base = process.env.TEST_BASE_URL || 'http://127.0.0.1:4391';
 const engine = process.env.BROWSER || 'chromium';
 const output = `artifacts/v9-g2/home-${engine}`;
@@ -61,6 +62,16 @@ test(`home full content, responsive layout and interactions (${engine})`, async 
     );
     await page.locator('#labRows input').evaluateAll((inputs) =>
       inputs.forEach((input) => {
+        input.value = '1';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      })
+    );
+    assert.equal(
+      (await page.locator('#labRows .rp').allTextContents()).reduce((sum, value) => sum + parseInt(value, 10), 0),
+      100
+    );
+    await page.locator('#labRows input').evaluateAll((inputs) =>
+      inputs.forEach((input) => {
         input.value = '0';
         input.dispatchEvent(new Event('input', { bubbles: true }));
       })
@@ -87,13 +98,35 @@ test(`home full content, responsive layout and interactions (${engine})`, async 
     assert.equal(await page.locator('.faq-item').nth(1).getAttribute('open'), '');
     assert.deepEqual(errors, []);
     await page.emulateMedia({ reducedMotion: 'no-preference' });
+    // Remove focus/hover while each demo remains visible: visibility gating must not mask cancellation.
+    async function leaveDemoVisible(selector, delay) {
+      await page.mouse.move(1, 1);
+      await page.locator(selector).evaluate((el) => {
+        document.activeElement?.blur();
+        el.scrollIntoView({ block: 'center', behavior: 'instant' });
+      });
+      await page.mouse.move(1, 1);
+      assert.ok(
+        await page.locator(selector).evaluate((el) => {
+          const r = el.getBoundingClientRect();
+          return (
+            Math.max(0, Math.min(innerHeight, r.bottom) - Math.max(0, r.top)) / r.height > 0.4 &&
+            !el.matches(':hover, :focus-within')
+          );
+        }),
+        `${selector} remains visible without hover or focus`
+      );
+      await page.waitForTimeout(delay);
+    }
     await bar.focus();
     await page.keyboard.press('End');
-    await page.locator('#ear-t2').click();
-    await page.locator('.fnl-step[data-n="4"]').click();
-    await page.waitForTimeout(7400);
+    await leaveDemoVisible('.bc', 5100);
     assert.equal(await bar.getAttribute('aria-valuenow'), '42');
+    await page.locator('#ear-t2').click();
+    await leaveDemoVisible('.ear', 7400);
     assert.equal(await page.locator('#ear-t2').getAttribute('aria-selected'), 'true');
+    await page.locator('.fnl-step[data-n="4"]').click();
+    await leaveDemoVisible('#funnel', 2200);
     assert.equal(await page.locator('#fnlN').textContent(), '5');
     assert.ok(
       parseFloat(await page.locator('.tm-track').evaluate((el) => getComputedStyle(el).animationDuration)) > 1,
@@ -109,6 +142,13 @@ test(`home full content, responsive layout and interactions (${engine})`, async 
     await nojs.goto(`${base}/__v9/home`);
     assert.equal(await nojs.locator('#ccFeed .hc-row').count(), 5);
     assert.equal(await nojs.locator('#labRows input:disabled').count(), 9);
+    assert.equal(await nojs.locator('.home-evidence-reasons details').count(), 9);
+    for (let i = 0; i < skills.length; i++) {
+      const disclosure = nojs.locator('.home-evidence-reasons details').nth(i);
+      await disclosure.locator('summary').click();
+      assert.equal(await disclosure.locator('p').isVisible(), true);
+      assert.equal(await disclosure.locator('p').textContent(), skills[i].ev);
+    }
     assert.equal(await nojs.locator('.ear-p:visible').count(), 5);
     assert.equal(await nojs.locator('.faq-item:visible').count(), 7);
     await nojs.locator('.faq-item summary').last().click();

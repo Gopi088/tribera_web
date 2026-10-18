@@ -103,6 +103,22 @@ const initial = scoreBrief(skills.map((d) => d.w));
         <div class="rows-ft"><span>Weights add to <b id="labTotal">100</b>%</span></div>
       </div>
     </div>
+    <noscript>
+      <div class="home-evidence-reasons">
+        <h3>The interview evidence behind each score</h3>
+        <p>Open any skill to read the answer behind its score. The brief above shows the original weighting.</p>
+        {
+          skills.map((skill) => (
+            <details>
+              <summary>
+                {skill.n} · {skill.s}/5
+              </summary>
+              <p>{skill.ev}</p>
+            </details>
+          ))
+        }
+      </div>
+    </noscript>
     <div class="proof-checks" data-home-reveal>
       <div><h3>Every score links to the transcript.</h3><p>Click a number to read the answer behind it.</p></div>
       <div><h3>We tell you what we didn’t test.</h3><p>Your final round goes straight to the gaps.</p></div>

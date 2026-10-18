@@ -118,3 +118,21 @@
 .v9-home:not([data-enhanced]) .bc-knob {
   opacity: 1;
 }
+
+.v9-home:not([data-enhanced]) #labEv {
+  display: none;
+}
+.v9-home .home-evidence-reasons {
+  margin-top: 24px;
+}
+.v9-home .home-evidence-reasons details {
+  padding: 16px 0;
+  border-bottom: 1px solid #ffffff40;
+}
+.v9-home .home-evidence-reasons summary {
+  cursor: pointer;
+}
+.v9-home .home-evidence-reasons p {
+  margin-top: 12px;
+  line-height: 1.6;
+}

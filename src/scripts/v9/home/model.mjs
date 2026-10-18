@@ -97,6 +97,19 @@ export function scoreBrief(weights) {
     band: score >= 34 ? 'b-sel' : score >= 26 ? 'b-grey' : 'b-rej',
   };
 }
+// Allocate integer percentages by largest remainder so every nonempty brief totals 100.
+export function normalizedShares(weights) {
+  const { total } = scoreBrief(weights);
+  const shares = weights.map((weight) => (total ? Math.floor((weight / total) * 100) : 0));
+  if (total) {
+    const order = weights
+      .map((weight, i) => ({ i, fraction: (weight / total) * 100 - shares[i] }))
+      .sort((a, b) => b.fraction - a.fraction || a.i - b.i);
+    const remaining = 100 - shares.reduce((sum, value) => sum + value, 0);
+    order.slice(0, remaining).forEach(({ i }) => shares[i]++);
+  }
+  return shares;
+}
 export const candidateScores = [29, 24, 40, 31, 43, 22, 37, 27];
 export function clearCount(bar) {
   return candidateScores.filter((score) => score >= bar).length;

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { scoreBrief, presets, clearCount } from '../src/scripts/v9/home/model.mjs';
+import { scoreBrief, normalizedShares, presets, clearCount } from '../src/scripts/v9/home/model.mjs';
 
 test('home brief presets retain independently calculated handoff verdicts', () => {
   for (const [name, score, label] of [
@@ -36,4 +36,15 @@ test('home hiring bar includes exact matches and narrows the same eight people',
   assert.equal(clearCount(37), 3);
   assert.equal(clearCount(38), 2);
   assert.equal(clearCount(42), 1);
+});
+
+test('integer shares retain the stated total, including equal fractional shares', () => {
+  assert.deepEqual(normalizedShares(Array(9).fill(1)), [12, 11, 11, 11, 11, 11, 11, 11, 11]);
+  assert.deepEqual(normalizedShares(Array(9).fill(0)), Array(9).fill(0));
+  for (const weights of Object.values(presets)) {
+    assert.equal(
+      normalizedShares(weights).reduce((sum, value) => sum + value, 0),
+      100
+    );
+  }
 });

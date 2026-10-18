@@ -1,4 +1,4 @@
-import { skills, presets, notes, scoreBrief, candidateScores, clearCount, stages } from './model.mjs';
+import { skills, presets, notes, scoreBrief, normalizedShares, candidateScores, clearCount, stages } from './model.mjs';
 
 const root = document.querySelector('[data-v9-home]');
 if (root) initializeHome(root);
@@ -63,8 +63,9 @@ function initializeHome(root) {
     $('#labPin').style.left = `${Math.max(1, Math.min(99, result.score * 2))}%`;
     $('#labTotal').textContent = result.total ? '100' : '0';
     const maximum = Math.max(...weights);
+    const shares = normalizedShares(weights);
     skills.forEach((skill, i) => {
-      $(`#pts${i}`).textContent = `${result.total ? Math.round((weights[i] / result.total) * 100) : 0}%`;
+      $(`#pts${i}`).textContent = `${shares[i]}%`;
       $(`#row${i} input`).value = String(weights[i]);
       const heavy = weights[i] >= Math.max(7, maximum * 0.92);
       $(`#row${i}`).classList.toggle('heavy', heavy);
