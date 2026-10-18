@@ -77,6 +77,7 @@ try {
   for (const [slug, file] of pages) {
     await reference.goto(`${base}/__handoff/${file}`, { waitUntil: 'networkidle' });
     const expectedHeadings = await normalizedHeadings(reference);
+    assert.ok(expectedHeadings.length > 1, `${slug}: reference heading coverage must not be empty`);
     for (const javaScriptEnabled of [true, false]) {
       const context = await browser.newContext({ javaScriptEnabled, reducedMotion: 'reduce' });
       const page = await context.newPage();
