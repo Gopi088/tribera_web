@@ -42,6 +42,46 @@ try {
     }
     await page.close();
   }
+  const reference = await browser.newPage({ reducedMotion: 'reduce' });
+  const migrated = await browser.newPage({ reducedMotion: 'reduce' });
+  const fonts = fs.readFileSync('src/assets/styles/v9/fonts.css', 'utf8');
+  const articleSource = fs
+    .readFileSync('sample_data/tribera-web-handoff-v9/blog/seventeen-interviews-one-hire.html', 'utf8')
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
+    .replace(
+      '</head>',
+      `<style>${fonts} :root { --display:'V9 Fraunces',Georgia,serif; --body:'V9 Inter Tight',system-ui,sans-serif; --mono:'V9 JetBrains Mono',monospace; } [data-rv] {opacity:1!important;transform:none!important}</style></head>`
+    );
+  await reference.route('**/__visual-article-reference', (route) =>
+    route.fulfill({ contentType: 'text/html', body: articleSource })
+  );
+  for (const width of [390, 768, 1024, 1366, 1920]) {
+    await reference.setViewportSize({ width, height: 900 });
+    await migrated.setViewportSize({ width, height: 900 });
+    await reference.goto(`${base}/__visual-article-reference`, { waitUntil: 'networkidle' });
+    await migrated.goto(`${base}/__v9/article`, { waitUntil: 'networkidle' });
+    await reference.evaluate(() => document.fonts.ready);
+    await migrated.evaluate(() => document.fonts.ready);
+    for (const [sourceSelector, targetSelector] of [
+      ['.bl-head h1', '.v9-article-header h1'],
+      ['.bl-head .cv', '.v9-article-cover'],
+    ]) {
+      const measure = (element) => {
+        const r = element.getBoundingClientRect();
+        return { x: r.x, width: r.width, height: r.height };
+      };
+      const expectedBox = await reference.locator(sourceSelector).evaluate(measure);
+      const actualBox = await migrated.locator(targetSelector).evaluate(measure);
+      for (const key of ['x', 'width', 'height'])
+        assert.ok(
+          Math.abs(expectedBox[key] - actualBox[key]) < 1,
+          `${width}: ${targetSelector} ${key}: source ${expectedBox[key]}, migrated ${actualBox[key]}`
+        );
+    }
+  }
+  await reference.close();
+  await migrated.close();
+  console.log(`V9 article header geometry passed (${engine}, five widths).`);
   console.log(`V9 About final portrait appearance passed (${engine}, five widths, three exact assets).`);
 } finally {
   await browser.close();
