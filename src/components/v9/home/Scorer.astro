@@ -1,0 +1,114 @@
+---
+import { skills, scoreBrief } from '../../../scripts/v9/home/model.mjs';
+const initial = scoreBrief(skills.map((d) => d.w));
+---
+
+<section class="proof g-dark" id="proof">
+  <div class="wrap">
+    <div class="proof-head">
+      <div>
+        <div class="eyebrow" data-home-reveal><span class="tick">\</span> 01 · How we score</div>
+        <h2 data-home-reveal style="--d:60ms">Change what counts and watch the verdict move.</h2>
+      </div>
+      <p class="lead" data-home-reveal style="--d:120ms">
+        Try it first. Bharat is a real candidate for an AI security role, scored on nine skills by an interviewer who
+        has done the job. Drag the weights to match your brief and see whether he still clears.
+      </p>
+    </div>
+    <div class="lab-grid">
+      <div class="verd">
+        <div class="verd-who">
+          <div>
+            <p class="verd-nm">Bharat R.</p><p class="verd-sub">AI Senior Security Engineer · 5 yrs · Bengaluru</p>
+          </div>
+          <span class="verd-band b-sel" id="labBand">Select</span>
+        </div>
+        <div class="verd-big"><b id="labScore" aria-live="polite">{initial.score}</b><i>/ 50</i></div>
+        <div class="verd-track">
+          <span class="verd-red"></span><span class="verd-grey"></span><span class="verd-sel"></span><span
+            class="verd-pin"
+            id="labPin"
+            style="left:78%"></span>
+        </div>
+        <div class="verd-ax"><span>0</span><span>Reject · 26 · Grey · 34 · Select</span><span>50</span></div>
+        <div class="side-k">His scores · out of 5</div>
+        <div class="verd-tiles" id="labTiles">
+          {
+            skills.map((d, i) => (
+              <button
+                type="button"
+                class:list={['lt', { low: d.s <= 2 }]}
+                id={`tile${i}`}
+                data-i={i}
+                aria-pressed="false"
+                title={`${d.n} — ${d.s} of 5`}
+                disabled
+              >
+                <>
+                  <i>{d.sn}</i>
+                  <b>{d.s}</b>
+                </>
+              </button>
+            ))
+          }
+        </div>
+        <div class="verd-ev" id="labEv">
+          <span class="verd-ev-cue">Tap any score</span> to see the reason behind it.
+        </div>
+        <p class="verd-note" id="labNote">
+          As briefed, his production detection work carries him to a Select. AI security is where we’d probe next.
+        </p>
+      </div>
+      <div class="ctrl">
+        <div class="side-k">Pick a brief, <b>watch the verdict change</b></div>
+        <div class="ctrl-hd">
+          <button class="pre on" aria-pressed="true" disabled type="button" data-pre="brief">As briefed</button>
+          <button class="pre" aria-pressed="false" disabled type="button" data-pre="detect">Detection first</button>
+          <button class="pre" aria-pressed="false" disabled type="button" data-pre="llm">LLM security</button>
+          <button class="pre" aria-pressed="false" disabled type="button" data-pre="own">Ownership</button>
+        </div>
+        <button
+          class="side-k adj-toggle"
+          disabled
+          type="button"
+          aria-expanded="false"
+          aria-controls="labRows"
+          style="margin-top:18px">Or adjust any weight yourself<span class="adj-ic" aria-hidden="true">+</span></button
+        >
+        <div class="rows" id="labRows">
+          {
+            skills.map((d, i) => (
+              <div class="row" id={`row${i}`} data-i={i}>
+                <>
+                  <span class="rk">{d.k}</span>
+                  <span class="rn">{d.n}</span>
+                  <input
+                    type="range"
+                    min="0"
+                    max="40"
+                    step="1"
+                    value={d.w}
+                    data-i={i}
+                    aria-label={`Weight for ${d.n}`}
+                    disabled
+                  />
+                  <span class="rp" id={`pts${i}`}>
+                    {d.w}%
+                  </span>
+                </>
+              </div>
+            ))
+          }
+        </div>
+        <div class="rows-ft"><span>Weights add to <b id="labTotal">100</b>%</span></div>
+      </div>
+    </div>
+    <div class="proof-checks" data-home-reveal>
+      <div><h3>Every score links to the transcript.</h3><p>Click a number to read the answer behind it.</p></div>
+      <div><h3>We tell you what we didn’t test.</h3><p>Your final round goes straight to the gaps.</p></div>
+      <div>
+        <h3>We check the CV against the interview.</h3><p>Claims that fell apart in the interview are flagged.</p>
+      </div>
+    </div>
+  </div>
+</section>

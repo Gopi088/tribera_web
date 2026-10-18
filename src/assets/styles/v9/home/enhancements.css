@@ -1,0 +1,120 @@
+/* Progressive enhancements and deliberate repairs to the reference implementation. */
+.v9-home {
+  font-family: var(--body);
+}
+.v9-home [hidden] {
+  display: none !important;
+}
+.v9-home .v9-client-strip {
+  background: var(--white);
+}
+.v9-home .v9-client-strip .v9-eyebrow {
+  font: 400 0.6875rem var(--mono);
+  letter-spacing: 0.14em;
+}
+.v9-home .v9-client-strip .v9-client-track li {
+  font-family: var(--display);
+}
+.v9-home .lt {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.v9-home .lt i {
+  font-style: normal;
+}
+.v9-home .bc-bar {
+  touch-action: none;
+}
+.v9-home :focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 5px;
+}
+.v9-home .g-dark :focus-visible {
+  outline-color: white;
+}
+.v9-home .faq-q {
+  list-style: none;
+}
+.v9-home .faq-q::-webkit-details-marker {
+  display: none;
+}
+.v9-home .faq-item[open] .faq-a {
+  grid-template-rows: 1fr;
+}
+.v9-home .faq-item[open] .faq-a > div {
+  opacity: 1;
+  transform: none;
+}
+.v9-home .faq-item[open] .faq-ic::after {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+.v9-home .fnl-step {
+  cursor: pointer;
+}
+.v9-home .tm-drift {
+  overscroll-behavior-inline: contain;
+}
+.v9-home .hc-row {
+  animation: none;
+}
+.v9-home:not([data-enhanced]) .ear-p {
+  display: block !important;
+  opacity: 1;
+  transform: none;
+  margin-bottom: 24px;
+}
+.v9-home:not([data-enhanced]) #labRows,
+.v9-home:not([data-enhanced]) .rows-ft {
+  display: block !important;
+}
+.v9-home:not([data-enhanced]) .hm-faq .faq-item {
+  display: block !important;
+}
+.v9-home:not([data-enhanced]) .adj-toggle,
+.v9-home:not([data-enhanced]) .hm-more,
+.v9-home:not([data-enhanced]) .tm-pause,
+.v9-home:not([data-enhanced]) .bc-hint {
+  display: none;
+}
+.v9-home:not([data-enhanced]) .tm-drift {
+  overflow-x: auto;
+  mask-image: none;
+}
+.v9-home:not([data-enhanced]) .tm-track {
+  animation: none;
+}
+.v9-home:not([data-enhanced]) .fmark i {
+  opacity: var(--o, 0.12);
+  transform: none;
+}
+.v9-home:not([data-enhanced]) .fmark i.r {
+  opacity: 1;
+}
+.v9-home:not([data-enhanced]) .lt,
+.v9-home:not([data-enhanced]) .bc-c {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .v9-home *,
+  .v9-home *::before,
+  .v9-home *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .v9-home .tm-track {
+    transform: none !important;
+  }
+  .v9-home .hero-cue,
+  .v9-home .fmark i {
+    opacity: 1;
+  }
+}
+.v9-home:not([data-enhanced]) .bc-line {
+  stroke-dashoffset: 0;
+}
+.v9-home:not([data-enhanced]) .bc-stems,
+.v9-home:not([data-enhanced]) .bc-knob {
+  opacity: 1;
+}

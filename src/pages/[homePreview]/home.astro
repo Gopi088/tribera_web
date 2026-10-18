@@ -1,0 +1,20 @@
+---
+import V9Layout from '../../layouts/V9Layout.astro';
+import Home from '../../components/v9/home/Home.astro';
+import { previewLinks } from '../../data/v9/preview-links';
+export function getStaticPaths() {
+  return import.meta.env.DEV || process.env.V9_PREVIEW === '1' ? [{ params: { homePreview: '__v9' } }] : [];
+}
+---
+
+<V9Layout
+  title="Pre-interviewed candidates in 36 hours | Tribera"
+  description="We interview every candidate against your hiring manager’s bar and send the three who clear it, with reasons. Three scored candidates in about 36 hours."
+  noindex
+  activeRoute="/"
+  headerLinkOverrides={previewLinks}
+  footerLinkOverrides={previewLinks}
+  cta={{ label: 'Start with one role', href: '#start' }}
+>
+  <Home />
+</V9Layout>
