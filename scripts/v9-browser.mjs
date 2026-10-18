@@ -33,6 +33,7 @@ export async function browserAudit(root, evidence) {
   let browser,
     checks = 0,
     renderedReferences = 0;
+  let activeContext, activeTracePath;
   try {
     let ready = false;
     for (let i = 0; i < 60; i++) {
@@ -49,6 +50,8 @@ export async function browserAudit(root, evidence) {
     browser = await playwright[name].launch();
     for (const width of [390, 1366]) {
       const context = await browser.newContext({ viewport: { width, height: 900 } });
+      activeContext = context;
+      activeTracePath = path.join(evidence, `${name}-${width}-trace.zip`);
       await context.tracing.start({ screenshots: true, snapshots: true });
       const page = await context.newPage();
       page.on('pageerror', (error) => errors.push(`${page.url()}: ${error.message}`));
@@ -89,6 +92,7 @@ export async function browserAudit(root, evidence) {
       }
       await context.tracing.stop({ path: path.join(evidence, `${name}-${width}-trace.zip`) });
       await context.close();
+      activeContext = null;
     }
     return {
       browser: name,
@@ -100,7 +104,16 @@ export async function browserAudit(root, evidence) {
       errors,
     };
   } finally {
-    await browser?.close();
+    if (activeContext) {
+      // Preserve diagnostics when navigation or an assertion throws; cleanup must
+      // not replace the original failure with a secondary trace/close error.
+      await activeContext.tracing.stop({ path: activeTracePath }).catch((error) => {
+        serverLog.write(`Unable to save failure trace: ${error.message}\n`);
+      });
+    }
+    await browser?.close().catch((error) => {
+      serverLog.write(`Unable to close browser: ${error.message}\n`);
+    });
     server?.kill();
     serverLog.end();
   }
