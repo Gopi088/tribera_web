@@ -129,10 +129,50 @@ try {
           await page.evaluate((top) => scrollTo(0, top), y);
           await new Promise((resolve) => setTimeout(resolve, 20));
         }
+        // WebKit can skip native lazy-load activation during the rapid sweep.
+        // Hold each pending image in view while it loads; share one 15s deadline.
+        const imageDeadline = performance.now() + 15000;
+        try {
+          const imageCount = await page.locator('img').count();
+          for (let index = 0; index < imageCount; index++) {
+            const pending = await page.evaluate((index) => {
+              const image = document.images[index];
+              if (image.complete) return false;
+              image.scrollIntoView({ block: 'center', behavior: 'instant' });
+              return true;
+            }, index);
+            if (pending) {
+              const remaining = imageDeadline - performance.now();
+              assert.ok(remaining > 0, 'Image readiness deadline exhausted');
+              await waitForPageCondition(page, (index) => document.images[index].complete, index, {
+                timeout: remaining,
+              });
+            }
+          }
+          const remaining = imageDeadline - performance.now();
+          assert.ok(remaining > 0, 'Image readiness deadline exhausted');
+          await waitForPageCondition(page, () => [...document.images].every((image) => image.complete), null, {
+            timeout: remaining,
+          });
+        } catch (cause) {
+          const images = await page
+            .locator('img')
+            .evaluateAll((images) =>
+              images
+                .filter((image) => !image.complete || !image.naturalWidth)
+                .map((image) => ({
+                  url: image.currentSrc || image.src,
+                  complete: image.complete,
+                  naturalWidth: image.naturalWidth,
+                  loading: image.loading,
+                }))
+            );
+          throw new Error(
+            `${slug} ${JSON.stringify(size)} JS=${javaScriptEnabled}: image readiness failed: ${JSON.stringify(images)}`,
+            { cause }
+          );
+        }
         await page.evaluate(() => scrollTo(0, 0));
-        await waitForPageCondition(page, () => [...document.images].every((image) => image.complete), null, {
-          timeout: 15000,
-        });
         assert.deepEqual(
           await page
             .locator('img')
