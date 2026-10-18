@@ -23,7 +23,7 @@ const report = {
   buildHash: null,
   browser: process.env.BROWSER || 'chromium',
   base,
-  expectedSuites: 10,
+  expectedSuites: 11,
   suites: [],
   errors: [],
 };
@@ -57,6 +57,7 @@ try {
     assert.ok(ready, 'Build all five representative pages with V9_PREVIEW=1 before running this gate');
   }
   for (const suite of [
+    'tests/v9-font-readiness.test.mjs',
     'tests/v9-pages.test.mjs',
     'tests/v9-native-form-browser.test.mjs',
     'tests/v9-candidates.test.mjs',
