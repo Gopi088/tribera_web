@@ -1650,3 +1650,11 @@
     navigation: none;
   }
 }
+
+/* about.html final rendered portraits: the 560px HTML height survives the
+   source cascade, and the completed reveal removes grayscale. Keep that crop
+   when the shared image reset uses height:auto and this page is static. */
+:where(.v9-editorial-about) .ab-ph-img {
+  height: 560px;
+  filter: grayscale(0) contrast(1);
+}
