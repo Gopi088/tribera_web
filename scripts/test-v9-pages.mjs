@@ -33,6 +33,7 @@ try {
     'tests/v9-candidates.test.mjs',
     'tests/v9-candidates-reference.test.mjs',
     'tests/v9-editorial.test.mjs',
+    'tests/v9-preview-navigation.test.mjs',
   ]) {
     console.log(`Running ${suite} against ${base}`);
     const child = spawn(process.execPath, [suite], { stdio: 'inherit', env: { ...process.env, TEST_BASE_URL: base } });
