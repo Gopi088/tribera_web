@@ -26,6 +26,7 @@ test(`private candidate journey (${browserName})`, async () => {
       await page.evaluate(() => document.fonts.ready);
       await page.locator('[data-preset="own"]').waitFor();
       assert.equal(await page.locator('h1').count(), 1);
+      assert.equal(await page.locator('.v9-client-strip .v9-eyebrow').textContent(), 'Teams hiring through us');
       assert.equal(await page.locator('meta[name=robots]').getAttribute('content'), 'noindex, nofollow');
       assert.equal(await page.locator('link[rel=canonical]').count(), 0);
       const overflow = await page.evaluate(() =>
