@@ -1786,30 +1786,32 @@ test('careers apply ignores spoofed role metadata and uses trusted slug metadata
   );
 });
 
-test('careers apply rejects unknown job slugs', async () => {
-  const event = await createMultipartEvent({
-    fields: {
-      name: 'Rahul Das',
-      email: 'rahul@example.com',
-      job_title: 'Unknown Role',
-      job_slug: 'unknown-role',
-    },
-    files: [
-      {
-        name: 'resume',
-        filename: 'rahul-das.pdf',
-        type: 'application/pdf',
-        content: validPdfContent,
+for (const slug of ['unknown-role', 'constructor', 'toString', '__proto__']) {
+  test(`careers apply rejects untrusted role ${slug}`, async () => {
+    const event = await createMultipartEvent({
+      fields: {
+        name: 'Rahul Das',
+        email: 'rahul@example.com',
+        job_title: 'Unknown Role',
+        job_slug: slug,
       },
-    ],
-    headers: defaultHeaders,
-  });
+      files: [
+        {
+          name: 'resume',
+          filename: 'rahul-das.pdf',
+          type: 'application/pdf',
+          content: validPdfContent,
+        },
+      ],
+      headers: defaultHeaders,
+    });
 
-  const response = parseJsonResponse(await careersApplyHandler(event));
+    const response = parseJsonResponse(await careersApplyHandler(event));
 
-  assert.equal(response.statusCode, 400);
-  assert.deepEqual(response.body, {
-    success: false,
-    message: 'Please select a valid role.',
+    assert.equal(response.statusCode, 400);
+    assert.deepEqual(response.body, {
+      success: false,
+      message: 'Please select a valid role.',
+    });
   });
-});
+}

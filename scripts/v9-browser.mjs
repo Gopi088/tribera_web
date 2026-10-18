@@ -85,10 +85,16 @@ export async function browserAudit(root, evidence) {
           const error = checkReference(root, pages, route + (route === '/' ? '' : '/'), href, new URL(base).origin);
           if (error) errors.push(`${route} rendered: ${error}`);
         }
+        // Keep behavior checks above in normal motion; freeze only visual evidence.
+        await page.emulateMedia({ reducedMotion: 'reduce' });
+        await page.evaluate(
+          () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))
+        );
         await page.screenshot({
           path: path.join(evidence, `${name}-${width}-${route.replaceAll('/', '_') || 'home'}.png`),
           fullPage: true,
         });
+        await page.emulateMedia({ reducedMotion: 'no-preference' });
       }
       await context.tracing.stop({ path: path.join(evidence, `${name}-${width}-trace.zip`) });
       await context.close();
@@ -101,6 +107,7 @@ export async function browserAudit(root, evidence) {
       renderedReferences,
       routes,
       viewports: [390, 1366],
+      screenshotReducedMotion: true,
       errors,
     };
   } finally {

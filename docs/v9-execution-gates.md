@@ -21,6 +21,8 @@ Create a separate Git worktree and branch for each worker when implementation st
 
 Only the coordinator integrates into `feat/v9-migration`. Workers return a commit, file list, test commands/results, evidence location, limitations and any contract changes. Bring worktrees up to the accepted foundation before beginning dependent pages. Do not copy an entire worker tree over the integration tree.
 
+Claude review is required for the bootstrap and each subsequent migration batch, as requested by the site owner. Use an actual Claude session, independently of the implementing agents; another Codex agent's review does not satisfy this requirement. Give Claude the candidate revision, changed source, relevant handoff references, test evidence and screenshots. Save the scope, model/session provenance, report and finding dispositions under `docs/reviews/`. Fix confirmed blockers and obtain a Claude follow-up on the changed scope before accepting the batch. A failed or incomplete Claude run is pending review, never approval. Automated gates and hosted/content/visual acceptance remain separate requirements.
+
 ## Parallel waves
 
 | Wave                 | Coordinator                                             | Worker 1                                             | Worker 2                                            | Worker 3                                         | Exit gate                        |

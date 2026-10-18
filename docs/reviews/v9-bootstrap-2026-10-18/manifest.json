@@ -1,0 +1,28 @@
+[
+  {
+    "name": "claude-contracts-gates",
+    "exitCode": 0,
+    "seconds": 279,
+    "revision": "cabcd11aae601d687ff9760539ae5c53836ac1d6",
+    "isError": false,
+    "sessionId": "70538bc3-c4f1-4be4-b35a-bb2eaa4ba2e5",
+    "subtype": "success",
+    "models": ["claude-sonnet-5"],
+    "report": "claude-contracts-gates.txt",
+    "reportSha256": "2d22415e7dcfa7faa6836c2dc542ebbbb16e72eec8ad70770ff9eff401ea1f72",
+    "rawResult": "artifacts/v9-claude-review/raw/claude-contracts-gates.json"
+  },
+  {
+    "name": "claude-foundation-baselines",
+    "exitCode": 0,
+    "seconds": 185,
+    "revision": "cabcd11aae601d687ff9760539ae5c53836ac1d6",
+    "isError": false,
+    "sessionId": "5119a915-2c79-4dc7-b271-ed1ae3cb70fe",
+    "subtype": "success",
+    "models": ["claude-sonnet-5"],
+    "report": "claude-foundation-baselines.txt",
+    "reportSha256": "a807a53fade1b6af229b992a018261e12e66ab0189918db231997a4a56302987",
+    "rawResult": "artifacts/v9-claude-review/raw/claude-foundation-baselines.json"
+  }
+]

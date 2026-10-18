@@ -8,4 +8,7 @@ export const JOB_CATALOG = {
   'talent-associate': { status: 'open', title: 'Talent Associate', department: 'Talent Advisory' },
 };
 
-export const findJobBySlug = (slug) => JOB_CATALOG[String(slug || '').trim()] || null;
+export const findJobBySlug = (slug) => {
+  const key = String(slug || '').trim();
+  return Object.hasOwn(JOB_CATALOG, key) ? JOB_CATALOG[key] : null;
+};

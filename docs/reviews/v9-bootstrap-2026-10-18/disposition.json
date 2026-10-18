@@ -1,0 +1,64 @@
+{
+  "reviewedRevision": "cabcd11",
+  "reviewer": "Claude Code, sonnet alias; model IDs recorded in manifest.json",
+  "initialVerdicts": {
+    "contractsAndGates": "ACCEPT WITH FOLLOW-UPS",
+    "foundationAndBaselines": "ACCEPT WITH FOLLOW-UPS"
+  },
+  "findings": [
+    {
+      "id": "foundation-1",
+      "status": "fixed; three-browser rerun passed",
+      "finding": "Animated client strip screenshots were nondeterministic",
+      "resolution": "Browser checks remain in normal motion; screenshot capture emulates reduced motion and waits two animation frames; evidence records screenshotReducedMotion."
+    },
+    {
+      "id": "foundation-2",
+      "status": "deferred to G1 and representative-page acceptance",
+      "finding": "Default v9 footer links target future routes",
+      "resolution": "No production page adopts this footer yet. Fixture overrides remain explicit; route gates must pass before production adoption."
+    },
+    {
+      "id": "foundation-3",
+      "status": "resolved",
+      "finding": "Parallel report files were empty when inspected",
+      "resolution": "Both actual concurrent Claude runs subsequently completed successfully; saved reports and manifest replace the in-progress empty outputs. They were not failed prior reviews."
+    },
+    {
+      "id": "contracts-1",
+      "status": "resolved",
+      "finding": "Historical failures were easy to confuse with final evidence",
+      "resolution": "Moved failed legacy-regression and legacy-text logs under artifacts/v9-bootstrap/historical. Extracted the successful typography segment into typography-passed.log; baseline-result.json references the correct final evidence and retains historical paths."
+    },
+    {
+      "id": "contracts-2",
+      "status": "non-blocking follow-up",
+      "finding": "Convenience bootstrap/baseline summaries are manually assembled",
+      "resolution": "Do not use these convenience summaries alone to accept a batch. Raw gate JSON, command logs and required CI jobs remain authoritative. Add a reproducible aggregate generator before subsequent migration batches rely on summary artifacts."
+    },
+    {
+      "id": "contracts-3",
+      "status": "fixed; follow-up review pending",
+      "finding": "Legacy career lookup accepts inherited object keys",
+      "resolution": "findJobBySlug now requires Object.hasOwn. Legacy handler regression tests cover constructor, toString and __proto__, alongside unknown roles and existing valid submissions."
+    }
+  ],
+  "reviewAccuracyNotes": [
+    "The contracts report cited home/v58 presets when discussing the candidate fix. The candidate fix is in src/components/candidates/candidate-v7.html and candidate-v7.ts; the separate foundation review inspected the correct implementation.",
+    "The initial legacy-text.log contained a successful typography phase followed by a failing full-size phase; the passing full-size evidence is full-text-sizing-corrected.log. Reports are preserved verbatim; dispositions clarify these details."
+  ],
+  "limitations": [
+    "Claude performed read-only review; coordinator executed tests.",
+    "Full migration, accessibility acceptance, font provenance, hosted provider/scanner delivery and remote branch protection remain separate gates."
+  ],
+  "validation": {
+    "unitTests": 87,
+    "failed": 0,
+    "skipped": 0,
+    "previewBrowserChecks": 48,
+    "browsers": ["chromium", "firefox", "webkit"],
+    "lintAndFormatting": "passed",
+    "evidence": "artifacts/v9-claude-review/",
+    "note": "Browser evidence captured the unchanged preview site artifact with the corrected capture script; the only product-source change is the separately tested Netlify role lookup."
+  }
+}
