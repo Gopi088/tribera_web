@@ -111,7 +111,10 @@ try {
     await migrated.setViewportSize({ width, height: 900 });
     await reference.setViewportSize({ width, height: 900 });
     const response = await migrated.goto(`${base}/__v9/content`);
-    assert.equal(response.status(), 200, 'Private content fixture must exist');
+    assert.ok(
+      [200, 304].includes(response.status()),
+      'Private content fixture must load or validate its cached response'
+    );
     await migrated.evaluate(() => document.fonts.ready);
     for (const [file, pairs] of [
       ['blog/seventeen-interviews-one-hire.html', article],

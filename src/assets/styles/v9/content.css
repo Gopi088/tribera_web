@@ -130,10 +130,10 @@
   border-top: 1px solid var(--ink);
   max-width: 76ch;
 }
-/* Preserve the handoff's final .bl-prose p override while using a semantic heading. */
+/* Preserve the handoff's final .bl-art p override while using a semantic heading. */
 .v9-sources h2 {
   font-family: var(--body);
-  font-size: 1.04rem;
+  font-size: clamp(1.04rem, 1.25vw, 1.14rem);
   font-weight: 500;
   line-height: 1.78;
   letter-spacing: normal;

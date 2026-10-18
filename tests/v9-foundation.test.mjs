@@ -80,6 +80,7 @@ test(`v9 foundation behavior (${browserName})`, { timeout: 120000 }, async () =>
     assert.equal(new URL(page.url()).hash, '#components');
     const faq = page.locator('.v9-faq details').first();
     await faq.locator('summary').click();
+    await page.waitForFunction(() => document.querySelector('.v9-faq details').open, null, { timeout: 5000 });
     assert.equal(await faq.getAttribute('open'), '');
     await page.locator('.v9-source summary').first().click();
     assert.equal(await page.locator('.v9-source a').first().isVisible(), true);
