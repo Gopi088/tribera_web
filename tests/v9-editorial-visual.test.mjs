@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { chromium, firefox, webkit } from 'playwright';
+import { waitForPageCondition } from '../scripts/v9-browser-readiness.mjs';
 
 const engine = process.env.BROWSER || 'chromium';
 const engines = { chromium, firefox, webkit };
@@ -21,6 +22,9 @@ try {
     for (let index = 0; index < 3; index++) {
       const portrait = portraits.nth(index);
       await portrait.scrollIntoViewIfNeeded();
+      await waitForPageCondition(page, (index) => document.querySelectorAll('.ab-ph-img')[index].complete, index, {
+        timeout: 15000,
+      });
       const observed = await portrait.evaluate((element) => {
         const style = getComputedStyle(element);
         const box = element.getBoundingClientRect();
