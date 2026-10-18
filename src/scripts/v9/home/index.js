@@ -263,6 +263,15 @@ function initializeHome(root) {
       panels[i].classList.toggle('on', i === selected);
     });
     if (focus) tabs[selected].focus({ preventScroll: true });
+    // Move only the horizontal strip: scrollIntoView would also jump the document.
+    const strip = $('.ear-tabs');
+    if (strip.scrollWidth > strip.clientWidth) {
+      const bounds = strip.getBoundingClientRect();
+      const target = tabs[selected].getBoundingClientRect();
+      const inset = 6; // Keep the keyboard focus outline inside the clip as well.
+      if (target.left < bounds.left + inset) strip.scrollLeft += target.left - bounds.left - inset;
+      else if (target.right > bounds.right - inset) strip.scrollLeft += target.right - bounds.right + inset;
+    }
   };
   const stopExperts = demonstration($('.ear'), () => showExpert(selected + 1), 7000);
   tabs.forEach((tab, i) =>

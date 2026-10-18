@@ -165,3 +165,37 @@ test(`home full content, responsive layout and interactions (${engine})`, async 
     await browser.close();
   }
 });
+
+test(`home phone expert keyboard selection stays inside its horizontal clip (${engine})`, async () => {
+  const browser = await { chromium, firefox, webkit }[engine].launch();
+  try {
+    const page = await browser.newPage({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
+    await page.goto(`${base}/__v9/home`);
+    await page.waitForSelector('[data-v9-home][data-enhanced]');
+    await page.evaluate(() => document.fonts.ready);
+    await page.locator('#ear-t0').focus();
+    const scrollY = await page.evaluate(() => window.scrollY);
+    for (const [key, index] of [
+      ['End', 4],
+      ['Home', 0],
+      ['ArrowLeft', 4],
+      ['ArrowRight', 0],
+    ]) {
+      await page.keyboard.press(key);
+      const target = page.locator(`#ear-t${index}`);
+      assert.equal(await target.getAttribute('aria-selected'), 'true');
+      assert.equal(await target.evaluate((el) => el === document.activeElement), true);
+      assert.ok(
+        await target.evaluate((el) => {
+          const tab = el.getBoundingClientRect();
+          const clip = el.closest('.ear-tabs').getBoundingClientRect();
+          return tab.left >= clip.left && tab.right <= clip.right;
+        }),
+        `${key} exposes the complete focused tab at 390px`
+      );
+      assert.equal(await page.evaluate(() => window.scrollY), scrollY, `${key} must not scroll the document`);
+    }
+  } finally {
+    await browser.close();
+  }
+});
