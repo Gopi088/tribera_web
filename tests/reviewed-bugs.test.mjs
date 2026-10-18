@@ -128,7 +128,7 @@ try {
       if (mode === 'enabled') {
         await page.locator('[data-pre="llm"]').click();
         assert.equal(await page.locator('#labScore').innerText(), '32.80');
-        assert.equal(await page.locator('#labBand').innerText(), 'Grey');
+        assert.equal((await page.locator('#labBand').textContent()).trim(), 'Grey');
       }
       assert.deepEqual(errors, []);
       console.log(`${width}px / ${mode}: comparison selections, SSR values, narrative, candidate scores passed`);
