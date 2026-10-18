@@ -94,7 +94,10 @@ test(`independent private preview navigation (${name})`, async () => {
           // Home/Candidates link to their sections; only About has a standalone current-page item.
           assert.equal(await link.getAttribute('aria-current'), destination === pathname ? 'page' : null);
         }
-        assert.equal(await hrefPath(page.getByRole('link', { name: 'Tribera, home', exact: true })), '/__v9/home');
+        assert.equal(
+          await hrefPath(page.locator('.v9-nav').getByRole('link', { name: 'Tribera, home', exact: true })),
+          '/__v9/home'
+        );
         const headerCta = page.locator('.v9-nav-cta');
         assert.equal(await hrefPath(headerCta), slug === 'candidates' ? '/__v9/candidates#apply' : '/__v9/home#start');
         await desktop.getByRole('link', { name: 'About', exact: true }).focus();
@@ -163,7 +166,7 @@ test(`independent private preview navigation (${name})`, async () => {
         await page.keyboard.press('Enter');
         await assertArrived(page, destination);
       }
-      await page.getByRole('link', { name: 'Tribera, home', exact: true }).focus();
+      await page.locator('.v9-nav').getByRole('link', { name: 'Tribera, home', exact: true }).focus();
       await page.keyboard.press('Enter');
       await assertArrived(page, '/__v9/home');
       await page.goto(`${base}/__v9/candidates`);

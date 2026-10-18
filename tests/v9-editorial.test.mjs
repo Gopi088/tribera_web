@@ -174,11 +174,11 @@ try {
       })
     );
     await page.locator('.bl-copy').click();
-    assert.equal(
-      await page.evaluate(() => window.__copied),
-      'https://www.tribera.ai/blog/seventeen-interviews-one-hire'
-    );
+    assert.equal(await page.evaluate(() => window.__copied), `${base}/__v9/article`);
     assert.equal(await page.locator('.v9-copy-status').textContent(), 'Link copied.');
+    const shared = new URL(await page.locator('[data-preview-share]').getAttribute('href'));
+    assert.equal(shared.searchParams.get('url'), `${base}/__v9/article`);
+    assert.equal((await fetch(shared.searchParams.get('url'))).status, 200, 'Shared preview must resolve');
     await page.evaluate(() =>
       Object.defineProperty(navigator, 'clipboard', {
         configurable: true,
@@ -190,7 +190,7 @@ try {
       })
     );
     await page.locator('.bl-copy').click();
-    assert.match(await page.locator('.v9-copy-status').textContent(), /Copy this link: https/);
+    assert.match(await page.locator('.v9-copy-status').textContent(), /Copy this link: https?:/);
     assert.equal(await page.locator('#subscribe button').isDisabled(), true);
     assert.match(await page.locator('#v9-subscription-status').textContent(), /unavailable in this private preview/);
     assert.equal(await page.locator('#subscribe form').count(), 0, 'No subscription POST or false signup in preview');
@@ -238,7 +238,8 @@ try {
   assert.equal(await faq.locator('.faq-a').evaluate((el) => el.getBoundingClientRect().height > 20), true);
   await nojs.goto(`${base}/__v9/article`);
   assert.equal(await nojs.locator('.bl-copy').isVisible(), false);
-  assert.ok(await nojs.locator('.bl-share a').isVisible());
+  assert.equal(await nojs.locator('[data-preview-share]').isVisible(), false);
+  assert.match(await nojs.locator('.bl-share noscript').textContent(), /Copy this preview’s address/);
   assert.equal(await nojs.locator('meta[name="robots"]').getAttribute('content'), 'noindex, nofollow');
   records.push({
     page: 'all',

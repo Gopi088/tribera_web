@@ -5,6 +5,7 @@ import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 import { gzipSync } from 'node:zlib';
 import { chromium, firefox, webkit } from 'playwright';
+import { checkPageBudget } from '../scripts/v9-performance.mjs';
 
 const name = process.env.BROWSER || 'chromium';
 const engines = { chromium, firefox, webkit };
@@ -73,7 +74,7 @@ try {
     return route.fulfill({ contentType: 'text/html', body: html });
   });
   const normalizedHeadings = (page) =>
-    page.locator('h1,h2').evaluateAll((els) => els.map((el) => el.textContent.replace(/\s+/g, ' ').trim()));
+    page.locator('h1,h2').evaluateAll((els) => els.map((el) => el.innerText.replace(/\s+/g, ' ').trim()));
   for (const [slug, file] of pages) {
     await reference.goto(`${base}/__handoff/${file}`, { waitUntil: 'networkidle' });
     const expectedHeadings = await normalizedHeadings(reference);
@@ -119,13 +120,15 @@ try {
           `${slug} ${JSON.stringify(size)} JS=${javaScriptEnabled}: overflow`
         );
         // Scroll through the entire page to load below-fold images before inspection.
-        await page.evaluate(async () => {
-          for (let y = 0; y < document.documentElement.scrollHeight; y += 700) {
-            scrollTo(0, y);
-            await new Promise((resolve) => requestAnimationFrame(resolve));
-          }
-          scrollTo(0, 0);
-        });
+        // Browser-scheduled callbacks are unavailable with JavaScript disabled.
+        // Drive scrolling from Node so the same image checks exercise native fallback.
+        const pageHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+        assert.ok(pageHeight < 70000, `${slug}: unexpected unbounded document height`);
+        for (let y = 0; y < pageHeight; y += 700) {
+          await page.evaluate((top) => scrollTo(0, top), y);
+          await new Promise((resolve) => setTimeout(resolve, 20));
+        }
+        await page.evaluate(() => scrollTo(0, 0));
         await page.waitForFunction(() => [...document.images].every((image) => image.complete), null, {
           timeout: 15000,
         });
@@ -174,6 +177,11 @@ try {
             });
           }
           record.transfers = transfers;
+          record.budgetTotals = checkPageBudget(
+            slug,
+            transfers,
+            JSON.parse(fs.readFileSync('tests/fixtures/v9-page-budgets.json', 'utf8'))
+          );
           record.observedPerformance = await page.evaluate(() => window.__v9Metrics);
           // Collect long source paragraphs to make full-copy omissions reviewable.
           // This is evidence, not an automatic equivalence claim for interactive copy.

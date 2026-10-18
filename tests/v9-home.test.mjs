@@ -42,7 +42,9 @@ test(`home full content, responsive layout and interactions (${engine})`, async 
       handoff
     );
     assert.deepEqual(
-      (await page.locator('.v9-home h1,.v9-home h2').allTextContents()).map((s) => s.replace(/\s+/g, ' ').trim()),
+      (await page.locator('.v9-home h1,.v9-home h2').evaluateAll((els) => els.map((el) => el.innerText))).map((s) =>
+        s.replace(/\s+/g, ' ').trim()
+      ),
       headings
     );
     for (const [preset, score, label] of [

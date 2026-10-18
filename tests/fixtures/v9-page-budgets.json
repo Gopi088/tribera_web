@@ -1,0 +1,45 @@
+{
+  "scope": "G2 local Chromium 1366px resource-size budgets. Text uses deterministic gzip estimates; fonts/images use raw bytes. These do not certify hosted transfer, latency, INP or release performance.",
+  "pages": {
+    "home": {
+      "htmlGzipBytes": 21000,
+      "cssGzipBytes": 37000,
+      "jsGzipBytes": 8000,
+      "fontBytes": 256000,
+      "imageBytes": 52000,
+      "otherBytes": 4096
+    },
+    "candidates": {
+      "htmlGzipBytes": 15000,
+      "cssGzipBytes": 20000,
+      "jsGzipBytes": 7000,
+      "fontBytes": 256000,
+      "imageBytes": 90000,
+      "otherBytes": 4096
+    },
+    "about": {
+      "htmlGzipBytes": 13000,
+      "cssGzipBytes": 15000,
+      "jsGzipBytes": 4500,
+      "fontBytes": 256000,
+      "imageBytes": 150000,
+      "otherBytes": 4096
+    },
+    "bfsi": {
+      "htmlGzipBytes": 14000,
+      "cssGzipBytes": 15000,
+      "jsGzipBytes": 4500,
+      "fontBytes": 256000,
+      "imageBytes": 52000,
+      "otherBytes": 4096
+    },
+    "article": {
+      "htmlGzipBytes": 11000,
+      "cssGzipBytes": 15000,
+      "jsGzipBytes": 4500,
+      "fontBytes": 256000,
+      "imageBytes": 60000,
+      "otherBytes": 4096
+    }
+  }
+}
