@@ -47,12 +47,6 @@
   font-size: clamp(1.04rem, 1.25vw, 1.14rem);
   line-height: 1.78;
 }
-.v9-editorial .v9-article-header .v9-wrap {
-  padding-inline: 0;
-}
-.v9-editorial .v9-article-header {
-  padding-inline: var(--pad);
-}
 .v9-editorial .v9-copy-status {
   font-size: 0.8rem;
 }

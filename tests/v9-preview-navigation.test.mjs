@@ -31,6 +31,7 @@ const hrefPath = async (link) => {
 async function assertArrived(page, destination) {
   const expected = new URL(destination, base);
   await page.waitForURL((url) => url.pathname === expected.pathname && url.hash === expected.hash);
+  await page.locator('h1').waitFor({ state: 'visible' });
   assert.equal(await page.locator('h1').count(), 1);
   assert.match(await page.locator('meta[name=robots]').getAttribute('content'), /noindex/);
   if (expected.hash) {
