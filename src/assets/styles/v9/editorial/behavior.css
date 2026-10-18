@@ -1,0 +1,93 @@
+/* Explicit progressive-enhancement repairs relative to the handoff. */
+.v9-editorial [hidden] {
+  display: none !important;
+}
+.v9-editorial .ab-ink-ln {
+  stroke-dashoffset: 0;
+}
+.v9-editorial .ab-ink-pt {
+  transform: translate(-50%, -50%) scale(1);
+}
+.v9-editorial .ab-ink-n {
+  opacity: 1;
+}
+.v9-editorial .ab-tl {
+  --p: 100%;
+}
+.v9-editorial .ab-tl li .ab-tl-dot {
+  background: var(--red);
+}
+.v9-editorial .ix-tr i {
+  transform: scaleX(1);
+}
+.v9-editorial .ab-stamp {
+  opacity: 1;
+}
+.v9-editorial .faq-item[open] .faq-a {
+  grid-template-rows: 1fr;
+}
+.v9-editorial .faq-item[open] .faq-a > div {
+  opacity: 1;
+}
+.v9-editorial summary {
+  list-style: none;
+  cursor: pointer;
+}
+.v9-editorial summary::-webkit-details-marker {
+  display: none;
+}
+.v9-editorial .faq-item[open] .faq-ic::after {
+  transform: rotate(90deg);
+}
+.v9-editorial .v9-sources {
+  padding-bottom: 0;
+}
+.v9-editorial .bl-art .v9-sources h2 {
+  margin-top: 0;
+  font-size: clamp(1.04rem, 1.25vw, 1.14rem);
+  line-height: 1.78;
+}
+.v9-editorial .v9-article-header .v9-wrap {
+  padding-inline: 0;
+}
+.v9-editorial .v9-article-header {
+  padding-inline: var(--pad);
+}
+.v9-editorial .v9-copy-status {
+  font-size: 0.8rem;
+}
+.v9-editorial .ix-panel {
+  min-width: 0;
+}
+.v9-editorial .ix-cmps-w {
+  min-width: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .v9-editorial *,
+  .v9-editorial *::before,
+  .v9-editorial *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+.v9-editorial .fmark i {
+  opacity: 1;
+  transform: none;
+}
+.v9-editorial .faq-item[open] .faq-a > div {
+  transform: none;
+}
+.v9-editorial .qs-form button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+.v9-editorial #v9-subscription-status {
+  grid-column: 2;
+  margin-top: 0;
+}
+@media (max-width: 900px) {
+  .v9-editorial #v9-subscription-status {
+    grid-column: 1;
+  }
+}

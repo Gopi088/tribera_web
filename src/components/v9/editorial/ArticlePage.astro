@@ -1,0 +1,20 @@
+---
+import ArticleInkFilter from './article/ArticleInkFilter.astro';
+import ArticleHero from './article/ArticleHero.astro';
+import ArticleBody from './article/ArticleBody.astro';
+import ArticleRelated from './article/ArticleRelated.astro';
+import ArticleSubscribe from './article/ArticleSubscribe.astro';
+import '../../../assets/styles/v9/editorial/article.css';
+import '../../../assets/styles/v9/editorial/behavior.css';
+---
+
+<div class="v9-editorial v9-editorial-article">
+  <ArticleInkFilter />
+  <ArticleHero />
+  <ArticleBody />
+  <ArticleRelated />
+  <ArticleSubscribe />
+</div>
+<script>
+  import '../../../scripts/v9/editorial';
+</script>

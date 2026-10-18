@@ -1,0 +1,18 @@
+---
+import V9Layout from '../../layouts/V9Layout.astro';
+import AboutPage from '../../components/v9/editorial/AboutPage.astro';
+import { previewLinks } from '../../data/v9/preview-links';
+export function getStaticPaths() {
+  return import.meta.env.DEV || process.env.V9_PREVIEW === '1' ? [{ params: { preview: '__v9' } }] : [];
+}
+---
+
+<V9Layout
+  title="About Tribera"
+  description="Private representative-page migration review."
+  noindex
+  headerLinkOverrides={previewLinks}
+  footerLinkOverrides={previewLinks}
+>
+  <AboutPage />
+</V9Layout>

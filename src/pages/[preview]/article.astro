@@ -1,0 +1,18 @@
+---
+import V9Layout from '../../layouts/V9Layout.astro';
+import ArticlePage from '../../components/v9/editorial/ArticlePage.astro';
+import { previewLinks } from '../../data/v9/preview-links';
+export function getStaticPaths() {
+  return import.meta.env.DEV || process.env.V9_PREVIEW === '1' ? [{ params: { preview: '__v9' } }] : [];
+}
+---
+
+<V9Layout
+  title="Seventeen interviews for one hire"
+  description="Private representative-page migration review."
+  noindex
+  headerLinkOverrides={previewLinks}
+  footerLinkOverrides={previewLinks}
+>
+  <ArticlePage />
+</V9Layout>

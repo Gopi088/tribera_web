@@ -1,0 +1,23 @@
+# Representative editorial previews
+
+Private routes: `/__v9/about`, `/__v9/bfsi`, `/__v9/article`. They use `V9Layout`, carry `noindex, nofollow`, and are emitted only in development or `V9_PREVIEW=1` builds. The article is dated 19 October 2026; this implementation does not publish its public route or change release policy.
+
+The page components compose native Astro sections extracted and reviewed from `about.html`, `industries/banking-financial-services.html`, and `blog/seventeen-interviews-one-hire.html` in the v9 handoff. There is no runtime HTML loading, `set:html`, iframe, external font dependency, or copied document shell. Heading text and editorial prose are retained. The article reuses the accepted `ArticleHeader`, `AuthorBlock`, and `SourceList`. Three About portraits are extracted byte-for-byte to cacheable assets in `public/brand/v9/editorial/`; the article uses the existing author portrait.
+
+Each page stylesheet contains the source selector families used by that page, in original cascade order. `:where(.v9-editorial-PAGE)` isolates those source names without changing their relative specificity. Shared shell classes are outside this wrapper. Keyframes are page-namespaced, unused animations removed, and font variables inherit pinned foundation fonts. `behavior.css` records progressive-enhancement repairs rather than concealing them in copied source rules.
+
+## Explicit departures and deferred work
+
+- About chart, history numbers, and closing cells render in their completed state without scripting. No count-up or recurring animation runs. The complete letter is present and expanded without JavaScript; enhancement adds an accessible expand/collapse button and makes collapsed content inert.
+- Retention choices are an illustrative debate, not persisted account preferences. The actual retention statement remains readable before any choice, including without JavaScript.
+- BFSI comparison starts with the real Product/SaaS weights `[22,18,6,20,8,26]`, rather than zero bars awaiting JavaScript. All eleven alternate sectors are selectable by click and arrow/Home/End keys. The source's 4.2-second automatic cycling is intentionally omitted. All six weights sum to 100 in each source sector. FAQs use native details/summary; scripting maintains single-open behavior.
+- All motion is disabled under reduced motion. Essential content does not depend on intersection observers or animation finishing.
+- Source citations are native anchors to stable IDs. Shared `SourceList` adds a semantic Sources heading while retaining the source title and external URL. Article copy-link success/failure is announced, with a selectable URL when clipboard access fails. LinkedIn remains a native external sharing link without scripting.
+- Shared preview link overrides keep available five-page journeys private. Two future related article cards retain their source text but temporarily link to the existing `/blog` index; the existing signal-efficiency article keeps its own URL. Methodology links use the private About page until that route is implemented.
+- The source newsletter layout and wording remain, with a visible unavailability explanation and disabled Subscribe control. There is deliberately no subscription form or POST: provider integration and consent lifecycle belong to the later integration phase. This is not mapped to the unrelated launch-notification handler.
+
+## Verification
+
+`TEST_BASE_URL=http://127.0.0.1:4393 BROWSER=chromium node tests/v9-editorial.test.mjs` runs focused behavior checks. `BROWSER=firefox` and `webkit` run the same checks; missing engines fail. Without `TEST_BASE_URL`, the runner starts Astro dev on `TEST_PORT` (default 4393), never a build, and stops it afterward.
+
+The runner checks two widths, seven explicit behavior groups, all comparison selections and sums, keyboard tab operation, letter inert state, retention decisions, actual portrait decoding, founder/CSO distinctions, native FAQ fallback, article copy success/failure, citation anchors, and the honest disabled subscription state. It writes raw JSON and failure screenshots under ignored `artifacts/v9-g2/editorial-ENGINE/`. The integration team's separate representative-page suite owns complete source-heading coverage, viewport/browser sweeps and full-page screenshot evidence; this focused suite does not claim visual parity or production deployment acceptance.
