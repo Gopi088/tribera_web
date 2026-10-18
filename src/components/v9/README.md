@@ -14,7 +14,7 @@ The fixtures are at `/__v9/foundation` and `/__v9/candidate`, emitted only in de
 
 Brand images and favicon are copied unchanged from the handoff into `public/brand/v9/`. Font files reuse the existing local assets. Exact Google Fonts face/optical-axis parity and font license provenance have **not** been independently verified; finish that review before G1 is declared passed. Remaining icon sizes, arrival choreography, testimonial and article-specific components are subsequent foundation/page work.
 
-Build with `V9_PREVIEW=1 npm run build`, then run `BROWSER=chromium node --test tests/v9-foundation.test.mjs` to start and stop a preview automatically on port 4331. To test an already running preview containing the fixtures:
+Build with `V9_PREVIEW=1 npm run build`, then run `BROWSER=chromium node --test tests/v9-foundation.test.mjs` to start and stop a preview automatically on ports 4331/4332/4333 for Chromium/Firefox/WebKit. To test an already running preview containing the fixtures:
 
 ```sh
 TEST_BASE_URL=http://127.0.0.1:4331 BROWSER=chromium node --test tests/v9-foundation.test.mjs

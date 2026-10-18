@@ -7,7 +7,8 @@ import { chromium, firefox, webkit } from 'playwright';
 const browserName = process.env.BROWSER || 'chromium';
 const engine = { chromium, firefox, webkit }[browserName];
 assert.ok(engine, `Unsupported browser: ${browserName}`);
-const base = process.env.TEST_BASE_URL || 'http://127.0.0.1:4331';
+const port = 4331 + ['chromium', 'firefox', 'webkit'].indexOf(browserName);
+const base = process.env.TEST_BASE_URL || `http://127.0.0.1:${port}`;
 
 test(`v9 foundation behavior (${browserName})`, async () => {
   let server;
@@ -17,7 +18,7 @@ test(`v9 foundation behavior (${browserName})`, async () => {
     if (!process.env.TEST_BASE_URL) {
       server = spawn(
         process.execPath,
-        ['node_modules/astro/bin/astro.mjs', 'preview', '--host', '127.0.0.1', '--port', '4331'],
+        ['node_modules/astro/bin/astro.mjs', 'preview', '--host', '127.0.0.1', '--port', String(port)],
         { stdio: ['ignore', 'pipe', 'pipe'] }
       );
       server.stdout.on('data', (chunk) => {
