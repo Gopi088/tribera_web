@@ -6,6 +6,7 @@ import { once } from 'node:events';
 import { gzipSync } from 'node:zlib';
 import { chromium, firefox, webkit } from 'playwright';
 import { checkPageBudget } from '../scripts/v9-performance.mjs';
+import { waitForFonts } from '../scripts/v9-browser-readiness.mjs';
 
 const name = process.env.BROWSER || 'chromium';
 const engines = { chromium, firefox, webkit };
@@ -108,7 +109,7 @@ try {
         await page.setViewportSize(size);
         const response = await page.goto(`${base}/__v9/${slug}`, { waitUntil: 'networkidle' });
         assert.ok([200, 304].includes(response?.status()), `${slug} must exist`);
-        await page.waitForFunction(() => document.fonts.status === 'loaded', null, { timeout: 15000 });
+        await waitForFonts(page, { timeout: 15000 });
         assert.equal(await page.locator('h1').count(), 1, `${slug}: one h1`);
         assert.match(await page.locator('meta[name="robots"]').getAttribute('content'), /noindex/);
         assert.equal(await page.locator('link[rel="canonical"]').count(), 0);
@@ -155,7 +156,7 @@ try {
           await page.screenshot({ path: path.join(output, `${prefix}-migrated.png`), fullPage: true });
           await reference.setViewportSize(size);
           await reference.goto(`${base}/__handoff/${file}`, { waitUntil: 'networkidle' });
-          await reference.waitForFunction(() => document.fonts.status === 'loaded', null, { timeout: 15000 });
+          await waitForFonts(reference, { timeout: 15000 });
           await reference.screenshot({ path: path.join(output, `${prefix}-handoff.png`), fullPage: true });
           record.screenshots = [`${prefix}-migrated.png`, `${prefix}-handoff.png`];
         }
