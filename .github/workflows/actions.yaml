@@ -56,6 +56,9 @@ jobs:
         env:
           V9_PREVIEW: '1'
       - run: node scripts/check-migration-build.mjs --preview
+      - run: npm run test:migration:static
+        env:
+          V9_EVIDENCE: artifacts/v9-gates/preview
       - uses: actions/upload-artifact@v4
         with:
           name: foundation-build
