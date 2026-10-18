@@ -11,27 +11,56 @@ const { variant = 'editorial', eyebrow, title, description, cta } = Astro.props;
 
 <header class:list={['v9-hero', `v9-hero-${variant}`]}>
   <div class="v9-wrap">
-    <p class="v9-eyebrow"><span aria-hidden="true">\</span> {eyebrow}</p>
-    <div class="v9-hero-grid">
-      <div class="v9-hero-copy">
-        <h1><slot name="title">{title}</slot></h1>
-        <div class="v9-hero-description">
-          <p class="v9-lead">{description}</p>{
-            cta && (
-              <a class="v9-button v9-button-primary" href={cta.href}>
-                {cta.label}
-              </a>
-            )
-          }
+    {
+      variant === 'editorial' ? (
+        <>
+          <p class="v9-eyebrow">
+            <span aria-hidden="true">\</span> {eyebrow}
+          </p>
+          <h1 data-v9-reveal>
+            <slot name="title">{title}</slot>
+          </h1>
+          <div class="v9-editorial-row">
+            <div>
+              <p class="v9-lead">{description}</p>
+              {cta && (
+                <a class="v9-button v9-button-primary" href={cta.href}>
+                  {cta.label}
+                </a>
+              )}
+            </div>
+            {Astro.slots.has('aside') && (
+              <aside class="v9-hero-aside">
+                <slot name="aside" />
+              </aside>
+            )}
+          </div>
+        </>
+      ) : (
+        <div class="v9-hero-grid">
+          <div class="v9-hero-copy">
+            <p class="v9-eyebrow">
+              <span aria-hidden="true">\</span> {eyebrow}
+            </p>
+            <h1 data-v9-reveal>
+              <slot name="title">{title}</slot>
+            </h1>
+            <div class="v9-hero-description">
+              <p class="v9-lead">{description}</p>
+              {cta && (
+                <a class="v9-button v9-button-primary" href={cta.href}>
+                  {cta.label}
+                </a>
+              )}
+            </div>
+          </div>
+          {Astro.slots.has('aside') && (
+            <aside class="v9-hero-aside">
+              <slot name="aside" />
+            </aside>
+          )}
         </div>
-      </div>
-      {
-        Astro.slots.has('aside') && (
-          <aside class="v9-hero-aside">
-            <slot name="aside" />
-          </aside>
-        )
-      }
-    </div>
+      )
+    }
   </div>
 </header>

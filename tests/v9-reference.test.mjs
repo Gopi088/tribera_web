@@ -1,0 +1,101 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { spawn } from 'node:child_process';
+import { once } from 'node:events';
+import { chromium, firefox, webkit } from 'playwright';
+
+// Run against the already-built private preview; compare the final cascade, not an early CSS block.
+const base = process.env.TEST_BASE_URL || 'http://127.0.0.1:4380';
+const browserName = process.env.BROWSER || 'chromium';
+let server;
+const browser = await { chromium, firefox, webkit }[browserName].launch();
+const output = `artifacts/v9-g1/reference-${browserName}`;
+fs.mkdirSync(output, { recursive: true });
+const records = [];
+try {
+  if (!process.env.TEST_BASE_URL) {
+    server = spawn(
+      process.execPath,
+      ['node_modules/astro/bin/astro.mjs', 'preview', '--host', '127.0.0.1', '--port', '4380'],
+      { stdio: 'ignore' }
+    );
+    let ready = false;
+    for (let attempt = 0; attempt < 120; attempt++) {
+      assert.equal(server.exitCode, null, 'Preview server exited');
+      try {
+        ready = (await fetch(`${base}/__v9/foundation`)).status === 200;
+      } catch {
+        /* starting */
+      }
+      if (ready) break;
+      await new Promise((resolve) => setTimeout(resolve, 250));
+    }
+    assert.ok(ready, 'Build V9_PREVIEW=1 before reference comparisons');
+  }
+  const migrated = await browser.newPage({ reducedMotion: 'reduce' });
+  const reference = await browser.newPage({ reducedMotion: 'reduce' });
+  await reference.route('https://**/*', (route) => route.abort());
+  const fonts = fs
+    .readFileSync('src/assets/styles/v9/fonts.css', 'utf8')
+    .replaceAll("url('/", `url('${base}/`)
+    .replaceAll('url("/', `url("${base}/`);
+  const properties = ['fontSize', 'fontWeight', 'lineHeight', 'letterSpacing'];
+  const snapshot = (locator) =>
+    locator.evaluate((el, properties) => {
+      const style = getComputedStyle(el);
+      return Object.fromEntries(properties.map((key) => [key, style[key]]));
+    }, properties);
+  for (const width of [320, 360, 390, 768, 1024, 1366, 1920]) {
+    await migrated.setViewportSize({ width, height: 900 });
+    await reference.setViewportSize({ width, height: 900 });
+    await migrated.goto(`${base}/__v9/foundation`);
+    await migrated.evaluate(() => document.fonts.ready);
+    for (const [file, variant] of [
+      ['index', 'product'],
+      ['about', 'editorial'],
+      ['contact', 'compact'],
+    ]) {
+      const html = fs
+        .readFileSync(`sample_data/tribera-web-handoff-v9/${file}.html`, 'utf8')
+        .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
+      await reference.setContent(html, { waitUntil: 'domcontentloaded' });
+      await reference.addStyleTag({
+        content: `${fonts}\n:root { --display: 'V9 Fraunces', Georgia, serif; --body: 'V9 Inter Tight', sans-serif; --mono: 'V9 JetBrains Mono', monospace; }`,
+      });
+      await reference.evaluate(() => document.fonts.ready);
+      const expected = await snapshot(reference.locator('h1').first());
+      const actual = await snapshot(migrated.locator(`.v9-hero-${variant} h1`));
+      records.push({ width, variant, expected, actual });
+      assert.deepEqual(actual, expected, `${browserName} ${width}px ${variant}: final handoff typography`);
+      if (width === 390 || width === 1366) {
+        await migrated
+          .locator(`.v9-hero-${variant}`)
+          .screenshot({ path: path.join(output, `${width}-${variant}-migrated.png`) });
+        const hero = reference.locator(file === 'index' ? '.hero-c' : '.hx').first();
+        await hero.screenshot({ path: path.join(output, `${width}-${variant}-handoff.png`) });
+      }
+    }
+  }
+  fs.writeFileSync(
+    path.join(output, 'result.json'),
+    JSON.stringify(
+      {
+        status: 'passed',
+        browser: browserName,
+        records,
+        scope:
+          'Heading typography from final handoff cascade; screenshots preserve distinct page content. Full-page parity is G2.',
+      },
+      null,
+      2
+    )
+  );
+  console.log(`Passed ${records.length} final-cascade typography comparisons (${browserName})`);
+} finally {
+  await browser.close();
+  if (server && server.exitCode === null) {
+    server.kill('SIGTERM');
+    await once(server, 'exit');
+  }
+}

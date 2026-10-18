@@ -35,3 +35,51 @@ document.querySelectorAll<HTMLElement>('[data-v9-strip]').forEach((strip) => {
   });
   observer.observe(strip);
 });
+
+// Finite arrivals enhance visible HTML; content never depends on JavaScript to appear.
+const arrivals = new Set<Animation>();
+const revealObserver = new IntersectionObserver((entries) => {
+  for (const entry of entries) {
+    if (!entry.isIntersecting) continue;
+    const element = entry.target as HTMLElement;
+    revealObserver.unobserve(element);
+    element.classList.add('rv-done');
+    if (reducedMotion.matches || document.hidden) continue;
+    const animation = element.animate(
+      [
+        { transform: 'translateY(14px)', opacity: 0 },
+        { transform: 'none', opacity: 1 },
+      ],
+      { duration: 700, easing: 'cubic-bezier(.25,.1,.25,1)' }
+    );
+    arrivals.add(animation);
+    animation.finished.then(() => arrivals.delete(animation)).catch(() => arrivals.delete(animation));
+  }
+});
+document.querySelectorAll('[data-v9-reveal]').forEach((element) => revealObserver.observe(element));
+const settleArrivals = () => {
+  if (reducedMotion.matches || document.hidden) arrivals.forEach((animation) => animation.finish());
+};
+reducedMotion.addEventListener('change', settleArrivals);
+document.addEventListener('visibilitychange', settleArrivals);
+
+// Keep native source disclosures within the viewport, including right-edge citations.
+document.querySelectorAll<HTMLDetailsElement>('.v9-source').forEach((source) => {
+  source.setAttribute('data-ready', '');
+  const position = () => {
+    if (!source.open) return;
+    const panel = source.querySelector<HTMLElement>(':scope > div');
+    if (!panel) return;
+    source.style.setProperty('--v9-source-shift', '0px');
+    const bounds = panel.getBoundingClientRect();
+    const shift = Math.max(12 - bounds.left, Math.min(0, innerWidth - 12 - bounds.right));
+    source.style.setProperty('--v9-source-shift', `${shift}px`);
+  };
+  source.addEventListener('toggle', position);
+  source.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    source.open = false;
+    source.querySelector<HTMLElement>('summary')?.focus();
+  });
+  window.addEventListener('resize', position);
+});

@@ -70,10 +70,23 @@ const candidate = Astro.params.fixture === 'candidate';
           context="Source notes retain a keyboard-accessible link."
         />
       </div>
+      <div class="fixture-edge">
+        <SourceNote
+          number={2}
+          title="A long source title that must stay readable near the right edge of a narrow viewport"
+          href="/about"
+          context="Source disclosures must remain usable with keyboard, reduced motion and without scripts."
+        />
+      </div>
     </div>
   </section>
 </V9Layout>
 <style>
+  .fixture-edge {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+  }
   .fixture-card {
     background: #121212;
     color: #fff;

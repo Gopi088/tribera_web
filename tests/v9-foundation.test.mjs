@@ -44,7 +44,7 @@ test(`v9 foundation behavior (${browserName})`, async () => {
     const page = await browser.newPage();
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
-    for (const width of [320, 390, 768, 1366, 1920]) {
+    for (const width of [320, 360, 390, 768, 1024, 1366, 1920]) {
       await page.setViewportSize({ width, height: 900 });
       const response = await page.goto(`${base}/__v9/foundation`);
       assert.ok(
@@ -81,8 +81,31 @@ test(`v9 foundation behavior (${browserName})`, async () => {
     const faq = page.locator('.v9-faq details').first();
     await faq.locator('summary').click();
     assert.equal(await faq.getAttribute('open'), '');
-    await page.locator('.v9-source summary').click();
-    assert.equal(await page.locator('.v9-source a').isVisible(), true);
+    await page.locator('.v9-source summary').first().click();
+    assert.equal(await page.locator('.v9-source a').first().isVisible(), true);
+    const edge = page.locator('.fixture-edge .v9-source');
+    await edge.locator('summary').focus();
+    await page.keyboard.press('Enter');
+    await page.waitForFunction(() => {
+      const panel = document.querySelector('.fixture-edge .v9-source > div').getBoundingClientRect();
+      return panel.left >= 11 && panel.right <= innerWidth - 11;
+    });
+    await page.keyboard.press('Escape');
+    assert.equal(await edge.getAttribute('open'), null);
+    await page.setViewportSize({ width: 1366, height: 600 });
+    await page.locator('[data-v9-reveal]').first().scrollIntoViewIfNeeded();
+    await page.waitForFunction(() => document.querySelector('[data-v9-reveal]').classList.contains('rv-done'));
+    await page.waitForFunction(() => document.querySelector('[data-v9-reveal]').getAnimations().length === 0);
+    await page.locator('footer').scrollIntoViewIfNeeded();
+    await page.locator('[data-v9-reveal]').first().scrollIntoViewIfNeeded();
+    assert.equal(
+      await page
+        .locator('[data-v9-reveal]')
+        .first()
+        .evaluate((el) => el.getAnimations().length),
+      0,
+      'Arrival must not replay'
+    );
     const strip = page.locator('[data-v9-strip]');
     await strip.scrollIntoViewIfNeeded();
     await strip.locator('button').click();
@@ -116,6 +139,16 @@ test(`v9 foundation behavior (${browserName})`, async () => {
       await fallback.locator('.v9-client-track').evaluate((el) => getComputedStyle(el).animationName),
       'none'
     );
+    assert.equal(
+      await fallback
+        .locator('[data-v9-reveal]')
+        .first()
+        .evaluate((el) => getComputedStyle(el).opacity),
+      '1'
+    );
+    await fallback.locator('.fixture-edge summary').click();
+    assert.equal(await fallback.locator('.fixture-edge a').isVisible(), true);
+    assert.equal(await fallback.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
     await noJs.close();
   } finally {
     await browser?.close();
