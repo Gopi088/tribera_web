@@ -54,7 +54,7 @@ try {
     page.on('pageerror', (error) => errors.push(error.message));
     const goto = async (route) => {
       const response = await page.goto(`${base}/__v9/${route}`);
-      assert.equal(response.status(), 200);
+      assert.ok([200, 304].includes(response.status()), 'Editorial page loads or revalidates its cached response');
       await page.locator('.v9-editorial[data-ready="true"]').waitFor();
     };
     await goto('about');

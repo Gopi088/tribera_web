@@ -22,7 +22,10 @@ test(`private candidate journey (${browserName})`, async () => {
     page.on('pageerror', (e) => errors.push(e.message));
     for (const width of [320, 360, 390, 768, 1024, 1366, 1920]) {
       await page.setViewportSize({ width, height: 900 });
-      assert.equal((await page.goto(url)).status(), 200);
+      assert.ok(
+        [200, 304].includes((await page.goto(url)).status()),
+        'Candidate page loads or revalidates its cached response'
+      );
       await page.evaluate(() => document.fonts.ready);
       await page.locator('[data-preset="own"]').waitFor();
       assert.equal(await page.locator('h1').count(), 1);
