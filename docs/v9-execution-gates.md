@@ -155,3 +155,23 @@ The former regression runner also targeted superseded v58/v60/v61 homepage marku
 Current-version typography expectations were checked against the existing home v126 and candidate v7 source designs and the checkpoint industries page, with independent screenshot review. Reviewed prose sizes are keyed by exact route, viewport, selector and context in `tests/fixtures/reviewed-prose-contexts.json`; unrelated contexts retain their previous rules. Neither a baseline update nor readable screenshots certify full accessibility. Candidate secondary text contrast remains a later accessibility review item.
 
 An initial Functions comparison test observed disabled controls with JavaScript enabled. This did not reproduce in six focused sequence runs or the corrected full suite. The test now waits at most five seconds for the component's explicit ready state and both enabled controls, and includes script/request/page-error diagnostics on failure. It continues to require disabled controls with scripts disabled or blocked. No Functions product-source fix is claimed. Initial WebKit timeouts occurred under exhausted local memory; unchanged-timeout runs passed after reducing concurrency, including the combined preview artifact.
+
+### Verified bootstrap result
+
+The combined bootstrap passed the required local checks on 18 October 2026:
+
+| Check                                               | Result                                                                                             |
+| --------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Repository checks                                   | Astro: 0 errors, 0 warnings; ESLint and formatting passed                                          |
+| Handler and gate unit tests                         | 84 passed, 0 failed/skipped                                                                        |
+| Production and preview boundaries/static references | Passed; production has no fixtures; preview has two noindex fixtures outside sitemap               |
+| Browser smoke                                       | Chromium, Firefox and WebKit on both artifacts: 90 route/viewport checks passed                    |
+| Foundation interactions                             | All three engines passed, including reduced motion and no-JavaScript fallback                      |
+| Legacy journeys                                     | All 11 suites passed                                                                               |
+| Typography and full-text sizing                     | 304 route/viewport checks and 12,820 size checks passed                                            |
+| Default text census and contract                    | 304 records; 18,556 contexts; all nine contract mutation cases passed                              |
+| Interaction-state census                            | 152 records, 709 UI states, no capture errors or failed controls; 15,523 prose observations passed |
+
+Local evidence is in `artifacts/v9-bootstrap/bootstrap-status.json`, `baseline-result.json`, browser manifests/traces/screenshots and the associated logs. Production artifact source revision is `1952844`; subsequent bootstrap changes reconcile tests, CI and documentation without changing the built product. `tests/fixtures/text-inventory-review.json` records the verified production build hash and independently reviewed baseline provenance. Initial failures and their dispositions remain in the evidence.
+
+This accepts the bootstrap controls, not the full website migration or G1–G7 release gates. Remote CI/required branch protection, hosted form/provider/scanner delivery, no-JavaScript upload timing, full visual parity, font/asset provenance, content approval and accessibility remain pending. In addition to faint candidate secondary text, the existing About `.step` opacity of `0.4` needs review during that page's accessibility migration. The next wave must finish foundation acceptance before parallel production-page batches begin.
