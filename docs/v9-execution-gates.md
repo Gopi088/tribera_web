@@ -85,7 +85,7 @@ Test negative paths deliberately: a server 500, scanner rejection, stale form, b
 
 ## CI changes required first
 
-The current workflow in `.github/workflows/actions.yaml` runs on pushes to `main` and PRs targeting `main`. A direct push to `feat/v9-migration`, or a PR targeting it, does not currently trigger that workflow. It runs Chromium only and does not explicitly run `npm run test:handlers`.
+At the planning baseline, `.github/workflows/actions.yaml` ran only on pushes and PRs targeting `main`, ran Chromium only, and omitted explicit handler tests. The bootstrap implementation below addresses these workflow gaps.
 
 Before relying on CI for the migration:
 
