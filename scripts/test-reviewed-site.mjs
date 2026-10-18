@@ -40,6 +40,7 @@ try {
     'home-v126',
     'home-enquiry',
     'candidate-start',
+    'candidate-enhancement',
     'contact-journey',
     'newsletter-journey',
     'v9-nav-fallback',
