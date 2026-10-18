@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { setTimeout as delay } from 'node:timers/promises';
 import { test } from 'node:test';
 import { chromium, firefox, webkit } from 'playwright';
@@ -37,21 +38,63 @@ test(`font readiness observes delayed native fonts with JavaScript disabled (${e
       await held;
       await route.continue();
     });
+    // Isolate readiness from production font-display:swap/preload timing. This
+    // native no-JS fixture uses the same real pinned font files with block display.
+    const manifest = JSON.parse(fs.readFileSync('public/fonts/v9/manifest.json', 'utf8'));
+    const css = ['Fraunces', 'Inter Tight']
+      .map((family) => {
+        const face = manifest.faces.find(
+          (face) => face.family === family && face.style === 'normal' && face.weight === 400 && face.subset === 'latin'
+        );
+        return `@font-face { font-family:'V9 ${family}';font-weight:400;font-display:block;src:url('/fonts/v9/${face.file}') format('woff2'); }`;
+      })
+      .join('\n');
+    await context.route('**/__font-readiness-fixture', (route) =>
+      route.fulfill({
+        contentType: 'text/html',
+        body: '<h1>Native font readiness</h1><p>Actual pinned font files, with JavaScript disabled.</p>',
+      })
+    );
     const page = await context.newPage();
     page.on('requestfailed', (request) => failures.push({ url: request.url(), error: request.failure() }));
-    await page.goto(`${base}/__v9/home`, { waitUntil: 'domcontentloaded' });
-    // Force layout, then wait from Node until an actual font request is pending.
-    await page.evaluate(() => document.body.offsetHeight);
+    await page.goto(`${base}/__font-readiness-fixture`, { waitUntil: 'domcontentloaded' });
+    // Initialize FontFaceSet before installing styles, so every engine observes
+    // the same unloaded -> loading -> loaded native lifecycle without preload races.
+    await page.evaluate((css) => {
+      void document.fonts.status;
+      const style = document.createElement('style');
+      style.textContent = css + " h1 {font:400 32px 'V9 Fraunces'} p {font:400 20px 'V9 Inter Tight'}";
+      document.head.append(style);
+    }, css);
     const deadline = performance.now() + 15000;
     let loading = false;
     while (performance.now() < deadline) {
-      loading = await page.evaluate(
-        () => document.fonts.status === 'loading' && [...document.fonts].some((face) => face.status === 'loading')
-      );
+      const snapshot = await page.evaluate(() => ({
+        status: document.fonts.status,
+        families: [...document.fonts].map((face) => face.family),
+        family: getComputedStyle(document.querySelector('h1')).fontFamily,
+        height: document.body.offsetHeight,
+      }));
+      loading =
+        snapshot.status === 'loading' &&
+        snapshot.families.some((family) => family.replaceAll('"', '').replaceAll("'", '') === 'V9 Fraunces') &&
+        snapshot.family.includes('V9 Fraunces');
       if (loading && requests.length) break;
       await delay(50);
     }
-    assert.equal(loading, true, 'regression must begin while real FontFaces are loading');
+    assert.equal(
+      loading,
+      true,
+      'regression must begin with applied font CSS and the real FontFaceSet loading: ' +
+        JSON.stringify(
+          await page.evaluate(() => ({
+            status: document.fonts.status,
+            family: getComputedStyle(document.querySelector('h1')).fontFamily,
+            faces: [...document.fonts].map((f) => ({ family: f.family, status: f.status })),
+            sheets: document.styleSheets.length,
+          }))
+        )
+    );
     assert.ok(requests.length > 0, 'font responses must be held');
     let resolved = false;
     const ready = waitForFonts(page, { timeout: 15000 }).then(() => {
@@ -63,9 +106,11 @@ test(`font readiness observes delayed native fonts with JavaScript disabled (${e
     await ready;
     const state = await page.evaluate(() => ({
       status: document.fonts.status,
+      errors: [...document.fonts].filter((face) => face.status === 'error').map((face) => face.family),
       families: [...document.fonts].filter((face) => face.status === 'loaded').map((face) => face.family),
     }));
     assert.equal(state.status, 'loaded');
+    assert.deepEqual(state.errors, [], 'no font face remains in an error state after release');
     assert.ok(state.families.some((family) => family.includes('V9 Fraunces')));
     assert.ok(state.families.some((family) => family.includes('V9 Inter Tight')));
     assert.deepEqual(
