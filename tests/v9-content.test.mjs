@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { waitForFonts } from '../scripts/v9-browser-readiness.mjs';
 import { test } from 'node:test';
 import fs from 'node:fs';
 import { spawn } from 'node:child_process';
@@ -51,7 +52,7 @@ test(`v9 editorial content (${browserName})`, { timeout: 120000 }, async () => {
         await page.setViewportSize({ width, height: 900 });
         const response = await page.goto(`${base}/__v9/content`);
         assert.ok([200, 304].includes(response.status()));
-        await page.waitForFunction(() => document.fonts.status === 'loaded', null, { timeout: 15000 });
+        await waitForFonts(page, { timeout: 15000 });
         assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex, nofollow');
         assert.equal(await page.locator('h1').count(), 1);
         assert.equal(

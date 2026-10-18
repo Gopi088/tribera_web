@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { waitForPageCondition } from '../scripts/v9-browser-readiness.mjs';
 import { test } from 'node:test';
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
@@ -36,12 +37,16 @@ async function assertArrived(page, destination) {
   assert.match(await page.locator('meta[name=robots]').getAttribute('content'), /noindex/);
   if (expected.hash) {
     assert.equal(await page.locator(expected.hash).count(), 1, `${destination}: target must exist`);
-    await page.waitForFunction((hash) => {
-      const target = document.querySelector(hash);
-      if (!target) return false;
-      const box = target.getBoundingClientRect();
-      return box.top >= 0 && box.top < innerHeight;
-    }, expected.hash);
+    await waitForPageCondition(
+      page,
+      (hash) => {
+        const target = document.querySelector(hash);
+        if (!target) return false;
+        const box = target.getBoundingClientRect();
+        return box.top >= 0 && box.top < innerHeight;
+      },
+      expected.hash
+    );
   }
 }
 

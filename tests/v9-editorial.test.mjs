@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { waitForPageCondition } from '../scripts/v9-browser-readiness.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
@@ -225,7 +226,8 @@ try {
   assert.equal(await faq.evaluate((el) => el.open), true);
   // WebKit exposes the first transition frame immediately after native disclosure opens.
   // Wait for readable geometry and opacity, not an arbitrary delay or a looser assertion.
-  await nojs.waitForFunction(
+  await waitForPageCondition(
+    nojs,
     () => {
       const answer = document.querySelectorAll('.faq-item')[2].querySelector('.faq-a');
       return (

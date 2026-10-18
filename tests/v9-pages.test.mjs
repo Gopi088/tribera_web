@@ -6,7 +6,7 @@ import { once } from 'node:events';
 import { gzipSync } from 'node:zlib';
 import { chromium, firefox, webkit } from 'playwright';
 import { checkPageBudget } from '../scripts/v9-performance.mjs';
-import { waitForFonts } from '../scripts/v9-browser-readiness.mjs';
+import { waitForFonts, waitForPageCondition } from '../scripts/v9-browser-readiness.mjs';
 
 const name = process.env.BROWSER || 'chromium';
 const engines = { chromium, firefox, webkit };
@@ -130,7 +130,7 @@ try {
           await new Promise((resolve) => setTimeout(resolve, 20));
         }
         await page.evaluate(() => scrollTo(0, 0));
-        await page.waitForFunction(() => [...document.images].every((image) => image.complete), null, {
+        await waitForPageCondition(page, () => [...document.images].every((image) => image.complete), null, {
           timeout: 15000,
         });
         assert.deepEqual(
