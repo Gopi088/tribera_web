@@ -33,6 +33,7 @@ try {
     'tests/v9-candidates.test.mjs',
     'tests/v9-candidates-reference.test.mjs',
     'tests/v9-editorial.test.mjs',
+    'tests/v9-home.test.mjs',
     'tests/v9-preview-navigation.test.mjs',
   ]) {
     console.log(`Running ${suite} against ${base}`);
