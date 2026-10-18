@@ -1,0 +1,42 @@
+{
+  "files": [
+    {
+      "file": "apple-touch-icon.png",
+      "source": "sample_data/tribera-web-handoff-v9/apple-touch-icon.png",
+      "sha256": "5c9834a0a8d5885ea345c02a0c0bdb756da3ac1a57d77de03f9dcf1909693477",
+      "bytes": 1344
+    },
+    {
+      "file": "favicon.ico",
+      "source": "sample_data/tribera-web-handoff-v9/favicon.ico",
+      "sha256": "74f57d4ad2e23d107cc9e276802fa609311595b67cc74d61fe516675887fbef4",
+      "bytes": 2206
+    },
+    {
+      "file": "favicon.svg",
+      "source": "sample_data/tribera-web-handoff-v9/favicon.svg",
+      "sha256": "748d5c89844af7cbd3c2dcd0781ace2e0f9273c5e94d9a666a03b0b49006763f",
+      "bytes": 438
+    },
+    {
+      "file": "icon-192.png",
+      "source": "sample_data/tribera-web-handoff-v9/icon-192.png",
+      "sha256": "56935e97f4eb77b812da644a7fef944175f51ee0b471c43ac615185f93675671",
+      "bytes": 3121
+    },
+    {
+      "file": "icon-512.png",
+      "source": "sample_data/tribera-web-handoff-v9/icon-512.png",
+      "sha256": "f73a1889e5acfbb8a3a702f1a082909bb020eba9e62fdccfc932e9a26ad7654b",
+      "bytes": 9696
+    },
+    {
+      "file": "icon-maskable-512.png",
+      "source": "sample_data/tribera-web-handoff-v9/icon-maskable-512.png",
+      "sha256": "032dd56b7103948de65d4becd94bb4e2edf5735e89805b4afc441a59bd650e5c",
+      "bytes": 4664
+    }
+  ],
+  "webmanifest": "site.webmanifest",
+  "webmanifestChanges": "Only icon src paths are namespaced under /brand/v9; all other supplied fields preserved."
+}

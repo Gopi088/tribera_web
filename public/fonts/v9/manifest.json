@@ -1,0 +1,748 @@
+{
+  "retrievedAt": "2026-10-18T11:14:25.823841+00:00",
+  "request": "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap",
+  "googleFontsRevision": "47d54ca1ebb14fd864695f1d39dc734f39017c33",
+  "policy": "Exact handoff CSS request, all supplied unicode subsets, unmodified official WOFF2 binaries. Local family aliases only.",
+  "faces": [
+    {
+      "family": "Fraunces",
+      "style": "italic",
+      "weight": 400,
+      "subset": "vietnamese",
+      "file": "fraunces-italic-vietnamese-ccf0fecc.woff2",
+      "unicodeRange": "U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB"
+    },
+    {
+      "family": "Fraunces",
+      "style": "italic",
+      "weight": 400,
+      "subset": "latin-ext",
+      "file": "fraunces-italic-latin-ext-437e9d07.woff2",
+      "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF"
+    },
+    {
+      "family": "Fraunces",
+      "style": "italic",
+      "weight": 400,
+      "subset": "latin",
+      "file": "fraunces-italic-latin-e10563a8.woff2",
+      "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+    },
+    {
+      "family": "Fraunces",
+      "style": "italic",
+      "weight": 500,
+      "subset": "vietnamese",
+      "file": "fraunces-italic-vietnamese-ccf0fecc.woff2",
+      "unicodeRange": "U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB"
+    },
+    {
+      "family": "Fraunces",
+      "style": "italic",
+      "weight": 500,
+      "subset": "latin-ext",
+      "file": "fraunces-italic-latin-ext-437e9d07.woff2",
+      "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF"
+    },
+    {
+      "family": "Fraunces",
+      "style": "italic",
+      "weight": 500,
+      "subset": "latin",
+      "file": "fraunces-italic-latin-e10563a8.woff2",
+      "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+    },
+    {
+      "family": "Fraunces",
+      "style": "normal",
+      "weight": 400,
+      "subset": "vietnamese",
+      "file": "fraunces-normal-vietnamese-a4c5fe4f.woff2",
+      "unicodeRange": "U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB"
+    },
+    {
+      "family": "Fraunces",
+      "style": "normal",
+      "weight": 400,
+      "subset": "latin-ext",
+      "file": "fraunces-normal-latin-ext-7cdca5ec.woff2",
+      "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF"
+    },
+    {
+      "family": "Fraunces",
+      "style": "normal",
+      "weight": 400,
+      "subset": "latin",
+      "file": "fraunces-normal-latin-6a837066.woff2",
+      "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+    },
+    {
+      "family": "Fraunces",
+      "style": "normal",
+      "weight": 500,
+      "subset": "vietnamese",
+      "file": "fraunces-normal-vietnamese-a4c5fe4f.woff2",
+      "unicodeRange": "U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB"
+    },
+    {
+      "family": "Fraunces",
+      "style": "normal",
+      "weight": 500,
+      "subset": "latin-ext",
+      "file": "fraunces-normal-latin-ext-7cdca5ec.woff2",
+      "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF"
+    },
+    {
+      "family": "Fraunces",
+      "style": "normal",
+      "weight": 500,
+      "subset": "latin",
+      "file": "fraunces-normal-latin-6a837066.woff2",
+      "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+    },
+    {
+      "family": "Fraunces",
+      "style": "normal",
+      "weight": 600,
+      "subset": "vietnamese",
+      "file": "fraunces-normal-vietnamese-a4c5fe4f.woff2",
+      "unicodeRange": "U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB"
+    },
+    {
+      "family": "Fraunces",
+      "style": "normal",
+      "weight": 600,
+      "subset": "latin-ext",
+      "file": "fraunces-normal-latin-ext-7cdca5ec.woff2",
+      "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF"
+    },
+    {
+      "family": "Fraunces",
+      "style": "normal",
+      "weight": 600,
+      "subset": "latin",
+      "file": "fraunces-normal-latin-6a837066.woff2",
+      "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 400,
+      "subset": "cyrillic-ext",
+      "file": "inter-tight-normal-cyrillic-ext-a8294514.woff2",
+      "unicodeRange": "U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 400,
+      "subset": "cyrillic",
+      "file": "inter-tight-normal-cyrillic-0cc45335.woff2",
+      "unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 400,
+      "subset": "greek-ext",
+      "file": "inter-tight-normal-greek-ext-7aa16fae.woff2",
+      "unicodeRange": "U+1F00-1FFF"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 400,
+      "subset": "greek",
+      "file": "inter-tight-normal-greek-8f59721c.woff2",
+      "unicodeRange": "U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 400,
+      "subset": "vietnamese",
+      "file": "inter-tight-normal-vietnamese-c69d8181.woff2",
+      "unicodeRange": "U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 400,
+      "subset": "latin-ext",
+      "file": "inter-tight-normal-latin-ext-e1523547.woff2",
+      "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 400,
+      "subset": "latin",
+      "file": "inter-tight-normal-latin-603db177.woff2",
+      "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 500,
+      "subset": "cyrillic-ext",
+      "file": "inter-tight-normal-cyrillic-ext-a8294514.woff2",
+      "unicodeRange": "U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 500,
+      "subset": "cyrillic",
+      "file": "inter-tight-normal-cyrillic-0cc45335.woff2",
+      "unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 500,
+      "subset": "greek-ext",
+      "file": "inter-tight-normal-greek-ext-7aa16fae.woff2",
+      "unicodeRange": "U+1F00-1FFF"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 500,
+      "subset": "greek",
+      "file": "inter-tight-normal-greek-8f59721c.woff2",
+      "unicodeRange": "U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 500,
+      "subset": "vietnamese",
+      "file": "inter-tight-normal-vietnamese-c69d8181.woff2",
+      "unicodeRange": "U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 500,
+      "subset": "latin-ext",
+      "file": "inter-tight-normal-latin-ext-e1523547.woff2",
+      "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 500,
+      "subset": "latin",
+      "file": "inter-tight-normal-latin-603db177.woff2",
+      "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 600,
+      "subset": "cyrillic-ext",
+      "file": "inter-tight-normal-cyrillic-ext-a8294514.woff2",
+      "unicodeRange": "U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 600,
+      "subset": "cyrillic",
+      "file": "inter-tight-normal-cyrillic-0cc45335.woff2",
+      "unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 600,
+      "subset": "greek-ext",
+      "file": "inter-tight-normal-greek-ext-7aa16fae.woff2",
+      "unicodeRange": "U+1F00-1FFF"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 600,
+      "subset": "greek",
+      "file": "inter-tight-normal-greek-8f59721c.woff2",
+      "unicodeRange": "U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 600,
+      "subset": "vietnamese",
+      "file": "inter-tight-normal-vietnamese-c69d8181.woff2",
+      "unicodeRange": "U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 600,
+      "subset": "latin-ext",
+      "file": "inter-tight-normal-latin-ext-e1523547.woff2",
+      "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF"
+    },
+    {
+      "family": "Inter Tight",
+      "style": "normal",
+      "weight": 600,
+      "subset": "latin",
+      "file": "inter-tight-normal-latin-603db177.woff2",
+      "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+    },
+    {
+      "family": "JetBrains Mono",
+      "style": "normal",
+      "weight": 400,
+      "subset": "cyrillic-ext",
+      "file": "jetbrains-mono-normal-cyrillic-ext-6b5e37b5.woff2",
+      "unicodeRange": "U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F"
+    },
+    {
+      "family": "JetBrains Mono",
+      "style": "normal",
+      "weight": 400,
+      "subset": "cyrillic",
+      "file": "jetbrains-mono-normal-cyrillic-eb83d8d4.woff2",
+      "unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116"
+    },
+    {
+      "family": "JetBrains Mono",
+      "style": "normal",
+      "weight": 400,
+      "subset": "greek",
+      "file": "jetbrains-mono-normal-greek-99e40033.woff2",
+      "unicodeRange": "U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF"
+    },
+    {
+      "family": "JetBrains Mono",
+      "style": "normal",
+      "weight": 400,
+      "subset": "vietnamese",
+      "file": "jetbrains-mono-normal-vietnamese-c4064400.woff2",
+      "unicodeRange": "U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB"
+    },
+    {
+      "family": "JetBrains Mono",
+      "style": "normal",
+      "weight": 400,
+      "subset": "latin-ext",
+      "file": "jetbrains-mono-normal-latin-ext-b19c2080.woff2",
+      "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF"
+    },
+    {
+      "family": "JetBrains Mono",
+      "style": "normal",
+      "weight": 400,
+      "subset": "latin",
+      "file": "jetbrains-mono-normal-latin-cc27b304.woff2",
+      "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+    },
+    {
+      "family": "JetBrains Mono",
+      "style": "normal",
+      "weight": 500,
+      "subset": "cyrillic-ext",
+      "file": "jetbrains-mono-normal-cyrillic-ext-6b5e37b5.woff2",
+      "unicodeRange": "U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F"
+    },
+    {
+      "family": "JetBrains Mono",
+      "style": "normal",
+      "weight": 500,
+      "subset": "cyrillic",
+      "file": "jetbrains-mono-normal-cyrillic-eb83d8d4.woff2",
+      "unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116"
+    },
+    {
+      "family": "JetBrains Mono",
+      "style": "normal",
+      "weight": 500,
+      "subset": "greek",
+      "file": "jetbrains-mono-normal-greek-99e40033.woff2",
+      "unicodeRange": "U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF"
+    },
+    {
+      "family": "JetBrains Mono",
+      "style": "normal",
+      "weight": 500,
+      "subset": "vietnamese",
+      "file": "jetbrains-mono-normal-vietnamese-c4064400.woff2",
+      "unicodeRange": "U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB"
+    },
+    {
+      "family": "JetBrains Mono",
+      "style": "normal",
+      "weight": 500,
+      "subset": "latin-ext",
+      "file": "jetbrains-mono-normal-latin-ext-b19c2080.woff2",
+      "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF"
+    },
+    {
+      "family": "JetBrains Mono",
+      "style": "normal",
+      "weight": 500,
+      "subset": "latin",
+      "file": "jetbrains-mono-normal-latin-cc27b304.woff2",
+      "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+    }
+  ],
+  "files": [
+    {
+      "file": "fraunces-italic-vietnamese-ccf0fecc.woff2",
+      "source": "https://fonts.gstatic.com/s/fraunces/v38/6NU58FyLNQOQZAnv9ZwNjucMHVn85Ni7emAe9lKqZTnbB-gzTK0K1ChjdfeQ_5Y.woff2",
+      "sha256": "23af38108404d4b05ea87498afc5a104a3fe878b6339d162472e914a2c8bfa93",
+      "bytes": 22128,
+      "axes": {
+        "opsz": {
+          "min": 9.0,
+          "default": 9.0,
+          "max": 144.0
+        },
+        "wght": {
+          "min": 100.0,
+          "default": 900.0,
+          "max": 900.0
+        }
+      },
+      "weightClass": 900,
+      "fontVersion": "Version 1.000;[b76b70a41]",
+      "family": "Fraunces"
+    },
+    {
+      "file": "fraunces-italic-latin-ext-437e9d07.woff2",
+      "source": "https://fonts.gstatic.com/s/fraunces/v38/6NU58FyLNQOQZAnv9ZwNjucMHVn85Ni7emAe9lKqZTnbB-gzTK0K1ChjdPeQ_5Y.woff2",
+      "sha256": "4983926d3a16544eedcd2233448bd8a43f711e7bf1fabaae8431e78e0b798635",
+      "bytes": 71460,
+      "axes": {
+        "opsz": {
+          "min": 9.0,
+          "default": 9.0,
+          "max": 144.0
+        },
+        "wght": {
+          "min": 100.0,
+          "default": 900.0,
+          "max": 900.0
+        }
+      },
+      "weightClass": 900,
+      "fontVersion": "Version 1.000;[b76b70a41]",
+      "family": "Fraunces"
+    },
+    {
+      "file": "fraunces-italic-latin-e10563a8.woff2",
+      "source": "https://fonts.gstatic.com/s/fraunces/v38/6NU58FyLNQOQZAnv9ZwNjucMHVn85Ni7emAe9lKqZTnbB-gzTK0K1ChjeveQ.woff2",
+      "sha256": "066710ce7ed235a339d3d6cdcc8b55c0bea5632232662d83aacea25852108271",
+      "bytes": 81520,
+      "axes": {
+        "opsz": {
+          "min": 9.0,
+          "default": 9.0,
+          "max": 144.0
+        },
+        "wght": {
+          "min": 100.0,
+          "default": 900.0,
+          "max": 900.0
+        }
+      },
+      "weightClass": 900,
+      "fontVersion": "Version 1.000;[b76b70a41]",
+      "family": "Fraunces"
+    },
+    {
+      "file": "fraunces-normal-vietnamese-a4c5fe4f.woff2",
+      "source": "https://fonts.gstatic.com/s/fraunces/v38/6NU78FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0KxCBTeO-U.woff2",
+      "sha256": "f18853f63a870ebef013e30e789d8d544f102e4acd94988e57c223d9c796ddf4",
+      "bytes": 19700,
+      "axes": {
+        "opsz": {
+          "min": 9.0,
+          "default": 9.0,
+          "max": 144.0
+        },
+        "wght": {
+          "min": 100.0,
+          "default": 900.0,
+          "max": 900.0
+        }
+      },
+      "weightClass": 900,
+      "fontVersion": "Version 1.000;[b76b70a41]",
+      "family": "Fraunces"
+    },
+    {
+      "file": "fraunces-normal-latin-ext-7cdca5ec.woff2",
+      "source": "https://fonts.gstatic.com/s/fraunces/v38/6NU78FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0KxCFTeO-U.woff2",
+      "sha256": "a2930b27d13a228bd9ab6a49269b5f800237892ad560cb9dd7fab01b1620f88e",
+      "bytes": 59388,
+      "axes": {
+        "opsz": {
+          "min": 9.0,
+          "default": 9.0,
+          "max": 144.0
+        },
+        "wght": {
+          "min": 100.0,
+          "default": 900.0,
+          "max": 900.0
+        }
+      },
+      "weightClass": 900,
+      "fontVersion": "Version 1.000;[b76b70a41]",
+      "family": "Fraunces"
+    },
+    {
+      "file": "fraunces-normal-latin-6a837066.woff2",
+      "source": "https://fonts.gstatic.com/s/fraunces/v38/6NU78FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0KxC9TeA.woff2",
+      "sha256": "7234ed860a9cc83045413c4faee63c960a8f2d1917adcf728119307d56e0d783",
+      "bytes": 67304,
+      "axes": {
+        "opsz": {
+          "min": 9.0,
+          "default": 9.0,
+          "max": 144.0
+        },
+        "wght": {
+          "min": 100.0,
+          "default": 900.0,
+          "max": 900.0
+        }
+      },
+      "weightClass": 900,
+      "fontVersion": "Version 1.000;[b76b70a41]",
+      "family": "Fraunces"
+    },
+    {
+      "file": "inter-tight-normal-cyrillic-ext-a8294514.woff2",
+      "source": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsK8ah8QA.woff2",
+      "sha256": "9bba92a871106008d89cc9734c218a3660b92ff647bdfb6879bf0440fba002c0",
+      "bytes": 26660,
+      "axes": {
+        "wght": {
+          "min": 100.0,
+          "default": 400.0,
+          "max": 900.0
+        }
+      },
+      "weightClass": 400,
+      "fontVersion": "Version 3.004",
+      "family": "Inter Tight"
+    },
+    {
+      "file": "inter-tight-normal-cyrillic-0cc45335.woff2",
+      "source": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsD8ah8QA.woff2",
+      "sha256": "3937173d62f238179ca073aee632d53ebc088967ac841bf213211be05720881a",
+      "bytes": 16996,
+      "axes": {
+        "wght": {
+          "min": 100.0,
+          "default": 400.0,
+          "max": 900.0
+        }
+      },
+      "weightClass": 400,
+      "fontVersion": "Version 3.004",
+      "family": "Inter Tight"
+    },
+    {
+      "file": "inter-tight-normal-greek-ext-7aa16fae.woff2",
+      "source": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsL8ah8QA.woff2",
+      "sha256": "83735bbea54cc7c4e7ee2af3ede4c2bc5e421ba5bdef4cd3ea2ec8d25b5afaa8",
+      "bytes": 11700,
+      "axes": {
+        "wght": {
+          "min": 100.0,
+          "default": 400.0,
+          "max": 900.0
+        }
+      },
+      "weightClass": 400,
+      "fontVersion": "Version 3.004",
+      "family": "Inter Tight"
+    },
+    {
+      "file": "inter-tight-normal-greek-8f59721c.woff2",
+      "source": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsE8ah8QA.woff2",
+      "sha256": "815c54f4279b399a2afb93e99844e0ba6d9df2fc809eab372aa05e8b8d0847da",
+      "bytes": 22192,
+      "axes": {
+        "wght": {
+          "min": 100.0,
+          "default": 400.0,
+          "max": 900.0
+        }
+      },
+      "weightClass": 400,
+      "fontVersion": "Version 3.004",
+      "family": "Inter Tight"
+    },
+    {
+      "file": "inter-tight-normal-vietnamese-c69d8181.woff2",
+      "source": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsI8ah8QA.woff2",
+      "sha256": "88599e6f2f36551c98dd836df944179f0d4e31eefa620bb753c96069b53ac55a",
+      "bytes": 10480,
+      "axes": {
+        "wght": {
+          "min": 100.0,
+          "default": 400.0,
+          "max": 900.0
+        }
+      },
+      "weightClass": 400,
+      "fontVersion": "Version 3.004",
+      "family": "Inter Tight"
+    },
+    {
+      "file": "inter-tight-normal-latin-ext-e1523547.woff2",
+      "source": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsJ8ah8QA.woff2",
+      "sha256": "fd9beddaaec644945809da574cf1caf342073c7e4b46a2ea5bd136c8cf1a9eca",
+      "bytes": 89800,
+      "axes": {
+        "wght": {
+          "min": 100.0,
+          "default": 400.0,
+          "max": 900.0
+        }
+      },
+      "weightClass": 400,
+      "fontVersion": "Version 3.004",
+      "family": "Inter Tight"
+    },
+    {
+      "file": "inter-tight-normal-latin-603db177.woff2",
+      "source": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsH8ag.woff2",
+      "sha256": "77fefe8ca19b9f69b5284832c519e0493127c1f091f0a8936884be7721c4e618",
+      "bytes": 44872,
+      "axes": {
+        "wght": {
+          "min": 100.0,
+          "default": 400.0,
+          "max": 900.0
+        }
+      },
+      "weightClass": 400,
+      "fontVersion": "Version 3.004",
+      "family": "Inter Tight"
+    },
+    {
+      "file": "jetbrains-mono-normal-cyrillic-ext-6b5e37b5.woff2",
+      "source": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx3cwhsk.woff2",
+      "sha256": "62213be8a78b42f1e29d1452d91e2f8b3e745572a9dd98d3941e39fa00b37d76",
+      "bytes": 1640,
+      "axes": {
+        "wght": {
+          "min": 400.0,
+          "default": 400.0,
+          "max": 800.0
+        }
+      },
+      "weightClass": 400,
+      "fontVersion": "Version 2.211",
+      "family": "JetBrains Mono"
+    },
+    {
+      "file": "jetbrains-mono-normal-cyrillic-eb83d8d4.woff2",
+      "source": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxTcwhsk.woff2",
+      "sha256": "e17cfd15fb96909d64095015f958207063a0c07191da3512df7d560a781aebdf",
+      "bytes": 8872,
+      "axes": {
+        "wght": {
+          "min": 400.0,
+          "default": 400.0,
+          "max": 800.0
+        }
+      },
+      "weightClass": 400,
+      "fontVersion": "Version 2.211",
+      "family": "JetBrains Mono"
+    },
+    {
+      "file": "jetbrains-mono-normal-greek-99e40033.woff2",
+      "source": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxPcwhsk.woff2",
+      "sha256": "0a557721b1f8b36d3f3f84442689a71ca4a744300abcb46a1953f51bfc663b66",
+      "bytes": 6836,
+      "axes": {
+        "wght": {
+          "min": 400.0,
+          "default": 400.0,
+          "max": 800.0
+        }
+      },
+      "weightClass": 400,
+      "fontVersion": "Version 2.211",
+      "family": "JetBrains Mono"
+    },
+    {
+      "file": "jetbrains-mono-normal-vietnamese-c4064400.woff2",
+      "source": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx_cwhsk.woff2",
+      "sha256": "c89b9cc0bc6262bd4f8d8494b6961601f3aefa829d08c2e3635f4d501d3a47c2",
+      "bytes": 5888,
+      "axes": {
+        "wght": {
+          "min": 400.0,
+          "default": 400.0,
+          "max": 800.0
+        }
+      },
+      "weightClass": 400,
+      "fontVersion": "Version 2.211",
+      "family": "JetBrains Mono"
+    },
+    {
+      "file": "jetbrains-mono-normal-latin-ext-b19c2080.woff2",
+      "source": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx7cwhsk.woff2",
+      "sha256": "db5ff4db83e580426280e9337a58dc57d3a83784a1b03ad80914651594441d52",
+      "bytes": 11624,
+      "axes": {
+        "wght": {
+          "min": 400.0,
+          "default": 400.0,
+          "max": 800.0
+        }
+      },
+      "weightClass": 400,
+      "fontVersion": "Version 2.211",
+      "family": "JetBrains Mono"
+    },
+    {
+      "file": "jetbrains-mono-normal-latin-cc27b304.woff2",
+      "source": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwg.woff2",
+      "sha256": "83c005d49d8a6a50474c73a5a36ac0468076e9c4a29da7bdb14995d80560a5be",
+      "bytes": 31432,
+      "axes": {
+        "wght": {
+          "min": 400.0,
+          "default": 400.0,
+          "max": 800.0
+        }
+      },
+      "weightClass": 400,
+      "fontVersion": "Version 2.211",
+      "family": "JetBrains Mono"
+    }
+  ],
+  "licenses": [
+    {
+      "family": "Fraunces",
+      "file": "fraunces-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/fraunces/OFL.txt",
+      "sha256": "bdf4c22802eaf804f998195871c6b8938aac2ac14b2d78a8bd66a6f1eced833b"
+    },
+    {
+      "family": "Inter Tight",
+      "file": "intertight-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/intertight/OFL.txt",
+      "sha256": "50240ab035cf1b6b3307940235481d515c4b6de3ab1fa843dbe59e7892cb9d58"
+    },
+    {
+      "family": "JetBrains Mono",
+      "file": "jetbrainsmono-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/jetbrainsmono/OFL.txt",
+      "sha256": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d"
+    }
+  ]
+}

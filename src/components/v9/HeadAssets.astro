@@ -1,0 +1,16 @@
+---
+import '../../assets/styles/v9/fonts.css';
+import manifest from '../../../public/fonts/v9/manifest.json';
+const preloads = ['Inter Tight', 'Fraunces'].map(
+  (family) =>
+    manifest.faces.find(
+      (face) => face.family === family && face.style === 'normal' && face.weight === 400 && face.subset === 'latin'
+    )!
+);
+---
+
+<link rel="icon" href="/brand/v9/favicon.ico" sizes="48x48" />
+<link rel="icon" href="/brand/v9/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/brand/v9/apple-touch-icon.png" />
+<link rel="manifest" href="/brand/v9/site.webmanifest" />
+{preloads.map((face) => <link rel="preload" href={`/fonts/v9/${face.file}`} as="font" type="font/woff2" crossorigin />)}
