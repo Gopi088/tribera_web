@@ -81,7 +81,12 @@ try {
       const expectedGrid = await gridSnapshot(referenceGrid);
       const actualGrid = await gridSnapshot(migratedGrid);
       assert.deepEqual(actualGrid, expectedGrid, `${browserName} ${width}px ${variant}: final handoff column geometry`);
-      records.push({ width, variant, expected, actual, expectedGrid, actualGrid });
+      const expectedLead = await snapshot(
+        reference.locator(variant === 'product' ? '.hero-two .lead' : '.hx .lead').first()
+      );
+      const actualLead = await snapshot(migrated.locator(`.v9-hero-${variant} .v9-lead`));
+      assert.deepEqual(actualLead, expectedLead, `${browserName} ${width}px ${variant}: handoff lead typography`);
+      records.push({ width, variant, expected, actual, expectedGrid, actualGrid, expectedLead, actualLead });
       assert.deepEqual(actual, expected, `${browserName} ${width}px ${variant}: final handoff typography`);
       if (width === 390 || width === 1366) {
         await migrated
