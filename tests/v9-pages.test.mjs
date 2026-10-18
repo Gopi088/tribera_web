@@ -80,6 +80,19 @@ try {
     for (const javaScriptEnabled of [true, false]) {
       const context = await browser.newContext({ javaScriptEnabled, reducedMotion: 'reduce' });
       const page = await context.newPage();
+      if (javaScriptEnabled)
+        await page.addInitScript(() => {
+          window.__v9Metrics = { layoutShift: 0, longTasks: [], supported: PerformanceObserver.supportedEntryTypes };
+          if (PerformanceObserver.supportedEntryTypes.includes('layout-shift'))
+            new PerformanceObserver((list) => {
+              for (const entry of list.getEntries())
+                if (!entry.hadRecentInput) window.__v9Metrics.layoutShift += entry.value;
+            }).observe({ type: 'layout-shift', buffered: true });
+          if (PerformanceObserver.supportedEntryTypes.includes('longtask'))
+            new PerformanceObserver((list) => {
+              window.__v9Metrics.longTasks.push(...list.getEntries().map((entry) => entry.duration));
+            }).observe({ type: 'longtask', buffered: true });
+        });
       const errors = [];
       page.on('pageerror', (error) => errors.push(error.message));
       const sizes = javaScriptEnabled
@@ -160,6 +173,20 @@ try {
             });
           }
           record.transfers = transfers;
+          record.observedPerformance = await page.evaluate(() => window.__v9Metrics);
+          // Collect long source paragraphs to make full-copy omissions reviewable.
+          // This is evidence, not an automatic equivalence claim for interactive copy.
+          const sourceParagraphs = await reference
+            .locator('p,blockquote')
+            .evaluateAll((els) =>
+              els.map((el) => el.textContent.replace(/\s+/g, ' ').trim()).filter((text) => text.length >= 100)
+            );
+          const actualText = await page.locator('body').textContent();
+          const normalized = actualText.replace(/\s+/g, ' ').trim();
+          record.contentComparison = {
+            sourceParagraphCount: sourceParagraphs.length,
+            missingParagraphs: sourceParagraphs.filter((paragraph) => !normalized.includes(paragraph)),
+          };
         }
         report.records.push(record);
       }

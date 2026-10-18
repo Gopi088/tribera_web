@@ -13,6 +13,9 @@ export async function browserAudit(root, evidence) {
     errors = [];
   const routes = ['/', '/candidates', '/contact', '/careers', '/services', '/blog', '/industries'];
   if (pages.has('/__v9/foundation') || process.env.V9_REQUIRE_FOUNDATION === '1') routes.push('/__v9/foundation');
+  for (const slug of ['home', 'candidates', 'about', 'bfsi', 'article']) {
+    if (pages.has(`/__v9/${slug}`)) routes.push(`/__v9/${slug}`);
+  }
   const server = process.env.TEST_BASE_URL
     ? null
     : spawn(
