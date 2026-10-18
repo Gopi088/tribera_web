@@ -46,6 +46,8 @@ try {
   await withEnv(
     {
       ALLOWED_FORM_ORIGINS: base,
+      FORM_MIN_SUBMIT_MS: '1500',
+      FORM_MAX_SUBMIT_AGE_MS: '7200000',
       RESEND_API_KEY: 'test',
       RESEND_FROM: 'test@example.com',
       FORM_UPLOAD_SCAN_MODE: 'off',
