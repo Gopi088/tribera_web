@@ -2554,3 +2554,52 @@
     transition: none !important;
   }
 }
+
+/* Retain final handoff CV rows when upgraded to native keyboard tabs. */
+.v9-candidates .cvx-line {
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 12px 0 14px 18px;
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--ink-3);
+  transition: color 0.3s ease;
+}
+.v9-candidates .cvx-line::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 19px;
+  width: 6px;
+  height: 6px;
+  border-radius: 1.5px;
+  background: rgba(19, 19, 19, 0.2);
+  transition: background 0.3s ease;
+}
+.v9-candidates .cvx-line:hover {
+  color: var(--ink-2);
+}
+.v9-candidates .cvx-line.on {
+  color: var(--ink);
+}
+.v9-candidates .cvx-line.on::before {
+  background: var(--red);
+}
+.v9-candidates .cvx-line span {
+  position: relative;
+  z-index: 1;
+}
+.v9-candidates .cvx-line.on .cvx-ink {
+  clip-path: inset(-30% -2% -30% 0);
+}
+.v9-candidates .cvx-line:focus-visible {
+  outline: 1.5px solid var(--ink);
+  outline-offset: 2px;
+  border-radius: 6px;
+}

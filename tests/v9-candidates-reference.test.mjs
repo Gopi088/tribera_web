@@ -30,6 +30,7 @@ test(`candidate final handoff cascade (${browserName})`, async () => {
       '.verd-big b',
       '#cv h2',
       '.cvx-ask',
+      '.cvx-line',
       '.cvx-fu p',
       '.cvx-feeds b',
       '#them h2',
@@ -62,6 +63,32 @@ test(`candidate final handoff cascade (${browserName})`, async () => {
               const s = getComputedStyle(el);
               return Object.fromEntries(props.map((p) => [p, s[p]]));
             }, properties);
+        if (selector === '.cvx-line') {
+          const geometry = (page) =>
+            page
+              .locator(selector)
+              .first()
+              .evaluate((el) => {
+                const s = getComputedStyle(el);
+                return Object.fromEntries(
+                  [
+                    'display',
+                    'textAlign',
+                    'backgroundColor',
+                    'borderTopWidth',
+                    'paddingTop',
+                    'paddingRight',
+                    'paddingBottom',
+                    'paddingLeft',
+                  ].map((key) => [key, s[key]])
+                );
+              });
+          assert.deepEqual(
+            await geometry(migrated),
+            await geometry(reference),
+            `${width}px CV tab must retain handoff row styling`
+          );
+        }
         const expected = await get(reference);
         const actual = await get(migrated);
         records.push({ width, selector, expected, actual });
