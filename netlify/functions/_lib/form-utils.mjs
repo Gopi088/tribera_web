@@ -365,7 +365,7 @@ const getDecodedBodyByteLength = (eventBody, isBase64Encoded) => {
 };
 
 export const parseMultipartForm = async (event, options = {}) => {
-  const { maxFiles = 1, maxFileSize = MAX_FILE_SIZE_BYTES } = options;
+  const { maxFiles = 1, maxFileSize = MAX_FILE_SIZE_BYTES, rejectExtraFiles = false } = options;
   const contentType = event.headers['content-type'] || event.headers['Content-Type'];
 
   if (!contentType?.includes('multipart/form-data')) {
@@ -383,6 +383,7 @@ export const parseMultipartForm = async (event, options = {}) => {
     const fields = {};
     const files = [];
     let fileTooLarge = false;
+    let tooManyFiles = false;
 
     const busboy = Busboy({
       headers: { 'content-type': contentType },
@@ -393,6 +394,10 @@ export const parseMultipartForm = async (event, options = {}) => {
         fieldNameSize: 100,
         fieldSize: 10 * 1024,
       },
+    });
+
+    busboy.on('filesLimit', () => {
+      tooManyFiles = true;
     });
 
     busboy.on('field', (name, value) => {
@@ -428,6 +433,10 @@ export const parseMultipartForm = async (event, options = {}) => {
     busboy.on('error', reject);
 
     busboy.on('close', () => {
+      if (rejectExtraFiles && tooManyFiles) {
+        reject(new FormValidationError('Please attach exactly one CV.', 400));
+        return;
+      }
       if (fileTooLarge) {
         reject(new FormValidationError('Uploaded file must be 10 MB or smaller.', 413));
         return;
@@ -442,7 +451,7 @@ export const parseMultipartForm = async (event, options = {}) => {
 
 export const runFormRequestChecks = async (
   event,
-  { scope, maxFiles = 1, maxFileSize = MAX_FILE_SIZE_BYTES, honeypotField = 'botcheck' } = {}
+  { scope, maxFiles = 1, maxFileSize = MAX_FILE_SIZE_BYTES, honeypotField = 'botcheck', rejectExtraFiles = false } = {}
 ) => {
   const originCheck = validateRequestOrigin(event);
   if (!originCheck.ok) {
@@ -463,7 +472,7 @@ export const runFormRequestChecks = async (
   let files;
 
   try {
-    ({ fields, files } = await parseMultipartForm(event, { maxFiles, maxFileSize }));
+    ({ fields, files } = await parseMultipartForm(event, { maxFiles, maxFileSize, rejectExtraFiles }));
   } catch (error) {
     if (error instanceof FormValidationError) {
       return {
