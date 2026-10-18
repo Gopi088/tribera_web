@@ -42,6 +42,7 @@ export default defineConfig({
         const pathname = new URL(page).pathname;
 
         if (
+          pathname.startsWith('/__v9/') ||
           pathname.startsWith('/category/') ||
           pathname.startsWith('/tag/') ||
           pathname === '/privacy/' ||
