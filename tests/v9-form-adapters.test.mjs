@@ -147,9 +147,9 @@ test('native POST gets readable HTML result and enhanced request gets JSON', asy
   await withEnv(env, () =>
     withMockedFetch(async () => {
       const response = await candidate(await event({}, { headers: { ...headers, accept: 'text/html' } }));
-      assert.equal(response.statusCode, 200);
-      assert.match(response.headers['Content-Type'], /text\/html/);
-      assert.match(response.body, /<h1>Submission received<\/h1>/);
+      assert.equal(response.statusCode, 303);
+      assert.equal(response.headers.Location, '/.netlify/functions/candidate-form-v9?received=1');
+      assert.equal(response.body, '');
       const error = await candidate(await event({ intent: 'bad' }, { headers: { ...headers, accept: 'text/html' } }));
       assert.equal(error.statusCode, 400);
       assert.match(error.body, /valid job-search preference/);

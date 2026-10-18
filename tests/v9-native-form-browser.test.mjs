@@ -14,16 +14,18 @@ const server = createServer(async (request, response) => {
   try {
     const chunks = [];
     for await (const chunk of request) chunks.push(chunk);
+    const url = new URL(request.url, `http://${request.headers.host}`);
     const event = {
+      queryStringParameters: Object.fromEntries(url.searchParams),
       httpMethod: request.method,
       headers: request.headers,
       body: Buffer.concat(chunks).toString('base64'),
       isBase64Encoded: true,
     };
     const result =
-      request.url === '/.netlify/functions/candidate-form-v9'
+      url.pathname === '/.netlify/functions/candidate-form-v9'
         ? await render(event)
-        : request.url === '/.netlify/functions/candidate-profile-v9'
+        : url.pathname === '/.netlify/functions/candidate-profile-v9'
           ? await submit(event)
           : { statusCode: 404, body: 'Not found' };
     response.writeHead(result.statusCode, result.headers);
@@ -63,11 +65,13 @@ try {
         await page.getByLabel('Phone number (optional)').fill('+91 9876543210');
         await new Promise((resolve) => setTimeout(resolve, 1600));
         await Promise.all([
-          page.waitForURL('**/candidate-profile-v9'),
+          page.waitForURL('**/candidate-form-v9?received=1'),
           page.getByRole('button', { name: 'Send my CV' }).click(),
         ]);
         assert.equal(await page.locator('h1').textContent(), 'Submission received');
         assert.equal(calls.length, 1);
+        await page.reload();
+        assert.equal(calls.length, 1, 'Refreshing the GET receipt does not replay the POST');
         assert.match(calls[0].json.text, /Open to the right role/);
         assert.match(calls[0].json.text, /9876543210/);
         assert.equal(calls[0].json.attachments.length, 1);

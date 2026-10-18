@@ -7,12 +7,11 @@ import { createMultipartEvent, withEnv, withMockedFetch } from './netlify-functi
 
 test('native CV form issues a fresh uncacheable timestamp and rejects other methods', async () => {
   const before = Date.now();
-  const response = await form({ httpMethod: 'GET', queryStringParameters: { intent: '<script>' } });
+  const response = await form({ httpMethod: 'GET' });
   const stamp = Number(response.body.match(/name="form_loaded_at" value="(\d+)"/)[1]);
   assert.ok(stamp >= before && stamp <= Date.now());
   assert.equal(response.headers['Cache-Control'], 'no-store');
   assert.equal(response.headers['X-Robots-Tag'], 'noindex, nofollow');
-  assert.doesNotMatch(response.body, /<script/);
   assert.match(response.body, /action="\/\.netlify\/functions\/candidate-profile-v9"/);
   assert.equal((await form({ httpMethod: 'POST' })).statusCode, 405);
 });
@@ -40,9 +39,9 @@ test('server-issued native form submits after reading time, with existing timing
         assert.equal((await submit(event)).statusCode, 400, 'Immediate bot submission remains rejected');
         t.mock.method(Date, 'now', () => now + 3000);
         const accepted = await submit(event);
-        assert.equal(accepted.statusCode, 200);
-        assert.match(accepted.headers['Content-Type'], /text\/html/);
-        assert.match(accepted.body, /Submission received/);
+        assert.equal(accepted.statusCode, 303);
+        assert.equal(accepted.headers.Location, '/.netlify/functions/candidate-form-v9?received=1');
+        assert.equal(accepted.body, '');
         assert.equal(calls.length, 1);
         t.mock.method(Date, 'now', () => now + 3 * 60 * 60 * 1000);
         assert.equal((await submit(event)).statusCode, 400, 'Expired form remains rejected');

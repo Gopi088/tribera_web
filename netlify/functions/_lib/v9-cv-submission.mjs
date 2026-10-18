@@ -16,10 +16,21 @@ import { JOB_CATALOG } from './job-catalog.mjs';
 // Native POSTs receive a readable result; enhanced clients must request JSON.
 // The UI must still provide botcheck and a fresh form_loaded_at. The candidate
 // native form issues that timestamp at request time in candidate-form-v9.mjs.
-const negotiateResponse = (event, response) => {
+const negotiateResponse = (event, response, kind) => {
   const accept = event.headers?.accept || event.headers?.Accept || '';
   if (!accept.includes('text/html') || accept.includes('application/json')) return response;
   const result = JSON.parse(response.body);
+  if (kind === 'candidate' && result.success) {
+    return {
+      statusCode: 303,
+      headers: { Location: '/.netlify/functions/candidate-form-v9?received=1', 'Cache-Control': 'no-store' },
+      body: '',
+    };
+  }
+  const retry =
+    kind === 'candidate' && !result.success
+      ? '<p><a href="/.netlify/functions/candidate-form-v9">Open a fresh CV form and try again</a></p>'
+      : '';
   const heading = result.success ? 'Submission received' : 'Submission could not be completed';
   const message = result.success
     ? 'Thank you. Your CV has been received by the team.'
@@ -32,7 +43,7 @@ const negotiateResponse = (event, response) => {
       'Cache-Control': 'no-store',
       'Content-Security-Policy': "default-src 'none'; base-uri 'none'; frame-ancestors 'none'",
     },
-    body: `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${heading}</title></head><body><main><h1>${heading}</h1><p>${escapeHtml(message)}</p><p><a href="/">Return to Tribera</a></p></main></body></html>`,
+    body: `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${heading}</title></head><body><main><h1>${heading}</h1><p>${escapeHtml(message)}</p>${retry}<p><a href="/">Return to Tribera</a></p></main></body></html>`,
   };
 };
 
@@ -42,7 +53,7 @@ export const createV9CvHandler = (kind) => {
   // Share the existing limiter buckets so alternate versions cannot double quotas.
   const scope = career ? 'careers-apply' : 'candidate-profile';
   return async (event) => {
-    const respond = (response) => negotiateResponse(event, response);
+    const respond = (response) => negotiateResponse(event, response, kind);
     if (event.httpMethod !== 'POST') return respond(json(405, { success: false, message: 'Method not allowed.' }));
     try {
       const checks = await runFormRequestChecks(event, { scope, rejectExtraFiles: true });

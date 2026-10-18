@@ -11,6 +11,13 @@ export const handler = async (event) => {
   if (event.httpMethod !== 'GET') {
     return { statusCode: 405, headers: { ...headers, Allow: 'GET' }, body: 'Method not allowed.' };
   }
+  if (event.queryStringParameters?.received === '1') {
+    return {
+      statusCode: 200,
+      headers,
+      body: '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Submission received · Tribera</title></head><body><main><h1>Submission received</h1><p>Thank you. Your CV has been received by the team.</p><p><a href="/">Return to Tribera</a></p></main></body></html>',
+    };
+  }
   return {
     statusCode: 200,
     headers,
