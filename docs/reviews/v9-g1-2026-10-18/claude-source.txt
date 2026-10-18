@@ -1,0 +1,40 @@
+Confirmed: no legacy global stylesheet references any `v9-`/`.v9` selector, and v9 CSS files live only under their own directory. Isolation holds both directions.
+
+---
+
+## Independent review: v9 G1 foundation candidate `298acc3` vs baseline `00ed84d`
+
+**Scope covered:** `src/components/v9/*`, `V9Layout.astro`, `foundation.css`/`fonts.css`/`content.css`, `foundation.ts`, both `[preview]` fixture pages, all `tests/v9-*`, `scripts/v9-evidence.mjs`, `package.json`, font/icon provenance, relevant handoff HTML sections, and current `artifacts/v9-g1` evidence/screenshots.
+
+### Finding 1 — Mandatory. Sources heading fix is incomplete; test evidence already shows it failing
+
+`src/assets/styles/v9/content.css:134-143` (`.v9-sources h2`) hardcodes `font-size: 1.04rem`, but the handoff's actual cascade for this element (`.ql` overridden by the higher-specificity `.bl-art p` rule in `sample_data/.../blog/seventeen-interviews-one-hire.html:1616`) is `font-size: clamp(1.04rem, 1.25vw, 1.14rem)`. The flat value only coincides with the clamp's minimum at narrow/medium viewports. This is confirmed, not theoretical: `artifacts/v9-g1/content-reference-chromium/result.json` (`status: "failed"`) and `artifacts/v9-g1/final-chromium.log` — the most recent foundation test run — both fail with `Handoff discrepancies: 1366px source heading, 1920px source heading` (expected `17.075px`/`30.3935px` line-height vs actual `16.64px`/`29.6192px`).
+
+This contradicts the premise that f72d425 fully "fixed" the Sources heading cascade — it fixed color/weight/tracking but left the size non-responsive. By contrast, the same commit's handling of `.v9-article-lead` (`content.css:34`) correctly reused the exact clamp formula from `.bl-head .lead`, so the inconsistency looks like an oversight on this one rule, not a deliberate simplification.
+
+**Fix:** change `.v9-sources h2` font-size to `clamp(1.04rem, 1.25vw, 1.14rem)` (line-height 1.78 already scales correctly once font-size is right). Re-run `test:migration:foundation` for all three engines before this batch is accepted — per the gate policy, a result file showing `"status": "failed"` cannot be treated as passing evidence regardless of the "rebuilding" status note.
+
+### Finding 2 — Non-blocking / representative-page follow-up: byline tracking fix verified correct
+
+The companion claim — that `.v9-author-meta` byline tracking now matches the handoff — checks out. `content.css:64-77` reproduces `.bl-meta`'s `font-family: var(--mono); font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3)` exactly, and the `artifacts/.../content-reference-chromium/result.json` records matching `expected`/`actual` for `author name`, `author role`, `author date`, `reading time`, and spacing at every tested width. This part of f72d425 is sound.
+
+### Finding 3 — Informational: footer/route provenance is correctly scoped
+
+`Footer.astro`'s three not-yet-live destinations (`/case-study`, `/how-we-work-with-numbers`, `/dpa`) are correctly absent from `src/pages`, and both private fixtures (`[fixture].astro:20`, `content.astro:18`) override exactly those three to existing routes via `footerLinkOverrides`. `/industries` is correctly left un-overridden since `src/pages/industries/index.astro` already exists. Production `Footer.astro` default destinations are untouched, matching the "retain until routes land" contract in `docs/v9-migration-plan.md`.
+
+### Finding 4 — Informational: isolation, exposure, and provenance are solid
+
+- **CSS/layout isolation:** No legacy page imports `V9Layout`, `components/v9/*`, or `styles/v9/*`; no legacy stylesheet defines any `.v9`/`v9-` selector. Only the two preview fixtures reference v9 code.
+- **No accidental public exposure:** `getStaticPaths()` in both `[preview]` pages returns `[]` unless `import.meta.env.DEV || V9_PREVIEW === '1'`; `artifacts/v9-g1/production-build-final.log` (a plain `astro build`) contains zero `__v9` routes; fixtures are always `noindex, nofollow` with no canonical link.
+- **Font/asset provenance:** `tests/v9-assets.test.mjs` fail-closed-verifies byte count, SHA-256, WOFF2 signature, `fonts.gstatic.com` source host, OFL license text, and axis ranges for all 19 font files and 6 icons against `public/fonts/v9/manifest.json`/`public/brand/v9/icons-manifest.json`. No remote font URLs in the shipped CSS (`!css.includes('https://')` is asserted).
+- **Evidence aggregation (`scripts/v9-evidence.mjs`):** genuinely fail-closed — rejects missing/malformed reports, wrong revision/build/lock hash, dirty tree, skipped/failed/zero-count suites, duplicate report identities, and self-authored summaries; its own test suite (`tests/v9-evidence.test.mjs`) exercises all of these negative paths.
+- **No-JS / reduced motion / keyboard:** `tests/v9-foundation.test.mjs` and `v9-content.test.mjs` both cover `javaScriptEnabled:false` contexts and `reducedMotion:'reduce'`, confirming disclosures, menu, FAQ, client strip, and reveal animations degrade correctly (`foundation.ts` logic matches: `data-ready`/`data-running` gating, `animation:none !important` under reduced motion, finite reveal that calls `.finish()` when hidden/reduced).
+- **Hero reference (21 cases):** `artifacts/v9-g1/reference-chromium/result.json` is genuinely `"status": "passed"` — product/editorial/compact hero typography and grid geometry match the handoff at all 7 widths × 3 variants, consistent with the task's note.
+
+### Verdict
+
+**Source review: ACCEPT WITH ONE MANDATORY FIX, pending re-validation.**
+
+The foundation's architecture, isolation boundaries, no-JS/reduced-motion behavior, font/icon provenance, footer-override scoping, and evidence-aggregation fail-closed design are all sound and independently verifiable from the repo state and its own recorded test output. However, the specific claim that f72d425 fully resolved the Sources heading cascade is not yet true: the candidate's own most recent foundation test run (`final-chromium.log`) still fails on exactly that selector at 1366px/1920px. This is a one-line CSS fix (restore the clamp on `.v9-sources h2` font-size), but it must be applied and the full `test:migration:foundation` suite (Chromium, Firefox, WebKit) must show a genuine pass — not inferred from the "rebuilding" status — before this batch can be marked G1-accepted. Treat current `artifacts/v9-g1/content-reference-chromium/result.json` as the authoritative, current failure, not stale evidence.
+
+No other functional regressions, CSS cascade leaks, accessibility gaps, or public-exposure risks were found in this scope.

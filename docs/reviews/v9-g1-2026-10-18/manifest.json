@@ -1,0 +1,27 @@
+[
+  {
+    "name": "claude-source",
+    "revision": "298acc3f3a412ab41e17d8fcd05242f1be41784e",
+    "exitCode": 0,
+    "isError": false,
+    "subtype": "success",
+    "sessionId": "ddafcafa-d712-480a-9236-3a36bf2e57de",
+    "models": ["claude-sonnet-5"],
+    "report": "claude-source.txt",
+    "reportSha256": "2d19cbdf98a95745dacb1b3eb04ec1b7044dedd84de7893c385e0af9eaee2089",
+    "rawResult": "artifacts/v9-g1/claude/raw/source.json",
+    "note": "Initial review requested against298acc3; work continued on typography during this source review. Final frozen-tree follow-up is the acceptance record."
+  },
+  {
+    "name": "claude-followup",
+    "revision": "5baa47b4c8fed7f8a8f061ba096f01df366ae729",
+    "exitCode": 0,
+    "isError": false,
+    "subtype": "success",
+    "sessionId": "044d4107-6cfd-4742-bd62-179ee04bcd25",
+    "models": ["claude-sonnet-5"],
+    "report": "claude-followup.txt",
+    "reportSha256": "59cde2afd6be0c6ac17397ac58fdcb2c337b10eb43c93941609f53fa31042c35",
+    "rawResult": "artifacts/v9-g1/claude/raw/followup.json"
+  }
+]

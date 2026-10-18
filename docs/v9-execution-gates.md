@@ -4,7 +4,7 @@ Execute the [migration plan](v9-migration-plan.md) with isolated workstreams, on
 
 Tests reduce the chance of regressions; they cannot guarantee that no defect exists. The operating rule is that failures, missing coverage and untested environments remain visible and cannot be reported as a passed gate.
 
-This document defines the execution policy. The new gate runner, CI jobs and repository branch protections still need implementation or configuration. Creating this document does not enforce them.
+This document defines the execution policy. The gate runner and CI jobs are implemented; remote branch protection still needs configuration. This document alone does not enforce merge permissions.
 
 ## Team and isolation
 
@@ -183,3 +183,11 @@ This accepts the bootstrap controls, not the full website migration or G1–G7 r
 Actual Claude Code reviews of `cabcd11` covered backend/CI contracts and foundation/baseline evidence separately; both returned **ACCEPT WITH FOLLOW-UPS**. The follow-up at `339264f` returned **ACCEPT**, with no bootstrap blockers, after the inherited-key defect in the legacy career lookup was fixed and foundation screenshot capture made reproducible using reduced motion. The expanded unit suite passed 87 tests; all three preview browser gates passed 16 checks each. Reports, model/session provenance and dispositions are saved in `docs/reviews/v9-bootstrap-2026-10-18/`.
 
 The remaining summary-generator improvement is non-blocking: bootstrap summary files are convenience records, not independently executable gates. Continue to use raw gate JSON, command logs and required CI results as the authority, and add reproducible summary generation before later batches rely on summaries alone. Existing G1–G7 acceptance requirements remain unchanged.
+
+## G1 private foundation acceptance — 18 October 2026
+
+The shared foundation batch is accepted at `5baa47b`, with an actual Claude follow-up verdict of **ACCEPT**. See the [acceptance record](v9-g1-acceptance.md) for changes, exact validation, artifact hashes, failed-run dispositions and remaining boundaries. All 77 existing HTML pages and 214 baseline files remain byte-identical; no production page adopts the new layout yet.
+
+The foundation command now includes article/source/testimonial behavior and final-cascade comparisons. The new `scripts/v9-evidence.mjs` generates a fail-closed aggregate from an explicitly required set of raw static/browser reports; this resolves the bootstrap's manually assembled-summary follow-up for subsequent batches. It does not substitute for component, Claude, hosted or release gates.
+
+Next: G2 representative pages in private previews. Keep full-page parity, page-owned product/carousel behavior, forms, future footer destinations and hosted validation gated. Local acceptance does not assert that remote CI or branch protection has run.

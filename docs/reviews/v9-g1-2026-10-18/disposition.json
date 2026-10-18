@@ -1,0 +1,28 @@
+{
+  "reviewedRevision": "5baa47b4c8fed7f8a8f061ba096f01df366ae729",
+  "reviewer": "Actual Claude Code CLI sessions; model/session provenance in manifest.json",
+  "initialVerdict": "ACCEPT WITH ONE MANDATORY FIX, pending re-validation",
+  "finalVerdict": "ACCEPT",
+  "findings": [
+    {
+      "id": "source-1",
+      "status": "fixed and accepted by Claude follow-up",
+      "finding": "Sources heading must preserve the handoff responsive clamp",
+      "resolution": "5ac7306 restores clamp(1.04rem,1.25vw,1.14rem). All 95 final content comparisons pass in each engine."
+    },
+    {
+      "id": "source-2",
+      "status": "verified",
+      "finding": "Byline tracking correction",
+      "resolution": "Parent font-size 0.62rem matches handoff; comparisons pass."
+    },
+    {
+      "id": "source-3",
+      "status": "representative-page boundary retained",
+      "finding": "Future footer destinations and page-owned visuals",
+      "resolution": "Private overrides remain explicit; new public routes, full-page composition, carousel/product visuals and hosted gates remain separate."
+    }
+  ],
+  "scope": "Private shared foundation only; no full website migration, hosted delivery or remote CI acceptance claimed.",
+  "evidence": "artifacts/v9-g1/required-evidence.json + automatically generated gate-summary.json; see docs/v9-g1-acceptance.md."
+}
