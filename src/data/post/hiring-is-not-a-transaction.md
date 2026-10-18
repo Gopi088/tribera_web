@@ -7,7 +7,6 @@ author: 'tribera'
 category: 'Hiring Philosophy'
 tags: ['thought-leadership', 'human-first-hiring', 'empathy', 'talent-acquisition']
 image: '~/assets/images/blog/hiring-is-not-a-transaction.png'
-readingTime: '4 min'
 ---
 
 I’ve lost count of the number of times I’ve heard, _“We just need this role closed.”_

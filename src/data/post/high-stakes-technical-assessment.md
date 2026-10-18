@@ -13,8 +13,6 @@ category: 'AI & Assessment'
 tags: ['ai-in-hiring', 'technical-assessment', 'structured-evaluation', 'decision-infrastructure', 'engineering']
 
 image: '~/assets/images/blog/ai-technical-assessment.png'
-
-readingTime: '5 min'
 ---
 
 Technical hiring is different.

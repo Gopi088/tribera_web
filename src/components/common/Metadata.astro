@@ -1,5 +1,6 @@
 ---
 import merge from 'lodash.merge';
+import { shouldNoIndex } from '~/utils/indexing-policy';
 
 import { SITE, METADATA, I18N } from 'astrowind:config';
 import type { MetaData, MetaDataOpenGraph, MetaDataTwitter } from '~/types';
@@ -74,13 +75,16 @@ const resolvedTitle =
 // production, so a dev page would otherwise present itself as the live page.
 // Local dev (import.meta.env.DEV), any Netlify non-production deploy
 // (CONTEXT = deploy-preview / branch-deploy) and any Netlify subdomain
-// (triberaai.netlify.app) are all forced noindex.
-const isDevEnv =
-  import.meta.env.DEV ||
-  (typeof process !== 'undefined' && process.env.CONTEXT !== undefined && process.env.CONTEXT !== 'production') ||
-  (typeof process !== 'undefined' && process.env.URL !== undefined && process.env.URL.includes('netlify.app'));
+// (triberaai.netlify.app) are all forced noindex. Unknown build contexts also
+// fail closed; a release build must explicitly set CONTEXT=production.
+const noindex = shouldNoIndex({
+  dev: import.meta.env.DEV,
+  context: typeof process !== 'undefined' ? process.env.CONTEXT : undefined,
+  url: typeof process !== 'undefined' ? process.env.URL : undefined,
+  noindex: seoProps.noindex,
+});
 
-const robotsContent = `${isDevEnv || seoProps.noindex ? 'noindex' : 'index'}, ${seoProps.nofollow ? 'nofollow' : 'follow'}`;
+const robotsContent = `${noindex ? 'noindex' : 'index'}, ${seoProps.nofollow ? 'nofollow' : 'follow'}`;
 const resolvedTwitter = seoProps.twitter as MetaDataTwitter | undefined;
 const resolvedOpenGraph = await adaptOpenGraphImages(
   {

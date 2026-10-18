@@ -1,0 +1,13 @@
+--- src/components/blog/HeroFilters.astro before
++++ src/components/blog/HeroFilters.astro now
+@@ -41,7 +41,9 @@
+   !filters.some((filter) => filter.type === 'tag' && filter.slug === activeSlug)
+ ) {
+   filters.push({
+-    label: activeTag.title,
++    label: categories.some((category) => category.slug === activeTag.slug)
++      ? `Tag: ${activeTag.title}`
++      : activeTag.title,
+     slug: activeTag.slug,
+     type: 'tag',
+     href: getPermalink(activeTag.slug, 'tag'),

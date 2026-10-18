@@ -12,17 +12,31 @@ try {
     await page.evaluate(() => document.fonts.ready);
     assert.equal(await page.locator('h1').count(), 1);
     assert.equal(await page.locator('.tribera-home').count(), 0);
-    assert.equal(await page.locator('#savings').count(), 0);
+    assert.equal(await page.locator('#savings').count(), 1);
     const ids = await page.locator('[id]').evaluateAll((elements) => elements.map((element) => element.id));
     assert.equal(new Set(ids).size, ids.length, 'No duplicate IDs');
     const order = await page
       .locator('.v58-home section[id]')
       .evaluateAll((elements) => elements.map((element) => element.id));
     assert.ok(order.indexOf('what') < order.indexOf('proof'));
-    assert.deepEqual(order.slice(order.indexOf('work'), order.indexOf('ways') + 1), ['work', 'benefits', 'ways']);
-    const benefits = page.locator('#benefits');
+    assert.deepEqual(order, [
+      'what',
+      'proof',
+      'funnel',
+      'ops',
+      'experts',
+      'work',
+      'savings',
+      'ways',
+      'trust',
+      'results',
+      'procurement',
+      'start',
+    ]);
+    assert.equal(await page.locator('#work + #savings + #ways').count(), 1);
+    const benefits = page.locator('#savings');
     assert.equal(await benefits.locator('article').count(), 3);
-    assert.doesNotMatch(await benefits.innerText(), /32|36|38|wasted rounds/);
+    assert.match(await benefits.innerText(), /Five wasted rounds, gone/);
     const benefitBoxes = await benefits.locator('article').evaluateAll((elements) =>
       elements.map((element) => {
         const rect = element.getBoundingClientRect();
@@ -31,16 +45,16 @@ try {
     );
     assert.equal(
       benefitBoxes[0].y === benefitBoxes[1].y,
-      width >= 720,
+      width >= 760,
       'Benefits stack on mobile and form a row on desktop'
     );
-    assert.deepEqual(order.slice(order.indexOf('proof'), order.indexOf('funnel') + 1), ['proof', 'experts', 'funnel']);
+    assert.deepEqual(order.slice(order.indexOf('proof'), order.indexOf('funnel') + 1), ['proof', 'funnel']);
     assert.equal(
-      await page.locator('.v58-home section.v58-dark + section.v58-dark').count(),
-      0,
-      'Dark sections have a light section between them'
+      await page.locator('#proof.v58-dark + #funnel.v58-dark').count(),
+      1,
+      'The v61 demonstration leads directly into the real hiring case'
     );
-    for (const id of ['what', 'proof', 'experts', 'funnel', 'work', 'benefits', 'ways', 'results', 'trust']) {
+    for (const id of ['what', 'proof', 'experts', 'funnel', 'ops', 'work', 'ways', 'results', 'trust']) {
       const alignment = await page.locator(`#${id}`).evaluate((section) => {
         const heading = section.querySelector('h2');
         // The tablet workflow intentionally centres a narrower, stacked column.
@@ -67,6 +81,9 @@ try {
           .filter((href) => href.length > 1 && !document.getElementById(decodeURIComponent(href.slice(1))))
       );
     assert.deepEqual(missingAnchors, [], 'Every homepage section link has a target');
+    await page.locator('#benefits').evaluate((el) => el.scrollIntoView({ behavior: 'instant' }));
+    const benefitsAnchorTop = await page.locator('#benefits').evaluate((el) => el.getBoundingClientRect().top);
+    assert.ok(benefitsAnchorTop >= 95 && benefitsAnchorTop <= 105, 'Legacy benefits anchor clears the fixed header');
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
     assert.ok(
       await page.locator('h1').evaluate((element) => element.scrollWidth <= element.clientWidth + 8),
@@ -74,7 +91,7 @@ try {
     );
     assert.doesNotMatch(
       await page.locator('.v58-home').innerText(),
-      /Tribera Three|DPDP-aligned|audited for adverse impact|transcript 04:12/
+      /Tribera Three|audited for adverse impact|transcript 04:12/
     );
 
     for (const [selector, title, intent] of [
@@ -123,13 +140,13 @@ try {
         'funnel-section',
         'experts',
         'work',
-        'benefits',
+        'savings',
         'ways',
         'results',
         'trust',
         'start',
       ]) {
-        const section = page.locator(`.v58-${name}`).first();
+        const section = page.locator(name === 'savings' ? '#savings' : `.v58-${name}`).first();
         await page.mouse.move(0, 0);
         await section.scrollIntoViewIfNeeded();
         await page.waitForTimeout(250);
@@ -149,7 +166,7 @@ try {
   }
   const page = await browser.newPage({ javaScriptEnabled: false });
   await page.goto(base);
-  assert.equal(await page.locator('[data-v58-count]').textContent(), '36');
+  assert.deepEqual(await page.locator('[data-v58-count]').allTextContents(), ['36', '36']);
   assert.equal(await page.locator('[data-square]').count(), 126);
   assert.equal(
     await page

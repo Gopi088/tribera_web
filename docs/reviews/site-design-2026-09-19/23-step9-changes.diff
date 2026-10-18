@@ -1,0 +1,140 @@
+--- src/assets/styles/content-typography.css before
++++ src/assets/styles/content-typography.css now
+@@ -1,6 +1,10 @@
+ /* Content-only type roles. Pixel bounds keep the same scale across the legacy
+    15px and 16px layout roots without changing navigation or viewport geometry. */
+ :root {
++  --surface-paper-warm: #f1eee7;
++  --surface-paper-editorial: #f4f3f0;
++  --type-kicker-neutral: #6b6a61;
++  --type-kicker-accent: #da0007;
+   --type-display-weight: 500;
+   --type-display-tracking: -0.01em;
+   --type-hero-size: clamp(32px, 4.48vw, 53.12px);
+--- src/assets/styles/tailwind.css before
++++ src/assets/styles/tailwind.css now
+@@ -709,13 +709,13 @@
+   --onc3: #6e6e68;
+   --red: #da0007;
+   --grn: #3fbe7c;
+-  --paper-v58: #f4f3f0;
++  --paper-v58: var(--surface-paper-editorial, #f4f3f0);
+   --line-v58: rgba(19, 19, 19, 0.1);
+   --line-v58-strong: rgba(19, 19, 19, 0.16);
+   --ink-v58-muted: #57565b;
+   --display-editorial: 'Fraunces', Georgia, serif;
+   --v58-white: #ffffff;
+-  --v58-paper: #f4f3f0;
++  --v58-paper: var(--surface-paper-editorial, #f4f3f0);
+   --v58-charcoal: #121212;
+   --v58-ink: #131313;
+   --v58-muted: #57565b;
+--- src/components/home/v126/sample.css before
++++ src/components/home/v126/sample.css now
+@@ -2,11 +2,11 @@
+   --ease: cubic-bezier(0.16, 0.84, 0.32, 1);
+   --ease-smooth: cubic-bezier(0.22, 0.61, 0.36, 1);
+   --white: #ffffff;
+-  --paper: #f1eee7;
++  --paper: var(--surface-paper-warm, #f1eee7);
+   --ink: #131313;
+   --ink-2: #57565b;
+   --ink-3: #9a998f;
+-  --ink-3-strong: #6b6a61;
++  --ink-3-strong: var(--type-kicker-neutral, #6b6a61);
+   --red: #da0007;
+   --charcoal: #121212;
+   --pw: rgba(255, 255, 255, 0.7);
+@@ -142,7 +142,7 @@
+ 
+ :is(.v126-home, .v126-footer, .v126-header) .eyebrow {
+   font-family: var(--mono);
+-  font-size: 0.7rem;
++  font-size: var(--type-label-size, 12px);
+   letter-spacing: 0.2em;
+   text-transform: uppercase;
+   color: var(--ink-3-strong);
+@@ -4721,7 +4721,7 @@
+   flex-wrap: wrap;
+   gap: 4px 14px;
+   margin: 8px 0 12px;
+-  font: 400 11px/1.5 var(--body);
++  font: 400 12px/1.5 var(--body);
+ }
+ .v126-home .lab-key span:first-child {
+   color: #ff6b6f;
+--- src/components/v58/EditorialPage.astro before
++++ src/components/v58/EditorialPage.astro now
+@@ -14,8 +14,8 @@
+     --display: 'Fraunces', Georgia, serif;
+     --ui: 'Inter Tight', -apple-system, sans-serif;
+     --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+-    --paper: #f4f3f0;
+-    --warm: #f4f3f0;
++    --paper: var(--surface-paper-editorial, #f4f3f0);
++    --warm: var(--surface-paper-editorial, #f4f3f0);
+     --card: #fff;
+     --char: #121212;
+     --ink: #131313;
+@@ -156,7 +156,7 @@
+     font-style: italic;
+   }
+   :root .site-editorial .hero .eyebrow {
+-    color: var(--grey);
++    color: var(--type-kicker-neutral, #6b6a61);
+   }
+   :root .site-editorial .cmpw {
+     box-shadow: 0 20px 36px -28px rgba(19, 19, 19, 0.3);
+--- src/components/v58/Eyebrow.astro before
++++ src/components/v58/Eyebrow.astro now
+@@ -1,22 +1,26 @@
+ ---
+ export interface Props {
+   accent?: boolean;
++  tone?: 'page' | 'accent';
+ }
+-const { accent = true } = Astro.props;
++const { accent = true, tone = 'page' } = Astro.props;
+ ---
+ 
+-<p class="v58-eyebrow">{accent && <span aria-hidden="true">\</span>}<slot /></p>
++<p class:list={['v58-eyebrow', { 'v58-eyebrow--accent': tone === 'accent' }]}>{accent && <span aria-hidden="true">\</span>}<slot /></p>
+ 
+ <style>
+   .v58-eyebrow {
+     display: flex;
+     gap: 0.6em;
+     margin: 0 0 1.28rem;
+-    color: var(--v58-faint);
++    color: var(--type-kicker-neutral, #6b6a61);
+     font-family: var(--v58-mono);
+-    font-size: 0.56rem;
++    font-size: var(--type-label-size, 12px);
+     letter-spacing: 0.2em;
+     text-transform: uppercase;
++  }
++  .v58-eyebrow--accent {
++    color: var(--type-kicker-accent, #da0007);
+   }
+   .v58-eyebrow span {
+     color: var(--v58-red);
+--- src/pages/about.astro before
++++ src/pages/about.astro now
+@@ -6887,7 +6887,7 @@
+       .own {
+         font-family: var(--mono);
+         font-style: normal;
+-        font-size: 8.5px;
++        font-size: 11px;
+         letter-spacing: 0.16em;
+         text-transform: uppercase;
+         padding: 3px 7px;
+@@ -6898,7 +6898,7 @@
+       }
+       .own--you {
+         background: transparent;
+-        color: var(--red);
++        color: #ff6b6f;
+         border-color: rgba(218, 0, 7, 0.45);
+       }
+ 

@@ -2,6 +2,7 @@
 import EditorialPage from '~/components/v58/EditorialPage.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import ReferenceNavStyles from '~/components/standalone/ReferenceNavStyles.astro';
+import { clientNames as aboutClients } from '~/data/clients';
 
 const metadata = {
   title: 'About tribera \u2014 this industry gave us everything',
@@ -4253,7 +4254,7 @@ const metadata = {
         >
           <div>
             <p class="eyebrow eyebrow--red" data-rv>Why now</p>
-            <h2 class="h2" data-rv style="--d:60ms;max-width:none;text-align:center">More reach.<br />Less signal.</h2>
+            <h2 class="h2" data-rv style="--d:60ms;max-width:none;text-align:center">More reach.<br />Less clarity.</h2>
           </div>
           <p class="fn__dek" data-rv style="--d:100ms;max-width:none;text-align:center">
             Reaching a candidate has become easier. Deciding who will belong has not. Those two things are connected,
@@ -4415,15 +4416,15 @@ const metadata = {
                 inside that. Eventually I stopped waiting, and left.
               </p>
               <p>
-                Then Abhishek said he could build the part that transfers. And he did. The hundred signals read before
-                anyone picks up a phone, the questions written off a candidate’s own CV, the scoring against a bar
-                agreed in advance, that runs now at a scale I never could.
+                Then Abhishek said he could build the part that transfers. And he did. The hundred criteria checked
+                before anyone picks up a phone, the questions shaped by the role and a candidate’s experience, the
+                scoring against a bar agreed in advance, that runs now at a scale I never could.
               </p>
               <p>The rest does not transfer, and we stopped pretending it would.</p>
               <p>
                 Reading a person is not a machine problem. This is a people industry, entirely, so the engine hands its
-                work to a senior expert who has done that job, and they do the part no model gets to do. Fifty of them.
-                Fifty heads instead of one.
+                work to a senior expert who has done that job, and they do the part no model gets to do. Different
+                experts, matched to the work.
               </p>
               <p>
                 So this is the instrument, and it is built for the recruiter. That half hour with a candidate is the
@@ -4488,8 +4489,8 @@ const metadata = {
           </div><div class="fnd">
             <span class="fnd__ph" id="ph-abhishek" aria-hidden="true"></span><div>
               <p class="fnd__n">Abhishek Prasad</p><p class="fnd__r">Co-founder &amp; CBO</p><p class="fnd__x">
-                Two decades building products used by millions. Architected the signal engine: what a CV hides, join
-                probability, offer behaviour, retention. The hundred-plus signals behind every verdict are his.
+                Two decades building products used by millions. Architected the assessment engine: what a CV hides, join
+                probability, offer behaviour, retention. The hundred-plus criteria behind every verdict are his.
               </p><p class="fnd__q">He left that coffee unable to stop seeing the problem.</p>
             </div>
           </div><div class="fnd">
@@ -5156,7 +5157,9 @@ const metadata = {
             <p class="fct__x">Pune, Bengaluru and New Jersey.</p>
           </div>
           <div class="fct">
-            <p class="fct__n">50+</p><p class="fct__k">Senior experts</p>
+            <p class="fct__n" style="font-size:clamp(1.5rem, 3vw, 2.5rem)">Role-matched</p><p class="fct__k">
+              Senior experts
+            </p>
             <p class="fct__x">Across twelve sectors and eight functions. Every interview is run by one.</p>
           </div>
           <div class="fct">
@@ -5167,13 +5170,7 @@ const metadata = {
         <div class="clients" data-rv style="--d:170ms">
           <p class="clients__k">Teams we have hired for</p>
           <div class="clients__g">
-            <span class="cl">Flipkart</span><span class="cl">Myntra</span><span class="cl">Heineken</span><span
-              class="cl">Mizuho</span
-            ><span class="cl">ICICI Bank</span><span class="cl">Publicis Sapient</span><span class="cl">Capco</span
-            ><span class="cl">PayU</span><span class="cl">DSP Mutual Fund</span><span class="cl">ICICI Securities</span
-            ><span class="cl">Utkarsh Bank</span><span class="cl">Aeries</span><span class="cl">SplashBI</span><span
-              class="cl">Aegon Life</span
-            ><span class="cl">Enpro</span>
+            {aboutClients.map((name) => <span class="cl">{name}</span>)}
           </div>
         </div>
         <p class="facts__ft" data-rv>
@@ -5208,8 +5205,8 @@ const metadata = {
             <span class="step__n">02</span>
             <span class="step__t">Nobody interviews for us who has not done the job</span>
             <span class="step__d"
-              >The bench is fifty. It has to grow without that sentence stopping being true, which is the hardest
-              constraint in the business.</span
+              >The expert bench has to grow without that sentence stopping being true, which is the hardest constraint
+              in the business.</span
             >
           </div>
           <div class="step">
@@ -5251,7 +5248,7 @@ const metadata = {
           <p class="door__k">If you’re hiring</p>
           <p class="door__t">Three names you’d take any of.</p>
           <p class="door__d">
-            A hundred signals, a senior expert on each shortlisted person, and the reasoning behind every rank.
+            A hundred criteria, a senior expert on each shortlisted person, and the reasoning behind every rank.
           </p>
           <p class="door__next"><span>Next</span> A 45-minute intake call. Three names back inside 36 hours.</p>
           <a href="/" class="btn btn--dark">See how one role ran</a>
@@ -5622,8 +5619,8 @@ const metadata = {
       .h2 {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(30px, 4.2vw, 54px);
-        line-height: 1.04;
+        font-size: var(--type-section-size);
+        line-height: var(--type-section-leading);
         letter-spacing: -0.04em;
         margin: 0;
         max-width: 16ch;
@@ -5857,7 +5854,7 @@ const metadata = {
       }
       .hero h1 {
         max-width: 18ch;
-        font-size: clamp(36px, 4.6vw, 62px);
+        font-size: var(--type-hero-size);
       }
       .hero h1 + .hero__p {
         margin-top: 18px;
@@ -6890,7 +6887,7 @@ const metadata = {
       .own {
         font-family: var(--mono);
         font-style: normal;
-        font-size: 8.5px;
+        font-size: 11px;
         letter-spacing: 0.16em;
         text-transform: uppercase;
         padding: 3px 7px;
@@ -6901,7 +6898,7 @@ const metadata = {
       }
       .own--you {
         background: transparent;
-        color: var(--red);
+        color: #ff6b6f;
         border-color: rgba(218, 0, 7, 0.45);
       }
 
@@ -9045,8 +9042,8 @@ const metadata = {
         color: #fff;
       }
       .trust__dek {
-        font-size: clamp(16px, 1.7vw, 20px);
-        line-height: 1.6;
+        font-size: var(--type-subtitle-size);
+        line-height: var(--type-subtitle-leading);
         color: var(--onc2);
         max-width: 44ch;
         margin: 0;
@@ -11173,7 +11170,7 @@ const metadata = {
         text-transform: uppercase;
         color: var(--red);
         margin: 0 0 clamp(22px, 2.6vw, 32px);
-        text-align: center;
+        text-align: left;
       }
       .ltr__body p {
         font-size: clamp(16.5px, 1.2vw, 19px);

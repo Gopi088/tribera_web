@@ -1,0 +1,35 @@
+{
+ "note": "Add a quote by adding an object. side: hiring or candidate. The homepage shows all; the candidates page shows candidate quotes.",
+ "testimonials": [
+  {
+   "side": "hiring",
+   "quote": "The profiles were high-quality and well matched, and the team stayed close until every candidate was onboarded. That responsiveness helped us meet our customer commitments on time.",
+   "name": "Sashank Pappu",
+   "role": "Founder & CEO, Antz AI"
+  },
+  {
+   "side": "candidate",
+   "quote": "From the very first conversation, the recruitment process was handled with professionalism, transparency, and consistent communication. From coordinating interviews and providing timely updates to offering guidance and encouragement at every stage, Chyna made what is often a stressful process feel smooth and well-organized.",
+   "name": "Anil Giri",
+   "role": "Placed through Tribera"
+  },
+  {
+   "side": "candidate",
+   "name": "Nirmala P",
+   "role": "Placed through Tribera",
+   "quote": "The role and the JD were explained clearly on the first call, and my profile was with the hiring team the same day. Every question got a quick answer, on chat, call or email. When onboarding hit a technical delay, the team stayed with it until I was through, even with my recruiter on leave. Someone stepped in and nothing was lost."
+  },
+  {
+   "side": "candidate",
+   "quote": "Expectations, timelines and feedback were clear at every stage, which made the whole process feel structured and genuinely well-run.",
+   "name": "Reema Mitra",
+   "role": "Placed through Tribera"
+  },
+  {
+   "side": "candidate",
+   "quote": "Your steady follow-ups and your skill in coordinating schedules made the entire process feel effortless. You were transparent at every stage, so I always knew where things stood and what to expect next. Even on my Day 1, you were there to help.",
+   "name": "Prasath S",
+   "role": "Placed through Tribera · writing to Anarghya, his recruiter"
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+---
+import hero from './sections/hero.html?raw';
+import Proof from './Proof.astro';
+import thesis from './sections/thesis.html?raw';
+import funnel from './sections/funnel.html?raw';
+import operations from './sections/operations.html?raw';
+import experts from './sections/experts.html?raw';
+import workflow from './sections/workflow.html?raw';
+import savings from './sections/savings.html?raw';
+import ways from './sections/ways.html?raw';
+import results from './sections/results.html?raw';
+import trust from './sections/trust.html?raw';
+import procurement from './sections/procurement.html?raw';
+import faq from './sections/faq.html?raw';
+import start from './sections/start.html?raw';
+import './sample.css';
+---
+
+<div class="v126-home">
+  <Fragment set:html={hero} />
+  <Proof />
+  <Fragment set:html={thesis} />
+  <Fragment set:html={funnel} />
+  <Fragment set:html={operations} />
+  <Fragment set:html={experts} />
+  <Fragment set:html={workflow} />
+  <Fragment set:html={savings} />
+  <Fragment set:html={ways} />
+  <Fragment set:html={results} />
+  <Fragment set:html={trust} />
+  <Fragment set:html={procurement} />
+  <Fragment set:html={faq} />
+  <Fragment set:html={start} />
+</div>
+<script>
+  import './interactions.js';
+</script>

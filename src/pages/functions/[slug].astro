@@ -195,8 +195,8 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
       .h2 {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(30px, 4.2vw, 54px);
-        line-height: 1.04;
+        font-size: var(--type-section-size);
+        line-height: var(--type-section-leading);
         letter-spacing: -0.04em;
         margin: 0;
         max-width: 16ch;
@@ -593,7 +593,7 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
       }
       .hero h1 {
         max-width: 28ch;
-        font-size: clamp(36px, 4.6vw, 62px);
+        font-size: var(--type-hero-size);
       }
       .hero h1 + .hero__p {
         margin-top: 18px;
@@ -3772,8 +3772,8 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
         color: #fff;
       }
       .trust__dek {
-        font-size: clamp(16px, 1.7vw, 20px);
-        line-height: 1.6;
+        font-size: var(--type-subtitle-size);
+        line-height: var(--type-subtitle-leading);
         color: var(--onc2);
         max-width: 44ch;
         margin: 0;
@@ -6659,7 +6659,7 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
               <p class="eyebrow eyebrow--red" data-rv>Where a generic screen breaks</p>
               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">{fw.missH2}</h2>
             </div>
-            <p class="dek" data-rv style="--d:100ms;max-width:none">
+            <p class="dek" data-rv style="--d:100ms">
               A CV lists experience. An expert conversation explores the decisions, trade-offs and outcomes behind it.
             </p>
           </div>
@@ -6693,7 +6693,7 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
               Three questions, and what a thin answer sounds like.
             </h2>
           </div>
-          <p class="dek" data-rv style="--d:100ms;max-width:none">
+          <p class="dek" data-rv style="--d:100ms">
             These examples show what we explore. The actual questions follow the candidate's experience and the
             requirements of your role.
           </p>
@@ -6742,7 +6742,7 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
               <p class="eyebrow eyebrow--red" data-rv>Roles we run here</p>
               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">Different levels. Your hiring bar.</h2>
             </div>
-            <p class="dek" data-rv style="--d:100ms;max-width:none">
+            <p class="dek" data-rv style="--d:100ms">
               We agree the requirements with your hiring manager. Your team interviews the shortlist and makes the
               hiring decision.
             </p>
@@ -6773,7 +6773,7 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
               <p class="eyebrow" data-rv>Who does the interviewing</p>
               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">Operators, not recruiters.</h2>
             </div>
-            <p class="trust__dek" data-rv style="--d:100ms;max-width:none">
+            <p class="trust__dek" data-rv style="--d:100ms">
               The distinction this whole page rests on.
               <b>Every interview here is run by someone who has held the job</b>, and they only interview on ground they
               have actually worked.
@@ -6824,7 +6824,7 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
             <p class="eyebrow eyebrow--red" data-rv>Before you brief us</p>
             <h2 class="h2" data-rv style="--d:60ms;max-width:none;">Three things teams ask first.</h2>
           </div>
-          <p class="dek" data-rv style="--d:100ms;max-width:none">
+          <p class="dek" data-rv style="--d:100ms">
             Answered here so the first call can be about your role rather than about us.
           </p>
         </div>
@@ -6868,7 +6868,7 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
               <p class="eyebrow eyebrow--red" data-rv>Why tribera</p>
               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">We hire like you think.</h2>
             </div>
-            <p class="dek" data-rv style="--d:100ms;max-width:none">
+            <p class="dek" data-rv style="--d:100ms">
               Our process is shaped by the mandates we run and the people we hire.
               <b>Every step is designed to find the right person, not just any person.</b>
             </p>

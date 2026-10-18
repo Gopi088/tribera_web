@@ -41,7 +41,9 @@ if (
   !filters.some((filter) => filter.type === 'tag' && filter.slug === activeSlug)
 ) {
   filters.push({
-    label: activeTag.title,
+    label: categories.some((category) => category.slug === activeTag.slug)
+      ? `Tag: ${activeTag.title}`
+      : activeTag.title,
     slug: activeTag.slug,
     type: 'tag',
     href: getPermalink(activeTag.slug, 'tag'),

@@ -69,7 +69,7 @@ export const industryPages: IndustryPageData[] = [
       { n: 'Stakeholder handling', w: '27', v: '8%', key: false },
     ],
     barsFt:
-      '<b>Core depth carries 30%</b> here. Same six dimensions in every sector; only the shape changes — and the shape is set with you at intake.',
+      '<b>Core depth carries 30%</b> here. These six dimensions illustrate the weighting. Criteria and weights are agreed for each role.',
     missH2: 'Things a CV cannot tell you.',
     misses: [
       {
@@ -175,7 +175,7 @@ export const industryPages: IndustryPageData[] = [
       { n: 'Stakeholder handling', w: '27', v: '8%', key: false },
     ],
     barsFt:
-      '<b>Controls and risk carries 30%</b> — more than three times its weight on a commerce platform. Same six dimensions everywhere; only the shape changes.',
+      '<b>Controls and risk carries 30%</b> — more than three times its weight on a commerce platform. These are example weights. Criteria and weighting are agreed for the role.',
     missH2: 'Four things a CV cannot tell you.',
     misses: [
       {
@@ -292,7 +292,7 @@ export const industryPages: IndustryPageData[] = [
       { n: 'Stakeholder handling', w: '33', v: '10%', key: false },
     ],
     barsFt:
-      '<b>Core depth carries 30%</b> here. Same six dimensions in every sector; only the shape changes — and the shape is set with you at intake.',
+      '<b>Core depth carries 30%</b> here. These six dimensions illustrate the weighting. Criteria and weights are agreed for each role.',
     missH2: 'Things a CV cannot tell you.',
     misses: [
       {
@@ -306,7 +306,7 @@ export const industryPages: IndustryPageData[] = [
         n: '02',
         t: 'Failure they can be specific about',
         k: 'Everyone learned a lot',
-        x: 'The useful signal is the assumption that turned out to be wrong and how quickly they found out.',
+        x: 'The useful evidence is the assumption that turned out to be wrong and how quickly they found out.',
         w: 'Where it shows up: a launch that did not work.',
       },
       {
@@ -398,7 +398,7 @@ export const industryPages: IndustryPageData[] = [
       { n: 'Stakeholder handling', w: '19', v: '6%', key: false },
     ],
     barsFt:
-      '<b>Controls and risk carries 32%</b> here. Same six dimensions in every sector; only the shape changes — and the shape is set with you at intake.',
+      '<b>Controls and risk carries 32%</b> here. These six dimensions illustrate the weighting. Criteria and weights are agreed for each role.',
     missH2: 'Things a CV cannot tell you.',
     misses: [
       {
@@ -412,7 +412,7 @@ export const industryPages: IndustryPageData[] = [
         n: '02',
         t: 'Risk decisions, not risk registers',
         k: 'Everyone maintains a register',
-        x: 'Security work is a budget problem before it is a technical one. The real signal is what they chose to leave unprotected and how they defended that.',
+        x: 'Security work is a budget problem before it is a technical one. The evidence is in what they chose to leave unprotected and how they defended that.',
         w: 'Where it shows up: what they left unpatched, and who signed the risk off.',
       },
       {
@@ -504,7 +504,7 @@ export const industryPages: IndustryPageData[] = [
       { n: 'Stakeholder handling', w: '31', v: '8%', key: false },
     ],
     barsFt:
-      '<b>Core depth carries 26%</b> here. Same six dimensions in every sector; only the shape changes — and the shape is set with you at intake.',
+      '<b>Core depth carries 26%</b> here. These six dimensions illustrate the weighting. Criteria and weights are agreed for each role.',
     missH2: 'Things a CV cannot tell you.',
     misses: [
       {
@@ -580,7 +580,7 @@ export const industryPages: IndustryPageData[] = [
       },
       {
         q: 'Do you cover platform as well as product engineering?',
-        a: 'Both, and we weight them differently. A platform hire gets systems design and operational ownership weighted higher; a product engineer gets shipping cadence and stakeholder handling. Same six dimensions, different shape.',
+        a: 'Both, and we weight them differently. A platform hire gets systems design and operational ownership weighted higher; a product engineer gets shipping cadence and stakeholder handling. Criteria and weighting are agreed for each role.',
       },
       {
         q: 'What is a realistic time to offer?',
@@ -610,7 +610,7 @@ export const industryPages: IndustryPageData[] = [
       { n: 'Stakeholder handling', w: '82', v: '18%', key: false },
     ],
     barsFt:
-      '<b>Core depth carries 22%</b> here. Same six dimensions in every sector; only the shape changes — and the shape is set with you at intake.',
+      '<b>Core depth carries 22%</b> here. These six dimensions illustrate the weighting. Criteria and weights are agreed for each role.',
     missH2: 'Things a CV cannot tell you.',
     misses: [
       {
@@ -716,7 +716,7 @@ export const industryPages: IndustryPageData[] = [
       { n: 'Stakeholder handling', w: '27', v: '8%', key: false },
     ],
     barsFt:
-      '<b>Controls and risk carries 30%</b> here. Same six dimensions in every sector; only the shape changes — and the shape is set with you at intake.',
+      '<b>Controls and risk carries 30%</b> here. These six dimensions illustrate the weighting. Criteria and weights are agreed for each role.',
     missH2: 'Things a CV cannot tell you.',
     misses: [
       {
@@ -822,7 +822,7 @@ export const industryPages: IndustryPageData[] = [
       { n: 'Stakeholder handling', w: '33', v: '8%', key: false },
     ],
     barsFt:
-      '<b>Core depth carries 24%</b> here. Same six dimensions in every sector; only the shape changes — and the shape is set with you at intake.',
+      '<b>Core depth carries 24%</b> here. These six dimensions illustrate the weighting. Criteria and weights are agreed for each role.',
     missH2: 'Things a CV cannot tell you.',
     misses: [
       {
@@ -928,7 +928,7 @@ export const industryPages: IndustryPageData[] = [
       { n: 'Stakeholder handling', w: '45', v: '10%', key: false },
     ],
     barsFt:
-      '<b>Core depth carries 22%</b> here. Same six dimensions in every sector; only the shape changes — and the shape is set with you at intake.',
+      '<b>Core depth carries 22%</b> here. These six dimensions illustrate the weighting. Criteria and weights are agreed for each role.',
     missH2: 'Things a CV cannot tell you.',
     misses: [
       {
@@ -1034,7 +1034,7 @@ export const industryPages: IndustryPageData[] = [
       { n: 'Stakeholder handling', w: '24', v: '8%', key: false },
     ],
     barsFt:
-      '<b>Controls and risk carries 34%</b> here. Same six dimensions in every sector; only the shape changes — and the shape is set with you at intake.',
+      '<b>Controls and risk carries 34%</b> here. These six dimensions illustrate the weighting. Criteria and weights are agreed for each role.',
     missH2: 'Things a CV cannot tell you.',
     misses: [
       {
@@ -1140,7 +1140,7 @@ export const industryPages: IndustryPageData[] = [
       { n: 'Stakeholder handling', w: '50', v: '16%', key: false },
     ],
     barsFt:
-      '<b>Delivery speed carries 32%</b> here. Same six dimensions in every sector; only the shape changes — and the shape is set with you at intake.',
+      '<b>Delivery speed carries 32%</b> here. These six dimensions illustrate the weighting. Criteria and weights are agreed for each role.',
     missH2: 'Things a CV cannot tell you.',
     misses: [
       {
@@ -1161,7 +1161,7 @@ export const industryPages: IndustryPageData[] = [
         n: '03',
         t: 'Disagreeing with the sponsor',
         k: 'Alignment is the usual answer',
-        x: 'Operators who have never pushed back on a board have not been properly tested. The useful signal is what they protected and how it went.',
+        x: 'Operators who have never pushed back on a board have not been properly tested. The useful evidence is what they protected and how it went.',
         w: 'Where it shows up: something the sponsor wanted that they resisted.',
       },
     ],
@@ -1246,7 +1246,7 @@ export const industryPages: IndustryPageData[] = [
       { n: 'Stakeholder handling', w: '100', v: '26%', key: true },
     ],
     barsFt:
-      '<b>Stakeholder handling carries 26%</b> here. Same six dimensions in every sector; only the shape changes — and the shape is set with you at intake.',
+      '<b>Stakeholder handling carries 26%</b> here. These six dimensions illustrate the weighting. Criteria and weights are agreed for each role.',
     missH2: 'Things a CV cannot tell you.',
     misses: [
       {

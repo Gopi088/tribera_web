@@ -709,13 +709,13 @@ html {
   --onc3: #6e6e68;
   --red: #da0007;
   --grn: #3fbe7c;
-  --paper-v58: #f4f3f0;
+  --paper-v58: var(--surface-paper-editorial, #f4f3f0);
   --line-v58: rgba(19, 19, 19, 0.1);
   --line-v58-strong: rgba(19, 19, 19, 0.16);
   --ink-v58-muted: #57565b;
   --display-editorial: 'Fraunces', Georgia, serif;
   --v58-white: #ffffff;
-  --v58-paper: #f4f3f0;
+  --v58-paper: var(--surface-paper-editorial, #f4f3f0);
   --v58-charcoal: #121212;
   --v58-ink: #131313;
   --v58-muted: #57565b;
@@ -1659,8 +1659,8 @@ body {
 }
 .v58-route :is(h1, h2):not(.tribera-home h1):not(.tribera-home h2) {
   font-family: var(--v58-display);
-  font-weight: 500;
-  letter-spacing: -0.025em;
+  font-weight: var(--type-display-weight);
+  letter-spacing: var(--type-display-tracking);
 }
 .v58-route :is(input, textarea, select) {
   border-color: var(--v58-line-strong);

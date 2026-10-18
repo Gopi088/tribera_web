@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /contact/send
+Disallow: /candidates/start
+Disallow: /careers/*/apply
+Disallow: /sample/request
+
+Sitemap: https://tribera.ai/sitemap.xml

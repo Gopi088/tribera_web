@@ -13,6 +13,7 @@ export type CareerRole = {
   dept: string;
   type: string;
   loc: string;
+  neighborhood?: string;
   mode: string;
   exp: string;
   feat: boolean;
@@ -85,7 +86,7 @@ export const CAREER_ROLES: CareerRole[] = [
       'Build AI and ML workflows that improve candidate evaluation and decision support',
       'Work across model behavior, offline evaluation, and product integration',
       'Partner with backend and product teams to keep the system explainable, reliable, and useful in practice',
-      'Track quality, failure modes, and signal quality over time',
+      'Track quality, failure modes, and assessment quality over time',
     ],
     why: 'Tribera\u2019s value comes from better judgment, not more automation for its own sake. This role makes that real in the product.',
     scored: [
@@ -159,7 +160,8 @@ export const CAREER_ROLES: CareerRole[] = [
     title: 'Talent Advisor',
     dept: 'Talent Advisory',
     type: 'Full-time',
-    loc: 'Indiranagar, Bengaluru',
+    loc: 'Bengaluru',
+    neighborhood: 'Indiranagar',
     mode: 'Onsite',
     exp: '4+ years',
     feat: true,
@@ -172,7 +174,7 @@ export const CAREER_ROLES: CareerRole[] = [
       'Build quality-first pipelines, not volume-driven ones',
       'Own every role from brief to signed offer',
     ],
-    why: 'Signal over noise. Outcomes over activity. This role is where that difference gets made, one search at a time.',
+    why: 'Evidence over impressions. Outcomes over activity. This role is where that difference gets made, one search at a time.',
     scored: [
       'A candidate call you made against the obvious read — and how it held up. We will ask about the one you got wrong.',
       'Whether your assessment still holds a year later. We will ask about a candidate you were wrong about and what you missed.',
@@ -201,7 +203,8 @@ export const CAREER_ROLES: CareerRole[] = [
     title: 'Senior Delivery Partner',
     dept: 'Talent Advisory',
     type: 'Full-time',
-    loc: 'Indiranagar, Bengaluru',
+    loc: 'Bengaluru',
+    neighborhood: 'Indiranagar',
     mode: 'Onsite',
     exp: '7+ years',
     feat: false,
@@ -243,7 +246,8 @@ export const CAREER_ROLES: CareerRole[] = [
     title: 'Talent Associate',
     dept: 'Talent Advisory',
     type: 'Full-time',
-    loc: 'Indiranagar, Bengaluru',
+    loc: 'Bengaluru',
+    neighborhood: 'Indiranagar',
     mode: 'Onsite',
     exp: 'Entry level',
     feat: false,
@@ -298,7 +302,7 @@ export const CAREER_ROLES: CareerRole[] = [
       'Follow up with intent — most responses come after the third touch',
       'Maintain a clean, structured outreach tracker at all times',
     ],
-    why: 'Signal over noise. Outcomes over activity. Every door you open is a conversation that was not happening before.',
+    why: 'Evidence over impressions. Outcomes over activity. Every door you open is a conversation that was not happening before.',
     scored: [
       'A prospect you chose to pursue against the obvious logic — and what happened.',
       'Whether your outreach would still read well to a stranger a month later. We will ask about one you would write differently now.',

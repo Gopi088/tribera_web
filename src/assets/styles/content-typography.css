@@ -1,0 +1,227 @@
+/* Content-only type roles. Pixel bounds keep the same scale across the legacy
+   15px and 16px layout roots without changing navigation or viewport geometry. */
+:root {
+  --surface-paper-warm: #f1eee7;
+  --surface-paper-editorial: #f4f3f0;
+  --type-kicker-neutral: #6b6a61;
+  --type-kicker-accent: #da0007;
+  --type-display-weight: 500;
+  --type-display-tracking: -0.01em;
+  --type-hero-size: clamp(32px, 4.48vw, 53.12px);
+  --type-hero-leading: 1.1;
+  --type-section-size: clamp(28px, 3vw, 36px);
+  --type-section-leading: 1.15;
+  --type-article-size: clamp(24px, 2.2vw, 32px);
+  --type-article-leading: 1.2;
+  --type-document-size: clamp(24px, 3vw, 32px);
+  --type-card-size: clamp(20px, 2vw, 24px);
+  --type-card-leading: 1.25;
+  --type-subtitle-size: clamp(16px, 1.2vw, 18px);
+  --type-subtitle-leading: 1.6;
+  --type-subtitle-measure: 62ch;
+  --type-text-size: 16px;
+  --type-helper-size: 14px;
+  --type-action-size: 14px;
+  --type-label-size: 12px;
+  --type-marketing-card-size: clamp(20px, 1.5vw, 22px);
+  --type-compact-card-size: 18px;
+  --type-statement-size: clamp(18px, 1.5vw, 22px);
+}
+
+/* Size-only roles: leave family, weight, italics, color and leading with the
+   component. Explicit selectors protect subtitles, quotes and score displays. */
+:root body .v58-home :is(.v58-ways__grid h3, .v58-case-benefits > h3),
+:root body .candidate-page :is(.c-comparison h3, .c-features h3),
+:root body .site-editorial :is(.lead__n, .oc__n, .mis__t, .bel__t, h3.blog-display, .post__t, .rc__t) {
+  font-size: var(--type-marketing-card-size);
+}
+
+:root body .v58-home :is(.v58-trust__grid h3, .v58-case-benefits h4),
+:root body .candidate-page :is(.c-control-grid h3, .c-control-foot h3, .c-preview h4, .c-team-facts dt),
+:root body .site-editorial :is(.relc__t, .ind__n, .wn__st, .wt__t, .hs__t, .jstep__t, .sc__n, .rle__n, .door .door__t) {
+  font-size: var(--type-compact-card-size);
+}
+
+:root
+  body
+  .v58-home
+  :is(.v58-ways__grid p, .v58-trust__grid p, .v58-benefits__grid p, .v58-coverage__focus, .v58-ways__diff),
+:root
+  body
+  .candidate-page
+  :is(
+    .c-features p,
+    .c-control-grid p,
+    .c-control-foot p,
+    .c-comparison p:not(.c-label),
+    .c-preview p:not(.c-label):not(.c-small)
+  ),
+:root body .candidate-page .c-team-facts dd,
+:root
+  body
+  .site-editorial
+  :is(
+    .lead__give,
+    .lead__get,
+    .lead__why,
+    .blog-body,
+    .post__x,
+    .argue__x,
+    .door__d,
+    .sub__s,
+    .apply__s,
+    .whats__ft,
+    .jd__l li,
+    .qq__v,
+    .tr2__l li,
+    .ind__x,
+    .stack,
+    .ohd__s,
+    .fd__c,
+    .fd__d,
+    .av__x,
+    .feat__sub,
+    .story__p,
+    .story__ft,
+    .oc__lead,
+    .oc__ul li,
+    .jd__p,
+    .mis__x,
+    .qa2__a,
+    .pth__x,
+    .sc__x,
+    .hs__x,
+    .bel__x,
+    .fnd__x,
+    .jstep__x,
+    .wn__sx,
+    .ltr__body p:not(.ltr__lede),
+    .ltr__col p:not(.ltr__lede):not(.ltr__sub):not(.ltr__k)
+  ),
+:root body .site-editorial article.art :is(p:not(.lede), li) {
+  font-size: var(--type-text-size);
+}
+
+:root body .v58-home :is(.v58-funnel-case p, .v58-funnel-close > span, .v58-testimonial figcaption span),
+:root
+  body
+  .v58-home
+  :is(
+    .v58-verdict__note,
+    .v58-calculation p,
+    .v58-proof-checks p,
+    .v58-coverage__instruction,
+    .v58-experts__confirmation
+  ),
+:root body .candidate-page :is(.c-small, .c-other),
+:root
+  body
+  .site-editorial
+  :is(
+    .cf__note,
+    .reply__w,
+    .reply__ft,
+    .oc__note,
+    .jd__note,
+    .apply__fine,
+    .labcard__x,
+    .relc__x,
+    .fct__x,
+    .trust__ft,
+    .cases__ft,
+    .cmpw__ft,
+    .wn__cap,
+    .facts__ft,
+    .door__next,
+    .tl2__p,
+    .step__d,
+    .ahead__who,
+    .off__a,
+    .ind__w,
+    .oc__x,
+    .rec__s,
+    .rec__x,
+    article.art figcaption
+  ) {
+  font-size: var(--type-helper-size);
+}
+
+:root body .v58-home :is(.v58-primary, .v58-link, .v58-ways__link a),
+:root body .v58-home .v58-presets button,
+:root body .missing-page .v58-button,
+:root body .candidate-page :is(.c-primary, .c-link, .c-policy),
+:root body .candidate-page :is(.c-tabs button, .c-presets button),
+:root body .site-editorial :is(.btn, .apply__go, .oc__go, .lead__go, .post__min, .fchip, .rfb, .start__back, .off__m) {
+  font-size: var(--type-action-size);
+}
+
+:root body .v58-home :is(.v58-kicker, .v58-micro, .v58-side-label, .v58-ways__grid small, .v58-funnel-case > span),
+:root body .candidate-page :is(.c-eyebrow, .c-micro, .c-label),
+:root body .site-editorial :is(.eyebrow, .feat__k, .fnd__r, .fct__k, .off__k, .sub__k, .ltr__k, .ltr__ro, .relc__k),
+:root
+  body
+  .site-editorial
+  :is(
+    .argue__k,
+    .clients__k,
+    .pth__k,
+    .pth__d,
+    .rc__d,
+    .rc__m,
+    .mis__k,
+    .tr2__k,
+    .rle__l,
+    .post__d,
+    .post__cat,
+    .ahead__meta,
+    .hs__d,
+    .feat__hd,
+    .feat__cap,
+    .feat__min,
+    .lead__tag,
+    .lead__m,
+    .oc__tag,
+    .oc__m,
+    .jd__k,
+    .crumb,
+    .ind__w i,
+    .qq__k,
+    .rec__k,
+    .atag,
+    .door__next > span,
+    .door .door__k
+  ),
+:root body .v58-home :is(.v58-industries p, .v58-industries span),
+:root body .v58-home :is(.v58-funnel-step strong, .v58-funnel-step small),
+:root body footer :is(.ft__ttl, .ft__made, .ft__tribe) {
+  font-size: var(--type-label-size);
+}
+
+:root body .site-editorial :is(.cf__k, .apply__field label) {
+  font-size: var(--type-helper-size);
+}
+
+:root body .site-editorial :is(.cf input, .cf textarea, .apply__mail, select) {
+  font-size: var(--type-text-size);
+}
+
+:root body .v58-home :is(.v58-funnel-close p, .v58-ways__foot, .v58-lab-foot) {
+  font-size: var(--type-statement-size);
+}
+
+/* Approved metadata-family alignment; other label styling stays page-specific. */
+:root body .site-editorial .door .door__k {
+  font-family: var(--v58-mono);
+}
+
+/* Form-section titles are headings even where legacy markup uses a paragraph. */
+:root body .site-editorial .sub__h {
+  font-size: var(--type-section-size);
+}
+
+@media (max-width: 359px) {
+  :root {
+    --type-hero-size: 28px;
+    --type-section-size: 26px;
+  }
+}

@@ -1,0 +1,1384 @@
+--- src/layouts/MarkdownLayout.astro task-start
++++ src/layouts/MarkdownLayout.astro final
+@@ -37,6 +37,7 @@
+     padding-block: clamp(96px, 10vw, 140px);
+   }
+   .legal-document__body {
++    max-width: 70ch;
+     margin-top: 32px;
+     font: 400 16px/1.75 var(--v58-ui);
+     color: var(--v58-muted);
+--- src/assets/styles/tailwind.css task-start
++++ src/assets/styles/tailwind.css final
+@@ -709,13 +709,13 @@
+   --onc3: #6e6e68;
+   --red: #da0007;
+   --grn: #3fbe7c;
+-  --paper-v58: #f4f3f0;
++  --paper-v58: var(--surface-paper-editorial, #f4f3f0);
+   --line-v58: rgba(19, 19, 19, 0.1);
+   --line-v58-strong: rgba(19, 19, 19, 0.16);
+   --ink-v58-muted: #57565b;
+   --display-editorial: 'Fraunces', Georgia, serif;
+   --v58-white: #ffffff;
+-  --v58-paper: #f4f3f0;
++  --v58-paper: var(--surface-paper-editorial, #f4f3f0);
+   --v58-charcoal: #121212;
+   --v58-ink: #131313;
+   --v58-muted: #57565b;
+--- src/assets/styles/content-typography.css task-start
++++ src/assets/styles/content-typography.css final
+@@ -1,6 +1,10 @@
+ /* Content-only type roles. Pixel bounds keep the same scale across the legacy
+    15px and 16px layout roots without changing navigation or viewport geometry. */
+ :root {
++  --surface-paper-warm: #f1eee7;
++  --surface-paper-editorial: #f4f3f0;
++  --type-kicker-neutral: #6b6a61;
++  --type-kicker-accent: #da0007;
+   --type-display-weight: 500;
+   --type-display-tracking: -0.01em;
+   --type-hero-size: clamp(32px, 4.48vw, 53.12px);
+--- src/pages/about.astro task-start
++++ src/pages/about.astro final
+@@ -6887,7 +6887,7 @@
+       .own {
+         font-family: var(--mono);
+         font-style: normal;
+-        font-size: 8.5px;
++        font-size: 11px;
+         letter-spacing: 0.16em;
+         text-transform: uppercase;
+         padding: 3px 7px;
+@@ -6898,7 +6898,7 @@
+       }
+       .own--you {
+         background: transparent;
+-        color: var(--red);
++        color: #ff6b6f;
+         border-color: rgba(218, 0, 7, 0.45);
+       }
+ 
+@@ -11170,7 +11170,7 @@
+         text-transform: uppercase;
+         color: var(--red);
+         margin: 0 0 clamp(22px, 2.6vw, 32px);
+-        text-align: center;
++        text-align: left;
+       }
+       .ltr__body p {
+         font-size: clamp(16.5px, 1.2vw, 19px);
+--- src/pages/index.astro task-start
++++ src/pages/index.astro final
+@@ -1,7 +1,6 @@
+ ---
+ import Layout from '~/layouts/PageLayout.astro';
+ import Home from '~/components/home/v126/Home.astro';
+-import Footer from '~/components/home/v126/Footer.astro';
+ 
+ const metadata = {
+   title: 'tribera — three candidates, every one worth the interview',
+@@ -17,7 +16,6 @@
+ 
+ <Layout metadata={metadata} mainClass="v126-route w-full" htmlClass="v126-document">
+   <Home />
+-  <Footer slot="footer" />
+ </Layout>
+ 
+ <style is:global>
+--- src/pages/functions/[slug].astro task-start
++++ src/pages/functions/[slug].astro final
+@@ -6659,7 +6659,7 @@
+               <p class="eyebrow eyebrow--red" data-rv>Where a generic screen breaks</p>
+               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">{fw.missH2}</h2>
+             </div>
+-            <p class="dek" data-rv style="--d:100ms;max-width:none">
++            <p class="dek" data-rv style="--d:100ms">
+               A CV lists experience. An expert conversation explores the decisions, trade-offs and outcomes behind it.
+             </p>
+           </div>
+@@ -6693,7 +6693,7 @@
+               Three questions, and what a thin answer sounds like.
+             </h2>
+           </div>
+-          <p class="dek" data-rv style="--d:100ms;max-width:none">
++          <p class="dek" data-rv style="--d:100ms">
+             These examples show what we explore. The actual questions follow the candidate's experience and the
+             requirements of your role.
+           </p>
+@@ -6742,7 +6742,7 @@
+               <p class="eyebrow eyebrow--red" data-rv>Roles we run here</p>
+               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">Different levels. Your hiring bar.</h2>
+             </div>
+-            <p class="dek" data-rv style="--d:100ms;max-width:none">
++            <p class="dek" data-rv style="--d:100ms">
+               We agree the requirements with your hiring manager. Your team interviews the shortlist and makes the
+               hiring decision.
+             </p>
+@@ -6773,7 +6773,7 @@
+               <p class="eyebrow" data-rv>Who does the interviewing</p>
+               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">Operators, not recruiters.</h2>
+             </div>
+-            <p class="trust__dek" data-rv style="--d:100ms;max-width:none">
++            <p class="trust__dek" data-rv style="--d:100ms">
+               The distinction this whole page rests on.
+               <b>Every interview here is run by someone who has held the job</b>, and they only interview on ground they
+               have actually worked.
+@@ -6824,7 +6824,7 @@
+             <p class="eyebrow eyebrow--red" data-rv>Before you brief us</p>
+             <h2 class="h2" data-rv style="--d:60ms;max-width:none;">Three things teams ask first.</h2>
+           </div>
+-          <p class="dek" data-rv style="--d:100ms;max-width:none">
++          <p class="dek" data-rv style="--d:100ms">
+             Answered here so the first call can be about your role rather than about us.
+           </p>
+         </div>
+@@ -6868,7 +6868,7 @@
+               <p class="eyebrow eyebrow--red" data-rv>Why tribera</p>
+               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">We hire like you think.</h2>
+             </div>
+-            <p class="dek" data-rv style="--d:100ms;max-width:none">
++            <p class="dek" data-rv style="--d:100ms">
+               Our process is shaped by the mandates we run and the people we hire.
+               <b>Every step is designed to find the right person, not just any person.</b>
+             </p>
+--- src/pages/careers/[slug].astro task-start
++++ src/pages/careers/[slug].astro final
+@@ -11137,7 +11137,7 @@
+       .jd__note {
+         font-size: 13.5px;
+         line-height: 1.55;
+-        color: var(--faint);
++        color: #6b6a61;
+         margin: 16px 0 0;
+         max-width: 44ch;
+       }
+--- src/pages/industries/[slug].astro task-start
++++ src/pages/industries/[slug].astro final
+@@ -6663,7 +6663,7 @@
+               <p class="eyebrow eyebrow--red" data-rv>Where a generic screen breaks</p>
+               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">{industry.missH2}</h2>
+             </div>
+-            <p class="dek" data-rv style="--d:100ms;max-width:none">
++            <p class="dek" data-rv style="--d:100ms">
+               None of these are exotic. <b>They are simply invisible to anyone assessing from outside the sector</b>,
+               which is most of the people doing the assessing.
+             </p>
+@@ -6698,7 +6698,7 @@
+               Three questions, and what a thin answer sounds like.
+             </h2>
+           </div>
+-          <p class="dek" data-rv style="--d:100ms;max-width:none">
++          <p class="dek" data-rv style="--d:100ms">
+             Questions are shaped by the role and the candidate’s experience, so these are shapes rather than a script. <b
+               >The second column is the part a generic interviewer cannot supply.</b
+             >
+@@ -6748,7 +6748,7 @@
+               <p class="eyebrow eyebrow--red" data-rv>Roles we run here</p>
+               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">Every level, one guarantee.</h2>
+             </div>
+-            <p class="dek" data-rv style="--d:100ms;max-width:none">
++            <p class="dek" data-rv style="--d:100ms">
+               Interview three, hire one; <b>if none of the three fit, we restart at no cost.</b>
+             </p>
+           </div>
+@@ -6778,7 +6778,7 @@
+               <p class="eyebrow" data-rv>Who does the interviewing</p>
+               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">Operators, not recruiters.</h2>
+             </div>
+-            <p class="trust__dek" data-rv style="--d:100ms;max-width:none">
++            <p class="trust__dek" data-rv style="--d:100ms">
+               The distinction this whole page rests on.
+               <b>Every interview here is run by someone who has held the job</b>, and they only interview on ground they
+               have actually worked.
+@@ -6829,7 +6829,7 @@
+             <p class="eyebrow eyebrow--red" data-rv>Before you brief us</p>
+             <h2 class="h2" data-rv style="--d:60ms;max-width:none;">What teams ask first.</h2>
+           </div>
+-          <p class="dek" data-rv style="--d:100ms;max-width:none">
++          <p class="dek" data-rv style="--d:100ms">
+             Answered here so the first call can be about your role rather than about us.
+           </p>
+         </div>
+@@ -6873,7 +6873,7 @@
+               <p class="eyebrow eyebrow--red" data-rv>Why tribera</p>
+               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">We hire like you think.</h2>
+             </div>
+-            <p class="dek" data-rv style="--d:100ms;max-width:none">
++            <p class="dek" data-rv style="--d:100ms">
+               Our process is shaped by the mandates we run and the people we hire.
+               <b>Every step is designed to find the right person, not just any person.</b>
+             </p>
+--- src/components/standalone/StandaloneNavScripts.astro task-start
++++ src/components/standalone/StandaloneNavScripts.astro final
+@@ -444,9 +444,15 @@
+       link.addEventListener('focus', warmRoute, { once: true });
+     });
+ 
++    const isBlogRoute =
++      pathname === '/blog' ||
++      pathname.startsWith('/blog/') ||
++      pathname.startsWith('/category/') ||
++      pathname.startsWith('/tag/');
++
+     markPage('.nav__l[href="/services"]', pathname === '/services' || pathname.startsWith('/services/'));
+     markPage('.nav__l[href="/intelligence"]', pathname === '/intelligence' || pathname.startsWith('/intelligence/'));
+-    markPage('.nav__l[href="/blog"]', pathname === '/blog' || pathname.startsWith('/blog/'));
++    markPage('.nav__l[href="/blog"]', isBlogRoute);
+     markPage('.nav__l[href="/about"]', pathname === '/about' || pathname.startsWith('/about/'));
+     markPage('.nav__l[href="/contact"]', pathname === '/contact' || pathname.startsWith('/contact/'));
+     markPage('.nav__l[href="/careers"]', pathname === '/careers' || pathname.startsWith('/careers/'));
+@@ -458,7 +464,7 @@
+     markPage('.navp a[href="/"]', pathname === '/');
+     markPage('.navp a[href="/services"]', pathname === '/services' || pathname.startsWith('/services/'));
+     markPage('.navp a[href="/intelligence"]', pathname === '/intelligence' || pathname.startsWith('/intelligence/'));
+-    markPage('.navp a[href="/blog"]', pathname === '/blog' || pathname.startsWith('/blog/'));
++    markPage('.navp a[href="/blog"]', isBlogRoute);
+     markPage('.navp a[href="/about"]', pathname === '/about' || pathname.startsWith('/about/'));
+     markPage('.navp a[href="/contact"]', pathname === '/contact' || pathname.startsWith('/contact/'));
+     markPage('.navp a[href="/careers"]', pathname === '/careers' || pathname.startsWith('/careers/'));
+--- src/components/standalone/SharedNavFrame.astro task-start
++++ src/components/standalone/SharedNavFrame.astro final
+@@ -137,7 +137,7 @@
+     border: 0 !important;
+     border-radius: 999px !important;
+     box-sizing: border-box !important;
+-    color: #8d8c83 !important;
++    color: #63625a !important;
+     display: inline-flex !important;
+     font-family: 'Inter Tight', sans-serif !important;
+     font-size: 12.5px !important;
+@@ -220,7 +220,7 @@
+     border-radius: 999px !important;
+     border: 0 !important;
+     box-sizing: border-box !important;
+-    color: #8d8c83 !important;
++    color: #63625a !important;
+     display: inline-flex !important;
+     font-family: var(--v58-ui, 'Inter Tight', ui-sans-serif, sans-serif) !important;
+     font-size: 12.5px !important;
+--- src/components/home/v126/Footer.astro task-start
++++ src/components/home/v126/Footer.astro final
+@@ -1,6 +1,5 @@
+ ---
+-import markup from './sections/footer.html?raw';
+-import './sample.css';
++import Footer from '~/components/widgets/Footer.astro';
+ ---
+ 
+-<div class="v126-footer"><Fragment set:html={markup} /></div>
++<Footer />
+--- src/components/home/v126/sample.css task-start
++++ src/components/home/v126/sample.css final
+@@ -2,14 +2,15 @@
+   --ease: cubic-bezier(0.16, 0.84, 0.32, 1);
+   --ease-smooth: cubic-bezier(0.22, 0.61, 0.36, 1);
+   --white: #ffffff;
+-  --paper: #f1eee7;
++  --paper: var(--surface-paper-warm, #f1eee7);
+   --ink: #131313;
+   --ink-2: #57565b;
+   --ink-3: #9a998f;
++  --ink-3-strong: var(--type-kicker-neutral, #6b6a61);
+   --red: #da0007;
+   --charcoal: #121212;
+   --pw: rgba(255, 255, 255, 0.7);
+-  --pw2: rgba(255, 255, 255, 0.42);
++  --pw2: rgba(255, 255, 255, 0.58);
+   --surface-d: #191917;
+   --surface-d2: #1f1e1c;
+   --line-dw: #33332e;
+@@ -141,10 +142,10 @@
+ 
+ :is(.v126-home, .v126-footer, .v126-header) .eyebrow {
+   font-family: var(--mono);
+-  font-size: 0.7rem;
++  font-size: var(--type-label-size, 12px);
+   letter-spacing: 0.2em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   display: inline-flex;
+   align-items: center;
+   gap: 0.6em;
+@@ -335,7 +336,7 @@
+   font-family: var(--mono);
+   font-size: 0.74rem;
+   letter-spacing: 0.05em;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin-top: 2.2rem;
+   display: flex;
+   align-items: center;
+@@ -383,14 +384,14 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .card-hd .t {
+   font-family: var(--mono);
+-  font-size: 0.66rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .pill {
+   font-family: var(--mono);
+-  font-size: 0.64rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.06em;
+   padding: 0.3em 0.7em;
+   border-radius: 100px;
+@@ -430,7 +431,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .cand .meta {
+   font-size: 0.78rem;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin-top: 0.15rem;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .cand .rt {
+@@ -439,7 +440,7 @@
+ :is(.v126-home, .v126-footer, .v126-header) .verdict-chip {
+   display: inline-block;
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   color: var(--take);
+@@ -458,9 +459,9 @@
+   padding-top: 1rem;
+   border-top: 1px solid var(--line);
+   font-family: var(--mono);
+-  font-size: 0.68rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.03em;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+@@ -525,10 +526,10 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .barcard .lbl {
+   font-family: var(--mono);
+-  font-size: 0.66rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.12em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin-bottom: 1.4rem;
+   display: block;
+ }
+@@ -595,10 +596,10 @@
+ :is(.v126-home, .v126-footer, .v126-header) .figbox .lbl {
+   display: block;
+   font-family: var(--mono);
+-  font-size: 0.62rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.1em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin-top: 0.9rem;
+   font-weight: 400;
+ }
+@@ -609,10 +610,10 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .figbox .cap {
+   font-family: var(--mono);
+-  font-size: 0.64rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   text-align: center;
+ }
+ 
+@@ -723,7 +724,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .flow .who {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.12em;
+   text-transform: uppercase;
+ }
+@@ -750,10 +751,10 @@
+     0 20px 44px -22px rgba(0, 0, 0, 0.6);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .flow .who.yours {
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .flow .who.ours {
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .flow p {
+   font-size: 0.86rem;
+@@ -787,7 +788,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .fw-label {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -827,7 +828,7 @@
+ :is(.v126-home, .v126-footer, .v126-header) .fw-n {
+   display: block;
+   font-family: var(--mono);
+-  font-size: 0.58rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.12em;
+   color: var(--pw2);
+   margin-bottom: 0.5rem;
+@@ -901,14 +902,14 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .lab .hd .tag {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.1em;
+   text-transform: uppercase;
+   color: var(--pw2);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .lab-hint {
+   font-family: var(--mono);
+-  font-size: 0.64rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.06em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -935,7 +936,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .mh {
+   font-family: var(--mono);
+-  font-size: 0.58rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -967,7 +968,7 @@
+ :is(.v126-home, .v126-footer, .v126-header) .vbadge {
+   display: inline-block;
+   font-family: var(--mono);
+-  font-size: 0.68rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   padding: 0.45em 0.95em;
+@@ -995,7 +996,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .vtotal {
+   font-family: var(--mono);
+-  font-size: 0.68rem;
++  font-size: 0.6875rem;
+   color: var(--pw2);
+   margin-top: 0.55rem;
+ }
+@@ -1039,10 +1040,10 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .way .tag {
+   font-family: var(--mono);
+-  font-size: 0.62rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.12em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .way h3 {
+   font-family: var(--display);
+@@ -1060,7 +1061,7 @@
+   padding-top: 0.95rem;
+   border-top: 1px solid var(--line);
+   font-family: var(--mono);
+-  font-size: 0.66rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.06em;
+   text-transform: uppercase;
+   color: var(--ink-2);
+@@ -1179,7 +1180,7 @@
+   font-family: var(--mono);
+   font-size: 0.7rem;
+   letter-spacing: 0.03em;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin-top: 1.7rem;
+   text-align: center;
+ }
+@@ -1350,7 +1351,7 @@
+   align-items: baseline;
+   gap: 12px;
+   font-family: var(--mono);
+-  font-size: 0.64rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -1441,7 +1442,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .own {
+   font-family: var(--mono);
+-  font-size: 0.54rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   padding: 0.28em 0.55em;
+@@ -1458,7 +1459,7 @@
+   align-items: center;
+   gap: 14px;
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.06em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -1514,7 +1515,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .fnl-case .k {
+   font-family: var(--mono);
+-  font-size: 0.58rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.16em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -1630,7 +1631,7 @@
+   padding: 0.78rem 1.15rem;
+   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -1683,12 +1684,12 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-scr .num i {
+   font-style: normal;
+-  font-size: 0.68rem;
++  font-size: 0.6875rem;
+   color: var(--pw2);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-select {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   font-weight: 500;
+   letter-spacing: 0.13em;
+   padding: 0.4em 0.7em;
+@@ -1727,7 +1728,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-scale-k {
+   font-family: var(--mono);
+-  font-size: 0.55rem;
++  font-size: 0.6875rem;
+   color: var(--pw2);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-vrd {
+@@ -1739,7 +1740,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-vrd .k {
+   font-family: var(--mono);
+-  font-size: 0.57rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.18em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -1779,7 +1780,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .tl i {
+   font-style: normal;
+-  font-size: 0.65rem;
++  font-size: 0.6875rem;
+   color: var(--pw);
+   white-space: nowrap;
+   overflow: hidden;
+@@ -1818,7 +1819,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-rub .k {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   color: var(--red);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-rub .n {
+@@ -1845,7 +1846,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-note .k {
+   font-family: var(--mono);
+-  font-size: 0.57rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.12em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -1943,7 +1944,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ft-tribe {
+   font-family: var(--mono);
+-  font-size: 0.62rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.2em;
+   text-transform: uppercase;
+   color: var(--ink-3);
+@@ -1999,7 +2000,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ft-ttl {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.2em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -2031,7 +2032,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ft-made {
+   font-family: var(--mono);
+-  font-size: 0.66rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.16em;
+   text-transform: uppercase;
+ }
+@@ -2043,7 +2044,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ft-up {
+   font-family: var(--mono);
+-  font-size: 0.66rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -2069,7 +2070,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-fold-k {
+   font-family: var(--mono);
+-  font-size: 0.55rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.16em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -2083,7 +2084,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .fchip {
+   font-family: var(--mono);
+-  font-size: 0.57rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.01em;
+   padding: 0.34em 0.62em;
+   border-radius: 100px;
+@@ -2099,7 +2100,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-fold-n {
+   display: block;
+-  font-size: 0.66rem;
++  font-size: 0.6875rem;
+   line-height: 1.4;
+   color: var(--pw2);
+   margin-top: 8px;
+@@ -2170,7 +2171,7 @@
+ :is(.v126-home, .v126-footer, .v126-header) .xp span {
+   font-family: var(--mono);
+   font-size: 0.72rem;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   letter-spacing: 0.02em;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .xp--more {
+@@ -2202,10 +2203,10 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .inds-k {
+   font-family: var(--mono);
+-  font-size: 0.62rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.16em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin-bottom: 0.9rem;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .inds-g {
+@@ -2455,7 +2456,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .verd-band {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   font-weight: 500;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+@@ -2546,7 +2547,7 @@
+   display: flex;
+   justify-content: space-between;
+   font-family: var(--mono);
+-  font-size: 0.54rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.05em;
+   color: var(--pw2);
+   text-transform: uppercase;
+@@ -2574,7 +2575,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .lt i {
+   font-style: normal;
+-  font-size: 0.61rem;
++  font-size: 0.6875rem;
+   color: var(--pw);
+   white-space: nowrap;
+   overflow: hidden;
+@@ -2591,7 +2592,7 @@
+   color: #e8a33d;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .lt.heavy {
+-  border-color: rgba(218, 0, 7, 0.55);
++  border-color: #ff6b6f;
+   background: rgba(218, 0, 7, 0.12);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .lt.lit {
+@@ -2656,7 +2657,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .row .rk {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   color: var(--red);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .row .rn {
+@@ -2717,7 +2718,7 @@
+   gap: 14px;
+   margin-top: 12px;
+   font-family: var(--mono);
+-  font-size: 0.68rem;
++  font-size: 0.6875rem;
+   color: var(--pw2);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .rows-ft b {
+@@ -2833,10 +2834,10 @@
+ :is(.v126-home, .v126-footer, .v126-header) .hero-bar-cap {
+   margin-top: 1.1rem;
+   font-family: var(--mono);
+-  font-size: 0.64rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.13em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-bar-cap b {
+   color: var(--ink);
+@@ -2857,10 +2858,10 @@
+   justify-content: space-between;
+   align-items: center;
+   font-family: var(--mono);
+-  font-size: 0.58rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.13em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin-bottom: 0.5rem;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-card .hc-n {
+@@ -2884,11 +2885,11 @@
+ :is(.v126-home, .v126-footer, .v126-header) .hero-card .hc-sc {
+   font-family: var(--mono);
+   font-size: 0.74rem;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-card .hc-band {
+   font-family: var(--mono);
+-  font-size: 0.56rem;
++  font-size: 0.6875rem;
+   font-weight: 500;
+   letter-spacing: 0.08em;
+   padding: 0.3em 0.55em;
+@@ -2900,7 +2901,7 @@
+   border-top: 1px solid var(--line);
+   font-family: var(--body);
+   font-size: 0.78rem;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-card .hc-num {
+   font-weight: inherit;
+@@ -2927,7 +2928,7 @@
+   align-items: center;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-c .cta-row .link {
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   transition: color 0.2s var(--ease);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-c .cta-row .link:hover {
+@@ -2941,7 +2942,7 @@
+   font-family: var(--mono);
+   font-size: 0.74rem;
+   letter-spacing: 0.05em;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin-top: 2rem;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-c .micro .dot {
+@@ -2953,7 +2954,7 @@
+ 
+ :is(.v126-home, .v126-footer, .v126-header) .side-k {
+   font-family: var(--mono);
+-  font-size: 0.57rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.13em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -2974,10 +2975,10 @@
+ /* engagement models */
+ :is(.v126-home, .v126-footer, .v126-header) .models-k {
+   font-family: var(--mono);
+-  font-size: 0.68rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.16em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   text-align: center;
+   margin-top: clamp(44px, 5vw, 68px);
+   display: flex;
+@@ -3107,7 +3108,7 @@
+   font-size: 11px;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin: 0 0 8px;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .rp__acc {
+@@ -3127,7 +3128,7 @@
+ :is(.v126-home, .v126-footer, .v126-header) .rp__acc span {
+   font-family: var(--mono);
+   font-size: 10.5px;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .rp--last .rp__acc b,
+ :is(.v126-home, .v126-footer, .v126-header) .rp--last .rp__n {
+@@ -3245,7 +3246,7 @@
+ :is(.v126-home, .v126-footer, .v126-header) .tm-tag {
+   align-self: flex-start;
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+   padding: 0.36em 0.7em;
+@@ -3353,7 +3354,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ho-k {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+ }
+@@ -3361,7 +3362,7 @@
+   color: var(--pw2);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ho-you .ho-k {
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ho-t {
+   font-family: var(--display);
+@@ -3379,7 +3380,7 @@
+ :is(.v126-home, .v126-footer, .v126-header) .ho-tag {
+   margin-top: auto;
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.06em;
+   text-transform: uppercase;
+ }
+@@ -3427,10 +3428,10 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ho-mk {
+   font-family: var(--mono);
+-  font-size: 0.56rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.12em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ @media (prefers-reduced-motion: reduce) {
+   :is(.v126-home, .v126-footer, .v126-header) .ho-shaft {
+@@ -3514,10 +3515,10 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ratio-k {
+   font-family: var(--mono);
+-  font-size: 0.66rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.12em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ratio-row.is-t .ratio-k {
+   color: var(--red);
+@@ -3540,7 +3541,7 @@
+   font-family: var(--display);
+   font-weight: 600;
+   font-size: 1.7rem;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   line-height: 1;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ratio-row.is-t .ratio-n {
+@@ -3608,7 +3609,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ls-k {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.15em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -3716,10 +3717,10 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .save-k {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .save b {
+   font-family: var(--display);
+@@ -3856,10 +3857,10 @@
+   gap: 6px;
+   text-decoration: none;
+   font-family: var(--mono);
+-  font-size: 0.58rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.16em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   transition: color 0.2s var(--ease);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-cue:hover {
+@@ -3879,10 +3880,10 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-cue-k {
+   font-family: var(--mono);
+-  font-size: 0.58rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.16em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   transition: color 0.2s var(--ease);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-cue-ln {
+@@ -4155,7 +4156,7 @@
+   right: 1.3rem;
+   bottom: 1.2rem;
+   font-family: var(--mono);
+-  font-size: 0.64rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.01em;
+   color: var(--red);
+   opacity: 0;
+@@ -4191,10 +4192,10 @@
+   display: block;
+   margin-top: 0.5rem;
+   font-family: var(--mono);
+-  font-size: 0.58rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.12em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ @media (prefers-reduced-motion: reduce) {
+   :is(.v126-home, .v126-footer, .v126-header) .cost-bar span {
+@@ -4249,7 +4250,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .verd-ev-cue {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.12em;
+   text-transform: uppercase;
+   color: var(--red);
+@@ -4290,10 +4291,10 @@
+ :is(.v126-home, .v126-footer, .v126-header) .ops-eyebrow {
+   display: block;
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin-bottom: 0.55rem;
+   transition: color 0.24s var(--ease);
+ }
+@@ -4397,10 +4398,10 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .reg-k {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   padding-top: 0.2em;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .reg-v {
+@@ -4447,7 +4448,7 @@
+ :is(.v126-home, .v126-footer, .v126-header) .faq-ask-q {
+   font-family: var(--body);
+   font-size: 1rem;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin: 0 0 0.45rem;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .faq-ask a {
+@@ -4713,3 +4714,18 @@
+   white-space: nowrap;
+   border: 0;
+ }
++
++/* The lab key names the score and priority states without relying on color. */
++.v126-home .lab-key {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 4px 14px;
++  margin: 8px 0 12px;
++  font: 400 12px/1.5 var(--body);
++}
++.v126-home .lab-key span:first-child {
++  color: #ff6b6f;
++}
++.v126-home .lab-key span:last-child {
++  color: #e8a33d;
++}
+--- src/components/home/v126/sections/proof.html task-start
++++ src/components/home/v126/sections/proof.html final
+@@ -37,7 +37,12 @@
+         </div>
+         <div class="verd-ax"><span>0</span><span>Reject · 26 · Grey · 34 · Select</span><span>50</span></div>
+         <div class="side-k">His scores · out of 5 · <b>these don’t move</b></div>
+-        <div class="verd-tiles" id="labTiles"><!-- LAB_TILES --></div>
++        <p class="lab-key" id="labKey">
++          <span>Red outline: leading role priorities</span><span>Amber score: 2/5 or lower</span>
++        </p>
++        <div class="verd-tiles" id="labTiles" role="group" aria-label="Candidate scores" aria-describedby="labKey">
++          <!-- LAB_TILES -->
++        </div>
+         <div class="verd-ev" id="labEv" aria-live="polite">
+           <span class="verd-ev-cue">Tap any score</span> — see the proof behind it.
+         </div>
+--- src/components/widgets/Footer.astro task-start
++++ src/components/widgets/Footer.astro final
+@@ -6,10 +6,10 @@
+   <div class="wrap">
+     <div class="ft__top">
+       <div class="ft__brand">
+-        <a class="logo" href="/" data-astro-reload style="font-size:22px">tribera<i>.</i></a>
++        <a class="logo" href="/" data-astro-reload>tribera<i>.</i></a>
+         <p class="ft__line">
+-          <b>AI reads the interview. Senior experts add the judgment. You make the call.</b> The bar is yours, and every candidate
+-          is held to the same one.
++          <b>Hiring you can prove.</b> The AI reads the interview, a senior expert reads the person — and you make the call.
++          One bar, every candidate, the proof behind every score.
+         </p>
+         <p class="ft__tribe">Tribe + Era</p>
+         <p class="ft__bbb"><em>Belong</em><i></i>Build<i></i>Become</p>
+@@ -20,10 +20,11 @@
+       </div>
+       <nav class="ft__col" aria-label="For hiring teams">
+         <p class="ft__ttl">For hiring teams</p>
+-        <a href="/#work">How it works</a>
+-        <a href="/#proof">The bar</a>
+-        <a href="/#trust">How decisions are made</a>
+-        <a href="/#ways">Ways to work with us</a>
++        <a href="/#proof">How it works</a>
++        <a href="/#funnel">In practice</a>
++        <a href="/#results">Results</a>
++        <a href="/#ways">How we work</a>
++        <a href="/#experts">What we cover</a>
+         <a href="/industries">Industries</a>
+         <a href="/functions">Functions</a>
+       </nav>
+@@ -47,11 +48,171 @@
+         <a href="/security">Security</a>
+         <a href="/terms">Terms</a>
+         <a href="/privacy">Privacy</a>
++        <a href="/contact">Request a DPA</a>
+       </nav>
+     </div>
+     <div class="ft__bar">
+       <span>&copy; {year} Tribera &middot; Eragina Digital Solutions Private Limited</span>
+-      <span class="ft__made">Pune &middot; Bengaluru</span>
++      <span class="ft__bar-r">
++        <span class="ft__made">Pune &middot; Bengaluru &middot; New Jersey</span>
++        <a class="ft__up" href="#nav">Back to top <span aria-hidden="true">↑</span></a>
++      </span>
+     </div>
+   </div>
+ </footer>
++
++<style is:global>
++  /* One footer contract wins over legacy route-local styles. */
++  :root body footer.ft {
++    --footer-muted: #9a9992;
++    --footer-accent: #ff6b6f;
++    isolation: isolate;
++    background: #121212;
++    color: var(--footer-muted);
++    padding-block: clamp(48px, 5.5vw, 76px) 32px;
++    font:
++      400 14px/1.5 'Inter Tight',
++      system-ui,
++      sans-serif;
++  }
++  :root body footer.ft .wrap {
++    width: min(calc(100% - clamp(44px, 10vw, 144px)), 1160px);
++    max-width: none;
++    margin-inline: auto;
++    padding-inline: 0;
++  }
++  :root body footer.ft .ft__top {
++    display: grid;
++    grid-template-columns: repeat(2, minmax(0, 1fr));
++    gap: 32px 24px;
++  }
++  :root body footer.ft .ft__brand {
++    grid-column: 1 / -1;
++    min-width: 0;
++  }
++  :root body footer.ft .logo {
++    font:
++      800 26px/1 'Figtree',
++      sans-serif;
++    letter-spacing: -0.055em;
++    color: #fff;
++    text-decoration: none;
++  }
++  :root body footer.ft .logo i {
++    color: #da0007;
++    font: inherit;
++  }
++  :root body footer.ft .ft__line {
++    max-width: 36ch;
++    margin: 16px 0 0;
++    font-size: 14.5px;
++    line-height: 1.55;
++    color: var(--footer-muted);
++  }
++  :root body footer.ft .ft__line b {
++    display: block;
++    margin-bottom: 6px;
++    color: #fff;
++    font-weight: 600;
++  }
++  :root body footer.ft .ft__tribe {
++    margin: 16px 0 0;
++    color: var(--footer-muted);
++    font:
++      400 12px/1.5 'JetBrains Mono',
++      monospace;
++    letter-spacing: 0.16em;
++    text-transform: uppercase;
++  }
++  :root body footer.ft .ft__bbb {
++    display: flex;
++    align-items: center;
++    gap: 10px;
++    margin: 7px 0 0;
++    color: #bdbdb7;
++    font:
++      700 15px/1.5 'Fraunces',
++      Georgia,
++      serif;
++    white-space: nowrap;
++  }
++  :root body footer.ft .ft__bbb em {
++    color: var(--footer-accent);
++    font-style: normal;
++  }
++  :root body footer.ft .ft__bbb i {
++    display: block;
++    flex: none;
++    width: 4px;
++    height: 4px;
++    border-radius: 50%;
++    background: #4a4a44;
++  }
++  :root body footer.ft .ft__social {
++    display: flex;
++    flex-wrap: wrap;
++    gap: 18px;
++    margin-top: 20px;
++  }
++  :root body footer.ft .ft__col {
++    display: flex;
++    flex-direction: column;
++    gap: 11px;
++    align-items: flex-start;
++    min-width: 0;
++  }
++  :root body footer.ft .ft__ttl {
++    margin: 0 0 5px;
++    font:
++      400 12px/1.5 'JetBrains Mono',
++      monospace;
++    letter-spacing: 0.12em;
++    text-transform: uppercase;
++    color: var(--footer-accent);
++  }
++  :root body footer.ft :is(.ft__col a, .ft__social a, .ft__up) {
++    font:
++      400 14px/1.5 'Inter Tight',
++      system-ui,
++      sans-serif;
++    color: #bdbdb7;
++    text-decoration: none;
++  }
++  :root body footer.ft :is(.ft__col a, .ft__social a, .ft__up):is(:hover, :focus-visible) {
++    color: #fff;
++  }
++  :root body footer.ft .ft__bar {
++    display: flex;
++    flex-wrap: wrap;
++    justify-content: space-between;
++    align-items: baseline;
++    gap: 12px 24px;
++    margin-top: clamp(36px, 4vw, 56px);
++    padding-top: 22px;
++    border-top: 1px solid #33332e;
++    color: var(--footer-muted);
++    font-size: 12.5px;
++  }
++  :root body footer.ft .ft__bar-r {
++    display: flex;
++    flex-wrap: wrap;
++    align-items: baseline;
++    gap: 12px 24px;
++  }
++  :root body footer.ft .ft__made {
++    font:
++      400 11px/1.5 'JetBrains Mono',
++      monospace;
++    letter-spacing: 0.1em;
++    text-transform: uppercase;
++  }
++  @media (min-width: 1020px) {
++    :root body footer.ft .ft__top {
++      grid-template-columns: 1.5fr repeat(4, minmax(0, 0.9fr));
++      gap: clamp(24px, 2.6vw, 44px);
++    }
++    :root body footer.ft .ft__brand {
++      grid-column: auto;
++    }
++  }
++</style>
+--- src/components/blog/HeroFilters.astro task-start
++++ src/components/blog/HeroFilters.astro final
+@@ -41,7 +41,9 @@
+   !filters.some((filter) => filter.type === 'tag' && filter.slug === activeSlug)
+ ) {
+   filters.push({
+-    label: activeTag.title,
++    label: categories.some((category) => category.slug === activeTag.slug)
++      ? `Tag: ${activeTag.title}`
++      : activeTag.title,
+     slug: activeTag.slug,
+     type: 'tag',
+     href: getPermalink(activeTag.slug, 'tag'),
+--- src/components/blog/TopicIndex.astro task-start
++++ src/components/blog/TopicIndex.astro final
+@@ -37,6 +37,9 @@
+   </section>
+ </EditorialPage>
+ <style>
++  .hero h1 + .hero__p {
++    margin-top: 18px;
++  }
+   .eyebrow {
+     text-transform: uppercase;
+   }
+--- src/components/v58/Eyebrow.astro task-start
++++ src/components/v58/Eyebrow.astro final
+@@ -1,22 +1,28 @@
+ ---
+ export interface Props {
+   accent?: boolean;
++  tone?: 'page' | 'accent';
+ }
+-const { accent = true } = Astro.props;
++const { accent = true, tone = 'page' } = Astro.props;
+ ---
+ 
+-<p class="v58-eyebrow">{accent && <span aria-hidden="true">\</span>}<slot /></p>
++<p class:list={['v58-eyebrow', { 'v58-eyebrow--accent': tone === 'accent' }]}>
++  {accent && <span aria-hidden="true">\</span>}<slot />
++</p>
+ 
+ <style>
+   .v58-eyebrow {
+     display: flex;
+     gap: 0.6em;
+     margin: 0 0 1.28rem;
+-    color: var(--v58-faint);
++    color: var(--type-kicker-neutral, #6b6a61);
+     font-family: var(--v58-mono);
+-    font-size: 0.56rem;
++    font-size: var(--type-label-size, 12px);
+     letter-spacing: 0.2em;
+     text-transform: uppercase;
++  }
++  .v58-eyebrow--accent {
++    color: var(--type-kicker-accent, #da0007);
+   }
+   .v58-eyebrow span {
+     color: var(--v58-red);
+--- src/components/v58/EditorialPage.astro task-start
++++ src/components/v58/EditorialPage.astro final
+@@ -14,8 +14,8 @@
+     --display: 'Fraunces', Georgia, serif;
+     --ui: 'Inter Tight', -apple-system, sans-serif;
+     --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+-    --paper: #f4f3f0;
+-    --warm: #f4f3f0;
++    --paper: var(--surface-paper-editorial, #f4f3f0);
++    --warm: var(--surface-paper-editorial, #f4f3f0);
+     --card: #fff;
+     --char: #121212;
+     --ink: #131313;
+@@ -156,7 +156,7 @@
+     font-style: italic;
+   }
+   :root .site-editorial .hero .eyebrow {
+-    color: var(--grey);
++    color: var(--type-kicker-neutral, #6b6a61);
+   }
+   :root .site-editorial .cmpw {
+     box-shadow: 0 20px 36px -28px rgba(19, 19, 19, 0.3);
+
+--- tests/nav-refresh.test.mjs task-start
++++ tests/nav-refresh.test.mjs final
+@@ -80,7 +80,7 @@
+     'visible'
+   );
+   assert.equal(
+-    await noScript.locator('.v58-home').evaluate((element) => getComputedStyle(element).visibility),
++    await noScript.locator('.v126-home').evaluate((element) => getComputedStyle(element).visibility),
+     'visible'
+   );
+   console.log('JavaScript disabled: navigation and homepage remain visible');

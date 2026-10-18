@@ -1,0 +1,12 @@
+--- src/components/blog/TopicIndex.astro before
++++ src/components/blog/TopicIndex.astro now
+@@ -37,6 +37,9 @@
+   </section>
+ </EditorialPage>
+ <style>
++  .hero h1 + .hero__p {
++    margin-top: 18px;
++  }
+   .eyebrow {
+     text-transform: uppercase;
+   }

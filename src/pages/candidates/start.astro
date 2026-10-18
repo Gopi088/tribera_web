@@ -251,7 +251,7 @@ const metadata = {
   .hero h1 {
     color: #fff;
     max-width: 18ch;
-    font-size: clamp(38px, 6vw, 76px);
+    font-size: var(--type-hero-size);
   }
   .hero h1 em {
     font-style: normal;
@@ -311,8 +311,8 @@ const metadata = {
   .h2 {
     font-family: var(--display);
     font-weight: 700;
-    font-size: clamp(30px, 4.2vw, 54px);
-    line-height: 1.04;
+    font-size: var(--type-section-size);
+    line-height: var(--type-section-leading);
     letter-spacing: -0.04em;
     margin: 0;
     max-width: 16ch;

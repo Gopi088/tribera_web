@@ -1,0 +1,112 @@
+--- src/pages/functions/[slug].astro before
++++ src/pages/functions/[slug].astro now
+@@ -6659,7 +6659,7 @@
+               <p class="eyebrow eyebrow--red" data-rv>Where a generic screen breaks</p>
+               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">{fw.missH2}</h2>
+             </div>
+-            <p class="dek" data-rv style="--d:100ms;max-width:none">
++            <p class="dek" data-rv style="--d:100ms">
+               A CV lists experience. An expert conversation explores the decisions, trade-offs and outcomes behind it.
+             </p>
+           </div>
+@@ -6693,7 +6693,7 @@
+               Three questions, and what a thin answer sounds like.
+             </h2>
+           </div>
+-          <p class="dek" data-rv style="--d:100ms;max-width:none">
++          <p class="dek" data-rv style="--d:100ms">
+             These examples show what we explore. The actual questions follow the candidate's experience and the
+             requirements of your role.
+           </p>
+@@ -6742,7 +6742,7 @@
+               <p class="eyebrow eyebrow--red" data-rv>Roles we run here</p>
+               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">Different levels. Your hiring bar.</h2>
+             </div>
+-            <p class="dek" data-rv style="--d:100ms;max-width:none">
++            <p class="dek" data-rv style="--d:100ms">
+               We agree the requirements with your hiring manager. Your team interviews the shortlist and makes the
+               hiring decision.
+             </p>
+@@ -6773,7 +6773,7 @@
+               <p class="eyebrow" data-rv>Who does the interviewing</p>
+               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">Operators, not recruiters.</h2>
+             </div>
+-            <p class="trust__dek" data-rv style="--d:100ms;max-width:none">
++            <p class="trust__dek" data-rv style="--d:100ms">
+               The distinction this whole page rests on.
+               <b>Every interview here is run by someone who has held the job</b>, and they only interview on ground they
+               have actually worked.
+@@ -6824,7 +6824,7 @@
+             <p class="eyebrow eyebrow--red" data-rv>Before you brief us</p>
+             <h2 class="h2" data-rv style="--d:60ms;max-width:none;">Three things teams ask first.</h2>
+           </div>
+-          <p class="dek" data-rv style="--d:100ms;max-width:none">
++          <p class="dek" data-rv style="--d:100ms">
+             Answered here so the first call can be about your role rather than about us.
+           </p>
+         </div>
+@@ -6868,7 +6868,7 @@
+               <p class="eyebrow eyebrow--red" data-rv>Why tribera</p>
+               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">We hire like you think.</h2>
+             </div>
+-            <p class="dek" data-rv style="--d:100ms;max-width:none">
++            <p class="dek" data-rv style="--d:100ms">
+               Our process is shaped by the mandates we run and the people we hire.
+               <b>Every step is designed to find the right person, not just any person.</b>
+             </p>
+--- src/pages/industries/[slug].astro before
++++ src/pages/industries/[slug].astro now
+@@ -6663,7 +6663,7 @@
+               <p class="eyebrow eyebrow--red" data-rv>Where a generic screen breaks</p>
+               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">{industry.missH2}</h2>
+             </div>
+-            <p class="dek" data-rv style="--d:100ms;max-width:none">
++            <p class="dek" data-rv style="--d:100ms">
+               None of these are exotic. <b>They are simply invisible to anyone assessing from outside the sector</b>,
+               which is most of the people doing the assessing.
+             </p>
+@@ -6698,7 +6698,7 @@
+               Three questions, and what a thin answer sounds like.
+             </h2>
+           </div>
+-          <p class="dek" data-rv style="--d:100ms;max-width:none">
++          <p class="dek" data-rv style="--d:100ms">
+             Questions are shaped by the role and the candidate’s experience, so these are shapes rather than a script. <b
+               >The second column is the part a generic interviewer cannot supply.</b
+             >
+@@ -6748,7 +6748,7 @@
+               <p class="eyebrow eyebrow--red" data-rv>Roles we run here</p>
+               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">Every level, one guarantee.</h2>
+             </div>
+-            <p class="dek" data-rv style="--d:100ms;max-width:none">
++            <p class="dek" data-rv style="--d:100ms">
+               Interview three, hire one; <b>if none of the three fit, we restart at no cost.</b>
+             </p>
+           </div>
+@@ -6778,7 +6778,7 @@
+               <p class="eyebrow" data-rv>Who does the interviewing</p>
+               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">Operators, not recruiters.</h2>
+             </div>
+-            <p class="trust__dek" data-rv style="--d:100ms;max-width:none">
++            <p class="trust__dek" data-rv style="--d:100ms">
+               The distinction this whole page rests on.
+               <b>Every interview here is run by someone who has held the job</b>, and they only interview on ground they
+               have actually worked.
+@@ -6829,7 +6829,7 @@
+             <p class="eyebrow eyebrow--red" data-rv>Before you brief us</p>
+             <h2 class="h2" data-rv style="--d:60ms;max-width:none;">What teams ask first.</h2>
+           </div>
+-          <p class="dek" data-rv style="--d:100ms;max-width:none">
++          <p class="dek" data-rv style="--d:100ms">
+             Answered here so the first call can be about your role rather than about us.
+           </p>
+         </div>
+@@ -6873,7 +6873,7 @@
+               <p class="eyebrow eyebrow--red" data-rv>Why tribera</p>
+               <h2 class="h2" data-rv style="--d:60ms;max-width:none;">We hire like you think.</h2>
+             </div>
+-            <p class="dek" data-rv style="--d:100ms;max-width:none">
++            <p class="dek" data-rv style="--d:100ms">
+               Our process is shaped by the mandates we run and the people we hire.
+               <b>Every step is designed to find the right person, not just any person.</b>
+             </p>

@@ -1,22 +1,28 @@
 ---
 export interface Props {
   accent?: boolean;
+  tone?: 'page' | 'accent';
 }
-const { accent = true } = Astro.props;
+const { accent = true, tone = 'page' } = Astro.props;
 ---
 
-<p class="v58-eyebrow">{accent && <span aria-hidden="true">\</span>}<slot /></p>
+<p class:list={['v58-eyebrow', { 'v58-eyebrow--accent': tone === 'accent' }]}>
+  {accent && <span aria-hidden="true">\</span>}<slot />
+</p>
 
 <style>
   .v58-eyebrow {
     display: flex;
     gap: 0.6em;
     margin: 0 0 1.28rem;
-    color: var(--v58-faint);
+    color: var(--type-kicker-neutral, #6b6a61);
     font-family: var(--v58-mono);
-    font-size: 0.56rem;
+    font-size: var(--type-label-size, 12px);
     letter-spacing: 0.2em;
     text-transform: uppercase;
+  }
+  .v58-eyebrow--accent {
+    color: var(--type-kicker-accent, #da0007);
   }
   .v58-eyebrow span {
     color: var(--v58-red);

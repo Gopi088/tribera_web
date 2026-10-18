@@ -14,18 +14,19 @@ const { as: Tag = 'h2', class: className, ...attributes } = Astro.props;
     color: inherit;
     font-family: var(--v58-display);
     font-optical-sizing: auto;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.08;
+    font-weight: var(--type-display-weight);
+    letter-spacing: var(--type-display-tracking);
+    line-height: var(--type-section-leading);
   }
   .v58-heading--h1 {
-    font-size: clamp(2.08rem, 4.48vw, 3.32rem);
+    font-size: var(--type-hero-size);
+    line-height: var(--type-hero-leading);
   }
   .v58-heading--h2 {
-    font-size: clamp(2rem, 3.9vw, 3rem);
+    font-size: var(--type-section-size);
   }
   .v58-heading--h3 {
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: var(--type-card-size);
+    line-height: var(--type-card-leading);
   }
 </style>

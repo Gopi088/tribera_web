@@ -69,7 +69,7 @@ export const functionPages: FunctionPageData[] = [
       { n: 'Stakeholder handling', w: '54', v: '14%', key: false },
     ],
     barsFt:
-      '<b>Core depth carries 26%</b> here. Same six dimensions in every function; only the shape changes — and the shape is set with you at intake.',
+      '<b>Core depth carries 26%</b> here. These six dimensions illustrate the weighting. Criteria and weights are agreed for each role.',
     missH2: 'Things a CV cannot tell you.',
     misses: [
       {
@@ -125,7 +125,7 @@ export const functionPages: FunctionPageData[] = [
       },
     ],
     casesFt:
-      '<b>That is the whole interview.</b> Parts of it may be hard, but nothing in it is a trick — and the same six little bars above are what it always drives back to.',
+      '<b>That is the whole interview.</b> Parts of it may be hard, but nothing in it is a trick — and the assessment follows the criteria agreed for the role.',
     roles: [
       { n: 'Software Engineering', l: 'Mid to Principal' },
       { n: 'Platform & Developer Experience', l: 'Engineer to VP Platform' },
@@ -148,7 +148,7 @@ export const functionPages: FunctionPageData[] = [
     faqs: [
       {
         q: 'Do you evaluate candidates on our specific tech stack?',
-        a: 'Context first, stack later. We assess engineering judgment — systems, reliability, trade-offs — and separately verify stack depth where you need it. The same candidate can interview for Go and for TypeScript; the bar is the same six dimensions with the shape you set.',
+        a: 'Context first, stack later. We assess engineering judgment — systems, reliability, trade-offs — and separately verify stack depth where you need it. The same candidate can interview for Go and for TypeScript; criteria and weighting are agreed for each role.',
       },
       {
         q: 'How do you handle senior engineers who have stopped coding?',
@@ -238,7 +238,7 @@ export const functionPages: FunctionPageData[] = [
       },
     ],
     casesFt:
-      '<b>That is the whole interview.</b> Some of it is technical, and it always winds back to the six bars above — with the shape you set at intake.',
+      '<b>That is the whole interview.</b> Some of it is technical, and it always winds back to the criteria you agree at intake.',
     roles: [
       { n: 'Data Engineering', l: 'DE to Principal' },
       { n: 'Data Science & ML', l: 'DS to Head of DS' },
@@ -351,7 +351,7 @@ export const functionPages: FunctionPageData[] = [
       },
     ],
     casesFt:
-      '<b>That is the whole interview.</b> It is as close to a shift on your system as we can make it without the pager. The six bars above are the shape we score against.',
+      '<b>That is the whole interview.</b> It is as close to a shift on your system as we can make it without the pager. The bars above illustrate priorities for this role.',
     roles: [
       { n: 'Site Reliability Engineering', l: 'SRE to Principal SRE' },
       { n: 'Platform Engineering', l: 'Platform Engineer to Head of Platform' },
@@ -422,7 +422,7 @@ export const functionPages: FunctionPageData[] = [
         n: '02',
         t: 'Risk decisions, not risk registers',
         k: 'Everyone maintains a register',
-        x: 'Security work is a budget problem before it is a technical one. The real signal is what they left unprotected and how they defended that choice.',
+        x: 'Security work is a budget problem before it is a technical one. The evidence is in what they left unprotected and how they defended that choice.',
         w: 'Where it shows up: what they left unpatched, and who signed the risk off.',
       },
       {
@@ -464,7 +464,7 @@ export const functionPages: FunctionPageData[] = [
       },
     ],
     casesFt:
-      'Every question here comes off the candidate’s own history — <b>the second column is the part a generic security screening cannot supply.</b> The six bars above are the shape we score to.',
+      'Questions are shaped by the role and the candidate’s experience — <b>the second column is the part a generic security screening cannot supply.</b> The bars above illustrate priorities for this role.',
     roles: [
       { n: 'Application Security', l: 'AppSec to Head of AppSec' },
       { n: 'SOC & Detection', l: 'Analyst to SOC Director' },
@@ -521,7 +521,7 @@ export const functionPages: FunctionPageData[] = [
       { n: 'Stakeholder handling', w: '31', v: '8%', key: false },
     ],
     barsFt:
-      '<b>Controls and risk carries 26%</b> here. Same six dimensions in every function; only the shape changes — and the shape is set with you at intake.',
+      '<b>Controls and risk carries 26%</b> here. These six dimensions illustrate the weighting. Criteria and weights are agreed for each role.',
     missH2: 'Things a CV cannot tell you.',
     misses: [
       {
@@ -577,7 +577,7 @@ export const functionPages: FunctionPageData[] = [
       },
     ],
     casesFt:
-      'Every answer lands on one of the six bars above — <b>the shape of the interview is the shape of the bar you set.</b>',
+      'Answers are assessed against the agreed role criteria — <b>the shape of the interview is the shape of the bar you set.</b>',
     roles: [
       { n: 'FP&A', l: 'Analyst to Head of FP&A' },
       { n: 'Financial Control & Reporting', l: 'Controller to VP Finance' },
@@ -618,7 +618,7 @@ export const functionPages: FunctionPageData[] = [
     slug: 'product-design',
     title: 'Product & design hiring — tribera',
     description:
-      'Taste, evidence and refusal — the product signals that survive the interview room. An expert-reviewed shortlist, assessed against your role.',
+      'Taste, evidence and refusal — the product decisions that stand up in the interview room. An expert-reviewed shortlist, assessed against your role.',
     heroEyebrow: 'Product & design',
     heroH1: 'We hire on <em>what they refused to build</em>.',
     heroPs: [
@@ -634,14 +634,14 @@ export const functionPages: FunctionPageData[] = [
       { n: 'Stakeholder handling', w: '100', v: '30%', key: true },
     ],
     barsFt:
-      '<b>Stakeholder handling carries 30%</b> here — product judgment shows in refusal, and refusal happens in rooms. Same six dimensions; only the shape changes.',
+      '<b>Stakeholder handling carries 30%</b> here — product judgment shows in refusal, and refusal happens in rooms. These are example weights. Criteria and weighting are agreed for the role.',
     missH2: 'Things a CV cannot tell you.',
     misses: [
       {
         n: '01',
         t: 'Shipped taste, versus portfolio taste',
         k: 'Every folio looks deliberate',
-        x: 'A case study can be built from the leftovers of someone else’s process. The signal is the work that made the final cut — and what they almost shipped instead.',
+        x: 'A case study can be built from the leftovers of someone else’s process. The evidence is in the work that made the final cut — and what they almost shipped instead.',
         w: 'Where it shows up: their strangest shipped decision, and how they’d defend it now.',
       },
       {
@@ -690,7 +690,7 @@ export const functionPages: FunctionPageData[] = [
       },
     ],
     casesFt:
-      '<b>That is the whole interview.</b> Some of it is taste, some of it is evidence, and it always lands back on the six bars you set at intake.',
+      '<b>That is the whole interview.</b> Some of it is taste, some of it is evidence, and it always lands back on the criteria you set at intake.',
     roles: [
       { n: 'Product design', l: 'Designer to head of design' },
       { n: 'Product management', l: 'PM to CPO' },
@@ -747,7 +747,7 @@ export const functionPages: FunctionPageData[] = [
       { n: 'Stakeholder handling', w: '46', v: '12%', key: false },
     ],
     barsFt:
-      '<b>Delivery speed carries 26%</b> here. The plan is a hypothesis; the operation is what happened. Same six dimensions; only the shape changes.',
+      '<b>Delivery speed carries 26%</b> here. The plan is a hypothesis; the operation is what happened. These are example weights. Criteria and weighting are agreed for the role.',
     missH2: 'Things a CV cannot tell you.',
     misses: [
       {
@@ -775,7 +775,7 @@ export const functionPages: FunctionPageData[] = [
         n: '04',
         t: 'Ownership across teams',
         k: 'Matrix charts lie',
-        x: 'Operations is accountability that does not follow the org chart. The signal is who they called at 3am when it was not their hour.',
+        x: 'Operations is accountability that does not follow the org chart. The evidence is in who they called at 3am when it was not their hour.',
         w: 'Where it shows up: the owner of the largest mess, and why it was theirs.',
       },
     ],
@@ -803,7 +803,7 @@ export const functionPages: FunctionPageData[] = [
       },
     ],
     casesFt:
-      '<b>That is the whole interview.</b> Some of it is process, some of it is judgement, and all of it lands back on the six bars you set at intake.',
+      '<b>That is the whole interview.</b> Some of it is process, some of it is judgement, and all of it lands back on the criteria you set at intake.',
     roles: [
       { n: 'Operations leadership', l: 'Manager to COO' },
       { n: 'Supply chain & logistics', l: 'Manager to head' },
@@ -867,7 +867,7 @@ export const functionPages: FunctionPageData[] = [
         n: '01',
         t: 'The decision with no cover',
         k: 'Titles are cheap to print',
-        x: 'Everyone has a story about a decision. The signal is the decision they took that had no cover — where the cost of being wrong was entirely theirs.',
+        x: 'Everyone has a story about a decision. The evidence is in the decision they took that had no cover — where the cost of being wrong was entirely theirs.',
         w: 'Where it shows up: a call they made against the room, with no one to share it with.',
       },
       {
@@ -893,7 +893,7 @@ export const functionPages: FunctionPageData[] = [
       },
     ],
     casesFt:
-      '<b>That is the whole interview.</b> Some of it is about rooms, some about decisions, and it always lands back on the six bars you set at intake.',
+      '<b>That is the whole interview.</b> Some of it is about rooms, some about decisions, and it always lands back on the criteria you set at intake.',
     roles: [
       { n: 'Executive leadership', l: 'Director to CEO' },
       { n: 'Fractional leadership', l: 'Interim to fractional CXO' },
@@ -943,7 +943,7 @@ export const functionPages: FunctionPageData[] = [
       },
       {
         q: 'Can you validate board-level candidates we already have in mind?',
-        a: 'Yes. We run the same six-dimension bar against a candidate you supply — it is the same short, rigorous hour, and it moves the room. People who have sat the bar do not talk about it defensively.',
+        a: 'Yes. We run the criteria agreed for the role against a candidate you supply — it is the same short, rigorous hour, and it moves the room. People who have sat the bar do not talk about it defensively.',
       },
       {
         q: 'What distinguishes a great bench from a great shortlist?',

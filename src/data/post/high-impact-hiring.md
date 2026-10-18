@@ -1,7 +1,7 @@
 ---
-title: 'Rethinking Hiring Metrics: What 2,00,000 Interviews Taught Us About Signal Efficiency'
+title: 'Rethinking hiring metrics: What 200,000 interviews taught us about signal efficiency'
 
-excerpt: 'Time-to-hire measures pace. Interview-to-hire ratios reveal alignment. Insights from 2,00,000 structured interviews across domains.'
+excerpt: 'Time-to-hire measures pace. Interview-to-hire ratios reveal alignment. Insights from 200,000 structured interviews across domains.'
 
 permalinkSlug: 'blog/rethinking-hiring-metrics-signal-efficiency'
 
@@ -13,8 +13,6 @@ category: 'Hiring Strategy'
 tags: ['hiring-metrics', 'structured-evaluation', 'decision-infrastructure', 'talent-acquisition', 'quality-of-hire']
 
 image: '~/assets/images/blog/signal-efficiency.png'
-
-readingTime: '8 min'
 ---
 
 Hiring metrics guide decision-making.

@@ -1,0 +1,43 @@
+---
+import markup from './sections/proof.html?raw';
+import dimensions from './lab-data.json';
+import { isHeavy } from './lab-model';
+
+const escape = (value: string | number) =>
+  String(value).replace(
+    /[&<>"']/g,
+    (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!
+  );
+const maxWeight = Math.max(...dimensions.map((d) => d.w));
+const heavy = (weight: number) => (isHeavy(weight, maxWeight) ? ' heavy' : '');
+const rows = dimensions
+  .map(
+    (d, i) =>
+      `<div class="row${heavy(d.w)}" id="row${i}" data-i="${i}"><span class="rk">${escape(d.k)}</span><span class="rn">${escape(d.n)}</span><input type="range" min="0" max="40" step="1" value="${d.w}" data-i="${i}" aria-label="Weight for ${escape(d.n)}" aria-valuetext="${d.w} percent" disabled><span class="rp" id="pts${i}">${d.w.toFixed(1)}%</span></div>`
+  )
+  .join('');
+const tiles = dimensions
+  .map(
+    (d, i) =>
+      `<button type="button" class="lt${d.s <= 2 ? ' low' : ''}${heavy(d.w)}" id="tile${i}" data-i="${i}" aria-pressed="false" aria-label="${escape(d.n)}: ${d.s} out of 5"><i>${escape(d.sn)}</i><b>${d.s}</b></button>`
+  )
+  .join('');
+for (const placeholder of ['<!-- LAB_ROWS -->', '<!-- LAB_TILES -->', '<!-- LAB_STATUS -->']) {
+  if (!markup.includes(placeholder)) throw new Error(`Missing lab markup placeholder: ${placeholder}`);
+}
+const html = markup
+  .replace('<!-- LAB_ROWS -->', rows)
+  .replace('<!-- LAB_TILES -->', tiles)
+  .replace(
+    '<!-- LAB_STATUS -->',
+    '<div class="sr-only" id="labStatus" aria-live="polite">Select, 39.00 out of 50</div>'
+  );
+---
+
+<Fragment set:html={html} />
+<script
+  is:inline
+  type="application/json"
+  id="labData"
+  set:html={JSON.stringify(dimensions).replaceAll('<', '\\u003c')}
+/>

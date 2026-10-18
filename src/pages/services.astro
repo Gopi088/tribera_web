@@ -189,8 +189,8 @@ import StandalonePrefetchScripts from '../components/standalone/StandalonePrefet
       .h2 {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(30px, 4.2vw, 54px);
-        line-height: 1.04;
+        font-size: var(--type-section-size);
+        line-height: var(--type-section-leading);
         letter-spacing: -0.04em;
         margin: 0;
         max-width: 16ch;
@@ -505,7 +505,7 @@ import StandalonePrefetchScripts from '../components/standalone/StandalonePrefet
       }
       .hero h1 {
         max-width: 18ch;
-        font-size: clamp(36px, 4.6vw, 62px);
+        font-size: var(--type-hero-size);
       }
       .hero h1 + .hero__p {
         margin-top: 18px;
@@ -3683,8 +3683,8 @@ import StandalonePrefetchScripts from '../components/standalone/StandalonePrefet
         color: #fff;
       }
       .trust__dek {
-        font-size: clamp(16px, 1.7vw, 20px);
-        line-height: 1.6;
+        font-size: var(--type-subtitle-size);
+        line-height: var(--type-subtitle-leading);
         color: var(--onc2);
         max-width: 44ch;
         margin: 0;
@@ -10787,8 +10787,23 @@ import StandalonePrefetchScripts from '../components/standalone/StandalonePrefet
         color: #fff;
       }
 
-      /* ══ CENTERED SHEAD — same as the home page ══ */
-      #deliverables .shead,
+      #deliverables .shead {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        justify-items: start;
+        text-align: left;
+        gap: 24px;
+      }
+      #deliverables .shead > * {
+        justify-self: stretch;
+        max-width: none;
+        margin-inline: 0;
+      }
+      #deliverables .shead .fn__dek {
+        max-width: var(--type-subtitle-measure);
+        margin: 0;
+      }
+      /* The closing call to action remains intentionally centered. */
       #contact .shead {
         display: grid;
         grid-template-columns: 1fr;
@@ -10796,17 +10811,15 @@ import StandalonePrefetchScripts from '../components/standalone/StandalonePrefet
         text-align: center;
         gap: 8px;
       }
-      #deliverables .shead > *,
       #contact .shead > * {
         justify-self: center;
       }
       #deliverables .shead h2,
       #contact .shead h2 {
         max-width: none;
-        text-wrap: nowrap;
-        margin-inline: auto;
+        text-wrap: balance;
+        margin: 0;
       }
-      #deliverables .shead .fn__dek,
       #contact .shead .dek {
         max-width: 96ch;
         margin: 4px auto 0;
@@ -10815,14 +10828,6 @@ import StandalonePrefetchScripts from '../components/standalone/StandalonePrefet
       }
       #contact .shead {
         margin-bottom: clamp(8px, 3.8vw, 30px);
-      }
-      /* On narrow phones the nowrap headings are wider than the viewport,
-   so let them wrap in place of a horizontal scroll. */
-      @media (max-width: 559px) {
-        #deliverables .shead h2,
-        #contact .shead h2 {
-          text-wrap: balance;
-        }
       }
     </style>
   </head>
@@ -11084,7 +11089,8 @@ import StandalonePrefetchScripts from '../components/standalone/StandalonePrefet
                       referrals and your own sourcing. Every one interviewed by a senior expert and scored against the
                       same bar.
                     </p><ul class="oc__ul">
-                      <li>Thirty structured minutes each, on questions written from their CV</li><li>
+                      <li>Thirty structured minutes each, with questions shaped by the role and their experience</li><li
+                      >
                         Scored against your criteria, with the open questions named
                       </li><li><b>Vendor submissions and internal referrals ranked side by side</b></li><li>
                         Which of your vendors is actually sending people who clear the bar
@@ -11108,7 +11114,7 @@ import StandalonePrefetchScripts from '../components/standalone/StandalonePrefet
                     <p class="oc__lead">
                       Your existing team, assessed against the standard you would hire to today.
                     </p><ul class="oc__ul">
-                      <li>Each person assessed against the same six to eleven criteria</li><li>
+                      <li>Each person assessed against six to eleven criteria agreed for the role</li><li>
                         Where the team is strong, thin, and duplicated
                       </li><li>What your next three hires should actually be</li><li>
                         Individual feedback shared with each person, not only with you

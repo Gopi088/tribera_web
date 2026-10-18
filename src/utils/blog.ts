@@ -1,4 +1,5 @@
 import type { PaginateFunction } from 'astro';
+import { standaloneReadingTime } from './standalone-reading-time';
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import type { Post } from '~/types';
@@ -98,7 +99,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     Content: Content,
     // or 'content' in case you consume from API
 
-    readingTime: rawReadingTime || remarkPluginFrontmatter?.readingTime,
+    readingTime: standaloneReadingTime(slug) || rawReadingTime || remarkPluginFrontmatter?.readingTime,
   };
 };
 

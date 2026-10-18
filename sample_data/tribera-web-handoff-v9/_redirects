@@ -1,0 +1,24 @@
+# Cloudflare Pages redirects. In Astro, put this file in public/.
+# Old live URLs (trailing slashes and old paths) to the new ones. 301 = permanent.
+/index.html              /                 301
+/home                    /                 301
+/security/               /security         301
+/privacy/                /privacy          301
+/privacy-policy          /privacy          301
+/terms/                  /terms            301
+/terms-and-conditions    /terms            301
+/dpa/                    /dpa              301
+/blog/                   /blog             301
+/careers/                /careers          301
+/industries/             /industries       301
+/contact/                /contact          301
+/about/                  /about            301
+/candidates/             /candidates       301
+/roles                   /candidates#when  301
+/case-studies            /case-study       301
+/sample                  /sample-write-up  301
+/numbers                 /how-we-work-with-numbers 301
+/blog/:slug/             /blog/:slug       301
+/industries/:slug/       /industries/:slug 301
+/careers/:slug/          /careers/:slug    301
+# Add any other old URL from Search Console > Pages before launch.

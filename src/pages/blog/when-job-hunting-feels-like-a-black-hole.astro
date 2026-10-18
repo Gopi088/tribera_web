@@ -1,5 +1,8 @@
 ---
 import SiteFooter from '~/components/widgets/Footer.astro';
+import { fetchPosts } from '~/utils/blog';
+import { getPermalink } from '~/utils/permalinks';
+const post = (await fetchPosts()).find((post) => post.slug === 'blog/when-job-hunting-feels-like-a-black-hole')!;
 import EditorialPage from '~/components/v58/EditorialPage.astro';
 import SiteHeader from '~/components/widgets/Header.astro';
 import ContactSalesModal from '../../components/ContactSalesModal.astro';
@@ -192,8 +195,8 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
       .h2 {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(30px, 4.2vw, 54px);
-        line-height: 1.04;
+        font-size: var(--type-section-size);
+        line-height: var(--type-section-leading);
         letter-spacing: -0.04em;
         margin: 0;
         max-width: 16ch;
@@ -430,7 +433,7 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
       }
       .hero h1 {
         max-width: 18ch;
-        font-size: clamp(36px, 4.6vw, 62px);
+        font-size: var(--type-hero-size);
       }
       .hero h1 + .hero__p {
         margin-top: 18px;
@@ -3612,8 +3615,8 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
         color: #fff;
       }
       .trust__dek {
-        font-size: clamp(16px, 1.7vw, 20px);
-        line-height: 1.6;
+        font-size: var(--type-subtitle-size);
+        line-height: var(--type-subtitle-leading);
         color: var(--onc2);
         max-width: 44ch;
         margin: 0;
@@ -6271,8 +6274,8 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
       .ahead h1 {
         font-family: var(--display);
         font-weight: 800;
-        font-size: clamp(32px, 5vw, 60px);
-        line-height: 1.06;
+        font-size: var(--type-hero-size);
+        line-height: var(--type-hero-leading);
         letter-spacing: -0.045em;
         color: #fff;
         margin: 0;
@@ -6280,8 +6283,8 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
         text-wrap: balance;
       }
       .ahead__sub {
-        font-size: clamp(17px, 1.9vw, 22px);
-        line-height: 1.45;
+        font-size: var(--type-subtitle-size);
+        line-height: var(--type-subtitle-leading);
         color: var(--onc2);
         margin: clamp(22px, 2.2vw, 28px) 0 0;
         max-width: 44ch;
@@ -6352,8 +6355,8 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
       .art h2 {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(21px, 2.2vw, 28px);
-        line-height: 1.2;
+        font-size: var(--type-article-size);
+        line-height: var(--type-article-leading);
         letter-spacing: -0.032em;
         color: var(--ink);
         margin: 2.4em 0 0.7em;
@@ -6578,7 +6581,8 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
         <div class="wrap">
           <p class="ahead__meta">
             <span>Aug 21, 2025</span><i>·</i>
-            <a href="/category/candidate-experience">Candidate experience</a><i>·</i><span>3 min read</span>
+            {post.category && <a href={getPermalink(post.category.slug, 'category')}>{post.category.title}</a>}<i>·</i
+            ><span>{post.readingTime} read</span>
           </p>
           <h1>When job hunting feels like a black hole</h1>
           <p class="ahead__sub">Silence is not rejection, but it costs the same.</p>
@@ -7723,9 +7727,13 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
           </article>
           <div class="aft">
             <div class="atags">
-              <a class="atag" href="/tag/job-search">Job search</a><a class="atag" href="/tag/candidate-experience"
-                >Candidate experience</a
-              ><a class="atag" href="/tag/rejection">Rejection</a><a class="atag" href="/tag/signal">Signal</a>
+              {
+                post.tags?.map((tag) => (
+                  <a class="atag" href={getPermalink(tag.slug, 'tag')}>
+                    {tag.title}
+                  </a>
+                ))
+              }
             </div>
             <div class="ashare"><span>Share</span><a href="#">LinkedIn</a><a href="#">Copy link</a></div>
           </div>

@@ -29,12 +29,20 @@ try {
     if (width < 900) {
       assert.ok(presetSize.height >= 44, 'Presets retain a 44px touch target');
     } else {
-      assert.ok(Math.abs(presetSize.height - 31.1) < 1, 'Desktop preset height matches sample');
-      assert.ok(Math.abs(presetSize.width - 84.6) < 1, 'Desktop preset width matches sample');
+      assert.ok(presetSize.height >= 30 && presetSize.height <= 44, 'Desktop presets keep their compact control size');
+      assert.equal(
+        await lab.locator('[data-preset=brief]').evaluate((button) => getComputedStyle(button).fontSize),
+        '14px',
+        'Presets use the approved shared action size'
+      );
     }
     assert.equal(await lab.locator('article[aria-live]').count(), 0);
     assert.equal(await status.textContent(), '');
-    assert.equal(await page.locator('.v58-proof-emphasis').textContent(), 'Set your priorities');
+    assert.equal(await page.locator('.v58-proof-emphasis').textContent(), 'your priorities');
+    assert.match(
+      await page.locator('.v58-proof-intro__action').innerText(),
+      /Set your priorities\s+and the verdict follows/
+    );
     assert.equal(await page.locator('.v58-proof-intro > p').count(), 2);
     assert.equal(await page.locator('.v58-proof-intro br').count(), 0);
 

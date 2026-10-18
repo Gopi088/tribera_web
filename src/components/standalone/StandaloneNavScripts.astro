@@ -444,9 +444,15 @@ const shouldRenderAnalytics = Astro.url.pathname !== '/intelligence';
       link.addEventListener('focus', warmRoute, { once: true });
     });
 
+    const isBlogRoute =
+      pathname === '/blog' ||
+      pathname.startsWith('/blog/') ||
+      pathname.startsWith('/category/') ||
+      pathname.startsWith('/tag/');
+
     markPage('.nav__l[href="/services"]', pathname === '/services' || pathname.startsWith('/services/'));
     markPage('.nav__l[href="/intelligence"]', pathname === '/intelligence' || pathname.startsWith('/intelligence/'));
-    markPage('.nav__l[href="/blog"]', pathname === '/blog' || pathname.startsWith('/blog/'));
+    markPage('.nav__l[href="/blog"]', isBlogRoute);
     markPage('.nav__l[href="/about"]', pathname === '/about' || pathname.startsWith('/about/'));
     markPage('.nav__l[href="/contact"]', pathname === '/contact' || pathname.startsWith('/contact/'));
     markPage('.nav__l[href="/careers"]', pathname === '/careers' || pathname.startsWith('/careers/'));
@@ -458,7 +464,7 @@ const shouldRenderAnalytics = Astro.url.pathname !== '/intelligence';
     markPage('.navp a[href="/"]', pathname === '/');
     markPage('.navp a[href="/services"]', pathname === '/services' || pathname.startsWith('/services/'));
     markPage('.navp a[href="/intelligence"]', pathname === '/intelligence' || pathname.startsWith('/intelligence/'));
-    markPage('.navp a[href="/blog"]', pathname === '/blog' || pathname.startsWith('/blog/'));
+    markPage('.navp a[href="/blog"]', isBlogRoute);
     markPage('.navp a[href="/about"]', pathname === '/about' || pathname.startsWith('/about/'));
     markPage('.navp a[href="/contact"]', pathname === '/contact' || pathname.startsWith('/contact/'));
     markPage('.navp a[href="/careers"]', pathname === '/careers' || pathname.startsWith('/careers/'));

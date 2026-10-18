@@ -13,8 +13,6 @@ category: 'Candidate Experience'
 tags: ['candidate-experience', 'privacy-by-design', 'trust-in-hiring', 'platform-design', 'professional-respect']
 
 image: '~/assets/images/blog/trust-by-design.png'
-
-readingTime: '7 min'
 ---
 
 Exploring new opportunities is a professional decision.

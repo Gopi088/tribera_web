@@ -1,5 +1,10 @@
 ---
 import SiteFooter from '~/components/widgets/Footer.astro';
+import { fetchPosts } from '~/utils/blog';
+import { getPermalink } from '~/utils/permalinks';
+const post = (await fetchPosts()).find(
+  (post) => post.slug === 'blog/designing-ai-for-high-stakes-technical-assessment'
+)!;
 import EditorialPage from '~/components/v58/EditorialPage.astro';
 import SiteHeader from '~/components/widgets/Header.astro';
 import ContactSalesModal from '../../components/ContactSalesModal.astro';
@@ -192,8 +197,8 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
       .h2 {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(30px, 4.2vw, 54px);
-        line-height: 1.04;
+        font-size: var(--type-section-size);
+        line-height: var(--type-section-leading);
         letter-spacing: -0.04em;
         margin: 0;
         max-width: 16ch;
@@ -430,7 +435,7 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
       }
       .hero h1 {
         max-width: 18ch;
-        font-size: clamp(36px, 4.6vw, 62px);
+        font-size: var(--type-hero-size);
       }
       .hero h1 + .hero__p {
         margin-top: 18px;
@@ -3612,8 +3617,8 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
         color: #fff;
       }
       .trust__dek {
-        font-size: clamp(16px, 1.7vw, 20px);
-        line-height: 1.6;
+        font-size: var(--type-subtitle-size);
+        line-height: var(--type-subtitle-leading);
         color: var(--onc2);
         max-width: 44ch;
         margin: 0;
@@ -6271,8 +6276,8 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
       .ahead h1 {
         font-family: var(--display);
         font-weight: 800;
-        font-size: clamp(32px, 5vw, 60px);
-        line-height: 1.06;
+        font-size: var(--type-hero-size);
+        line-height: var(--type-hero-leading);
         letter-spacing: -0.045em;
         color: #fff;
         margin: 0;
@@ -6280,8 +6285,8 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
         text-wrap: balance;
       }
       .ahead__sub {
-        font-size: clamp(17px, 1.9vw, 22px);
-        line-height: 1.45;
+        font-size: var(--type-subtitle-size);
+        line-height: var(--type-subtitle-leading);
         color: var(--onc2);
         margin: clamp(22px, 2.2vw, 28px) 0 0;
         max-width: 44ch;
@@ -6352,8 +6357,8 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
       .art h2 {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(21px, 2.2vw, 28px);
-        line-height: 1.2;
+        font-size: var(--type-article-size);
+        line-height: var(--type-article-leading);
         letter-spacing: -0.032em;
         color: var(--ink);
         margin: 2.4em 0 0.7em;
@@ -6578,7 +6583,8 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
         <div class="wrap">
           <p class="ahead__meta">
             <span>Jan 24, 2026</span><i>·</i>
-            <a href="/category/ai-assessment">AI and assessment</a><i>·</i><span>5 min read</span>
+            {post.category && <a href={getPermalink(post.category.slug, 'category')}>{post.category.title}</a>}<i>·</i
+            ><span>{post.readingTime} read</span>
           </p>
           <h1>Designing AI for high-stakes assessment</h1>
           <p class="ahead__sub">A model can read a transcript. It cannot tell you whether the person meant it.</p>
@@ -7001,10 +7007,10 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
             </p>
 
             <p>
-              <b>Write the questions.</b> Every question comes off the candidate’s own CV, which means the engine has to understand
-              the claim well enough to turn it into something only the person who did it could answer. "Built microservices
-              handling two million requests a day" becomes "which service did you split off first, and what broke when you
-              did".
+              <b>Write the questions.</b> Questions are shaped by the role and the candidate’s experience, which means the
+              engine has to understand the claim well enough to turn it into something only the person who did it could answer.
+              "Built microservices handling two million requests a day" becomes "which service did you split off first, and
+              what broke when you did".
             </p>
 
             <p>
@@ -7047,9 +7053,9 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
             </p>
 
             <p>
-              So the rubric moved to the client. Eleven dimensions, weighted at intake, and the weighting is visible to
-              everyone including the candidate. The model got less clever and the results got better, which is a lesson
-              that generalises further than we expected.
+              So the rubric moved to the client. Six to eleven dimensions, weighted at intake, and the weighting is
+              visible to everyone including the candidate. The model got less clever and the results got better, which
+              is a lesson that generalises further than we expected.
             </p>
 
             <h2>Explainability is not a feature</h2>
@@ -7070,12 +7076,13 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
           </article>
           <div class="aft">
             <div class="atags">
-              <a class="atag" href="/tag/assessment-design">Assessment design</a><a
-                class="atag"
-                href="/tag/human-in-the-loop">Human in the loop</a
-              ><a class="atag" href="/tag/explainability">Explainability</a><a class="atag" href="/tag/model-limits"
-                >Model limits</a
-              >
+              {
+                post.tags?.map((tag) => (
+                  <a class="atag" href={getPermalink(tag.slug, 'tag')}>
+                    {tag.title}
+                  </a>
+                ))
+              }
             </div>
             <div class="ashare"><span>Share</span><a href="#">LinkedIn</a><a href="#">Copy link</a></div>
           </div>

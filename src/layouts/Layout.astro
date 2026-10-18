@@ -19,15 +19,16 @@ import type { MetaData as MetaDataType } from '~/types';
 
 export interface Props {
   metadata?: MetaDataType;
+  htmlClass?: string;
 }
 
-const { metadata = {} } = Astro.props;
+const { metadata = {}, htmlClass = '' } = Astro.props;
 const { language, textDirection } = I18N;
 const isCandidateRoute = Astro.url.pathname.startsWith('/candidates');
 ---
 
 <!doctype html>
-<html lang={language} dir={textDirection} class="2xl:text-[20px]">
+<html lang={language} dir={textDirection} class:list={['2xl:text-[20px]', htmlClass]}>
   <head>
     <CommonMeta />
     <SiteFonts />
@@ -39,6 +40,10 @@ const isCandidateRoute = Astro.url.pathname.startsWith('/candidates');
         html {
           font-size: 20px;
         }
+      }
+      html.v126-document {
+        font-size: 16px;
+        scrollbar-gutter: auto;
       }
       /* Above-the-fold content should not replay a blank-to-visible reveal. */
       :root .site-editorial .hero [data-rv] {
@@ -205,16 +210,16 @@ const isCandidateRoute = Astro.url.pathname.startsWith('/candidates');
       }
       .hero h1 {
         color: #fff;
-        font-family: 'Figtree', ui-sans-serif, system-ui, sans-serif;
-        font-size: clamp(36px, 4.6vw, 62px);
-        font-weight: 800;
-        line-height: 0.97;
-        letter-spacing: -0.045em;
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: var(--type-hero-size);
+        font-weight: var(--type-display-weight);
+        line-height: var(--type-hero-leading);
+        letter-spacing: var(--type-display-tracking);
       }
       .hero__p {
         font-family: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
-        font-size: clamp(15.5px, 1.45vw, 17.5px);
-        line-height: 1.6;
+        font-size: var(--type-subtitle-size);
+        line-height: var(--type-subtitle-leading);
         color: var(--onc2, #9b9b95);
       }
       @media (min-width: 1000px) {
@@ -261,12 +266,6 @@ const isCandidateRoute = Astro.url.pathname.startsWith('/candidates');
           width: 100%;
           max-width: 760px;
           justify-self: end;
-        }
-        .tribera-home .hero h1,
-        .tribera-candidates .hero h1 {
-          font-size: clamp(44px, 3.55vw, 68px);
-          line-height: 1.02;
-          letter-spacing: -0.025em;
         }
         .tribera-home .hero__copy .btns,
         .tribera-candidates .hero__copy .btns {

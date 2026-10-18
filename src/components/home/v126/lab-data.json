@@ -1,0 +1,74 @@
+[
+  {
+    "k": "A",
+    "n": "System building & ownership",
+    "sn": "Systems built",
+    "w": 14,
+    "s": 5,
+    "ev": "Built and ran the production detection platform end to end \u2014 owned it in prod, not just designed it."
+  },
+  {
+    "k": "B",
+    "n": "Detection & prevention design",
+    "sn": "Detection",
+    "w": 14,
+    "s": 5,
+    "ev": "Walked a real detection he shipped \u2014 the logic, the false-positive tuning, the rollout."
+  },
+  {
+    "k": "C",
+    "n": "AI / LLM security basics",
+    "sn": "LLM security",
+    "w": 12,
+    "s": 2,
+    "ev": "Named the risks \u2014 prompt injection, data leakage \u2014 but could not point to a control he had tested in production."
+  },
+  {
+    "k": "D",
+    "n": "ML / LLM pipeline fundamentals",
+    "sn": "ML pipeline",
+    "w": 12,
+    "s": 5,
+    "ev": "Clear on the full pipeline \u2014 training data, eval, deployment \u2014 from having built it."
+  },
+  {
+    "k": "E",
+    "n": "Python automation & tooling",
+    "sn": "Python",
+    "w": 10,
+    "s": 4,
+    "ev": "Automates his own tooling well; a couple of the scripts were still manual glue."
+  },
+  {
+    "k": "F",
+    "n": "Secure data access",
+    "sn": "Data access",
+    "w": 8,
+    "s": 2,
+    "ev": "Understands the principle, but had not implemented fine-grained access controls himself."
+  },
+  {
+    "k": "G",
+    "n": "Cloud deployment & runtime",
+    "sn": "Cloud runtime",
+    "w": 8,
+    "s": 4,
+    "ev": "Deploys and operates on cloud confidently; lighter on cost and multi-region trade-offs."
+  },
+  {
+    "k": "H",
+    "n": "Incident handling & ownership",
+    "sn": "Incidents",
+    "w": 10,
+    "s": 3,
+    "ev": "Has handled incidents, but spoke more as a contributor than as the owner on call."
+  },
+  {
+    "k": "I",
+    "n": "Authenticity",
+    "sn": "Authenticity",
+    "w": 12,
+    "s": 4,
+    "ev": "Answers matched the CV; flagged the two gaps before I asked."
+  }
+]

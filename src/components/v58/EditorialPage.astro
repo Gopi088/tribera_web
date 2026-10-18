@@ -14,8 +14,8 @@ const { as: Tag = 'div', class: className, ...attributes } = Astro.props;
     --display: 'Fraunces', Georgia, serif;
     --ui: 'Inter Tight', -apple-system, sans-serif;
     --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
-    --paper: #f4f3f0;
-    --warm: #f4f3f0;
+    --paper: var(--surface-paper-editorial, #f4f3f0);
+    --warm: var(--surface-paper-editorial, #f4f3f0);
     --card: #fff;
     --char: #121212;
     --ink: #131313;
@@ -39,18 +39,18 @@ const { as: Tag = 'div', class: className, ...attributes } = Astro.props;
   }
   :root .site-editorial :is(h1, .h1) {
     font-family: var(--display);
-    font-size: clamp(2.08rem, 4.48vw, 3.32rem);
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.08;
+    font-size: var(--type-hero-size);
+    font-weight: var(--type-display-weight);
+    letter-spacing: var(--type-display-tracking);
+    line-height: var(--type-hero-leading);
     text-wrap: balance;
   }
   :root .site-editorial :is(h2, .h2) {
     font-family: var(--display);
-    font-size: clamp(2rem, 3.9vw, 3rem);
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.08;
+    font-size: var(--type-section-size);
+    font-weight: var(--type-display-weight);
+    letter-spacing: var(--type-display-tracking);
+    line-height: var(--type-section-leading);
     text-wrap: balance;
   }
   :root .site-editorial :is(h3, .lead__n, .oc__n) {
@@ -156,7 +156,7 @@ const { as: Tag = 'div', class: className, ...attributes } = Astro.props;
     font-style: italic;
   }
   :root .site-editorial .hero .eyebrow {
-    color: var(--grey);
+    color: var(--type-kicker-neutral, #6b6a61);
   }
   :root .site-editorial .cmpw {
     box-shadow: 0 20px 36px -28px rgba(19, 19, 19, 0.3);
@@ -195,11 +195,15 @@ const { as: Tag = 'div', class: className, ...attributes } = Astro.props;
   :root .site-editorial #avail .av__ck {
     font-size: 11px;
   }
-  :root .site-editorial :is(.hero__p, .dek, .fn__dek, .buy__dek) {
+  :root .site-editorial :is(.hero__p, .dek, .fn__dek, .buy__dek, .trust__dek, .ahead__sub, .jd__lead) {
     font-family: var(--ui);
-    font-size: clamp(16px, 1.1vw, 19px);
-    line-height: 1.55;
-    max-width: 60ch;
+    font-size: var(--type-subtitle-size);
+    line-height: var(--type-subtitle-leading);
+    max-width: var(--type-subtitle-measure);
+  }
+  :root .site-editorial article.art h2 {
+    font-size: var(--type-article-size);
+    line-height: var(--type-article-leading);
   }
   :root .site-editorial section:not(.close) .shead {
     text-align: left !important;

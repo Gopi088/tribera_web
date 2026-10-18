@@ -6,15 +6,15 @@ import ContactSalesModal from '~/components/ContactSalesModal.astro';
 
 import { headerData, footerData } from '~/navigation';
 
-const { metadata } = Astro.props;
+const { metadata, mainClass = 'v58-route w-full overflow-x-clip', htmlClass } = Astro.props;
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={metadata} htmlClass={htmlClass}>
   <slot name="header">
     <Header {...headerData} isSticky showToggleTheme />
   </slot>
 
-  <main class="v58-route w-full overflow-x-clip">
+  <main class={mainClass}>
     <slot />
   </main>
 

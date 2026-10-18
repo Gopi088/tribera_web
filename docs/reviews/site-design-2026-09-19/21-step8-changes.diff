@@ -1,0 +1,44 @@
+--- src/components/home/v126/sections/proof.html before
++++ src/components/home/v126/sections/proof.html now
+@@ -37,7 +37,10 @@
+         </div>
+         <div class="verd-ax"><span>0</span><span>Reject · 26 · Grey · 34 · Select</span><span>50</span></div>
+         <div class="side-k">His scores · out of 5 · <b>these don’t move</b></div>
+-        <div class="verd-tiles" id="labTiles"><!-- LAB_TILES --></div>
++        <p class="lab-key" id="labKey">
++          <span>Red outline: leading role priorities</span><span>Amber score: 2/5 or lower</span>
++        </p>
++        <div class="verd-tiles" id="labTiles" role="group" aria-label="Candidate scores" aria-describedby="labKey"><!-- LAB_TILES --></div>
+         <div class="verd-ev" id="labEv" aria-live="polite">
+           <span class="verd-ev-cue">Tap any score</span> — see the proof behind it.
+         </div>
+--- src/components/home/v126/sample.css before
++++ src/components/home/v126/sample.css now
+@@ -2592,7 +2592,7 @@
+   color: #e8a33d;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .lt.heavy {
+-  border-color: rgba(218, 0, 7, 0.55);
++  border-color: #ff6b6f;
+   background: rgba(218, 0, 7, 0.12);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .lt.lit {
+@@ -4714,3 +4714,18 @@
+   white-space: nowrap;
+   border: 0;
+ }
++
++/* The lab key names the score and priority states without relying on color. */
++.v126-home .lab-key {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 4px 14px;
++  margin: 8px 0 12px;
++  font: 400 11px/1.5 var(--body);
++}
++.v126-home .lab-key span:first-child {
++  color: #ff6b6f;
++}
++.v126-home .lab-key span:last-child {
++  color: #e8a33d;
++}

@@ -80,7 +80,7 @@ try {
     'visible'
   );
   assert.equal(
-    await noScript.locator('.v58-home').evaluate((element) => getComputedStyle(element).visibility),
+    await noScript.locator('.v126-home').evaluate((element) => getComputedStyle(element).visibility),
     'visible'
   );
   console.log('JavaScript disabled: navigation and homepage remain visible');

@@ -1,4 +1,6 @@
 ---
+import { clientNames as heroClients } from '~/data/clients';
+
 const coverageGroups = [
   {
     name: 'Engineering & infrastructure',
@@ -47,14 +49,9 @@ const rubricDimensions: Array<[string, string, string, number, number]> = [
   ['I', 'Authenticity', 'Authenticity', 4, 6],
 ];
 const funnelStages = [
-  [
-    '126',
-    'Sourced & screened',
-    'We reviewed 126 CVs for this role. Forty candidates progressed to HR interviews.',
-    'tribera',
-  ],
-  ['40', 'A first conversation', 'An HR interview. Fourteen progressed to an expert.', 'tribera'],
-  ['14', 'Interviewed by an expert', 'Forty-five minutes on the technical work. Five cleared the bar.', 'tribera'],
+  ['126', 'Sourced & screened', 'Every CV read. Forty got a first call.', 'tribera'],
+  ['40', 'HR interviews', 'An HR interview. Fourteen progressed to an expert.', 'tribera'],
+  ['14', 'Technical interviews', 'Forty-five minutes on the technical work. Five cleared the bar.', 'tribera'],
   ['5', 'Sent to the hiring team', 'Five qualified candidates. The first names the hiring team saw.', 'hiring team'],
   ['2', 'The hiring team chose two', 'Five interviews. Two hires.', 'hiring team'],
 ];
@@ -73,19 +70,6 @@ for (let index = funnelTiers.length - 1; index > 0; index -= 1) {
 const funnelColors = ['#3a3a37', '#585852', '#8a8a83', '#d7d7d1', '#DA0007'];
 const heroFieldSquares = Array.from({ length: 306 }, (_, index) => index);
 const heroFieldAccents = new Set([3, 32, 275]);
-const heroClients = [
-  'Mizuho',
-  'Capco',
-  'Deloitte',
-  'ArcelorMittal',
-  'Flipkart',
-  'Myntra',
-  'Motherson',
-  'Publicis Sapient',
-  'Publicis Resources',
-  'Evident Microscopy',
-  'Antz',
-];
 const testimonials = [
   [
     'Hiring team',
@@ -109,100 +93,84 @@ const testimonials = [
 ---
 
 <div class="v58-home">
-  <header class="v58-hero-c" id="top" aria-labelledby="v58-home-title">
-    <div class="v58-hero-c__field" aria-hidden="true">
-      <div>{heroFieldSquares.map((index) => <i class:list={{ 'is-accent': heroFieldAccents.has(index) }} />)}</div>
-    </div>
-    <div class="v58-hero-c__main">
-      <div class="v58-wrap v58-hero-c__copy">
-        <p class="v58-kicker"><span>\</span> A shortlist worth your time</p>
-        <h1 id="v58-home-title">
-          Three candidates.<br />Every one <span class="v58-hd-word"
-            >worth the interview.<svg
-              class="v58-hd-underline"
-              viewBox="0 0 120 12"
-              preserveAspectRatio="none"
-              aria-hidden="true"
-              ><path d="M2,8 C26,3.5 54,9.5 84,6 C104,3.6 116,8 118,5" pathLength="1" stroke-width="2.6"></path></svg
-            ></span
-          >
-        </h1>
-        <p class="v58-lead">
-          Tell us the role. We find candidates or interview the ones you already have. You get three who meet your
-          requirements, with evidence behind every score.
-        </p>
-        <div class="v58-actions">
-          <a href="/contact" data-form-intent="role" data-form-source="v58-hero" class="v58-primary"
-            >Start with one role</a
-          ><a href="#proof" class="v58-link">See it live <span aria-hidden="true">&rsaquo;</span></a>
-        </div>
-        <p class="v58-micro"><i></i> First shortlist in <b data-v58-count="36">36</b> hours</p>
-        <a class="v58-hero-c__cue" href="#proof"
-          ><span>It&rsquo;s live &mdash; see it yourself</span><svg viewBox="0 0 18 22" aria-hidden="true"
-            ><path d="M9,2 L9,15"></path><path d="M3.5,10 L9,16.5 L14.5,10"></path></svg
-          ></a
-        >
+  <div class="v58-opening">
+    <header class="v58-hero-c" id="top" aria-labelledby="v58-home-title">
+      <div class="v58-hero-c__field" aria-hidden="true">
+        <div>{heroFieldSquares.map((index) => <i class:list={{ 'is-accent': heroFieldAccents.has(index) }} />)}</div>
       </div>
-    </div>
-  </header>
+      <div class="v58-hero-c__main">
+        <div class="v58-wrap v58-hero-c__copy">
+          <p class="v58-kicker"><span>\</span> A shortlist worth your time</p>
+          <h1 id="v58-home-title">
+            Three candidates.<br />Every one <span class="v58-hd-word"
+              >worth the interview.<svg
+                class="v58-hd-underline"
+                viewBox="0 0 120 12"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+                ><path d="M2,8 C26,3.5 54,9.5 84,6 C104,3.6 116,8 118,5" pathLength="1" stroke-width="2.6"></path></svg
+              ></span
+            >
+          </h1>
+          <p class="v58-lead">
+            You interview three, not thirty. Every role has a bar &mdash; what &ldquo;good&rdquo; looks like &mdash; and
+            whether we find them or interview yours, we send only the three who clear it.
+          </p>
+          <div class="v58-actions">
+            <a href="/contact" data-form-intent="role" data-form-source="v58-hero" class="v58-primary"
+              >Start with one role</a
+            ><a href="#proof" class="v58-link">See it live <span aria-hidden="true">&rsaquo;</span></a>
+          </div>
+          <p class="v58-micro"><i></i> First shortlist in <b data-v58-count="36">36</b> hours</p>
+        </div>
+      </div>
+      <a class="v58-hero-c__cue" href="#proof"
+        ><span>It&rsquo;s live &mdash; see it yourself</span><svg viewBox="0 0 18 22" aria-hidden="true"
+          ><path d="M9,2 L9,15"></path><path d="M3.5,10 L9,16.5 L14.5,10"></path></svg
+        ></a
+      >
+    </header>
 
-  <div class="v58-logo-strip">
-    <div class="v58-wrap">
-      <span>Mandates run for</span><div class="v58-logo-strip__window">
-        <div class="v58-logo-strip__track" aria-label="Client examples">
-          {
-            [...heroClients, ...heroClients].map((client) => (
-              <span>
-                {client}
-                <i aria-hidden="true">&middot;</i>
-              </span>
-            ))
-          }
+    <div class="v58-logo-strip">
+      <div class="v58-wrap">
+        <span>Mandates run for</span><div class="v58-logo-strip__window">
+          <div class="v58-logo-strip__track" role="group" aria-label="Client examples">
+            {
+              [...heroClients, ...heroClients].map((client, index) => (
+                <span aria-hidden={index >= heroClients.length ? 'true' : undefined}>
+                  {client}
+                  <i aria-hidden="true">&middot;</i>
+                </span>
+              ))
+            }
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <section class="v58-intro" id="in-three-steps" aria-labelledby="v58-intro-title">
-    <div class="v58-wrap">
-      <h2 class="v58-kicker" id="v58-intro-title"><span>\</span> In three steps</h2>
-      <div class="v58-intro__grid">
-        <div class="v58-intro__step">
-          <span class="v58-intro__number" aria-hidden="true">1</span>
-          <h3>Tell us the role</h3>
-          <p>
-            One call with the hiring manager. They set <b
-              >the bar &mdash; what &ldquo;good&rdquo; looks like for this role.</b
-            >
-          </p>
-        </div>
-        <div class="v58-intro__step">
-          <span class="v58-intro__number" aria-hidden="true">2</span>
-          <h3>We do the work</h3>
-          <p>
-            We find the candidates &mdash; <b>or interview the ones you already have</b> &mdash; and score every one against
-            that bar.
-          </p>
-        </div>
-        <div class="v58-intro__step">
-          <span class="v58-intro__number" aria-hidden="true">3</span>
-          <h3>You choose</h3>
-          <p>Three worth the interview reach you, each with the proof. You interview three, not thirty.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="v58-section v58-thesis" id="what">
     <div class="v58-wrap v58-two">
       <div>
         <p class="v58-kicker"><span>\</span> What this is</p><h2>
-          Three candidates.<br />Each has cleared your bar.
+          We don't send CVs.<br />We send three who've cleared your bar.
         </h2><p class="v58-thesis__body">
-          A resume tells you who applied. Finding out who can do the job takes interviews, round after round. We do that
-          work first, screening and interviewing against the bar your hiring manager sets. You meet three candidates,
-          each with evidence behind every score.
-        </p><p class="v58-thesis__claim">Three to interview. Evidence to decide.</p>
+          We source and assess candidates, or assess the pipeline you already have. Every interview follows your hiring
+          manager's bar. Our recruitment shortlist brings you three worth meeting, each with the proof behind the score.
+          Your team stops screening and starts choosing.
+        </p><p class="v58-thesis__claim">
+          Three <span class="v58-thesis__phrase"
+            ><span class="v58-hd-word"
+              >worth meeting<svg
+                class="v58-hd-underline"
+                viewBox="0 0 120 12"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+                ><path pathLength="1" d="M2,8 C26,3.5 54,9.5 84,6 C104,3.6 116,8 118,5" stroke-width="2.6"></path></svg
+              ></span
+            >&nbsp;&mdash;</span
+          > the proof behind each one.
+        </p>
       </div><figure class="v58-barcard">
         <span>One bar · every candidate</span><svg
           viewBox="0 0 530 190"
@@ -273,18 +241,20 @@ const testimonials = [
   <section class="v58-dark v58-proof" id="proof">
     <div class="v58-wrap">
       <div class="v58-proof__head">
-        <div><p class="v58-kicker"><span>\</span> How it works</p><h2>Move the bar. Watch the verdict move.</h2></div>
+        <div>
+          <p class="v58-kicker"><span>\</span> The bar, in practice</p><h2>Move the bar. Watch the verdict move.</h2>
+        </div>
         <div class="v58-proof-intro">
           <p class="v58-lead">
-            A strong candidate for one role may not fit another. This AI-security example shows how your priorities
-            change the shortlist, not the candidate's interview scores.
+            One real candidate, scored on nine things &mdash; and his scores never move. What you set is how much each
+            one counts. Weight it one way and he clears your bar; weight it another and he doesn't.
           </p>
           <p class="v58-lead v58-proof-intro__action">
-            Choose a brief or <span class="v58-proof-emphasis"
-              >adjust the sliders<svg viewBox="0 0 240 8" preserveAspectRatio="none" aria-hidden="true"
+            Set <span class="v58-proof-emphasis"
+              >your priorities<svg viewBox="0 0 240 8" preserveAspectRatio="none" aria-hidden="true"
                 ><path d="M2 5 Q48 2 100 4 T181 3 Q219 2 238 4"></path></svg
               ></span
-            > to see whether this candidate meets your requirements.
+            >&nbsp;and the verdict follows &mdash; same person, a different bar.
           </p>
         </div>
       </div>
@@ -320,8 +290,8 @@ const testimonials = [
             }
           </div>
           <p class="v58-verdict__note" data-note>
-            This brief favours the candidate's strengths in building systems and detecting threats. LLM security and
-            data access scored lower: ask about those in your interview.
+            On this brief, his production detection work carries the weight; the AI-security answers are where we'd
+            probe next.
           </p>
         </article>
         <div class="v58-controls">
@@ -335,18 +305,18 @@ const testimonials = [
           >
             Choose a brief
           </p><div class="v58-presets" role="group" aria-label="Weighting presets">
-            <button type="button" class="is-active" data-preset="brief" aria-pressed="true">As briefed</button><button
+            <button type="button" class="is-active" data-preset="brief" aria-pressed="true" disabled>As briefed</button
+            ><button type="button" disabled data-preset="detection" aria-pressed="false">Detection first</button><button
               type="button"
-              data-preset="detection"
-              aria-pressed="false">Detection first</button
-            ><button type="button" data-preset="llm" aria-pressed="false">LLM security</button><button
-              type="button"
-              data-preset="ownership"
-              aria-pressed="false">Ownership</button
-            >
-          </div><div class="v58-weights-panel">
+              data-preset="llm"
+              aria-pressed="false"
+              disabled>LLM security</button
+            ><button type="button" disabled data-preset="ownership" aria-pressed="false">Ownership</button>
+          </div><p class="v58-weight-instruction" data-lab-unavailable>
+            Static example shown. Interactive controls require JavaScript to load successfully.
+          </p><div class="v58-weights-panel">
             <p class="v58-weight-instruction" id="weight-instruction">
-              Adjust the sliders to set what matters most.
+              Importance shows how much each skill counts in this example.
             </p><div class="v58-priorities-heading">
               <h3 class="v58-priorities-title">Your priorities</h3><span>Importance</span>
             </div><div class="v58-priority-rows">
@@ -358,6 +328,7 @@ const testimonials = [
                       <span>{label}</span>
                       <input
                         type="range"
+                        disabled
                         min="0"
                         max="12"
                         step="0.25"
@@ -377,7 +348,8 @@ const testimonials = [
             </p><details class="v58-calculation">
               <summary>How the score is calculated</summary><p>
                 Each skill contributes its share of importance multiplied by the candidate's evidence score out of 5.
-                The result is expressed out of 50.
+                The result is expressed out of 50. Criteria and scales vary by role; scores from different examples are
+                not directly comparable.
               </p><p>
                 Displayed shares are rounded to total 100% when priorities are set. Scoring uses exact shares.
               </p><table>
@@ -404,7 +376,7 @@ const testimonials = [
       </div>
       <div class="v58-proof__closure">
         <p class="v58-lab-foot">
-          Tell us what matters most &mdash; <em>and we adjust the assessment to match.</em>
+          Tell us what matters most &mdash; <em>and we re-weight to it.</em>
         </p><div class="v58-proof-checks">
           <div><h3>Every score points to the exact line behind it.</h3><p>Evidence you can review.</p></div><div>
             <h3>We name what we didn't test.</h3><p>So your own round knows exactly where to look.</p>
@@ -418,80 +390,18 @@ const testimonials = [
     </div>
   </section>
 
-  <section class="v58-paper v58-experts" id="experts">
-    <div class="v58-wrap">
-      <p class="v58-kicker"><span>\</span> The people who make the call</p><h2>
-        Experts who've done the job.<br />Interviewing to <span class="v58-hd-word"
-          >your requirements.<svg
-            class="v58-hd-underline"
-            viewBox="0 0 120 12"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-            ><path d="M2,8 C26,3.5 54,9.5 84,6 C104,3.6 116,8 118,5" pathLength="1" stroke-width="2.6"></path></svg
-          ></span
-        >
-      </h2><p class="v58-lead">
-        An expert matched to your role probes the candidate's answers for practical depth. Questions are tailored to
-        your brief and the candidate's experience.
-      </p><div class="v58-experts__coverage" id="cover">
-        <p class="v58-coverage__label">Roles we cover, grouped by specialism</p>
-        <div class="v58-coverage" role="list" aria-label="Expertise available">
-          {
-            coverageGroups.map(({ name, roles, focus }) => (
-              <div role="listitem">
-                <h3>{name}</h3>
-                <ul class="v58-coverage__roles">
-                  {roles.map((role) => (
-                    <li>{role}</li>
-                  ))}
-                </ul>
-                <details class="v58-coverage__detail">
-                  <summary>Interview expertise</summary>
-                  <p>{focus}</p>
-                </details>
-              </div>
-            ))
-          }
-        </div>
-        <p class="v58-experts__confirmation">We confirm interviewer coverage on the first call.</p>
-      </div>
-      <p class="v58-experts__note">
-        <strong>The engine handles sourcing and scoring. The expert runs the interview.</strong>
-      </p><div class="v58-industries">
-        <p>Industries we run mandates in</p>{
-          [
-            'Banking & financial services',
-            'Enterprise technology',
-            'Product & SaaS',
-            'AI & data',
-            'Cybersecurity',
-            'Healthcare & life sciences',
-            'Pharmaceutical',
-            'Manufacturing',
-            'Industrial & engineering',
-            'Global capability centres',
-            'Consumer & digital commerce',
-            'Private equity portfolio',
-          ].map((industry) => <span>{industry}</span>)
-        }
-      </div>
-    </div>
-  </section>
-
   <section class="v58-dark v58-funnel-section" id="funnel">
     <div class="v58-wrap">
       <p class="v58-kicker"><span>\</span> One role, start to finish</p><h2>Nobody shows you the funnel.</h2><p
         class="v58-lead"
       >
         A backend role in Bengaluru, open nine months without a hire. We took the same requirement back to market.
-        <strong>126 possible candidates. The hiring team met five.</strong>
       </p><p class="v58-funnel-context">
-        Every square below is one candidate. This case resulted in five introductions and two hires; our offer starts
-        with a shortlist of three.
+        Every square is one candidate. Our offer starts with three; this case illustrates the full hiring process.
       </p><div class="v58-funnel-layout" data-v58-funnel>
         <div class="v58-funnel-field">
           <div class="v58-funnel-field__head">
-            <span data-funnel-label>Sourced &amp; screened</span><span>From 126 candidates sourced for this role</span>
+            <span data-funnel-label>Sourced &amp; screened</span><span>126 possible candidates for this role</span>
           </div><b data-funnel-number>126</b><div class="v58-square-grid" aria-hidden="true">
             {
               funnelTiers.map((tier, index) => (
@@ -539,7 +449,7 @@ const testimonials = [
           }
         </div>
       </div><div class="v58-funnel-close">
-        <p>Five qualified candidates.<br />The hiring team <em>chose two.</em></p><span
+        <p>The hiring team <em>chose two.</em></p><span
           >An estimated <b>32 hours</b> back for the hiring team across screening, interviews and coordination.</span
         >
       </div><div class="v58-funnel-case">
@@ -552,13 +462,111 @@ const testimonials = [
     </div>
   </section>
 
+  <section class="v58-section v58-ops" id="ops" aria-labelledby="v58-ops-title">
+    <div class="v58-wrap">
+      <p class="v58-kicker"><span>\</span> Built to run</p>
+      <h2 id="v58-ops-title">Everything a shortlist needs to actually ship.</h2>
+      <div class="v58-ops__grid">
+        <article>
+          <h3 class="v58-ops__metric">36 hrs</h3>
+          <p>To your first shortlist &mdash; then a steady flow.</p>
+        </article>
+        <article>
+          <h3 class="v58-ops__metric">1 or 50</h3>
+          <p>Roles at once &mdash; the same bar on every one.</p>
+        </article>
+        <article>
+          <h3>Your ATS</h3>
+          <p>We work alongside it. No rip-and-replace.</p>
+        </article>
+        <article>
+          <h3>Your panel, or ours</h3>
+          <p>We find them, or interview the ones you already have.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="v58-paper v58-experts" id="experts">
+    <div class="v58-wrap">
+      <div class="v58-proof__head">
+        <div>
+          <p class="v58-kicker"><span>\</span> The people who make the call</p><h2>
+            Senior experts who've done the job &mdash; held to one bar: <span class="v58-hd-word"
+              >the one you set.<svg
+                class="v58-hd-underline"
+                viewBox="0 0 120 12"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+                ><path d="M2,8 C26,3.5 54,9.5 84,6 C104,3.6 116,8 118,5" pathLength="1" stroke-width="2.6"></path></svg
+              ></span
+            >
+          </h2>
+        </div><p class="v58-lead">
+          An expert matched to your role probes practical depth, with questions shaped by your brief and the candidate's
+          experience.
+        </p>
+      </div><div class="v58-experts__coverage" id="cover" aria-labelledby="v58-cover-title">
+        <p class="v58-coverage__label" id="v58-cover-title">Expertise and role coverage</p>
+        <p class="v58-coverage__instruction">Four specialisms. Expand each group for its full role list.</p>
+        <div class="v58-coverage" role="list" aria-label="Expertise available">
+          {
+            coverageGroups.map(({ name, roles, focus }) => (
+              <div role="listitem">
+                <h3>{name}</h3>
+                <p class="v58-coverage__focus">{focus}</p>
+                <details class="v58-coverage__detail">
+                  <summary>
+                    {roles[0]} + {roles.length - 1} more
+                  </summary>
+                  <ul class="v58-role-coverage__list">
+                    {roles.map((role) => (
+                      <li>{role}</li>
+                    ))}
+                  </ul>
+                </details>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <div class="v58-experts__footer">
+        <p class="v58-experts__confirmation">
+          We confirm interviewer coverage on the first call, before the engagement starts.
+        </p>
+        <p class="v58-experts__note">
+          <strong>The engine supports scoring. The expert runs the interview. Your team decides.</strong>
+        </p>
+      </div><div class="v58-industries">
+        <p>Industries we run mandates in</p>{
+          [
+            'Banking & financial services',
+            'Enterprise technology',
+            'Product & SaaS',
+            'AI & data',
+            'Cybersecurity',
+            'Healthcare & life sciences',
+            'Pharmaceutical',
+            'Manufacturing',
+            'Industrial & engineering',
+            'Global capability centres',
+            'Consumer & digital commerce',
+            'Private equity portfolio',
+          ].map((industry) => <span>{industry}</span>)
+        }
+      </div>
+    </div>
+  </section>
+
   <section class="v58-section v58-work" id="work">
     <div class="v58-wrap">
-      <div class="v58-work__head">
-        <p class="v58-kicker"><span>\</span> The work</p><h2>You set the bar.<br />We do the work to it.</h2><p
-          class="v58-lead"
-        >
-          One call sets the standard. Then we handle the finding, the checking and the interview - all to that one bar.
+      <div class="v58-work__head v58-proof__head">
+        <div>
+          <p class="v58-kicker"><span>\</span> How the engagement works</p>
+          <h2>You set the bar.<br />We do the work to it.</h2>
+        </div>
+        <p class="v58-lead">
+          One call defines what good looks like. We handle assessment; your team makes the hiring decision.
         </p>
       </div><div class="v58-work__flow">
         <article>
@@ -569,7 +577,7 @@ const testimonials = [
           ></span
         ><article>
           <span>Ours</span><h3>Find &amp; check</h3><p>
-            We source candidates and check the experience behind their claims.
+            We source candidates, or start with your pipeline. Then we check the experience behind their claims.
           </p>
         </article><span class="v58-flow-arrow" aria-hidden="true"
           ><svg viewBox="0 0 42 24"
@@ -582,37 +590,55 @@ const testimonials = [
             ><path d="M3,12.5 C13,9.5 25,15 34,12"></path><path d="M28.5,7 L37,12 L28.5,17"></path></svg
           ></span
         ><article>
-          <span>Ours</span><h3>Send three</h3><p>The three that clear it, ranked, with the proof.</p>
+          <span>Ours</span><h3>Share the shortlist</h3><p>
+            Recruitment: three with the proof. Your pipeline: one ranked list.
+          </p>
         </article><span class="v58-flow-arrow" aria-hidden="true"
           ><svg viewBox="0 0 42 24"
             ><path d="M3,12.5 C13,9.5 25,15 34,12"></path><path d="M28.5,7 L37,12 L28.5,17"></path></svg
           ></span
         ><article>
-          <span class="yours">Yours</span><h3>Decide</h3><p>You interview the three. The hire is your call.</p>
+          <span class="yours">Yours</span><h3>Decide</h3><p>
+            Your team interviews the shortlist. The hire is your call.
+          </p>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="v58-paper v58-benefits" id="benefits" aria-labelledby="v58-benefits-title">
+  <section class="v58-paper v58-savings" id="savings" aria-labelledby="v58-savings-title">
     <div class="v58-wrap">
-      <p class="v58-kicker"><span>\</span> What this means for your team</p>
-      <h2 id="v58-benefits-title">One call from you. Three interviews to run.</h2>
-      <div class="v58-benefits__grid">
+      <span id="benefits" class="v58-anchor" aria-hidden="true"></span>
+      <div class="v58-proof__head">
+        <div>
+          <p class="v58-kicker"><span>\</span> What a role stops costing you</p>
+          <h2 id="v58-savings-title">Three good decisions &mdash; and everything you stop spending to get them.</h2>
+        </div>
+        <p class="v58-lead">
+          The savings aren't the pitch; they're what's left when the process is right. Here's what a role stops costing
+          your team.
+        </p>
+      </div>
+      <div class="v58-save-grid">
         <article>
-          <span>Your time</span><h3>Focused on qualified candidates.</h3><p>
-            Your team spends its interview time with candidates who have cleared the agreed bar.
-          </p>
+          <span class="v58-save-k">Time</span>
+          <h3>Weeks &rarr; <span data-v58-count="36">36</span> hours</h3>
+          <p>First shortlist in a day and a half &mdash; and three interviews to run, not eight.</p>
         </article>
         <article>
-          <span>Our work</span><h3>The shortlist, handled.</h3><p>
-            From sourcing to expert interviews, we prepare your shortlist. We can also work with your existing pipeline.
+          <span class="v58-save-k">Cost</span>
+          <h3>Five wasted rounds, gone</h3>
+          <p>
+            The manager hours you'd otherwise spend interviewing people who can't do the job &mdash; saved. And no
+            re-opening the role with a new agency.
           </p>
+          <div class="v58-cost-bar" aria-hidden="true"><span></span></div>
+          <span class="v58-cost-label">Manager hours handed back</span>
         </article>
         <article>
-          <span>Your decision</span><h3>Ranked, with the evidence.</h3><p>
-            Three candidates in order, with the scores and what sits behind them. The hire is your call.
-          </p>
+          <span class="v58-save-k">Effort</span>
+          <h3>One call, three names</h3>
+          <p>You set the bar and interview three. We do the finding, the checking and the interviewing.</p>
         </article>
       </div>
     </div>
@@ -621,23 +647,50 @@ const testimonials = [
   <section class="v58-section v58-ways" id="ways">
     <div class="v58-wrap">
       <div>
-        <p class="v58-kicker"><span>\</span> Ways to work with us</p><h2>One hiring bar. Two ways to work with us.</h2>
+        <p class="v58-kicker"><span>\</span> Ways to work with us</p><h2>Either way, three worth the interview.</h2>
       </div><div class="v58-ways__grid">
         <article>
           <span>Recruitment</span><h3>We find them</h3><p>
             Give us a role, or a whole function. We source the market, vet every candidate, and interview against your
-            bar - then submit only who clears it.
+            bar &mdash; then submit only who clears it.
           </p><small>You interview the three who clear your bar.</small>
         </article><article>
           <span>Interview as a service</span><h3>You've sourced them</h3><p>
-            Bring your own pipeline - your team, your agencies, your boards. We interview and score every candidate
-            against your bar, and hand back one ranked list.
+            Bring your own pipeline &mdash; your team, your agencies, your boards. We interview and score every
+            candidate against your bar, and hand back one ranked list.
           </p><small>You supply the pipeline. We return the ranked list.</small>
         </article>
       </div><p class="v58-ways__foot">Same bar. Same proof. <em>You decide.</em></p><p class="v58-ways__diff">
-        You pay <strong>per hire</strong> when we find them, <strong>per interview</strong> when you've sourced them - with
-        pricing agreed for the engagement.
+        You pay <strong>per hire</strong> when we find them, <strong>per interview</strong> when you've sourced them &mdash;
+        with pricing agreed for the engagement.
       </p><p class="v58-ways__link"><a href="/services">See how we engage &rsaquo;</a></p>
+    </div>
+  </section>
+
+  <section class="v58-paper v58-trust" id="trust">
+    <div class="v58-wrap">
+      <div class="v58-assurance-head">
+        <p class="v58-kicker"><span>\</span> Before we start</p>
+        <h2>Clear criteria. Clear responsibilities.</h2>
+      </div><div class="v58-trust__grid">
+        <article>
+          <h3>A human-reviewed shortlist.</h3><p>
+            Our team reviews interview evidence against the agreed role requirements before sending candidates to you.
+          </p>
+        </article><article>
+          <h3>Evidence alongside the score.</h3><p>
+            Interview answers support the assessment, with areas for your team to probe in its own conversations.
+          </p>
+        </article><article>
+          <h3>Criteria agreed for the role.</h3><p>
+            Your hiring manager sets the skills and experience the assessment should focus on.
+          </p>
+        </article><article>
+          <h3>Clear data-handling terms.</h3><p>
+            Discuss recording, access, retention and deletion requirements with us before the engagement.
+          </p>
+        </article>
+      </div><p class="v58-trust__privacy"><a href="/privacy">Read our privacy policy</a></p>
     </div>
   </section>
 
@@ -666,44 +719,13 @@ const testimonials = [
     </div>
   </section>
 
-  <section class="v58-paper v58-trust" id="trust">
+  <section class="v58-dark v58-procurement" id="procurement" aria-labelledby="v58-procurement-title">
     <div class="v58-wrap">
-      <div class="v58-proof__head">
-        <div>
-          <p class="v58-kicker"><span>\</span> How decisions are made</p><h2>
-            <span>The engine scores.</span><span class="v58-trust__decision"
-              >A person decides.<svg
-                class="v58-hd-underline"
-                viewBox="0 0 120 12"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-                ><path d="M2,8 C26,3.5 54,9.5 84,6 C104,3.6 116,8 118,5" pathLength="1" stroke-width="2.6"></path></svg
-              ></span
-            >
-          </h2>
-        </div><p class="v58-lead">
-          The engine supports scoring. Our team reviews the evidence before shortlisting. Your hiring manager interviews
-          the shortlist and makes the hiring decision.
-        </p>
-      </div><div class="v58-trust__grid">
-        <article>
-          <h3>A human-reviewed shortlist.</h3><p>
-            Our team reviews interview evidence against the agreed role requirements before sending candidates to you.
-          </p>
-        </article><article>
-          <h3>Evidence alongside the score.</h3><p>
-            Interview answers support the assessment, with areas for your team to probe in its own conversations.
-          </p>
-        </article><article>
-          <h3>Criteria agreed for the role.</h3><p>
-            Your hiring manager sets the skills and experience the assessment should focus on.
-          </p>
-        </article><article>
-          <h3>Clear data-handling terms.</h3><p>
-            Discuss recording, access, retention and deletion requirements with us before the engagement.
-          </p>
-        </article>
-      </div><p class="v58-trust__privacy"><a href="/privacy">Read our privacy policy</a></p>
+      <p>
+        <strong id="v58-procurement-title">For procurement &amp; security.</strong>
+        Candidate data stays DPDP-aligned, encrypted, and retained on your terms. Commercials are per-hire or per-interview,
+        with the full terms in your proposal &mdash; and if none of the three fit, we go again, at no extra cost.
+      </p>
     </div>
   </section>
 
@@ -713,14 +735,14 @@ const testimonials = [
         Give us the role you're stuck on.
       </h2><div class="v58-start__copy">
         <p class="v58-lead">
-          Your hiring manager sets the bar. Within 36 hours, <span class="v58-start__phrase">your first shortlist</span> lands:
-          three candidates worth interviewing, each with the evidence your team needs to choose.
+          Bring one live role and the hiring manager who owns it. We agree the bar and get to work. Your first shortlist
+          arrives within 36 hours.
         </p>
       </div><div class="v58-actions">
         <a href="/contact" data-form-intent="role" data-form-source="v58-final" class="v58-primary"
           >Start with one role</a
         ><a href="/contact" data-form-intent="demo" data-form-source="v58-walkthrough" class="v58-link"
-          >Book a walkthrough &rsaquo;</a
+          >Book a demo &rsaquo;</a
         >
       </div>
     </div>
@@ -740,16 +762,17 @@ const testimonials = [
   }
   .v58-home :is(h1, h2) {
     font-family: var(--v58-display);
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.08;
+    font-weight: var(--type-display-weight);
+    letter-spacing: var(--type-display-tracking);
+    line-height: var(--type-section-leading);
     margin: 0;
   }
-  h1 {
-    font-size: clamp(2.6rem, 5.6vw, 4.15rem);
+  .v58-home h1 {
+    font-size: var(--type-hero-size);
+    line-height: var(--type-hero-leading);
   }
   h2 {
-    font-size: clamp(2rem, 3.9vw, 3rem);
+    font-size: var(--type-section-size);
   }
   h3 {
     margin: 0.55rem 0;
@@ -758,7 +781,6 @@ const testimonials = [
     background: radial-gradient(1100px 520px at 50% 6%, rgba(218, 0, 7, 0.05), transparent 60%), var(--v58-white);
     display: flex;
     flex-direction: column;
-    min-height: calc(100svh - 126px);
     overflow: hidden;
     padding-block: clamp(24px, 3.5vw, 44px);
     position: relative;
@@ -800,14 +822,8 @@ const testimonials = [
     max-width: 1040px;
   }
   .v58-hero-c__copy h1 {
-    font-size: clamp(2.08rem, 4.48vw, 3.32rem);
     margin-inline: auto;
     max-width: 20ch;
-  }
-  @media (max-width: 359px) {
-    .v58-hero-c__copy h1 {
-      font-size: 26px;
-    }
   }
   .v58-hero-c__copy .v58-kicker {
     justify-content: center;
@@ -822,9 +838,9 @@ const testimonials = [
   }
   .v58-lead {
     color: var(--v58-muted);
-    font-size: clamp(0.864rem, 1.24vw, 1.024rem);
-    line-height: 1.5;
-    max-width: 42ch;
+    font-size: var(--type-subtitle-size);
+    line-height: var(--type-subtitle-leading);
+    max-width: var(--type-subtitle-measure);
     margin: 1.28rem 0 0;
   }
   .v58-kicker {
@@ -939,7 +955,7 @@ const testimonials = [
     gap: 6px;
     letter-spacing: 0.16em;
     line-height: 1.5;
-    margin: 28px auto 0;
+    margin: 28px auto 36px;
     width: fit-content;
     position: relative;
     text-decoration: none;
@@ -959,54 +975,7 @@ const testimonials = [
   .v58-hero-c__cue:hover {
     color: var(--v58-red);
   }
-  .v58-intro {
-    background: var(--v58-white);
-    padding-block: clamp(46px, 5.2vw, 78px);
-  }
-  .v58-home .v58-intro h2 {
-    font: 500 11px/1.5 var(--v58-mono);
-    letter-spacing: 0.2em;
-    color: var(--v58-muted);
-    text-transform: uppercase;
-  }
-  .v58-intro__grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(26px, 3vw, 52px);
-    margin-top: clamp(26px, 3vw, 42px);
-  }
-  .v58-intro__number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: var(--v58-ink);
-    color: var(--v58-white);
-    font: 700 14px/1 var(--v58-mono);
-    margin-bottom: 15px;
-  }
-  .v58-intro__step h3 {
-    font: 600 clamp(20px, 1.9vw, 24px)/1.2 var(--v58-display);
-    letter-spacing: -0.01em;
-    margin: 0 0 9px;
-  }
-  .v58-intro__step p {
-    font: 400 15.5px/1.55 var(--v58-ui);
-    color: var(--v58-muted);
-    margin: 0;
-  }
-  .v58-intro__step b {
-    color: var(--v58-ink);
-    font-weight: 600;
-  }
-  @media (max-width: 760px) {
-    .v58-intro__grid {
-      grid-template-columns: 1fr;
-      gap: 26px;
-    }
-  }
+
   .v58-logo-strip {
     background: var(--v58-paper);
     border-block: 1px solid var(--v58-line);
@@ -1080,6 +1049,7 @@ const testimonials = [
   }
   @media (min-width: 900px) {
     .v58-hero-c__copy h1 {
+      max-width: 100%;
       white-space: nowrap;
     }
   }
@@ -1090,6 +1060,45 @@ const testimonials = [
   }
   .v58-home section[id] {
     scroll-margin-top: clamp(72px, 9vh, 96px);
+  }
+  .v58-ops {
+    padding-block: clamp(48px, 5.5vw, 86px);
+  }
+  .v58-ops h2 {
+    max-width: 26ch;
+  }
+  .v58-ops__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(20px, 2.4vw, 40px);
+    margin-top: clamp(30px, 3.4vw, 52px);
+  }
+  .v58-ops__grid article {
+    border-top: 2px solid var(--v58-ink);
+    padding-top: 14px;
+  }
+  .v58-ops__grid h3 {
+    font-family: var(--v58-display);
+    font-weight: 600;
+    font-size: var(--type-marketing-card-size);
+    line-height: var(--type-card-leading);
+    letter-spacing: var(--type-display-tracking);
+    margin: 0;
+  }
+  .v58-ops__grid .v58-ops__metric {
+    color: var(--v58-red);
+    font-size: var(--type-section-size);
+  }
+  .v58-ops__grid p {
+    font-size: var(--type-text-size);
+    line-height: 1.5;
+    color: var(--v58-muted);
+    margin: 0.5em 0 0;
+  }
+  @media (max-width: 820px) {
+    .v58-ops__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
   .v58-paper {
     background: var(--v58-paper);
@@ -1102,20 +1111,32 @@ const testimonials = [
   .v58-dark .v58-lead {
     color: rgba(255, 255, 255, 0.62);
   }
+  .v58-home > .v58-procurement {
+    padding-block: clamp(26px, 3vw, 42px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .v58-procurement p {
+    max-width: 74ch;
+    margin: 0;
+    font-size: var(--type-text-size);
+    line-height: var(--type-subtitle-leading);
+    color: rgba(255, 255, 255, 0.72);
+  }
+  .v58-procurement strong {
+    color: #fff;
+    font-weight: 600;
+  }
   .v58-proof__head {
     display: grid;
     gap: 1.5rem;
     margin-bottom: clamp(2rem, 3vw, 3rem);
   }
   .v58-proof__head h2 {
-    font-size: clamp(32px, 3.1vw, 48px);
     max-width: 20ch;
   }
   .v58-proof__head .v58-lead {
-    font-size: clamp(16px, 1.1vw, 19px);
-    line-height: 1.55;
     margin: 0;
-    max-width: 60ch;
+    max-width: var(--type-subtitle-measure);
   }
   .v58-proof .v58-proof__head h2 {
     max-width: 14ch;
@@ -1309,15 +1330,21 @@ const testimonials = [
     border-color: #fff;
     color: #141413;
   }
-  .v58-presets button:hover {
+  .v58-presets button:hover:not(:disabled) {
     border-color: rgba(255, 255, 255, 0.62);
   }
-  .v58-presets button.is-active:hover {
+  .v58-presets button.is-active:hover:not(:disabled) {
     border-color: #fff;
   }
   .v58-presets button:focus-visible {
     outline: 2px solid var(--v58-red);
     outline-offset: 2px;
+  }
+  .v58-presets button:disabled,
+  .v58-priority-rows input:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+    border-style: dashed;
   }
   @media (pointer: coarse) {
     .v58-presets button {
@@ -1366,20 +1393,34 @@ const testimonials = [
   }
   .v58-thesis__body {
     color: var(--v58-muted);
-    font-size: clamp(1.02rem, 1.4vw, 1.16rem);
-    line-height: 1.6;
-    margin: 1.6rem 0 0;
+    font-size: var(--type-subtitle-size);
+    line-height: var(--type-subtitle-leading);
+    margin: 24px 0 0;
+  }
+  .v58-thesis .v58-two {
+    gap: 40px;
+  }
+  @media (min-width: 901px) {
+    .v58-thesis .v58-two {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+      gap: clamp(36px, 5vw, 80px);
+    }
   }
   .v58-thesis__claim {
     font-family: var(--v58-display);
-    font-size: clamp(1.35rem, 2.4vw, 1.9rem);
     font-weight: 500;
-    line-height: 1.22;
-    margin: 2.4rem 0 0;
-    max-width: 32ch;
+    font-size: clamp(1.2rem, 1.65vw, 1.4rem);
+    line-height: 1.35;
+    margin: 32px 0 0;
+    max-width: 30ch;
+    text-wrap: balance;
+    color: var(--v58-ink);
   }
-  .v58-thesis__claim .v58-hd-word {
-    color: var(--v58-red);
+  .v58-thesis__phrase {
+    white-space: nowrap;
+  }
+  .v58-thesis__claim .v58-hd-underline {
+    width: 100%;
   }
   .v58-barcard {
     background: #fff;
@@ -1420,8 +1461,9 @@ const testimonials = [
     font-weight: 500;
   }
   /* Visible by default; only an active observer prepares the draw-in state. */
+  /* :where keeps preparation weaker than the completed .drawn selectors. */
   @media (prefers-reduced-motion: no-preference) {
-    .v58-barcard.is-animated :is(.v58-bar-line, .v58-bar-checks path) {
+    .v58-barcard.is-animated :where(.v58-bar-line, .v58-bar-checks path) {
       stroke-dasharray: 1;
       stroke-dashoffset: 1;
     }
@@ -1702,15 +1744,10 @@ const testimonials = [
     font: 500 clamp(24px, 2vw, 28px)/1.2 var(--v58-display);
     margin: 0 0 12px;
   }
-  .v58-coverage__roles {
+  .v58-coverage__focus {
     color: var(--v58-muted);
     font: 400 17px/1.65 var(--v58-ui);
     margin: 0;
-    padding-left: 1.1em;
-    list-style: disc;
-  }
-  .v58-coverage__roles li::marker {
-    color: var(--v58-red);
   }
   .v58-funnel-context {
     color: rgba(255, 255, 255, 0.72);
@@ -1742,7 +1779,7 @@ const testimonials = [
   .v58-experts__confirmation {
     color: var(--v58-muted);
     font: 400 15px/1.6 var(--v58-ui);
-    margin: 28px 0 0;
+    margin: 0 0 24px;
   }
   .v58-experts__note {
     color: var(--v58-muted);
@@ -2061,7 +2098,7 @@ const testimonials = [
   }
   .v58-testimonial figcaption span {
     color: rgba(255, 255, 255, 0.65);
-    font: 400 13px/1.5 var(--v58-ui);
+    font: 400 var(--type-helper-size)/1.5 var(--v58-ui);
   }
   @media (min-width: 1100px) {
     .v58-testimonials {
@@ -2302,6 +2339,20 @@ const testimonials = [
     }
   }
   @media (min-width: 900px) {
+    /* The shared navigation is 64px plus its 1px border; the strip sizes itself. */
+    .v58-opening {
+      display: flex;
+      flex-direction: column;
+      min-height: calc(100svh - 65px);
+    }
+    .v58-opening > .v58-hero-c {
+      flex: 1;
+    }
+    .v58-opening > .v58-logo-strip {
+      flex-shrink: 0;
+    }
+  }
+  @media (min-width: 900px) {
     .v58-verdict {
       padding: 22px;
     }
@@ -2365,9 +2416,6 @@ const testimonials = [
     padding: 5px 0;
     min-height: 36px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-  .v58-thesis__claim > span {
-    display: block;
   }
   .v58-barcard figcaption > span {
     display: inline-block;
@@ -2557,7 +2605,7 @@ const testimonials = [
     }
   }
   .v58-start__copy {
-    font: 400 19px/1.6 var(--v58-ui);
+    font: 400 var(--type-subtitle-size)/var(--type-subtitle-leading) var(--v58-ui);
     max-width: 46ch;
     margin: 24px auto 0;
   }
@@ -2622,8 +2670,6 @@ const testimonials = [
     text-decoration: underline;
     text-underline-offset: 3px;
   }
-  @media (min-width: 900px) {
-  }
   .v58-home h2 {
     text-wrap: balance;
   }
@@ -2663,43 +2709,121 @@ const testimonials = [
       padding-block: 64px;
     }
   }
-  .v58-benefits {
-    padding-block: clamp(52px, 6vw, 80px);
+  .v58-role-coverage {
+    padding-block: var(--section-padding, 80px);
   }
-  .v58-benefits h2 {
-    font-size: clamp(1.6rem, 2.6vw, 2.1rem);
-    max-width: 24ch;
+  .v58-role-coverage h2,
+  .v58-role-coverage .v58-lead {
+    max-width: 760px;
   }
-  .v58-benefits__grid {
-    border-top: 1px solid var(--v58-line);
+  .v58-role-coverage__list {
     display: grid;
-    gap: 26px;
-    margin-top: clamp(22px, 2.8vw, 32px);
-    padding-top: 26px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 14px 24px;
+    list-style: none;
+    margin: 32px 0 0;
+    padding: 0;
+    color: var(--v58-muted);
+    font-family: var(--v58-mono);
+    font-size: 0.78rem;
   }
-  .v58-benefits__grid article > span {
+  .v58-role-coverage__list li::before {
+    content: '/';
+    color: var(--v58-red);
+    margin-right: 10px;
+  }
+  .v58-save-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    margin-top: clamp(26px, 3.2vw, 42px);
+  }
+  .v58-save-grid article {
+    background: #fff;
+    border: 1px solid var(--v58-line);
+    border-radius: 14px;
+    box-shadow:
+      0 1px 2px rgba(19, 19, 19, 0.04),
+      0 30px 60px -30px rgba(19, 19, 19, 0.22);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    transition:
+      transform 0.24s ease,
+      box-shadow 0.24s ease,
+      border-color 0.24s ease;
+  }
+  .v58-save-grid article:hover {
+    transform: translateY(-3px);
+    border-color: rgba(19, 19, 19, 0.22);
+    box-shadow: 0 14px 32px -14px rgba(19, 19, 19, 0.18);
+  }
+  .v58-save-k {
     color: var(--v58-red);
     font-family: var(--v58-mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
   }
-  .v58-benefits__grid h3 {
+  .v58-save-grid h3 {
     font-family: var(--v58-display);
-    font-size: 1.12rem;
-    font-weight: 500;
-    margin: 0.5rem 0 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin: 0;
   }
-  .v58-benefits__grid p {
+  .v58-save-grid p {
     color: var(--v58-muted);
     font-size: 0.9rem;
     line-height: 1.5;
-    margin: 0.45rem 0 0;
+    margin: 0;
   }
-  @media (min-width: 720px) {
-    .v58-benefits__grid {
+  .v58-cost-bar {
+    height: 7px;
+    border-radius: 100px;
+    background: var(--v58-line);
+    margin-top: 1.1rem;
+    overflow: hidden;
+  }
+  .v58-cost-bar span {
+    display: block;
+    height: 100%;
+    width: 72%;
+    background: linear-gradient(90deg, var(--v58-red), #ff3a40);
+    border-radius: 100px;
+  }
+  .v58-save-grid.is-animated .v58-cost-bar span {
+    width: 0;
+    transition: width 1.15s cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+  }
+  .v58-save-grid.is-animated.in .v58-cost-bar span {
+    width: 72%;
+  }
+  .v58-cost-label {
+    margin-top: 0.5rem;
+    font-family: var(--v58-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--v58-muted);
+  }
+  @media (min-width: 760px) {
+    .v58-save-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 34px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v58-save-grid article {
+      transition: none;
+    }
+    .v58-save-grid article:hover {
+      transform: none;
+    }
+    .v58-save-grid.is-animated .v58-cost-bar span {
+      transition: none;
+      width: 72%;
     }
   }
   /* Shared alignment rails for section introductions and the content below. */
@@ -2709,9 +2833,6 @@ const testimonials = [
   }
   .v58-proof__head {
     margin-bottom: var(--section-content-gap);
-  }
-  .v58-proof__head h2 {
-    font-size: clamp(2rem, 3.9vw, 3rem);
   }
   .v58-lab,
   .v58-trust__grid {
@@ -2753,9 +2874,87 @@ const testimonials = [
       margin-inline: 0;
     }
   }
+  /* Flow trial: related content shares a chapter instead of restarting the page. */
+  .v58-home > section {
+    padding-block: clamp(60px, 7vw, 96px);
+  }
+  .v58-work__head {
+    max-width: none;
+    align-items: start;
+  }
+  .v58-work__flow {
+    margin-top: 24px;
+  }
+  .v58-experts .v58-proof__head {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 24px;
+  }
+  .v58-experts .v58-proof__head h2 {
+    max-width: none;
+  }
+  .v58-coverage__detail {
+    margin-top: 16px;
+  }
+  .v58-coverage__detail summary {
+    font-family: var(--v58-mono);
+    font-size: 12px;
+    min-height: 44px;
+    display: list-item;
+  }
+  .v58-coverage__detail .v58-role-coverage__list {
+    grid-template-columns: 1fr;
+    margin-top: 12px;
+    gap: 10px;
+  }
+  .v58-experts__coverage + .v58-experts__confirmation {
+    margin-top: 28px;
+  }
+  .v58-anchor {
+    display: block;
+    scroll-margin-top: 100px;
+  }
+  .v58-coverage__instruction {
+    color: var(--v58-muted);
+    font: 400 15px/1.6 var(--v58-ui);
+    margin: 0 0 24px;
+  }
+  .v58-experts__footer {
+    display: grid;
+    gap: 16px 32px;
+    margin-top: 28px;
+  }
+  .v58-experts__footer > p {
+    margin: 0;
+  }
+  @media (min-width: 820px) {
+    .v58-experts__footer {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .v58-home > .v58-trust {
+    padding-block: clamp(48px, 5vw, 64px);
+  }
+  .v58-assurance-head {
+    margin-bottom: 28px;
+  }
 </style>
 
 <script>
+  document.querySelectorAll<HTMLElement>('.v58-save-grid').forEach((grid) => {
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        grid.classList.add('in');
+        observer.disconnect();
+      },
+      { threshold: 0.2 }
+    );
+    grid.classList.add('is-animated');
+    observer.observe(grid);
+  });
+
   document.querySelectorAll<HTMLElement>('.v58-barcard').forEach((card) => {
     if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       card.classList.add('drawn');
@@ -2901,7 +3100,7 @@ const testimonials = [
     };
     const notes: Record<string, string> = {
       brief:
-        "This brief favours the candidate's strengths in building systems and detecting threats. LLM security and data access scored lower: ask about those in your interview.",
+        "On this brief, his production detection work carries the weight; the AI-security answers are where we'd probe next.",
       detection:
         'Detection matters most in this brief, and the candidate scored 5 out of 5 there. Use your interview to explore the lower scores in LLM security and data access.',
       llm: 'This brief puts more weight on LLM security and data access, both scored 2 out of 5. The same candidate now falls in the GREY band: those gaps need a closer look.',
@@ -2984,6 +3183,15 @@ const testimonials = [
       })
     );
     update(false);
+    const instruction = lab.querySelector<HTMLElement>('#weight-instruction');
+    if (instruction) instruction.textContent = 'Adjust the sliders to set what matters most.';
+    lab
+      .querySelectorAll<HTMLInputElement | HTMLButtonElement>('input[type="range"], [data-preset]')
+      .forEach((control) => {
+        control.disabled = false;
+      });
+    const unavailable = lab.querySelector<HTMLElement>('[data-lab-unavailable]');
+    if (unavailable) unavailable.hidden = true;
   }
 
   const funnel = document.querySelector('[data-v58-funnel]');

@@ -1,0 +1,41 @@
+route,file,title,share image
+/,index.html,Pre-interviewed candidates in 36 hours | Tribera,og/home.png
+/about,about.html,About Tribera | The founders and why we built it,og/about.png
+/blog,blog/index.html,Field notes on hiring | Tribera blog,og/blog.png
+/blog/designing-ai-for-high-stakes-technical-assessment,blog/designing-ai-for-high-stakes-technical-assessment.html,AI in technical assessment: what it can’t do | Tribera,og/blog-designing-ai-for-high-stakes-technical-assessment.png
+/blog/designing-for-trust-privacy-transparency-respect,blog/designing-for-trust-privacy-transparency-respect.html,Candidate privacy in hiring: hidden by default | Tribera,og/blog-designing-for-trust-privacy-transparency-respect.png
+/blog/gcc-hiring-india-leadership-roles,blog/gcc-hiring-india-leadership-roles.html,GCC hiring in India: the hard hire is the leader | Tribera,og/blog-gcc-hiring-india-leadership-roles.png
+/blog/hiring-ai-engineers-india,blog/hiring-ai-engineers-india.html,How to interview AI engineers in India | Tribera,og/blog-hiring-ai-engineers-india.png
+/blog/hiring-is-not-a-transaction-its-a-relationship,blog/hiring-is-not-a-transaction-its-a-relationship.html,Why hiring needs checks on both sides | Tribera,og/blog-hiring-is-not-a-transaction-its-a-relationship.png
+/blog/rethinking-hiring-metrics-signal-efficiency,blog/rethinking-hiring-metrics-signal-efficiency.html,Interview-to-hire ratio: the metric that matters | Tribera,og/blog-rethinking-hiring-metrics-signal-efficiency.png
+/blog/seventeen-interviews-one-hire,blog/seventeen-interviews-one-hire.html,17.6 interviews per hire: where the hours go | Tribera,og/blog-seventeen-interviews-one-hire.png
+/blog/signal-vs-noise-technical-hiring,blog/signal-vs-noise-technical-hiring.html,Signal vs noise in technical hiring | Tribera,og/blog-signal-vs-noise-technical-hiring.png
+/blog/when-job-hunting-feels-like-a-black-hole,blog/when-job-hunting-feels-like-a-black-hole.html,Job hunting feels like a black hole? Here’s why | Tribera,og/blog-when-job-hunting-feels-like-a-black-hole.png
+/blog/why-tech-hiring-really-takes-so-long,blog/why-tech-hiring-really-takes-so-long.html,"Why tech hiring takes so long: one role, 22 days | Tribera",og/blog-why-tech-hiring-really-takes-so-long.png
+/candidates,candidates.html,"Interviewed once, shortlisted everywhere | Tribera",og/candidates.png
+/careers,careers/index.html,Careers at Tribera | Jobs in Bengaluru,og/careers.png
+/careers/backend-engineer,careers/backend-engineer.html,Backend Engineer job in Bengaluru | Tribera,og/careers-backend-engineer.png
+/case-study,case-study.html,"Case study: five months open, closed in 22 days | Tribera",og/case-study.png
+/contact,contact.html,"Contact Tribera | Pune, Bengaluru, New Jersey",og/contact.png
+/dpa,dpa.html,Data processing terms for clients | Tribera,og/dpa.png
+/how-we-work-with-numbers,how-we-work-with-numbers.html,How we work with numbers: sources and standards | Tribera,og/how-we-work-with-numbers.png
+/industries,industries/index.html,"Hiring by industry: 12 sectors, 12 scorecards | Tribera",og/industries.png
+/industries/ai-data,industries/ai-data.html,AI & data hiring in India | Tribera,og/industries-ai-data.png
+/industries/banking-financial-services,industries/banking-financial-services.html,Banking & financial services hiring in India | Tribera,og/industries-banking-financial-services.png
+/industries/consumer-digital-commerce,industries/consumer-digital-commerce.html,Consumer & digital commerce hiring in India | Tribera,og/industries-consumer-digital-commerce.png
+/industries/cybersecurity,industries/cybersecurity.html,Cybersecurity hiring in India | Tribera,og/industries-cybersecurity.png
+/industries/enterprise-technology,industries/enterprise-technology.html,Enterprise technology hiring in India | Tribera,og/industries-enterprise-technology.png
+/industries/global-capability-centers,industries/global-capability-centers.html,GCC hiring in India: capability centre roles | Tribera,og/industries-global-capability-centers.png
+/industries/healthcare-life-sciences,industries/healthcare-life-sciences.html,Healthcare & life sciences hiring in India | Tribera,og/industries-healthcare-life-sciences.png
+/industries/industrial-engineering,industries/industrial-engineering.html,Industrial & engineering hiring in India | Tribera,og/industries-industrial-engineering.png
+/industries/manufacturing,industries/manufacturing.html,Manufacturing hiring in India | Tribera,og/industries-manufacturing.png
+/industries/pharmaceutical,industries/pharmaceutical.html,Pharmaceutical hiring in India | Tribera,og/industries-pharmaceutical.png
+/industries/private-equity-portfolio,industries/private-equity-portfolio.html,Private equity portfolio hiring in India | Tribera,og/industries-private-equity-portfolio.png
+/industries/product-saas,industries/product-saas.html,Product & SaaS hiring in India | Tribera,og/industries-product-saas.png
+/intelligence,intelligence.html,Talent intelligence: the hardest skills to hire | Tribera,og/intelligence.png
+/interview-as-a-service,interview-as-a-service.html,Interview as a service in India | Tribera,og/interview-as-a-service.png
+/privacy,privacy.html,Privacy policy | Tribera,og/privacy.png
+/sample-write-up,sample-write-up.html,Sample candidate write-up | Tribera,og/sample-write-up.png
+/security,security.html,Security and responsible disclosure | Tribera,og/security.png
+/services,services.html,"Hiring services: recruitment, interviews, advisory | Tribera",og/services.png
+/terms,terms.html,Terms of use | Tribera,og/terms.png

@@ -1,27 +1,31 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import V58Home from '~/components/home/v58/Home.astro';
+import Home from '~/components/home/v126/Home.astro';
 
 const metadata = {
-  title: 'tribera - three candidates, every one worth the interview',
+  title: 'tribera — three candidates, every one worth the interview',
   description:
-    'We source, screen and interview against the bar your hiring manager sets, then send three candidates worth interviewing, with evidence behind every score.',
+    'We find, vet and interview against one bar your hiring manager sets, then send three you can hire — each with the proof behind every score.',
   ignoreTitleTemplate: true,
+  openGraph: {
+    images: [{ url: new URL('/og-image.png', Astro.site).toString(), width: 2400, height: 1260 }],
+  },
+  twitter: { cardType: 'summary_large_image' },
 };
 ---
 
-<Layout metadata={metadata}>
-  <V58Home />
+<Layout metadata={metadata} mainClass="v126-route w-full" htmlClass="v126-document">
+  <Home />
 </Layout>
 
 <style is:global>
   body {
-    font-family: var(--v58-ui);
+    font-family: 'Inter Tight', system-ui, sans-serif;
     font-size: 16px;
     line-height: 1.6;
   }
   :focus-visible {
-    outline: 2px solid var(--v58-red);
+    outline: 2px solid #da0007;
     outline-offset: 3px;
   }
 </style>

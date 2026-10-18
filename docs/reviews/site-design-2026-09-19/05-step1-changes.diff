@@ -1,0 +1,815 @@
+--- src/pages/careers/[slug].astro before
++++ src/pages/careers/[slug].astro now
+@@ -11137,7 +11137,7 @@
+       .jd__note {
+         font-size: 13.5px;
+         line-height: 1.55;
+-        color: var(--faint);
++        color: #6b6a61;
+         margin: 16px 0 0;
+         max-width: 44ch;
+       }
+
+--- src/components/standalone/SharedNavFrame.astro before
++++ src/components/standalone/SharedNavFrame.astro now
+@@ -137,7 +137,7 @@
+     border: 0 !important;
+     border-radius: 999px !important;
+     box-sizing: border-box !important;
+-    color: #8d8c83 !important;
++    color: #63625a !important;
+     display: inline-flex !important;
+     font-family: 'Inter Tight', sans-serif !important;
+     font-size: 12.5px !important;
+@@ -220,7 +220,7 @@
+     border-radius: 999px !important;
+     border: 0 !important;
+     box-sizing: border-box !important;
+-    color: #8d8c83 !important;
++    color: #63625a !important;
+     display: inline-flex !important;
+     font-family: var(--v58-ui, 'Inter Tight', ui-sans-serif, sans-serif) !important;
+     font-size: 12.5px !important;
+
+--- src/components/home/v126/sample.css before
++++ src/components/home/v126/sample.css now
+@@ -6,10 +6,11 @@
+   --ink: #131313;
+   --ink-2: #57565b;
+   --ink-3: #9a998f;
++  --ink-3-strong: #6b6a61;
+   --red: #da0007;
+   --charcoal: #121212;
+   --pw: rgba(255, 255, 255, 0.7);
+-  --pw2: rgba(255, 255, 255, 0.42);
++  --pw2: rgba(255, 255, 255, 0.58);
+   --surface-d: #191917;
+   --surface-d2: #1f1e1c;
+   --line-dw: #33332e;
+@@ -144,7 +145,7 @@
+   font-size: 0.7rem;
+   letter-spacing: 0.2em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   display: inline-flex;
+   align-items: center;
+   gap: 0.6em;
+@@ -335,7 +336,7 @@
+   font-family: var(--mono);
+   font-size: 0.74rem;
+   letter-spacing: 0.05em;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin-top: 2.2rem;
+   display: flex;
+   align-items: center;
+@@ -383,14 +384,14 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .card-hd .t {
+   font-family: var(--mono);
+-  font-size: 0.66rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .pill {
+   font-family: var(--mono);
+-  font-size: 0.64rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.06em;
+   padding: 0.3em 0.7em;
+   border-radius: 100px;
+@@ -430,7 +431,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .cand .meta {
+   font-size: 0.78rem;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin-top: 0.15rem;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .cand .rt {
+@@ -439,7 +440,7 @@
+ :is(.v126-home, .v126-footer, .v126-header) .verdict-chip {
+   display: inline-block;
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   color: var(--take);
+@@ -458,9 +459,9 @@
+   padding-top: 1rem;
+   border-top: 1px solid var(--line);
+   font-family: var(--mono);
+-  font-size: 0.68rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.03em;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+@@ -525,10 +526,10 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .barcard .lbl {
+   font-family: var(--mono);
+-  font-size: 0.66rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.12em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin-bottom: 1.4rem;
+   display: block;
+ }
+@@ -595,10 +596,10 @@
+ :is(.v126-home, .v126-footer, .v126-header) .figbox .lbl {
+   display: block;
+   font-family: var(--mono);
+-  font-size: 0.62rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.1em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin-top: 0.9rem;
+   font-weight: 400;
+ }
+@@ -609,10 +610,10 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .figbox .cap {
+   font-family: var(--mono);
+-  font-size: 0.64rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   text-align: center;
+ }
+ 
+@@ -723,7 +724,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .flow .who {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.12em;
+   text-transform: uppercase;
+ }
+@@ -750,10 +751,10 @@
+     0 20px 44px -22px rgba(0, 0, 0, 0.6);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .flow .who.yours {
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .flow .who.ours {
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .flow p {
+   font-size: 0.86rem;
+@@ -787,7 +788,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .fw-label {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -827,7 +828,7 @@
+ :is(.v126-home, .v126-footer, .v126-header) .fw-n {
+   display: block;
+   font-family: var(--mono);
+-  font-size: 0.58rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.12em;
+   color: var(--pw2);
+   margin-bottom: 0.5rem;
+@@ -901,14 +902,14 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .lab .hd .tag {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.1em;
+   text-transform: uppercase;
+   color: var(--pw2);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .lab-hint {
+   font-family: var(--mono);
+-  font-size: 0.64rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.06em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -935,7 +936,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .mh {
+   font-family: var(--mono);
+-  font-size: 0.58rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -967,7 +968,7 @@
+ :is(.v126-home, .v126-footer, .v126-header) .vbadge {
+   display: inline-block;
+   font-family: var(--mono);
+-  font-size: 0.68rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   padding: 0.45em 0.95em;
+@@ -995,7 +996,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .vtotal {
+   font-family: var(--mono);
+-  font-size: 0.68rem;
++  font-size: 0.6875rem;
+   color: var(--pw2);
+   margin-top: 0.55rem;
+ }
+@@ -1039,10 +1040,10 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .way .tag {
+   font-family: var(--mono);
+-  font-size: 0.62rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.12em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .way h3 {
+   font-family: var(--display);
+@@ -1060,7 +1061,7 @@
+   padding-top: 0.95rem;
+   border-top: 1px solid var(--line);
+   font-family: var(--mono);
+-  font-size: 0.66rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.06em;
+   text-transform: uppercase;
+   color: var(--ink-2);
+@@ -1179,7 +1180,7 @@
+   font-family: var(--mono);
+   font-size: 0.7rem;
+   letter-spacing: 0.03em;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin-top: 1.7rem;
+   text-align: center;
+ }
+@@ -1350,7 +1351,7 @@
+   align-items: baseline;
+   gap: 12px;
+   font-family: var(--mono);
+-  font-size: 0.64rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -1441,7 +1442,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .own {
+   font-family: var(--mono);
+-  font-size: 0.54rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   padding: 0.28em 0.55em;
+@@ -1458,7 +1459,7 @@
+   align-items: center;
+   gap: 14px;
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.06em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -1514,7 +1515,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .fnl-case .k {
+   font-family: var(--mono);
+-  font-size: 0.58rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.16em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -1630,7 +1631,7 @@
+   padding: 0.78rem 1.15rem;
+   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -1683,12 +1684,12 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-scr .num i {
+   font-style: normal;
+-  font-size: 0.68rem;
++  font-size: 0.6875rem;
+   color: var(--pw2);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-select {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   font-weight: 500;
+   letter-spacing: 0.13em;
+   padding: 0.4em 0.7em;
+@@ -1727,7 +1728,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-scale-k {
+   font-family: var(--mono);
+-  font-size: 0.55rem;
++  font-size: 0.6875rem;
+   color: var(--pw2);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-vrd {
+@@ -1739,7 +1740,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-vrd .k {
+   font-family: var(--mono);
+-  font-size: 0.57rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.18em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -1779,7 +1780,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .tl i {
+   font-style: normal;
+-  font-size: 0.65rem;
++  font-size: 0.6875rem;
+   color: var(--pw);
+   white-space: nowrap;
+   overflow: hidden;
+@@ -1818,7 +1819,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-rub .k {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   color: var(--red);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-rub .n {
+@@ -1845,7 +1846,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-note .k {
+   font-family: var(--mono);
+-  font-size: 0.57rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.12em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -1943,7 +1944,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ft-tribe {
+   font-family: var(--mono);
+-  font-size: 0.62rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.2em;
+   text-transform: uppercase;
+   color: var(--ink-3);
+@@ -1999,7 +2000,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ft-ttl {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.2em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -2031,7 +2032,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ft-made {
+   font-family: var(--mono);
+-  font-size: 0.66rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.16em;
+   text-transform: uppercase;
+ }
+@@ -2043,7 +2044,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ft-up {
+   font-family: var(--mono);
+-  font-size: 0.66rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -2069,7 +2070,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-fold-k {
+   font-family: var(--mono);
+-  font-size: 0.55rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.16em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -2083,7 +2084,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .fchip {
+   font-family: var(--mono);
+-  font-size: 0.57rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.01em;
+   padding: 0.34em 0.62em;
+   border-radius: 100px;
+@@ -2099,7 +2100,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .dp-fold-n {
+   display: block;
+-  font-size: 0.66rem;
++  font-size: 0.6875rem;
+   line-height: 1.4;
+   color: var(--pw2);
+   margin-top: 8px;
+@@ -2170,7 +2171,7 @@
+ :is(.v126-home, .v126-footer, .v126-header) .xp span {
+   font-family: var(--mono);
+   font-size: 0.72rem;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   letter-spacing: 0.02em;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .xp--more {
+@@ -2202,10 +2203,10 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .inds-k {
+   font-family: var(--mono);
+-  font-size: 0.62rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.16em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin-bottom: 0.9rem;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .inds-g {
+@@ -2455,7 +2456,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .verd-band {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   font-weight: 500;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+@@ -2546,7 +2547,7 @@
+   display: flex;
+   justify-content: space-between;
+   font-family: var(--mono);
+-  font-size: 0.54rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.05em;
+   color: var(--pw2);
+   text-transform: uppercase;
+@@ -2574,7 +2575,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .lt i {
+   font-style: normal;
+-  font-size: 0.61rem;
++  font-size: 0.6875rem;
+   color: var(--pw);
+   white-space: nowrap;
+   overflow: hidden;
+@@ -2656,7 +2657,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .row .rk {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   color: var(--red);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .row .rn {
+@@ -2717,7 +2718,7 @@
+   gap: 14px;
+   margin-top: 12px;
+   font-family: var(--mono);
+-  font-size: 0.68rem;
++  font-size: 0.6875rem;
+   color: var(--pw2);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .rows-ft b {
+@@ -2833,10 +2834,10 @@
+ :is(.v126-home, .v126-footer, .v126-header) .hero-bar-cap {
+   margin-top: 1.1rem;
+   font-family: var(--mono);
+-  font-size: 0.64rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.13em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-bar-cap b {
+   color: var(--ink);
+@@ -2857,10 +2858,10 @@
+   justify-content: space-between;
+   align-items: center;
+   font-family: var(--mono);
+-  font-size: 0.58rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.13em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin-bottom: 0.5rem;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-card .hc-n {
+@@ -2884,11 +2885,11 @@
+ :is(.v126-home, .v126-footer, .v126-header) .hero-card .hc-sc {
+   font-family: var(--mono);
+   font-size: 0.74rem;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-card .hc-band {
+   font-family: var(--mono);
+-  font-size: 0.56rem;
++  font-size: 0.6875rem;
+   font-weight: 500;
+   letter-spacing: 0.08em;
+   padding: 0.3em 0.55em;
+@@ -2900,7 +2901,7 @@
+   border-top: 1px solid var(--line);
+   font-family: var(--body);
+   font-size: 0.78rem;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-card .hc-num {
+   font-weight: inherit;
+@@ -2927,7 +2928,7 @@
+   align-items: center;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-c .cta-row .link {
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   transition: color 0.2s var(--ease);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-c .cta-row .link:hover {
+@@ -2941,7 +2942,7 @@
+   font-family: var(--mono);
+   font-size: 0.74rem;
+   letter-spacing: 0.05em;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin-top: 2rem;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-c .micro .dot {
+@@ -2953,7 +2954,7 @@
+ 
+ :is(.v126-home, .v126-footer, .v126-header) .side-k {
+   font-family: var(--mono);
+-  font-size: 0.57rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.13em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -2974,10 +2975,10 @@
+ /* engagement models */
+ :is(.v126-home, .v126-footer, .v126-header) .models-k {
+   font-family: var(--mono);
+-  font-size: 0.68rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.16em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   text-align: center;
+   margin-top: clamp(44px, 5vw, 68px);
+   display: flex;
+@@ -3107,7 +3108,7 @@
+   font-size: 11px;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin: 0 0 8px;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .rp__acc {
+@@ -3127,7 +3128,7 @@
+ :is(.v126-home, .v126-footer, .v126-header) .rp__acc span {
+   font-family: var(--mono);
+   font-size: 10.5px;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .rp--last .rp__acc b,
+ :is(.v126-home, .v126-footer, .v126-header) .rp--last .rp__n {
+@@ -3245,7 +3246,7 @@
+ :is(.v126-home, .v126-footer, .v126-header) .tm-tag {
+   align-self: flex-start;
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+   padding: 0.36em 0.7em;
+@@ -3353,7 +3354,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ho-k {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+ }
+@@ -3361,7 +3362,7 @@
+   color: var(--pw2);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ho-you .ho-k {
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ho-t {
+   font-family: var(--display);
+@@ -3379,7 +3380,7 @@
+ :is(.v126-home, .v126-footer, .v126-header) .ho-tag {
+   margin-top: auto;
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.06em;
+   text-transform: uppercase;
+ }
+@@ -3427,10 +3428,10 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ho-mk {
+   font-family: var(--mono);
+-  font-size: 0.56rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.12em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ @media (prefers-reduced-motion: reduce) {
+   :is(.v126-home, .v126-footer, .v126-header) .ho-shaft {
+@@ -3514,10 +3515,10 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ratio-k {
+   font-family: var(--mono);
+-  font-size: 0.66rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.12em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ratio-row.is-t .ratio-k {
+   color: var(--red);
+@@ -3540,7 +3541,7 @@
+   font-family: var(--display);
+   font-weight: 600;
+   font-size: 1.7rem;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   line-height: 1;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ratio-row.is-t .ratio-n {
+@@ -3608,7 +3609,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .ls-k {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.15em;
+   text-transform: uppercase;
+   color: var(--pw2);
+@@ -3716,10 +3717,10 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .save-k {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .save b {
+   font-family: var(--display);
+@@ -3856,10 +3857,10 @@
+   gap: 6px;
+   text-decoration: none;
+   font-family: var(--mono);
+-  font-size: 0.58rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.16em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   transition: color 0.2s var(--ease);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-cue:hover {
+@@ -3879,10 +3880,10 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-cue-k {
+   font-family: var(--mono);
+-  font-size: 0.58rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.16em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   transition: color 0.2s var(--ease);
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .hero-cue-ln {
+@@ -4155,7 +4156,7 @@
+   right: 1.3rem;
+   bottom: 1.2rem;
+   font-family: var(--mono);
+-  font-size: 0.64rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.01em;
+   color: var(--red);
+   opacity: 0;
+@@ -4191,10 +4192,10 @@
+   display: block;
+   margin-top: 0.5rem;
+   font-family: var(--mono);
+-  font-size: 0.58rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.12em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+ }
+ @media (prefers-reduced-motion: reduce) {
+   :is(.v126-home, .v126-footer, .v126-header) .cost-bar span {
+@@ -4249,7 +4250,7 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .verd-ev-cue {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.12em;
+   text-transform: uppercase;
+   color: var(--red);
+@@ -4290,10 +4291,10 @@
+ :is(.v126-home, .v126-footer, .v126-header) .ops-eyebrow {
+   display: block;
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin-bottom: 0.55rem;
+   transition: color 0.24s var(--ease);
+ }
+@@ -4397,10 +4398,10 @@
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .reg-k {
+   font-family: var(--mono);
+-  font-size: 0.6rem;
++  font-size: 0.6875rem;
+   letter-spacing: 0.14em;
+   text-transform: uppercase;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   padding-top: 0.2em;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .reg-v {
+@@ -4447,7 +4448,7 @@
+ :is(.v126-home, .v126-footer, .v126-header) .faq-ask-q {
+   font-family: var(--body);
+   font-size: 1rem;
+-  color: var(--ink-3);
++  color: var(--ink-3-strong);
+   margin: 0 0 0.45rem;
+ }
+ :is(.v126-home, .v126-footer, .v126-header) .faq-ask a {
+
+--- src/components/widgets/Footer.astro before
++++ src/components/widgets/Footer.astro now
+@@ -55,3 +55,16 @@
+     </div>
+   </div>
+ </footer>
++
++<style is:global>
++  /* Footer metadata uses dark-surface colors, independent of page tokens. */
++  :root body footer.ft {
++    --footer-muted: #9a9992;
++  }
++  :root body footer.ft :is(.ft__line, .ft__bar, .ft__tribe) {
++    color: var(--footer-muted);
++  }
++  :root body footer.ft :is(.ft__ttl, .ft__bbb em) {
++    color: #ff6b6f;
++  }
++</style>

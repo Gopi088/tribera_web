@@ -241,7 +241,15 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
   }
 </style>
 
-<div id="contactSalesModal" class="hidden" hidden>
+<div
+  id="contactSalesModal"
+  class="hidden"
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="contactSalesTitle"
+  aria-describedby="contactSalesBody"
+>
   <div class="cs__wrap">
     <div class="cs__card">
       <span class="cs__glint"></span>
@@ -254,8 +262,8 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
 
       <div class="relative">
         <p data-form-audience class="cs__aud">{defaultIntentConfig.audienceLabel}</p>
-        <h2 data-form-title class="cs__ttl">{defaultIntentConfig.title}</h2>
-        <p data-form-body class="cs__bd">{defaultIntentConfig.body}</p>
+        <h2 id="contactSalesTitle" data-form-title class="cs__ttl">{defaultIntentConfig.title}</h2>
+        <p id="contactSalesBody" data-form-body class="cs__bd">{defaultIntentConfig.body}</p>
       </div>
 
       <form id="contactSalesForm" action="/.netlify/functions/site-inquiry" method="POST" class="cs__f">
@@ -267,17 +275,52 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
         <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
 
         <div class="cs__row cs__row--2">
-          <input type="text" name="name" placeholder="Full name" autocomplete="name" required class="cs__in" />
+          <input
+            type="text"
+            name="name"
+            aria-label="Full name"
+            placeholder="Full name"
+            autocomplete="name"
+            required
+            class="cs__in"
+          />
 
-          <input type="email" name="email" placeholder="Work email" autocomplete="email" required class="cs__in" />
+          <input
+            type="email"
+            name="email"
+            aria-label="Work email"
+            placeholder="Work email"
+            autocomplete="email"
+            required
+            class="cs__in"
+          />
         </div>
 
-        <input type="text" name="company" placeholder="Company name" autocomplete="organization" class="cs__in" />
+        <input
+          type="text"
+          name="company"
+          aria-label="Company name"
+          placeholder="Company name"
+          autocomplete="organization"
+          class="cs__in"
+        />
 
-        <input type="tel" name="phone" placeholder="Phone number" autocomplete="tel" class="cs__in" />
+        <input
+          type="tel"
+          name="phone"
+          aria-label="Phone number"
+          placeholder="Phone number"
+          autocomplete="tel"
+          class="cs__in"
+        />
 
-        <textarea rows="3" name="message" autocomplete="off" placeholder="How can we help?" class="cs__in cs__in--ta"
-        ></textarea>
+        <textarea
+          rows="3"
+          name="message"
+          aria-label="How can we help?"
+          autocomplete="off"
+          placeholder="How can we help?"
+          class="cs__in cs__in--ta"></textarea>
 
         <div class="cs__ft">
           <p data-form-response-note class="cs__note">{defaultIntentConfig.responseNote}</p>
@@ -285,11 +328,11 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
             {defaultIntentConfig.submitLabel}
           </button>
         </div>
-        <p id="contactSalesErrorMsg" class="cs__err hidden" hidden>
+        <p id="contactSalesErrorMsg" class="cs__err hidden" hidden role="alert">
           Something went wrong while submitting your request. Please try again or email sales@tribera.ai.
         </p>
       </form>
-      <div id="contactSalesSuccessMsg" class="cs__ok hidden" hidden>
+      <div id="contactSalesSuccessMsg" class="cs__ok hidden" hidden tabindex="-1" role="status">
         <div class="cs__ok__i">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M20 7L10 17l-5-5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -330,6 +373,9 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
     if (!modal || !form) return;
     if (modal.dataset.bound === 'true') return;
     modal.dataset.bound = 'true';
+    let returnFocus = null;
+    let autoCloseTimer;
+    let openVersion = 0;
 
     const resolveIntentConfig = (intent) => {
       if (intent && hiringIntentConfigs[intent]) return [intent, hiringIntentConfigs[intent]];
@@ -361,9 +407,12 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
     };
 
     const closeModal = () => {
+      clearTimeout(autoCloseTimer);
+      openVersion++;
       modal.classList.add('hidden');
       modal.setAttribute('hidden', '');
       document.body.classList.remove('overflow-hidden');
+      if (returnFocus instanceof HTMLElement && returnFocus.isConnected) returnFocus.focus({ preventScroll: true });
     };
 
     const stampFormLoadedAt = () => {
@@ -379,6 +428,9 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
       const trigger = target.closest('[data-form-intent], [data-open-sales], [data-open-demo], #contactSalesBtn');
       if (trigger instanceof HTMLElement) {
         e.preventDefault();
+        clearTimeout(autoCloseTimer);
+        openVersion++;
+        returnFocus = trigger;
         const rawIntent =
           trigger.dataset.formIntent ||
           (trigger.hasAttribute('data-open-demo')
@@ -389,11 +441,18 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
         const source = trigger.dataset.formSource || '';
         const label = (trigger.dataset.formLabel || trigger.textContent || '').trim();
         applyIntentConfig(rawIntent, source, label);
+        form.classList.remove('hidden');
+        errorMsg?.classList.add('hidden');
+        errorMsg?.setAttribute('hidden', '');
+        successMsg?.classList.add('hidden');
+        successMsg?.setAttribute('hidden', '');
+        submitBtn?.removeAttribute('disabled');
         stampFormLoadedAt();
         modal.classList.remove('hidden');
         modal.removeAttribute('hidden');
         document.body.classList.add('overflow-hidden');
         modal.dataset.lastOpenedAt = String(Date.now());
+        form.querySelector('[name="name"]')?.focus({ preventScroll: true });
       }
     });
 
@@ -414,15 +473,35 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
 
     if (!window.__triberaSalesModalEscBound) {
       document.addEventListener('keydown', (e) => {
-        if (e.key !== 'Escape') return;
         if (modal.classList.contains('hidden')) return;
-        closeModal();
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          closeModal();
+        } else if (e.key === 'Tab') {
+          const controls = [
+            ...modal.querySelectorAll(
+              'button:not([disabled]), input:not([type="hidden"]):not([disabled]), textarea:not([disabled]), a[href]'
+            ),
+          ].filter((element) => element.getClientRects().length);
+          const first = controls[0];
+          const last = controls.at(-1);
+          if (e.shiftKey && (document.activeElement === first || !controls.includes(document.activeElement))) {
+            e.preventDefault();
+            last?.focus();
+          } else if (!e.shiftKey && (document.activeElement === last || !controls.includes(document.activeElement))) {
+            e.preventDefault();
+            first?.focus();
+          }
+        }
       });
       window.__triberaSalesModalEscBound = true;
     }
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      if (submitBtn?.hasAttribute('disabled')) return;
+      // A response from an older opening must not overwrite a newly opened form.
+      const submissionVersion = openVersion;
 
       const originalText = submitBtn?.textContent || 'Submit';
       errorMsg?.classList.add('hidden');
@@ -449,6 +528,7 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
               message:
                 'Something went wrong while submitting your request. Please try again or email sales@tribera.ai.',
             };
+        if (submissionVersion !== openVersion) return;
         if (!res.ok || !result.success) {
           const safeClientMessage =
             res.status >= 400 && res.status < 500 && typeof result.message === 'string' && result.message.trim()
@@ -462,14 +542,17 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
         form.classList.add('hidden');
         successMsg?.classList.remove('hidden');
         successMsg?.removeAttribute('hidden');
+        successMsg?.focus({ preventScroll: true });
 
-        setTimeout(() => {
+        autoCloseTimer = setTimeout(() => {
+          if (submissionVersion !== openVersion) return;
           successMsg?.classList.add('hidden');
           successMsg?.setAttribute('hidden', '');
           form.classList.remove('hidden');
           closeModal();
         }, 3000);
       } catch (error) {
+        if (submissionVersion !== openVersion) return;
         console.error('Contact sales form submit failed:', error);
         if (errorMsg instanceof HTMLElement) {
           errorMsg.textContent =
@@ -480,7 +563,7 @@ const defaultIntentConfig = hiringIntentConfigs[defaultHiringFormIntent];
         errorMsg?.classList.remove('hidden');
         errorMsg?.removeAttribute('hidden');
       } finally {
-        if (submitBtn) {
+        if (submitBtn && submissionVersion === openVersion) {
           submitBtn.textContent = originalText;
           submitBtn.removeAttribute('disabled');
         }

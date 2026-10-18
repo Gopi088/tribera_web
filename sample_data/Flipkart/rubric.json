@@ -1,0 +1,246 @@
+{
+  "rubric_name": "AI Security Engineer Phone-Screen — Builder-First Hybrid",
+  "version": "v4.0-builder-first",
+  "purpose": "Score a phone-screen transcript for an AI Security Engineer role where the primary expectation is building ML/LLM systems that detect and prevent risk at scale, with security as the problem domain.",
+
+  "llm_instructions": {
+    "mandatory_skills_definition": [
+      "Mandatory skills indicate the candidate can build and own detection or prevention systems.",
+      "Failing mandatory builder or detection skills → auto-reject or hard cap.",
+      "Desired skills add confidence but are not required.",
+      "Optional skills improve score but cannot penalize."
+    ],
+
+    "inputs_required": {
+      "transcript_text": "Full phone-screen transcript.",
+      "jd_highlights": "Extracted mandatory vs desired competencies from JD."
+    },
+
+    "scoring_mindset": [
+      "Score ONLY what the candidate says.",
+      "Prioritize systems built, ownership, metrics, failures, and iteration.",
+      "Reward direction + one real system, signal, or outcome.",
+      "Use NA if the TA never surfaced a question.",
+      "Penalize confident-wrong explanations.",
+      "India phone-screen leniency applies: brief answers are acceptable if evidence exists."
+    ],
+
+    "phone_screen_leniency": {
+      "use_na_instead_of_zero": true,
+      "low_score_floor_if_not_wrong": 2,
+      "double_punish_block": true,
+      "evidence_tokens": [
+        "system_built_or_owned",
+        "signal_or_decision_logic",
+        "metric_or_outcome",
+        "incident_or_failure",
+        "tool_or_service_named"
+      ],
+      "evidence_to_score_map": {
+        "0-1_tokens": 2,
+        "2_tokens": 3,
+        "3_tokens": 4,
+        "4_tokens": 5
+      }
+    }
+  },
+
+  "dimensions": [
+    {
+      "id": "a0_builder_systems",
+      "mandatory": true,
+      "title": "System Building & Ownership",
+      "jd_mapping": "Primary requirement: ability to build and own ML/AI systems used in production.",
+      "weight": 2.0,
+      "band_guide": {
+        "0": "No systems built.",
+        "1": "Assisted only; no ownership.",
+        "2": "Small internal or academic system.",
+        "3": "Built system used by others.",
+        "4": "Built system with metrics and iteration.",
+        "5": "Scaled system with clear impact."
+      }
+    },
+    {
+      "id": "a1_detection_prevention",
+      "mandatory": true,
+      "title": "Detection & Prevention Design",
+      "jd_mapping": "Design of signals, decision logic, and outcomes to detect or prevent risk.",
+      "weight": 1.8,
+      "band_guide": {
+        "0": "No detection or prevention logic.",
+        "1": "Rules only.",
+        "2": "Generic ML mention.",
+        "3": "Clear signal + decision logic.",
+        "4": "Thresholds + feedback loop.",
+        "5": "Multi-signal system with tuning."
+      }
+    },
+    {
+      "id": "a2_llm_security_basics",
+      "mandatory": true,
+      "title": "AI / LLM Security Basics",
+      "jd_mapping": "Prompt injection, jailbreaks, and data leakage awareness applied to systems built.",
+      "weight": 1.2,
+      "band_guide": {
+        "0": "Unaware of LLM risks.",
+        "1": "Names risks only.",
+        "2": "Generic controls without detail.",
+        "3": "One real control + test/check.",
+        "4": "Multiple controls with iteration.",
+        "5": "Reusable security patterns."
+      }
+    },
+    {
+      "id": "b1_ml_pipeline",
+      "mandatory": true,
+      "title": "ML / LLM Pipeline Fundamentals",
+      "jd_mapping": "Data ingestion, training, inference, evaluation, and improvement.",
+      "weight": 1.2,
+      "band_guide": {
+        "0": "No pipeline understanding.",
+        "1": "Training only.",
+        "2": "Training + inference.",
+        "3": "Evaluation and tuning.",
+        "4": "Cost or latency trade-offs discussed.",
+        "5": "Incident-driven pipeline improvements."
+      }
+    },
+    {
+      "id": "b2_python_automation",
+      "mandatory": false,
+      "title": "Python Automation & Tooling",
+      "jd_mapping": "Python used for automation, pipelines, or blocking checks.",
+      "weight": 1.0,
+      "band_guide": {
+        "0": "No Python usage.",
+        "1": "Helper scripts only.",
+        "2": "Utility automation.",
+        "3": "Blocking checks or pipelines.",
+        "4": "Scaled automation used by teams.",
+        "5": "Tool adopted widely."
+      }
+    },
+    {
+      "id": "c1_secure_data_access",
+      "mandatory": false,
+      "title": "Secure Data Access (RAG / Non-RAG)",
+      "jd_mapping": "Safe retrieval and access control for data used by ML/LLM systems.",
+      "weight": 0.9,
+      "band_guide": {
+        "0": "No access controls.",
+        "1": "Authentication only.",
+        "2": "Basic separation.",
+        "3": "Tenant isolation or rules.",
+        "4": "Leakage tests.",
+        "5": "Poisoning detection."
+      }
+    },
+    {
+      "id": "d1_cloud_runtime",
+      "mandatory": false,
+      "title": "Cloud Deployment & Runtime",
+      "jd_mapping": "Deploying, operating, and scaling systems in production.",
+      "weight": 0.8,
+      "band_guide": {
+        "0": "No deployment experience.",
+        "1": "Docker only.",
+        "2": "Basic CI/CD.",
+        "3": "Production deploy with monitoring.",
+        "4": "Scaling and rollback.",
+        "5": "Runtime incidents handled."
+      }
+    },
+    {
+      "id": "e1_incident_ownership",
+      "mandatory": true,
+      "title": "Incident Handling & Ownership",
+      "jd_mapping": "Ownership of failures, fixes, and prevention.",
+      "weight": 1.0,
+      "band_guide": {
+        "0": "No incidents discussed.",
+        "1": "Patch only.",
+        "2": "Root cause explained.",
+        "3": "Fix plus prevention.",
+        "4": "Monitoring or alert added.",
+        "5": "Playbook or standard created."
+      }
+    },
+    {
+      "id": "f1_authenticity",
+      "mandatory": true,
+      "title": "Authenticity (GATE)",
+      "weight": 0,
+      "band_guide": {
+        "0": "Fabricated.",
+        "1": "Contradictory.",
+        "2": "Buzzword-heavy.",
+        "3": "Some specifics.",
+        "4": "Consistent details.",
+        "5": "Artifact-level credibility."
+      }
+    }
+  ],
+
+  "engine": {
+    "normalization": {
+      "total_50_definition": "Weighted sum of all NON-gate mandatory + desired skills.",
+      "na_handling": "Drop NA; re-normalize to 50.",
+      "dimension_weights": "Taken directly from each dimension."
+    },
+
+    "gates": [
+      "Auto-REJECT if f1_authenticity <= 1",
+      "Auto-REJECT if a0_builder_systems <= 1",
+      "Auto-REJECT if a1_detection_prevention <= 1",
+      "Cap detection and security dimensions at 2 if candidate only describes API usage with no ownership"
+    ],
+
+    "bonuses": [
+      {
+        "id": "prod_outcome_bonus",
+        "when": "Mentions a real metric, outcome, or impact after deployment.",
+        "value": 1,
+        "cap": 2
+      },
+      {
+        "id": "iteration_bonus",
+        "when": "Clear iteration or improvement after failure or scale issue.",
+        "value": 1,
+        "cap": 1
+      }
+    ],
+
+    "penalties": [
+      {
+        "id": "minor_contradiction",
+        "value": -1,
+        "cap": -2
+      },
+      {
+        "id": "confident_wrong",
+        "value": -2,
+        "cap": -4
+      }
+    ]
+  },
+
+  "required_output": {
+    "format": "STRICT_JSON",
+    "schema": {
+      "scores": "Object of all dimensions 0–5 or 'NA'",
+      "auto_rules_triggered": "Array of strings",
+      "total_50": "0–50 string",
+      "verdict": "SELECT | GREY | REJECT",
+      "summary": "3–6 sentences"
+    },
+    "tally_and_verdict": {
+      "total_50_definition": "Sum of all non-gate mandatory + desired dimensions after NA adjustments (max 50).",
+      "verdict_rules": [
+        "SELECT if total_50 ≥ 34 AND no auto-reject rule is triggered.",
+        "GREY if total_50 is between 26 and 33 (inclusive) AND no auto-reject rule.",
+        "REJECT if total_50 ≤ 25 OR any auto-reject rule triggers."
+      ]
+    }
+  }
+}

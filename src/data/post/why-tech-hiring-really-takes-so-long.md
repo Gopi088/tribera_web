@@ -7,7 +7,6 @@ author: 'tribera'
 category: 'Technical Hiring'
 tags: ['signal-based-hiring', 'technical-hiring', 'time-to-hire', 'talent-acquisition']
 image: '~/assets/images/blog/why-tech-hiring-really-takes-so-long.png'
-readingTime: '5 min'
 ---
 
 We’ve seen this happen far too often. A company opens up a senior Java engineering role. Everyone believes it will be a quick, straightforward hire. Great brand, good comp, plenty of talent in the market. Six weeks, maybe eight at most.

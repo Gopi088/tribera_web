@@ -1,0 +1,17 @@
+## Review: Candidate v7 Integration
+
+**Content & visual fidelity** — Comparing the reference (`cand-ref-*`) and integrated (`cand-prod-*`/`cand-contact-*`) captures at 1440 and 390: hero copy, headline treatment, underline SVG accent, eyebrow, buttons, score card, weighting sliders, thirty-minutes panel, controls, testimonials, apply/close panels, and stat blocks (85%, 3wks, 91.1 score, etc.) all match the sample verbatim in copy, layout, spacing, and dark/light section alternation. Fonts (Fraunces display, Inter Tight body, JetBrains Mono labels) render correctly at both widths. No visual regressions found in either capture set.
+
+**CSS scoping** — `candidate-v7.css` is a mechanical `.candidate-v7 ` prefix of every selector from the reference stylesheet, including the `:root` custom properties moved onto `.candidate-v7`. This is a sound, low-risk approach — it can't leak into the global namespace or override shared nav/footer rules, since nothing here targets bare `body`, `.nav`, `.ft`, etc. without the scope class.
+
+**JS isolation** — `candidate-v7.ts` queries `document.querySelector('.candidate-v7')` and does all further lookups relative to that `root`, so IntersectionObservers, the CV-drop demo, and the weighting-preset logic can't touch nav/footer DOM. It also guards against double-init (`root.dataset.ready`) and re-binds on `astro:page-load`, which is correct for Astro's view-transition lifecycle.
+
+**Runtime check** — `runtime-check.txt` confirms: build passes (76 routes), no console/page errors at 390/768/1440, no horizontal overflow, nav/footer from the sample are *not* duplicated in the page root, and interactive behavior (score recompute, privacy toggle `aria-pressed`) works as expected. Accessibility: focus-visible outlines and `aria-pressed` state are present and functioning per the log.
+
+**Defect found — nav-diff.txt is not empty.** `runtime-check.txt` line 9 says the shared-header diff is "expected empty," but the actual diff shows `SharedNavFrame.astro`'s nav-link idle color changed twice (`#8d8c83` → `#63625a`). This is a real edit to the shared navbar component itself, not merely an isolated `.candidate-v7` scoped style — it directly contradicts the stated goal of leaving the existing navbar undisturbed. Whether this color tweak originated from this candidate-v7 work or from other unrelated changes already in flight on this branch (git status shows `SharedNavFrame.astro` modified prior to this task) is not resolvable from the artifacts alone. This needs to be confirmed with the author before merging; if it's a byproduct of this integration, it should be reverted or isolated the same way the candidate CSS was.
+
+**Minor/optional (not blocking):**
+- IDs referenced by the JS (`#tallyN`, `#sScore`, `#wr0`, etc.) are unscoped and would collide if the block were ever duplicated on a page — not an issue today since the page renders it once, but worth noting for future reuse.
+- No `loading="lazy"` or explicit `alt` review was possible since no raster images appear in the reviewed markup slice; not flagged as a defect.
+
+**Verdict: FAIL** — pending confirmation on the `SharedNavFrame.astro` color diff. Everything else (content fidelity, responsive layout, CSS/JS scoping, runtime behavior, accessibility signals) passes cleanly, but the one concrete discrepancy is exactly the thing this task explicitly required to remain untouched: the shared navbar. Resolve/confirm that diff and this becomes a clean PASS.

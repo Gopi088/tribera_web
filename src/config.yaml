@@ -11,7 +11,7 @@ metadata:
   title:
     default: 'tribera — Belong.Build.Become.'
     template: '%s — tribera'
-  description: 'tribera helps hiring teams make faster, sharper decisions with AI signal analysis, advisor-led interviews, and role-fit shortlists.'
+  description: 'tribera helps hiring teams make faster, sharper decisions with AI interview analysis, advisor-led interviews, and role-fit shortlists.'
   robots:
     index: true
     follow: true

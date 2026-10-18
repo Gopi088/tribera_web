@@ -10,6 +10,7 @@ import FieldNotesList from '~/components/blog/FieldNotesList.astro';
 import { fetchPosts } from '../../utils/blog';
 
 const posts = await fetchPosts();
+const featuredPost = posts.find((post) => post.slug === 'blog/rethinking-hiring-metrics-signal-efficiency')!;
 ---
 
 <!doctype html>
@@ -194,8 +195,8 @@ const posts = await fetchPosts();
       .h2 {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(30px, 4.2vw, 54px);
-        line-height: 1.04;
+        font-size: var(--type-section-size);
+        line-height: var(--type-section-leading);
         letter-spacing: -0.04em;
         margin: 0;
         max-width: 16ch;
@@ -437,7 +438,7 @@ const posts = await fetchPosts();
       }
       .hero h1 {
         max-width: 18ch;
-        font-size: clamp(36px, 4.6vw, 62px);
+        font-size: var(--type-hero-size);
       }
       .hero h1 + .hero__p {
         margin-top: 18px;
@@ -3621,8 +3622,8 @@ const posts = await fetchPosts();
         color: #fff;
       }
       .trust__dek {
-        font-size: clamp(16px, 1.7vw, 20px);
-        line-height: 1.6;
+        font-size: var(--type-subtitle-size);
+        line-height: var(--type-subtitle-leading);
         color: var(--onc2);
         max-width: 44ch;
         margin: 0;
@@ -12514,15 +12515,12 @@ const posts = await fetchPosts();
                     rx=".8"
                     fill="#DA0007"></rect></svg
                 ><span class="feat__cap">Every interview we have run, and the few that changed a decision</span><span
-                  class="feat__t">Rethinking hiring metrics</span
+                  class="feat__t">{featuredPost.title.split(': ')[0]}</span
                 >
-                <span class="feat__sub">What 200,000 interviews taught us about signal efficiency</span>
-                <span class="feat__x"
-                  >Time-to-hire measures pace. Interview-to-hire ratio measures alignment. Only one of them tells you
-                  whether the brief was right.</span
-                >
+                <span class="feat__sub">{featuredPost.title.split(': ').slice(1).join(': ')}</span>
+                <span class="feat__x">{featuredPost.excerpt}</span>
                 <span class="feat__ft"
-                  ><span class="feat__min">8 min read</span>
+                  ><span class="feat__min">{featuredPost.readingTime} read</span>
                   <span class="feat__go">Read it <i>→</i></span></span
                 >
               </a>

@@ -7,12 +7,19 @@ try {
     const page = await browser.newPage({ viewport: { width, height: 1100 }, hasTouch: width < 900 });
     await page.goto(process.env.TEST_BASE_URL || 'http://127.0.0.1:4321/', { waitUntil: 'networkidle' });
     const section = page.locator('.v58-experts');
+    const headingBox = await section.locator('h2').boundingBox();
+    const subtitleBox = await section.locator('.v58-lead').boundingBox();
+    const wrapBox = await section.locator('.v58-wrap').boundingBox();
+    assert.ok(subtitleBox.y >= headingBox.y + headingBox.height, 'Subtitle follows the title, not beside it');
+    assert.ok(subtitleBox.y - headingBox.y - headingBox.height <= 32, 'Subtitle stays close to its title');
+    assert.ok(Math.abs(subtitleBox.x - headingBox.x) < 1, 'Title and subtitle share a left edge');
+    assert.ok(Math.abs(headingBox.width - wrapBox.width) < 1, 'Experts title uses the full section width');
     const grid = section.locator('.v58-coverage');
     assert.equal(await grid.getAttribute('role'), 'list');
     assert.equal(await grid.locator('[role=listitem]').count(), 4);
     assert.equal(await page.locator('.v58-cover').count(), 0);
     assert.equal(await page.locator('#cover').count(), 1);
-    const roles = await grid.locator('.v58-coverage__roles li').allTextContents();
+    const roles = await page.locator('#cover .v58-role-coverage__list li').allTextContents();
     assert.deepEqual(
       roles.map((text) => text.trim()).sort(),
       [
@@ -41,7 +48,7 @@ try {
       const bounds = element.getBoundingClientRect();
       return [...element.children].map((card) => {
         const box = card.getBoundingClientRect();
-        const detail = card.querySelector('.v58-coverage__roles');
+        const detail = card.querySelector('.v58-coverage__focus');
         const detailBox = detail.getBoundingClientRect();
         const style = getComputedStyle(detail);
         return {
@@ -57,12 +64,23 @@ try {
       assert.ok(card.fits && card.contentFits && card.visible, `${width}px: visible card content fits grid`);
     }
     assert.equal(new Set(geometry.map((group) => Math.round(group.row))).size, width < 768 ? 4 : 2);
+    assert.equal(await grid.locator('details').count(), 4);
+    const roleExamples = [
+      'Software engineering',
+      'Finance & accounting systems',
+      'Supply chain & planning',
+      'Product & design',
+    ];
+    const summaries = await grid.locator('summary').allTextContents();
+    summaries.forEach((text, index) =>
+      assert.ok(text.includes(roleExamples[index]), 'Each specialism exposes a concrete role before expanding')
+    );
     for (const detail of await grid.locator('details').all()) {
-      const summary = detail.locator('summary');
-      await summary.focus();
+      await detail.locator('summary').focus();
       await page.keyboard.press('Enter');
       assert.equal(await detail.getAttribute('open'), '');
-      assert.ok(await detail.locator('p').isVisible());
+      assert.ok(await detail.locator('li').first().isVisible());
+      assert.ok(await detail.evaluate((el) => el.scrollWidth <= el.clientWidth));
       await page.keyboard.press('Enter');
       assert.equal(await detail.getAttribute('open'), null);
     }
@@ -72,7 +90,7 @@ try {
     await section.scrollIntoViewIfNeeded();
     await page.waitForTimeout(400);
     await section.screenshot({ path: `/tmp/experts-grouped-${width}.png` });
-    console.log(`${width}px: grouped coverage, retained roles, keyboard disclosures and bounds passed`);
+    console.log(`${width}px: four visible specialisms, 17 roles in Coverage and bounds passed`);
     await page.close();
   }
 } finally {

@@ -9,9 +9,11 @@ try {
     await page.addInitScript(() => {
       window.visibleTypeFrames = [];
       const sample = () => {
-        const title = document.querySelector('.v58-home h1');
-        if (title) {
-          const frame = ['.v58-home h1', '.v58-hero-c__copy .v58-lead'].map((selector) => {
+        const title = document.querySelector('.v126-home h1');
+        const subtitle = document.querySelector('.hero-c .lead');
+        // A frame can occur between parsing the heading and its following paragraph.
+        if (title && subtitle) {
+          const frame = ['.v126-home h1', '.hero-c .lead'].map((selector) => {
             const element = document.querySelector(selector);
             const style = getComputedStyle(element);
             const range = document.createRange();

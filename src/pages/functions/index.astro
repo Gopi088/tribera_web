@@ -1,5 +1,7 @@
 ---
 import SiteFooter from '~/components/widgets/Footer.astro';
+import { functionSeries, comparison } from '~/data/chart-series';
+const initialChart = comparison(functionSeries['engineering-platform'], functionSeries['data-analytics'], true);
 import EditorialPage from '~/components/v58/EditorialPage.astro';
 import SiteHeader from '~/components/widgets/Header.astro';
 import ContactSalesModal from '../../components/ContactSalesModal.astro';
@@ -13,7 +15,7 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <StandaloneMetadata
-      title="Functions — eight functions, eight different bars — tribera"
+      title="Functions — different functions, different priorities — tribera"
       description="Eight functions, eight different bars. The method is identical everywhere; the weighting comes from your function."
     />
     <link rel="preload" href="/fonts/figtree-800.woff2" as="font" type="font/woff2" crossorigin />
@@ -190,8 +192,8 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
       .h2 {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(30px, 4.2vw, 54px);
-        line-height: 1.04;
+        font-size: var(--type-section-size);
+        line-height: var(--type-section-leading);
         letter-spacing: -0.04em;
         margin: 0;
         max-width: 16ch;
@@ -505,7 +507,7 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
       }
       .hero h1 {
         max-width: 18ch;
-        font-size: clamp(36px, 4.6vw, 62px);
+        font-size: var(--type-hero-size);
       }
       .hero h1 + .hero__p {
         margin-top: 18px;
@@ -3687,8 +3689,8 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
         color: #fff;
       }
       .trust__dek {
-        font-size: clamp(16px, 1.7vw, 20px);
-        line-height: 1.6;
+        font-size: var(--type-subtitle-size);
+        line-height: var(--type-subtitle-leading);
         color: var(--onc2);
         max-width: 44ch;
         margin: 0;
@@ -5414,7 +5416,7 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
         color: var(--onc3);
       }
       .sel--b > span {
-        color: var(--red);
+        color: #ff6b70;
       }
       .sel select {
         appearance: none;
@@ -6260,11 +6262,10 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
           <div class="hero__top">
             <div class="hero__copy">
               <p class="eyebrow" data-rv>Functions</p>
-              <h1 class="h1" data-rv style="--d:60ms">The same role is never the <em>same role</em>.</h1>
+              <h1 class="h1" data-rv style="--d:60ms">Different functions.<br /><em>Different priorities.</em></h1>
               <p class="hero__p" data-rv style="--d:110ms">
-                A data lead and a head of infrastructure share a title.<br />The method is identical everywhere.<br /><b
-                  >The weighting is not.</b
-                >
+                A data lead and a head of infrastructure need different strengths.<br />The method is identical
+                everywhere.<br /><b>The weighting is not.</b>
               </p>
               <p class="hero__p" data-rv style="--d:150ms">
                 Our first question is never the job description.<br />It’s what your function punishes when you get it
@@ -6282,7 +6283,7 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
                 <div class="cmpw__sel">
                   <label class="sel"
                     ><span>Function A</span>
-                    <select id="secA"
+                    <select id="secA" disabled data-series={JSON.stringify(functionSeries)} data-scale="relative"
                       ><option value="engineering-platform" selected>Engineering & platform</option><option
                         value="data-analytics">Data & analytics</option
                       ><option value="infrastructure-sre">Infrastructure & SRE</option><option value="security"
@@ -6295,7 +6296,7 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
                   >
                   <label class="sel sel--b"
                     ><span>Function B</span>
-                    <select id="secB"
+                    <select id="secB" disabled
                       ><option value="engineering-platform">Engineering & platform</option><option
                         value="data-analytics"
                         selected>Data & analytics</option
@@ -6309,45 +6310,32 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
                   >
                 </div>
                 <div class="cmpw__g">
-                  <div class="bw" id="bw0">
-                    <span class="bw__n">Core depth</span><span class="bw__pair"
-                      ><span class="bw__b"><span class="bw__f" id="fa0"></span></span><span class="bw__b"
-                        ><span class="bw__f bw__f--b" id="fb0"></span></span
-                      ></span
-                    ><span class="bw__v"><i id="va0">0</i><b id="vb0">0</b></span>
-                  </div><div class="bw" id="bw1">
-                    <span class="bw__n">Systems design</span><span class="bw__pair"
-                      ><span class="bw__b"><span class="bw__f" id="fa1"></span></span><span class="bw__b"
-                        ><span class="bw__f bw__f--b" id="fb1"></span></span
-                      ></span
-                    ><span class="bw__v"><i id="va1">0</i><b id="vb1">0</b></span>
-                  </div><div class="bw" id="bw2">
-                    <span class="bw__n">Controls and risk</span><span class="bw__pair"
-                      ><span class="bw__b"><span class="bw__f" id="fa2"></span></span><span class="bw__b"
-                        ><span class="bw__f bw__f--b" id="fb2"></span></span
-                      ></span
-                    ><span class="bw__v"><i id="va2">0</i><b id="vb2">0</b></span>
-                  </div><div class="bw" id="bw3">
-                    <span class="bw__n">Delivery speed</span><span class="bw__pair"
-                      ><span class="bw__b"><span class="bw__f" id="fa3"></span></span><span class="bw__b"
-                        ><span class="bw__f bw__f--b" id="fb3"></span></span
-                      ></span
-                    ><span class="bw__v"><i id="va3">0</i><b id="vb3">0</b></span>
-                  </div><div class="bw" id="bw4">
-                    <span class="bw__n">Documentation</span><span class="bw__pair"
-                      ><span class="bw__b"><span class="bw__f" id="fa4"></span></span><span class="bw__b"
-                        ><span class="bw__f bw__f--b" id="fb4"></span></span
-                      ></span
-                    ><span class="bw__v"><i id="va4">0</i><b id="vb4">0</b></span>
-                  </div><div class="bw" id="bw5">
-                    <span class="bw__n">Stakeholder handling</span><span class="bw__pair"
-                      ><span class="bw__b"><span class="bw__f" id="fa5"></span></span><span class="bw__b"
-                        ><span class="bw__f bw__f--b" id="fb5"></span></span
-                      ></span
-                    ><span class="bw__v"><i id="va5">0</i><b id="vb5">0</b></span>
-                  </div>
+                  {
+                    initialChart.rows.map((row, i) => (
+                      <div class:list={['bw', { key: row.key }]} id={`bw${i}`}>
+                        <span class="bw__n">{row.name}</span>
+                        <span class="bw__pair">
+                          <span class="bw__b">
+                            <span class="bw__f" id={`fa${i}`} style={`width:${row.widthA}%`} />
+                          </span>
+                          <span class="bw__b">
+                            <span class="bw__f bw__f--b" id={`fb${i}`} style={`width:${row.widthB}%`} />
+                          </span>
+                        </span>
+                        <span class="bw__v">
+                          <>
+                            <i id={`va${i}`}>{row.a}</i>
+                            <b id={`vb${i}`}>{row.b}</b>
+                          </>
+                        </span>
+                      </div>
+                    ))
+                  }
                 </div>
-                <p class="cmpw__ft" id="cmpFt"></p>
+                <p class="cmpw__ft" id="cmpFt">{initialChart.note}</p>
+                <p class="cmpw__ft" id="comparisonHint">
+                  Showing the default comparison. Enable JavaScript to change selections.
+                </p>
               </div>
             </div>
           </div>
@@ -6362,7 +6350,7 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
               <h2 class="h2" data-rv style="--d:60ms;max-width:none">Eight functions, eight different bars.</h2>
             </div>
             <p class="dek" data-rv style="--d:100ms;max-width:none">
-              The six bars on each card are that function’s weighting:
+              The six bars on each card illustrate that function’s priorities:
               <b>the tall red one is what it punishes hardest when someone gets it wrong.</b><br />Scan them and the
               clusters show up on their own.
             </p>
@@ -6516,9 +6504,8 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
                   rx="2"
                   fill="#DA0007"></rect></svg
               ><span class="ind__hd"><span class="ind__n">Product & design</span><span class="ind__ar">→</span></span
-              ><span class="ind__x">Taste, evidence and refusal — the product signals that survive.</span><span
-                class="ind__w"><i>Weighted heaviest</i>What they refused, in the words they used</span
-              ></a
+              ><span class="ind__x">Taste, evidence and refusal — the product decisions that stand up to scrutiny.</span
+              ><span class="ind__w"><i>Weighted heaviest</i>What they refused, in the words they used</span></a
             ><a class="ind" href="/functions/operations"
               ><svg class="isp" viewBox="0 0 66 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                 ><rect x="0" y="3.8" width="7" height="22.2" rx="2" fill="#C6C2B8"></rect><rect
@@ -6587,13 +6574,16 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
             <div class="steps" data-rv style="--d:140ms">
               <div class="step">
                 <span class="step__n">01</span>
-                <span class="step__t">A hundred signals <em class="own">engine</em></span>
+                <span class="step__t">Experience checked <em class="own">engine</em></span>
                 <span class="step__d">Read before anyone picks up the phone, everywhere.</span>
               </div>
               <div class="step">
                 <span class="step__n">02</span>
                 <span class="step__t">Thirty minutes with a peer <em class="own">expert</em></span>
-                <span class="step__d">Someone who has worked your function, on questions written from the CV.</span>
+                <span class="step__d"
+                  >Someone who has worked your function, with questions shaped by the role and the candidate's
+                  experience.</span
+                >
               </div>
               <div class="step">
                 <span class="step__n">03</span>
@@ -6603,7 +6593,7 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
               <div class="step">
                 <span class="step__n">04</span>
                 <span class="step__t">You decide <em class="own own--you">yours</em></span>
-                <span class="step__d">Three names, all hireable, and the reasoning behind each rank.</span>
+                <span class="step__d">Three who clear your bar, with the reasoning behind each rank.</span>
               </div>
             </div>
             <p class="fn__line" style="text-align:center;margin-inline:auto;max-width:none" data-rv>
@@ -6626,7 +6616,7 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
           </div>
           <div class="btns" data-rv style="--d:110ms;justify-content:center;display:flex">
             <a href="/contact" class="btn btn--dark">Ask about your function</a>
-            <a href="/functions" class="btn btn--ghost">Browse by function</a>
+            <a href="/industries" class="btn btn--ghost">Browse by industry</a>
           </div>
         </section>
       </section>
@@ -6635,85 +6625,11 @@ import StandalonePrefetchScripts from '../../components/standalone/StandalonePre
     <script>
       import { initReferenceInteractions } from '~/scripts/reference';
 
-      import { functionPages } from '~/data/function-pages';
+      import { initComparison } from '~/scripts/charts';
       initReferenceInteractions();
 
-      /* ══ FUNCTIONS: the same six dimensions, any two functions ══ */
-      (function () {
-        const W = Object.fromEntries(
-          functionPages.map((page) => [
-            page.slug,
-            { n: page.heroEyebrow, w: page.bars.map((bar) => parseFloat(bar.v)) },
-          ])
-        );
-        const D = [
-          'Core depth',
-          'Systems design',
-          'Controls and risk',
-          'Delivery speed',
-          'Documentation',
-          'Stakeholder handling',
-        ];
-        const a = document.querySelector<HTMLSelectElement>('#secA'),
-          b = document.querySelector<HTMLSelectElement>('#secB'),
-          ft = document.getElementById('cmpFt');
-        if (!a || !b) return;
-        function paint() {
-          if (!a || !b || !ft) return;
-          const A = W[a.value],
-            B = W[b.value];
-          let mx = 0,
-            gap = -1,
-            gi = 0;
-          D.forEach(function (_, i) {
-            mx = Math.max(mx, A.w[i], B.w[i]);
-            const g = Math.abs(A.w[i] - B.w[i]);
-            if (g > gap) {
-              gap = g;
-              gi = i;
-            }
-          });
-          D.forEach(function (n, i) {
-            {
-              const node = document.getElementById('fa' + i);
-              if (node) node.style.width = A.w[i] + '%';
-            }
-            {
-              const node = document.getElementById('fb' + i);
-              if (node) node.style.width = B.w[i] + '%';
-            }
-            {
-              const node = document.getElementById('va' + i);
-              if (node) node.textContent = String(A.w[i]);
-            }
-            {
-              const node = document.getElementById('vb' + i);
-              if (node) node.textContent = String(B.w[i]);
-            }
-            {
-              const node = document.getElementById('bw' + i);
-              if (node) node.classList.toggle('key', i === gi);
-            }
-          });
-          if (A.n === B.n) {
-            ft.innerHTML = 'Same function both sides. <b>Pick two and the bar moves.</b>';
-            return;
-          }
-          ft.innerHTML =
-            '<b>' +
-            D[gi] +
-            '</b> moves from ' +
-            Math.min(A.w[gi], B.w[gi]) +
-            '% to ' +
-            Math.max(A.w[gi], B.w[gi]) +
-            '%. Difference: ' +
-            gap +
-            ' percentage points. Example weights; your hiring manager sets the actual priorities.';
-        }
-        a.addEventListener('change', paint);
-        b.addEventListener('change', paint);
-        paint();
-      })();
+      initComparison();
+      document.addEventListener('astro:page-load', initComparison);
     </script>
     <ContactSalesModal />
     <StandalonePrefetchScripts />

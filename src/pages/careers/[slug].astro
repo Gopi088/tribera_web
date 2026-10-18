@@ -13,10 +13,10 @@ export const getStaticPaths = (() => {
 
 const { role } = Astro.props;
 const DIM = CAREER_DIMENSIONS;
-const rows = role.w.map((w, i) => ({ n: DIM[i], w })).sort((a, b) => b.w - a.w);
-const mx = rows[0].w;
+const rows = role.w.map((w, i) => ({ n: DIM[i], w }));
+const mx = Math.max(...role.w);
 const pct = (v) => Math.round((v / mx) * 100);
-const top = rows[0].n;
+const top = rows.find((row) => row.w === mx)!.n;
 const metaDesc = `${role.blurb} ${role.loc}, ${role.mode.toLowerCase()}, ${role.exp}, with the scorecard published before you apply.`;
 ---
 
@@ -196,8 +196,8 @@ const metaDesc = `${role.blurb} ${role.loc}, ${role.mode.toLowerCase()}, ${role.
       .h2 {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(30px, 4.2vw, 54px);
-        line-height: 1.04;
+        font-size: var(--type-section-size);
+        line-height: var(--type-section-leading);
         letter-spacing: -0.04em;
         margin: 0;
         max-width: 16ch;
@@ -434,7 +434,7 @@ const metaDesc = `${role.blurb} ${role.loc}, ${role.mode.toLowerCase()}, ${role.
       }
       .hero h1 {
         max-width: 18ch;
-        font-size: clamp(36px, 4.6vw, 62px);
+        font-size: var(--type-hero-size);
       }
       .hero h1 + .hero__p {
         margin-top: 18px;
@@ -3616,8 +3616,8 @@ const metaDesc = `${role.blurb} ${role.loc}, ${role.mode.toLowerCase()}, ${role.
         color: #fff;
       }
       .trust__dek {
-        font-size: clamp(16px, 1.7vw, 20px);
-        line-height: 1.6;
+        font-size: var(--type-subtitle-size);
+        line-height: var(--type-subtitle-leading);
         color: var(--onc2);
         max-width: 44ch;
         margin: 0;
@@ -11053,8 +11053,8 @@ const metaDesc = `${role.blurb} ${role.loc}, ${role.mode.toLowerCase()}, ${role.
         max-width: 16ch;
       }
       .jd__lead {
-        font-size: clamp(17px, 1.9vw, 22px);
-        line-height: 1.45;
+        font-size: var(--type-subtitle-size);
+        line-height: var(--type-subtitle-leading);
         color: var(--onc2);
         margin: clamp(14px, 1.6vw, 20px) 0 0;
         max-width: 44ch;
@@ -11137,7 +11137,7 @@ const metaDesc = `${role.blurb} ${role.loc}, ${role.mode.toLowerCase()}, ${role.
       .jd__note {
         font-size: 13.5px;
         line-height: 1.55;
-        color: var(--faint);
+        color: #6b6a61;
         margin: 16px 0 0;
         max-width: 44ch;
       }
@@ -11237,10 +11237,10 @@ const metaDesc = `${role.blurb} ${role.loc}, ${role.mode.toLowerCase()}, ${role.
       }
       .ahead h1 {
         font-family: var(--display);
-        font-weight: 800;
-        font-size: clamp(32px, 5vw, 58px);
-        line-height: 1.06;
-        letter-spacing: -0.045em;
+        font-weight: var(--type-display-weight);
+        font-size: var(--type-hero-size);
+        line-height: var(--type-hero-leading);
+        letter-spacing: var(--type-display-tracking);
         color: #fff;
         margin: 0;
         text-wrap: balance;
@@ -11514,9 +11514,9 @@ const metaDesc = `${role.blurb} ${role.loc}, ${role.mode.toLowerCase()}, ${role.
               <h1>{role.title}</h1>
               <p class="jd__lead">{role.blurb}</p>
               <div class="jd__chips">
-                <span>{role.dept}</span><span>{role.type}</span><span>{role.loc}</span><span>{role.mode}</span><span
-                  >{role.exp}</span
-                ><span>1 position</span>
+                <span>{role.dept}</span><span>{role.type}</span><span
+                  >{[role.neighborhood, role.loc].filter(Boolean).join(', ')}</span
+                ><span>{role.mode}</span><span>{role.exp}</span><span>1 position</span>
               </div>
               <div class="btns" style="margin-top:clamp(24px,2.8vw,34px)">
                 <a href="#apply" class="btn btn--light">Apply for this role</a>
@@ -11529,8 +11529,8 @@ const metaDesc = `${role.blurb} ${role.loc}, ${role.mode.toLowerCase()}, ${role.
                 <span class="feat__glint"></span>
                 <div class="cmpw__g">
                   {
-                    rows.map((d, i) => (
-                      <div class:list={['bw', { key: i === 0 }]}>
+                    rows.map((d) => (
+                      <div class:list={['bw', { key: d.w === mx }]}>
                         <>
                           <span class="bw__n">{d.n}</span>
                           <span class="bw__b">
@@ -11581,8 +11581,8 @@ const metaDesc = `${role.blurb} ${role.loc}, ${role.mode.toLowerCase()}, ${role.
         </div>
         <div class="scs" data-rv style="--d:140ms">
           {
-            rows.map((d, i) => (
-              <div class:list={['sc', { 'sc--top': i === 0 }]}>
+            rows.map((d) => (
+              <div class:list={['sc', { 'sc--top': d.w === mx }]}>
                 <>
                   <div class="sc__hd">
                     <>

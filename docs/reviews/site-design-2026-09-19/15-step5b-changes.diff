@@ -1,0 +1,10 @@
+--- src/layouts/MarkdownLayout.astro before
++++ src/layouts/MarkdownLayout.astro now
+@@ -37,6 +37,7 @@
+     padding-block: clamp(96px, 10vw, 140px);
+   }
+   .legal-document__body {
++    max-width: 70ch;
+     margin-top: 32px;
+     font: 400 16px/1.75 var(--v58-ui);
+     color: var(--v58-muted);

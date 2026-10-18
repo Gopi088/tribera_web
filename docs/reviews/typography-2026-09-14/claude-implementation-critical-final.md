@@ -1,0 +1,1 @@
+Pass. `.hero h1` (Layout.astro:206–213) uses Fraunces at weight 500 with `var(--type-hero-size)`/`var(--type-hero-leading)`, and `.hero__p` (214–219) uses the shared subtitle tokens. No `.tribera-home`/`.tribera-candidates` hero h1 overrides exist in either file — CriticalStyles.astro only touches grid/padding/layout, not typography. No remaining issue found.
