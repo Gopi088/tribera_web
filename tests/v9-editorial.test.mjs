@@ -223,6 +223,18 @@ try {
   const faq = nojs.locator('.faq-item').nth(2);
   await faq.locator('summary').click();
   assert.equal(await faq.evaluate((el) => el.open), true);
+  // WebKit exposes the first transition frame immediately after native disclosure opens.
+  // Wait for readable geometry and opacity, not an arbitrary delay or a looser assertion.
+  await nojs.waitForFunction(
+    () => {
+      const answer = document.querySelectorAll('.faq-item')[2].querySelector('.faq-a');
+      return (
+        answer.getBoundingClientRect().height > 20 && Number(getComputedStyle(answer.firstElementChild).opacity) >= 0.99
+      );
+    },
+    null,
+    { timeout: 5000 }
+  );
   assert.equal(await faq.locator('.faq-a').evaluate((el) => el.getBoundingClientRect().height > 20), true);
   await nojs.goto(`${base}/__v9/article`);
   assert.equal(await nojs.locator('.bl-copy').isVisible(), false);
