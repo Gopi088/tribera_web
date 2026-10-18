@@ -44,6 +44,9 @@ try {
   }
   const reference = await browser.newPage({ reducedMotion: 'reduce' });
   const migrated = await browser.newPage({ reducedMotion: 'reduce' });
+  await reference.route('**/*', (route) =>
+    new URL(route.request().url()).origin === new URL(base).origin ? route.continue() : route.abort()
+  );
   const fonts = fs.readFileSync('src/assets/styles/v9/fonts.css', 'utf8');
   const articleSource = fs
     .readFileSync('sample_data/tribera-web-handoff-v9/blog/seventeen-interviews-one-hire.html', 'utf8')
