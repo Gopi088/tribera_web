@@ -1,0 +1,23 @@
+I don't have a Write tool available in this session, so I can't persist memory right now. Let me proceed directly to the review verdict.
+
+## Verdict: ACCEPT FOR SOURCE
+
+All items in scope were re-verified against current file state (not prior-report claims), with real test coverage behind each fix. No blocker found.
+
+**Fixes confirmed:**
+- **ClientStrip label** — `src/pages/[preview]/candidates.astro:34` now passes `label="Teams hiring through us"`, matching the handoff. Regression test added: `tests/v9-candidates.test.mjs:29`.
+- **Home shares sum to 100, zero handled** — `src/scripts/v9/home/model.mjs:101-112` uses largest-remainder rounding (same pattern as the candidates scorer), wired into `home/index.js:66-68`, covered by `tests/v9-home-model.test.mjs` (all-equal weights → sums to 100; all-zero → all zeros; every preset sums to 100).
+- **No-JS evidence** — unchanged, still 1:1 `<details>`/`skills[i].ev` per `tests/v9-home.test.mjs:145-153`.
+- **Native 303 receipt + refresh safety** — `_lib/v9-cv-submission.mjs:23-28` redirects to an uncacheable `?received=1` GET; `candidate-form-v9.mjs:14-20` serves a no-form confirmation page. `tests/v9-native-form-browser.test.mjs:75-76` drives a real no-JS reload and asserts the mocked mail call count stays at 1.
+- **Header trailing-slash normalization** — `Header.astro:10` (`activeRoute.replace(/\/$/, '') || '/'`) is a defensive hardening fix; no regression in the five-page nav/aria-current coverage (`tests/v9-preview-navigation.test.mjs`).
+- **Article sharing** — `src/scripts/v9/editorial.ts:114-132` builds the LinkedIn/copy links from `location.pathname` (actual private preview URL), both controls `hidden` until JS enhances them; `ArticleBody.astro:325-329` has a `<noscript>` manual fallback ("Copy this preview's address from your browser"). Explicitly documented as a deliberate departure in `editorial/README.md:15`.
+- **Phone expert tab keyboard visibility** — `home/index.js:256-274` scrolls only the `.ear-tabs` strip (not the document) with a 6px inset, matching `tests/v9-home.test.mjs:169-201`'s clip-bounds assertion.
+- **Below-bar / citation contrast** — `home/enhancements.css:141` forces `.hc-row.hc-below > * { opacity: 1 }` overriding the 0.75 group-opacity; `editorial/behavior.css:96-103` sets `.fn-r { transition: none !important }` with explicit hover/focus colors, overriding `article.css`'s 0.18s color transition so there's no unreadable mid-transition frame. Both match `tests/v9-contrast.test.mjs`'s assertions (ratio ≥4.5, zero transition duration, visible focus outline).
+- **Performance budget checker** — `scripts/v9-performance.mjs` (gzip for text, raw bytes for fonts/images, per-category budget assertions) is unit-tested (`tests/v9-performance.test.mjs`, 3 passing cases) and wired into the real-browser `tests/v9-pages.test.mjs:180-184` against `tests/fixtures/v9-page-budgets.json`.
+- **8-suite compiled page runner** — `scripts/test-v9-pages.mjs` runs the 8 named suites against an already-built `dist/`, records commit/tree/build hashes, and asserts the revision and working tree are unchanged after the run (matches unit test #69, "CLI writes reproducible provenance, fails nonzero, and cannot overwrite raw reports").
+
+**Logs verified directly:** `unit-final.log` shows 110/110 passing across the 10 listed suites; `check-final.log` shows `astro check` (0 errors/0 warnings, only pre-existing hints), `eslint .` clean, `prettier --check .` clean.
+
+No new undocumented departures found. Sharing, subscription-disabled, and manual-demo departures remain correctly described in `editorial/README.md` and `candidates/README.md`.
+
+This is source-only, per scope — hosted/provider/scanner, content/publication approval, and full release remain later gates, and the rebuilt preview/cross-browser evidence run is still outstanding before final G2 acceptance.

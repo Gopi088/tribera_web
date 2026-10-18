@@ -191,3 +191,13 @@ The shared foundation batch is accepted at `5baa47b`, with an actual Claude foll
 The foundation command now includes article/source/testimonial behavior and final-cascade comparisons. The new `scripts/v9-evidence.mjs` generates a fail-closed aggregate from an explicitly required set of raw static/browser reports; this resolves the bootstrap's manually assembled-summary follow-up for subsequent batches. It does not substitute for component, Claude, hosted or release gates.
 
 Next: G2 representative pages in private previews. Keep full-page parity, page-owned product/carousel behavior, forms, future footer destinations and hosted validation gated. Local acceptance does not assert that remote CI or branch protection has run.
+
+## G2 representative-page / G3 batch acceptance — 18 October 2026
+
+The private Home, Candidates, About, BFSI and representative article batch is accepted at `1cd2d48`, with actual Claude **ACCEPT**. The [acceptance record](v9-g2-acceptance.md) documents scope, exact provenance, failures and remaining boundaries. All 248 G1 output files, including 77 public HTML pages, remain byte-identical; 14 assets are added. No public route adopts these pages yet.
+
+Validation passed: 110 unit tests; all three 11-suite page chains (130 page checks); four foundation suites per engine; 120 production/preview smoke checks; and eight hash/revision-bound static/browser reports. Full product checks/builds are from `f3e095d`; later changes are test/scripts only and separately checked. All final required evidence is bound to the same clean `1cd2d48` revision. Claude reviewed the complete evidence and later capture repairs. Reports and precise provenance are in `docs/reviews/v9-g2-2026-10-18/`.
+
+Run independent Chromium/Firefox work in parallel on separate preview ports; keep heavy WebKit validation serial on this machine. A completed passing suite chain may be retained while another independent gate reruns only when commit, clean tree, dependency lock and build hashes remain identical. Preserve failures and explain the rerun; never substitute a partial or stale chain.
+
+Next: services/conversion pages and remaining sector/Intelligence pages, under the same G2/G3 and Claude-review process. G4 full-route regression, G5 hosted validation, G6 content/release decisions and G7 production verification remain pending. No push, deployment, remote CI or branch-protection result is claimed.

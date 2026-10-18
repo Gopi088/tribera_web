@@ -1,0 +1,433 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-18T15:10:52.274Z",
+  "status": "passed",
+  "scope": "Required local static/browser reports for the G2 representative batch only; component suites checked separately.",
+  "revision": "1cd2d48f5ce3b183c1c2164a5b7b3896abc596fc",
+  "lockHash": "56be5c8181c79995befb9b07957589898a1eabfd027f0c8a8e82c4c178c370fa",
+  "builds": {
+    "preview": "4bd23eb34966f323f5604b2313e6f68dfcf6341bb82065919805f62f20e4dfc7",
+    "production": "23f290309df91e97ddca173a2c77e7a77b46a6998cc7d25dd9250ce31783b554"
+  },
+  "expectedReports": 8,
+  "verifiedReports": 8,
+  "reports": [
+    {
+      "id": "production-static",
+      "path": "/tmp/tribera-v9-g2/artifacts/v9-g2/production/static-chromium.json",
+      "gate": "static",
+      "build": "production",
+      "browser": null,
+      "sha256": "05a29ee8dbcecc3ec1922a9c01547360102575d74fb4465851a6b4d071546c48",
+      "reportedStatus": "passed",
+      "verifiedStatus": "passed",
+      "commit": "1cd2d48f5ce3b183c1c2164a5b7b3896abc596fc",
+      "buildHash": "23f290309df91e97ddca173a2c77e7a77b46a6998cc7d25dd9250ce31783b554",
+      "errors": [],
+      "lockHash": "56be5c8181c79995befb9b07957589898a1eabfd027f0c8a8e82c4c178c370fa",
+      "cleanTree": true,
+      "startedAt": "2026-10-18T14:46:48.145Z",
+      "finishedAt": "2026-10-18T14:46:48.940Z",
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node /tmp/tribera-v9-g2/scripts/v9-gate.mjs static",
+      "node": "v22.15.0",
+      "platform": "linux",
+      "suites": [
+        {
+          "name": "checker-negative-tests",
+          "expectedMinimum": 5,
+          "executed": 6,
+          "skipped": 0,
+          "exitCode": 0,
+          "status": "passed"
+        },
+        {
+          "name": "route-map-and-built-references",
+          "expectedRoutes": 86,
+          "baselineRoutes": 77,
+          "futureRoutes": 9,
+          "executedPages": 77,
+          "references": 8713,
+          "errors": [],
+          "status": "passed"
+        }
+      ],
+      "limitations": [
+        "Hosted delivery, redirect and scanner behavior require hosted validation.",
+        "Browser smoke is not full interactive journey coverage.",
+        "HTML reference audit does not parse CSS URLs or arbitrary script-created URLs."
+      ]
+    },
+    {
+      "id": "production-chromium",
+      "path": "/tmp/tribera-v9-g2/artifacts/v9-g2/production/browser-chromium.json",
+      "gate": "browser",
+      "build": "production",
+      "browser": "chromium",
+      "sha256": "9cadebbf0659a11439966a33d17e49793da9608cfc515ed3e52e481aa792b718",
+      "reportedStatus": "passed",
+      "verifiedStatus": "passed",
+      "commit": "1cd2d48f5ce3b183c1c2164a5b7b3896abc596fc",
+      "buildHash": "23f290309df91e97ddca173a2c77e7a77b46a6998cc7d25dd9250ce31783b554",
+      "errors": [],
+      "lockHash": "56be5c8181c79995befb9b07957589898a1eabfd027f0c8a8e82c4c178c370fa",
+      "cleanTree": true,
+      "startedAt": "2026-10-18T15:00:33.281Z",
+      "finishedAt": "2026-10-18T15:01:21.093Z",
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node /tmp/tribera-v9-g2/scripts/v9-gate.mjs browser",
+      "node": "v22.15.0",
+      "platform": "linux",
+      "suites": [
+        {
+          "name": "browser-smoke-and-rendered-references",
+          "browser": "chromium",
+          "expectedChecks": 14,
+          "executedChecks": 14,
+          "renderedReferences": 1638,
+          "routes": [
+            "/",
+            "/candidates",
+            "/contact",
+            "/careers",
+            "/services",
+            "/blog",
+            "/industries"
+          ],
+          "viewports": [
+            390,
+            1366
+          ],
+          "screenshotReducedMotion": true,
+          "errors": [],
+          "status": "passed"
+        }
+      ],
+      "limitations": [
+        "Hosted delivery, redirect and scanner behavior require hosted validation.",
+        "Browser smoke is not full interactive journey coverage.",
+        "HTML reference audit does not parse CSS URLs or arbitrary script-created URLs."
+      ]
+    },
+    {
+      "id": "production-firefox",
+      "path": "/tmp/tribera-v9-g2/artifacts/v9-g2/production/browser-firefox.json",
+      "gate": "browser",
+      "build": "production",
+      "browser": "firefox",
+      "sha256": "c49e09fcd2a5ca4a40334fa35ba1a654b38e7554e30ffd1007f7d5e294fc55c4",
+      "reportedStatus": "passed",
+      "verifiedStatus": "passed",
+      "commit": "1cd2d48f5ce3b183c1c2164a5b7b3896abc596fc",
+      "buildHash": "23f290309df91e97ddca173a2c77e7a77b46a6998cc7d25dd9250ce31783b554",
+      "errors": [],
+      "lockHash": "56be5c8181c79995befb9b07957589898a1eabfd027f0c8a8e82c4c178c370fa",
+      "cleanTree": true,
+      "startedAt": "2026-10-18T14:59:37.532Z",
+      "finishedAt": "2026-10-18T15:00:31.410Z",
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node /tmp/tribera-v9-g2/scripts/v9-gate.mjs browser",
+      "node": "v22.15.0",
+      "platform": "linux",
+      "suites": [
+        {
+          "name": "browser-smoke-and-rendered-references",
+          "browser": "firefox",
+          "expectedChecks": 14,
+          "executedChecks": 14,
+          "renderedReferences": 1638,
+          "routes": [
+            "/",
+            "/candidates",
+            "/contact",
+            "/careers",
+            "/services",
+            "/blog",
+            "/industries"
+          ],
+          "viewports": [
+            390,
+            1366
+          ],
+          "screenshotReducedMotion": true,
+          "errors": [],
+          "status": "passed"
+        }
+      ],
+      "limitations": [
+        "Hosted delivery, redirect and scanner behavior require hosted validation.",
+        "Browser smoke is not full interactive journey coverage.",
+        "HTML reference audit does not parse CSS URLs or arbitrary script-created URLs."
+      ]
+    },
+    {
+      "id": "production-webkit",
+      "path": "/tmp/tribera-v9-g2/artifacts/v9-g2/production/browser-webkit.json",
+      "gate": "browser",
+      "build": "production",
+      "browser": "webkit",
+      "sha256": "69edc343059167b74448b1d32057dbaf515375c8f2318c798c171f782a2c5f42",
+      "reportedStatus": "passed",
+      "verifiedStatus": "passed",
+      "commit": "1cd2d48f5ce3b183c1c2164a5b7b3896abc596fc",
+      "buildHash": "23f290309df91e97ddca173a2c77e7a77b46a6998cc7d25dd9250ce31783b554",
+      "errors": [],
+      "lockHash": "56be5c8181c79995befb9b07957589898a1eabfd027f0c8a8e82c4c178c370fa",
+      "cleanTree": true,
+      "startedAt": "2026-10-18T15:01:23.614Z",
+      "finishedAt": "2026-10-18T15:02:41.520Z",
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node /tmp/tribera-v9-g2/scripts/v9-gate.mjs browser",
+      "node": "v22.15.0",
+      "platform": "linux",
+      "suites": [
+        {
+          "name": "browser-smoke-and-rendered-references",
+          "browser": "webkit",
+          "expectedChecks": 14,
+          "executedChecks": 14,
+          "renderedReferences": 1638,
+          "routes": [
+            "/",
+            "/candidates",
+            "/contact",
+            "/careers",
+            "/services",
+            "/blog",
+            "/industries"
+          ],
+          "viewports": [
+            390,
+            1366
+          ],
+          "screenshotReducedMotion": true,
+          "errors": [],
+          "status": "passed"
+        }
+      ],
+      "limitations": [
+        "Hosted delivery, redirect and scanner behavior require hosted validation.",
+        "Browser smoke is not full interactive journey coverage.",
+        "HTML reference audit does not parse CSS URLs or arbitrary script-created URLs."
+      ]
+    },
+    {
+      "id": "preview-static",
+      "path": "/tmp/tribera-v9-g2/artifacts/v9-g2/preview/static-chromium.json",
+      "gate": "static",
+      "build": "preview",
+      "browser": null,
+      "sha256": "2ed03eb4aeffdf706d3193e49f339fecb6dd91e892961540c13e991d3d1ff98d",
+      "reportedStatus": "passed",
+      "verifiedStatus": "passed",
+      "commit": "1cd2d48f5ce3b183c1c2164a5b7b3896abc596fc",
+      "buildHash": "4bd23eb34966f323f5604b2313e6f68dfcf6341bb82065919805f62f20e4dfc7",
+      "errors": [],
+      "lockHash": "56be5c8181c79995befb9b07957589898a1eabfd027f0c8a8e82c4c178c370fa",
+      "cleanTree": true,
+      "startedAt": "2026-10-18T14:46:45.980Z",
+      "finishedAt": "2026-10-18T14:46:47.181Z",
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node /tmp/tribera-v9-g2/scripts/v9-gate.mjs static",
+      "node": "v22.15.0",
+      "platform": "linux",
+      "suites": [
+        {
+          "name": "checker-negative-tests",
+          "expectedMinimum": 5,
+          "executed": 6,
+          "skipped": 0,
+          "exitCode": 0,
+          "status": "passed"
+        },
+        {
+          "name": "route-map-and-built-references",
+          "expectedRoutes": 86,
+          "baselineRoutes": 77,
+          "futureRoutes": 9,
+          "executedPages": 85,
+          "references": 9160,
+          "errors": [],
+          "status": "passed"
+        }
+      ],
+      "limitations": [
+        "Hosted delivery, redirect and scanner behavior require hosted validation.",
+        "Browser smoke is not full interactive journey coverage.",
+        "HTML reference audit does not parse CSS URLs or arbitrary script-created URLs."
+      ]
+    },
+    {
+      "id": "preview-chromium",
+      "path": "/tmp/tribera-v9-g2/artifacts/v9-g2/preview/browser-chromium.json",
+      "gate": "browser",
+      "build": "preview",
+      "browser": "chromium",
+      "sha256": "e199a1405e914e0950511c23162bf92cc2fa9a5eef0789068b1017230fcce4ac",
+      "reportedStatus": "passed",
+      "verifiedStatus": "passed",
+      "commit": "1cd2d48f5ce3b183c1c2164a5b7b3896abc596fc",
+      "buildHash": "4bd23eb34966f323f5604b2313e6f68dfcf6341bb82065919805f62f20e4dfc7",
+      "errors": [],
+      "lockHash": "56be5c8181c79995befb9b07957589898a1eabfd027f0c8a8e82c4c178c370fa",
+      "cleanTree": true,
+      "startedAt": "2026-10-18T15:02:34.431Z",
+      "finishedAt": "2026-10-18T15:04:06.528Z",
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node /tmp/tribera-v9-g2/scripts/v9-gate.mjs browser",
+      "node": "v22.15.0",
+      "platform": "linux",
+      "suites": [
+        {
+          "name": "browser-smoke-and-rendered-references",
+          "browser": "chromium",
+          "expectedChecks": 26,
+          "executedChecks": 26,
+          "renderedReferences": 2320,
+          "routes": [
+            "/",
+            "/candidates",
+            "/contact",
+            "/careers",
+            "/services",
+            "/blog",
+            "/industries",
+            "/__v9/foundation",
+            "/__v9/home",
+            "/__v9/candidates",
+            "/__v9/about",
+            "/__v9/bfsi",
+            "/__v9/article"
+          ],
+          "viewports": [
+            390,
+            1366
+          ],
+          "screenshotReducedMotion": true,
+          "errors": [],
+          "status": "passed"
+        }
+      ],
+      "limitations": [
+        "Hosted delivery, redirect and scanner behavior require hosted validation.",
+        "Browser smoke is not full interactive journey coverage.",
+        "HTML reference audit does not parse CSS URLs or arbitrary script-created URLs."
+      ]
+    },
+    {
+      "id": "preview-firefox",
+      "path": "/tmp/tribera-v9-g2/artifacts/v9-g2/preview/browser-firefox.json",
+      "gate": "browser",
+      "build": "preview",
+      "browser": "firefox",
+      "sha256": "119badf687e47f9c30978da8466997b3b3b680489c4d3378a35f70654ce42842",
+      "reportedStatus": "passed",
+      "verifiedStatus": "passed",
+      "commit": "1cd2d48f5ce3b183c1c2164a5b7b3896abc596fc",
+      "buildHash": "4bd23eb34966f323f5604b2313e6f68dfcf6341bb82065919805f62f20e4dfc7",
+      "errors": [],
+      "lockHash": "56be5c8181c79995befb9b07957589898a1eabfd027f0c8a8e82c4c178c370fa",
+      "cleanTree": true,
+      "startedAt": "2026-10-18T14:57:47.467Z",
+      "finishedAt": "2026-10-18T14:59:27.298Z",
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node /tmp/tribera-v9-g2/scripts/v9-gate.mjs browser",
+      "node": "v22.15.0",
+      "platform": "linux",
+      "suites": [
+        {
+          "name": "browser-smoke-and-rendered-references",
+          "browser": "firefox",
+          "expectedChecks": 26,
+          "executedChecks": 26,
+          "renderedReferences": 2320,
+          "routes": [
+            "/",
+            "/candidates",
+            "/contact",
+            "/careers",
+            "/services",
+            "/blog",
+            "/industries",
+            "/__v9/foundation",
+            "/__v9/home",
+            "/__v9/candidates",
+            "/__v9/about",
+            "/__v9/bfsi",
+            "/__v9/article"
+          ],
+          "viewports": [
+            390,
+            1366
+          ],
+          "screenshotReducedMotion": true,
+          "errors": [],
+          "status": "passed"
+        }
+      ],
+      "limitations": [
+        "Hosted delivery, redirect and scanner behavior require hosted validation.",
+        "Browser smoke is not full interactive journey coverage.",
+        "HTML reference audit does not parse CSS URLs or arbitrary script-created URLs."
+      ]
+    },
+    {
+      "id": "preview-webkit",
+      "path": "/tmp/tribera-v9-g2/artifacts/v9-g2/preview/browser-webkit.json",
+      "gate": "browser",
+      "build": "preview",
+      "browser": "webkit",
+      "sha256": "5ffa6543e83a2af36897fed2ee76563b51c5a7990fbf55fc9b41a4691c6c4cbf",
+      "reportedStatus": "passed",
+      "verifiedStatus": "passed",
+      "commit": "1cd2d48f5ce3b183c1c2164a5b7b3896abc596fc",
+      "buildHash": "4bd23eb34966f323f5604b2313e6f68dfcf6341bb82065919805f62f20e4dfc7",
+      "errors": [],
+      "lockHash": "56be5c8181c79995befb9b07957589898a1eabfd027f0c8a8e82c4c178c370fa",
+      "cleanTree": true,
+      "startedAt": "2026-10-18T15:09:37.148Z",
+      "finishedAt": "2026-10-18T15:10:49.051Z",
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node /tmp/tribera-v9-g2/scripts/v9-gate.mjs browser",
+      "node": "v22.15.0",
+      "platform": "linux",
+      "suites": [
+        {
+          "name": "browser-smoke-and-rendered-references",
+          "browser": "webkit",
+          "expectedChecks": 26,
+          "executedChecks": 26,
+          "renderedReferences": 2320,
+          "routes": [
+            "/",
+            "/candidates",
+            "/contact",
+            "/careers",
+            "/services",
+            "/blog",
+            "/industries",
+            "/__v9/foundation",
+            "/__v9/home",
+            "/__v9/candidates",
+            "/__v9/about",
+            "/__v9/bfsi",
+            "/__v9/article"
+          ],
+          "viewports": [
+            390,
+            1366
+          ],
+          "screenshotReducedMotion": true,
+          "errors": [],
+          "status": "passed"
+        }
+      ],
+      "limitations": [
+        "Hosted delivery, redirect and scanner behavior require hosted validation.",
+        "Browser smoke is not full interactive journey coverage.",
+        "HTML reference audit does not parse CSS URLs or arbitrary script-created URLs."
+      ]
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Only the explicitly declared static/browser reports are verified; this is not full G1 or release acceptance.",
+    "Hashes bind the files read here; the generator does not authenticate report authorship or independently rerun tests."
+  ],
+  "requirements": {
+    "path": "/tmp/tribera-v9-g2/artifacts/v9-g2/required-evidence.json",
+    "sha256": "69a29fff9ae7569126c9c2ef1b803bedb44a10d0ba1f604509b1a1996bbcc693"
+  }
+}

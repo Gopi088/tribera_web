@@ -1,0 +1,70 @@
+{
+  "revision": "1cd2d48f5ce3b183c1c2164a5b7b3896abc596fc",
+  "cleanTree": true,
+  "productBuildRevision": "f3e095d698ee4d94b334758f3d88a0872118de77",
+  "postBuildChanges": [
+    "scripts/test-v9-pages.mjs",
+    "scripts/v9-browser-readiness.mjs",
+    "tests/v9-candidates.test.mjs",
+    "tests/v9-content.test.mjs",
+    "tests/v9-editorial-visual.test.mjs",
+    "tests/v9-editorial.test.mjs",
+    "tests/v9-font-readiness.test.mjs",
+    "tests/v9-pages.test.mjs",
+    "tests/v9-preview-navigation.test.mjs"
+  ],
+  "checks": [
+    {
+      "name": "test-only-eslint",
+      "command": [
+        "npx",
+        "eslint",
+        "scripts/test-v9-pages.mjs",
+        "scripts/v9-browser-readiness.mjs",
+        "tests/v9-candidates.test.mjs",
+        "tests/v9-content.test.mjs",
+        "tests/v9-editorial-visual.test.mjs",
+        "tests/v9-editorial.test.mjs",
+        "tests/v9-font-readiness.test.mjs",
+        "tests/v9-pages.test.mjs",
+        "tests/v9-preview-navigation.test.mjs"
+      ],
+      "exitCode": 0,
+      "log": "test-only-eslint-final.log"
+    },
+    {
+      "name": "test-only-prettier",
+      "command": [
+        "npx",
+        "prettier",
+        "--check",
+        "scripts/test-v9-pages.mjs",
+        "scripts/v9-browser-readiness.mjs",
+        "tests/v9-candidates.test.mjs",
+        "tests/v9-content.test.mjs",
+        "tests/v9-editorial-visual.test.mjs",
+        "tests/v9-editorial.test.mjs",
+        "tests/v9-font-readiness.test.mjs",
+        "tests/v9-pages.test.mjs",
+        "tests/v9-preview-navigation.test.mjs"
+      ],
+      "exitCode": 0,
+      "log": "test-only-prettier-final.log"
+    },
+    {
+      "name": "unit",
+      "command": [
+        "npm",
+        "run",
+        "test:migration:unit"
+      ],
+      "exitCode": 0,
+      "log": "unit-final.log",
+      "tests": 110,
+      "pass": 110,
+      "fail": 0,
+      "skipped": 0
+    }
+  ],
+  "status": "passed"
+}

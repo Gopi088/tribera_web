@@ -1,0 +1,26 @@
+## Review verdict: REQUEST CHANGES
+
+Scope confirmed: `netlify/functions/candidate-form-v9.mjs` (new), `netlify/functions/candidate-profile-v9.mjs` (unchanged, reuses `_lib/v9-cv-submission.mjs`), `tests/v9-native-form.test.mjs` (new), the exact-match static-link exception in `scripts/v9-audit.mjs` (new, with coverage in `tests/v9-gate.test.mjs`), and `tests/v9-pages.test.mjs` + its CI wiring in `.github/workflows/actions.yaml`. This is **not** a full-G2 acceptance; the five page previews themselves are out of scope here.
+
+### Blocking issue
+
+**`tests/v9-pages.test.mjs` / CI wiring will deterministically fail the shared branch right now — Medium-High, `.github/workflows/actions.yaml:100-103`, `tests/v9-pages.test.mjs:16-22,37-54`**
+The test's `pages` list expects routes `/__v9/home`, `/__v9/candidates`, `/__v9/about`, `/__v9/bfsi`, `/__v9/article` (readiness probe at `tests/v9-pages.test.mjs:47-54` polls `/__v9/home` for 30s, then `assert.ok(ready, 'Build all five G2 previews with V9_PREVIEW=1 first')`). But the only `V9_PREVIEW=1` routes that currently exist anywhere in the tree are `/__v9/foundation`, `/__v9/candidate`, `/__v9/content` (`src/pages/[preview]/[fixture].astro:8-9`, `src/pages/[preview]/content.astro:9`). None of the five expected slugs exist yet — confirmed by `src/components/v9/README.md:13` and by grepping for every `getStaticPaths` in the repo. `npm run test:migration:pages` is wired unconditionally into the `browser` job for the `foundation-build` matrix (`actions.yaml:100-103`), which `migration-required` depends on. Merging this commit alone to `feat/v9-migration` therefore turns CI red for every subsequent push — including the other agents' in-flight page work — until all five pages land simultaneously. This isn't "false confidence" (it fails loudly, not silently), but it is a real sequencing defect for a commit landing ahead of its own prerequisite on a shared branch. Recommend either holding this off `actions.yaml` until the five pages exist, or making the CI step conditional/skippable until then.
+
+### Non-blocking findings (fix or acknowledge, not required to block this batch)
+
+1. **Native POST has no redirect — Medium, `netlify/functions/_lib/v9-cv-submission.mjs:19-37` (`negotiateResponse`)**: for the new true full-page-navigation submission, success returns `200` with the confirmation HTML directly in the POST response rather than a `303` redirect (POST/Redirect/GET). A refresh or back-navigation on the confirmation page risks a duplicate CV submission/email for no-JS users specifically — a case this commit newly introduces (the JS-fetch consumer never hit this).
+
+2. **Origin/Referer guard now gates a genuine no-JS path — Low/Medium, `netlify/functions/_lib/request-guards.mjs:82-108`**: pre-existing and unchanged, but previously only exercised via fetch/XHR (which reliably sends `Origin`). The new native `<form>` POST is exactly the case most likely to arrive from a browser/extension that strips both `Origin` and `Referer` on a top-level cross-context navigation, producing a generic "Invalid request origin." with no fallback hint — worth a note for whoever owns G5 hosted verification, since it directly affects the no-JS audience this form exists for.
+
+3. **Vestigial test assertion — Low, `tests/v9-native-form.test.mjs:10,15`**: `queryStringParameters: { intent: '<script>' }` plus `assert.doesNotMatch(response.body, /<script/)` looks like an XSS check, but `candidate-form-v9.mjs` never reads `event.queryStringParameters` — the assertion is always true regardless of handler behavior. Harmless now, but gives a false impression of input-sanitization coverage; should be removed or rewritten to actually exercise tainted input if one is ever read.
+
+4. **`headerLinkOverrides` unused/untested — Low, `src/layouts/V9Layout.astro:15,26,46`, `src/components/v9/Header.astro:6-9,41,55`**: plumbed through but no caller sets it yet (only `footerLinkOverrides` is used, by `[fixture].astro`/`content.astro`). When the forthcoming preview pages start using it, note `Header.astro`'s `aria-current` comparison (`destination(href) === activeRoute`) only works if `activeRoute` is also passed through the same override mapping — currently unverified by any test.
+
+### What looks correct
+- Timing guard: form copy "expires after two hours" matches `FORM_MAX_SUBMIT_AGE_MS` default (`form-utils.mjs:127`); min-delay/expiry test sequence in `v9-native-form.test.mjs:40-49` is accurate.
+- Upload copy "up to 10 MB" matches `MAX_FILE_SIZE_BYTES` (`form-utils.mjs:6`).
+- The static-link exception in `scripts/v9-audit.mjs:93-98` is narrowly scoped (exact pathname, no fragment, backed by a real file-existence check) and has solid positive/negative coverage in `tests/v9-gate.test.mjs:43-51`.
+- As the task already flags: hosted aliases/upload limits/delivery and the shared rate limiter/upload scanner remain genuinely unverified here — the native-form test only mocks the Resend email `fetch` call (scan mode and shared limiter are disabled via env, not exercised), which matches what's claimed, not overstated.
+
+Net: the CV-handler reuse, timing/origin/rate/upload guards, and the audit exception are sound and well-tested in isolation. The release-blocking problem is operational: this commit wires a CI gate against five pages that don't exist yet.

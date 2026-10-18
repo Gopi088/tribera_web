@@ -1,0 +1,74 @@
+{
+  "revision": "1cd2d48f5ce3b183c1c2164a5b7b3896abc596fc",
+  "buildHash": "4bd23eb34966f323f5604b2313e6f68dfcf6341bb82065919805f62f20e4dfc7",
+  "lockHash": "56be5c8181c79995befb9b07957589898a1eabfd027f0c8a8e82c4c178c370fa",
+  "engines": [
+    {
+      "browser": "chromium",
+      "pageSuites": 11,
+      "pageChecks": 70,
+      "runnerResults": [
+        {
+          "name": "pages",
+          "exitCode": 0,
+          "log": "artifacts/v9-g2/pages-final-chromium.log"
+        },
+        {
+          "name": "foundation",
+          "exitCode": 0,
+          "log": "artifacts/v9-g2/foundation-final-chromium.log"
+        },
+        {
+          "name": "smoke-preview",
+          "exitCode": 0,
+          "log": "artifacts/v9-g2/smoke-preview-final-chromium.log"
+        }
+      ]
+    },
+    {
+      "browser": "firefox",
+      "pageSuites": 11,
+      "pageChecks": 30,
+      "runnerResults": [
+        {
+          "name": "pages",
+          "exitCode": 0,
+          "log": "artifacts/v9-g2/pages-final-firefox.log"
+        },
+        {
+          "name": "foundation",
+          "exitCode": 0,
+          "log": "artifacts/v9-g2/foundation-final-firefox.log"
+        },
+        {
+          "name": "smoke-preview",
+          "exitCode": 0,
+          "log": "artifacts/v9-g2/smoke-preview-final-firefox.log"
+        }
+      ]
+    },
+    {
+      "browser": "webkit",
+      "pageSuites": 11,
+      "pageChecks": 30,
+      "runnerResults": [
+        {
+          "name": "pages",
+          "exitCode": 0,
+          "log": "artifacts/v9-g2/pages-final-webkit.log"
+        },
+        {
+          "name": "foundation",
+          "exitCode": 0,
+          "log": "artifacts/v9-g2/foundation-final-webkit.log"
+        },
+        {
+          "name": "smoke-preview",
+          "exitCode": 0,
+          "log": "artifacts/v9-g2/smoke-preview-final-webkit.log"
+        }
+      ]
+    }
+  ],
+  "status": "passed"
+}

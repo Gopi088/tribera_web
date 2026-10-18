@@ -1,0 +1,58 @@
+[
+  {
+    "file": "checks/component-summary.json.txt",
+    "sha256": "85611c7ff2fe520740df52bcc2f25e5d9c7a477e50d458ed2b1a50a526ba9e3d"
+  },
+  {
+    "file": "checks/final-source-checks.json.txt",
+    "sha256": "0b32a0743fc7ddeab6e5a0d285426e7248f5ea0f413107e881cb25973435b267"
+  },
+  {
+    "file": "checks/gate-summary.json.txt",
+    "sha256": "3fc4b34b897f587e77228763a868781ec9d0c5721839fb577bf7a6a087ef9d11"
+  },
+  {
+    "file": "checks/page-suites-chromium.json.txt",
+    "sha256": "ce3985052a44ed69dcc95e3953642f79a79414fb3cb4a19606d056a78016cb8c"
+  },
+  {
+    "file": "checks/page-suites-firefox.json.txt",
+    "sha256": "c01da2142bba6f4ff6930545922086af9e8fbb21528d805f4add62607ccafc02"
+  },
+  {
+    "file": "checks/page-suites-webkit.json.txt",
+    "sha256": "6a1784fbcf796ea637d3cdfaafe06e6ab22bd8e47d537e1857b2f467cbce0da1"
+  },
+  {
+    "file": "checks/preview-chromium.json.txt",
+    "sha256": "e199a1405e914e0950511c23162bf92cc2fa9a5eef0789068b1017230fcce4ac"
+  },
+  {
+    "file": "checks/preview-firefox.json.txt",
+    "sha256": "119badf687e47f9c30978da8466997b3b3b680489c4d3378a35f70654ce42842"
+  },
+  {
+    "file": "checks/preview-static.json.txt",
+    "sha256": "2ed03eb4aeffdf706d3193e49f339fecb6dd91e892961540c13e991d3d1ff98d"
+  },
+  {
+    "file": "checks/preview-webkit.json.txt",
+    "sha256": "5ffa6543e83a2af36897fed2ee76563b51c5a7990fbf55fc9b41a4691c6c4cbf"
+  },
+  {
+    "file": "checks/production-chromium.json.txt",
+    "sha256": "9cadebbf0659a11439966a33d17e49793da9608cfc515ed3e52e481aa792b718"
+  },
+  {
+    "file": "checks/production-firefox.json.txt",
+    "sha256": "c49e09fcd2a5ca4a40334fa35ba1a654b38e7554e30ffd1007f7d5e294fc55c4"
+  },
+  {
+    "file": "checks/production-static.json.txt",
+    "sha256": "05a29ee8dbcecc3ec1922a9c01547360102575d74fb4465851a6b4d071546c48"
+  },
+  {
+    "file": "checks/production-webkit.json.txt",
+    "sha256": "69edc343059167b74448b1d32057dbaf515375c8f2318c798c171f782a2c5f42"
+  }
+]

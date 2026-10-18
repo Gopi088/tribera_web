@@ -1,0 +1,46 @@
+G2 independent editorial/candidate visual review — initial Chromium artifact
+Reviewed 2026-10-18 by bootstrap_forms. This is a diagnostic review, not final-build acceptance.
+
+Evidence and scope
+Viewed every vertical contact-sheet segment for candidates, about, bfsi and article at 390,768,1024,1366,1920px. Sheets under artifacts/v9-g2/visual-sheets/ were generated with sharp from pages-chromium source/migrated pairs; source on left, migration on right, each column390px. Thus phone review was native resolution, larger widths were scaled overview supplemented by actual computed geometry/source inspection for discrepancies. Covered hero, every body section, forms/FAQs, closing CTA and footer, not just page tops. Original images remain authoritative. Read component READMEs for intentional deviations. Initial images predate later article-sharing/contrast, candidate-strip wording and the fixes below.
+
+Blocking discrepancies discovered, assigned and addressed
+1. Candidate CV question buttons: all widths show browser-default bordered, tightly stacked controls instead of source full-width left-aligned rows with generous padding, dot markers and active underline. Exact cause: candidates.css omitted entire .cvx-line family from handoff candidates.html1518–1527. Parent fixed in241cfb7; needs rebuilt screenshot confirmation. The meaningful button interaction existed but visual fidelity did not.
+2. Candidate FAQ: all widths show default disclosure triangles, sans labels, closed first answer, compressed layout; source has display-font rows, plus/minus at right, first answer open. Assigned separate agent for native-details presentation retaining no-JS behavior. Initial artifact not acceptable for FAQ parity; pending final screenshot.
+3. About team portraits: all widths show square grayscale crops versus tall red-background crops. Verified source and migrated use identical560×560 JPEG bytes; no asset replacement needed. Source .ab-p.in removes grayscale and HTML height560 survives source cascade; migration removed reveal class and shared img height:auto made square aspect-ratio win. At1366 exact source314.469×560, migration314.469×314.469. Fixed scoped height560px/filter grayscale(0) contrast(1) in9c90eef. Test checks all3 original asset byte buffers, decoded dimensions, cover, height and final color at all5widths; Chromium devpassed. Source lazy images blank lower down at390/768 are capture artifacts, not a desired visual to reproduce.
+4. Article header container: source/migrated fonts identical87.424/85.6755px at1366, but migrated heading x103,width676,height257.016(3lines); source x171.297,width596.938,height342.688(4lines). behavior.css stripped inner .v9-wrap padding and replaced it on outer header, enlarging usable grid beyond source .wrap. Parent removed the overrides. New test extension e709c5c compares source/migrated title and cover x,width,height to<1px across5widths with exact pinned fonts and script-stripped source. Passed Chromium against current dev4392. Test deliberately does not assert absolute y: shared eyebrow vertical spacing differs from source (approx26px on phone); this is not falsely counted as pixel equality.
+
+Intentional differences, no blockers
+Candidate: static wrapping client strip exposes all names rather than clipped marquee; source label corrected later. Four static testimonials all visible versus horizontal carousel; adds substantial phone height but preserves all copy. Timeline manual range control adds a row; source day21 state retained under reduced motion. Scorer normalized sums, demo notices and optional native-details weight controls are intentional accessibility/accuracy repairs. Privacy switches clearly demo, extra notice consumes height. Native visible file selector, private submission notice, accepted-format copy and real fallback links extend upload; not a fake visual-only form. Example versus Live hero badge is deliberate truthful wording. All team-check/retention labels and final CTA remain legible and in order.
+About: history dots/closing cells show completed static states; retention answer/stamp remains visible with no selection and demo controls, as documented. Letter fold retains actual content/reading action. Promises and closing doors retain structure and full copy at all widths. No missing body section found.
+BFSI: actual Product&SaaS comparison values and explanatory sentence replace source zero/blank initial comparison; adds slight section height and is documented. Other roles, questions and sources retain order/readability. No clipping or lost content seen at any reviewed width.
+Article: body prose, chart, margin/mobile notes, pull quote, source citation/list and three related cards retain content and responsive arrangement. Real copy/share behavior handled by separate tests and later fix. Disabled subscription+visible unavailable explanation deliberately replaces live-looking source form. Related future routes use documented working fallback targets. No body clipping observed.
+Shared: production shared header/footer reuse causes small spacing differences (notably tighter footer links on phone) while all labels remain visible; this review does not claim exact footer pixel parity.
+
+Nonblocking polish observations / explicit limits
+- BFSI open FAQ minus looks like two horizontal strokes (equals) in initial390/768 and desktop. Likely source icon pseudo-element plus native-details custom minus overlap; cosmetic, not missing answer or operability. Parent notified.
+- Candidate mobile hero decorative cell field is absent in migrated initial390/768 while source has a faint strip. Body text/card match. Decorative only; not a functionality blocker; preserve or document intentionally.
+- Article shared eyebrow/header starts approx26px earlier on phone than source. Width/line-wrap defect above fixed, vertical rhythm remains a small shared component deviation rather than exact page parity.
+- Screenshot default state cannot prove keyboard/focus, expanded FAQ/letter, changed scorer or submission states; those require behavior suites. Initial screenshot review is not a substitute for final compiled-artifact checks.
+
+Status
+All5widths reviewed throughout all4pages. No additional blocking visual issue beyond four listed above. Final acceptance requires rebuilt changed-section images for CVrows/FAQ, About portraits and article header, plus already assigned contrast/share fixes. Dev4392 stopped and own browsers closed after focused checks. No public production adoption or deployment performed.
+
+FINAL FOLLOW-UP — preserved build f3e095d, 2026-10-18
+Coordinator reports final Chromium sweep passed70records. Independently re-read repaired areas from the overwritten final screenshots, not old initial captures. Original diagnostic pairs are preserved under initial-pages-chromium. Final source files: artifacts/v9-g2/pages-chromium/{candidates,about,article}-{390,768,1024,1366,1920}-{handoff,migrated}.png.
+
+Read-only result: all four blocking visual findings are cleared in these final screenshots across the five requested widths. Candidate CV rows now have source padding, left alignment, active red underline/dot and neutral inactive rows, without native bordered buttons. Candidate FAQ restores display typography, separators, right-side plus/minus and initially visible first answer; native triangles are absent. About portraits now have the same tall crop and red background at390/768/1024/1366/1920; all three migrated portraits decode, including source lazy-capture blanks. Article heading now matches source horizontal placement and line breaks at desktop widths; cover widths/heights match visually. The previously recorded small shared eyebrow vertical-spacing difference persists and is nonblocking. No new blocker found in these changed sections. This clears these four visual issues only, not an unsupported claim of exact pixel equality or production readiness.
+
+Retained side-by-side sheets for independent image review (source left, migrated right):
+- Phone CV rows: artifacts/v9-g2/final-visual/candidates-390-2.png
+- Phone FAQ top/answer: artifacts/v9-g2/final-visual/candidates-390-7.png
+- Phone FAQ remaining rows: artifacts/v9-g2/final-visual/candidates-390-8.png
+- Phone portraits: artifacts/v9-g2/final-visual/about-390-2.png and about-390-3.png
+- Phone article header: artifacts/v9-g2/final-visual/article-390-0.png
+- Desktop CV rows: artifacts/v9-g2/final-visual/candidates-1366-0.png
+- Desktop FAQ: artifacts/v9-g2/final-visual/candidates-1366-1.png
+- Desktop portraits: artifacts/v9-g2/final-visual/about-1366-0.png
+- Desktop article header: artifacts/v9-g2/final-visual/article-1366-0.png
+- Additional widths checked: candidates-768-0/1/3.png, candidates-1024-0/2.png, candidates-1920-0/1.png; about-768-1.png, about-1024-0.png, about-1920-0.png; article-768-0.png, article-1024-0.png, article-1920-0.png, all under artifacts/v9-g2/final-visual/.
+
+No browser/server started and no source edit or commit made during final follow-up.

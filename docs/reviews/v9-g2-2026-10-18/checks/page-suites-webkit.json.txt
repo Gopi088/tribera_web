@@ -1,0 +1,104 @@
+{
+  "status": "passed",
+  "startedAt": "2026-10-18T14:53:47.749Z",
+  "commit": "1cd2d48f5ce3b183c1c2164a5b7b3896abc596fc",
+  "cleanTree": true,
+  "lockHash": "56be5c8181c79995befb9b07957589898a1eabfd027f0c8a8e82c4c178c370fa",
+  "buildPath": "/tmp/tribera-v9-g2/dist",
+  "buildHash": "4bd23eb34966f323f5604b2313e6f68dfcf6341bb82065919805f62f20e4dfc7",
+  "browser": "webkit",
+  "base": "http://127.0.0.1:4392",
+  "expectedSuites": 11,
+  "suites": [
+    {
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node tests/v9-font-readiness.test.mjs",
+      "startedAt": "2026-10-18T14:53:50.746Z",
+      "finishedAt": "2026-10-18T14:53:55.806Z",
+      "exitCode": 0,
+      "signal": null,
+      "status": "passed"
+    },
+    {
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node tests/v9-pages.test.mjs",
+      "startedAt": "2026-10-18T14:53:55.806Z",
+      "finishedAt": "2026-10-18T14:57:08.494Z",
+      "exitCode": 0,
+      "signal": null,
+      "status": "passed"
+    },
+    {
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node tests/v9-native-form-browser.test.mjs",
+      "startedAt": "2026-10-18T14:57:08.496Z",
+      "finishedAt": "2026-10-18T14:57:18.255Z",
+      "exitCode": 0,
+      "signal": null,
+      "status": "passed"
+    },
+    {
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node tests/v9-candidates.test.mjs",
+      "startedAt": "2026-10-18T14:57:18.256Z",
+      "finishedAt": "2026-10-18T14:58:17.724Z",
+      "exitCode": 0,
+      "signal": null,
+      "status": "passed"
+    },
+    {
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node tests/v9-candidates-reference.test.mjs",
+      "startedAt": "2026-10-18T14:58:17.725Z",
+      "finishedAt": "2026-10-18T14:59:27.125Z",
+      "exitCode": 0,
+      "signal": null,
+      "status": "passed"
+    },
+    {
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node tests/v9-editorial.test.mjs",
+      "startedAt": "2026-10-18T14:59:27.126Z",
+      "finishedAt": "2026-10-18T15:00:05.822Z",
+      "exitCode": 0,
+      "signal": null,
+      "status": "passed"
+    },
+    {
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node tests/v9-home.test.mjs",
+      "startedAt": "2026-10-18T15:00:05.823Z",
+      "finishedAt": "2026-10-18T15:01:05.479Z",
+      "exitCode": 0,
+      "signal": null,
+      "status": "passed"
+    },
+    {
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node tests/v9-preview-navigation.test.mjs",
+      "startedAt": "2026-10-18T15:01:05.479Z",
+      "finishedAt": "2026-10-18T15:02:33.541Z",
+      "exitCode": 0,
+      "signal": null,
+      "status": "passed"
+    },
+    {
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node tests/v9-contrast.test.mjs",
+      "startedAt": "2026-10-18T15:02:33.543Z",
+      "finishedAt": "2026-10-18T15:02:56.293Z",
+      "exitCode": 0,
+      "signal": null,
+      "status": "passed"
+    },
+    {
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node tests/v9-editorial-visual.test.mjs",
+      "startedAt": "2026-10-18T15:02:56.295Z",
+      "finishedAt": "2026-10-18T15:03:57.547Z",
+      "exitCode": 0,
+      "signal": null,
+      "status": "passed"
+    },
+    {
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node tests/v9-candidates-faq.test.mjs",
+      "startedAt": "2026-10-18T15:03:57.547Z",
+      "finishedAt": "2026-10-18T15:04:53.395Z",
+      "exitCode": 0,
+      "signal": null,
+      "status": "passed"
+    }
+  ],
+  "errors": [],
+  "finishedAt": "2026-10-18T15:04:53.430Z"
+}

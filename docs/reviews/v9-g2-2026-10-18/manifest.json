@@ -1,0 +1,63 @@
+[
+  {
+    "name": "native",
+    "requestedRevision": "988903b967b2775e03d5d3beca13b871c0ca570a",
+    "note": "Initial infrastructure review before all five pages were integrated.",
+    "isError": false,
+    "subtype": "success",
+    "sessionId": "36107121-2ed5-4aa3-be31-dbeced86d403",
+    "models": ["claude-sonnet-5"],
+    "report": "native-report.txt",
+    "reportSha256": "bbe10cfcb895ba90fe1133d60a7262671daac6e0c0c01fca217a21251eee041d",
+    "rawResult": "artifacts/v9-g2/claude/native-raw.json"
+  },
+  {
+    "name": "source",
+    "requestedRevision": null,
+    "note": "Rolling source review; implementation advanced during the review. Not a frozen acceptance record.",
+    "isError": false,
+    "subtype": "success",
+    "sessionId": "24742ee8-f201-454a-a6d3-8dbf9c1fb9da",
+    "models": ["claude-sonnet-5"],
+    "report": "source-report.txt",
+    "reportSha256": "1719d7d8bf6e81fa2e52d9d60e07d6cd5eda336f70a9199e0476dbb9c8dce8a4",
+    "rawResult": "artifacts/v9-g2/claude/source-raw.json"
+  },
+  {
+    "name": "frozen-source",
+    "requestedRevision": "9664a50a65e3749a66fa2f9803e0eebf05be4dd9",
+    "note": "Requested on9664a50; visual corrections advanced during the source-only review. Final follow-up owns acceptance.",
+    "isError": false,
+    "subtype": "success",
+    "sessionId": "1d323575-e938-4c50-827f-9f83bad1c3af",
+    "models": ["claude-sonnet-5"],
+    "report": "frozen-source-report.txt",
+    "reportSha256": "2cc48283f8fa8472791d2178e246f9a8bdc150abce41dc1bf469dfc6f144a125",
+    "rawResult": "artifacts/v9-g2/claude/frozen-source-raw.json"
+  },
+  {
+    "name": "corrections",
+    "requestedRevision": "04f0ef0afa90b6b453d9abf6b21b9ec518cd9fdd",
+    "note": "Source and final screenshot corrections review; later no-JS condition helper changes require final follow-up.",
+    "isError": false,
+    "subtype": "success",
+    "sessionId": "5e300892-3cdc-4c86-b853-0bf0f63c82d1",
+    "models": ["claude-sonnet-5"],
+    "report": "corrections-report.txt",
+    "reportSha256": "5b5d8211ad234c35e3c88fd0dc034a2e781c0a4cd11c9791fcca697d5c4b6545",
+    "rawResult": "artifacts/v9-g2/claude/corrections-raw.json"
+  },
+  {
+    "name": "final",
+    "requestedRevision": "1cd2d48f5ce3b183c1c2164a5b7b3896abc596fc",
+    "note": "Frozen final local G2/G3 review; ACCEPT. No product or test changes during review.",
+    "exitCode": 0,
+    "isError": false,
+    "subtype": "success",
+    "sessionId": "8dccc138-d3a7-4dd0-a72c-9ee2608eb37e",
+    "models": ["claude-sonnet-5"],
+    "report": "final-report.txt",
+    "reportSha256": "9dc6171c41cf4c0f6733a54327406af4cf41b4088c6d1e6ee2cfc6367d1f0fbf",
+    "rawResult": "artifacts/v9-g2/claude/final-raw.json"
+  }
+]

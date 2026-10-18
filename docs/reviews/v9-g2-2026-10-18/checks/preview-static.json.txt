@@ -1,0 +1,39 @@
+{
+  "gate": "static",
+  "startedAt": "2026-10-18T14:46:45.980Z",
+  "commit": "1cd2d48f5ce3b183c1c2164a5b7b3896abc596fc",
+  "cleanTree": true,
+  "lockHash": "56be5c8181c79995befb9b07957589898a1eabfd027f0c8a8e82c4c178c370fa",
+  "node": "v22.15.0",
+  "platform": "linux",
+  "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node /tmp/tribera-v9-g2/scripts/v9-gate.mjs static",
+  "buildPath": "/tmp/tribera-v9-g2/artifacts/v9-g2/preview-dist",
+  "buildHash": "4bd23eb34966f323f5604b2313e6f68dfcf6341bb82065919805f62f20e4dfc7",
+  "status": "passed",
+  "suites": [
+    {
+      "name": "checker-negative-tests",
+      "expectedMinimum": 5,
+      "executed": 6,
+      "skipped": 0,
+      "exitCode": 0,
+      "status": "passed"
+    },
+    {
+      "name": "route-map-and-built-references",
+      "expectedRoutes": 86,
+      "baselineRoutes": 77,
+      "futureRoutes": 9,
+      "executedPages": 85,
+      "references": 9160,
+      "errors": [],
+      "status": "passed"
+    }
+  ],
+  "limitations": [
+    "Hosted delivery, redirect and scanner behavior require hosted validation.",
+    "Browser smoke is not full interactive journey coverage.",
+    "HTML reference audit does not parse CSS URLs or arbitrary script-created URLs."
+  ],
+  "finishedAt": "2026-10-18T14:46:47.181Z"
+}

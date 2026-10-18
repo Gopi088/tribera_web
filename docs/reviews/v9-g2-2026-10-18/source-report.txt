@@ -1,0 +1,28 @@
+## Review verdict: REQUEST CHANGES (source pass)
+
+Scope covered: all five `/__v9/*` preview routes and their components/scripts/CSS, `Header.astro`/`previewLinks` mapping, `ClientStrip.astro`, the native CV form chain (`candidate-form-v9.mjs` → `_lib/v9-cv-submission.mjs` → `candidate-profile-v9.mjs`), and `tests/v9-pages.test.mjs` + `scripts/test-v9-pages.mjs` + CI wiring. This is an independent source check only — not a frozen-build or G2 final acceptance.
+
+### Verified: previously-requested changes are fixed
+- **CI sequencing (the prior blocker)**: all five pages exist (`src/pages/[homePreview]/home.astro`, `src/pages/[preview]/{candidates,about,bfsi,article}.astro`). `actions.yaml:38-57` builds the `foundation-build` artifact with `V9_PREVIEW=1` before `npm run test:migration:pages` runs against it (`actions.yaml:100-103`). No more sequencing defect.
+- **PRG duplication**: `_lib/v9-cv-submission.mjs:19-37` now returns a real `303` to `candidate-form-v9?received=1` on success for HTML-accept clients. `tests/v9-native-form-browser.test.mjs:75-76` exercises an actual `javaScriptEnabled:false` browser reload and asserts the mocked mail call count stays at 1. Solid, real fix.
+- **Vestigial XSS test**: removed; not present in `tests/v9-native-form.test.mjs` anymore.
+- **Header `linkOverrides`/`activeRoute` now used and tested**: all five preview pages pass `headerLinkOverrides`/`footerLinkOverrides={previewLinks}`; `tests/v9-preview-navigation.test.mjs` independently drives JS and no-JS keyboard navigation, `aria-current`, mobile-menu disclosure, and fragment arrival across all five pages for both audiences.
+
+### New finding — Medium, undocumented factual-copy defect
+**`src/pages/[preview]/candidates.astro:34` — `<ClientStrip />` renders the wrong label.**
+`ClientStrip.astro:5` defaults to `'Teams we work with'`, a string that does not appear anywhere in `sample_data/tribera-web-handoff-v9/` (verified by search). The candidates handoff source (`candidates.html` line 1867, same text in the review copy `artifacts/v9-g2/claude/reference/candidates.html:1867`) says **"Teams hiring through us"**. Home correctly overrides this (`src/components/v9/home/Home.astro:29`, `label="Searches run for"`, matching `home.html:1742`), but `candidates.astro` never passes an override, so the private candidates preview currently shows a label that doesn't match the handoff anywhere. `src/components/v9/candidates/README.md` does not list this as a deliberate departure, and no test (`tests/v9-candidates.test.mjs`, `tests/v9-candidates-reference.test.mjs`) asserts the strip's text, so this slipped through silently — the kind of unapproved factual substitution the plan and gates doc explicitly call out. Fix: `<ClientStrip label="Teams hiring through us" />` (or whatever copy is actually confirmed), plus a text assertion in the candidates suite.
+
+### Checked and clean, no action needed
+- Scorer arithmetic/verdicts (`src/scripts/v9/home/model.mjs`): thresholds (26/34), max score 50, zero-weight edge case all consistent with the handoff script and reproduced faithfully, including the handoff's own pre-existing `labTotal` hardcoded-`'100'` quirk — retained intentionally, not a new regression.
+- Candidates scorer (`src/assets/scripts/v9/candidate-score.mjs`) already uses largest-remainder rounding so displayed shares sum to exactly 100 — ahead of Home on the known "99 vs 100" item, consistent with the task's note that this is being fixed elsewhere.
+- No-JS skill evidence (Home): `<noscript>` block with 9 `<details>` matching `skills[i].ev` 1:1, verified by `tests/v9-home.test.mjs:140-151`.
+- Manual-cancellation tests now explicitly keep the demo section visible while removing hover/focus (`leaveDemoVisible` in `tests/v9-home.test.mjs:101-130`) before asserting state freezes — addresses the previously flagged gap.
+- Article subscription correctly disabled with an explicit preview notice (`ArticleSubscribe.astro`), not wired to any endpoint.
+- Page CSS stays properly scoped (`.v9-home`, `.v9-candidates`, `.v9-editorial`); no bleed into shared `foundation.css`/`content.css`.
+- All anchor fragments referenced by nav/`previewLinks` (`#proof`, `#start`, `#apply`, `#controls`, `#when`) exist on their target pages.
+- About page keeps Pranav Gandhi's CSO title distinct from the founder roles (`tests/v9-editorial.test.mjs:75-79`), as the migration plan requires.
+
+### Not re-litigated here (per task scope)
+Rounded-share display, "See sample → Request sample" (not present in this code path — appears out of G2 scope), and remaining content/legal/hosted items are tracked as already-known or explicitly pending per the brief; no new instance found beyond the ClientStrip label above.
+
+**Net**: one concrete, easily-fixed content-accuracy defect (ClientStrip label on Candidates) blocks a clean source accept; everything the prior native-report flagged is now genuinely resolved with real tests, not just claims. Recommend fixing the label (and adding a text assertion) before this batch is folded into the frozen combined commit for final G2 review.

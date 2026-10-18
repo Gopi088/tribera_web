@@ -1,0 +1,13 @@
+# Review closure and evidence provenance
+
+Final actual Claude verdict: **ACCEPT**, reviewed revision `1cd2d48f5ce3b183c1c2164a5b7b3896abc596fc`. Model/session/report hashes are in `manifest.json`; reports and scopes are preserved verbatim. Earlier source-only verdicts were not treated as batch acceptance.
+
+Initial blockers concerned missing representative pages during CI sequencing and candidate ClientStrip wording. All five pages are integrated and the wording matches the source. Native POST/redirect/GET refresh behavior, score shares, no-JavaScript evidence, preview navigation/sharing, mobile tab visibility, contrast, visual corrections and readiness regressions are covered by the final suites and follow-up reviews.
+
+All required final reports pass. Failed runs remain under `artifacts/v9-g2`, including navigation interruptions, font timing and lazy-image activation diagnostics. No failed required suite was waived. WebKit's already-passing complete page chain was retained while its foundation group and smoke checks reran at the identical clean revision/build/lock hash; the final Claude review explicitly accepts this convention. Prefer serial heavy WebKit work on this machine and parallel Chromium/Firefox work with separate ports.
+
+The final review's prose compresses some provenance details. Precisely: the complete repository check and both product builds were executed at `f3e095d698ee4d94b334758f3d88a0872118de77`. Later changes are only the nine test/script paths listed in `checks/final-source-checks.json.txt`, checked with scoped lint/formatting and all 110 unit tests at the final evidence revision. The full repository check was not rerun at that later revision. `production-comparison.json` contains byte inventories and their hashes, not a commit/lock/clean-tree envelope; the eight raw static/browser reports and three page-chain reports carry that envelope. These exact records govern over shorthand in review prose.
+
+`checks/` stores byte-preserved JSON as `.json.txt` files to avoid formatting transformations. It retains the eight raw static/browser reports, three page-chain reports, aggregate, component summary and source-check supplement. `evidence-index.json` hashes these copies. Full builds, traces, screenshots, diagnostic failures, comparison inventories and command logs remain in the local `artifacts/v9-g2/` archive. Existing public output is byte-identical to G1, so the full legacy journey/text census was not redundantly rerun locally; its prior accepted baseline remains documented and CI still requires those suites.
+
+This closes only the private representative-page G2/per-batch G3 gate. It does not assert remote CI, branch protection, hosted delivery, content approval, public migration or deployment.
