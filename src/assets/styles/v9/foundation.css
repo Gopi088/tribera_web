@@ -180,7 +180,7 @@
   position: sticky;
   top: 0;
   z-index: 60;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: saturate(1.6) blur(16px);
   border-bottom: 1px solid var(--line);
 }
@@ -350,6 +350,7 @@
   width: 100%;
 }
 .v9-hero-product h1 {
+  letter-spacing: -0.01em;
   font-size: clamp(1.8rem, 3.5vw, 2.9rem);
   font-weight: 500;
   line-height: 1.06;
@@ -526,7 +527,7 @@
     transform: translateX(-50%);
   }
 }
-@media (max-width: 1000px) {
+@media (max-width: 860px) {
   .v9-desktop-nav,
   .v9-nav-cta {
     display: none;
@@ -785,4 +786,82 @@
 .v9-source:not([data-ready]) > div {
   position: static;
   margin-top: 10px;
+}
+
+.v9-menu summary {
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}
+.v9-menu summary span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  margin-inline: auto;
+  transition:
+    transform var(--t2) var(--e),
+    opacity var(--t1) var(--e);
+}
+.v9-menu[open] summary span:first-child {
+  transform: translateY(7px) rotate(45deg);
+}
+.v9-menu[open] summary span:nth-child(2) {
+  opacity: 0;
+}
+.v9-menu[open] summary span:last-child {
+  transform: translateY(-7px) rotate(-45deg);
+}
+.v9-menu nav {
+  gap: 0;
+  padding: 8px clamp(20px, 5vw, 40px) 22px;
+  box-shadow: 0 24px 44px -22px rgba(0, 0, 0, 0.22);
+}
+.v9-menu nav a {
+  font: 500 1.15rem var(--display);
+  padding: 14px 2px;
+  border-bottom: 1px solid var(--line);
+}
+.v9-menu nav .v9-button {
+  font: 500 0.95rem var(--body);
+  padding: 0.85em;
+  margin-top: 14px;
+  justify-self: stretch;
+}
+.v9-desktop-nav a::after {
+  content: '';
+  height: 2px;
+  background: var(--ink);
+  position: absolute;
+  bottom: -21px;
+  left: 0;
+  right: 100%;
+  opacity: 0;
+  transition:
+    right var(--t2) var(--e),
+    opacity var(--t1) var(--e);
+}
+.v9-desktop-nav a[aria-current]::after {
+  right: 0;
+  opacity: 1;
+}
+@media (hover: hover) {
+  .v9-desktop-nav a:not([aria-current]):hover::after {
+    right: 0;
+    opacity: 0.35;
+  }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .v9-nav {
+    background: rgba(255, 255, 255, 0.97);
+  }
+}
+
+.v9-source[data-below] > div {
+  top: calc(100% + 10px);
+  bottom: auto;
 }

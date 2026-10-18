@@ -36,6 +36,7 @@ try {
   const migrated = await browser.newPage({ reducedMotion: 'reduce' });
   const reference = await browser.newPage({ reducedMotion: 'reduce' });
   await reference.route('https://**/*', (route) => route.abort());
+  await reference.goto(`${base}/__v9/foundation`);
   const fonts = fs
     .readFileSync('src/assets/styles/v9/fonts.css', 'utf8')
     .replaceAll("url('/", `url('${base}/`)
@@ -66,7 +67,21 @@ try {
       await reference.evaluate(() => document.fonts.ready);
       const expected = await snapshot(reference.locator('h1').first());
       const actual = await snapshot(migrated.locator(`.v9-hero-${variant} h1`));
-      records.push({ width, variant, expected, actual });
+      const referenceGrid = reference
+        .locator(variant === 'product' ? '.hero-two' : variant === 'editorial' ? '.hx-row' : '.hx-c-g')
+        .first();
+      const migratedGrid = migrated.locator(
+        variant === 'editorial' ? '.v9-editorial-row' : `.v9-hero-${variant} .v9-hero-grid`
+      );
+      const gridSnapshot = (locator) =>
+        locator.evaluate((el) => {
+          const s = getComputedStyle(el);
+          return { columns: s.gridTemplateColumns, gap: s.gap };
+        });
+      const expectedGrid = await gridSnapshot(referenceGrid);
+      const actualGrid = await gridSnapshot(migratedGrid);
+      assert.deepEqual(actualGrid, expectedGrid, `${browserName} ${width}px ${variant}: final handoff column geometry`);
+      records.push({ width, variant, expected, actual, expectedGrid, actualGrid });
       assert.deepEqual(actual, expected, `${browserName} ${width}px ${variant}: final handoff typography`);
       if (width === 390 || width === 1366) {
         await migrated

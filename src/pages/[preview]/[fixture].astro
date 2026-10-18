@@ -48,7 +48,8 @@ const candidate = Astro.params.fixture === 'candidate';
     eyebrow="Contact"
     title="Start with one role."
     description="A compact hero for a direct conversation."
-  />
+    ><div slot="aside" class="fixture-card"><p>Compact supporting content slot.</p></div></Hero
+  >
   <section class="v9-section v9-paper">
     <div class="v9-wrap">
       <h2>Questions, answered.</h2><FAQ

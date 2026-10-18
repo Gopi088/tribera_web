@@ -44,7 +44,7 @@ test(`v9 foundation behavior (${browserName})`, async () => {
     const page = await browser.newPage();
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
-    for (const width of [320, 360, 390, 768, 1024, 1366, 1920]) {
+    for (const width of [320, 360, 390, 768, 861, 900, 1024, 1366, 1920]) {
       await page.setViewportSize({ width, height: 900 });
       const response = await page.goto(`${base}/__v9/foundation`);
       assert.ok(
@@ -118,6 +118,7 @@ test(`v9 foundation behavior (${browserName})`, async () => {
     assert.equal(await strip.locator('.v9-client-track').evaluate((el) => getComputedStyle(el).animationName), 'none');
     assert.equal(await strip.locator('ul').first().locator('li').count(), 13);
     assert.equal(await strip.locator('ul[aria-hidden]').isVisible(), false);
+    await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(`${base}/__v9/candidate`);
     await page.locator('[data-v9-menu] summary').click();
     assert.equal(

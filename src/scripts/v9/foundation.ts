@@ -71,6 +71,8 @@ document.querySelectorAll<HTMLDetailsElement>('.v9-source').forEach((source) => 
     const panel = source.querySelector<HTMLElement>(':scope > div');
     if (!panel) return;
     source.style.setProperty('--v9-source-shift', '0px');
+    source.removeAttribute('data-below');
+    source.toggleAttribute('data-below', panel.getBoundingClientRect().top < 12);
     const bounds = panel.getBoundingClientRect();
     const shift = Math.max(12 - bounds.left, Math.min(0, innerWidth - 12 - bounds.right));
     source.style.setProperty('--v9-source-shift', `${shift}px`);
