@@ -48,7 +48,13 @@ try {
         return route.continue();
       });
       const errors = [];
+      const failedScripts = [];
       page.on('pageerror', (error) => errors.push(error.message));
+      page.on('requestfailed', (request) => {
+        if (request.resourceType() === 'script' && request.url().startsWith(base)) {
+          failedScripts.push({ url: request.url(), error: request.failure()?.errorText });
+        }
+      });
       // Industries now presents a sector index, not the removed comparison chart.
       await page.goto(base + '/industries', { waitUntil: 'networkidle' });
       const sectorLinks = page.locator('.sector-index .secx__link');
@@ -62,7 +68,38 @@ try {
         assert.equal((await page.goto(base + '/' + path, { waitUntil: 'networkidle' })).status(), 200);
         const a = page.locator('#secA'),
           b = page.locator('#secB');
+        // initComparison marks readiness only after painting and attaching both
+        // change handlers. Network idleness alone is not that application state.
+        if (mode === 'enabled') {
+          try {
+            await page.waitForFunction(
+              () => {
+                const first = document.querySelector('#secA');
+                const second = document.querySelector('#secB');
+                return first?.dataset.ready === 'true' && !first.disabled && second && !second.disabled;
+              },
+              undefined,
+              { timeout: 5000 }
+            );
+          } catch (cause) {
+            const state = await page.evaluate(() => ({
+              url: location.href,
+              documentReady: document.readyState,
+              controls: ['secA', 'secB'].map((id) => {
+                const element = document.getElementById(id);
+                return element
+                  ? { id, disabled: element.disabled, ready: element.dataset.ready }
+                  : { id, missing: true };
+              }),
+            }));
+            throw new Error(
+              `Comparison did not initialize at ${width}px: ${JSON.stringify({ state, errors, failedScripts })}`,
+              { cause }
+            );
+          }
+        }
         assert.equal(await a.isDisabled(), mode !== 'enabled');
+        assert.equal(await b.isDisabled(), mode !== 'enabled');
         await page.locator('header.hero').screenshot({ path: `/tmp/bugs-${path}-${width}-${mode}-default.png` });
         const keys = mode === 'enabled' ? Object.keys(series) : [await a.inputValue()];
         for (const key of keys) {
