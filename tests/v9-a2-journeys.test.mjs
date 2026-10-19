@@ -131,6 +131,43 @@ try {
               : 'sample and lead delivered without subscription'
         );
       }
+      // Inject only the terminal expiry response to exercise the UI state machine;
+      // server-side expiry/signature enforcement has separate handler tests.
+      for (const kind of ['contact', 'sample']) {
+        await page.goto(`${base}/__v9/${kind === 'contact' ? 'contact' : 'sample-write-up'}`);
+        const current = page.locator(kind === 'contact' ? '#ctForm' : '#swForm');
+        if (kind === 'contact') await fillHiring(current);
+        else await fillSample(current);
+        const before = provider.deliveries.length;
+        provider.failNext = { to: kind === 'contact' ? 'hiring@example.com' : 'reader@example.com', accepted: true };
+        await current.locator('button[type="submit"]').click();
+        await settle(
+          page,
+          kind === 'contact' ? '[data-contact-status]' : '#swErr:not([hidden])',
+          /uncertain|could not|not confirm|retry/
+        );
+        assert.equal(provider.deliveries.length, before + 1);
+        const endpoint = `**/.netlify/functions/${kind === 'contact' ? 'contact-send-v9' : 'sample-request-v9'}`;
+        await page.route(endpoint, (route) =>
+          route.fulfill({
+            status: 400,
+            contentType: 'application/json',
+            body: JSON.stringify({
+              success: false,
+              code: 'expired',
+              retryable: false,
+              message: 'This request has expired. Do not send a new request if delivery is uncertain.',
+            }),
+          })
+        );
+        await current.locator('button[type="submit"]').click();
+        await settle(page, kind === 'contact' ? '[data-contact-status]' : '#swErr:not([hidden])', /expired/);
+        assert.equal(await current.locator('button[type="submit"]').isDisabled(), true);
+        assert.equal(await page.locator(`a[href*="/.netlify/functions/${kind}-form-v9"]`).first().isVisible(), false);
+        assert.equal(provider.deliveries.length, before + 1);
+        await page.unroute(endpoint);
+        records.push(`${kind} uncertain delivery then expiry cannot create a fresh request`);
+      }
       assert.deepEqual(errors, []);
       await page.close();
 
@@ -150,6 +187,20 @@ try {
       await native.reload();
       assert.equal(provider.deliveries.length, beforeNative + 1, 'PRG refresh does not send again');
       records.push('native hiring context and PRG');
+      await native.goto(`${base}/__v9/contact?side=looking&service=iaas`);
+      await native.locator('a[href*="/.netlify/functions/contact-form-v9"]').first().click();
+      const lookingForm = native.locator('form[action*="contact-send-v9"]');
+      assert.equal(await lookingForm.locator('[name="side"]').inputValue(), 'looking');
+      await fillIdentity(lookingForm, 'native-candidate@example.com');
+      await lookingForm.locator('[name="note"]').fill('Native candidate note.');
+      await lookingForm.locator('[name="cv"]').setInputFiles(cv);
+      const beforeLooking = provider.deliveries.length;
+      await lookingForm.locator('button[type="submit"]').click();
+      await native.waitForURL('**/contact-form-v9?received=*');
+      assert.equal(provider.deliveries.length, beforeLooking + 1);
+      assert.equal(emails('looking@example.com').at(-1).body.attachments.length, 1);
+      records.push('native looking multipart upload with correct recipient');
+
       await native.goto(`${base}/__v9/sample-write-up`);
       await native.locator('a[href*="/.netlify/functions/sample-form-v9"]').first().click();
       const nativeSample = native.locator('form[action*="sample-request-v9"]');
