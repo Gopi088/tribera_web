@@ -131,6 +131,23 @@ try {
               : 'sample and lead delivered without subscription'
         );
       }
+      for (const kind of ['contact', 'sample']) {
+        const before = provider.deliveries.length;
+        process.env.RESEND_API_KEY = '';
+        try {
+          await page.goto(`${base}/__v9/${kind === 'contact' ? 'contact' : 'sample-write-up'}`);
+          const blocked = page.locator(kind === 'contact' ? '#ctForm' : '#swForm');
+          if (kind === 'contact') await fillHiring(blocked);
+          else await fillSample(blocked);
+          await blocked.locator('button[type="submit"]').click();
+          await settle(page, kind === 'contact' ? '[data-contact-status]' : '#swErr:not([hidden])', /unavailable/);
+          assert.equal(provider.deliveries.length, before, 'Missing configuration must never claim delivery');
+          if (kind === 'sample') assert.equal(await page.locator('#swDone').isVisible(), false);
+        } finally {
+          process.env.RESEND_API_KEY = 'mock-api-key';
+        }
+        records.push(`${kind} missing provider configuration is a visible failure`);
+      }
       // Inject only the terminal expiry response to exercise the UI state machine;
       // server-side expiry/signature enforcement has separate handler tests.
       for (const kind of ['contact', 'sample']) {
