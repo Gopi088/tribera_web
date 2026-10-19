@@ -26,6 +26,7 @@ if (root && form) {
   const fileLabel = form.querySelector<HTMLElement>('.ct-file span')!;
   let side: Side = 'hiring';
   let busy = false;
+  let stopped = false;
   const query = new URLSearchParams(location.search);
   const allowed = (value: string | null, choices: Record<string, string>) =>
     value && Object.hasOwn(choices, value) ? value : '';
@@ -136,7 +137,7 @@ if (root && form) {
   submit.disabled = false;
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    if (busy) return;
+    if (busy || stopped) return;
     if (!pendingPayload && ((side === 'looking' && !validateFile()) || !form.reportValidity())) return;
     const controls = [
       ...form.querySelectorAll<HTMLInputElement | HTMLButtonElement | HTMLTextAreaElement>('input,button,textarea'),
@@ -167,8 +168,12 @@ if (root && form) {
       const result = await response.json();
       if (!response.ok || result.success !== true) {
         // Validation is before delivery: corrections are safe. Other results retain the original attempt.
-        if (response.status === 400) pendingPayload = null;
-        mayRetry = result.retryable !== false;
+        if (response.status === 400 && result.code === 'validation') pendingPayload = null;
+        stopped =
+          result.code === 'expired' ||
+          result.code === 'conflict' ||
+          (pendingPayload !== null && result.retryable === false);
+        mayRetry = !stopped;
         throw new Error(typeof result.message === 'string' ? result.message : 'Your message could not be confirmed.');
       }
       const delivered = pendingPayload;
