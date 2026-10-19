@@ -61,3 +61,21 @@
     transition: none !important;
   }
 }
+/* A grid's implicit auto track otherwise adopts the letter inputs' intrinsic width. */
+.v9-contact .ct-form {
+  grid-template-columns: minmax(0, 1fr);
+  min-inline-size: 0;
+}
+.v9-contact .ct-form > *,
+.v9-contact fieldset {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
+.v9-contact .ct-file {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.v9-contact .ct-file input {
+  width: 100%;
+  min-width: 0;
+}
