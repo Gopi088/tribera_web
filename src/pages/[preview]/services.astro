@@ -1,0 +1,19 @@
+---
+import V9Layout from '../../layouts/V9Layout.astro';
+import ServicesPage from '../../components/v9/services/ServicesPage.astro';
+import { previewLinks } from '../../data/v9/preview-links';
+export function getStaticPaths() {
+  return import.meta.env.DEV || process.env.V9_PREVIEW === '1' ? [{ params: { preview: '__v9' } }] : [];
+}
+---
+
+<V9Layout
+  title="Hiring services: recruitment, interviews, advisory | Tribera"
+  description="Twelve pieces of work, each with an output and a date. Scorecards, pipeline reviews, permanent and contract hiring, interview as a service, and more."
+  noindex
+  activeRoute="/services"
+  headerLinkOverrides={previewLinks}
+  footerLinkOverrides={previewLinks}
+>
+  <ServicesPage />
+</V9Layout>

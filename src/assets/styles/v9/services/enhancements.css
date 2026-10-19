@@ -1,0 +1,66 @@
+/* Native disclosures and complete server-rendered recommendations remain usable without scripts. */
+.v9-services [data-rv],
+.v9-services .hero-c [data-rv] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+.v9-services .sv-stamp {
+  opacity: 1;
+  transform: rotate(-9deg);
+}
+.v9-services .sv-tile i {
+  opacity: 1;
+  transform: none;
+}
+.v9-services .sv-recommendation {
+  padding: 0;
+}
+.v9-services .sv-recommendation + .sv-recommendation {
+  margin-top: 2rem;
+}
+.v9-services .sv-fallback-question {
+  margin-bottom: 1rem;
+}
+.v9-services[data-enhanced] .sv-fallback-question {
+  display: none;
+}
+.v9-services[data-enhanced] .sv-recommendation {
+  margin-top: 0;
+}
+.v9-services [hidden] {
+  display: none !important;
+}
+.v9-services summary {
+  list-style: none;
+  cursor: pointer;
+}
+.v9-services summary::-webkit-details-marker {
+  display: none;
+}
+.v9-services summary:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+.v9-services .sv-acc[open] .faq-ic::after {
+  opacity: 0;
+}
+.v9-services .sv-acc-a,
+.v9-services .faq-a {
+  grid-template-rows: 1fr;
+}
+.v9-services .faq-item[open] .faq-a > div {
+  opacity: 1;
+  transform: none;
+}
+.v9-services .sv-sym:disabled {
+  cursor: default;
+}
+@media (prefers-reduced-motion: reduce) {
+  .v9-services *,
+  .v9-services *::before,
+  .v9-services *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
