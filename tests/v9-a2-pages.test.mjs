@@ -76,7 +76,7 @@ try {
   for (const [slug, file] of pages) {
     await reference.goto(`${base}/__handoff/${file}`, { waitUntil: 'networkidle' });
     const expectedHeadings = await normalizedHeadings(reference);
-    assert.ok(expectedHeadings.length > 1, `${slug}: reference heading coverage must not be empty`);
+    assert.ok(expectedHeadings.length > 0, `${slug}: reference heading coverage must not be empty`);
     for (const javaScriptEnabled of [true, false]) {
       const context = await browser.newContext({ javaScriptEnabled, reducedMotion: 'reduce' });
       const page = await context.newPage();
@@ -195,6 +195,8 @@ try {
           await reference.screenshot({ path: path.join(output, `${prefix}-handoff.png`), fullPage: true });
           record.screenshots = [`${prefix}-migrated.png`, `${prefix}-handoff.png`];
           for (const selector of ['h1', 'h2']) {
+            if (!(await reference.locator(selector).count())) continue; // Sample source has only h1.
+
             const typography = (el) => {
               const css = getComputedStyle(el);
               return Object.fromEntries(
