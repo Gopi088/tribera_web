@@ -74,6 +74,29 @@ try {
       assert.match(emails('hiring@example.com')[0].body.text, /iaas|Interview as a service/i);
       assert.match(emails('hiring@example.com')[0].body.text, /banking-financial-services|Banking & financial/i);
       records.push('enhanced hiring delivery preserves service and sector');
+      await page.goto(`${base}/__v9/contact?service=iaas&sector=banking-financial-services`);
+      await form.locator('#ctAboutX').click();
+      assert.equal(await form.locator('[name="service"]').inputValue(), '');
+      assert.equal(await form.locator('[name="sector"]').inputValue(), '');
+      assert.doesNotMatch(await form.locator('[data-contact-native]').getAttribute('href'), /service=|sector=/);
+      await form.locator('[name="side"][value="hiring"]').focus();
+      await page.keyboard.press('ArrowRight');
+      assert.equal(await form.getAttribute('data-side'), 'looking');
+      assert.equal(await form.locator('[data-for="hiring"]').isDisabled(), true);
+      for (const javaScriptEnabled of [true, false]) {
+        const faqPage = await browser.newPage({ javaScriptEnabled, reducedMotion: 'reduce' });
+        await faqPage.goto(`${base}/__v9/contact`);
+        const questions = faqPage.locator('details.faq-item');
+        assert.equal(await questions.count(), 6);
+        for (let index = 0; index < 6; index++) {
+          const question = questions.nth(index);
+          if (!((await question.getAttribute('open')) !== null)) await question.locator('summary').click();
+          assert.equal(await faqPage.locator('details.faq-item[open]').count(), 1);
+          assert.equal(await question.locator('.faq-a').isVisible(), true);
+        }
+        await faqPage.close();
+      }
+      records.push('context removal, keyboard mode switching and native FAQs with and without JavaScript');
 
       await page.goto(`${base}/__v9/contact?side=looking&service=constructor&sector=unknown`);
       assert.equal(await form.getAttribute('data-side'), 'looking');

@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { createHash } from 'node:crypto';
+import { SECTORS, SERVICES } from '../netlify/functions/_lib/v9-a2-forms.mjs';
 const digest = (bytes) => createHash('sha256').update(bytes).digest('hex');
 for (const [source, directory, count] of [
   ['contact', 'contact', 4],
@@ -22,3 +23,11 @@ for (const [source, directory, count] of [
     }
   });
 }
+
+test('server context allowlists match the independent handoff models', () => {
+  const source = fs.readFileSync('sample_data/tribera-web-handoff-v9/contact.html', 'utf8');
+  const match = source.match(/var SECT=(\{.*?\}), SERV=(\{.*?\});/);
+  assert.ok(match);
+  assert.deepEqual([...SECTORS].sort(), Object.keys(JSON.parse(match[1])).sort());
+  assert.deepEqual([...SERVICES].sort(), Object.keys(JSON.parse(match[2])).sort());
+});
