@@ -22,6 +22,8 @@ export async function browserAudit(root, evidence) {
     'services',
     'interview-as-a-service',
     'case-study',
+    'contact',
+    'sample-write-up',
   ]) {
     if (pages.has(`/__v9/${slug}`)) routes.push(`/__v9/${slug}`);
   }

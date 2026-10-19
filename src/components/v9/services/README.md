@@ -14,3 +14,7 @@ Intentional changes:
 - Native disclosure semantics replace script-only buttons and hidden answers. Focus outlines include summaries. All recommendations are exposed as a readable sequence without JavaScript rather than an empty result panel.
 
 Worker checks: all ten Astro components compile with zero compiler diagnostics; scoped ESLint and Prettier pass. A Chromium development spot check covers 390, 768, 1024, 1366 and 1920px widths. Compiled integration, production exclusion, cross-browser functional/visual checks and actual Claude review are coordinator gates and remain required before acceptance. No delivery handler or external submission is added here.
+
+## A2 private journey integration
+
+Private Contact CTAs now use `/__v9/contact` and preserve service/sector parameters; sample CTAs use `/__v9/sample-write-up`. A2 handlers validate the active form mode and include bounded context in mocked delivery tests. Original A1 fallback notes above describe the prior checkpoint. Hosted recipients, provider/scanner behavior and actual inbox delivery remain later acceptance gates.

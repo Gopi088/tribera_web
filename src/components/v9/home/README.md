@@ -28,3 +28,7 @@ TEST_BASE_URL=http://127.0.0.1:4391 BROWSER=chromium node --test tests/v9-home.t
 The browser test also supports Firefox and WebKit. It requires six responsive widths, all headings, server-rendered data counts, presets/evidence/zero-weight reset, keyboard bar and expert controls, funnel counts, native FAQ, cancellation of automatic demos, testimonial pause/motion changes and no-JavaScript phone fallback. Screenshots are written under `artifacts/v9-g2/home-<browser>/`. Root integration must validate cross-page links, production exclusion, full build/static checks and the exact combined artifact. No provider email action is performed by this page.
 
 Worker spot comparisons against the rendered handoff (same pinned fonts, reduced motion) matched section heights for the 390px hero and the 1366px scorer, hiring bar and expert sections. These observations are not a certification of full-page pixel parity. Claim/content publication approval remains separate from this private implementation.
+
+## A2 private journey integration
+
+Private Contact CTAs now use `/__v9/contact` and preserve service/sector parameters; sample CTAs use `/__v9/sample-write-up`. A2 handlers validate the active form mode and include bounded context in mocked delivery tests. Original A1 fallback notes above describe the prior checkpoint. Hosted recipients, provider/scanner behavior and actual inbox delivery remain later acceptance gates.

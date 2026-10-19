@@ -9,6 +9,8 @@ export const previewLinks: Record<string, string> = {
   '/candidates#controls': '/__v9/candidates#controls',
   '/candidates#when': '/__v9/candidates#when',
   '/candidates#apply': '/__v9/candidates#apply',
+  '/contact': '/__v9/contact',
+  '/sample-write-up': '/__v9/sample-write-up',
   '/services': '/__v9/services',
   '/interview-as-a-service': '/__v9/interview-as-a-service',
   '/case-study': '/__v9/case-study',

@@ -17,3 +17,7 @@ The CSS retains relevant source selector families in source order, including the
 ## Validation ownership
 
 Scoped ESLint, Prettier and Astro compiler parsing are run here. The coordinator owns combined build, boundaries, visual/content comparisons, three-engine interaction/no-JavaScript tests, and actual Claude review before acceptance. No local build or browser process is started by this worker without the coordinator's resource go-ahead.
+
+## A2 private journey integration
+
+Private Contact CTAs now use `/__v9/contact` and preserve service/sector parameters; sample CTAs use `/__v9/sample-write-up`. A2 handlers validate the active form mode and include bounded context in mocked delivery tests. Original A1 fallback notes above describe the prior checkpoint. Hosted recipients, provider/scanner behavior and actual inbox delivery remain later acceptance gates.

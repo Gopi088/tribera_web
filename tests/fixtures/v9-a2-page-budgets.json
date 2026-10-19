@@ -1,0 +1,21 @@
+{
+  "scope": "A2 premeasurement local transfer ceilings; not hosted performance certification.",
+  "pages": {
+    "contact": {
+      "htmlGzipBytes": 30000,
+      "cssGzipBytes": 40000,
+      "jsGzipBytes": 12000,
+      "fontBytes": 256000,
+      "imageBytes": 1000000,
+      "otherBytes": 4096
+    },
+    "sample-write-up": {
+      "htmlGzipBytes": 30000,
+      "cssGzipBytes": 40000,
+      "jsGzipBytes": 12000,
+      "fontBytes": 256000,
+      "imageBytes": 1000000,
+      "otherBytes": 4096
+    }
+  }
+}
