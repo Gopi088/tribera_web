@@ -1,0 +1,2966 @@
+{
+  "generatedAt": "2026-10-19T06:51:28.061382+00:00",
+  "algorithm": "All regular files, relative-path identity and SHA-256 of exact file bytes. Inventory SHA-256 hashes sorted path + NUL + file SHA-256 + newline records.",
+  "scope": "Build-output comparison only. Equality establishes identical existing static responses/assets; it does not execute forms, validate Netlify configuration, or establish provider delivery.",
+  "status": "baseline-preserved",
+  "baseline": {
+    "path": "/home/abhispra/mvp/website_latest/tribera/artifacts/v9-g2/production-dist",
+    "fileCount": 262,
+    "inventorySha256": "6ceecf5c6f92ed70c78c012f2a72b8ea55b7a18c9b3d0207bc4a5cfac51c6df6",
+    "files": [
+      {
+        "path": "404.html",
+        "sha256": "c075cc37ccd74ef5ef7c6abdcb3d6592c0035619633471686338c66450ec90e3",
+        "bytes": 79623
+      },
+      {
+        "path": "_astro/--hero-bg.DQPe3Sqy.png",
+        "sha256": "85420ff86f7b7896396070cbd71a7ddd12f8afa28294f2f253d241bec56cc785",
+        "bytes": 15724
+      },
+      {
+        "path": "_astro/-tribera_logo_default.BwGHjgDg.svg",
+        "sha256": "2ef73fee7845b10e8844650cd7fa619a7033d604193c00ff743015272437b3f5",
+        "bytes": 73480
+      },
+      {
+        "path": "_astro/200000-interviews-insights.CACZiAxh.png",
+        "sha256": "695c545cba5fe86d6a237764ba9c1e96240dabd2df9964481fc8edb3d42ec7e4",
+        "bytes": 39537
+      },
+      {
+        "path": "_astro/AboutPage.astro_astro_type_script_index_0_lang.BPT6GUvV.js",
+        "sha256": "b5638794b48805fd2f08da12d8dcb0583dc5d914e72e5238935a08320ca54144",
+        "bytes": 4016
+      },
+      {
+        "path": "_astro/AegonLife.DW6Kwb0-.png",
+        "sha256": "6da20403044819b71bbd67d0cb2eac486e721e8ef75e51f7f96ec6c45d0a4da9",
+        "bytes": 12722
+      },
+      {
+        "path": "_astro/Aeries.Dvss0AVs.png",
+        "sha256": "72dcb81000b4a03a93f273bbf01954a099d2defc00d4d9bbd2353e13b15c71ac",
+        "bytes": 6690
+      },
+      {
+        "path": "_astro/ArticlePage.astro_astro_type_script_index_0_lang.VnuYX3a0.js",
+        "sha256": "df645f5d56f0605a24c4bab3c0a45a90ff8cb8d48480d01e3df8945eff68dec3",
+        "bytes": 69
+      },
+      {
+        "path": "_astro/BfsiPage.astro_astro_type_script_index_0_lang.VnuYX3a0.js",
+        "sha256": "df645f5d56f0605a24c4bab3c0a45a90ff8cb8d48480d01e3df8945eff68dec3",
+        "bytes": 69
+      },
+      {
+        "path": "_astro/Candidates.astro_astro_type_script_index_0_lang.B2t4Tzas.js",
+        "sha256": "8d22cebbb5ab82af98170f0dbab81051ecbf8e21591bdd4aac5177f893d67185",
+        "bytes": 6280
+      },
+      {
+        "path": "_astro/ContactSalesModal.BaiHDf1r.css",
+        "sha256": "4f338d93ec547642e1d6c56b59ae835fb704fe3ea1462362e801ca5cb6a8bc48",
+        "bytes": 115391
+      },
+      {
+        "path": "_astro/DSP_Mutual_Funds.Bd3XWU5r.png",
+        "sha256": "df0858874022969ca71a5bbb86449f2ce78af0f367a7646597aef0ed343d208e",
+        "bytes": 7636
+      },
+      {
+        "path": "_astro/EditorialPage.BkT3SOhI.css",
+        "sha256": "4cd4cafa3b200aecd7bf5c9e6db046264ab229fc9a42122d2d0711e08d51647e",
+        "bytes": 8117
+      },
+      {
+        "path": "_astro/Enpro.BeVSuZgk.png",
+        "sha256": "cf4638b1ecfad8faca14638ff71c911121e4da257c8fc931980617580fef53f5",
+        "bytes": 12862
+      },
+      {
+        "path": "_astro/Home.astro_astro_type_script_index_0_lang.DS9DSow3.js",
+        "sha256": "77b01fe8e5452aed2fbe59a8c1cad860b9b0303c8e9cf076874cdfb5792b8f91",
+        "bytes": 12499
+      },
+      {
+        "path": "_astro/Home.astro_astro_type_script_index_0_lang.Du-HFaf2.js",
+        "sha256": "07caa26ecf29462ab5940eab7fcabbd1d987ad3b25afa98e779c2c0903f51fb4",
+        "bytes": 10303
+      },
+      {
+        "path": "_astro/ICICBank.uFYUodMj.png",
+        "sha256": "875cf6c5e6395d3c0be3078d1b07f1282f523a5a604d676bc36b48ce948e49a6",
+        "bytes": 8096
+      },
+      {
+        "path": "_astro/ICICISecurities.DchO96iF.png",
+        "sha256": "d8117914b401bbb7caaa87be61c087fda71d8937984ac578d42e8bba3b0cf157",
+        "bytes": 6740
+      },
+      {
+        "path": "_astro/Payu.0Y6FFHuE.png",
+        "sha256": "64fdcad3e1fbd513f56efeaf249dab57cf6e75a899a90e5e97e7ca63780dc107",
+        "bytes": 4274
+      },
+      {
+        "path": "_astro/ReferenceNavStyles.Cc3xTvLN.css",
+        "sha256": "b0b07bf84cae211244dec5c49e5146a7dd0427ba3793c44ab6b5978e7e826b5c",
+        "bytes": 17076
+      },
+      {
+        "path": "_astro/SplashBI.k0_SEhET.png",
+        "sha256": "57e99b19bcad9ed8fd74be17185afbb4f992a5af60540e78d7962f9fa6c11581",
+        "bytes": 9001
+      },
+      {
+        "path": "_astro/TechnologyHoldings.BQxTMCCS.png",
+        "sha256": "e2abdb54b3adc71d829b1ef825c043e7df41abcaef69a0671ca9abcfd554da04",
+        "bytes": 10085
+      },
+      {
+        "path": "_astro/UtkarshBank.DRJaUMTm.png",
+        "sha256": "ae837ebc682810a03b368bab3b4322322d841142f1f8ebc80452e0b21ecc27df",
+        "bytes": 9607
+      },
+      {
+        "path": "_astro/V9Layout.dOnKr9N5.css",
+        "sha256": "b9d7b772ddaa4e8575d0acdbdff4921e2dbad9dc7e91448c01ff2eb6bdf011a8",
+        "bytes": 27066
+      },
+      {
+        "path": "_astro/Volkwagen.DtGUwejJ.png",
+        "sha256": "a0c97c757507042469a3d408bd52cf2131fa682e5d7a11d129e88c0ef2c5def9",
+        "bytes": 6748
+      },
+      {
+        "path": "_astro/__hero-bg.D6jZ3_bL.png",
+        "sha256": "4b507cb9295e64269f0a9e8903617a6ce417ec0cf1f38f9bef76b81584715a2d",
+        "bytes": 1695495
+      },
+      {
+        "path": "_astro/_hero-bg.BSe2TRGE.png",
+        "sha256": "fc053a65d9e39510fc4ac2d9b4c795d8f00003f19cd7bca27b6e57b87c55ff4e",
+        "bytes": 1555658
+      },
+      {
+        "path": "_astro/_slug_.C8WCDMwR.css",
+        "sha256": "a4b23e6acf4c2998370d1c6cd6cf6c3f9b79d4c0fd8a80103800e033dd32f347",
+        "bytes": 232481
+      },
+      {
+        "path": "_astro/_slug_.Cjws8YrA.css",
+        "sha256": "d35f95119ccdb639f1273dd48a71a5daa84b52b4f9d7d0bac437f04ca23b408d",
+        "bytes": 92559
+      },
+      {
+        "path": "_astro/_slug_.astro_astro_type_script_index_0_lang.B1pYtZmQ.js",
+        "sha256": "89917f525cb94b14d934681a4283fb8f7104f46f8b1083e5b1f6c7aa301ef19a",
+        "bytes": 2002
+      },
+      {
+        "path": "_astro/_slug_.astro_astro_type_script_index_0_lang.Bez_FOEF.js",
+        "sha256": "89917f525cb94b14d934681a4283fb8f7104f46f8b1083e5b1f6c7aa301ef19a",
+        "bytes": 2002
+      },
+      {
+        "path": "_astro/_slug_.astro_astro_type_script_index_0_lang.DhqNcvGS.js",
+        "sha256": "d94f23a59e34df9895337a8e3074684388fcf1e7c233fc9c36619211ee4bd9d2",
+        "bytes": 1642
+      },
+      {
+        "path": "_astro/about.BRj_H6mj.css",
+        "sha256": "2eb47c7c2d272299b8063c9656f7f158fa03733659fac9b7ab50edfdda7f5497",
+        "bytes": 157738
+      },
+      {
+        "path": "_astro/about.CwbI5YpA.css",
+        "sha256": "ee797fc6fd02ba98071493d517b00c6500d673299c9e6478fff4a5fbe185e2cf",
+        "bytes": 35111
+      },
+      {
+        "path": "_astro/about.astro_astro_type_script_index_0_lang.BHlpwXUY.js",
+        "sha256": "27c99f40bc73c7fa6057636cb5e525c72574e750d17e331dc93183aa57b187b8",
+        "bytes": 2627
+      },
+      {
+        "path": "_astro/ai-technical-assessment.BF4Iz4Zm.png",
+        "sha256": "08a98d63e454b7c334f0b67089a89ecab1bfd8e55f40b6eedce20f080b3f24c1",
+        "bytes": 23253
+      },
+      {
+        "path": "_astro/ai-technical-assessment.BF4Iz4Zm_Z1gozBg.jpg",
+        "sha256": "dc8df49ef23e9f590d0621a8145a9ffab858babc16892a3d836992a901e11959",
+        "bytes": 21167
+      },
+      {
+        "path": "_astro/article.CwRheMbT.css",
+        "sha256": "40d462d8d43672ed9bf3c6632ef795b3c385e6330d254308102aabf3ec849dcb",
+        "bytes": 24298
+      },
+      {
+        "path": "_astro/bfsi.9NzOcGyx.css",
+        "sha256": "fecbc9e499dc48428868aa9eb9f9e7e4a85fcb47832b036a6c906212e80afe6e",
+        "bytes": 34864
+      },
+      {
+        "path": "_astro/candidates.CWAVY1VY.css",
+        "sha256": "8837bfed208fe9fbc38178287da214f22b00eb8c728ccf6473801c8112a2e0fa",
+        "bytes": 138456
+      },
+      {
+        "path": "_astro/candidates.astro_astro_type_script_index_0_lang.Bpq18UHI.js",
+        "sha256": "84ad8b0ce1bc6309605b2deb3a77927f612f38064c2d1138c14fcac57ba75e53",
+        "bytes": 10007
+      },
+      {
+        "path": "_astro/candidates.jpr1kjbw.css",
+        "sha256": "36b1930a0b90708394b4c305f40e118e290286d84c8817cdda2122fae38533d9",
+        "bytes": 50131
+      },
+      {
+        "path": "_astro/careers.CcXR7EDk.css",
+        "sha256": "39c68382971789e5f0a20b60186850347af9efe0a0d62b0437a8291c14b6bce7",
+        "bytes": 150363
+      },
+      {
+        "path": "_astro/careers.DZSa0oQd.png",
+        "sha256": "46173a5c9020fdccbcfcd732e3b41a02f8160cc4cac4c73e942f53c6209bac1a",
+        "bytes": 499135
+      },
+      {
+        "path": "_astro/careers.astro_astro_type_script_index_0_lang.aaow5WHg.js",
+        "sha256": "18c9072eb28be6bea68e2fffb53aa6bf251bbeac9e6a2717bf84347c5477efff",
+        "bytes": 16510
+      },
+      {
+        "path": "_astro/charts.DlqpdznW.js",
+        "sha256": "576e92dc8c553b8faef3b3d276d1a5e1b0241e247bd2bde5a16a30541084842a",
+        "bytes": 2426
+      },
+      {
+        "path": "_astro/contact.BYFLp45H.css",
+        "sha256": "8c994b738b52c927f27d886a5fc322e8804666a43ca826fc5d27330567451262",
+        "bytes": 156126
+      },
+      {
+        "path": "_astro/contact.astro_astro_type_script_index_0_lang.jTigSwye.js",
+        "sha256": "6c0d6bc885ddc8980623ccef00739885b2f970a07010287dbde60cc7b9bcb55c",
+        "bytes": 2632
+      },
+      {
+        "path": "_astro/content.BCDK3LCG.css",
+        "sha256": "62a9046005120ca72f098d121c345a28e130bc0b0c816a729e799862b6424711",
+        "bytes": 4200
+      },
+      {
+        "path": "_astro/default.Dmjw7dg-.png",
+        "sha256": "a2f18a2a6e68e0e67b5585726c6c1bf8b488e8e8be99c1224142d0022fa2262d",
+        "bytes": 234997
+      },
+      {
+        "path": "_astro/designing-ai-for-high-stakes-technical-assessment.DyWabe9n.css",
+        "sha256": "f43a0cf4ab69dcd5fd02f07b79b3bd2349604b4b368fc8b579672f981554d7fa",
+        "bytes": 99266
+      },
+      {
+        "path": "_astro/designing-ai-for-high-stakes-technical-assessment.astro_astro_type_script_index_0_lang.BdBAlKFb.js",
+        "sha256": "ed735e4bc58fdd7aa89e0ec3759211e676cf0d7f3dfdb38f2358f06cc4cd3846",
+        "bytes": 2027
+      },
+      {
+        "path": "_astro/designing-for-trust-privacy-transparency-respect.D7Geuifl.css",
+        "sha256": "700565acbc4db290c5fc1d7381ec20298df79fc7162c2aecc23bccc2813f41e4",
+        "bytes": 95083
+      },
+      {
+        "path": "_astro/designing-for-trust-privacy-transparency-respect.astro_astro_type_script_index_0_lang.Dcuy_mQ1.js",
+        "sha256": "2d811b7f7a1c749237e74ad47931ebfddd537246305c2ca63579ae6551e9f435",
+        "bytes": 424
+      },
+      {
+        "path": "_astro/hero-bg-2.CHf3dhtm.png",
+        "sha256": "c0681b39a52431371f419a383d601a08a9ef35eb110d1c9bef8a0d1855e3c68a",
+        "bytes": 3044169
+      },
+      {
+        "path": "_astro/hero-bg.D5nPWpKx.png",
+        "sha256": "c5c2298140d676a5a047ebaabbe60c4f47c67aedcb44e6f9ad13ec078b04d5f5",
+        "bytes": 2692308
+      },
+      {
+        "path": "_astro/hero-bg.EvH5k5et.jpg",
+        "sha256": "450f7c74f796a44e7835684818b0e9b41f70b36c93558d33c46d5086d4953325",
+        "bytes": 20383
+      },
+      {
+        "path": "_astro/hero-image.Cl79UQ8p.png",
+        "sha256": "2135ee3f0f010b0f176e82ecaf6bf9cb3282a0f3d3178e23a8b021b3577f7c27",
+        "bytes": 3244487
+      },
+      {
+        "path": "_astro/hiring-infrastructure.CsDXdJeO.png",
+        "sha256": "e65473f2d51ae8b1a7d18a98798ae755278a21b22355bb72abde79e22e03183e",
+        "bytes": 20222
+      },
+      {
+        "path": "_astro/hiring-is-not-a-transaction-its-a-relationship.BbEKxsnQ.css",
+        "sha256": "7318b6a5737a9452702198cded1f4527bdc1ea4d8189292c1e0b449ca1686e5b",
+        "bytes": 101330
+      },
+      {
+        "path": "_astro/hiring-is-not-a-transaction-its-a-relationship.astro_astro_type_script_index_0_lang.BdBAlKFb.js",
+        "sha256": "ed735e4bc58fdd7aa89e0ec3759211e676cf0d7f3dfdb38f2358f06cc4cd3846",
+        "bytes": 2027
+      },
+      {
+        "path": "_astro/hiring-is-not-a-transaction.gYgX93BY.png",
+        "sha256": "18ea542d40197a035f931d5222294a5b9c6c3e565b8b1fb56ad3d81ca06c5e86",
+        "bytes": 1698635
+      },
+      {
+        "path": "_astro/hiring-is-not-a-transaction.gYgX93BY_Z1HNys1.jpg",
+        "sha256": "ead49a7f40a80f6cb880fc2f12f813b3e6e6d7ef9bbcd415fc7ec84ec7e894a4",
+        "bytes": 70469
+      },
+      {
+        "path": "_astro/home.DcwTAr1-.css",
+        "sha256": "f94bb28d865b3454af5ddcc686fcfb9a37294cfc2829725d2ad68463cbee4763",
+        "bytes": 135052
+      },
+      {
+        "path": "_astro/index.BHp9XquF.css",
+        "sha256": "c08ad6246a7825b7dafd57313dc9b71b917f2b550c2eaa871d9ae6bb5d5f821d",
+        "bytes": 85801
+      },
+      {
+        "path": "_astro/index.CXDEyTpb.css",
+        "sha256": "537da1f6aa2b28c35972a6dd07582c8d691b29d6df5d68b4a6f4c53fee975202",
+        "bytes": 64857
+      },
+      {
+        "path": "_astro/index.DPAXFJiE.css",
+        "sha256": "830720126597df409b357b858d30b21c360bf0aa500cf0e12e91c57fa6c65975",
+        "bytes": 88809
+      },
+      {
+        "path": "_astro/index.DtmcVNHG.js",
+        "sha256": "07f4c68c2c10c2d16e42dad6b5c0e3163d1566b99e35ba6012cecd2fb9c2229a",
+        "bytes": 17031
+      },
+      {
+        "path": "_astro/index.astro_astro_type_script_index_0_lang.B2xNNu0s.js",
+        "sha256": "94123247e00460837d0851a4c3df2e2a00644d0208cdcac672730fa3fac95607",
+        "bytes": 44
+      },
+      {
+        "path": "_astro/index.astro_astro_type_script_index_0_lang.BS5TzGXj.js",
+        "sha256": "66102beab1a0aa29d4156ca48b3e3dc5acf0b1d71b9ba2805d846763159399aa",
+        "bytes": 131
+      },
+      {
+        "path": "_astro/index.astro_astro_type_script_index_1_lang.BBMOE7SM.js",
+        "sha256": "e4b5547cc6c6d551100019b32a6bf8013cff5b203dcce211fc6b23d89c736358",
+        "bytes": 914
+      },
+      {
+        "path": "_astro/index.vkIlkYtC.css",
+        "sha256": "8e9d53904c24386ddaf646b95745201707296dc3d7176965bdc9cbc24c6213b7",
+        "bytes": 107149
+      },
+      {
+        "path": "_astro/intelligence.Cr9znQ1j.css",
+        "sha256": "991dd59bb6a1631adecb22a1d0bc2b1f331c89f302a8d21e15e4caca59dabb0c",
+        "bytes": 221928
+      },
+      {
+        "path": "_astro/intelligence.astro_astro_type_script_index_0_lang.CRSTBjGJ.js",
+        "sha256": "1984e797d5b31ccc439d4a4b3bd782ddc602ea8bf377751cc989891d43f4bd02",
+        "bytes": 92
+      },
+      {
+        "path": "_astro/intelligence.astro_astro_type_script_index_1_lang.DFfjVgs6.js",
+        "sha256": "56ce7ae963e2da0ed5212a974b4bc2dd01de8001b2c284b478e665c792069352",
+        "bytes": 16809
+      },
+      {
+        "path": "_astro/inter-cyrillic-ext-wght-normal.BOeWTOD4.woff2",
+        "sha256": "ca157063339ac4ad418f214f3abfed119b0798ab4d377386ce5c9e5a7a435ebd",
+        "bytes": 25960
+      },
+      {
+        "path": "_astro/inter-cyrillic-wght-normal.DqGufNeO.woff2",
+        "sha256": "71d5ee93cc1e9f1d520a3a8b66456de18c7879d8df09d57fcd2eaff75fef0075",
+        "bytes": 18748
+      },
+      {
+        "path": "_astro/inter-greek-ext-wght-normal.DlzME5K_.woff2",
+        "sha256": "6e9e020a25f9b56d418f2c085b1d3c09725a4da23fe693a5b463064606732190",
+        "bytes": 11232
+      },
+      {
+        "path": "_astro/inter-greek-wght-normal.CkhJZR-_.woff2",
+        "sha256": "1be3448e292fbf05ffe176fe1e43f135013d50b1e7d324ad1a558f623d3bb6f6",
+        "bytes": 18996
+      },
+      {
+        "path": "_astro/inter-latin-ext-wght-normal.DO1Apj_S.woff2",
+        "sha256": "34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956",
+        "bytes": 85068
+      },
+      {
+        "path": "_astro/inter-latin-wght-normal.Dx4kXJAl.woff2",
+        "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+        "bytes": 48256
+      },
+      {
+        "path": "_astro/inter-vietnamese-wght-normal.CBcvBZtf.woff2",
+        "sha256": "5c66f9e07e90c6d4ac4922cc68d60de26c17b1858e677fb5e603fce3952b3ff2",
+        "bytes": 10252
+      },
+      {
+        "path": "_astro/laptop.56YvgkdP.png",
+        "sha256": "ab2935dcbe34ae4d22da8d21f493dbf343ef67ccd00a72d11df5168bf03e7bea",
+        "bytes": 20188
+      },
+      {
+        "path": "_astro/meet-our-talent-advisors.BHalrsA0.png",
+        "sha256": "a2672aa84a934c401a4c5bae638d62b671ab23a859ca59b8c49b6293b4cee226",
+        "bytes": 48658
+      },
+      {
+        "path": "_astro/page.zh1XDkz8.js",
+        "sha256": "710fe3b5f666310193637f9bc289b33e60f32dded3bd400a33867583cb4d4052",
+        "bytes": 2254
+      },
+      {
+        "path": "_astro/placeholder.Bvl4ZYU5.png",
+        "sha256": "9b2db6feb59f6994c40c17c228a514d455adbec2997192ef85f150ac91c045e3",
+        "bytes": 679521
+      },
+      {
+        "path": "_astro/rethinking-hiring-metrics-signal-efficiency.CDnBjYiC.css",
+        "sha256": "f3d1d844d32f0834f38d2f02e504b1b6f21ea0ace07f1b54a7c394ee767768e0",
+        "bytes": 97242
+      },
+      {
+        "path": "_astro/rethinking-hiring-metrics-signal-efficiency.astro_astro_type_script_index_0_lang.Dcuy_mQ1.js",
+        "sha256": "2d811b7f7a1c749237e74ad47931ebfddd537246305c2ca63579ae6551e9f435",
+        "bytes": 424
+      },
+      {
+        "path": "_astro/services.CqM_Lj8i.css",
+        "sha256": "ec549c0f396edf6c8ed0f248b2420129c89a35b3c2a8bf5ebaba4af1bc45e9a0",
+        "bytes": 219441
+      },
+      {
+        "path": "_astro/services.astro_astro_type_script_index_0_lang.BfJQ_iRi.js",
+        "sha256": "66cd605aa85d631761c16fd022ae58b4f4d67ea6be34a3acef9f6e2102c7cce5",
+        "bytes": 3489
+      },
+      {
+        "path": "_astro/signal-based-hiring.B2Ay6bD4.png",
+        "sha256": "12e67dcc51c9131dbd517909aa6a5095daf6e9668287e44fa2b56a56ee9e9d26",
+        "bytes": 551084
+      },
+      {
+        "path": "_astro/signal-based-hiring.B2Ay6bD4_Z1e9pc8.jpg",
+        "sha256": "05bfd8c66f39ab264901d8d324999e4bef7a9fc531563a87b65a710512a3fe16",
+        "bytes": 192393
+      },
+      {
+        "path": "_astro/signal-efficiency.8lefGeXl.png",
+        "sha256": "a1af97ef8465f5f46e0e4c1be57871eb812370a3f249f518f9c108a9b0786cfe",
+        "bytes": 1614002
+      },
+      {
+        "path": "_astro/signal-efficiency.8lefGeXl_1MpzOU.jpg",
+        "sha256": "bd5001cd21ec2e349671a9ade566a6a330f5d50de2e0817309aabd7bc92dc3b6",
+        "bytes": 88684
+      },
+      {
+        "path": "_astro/signal-vs-noise-technical-hiring.astro_astro_type_script_index_0_lang.BdBAlKFb.js",
+        "sha256": "ed735e4bc58fdd7aa89e0ec3759211e676cf0d7f3dfdb38f2358f06cc4cd3846",
+        "bytes": 2027
+      },
+      {
+        "path": "_astro/start.nct19zUI.css",
+        "sha256": "dabfd1c31fb0a9ec80e2770a69ff0fd047feee337bccd9cb3b8dbea5f81be408",
+        "bytes": 9513
+      },
+      {
+        "path": "_astro/technical-hiring.Cjv_P-1M.png",
+        "sha256": "30d4fdb778a41aef709c67b4833d62e2f6acdd92892256ea10f85e4d376dbe6d",
+        "bytes": 501055
+      },
+      {
+        "path": "_astro/tribera_logo_default.z9-1FY0N.svg",
+        "sha256": "0760d5f968b5d79f74b0b9cdc9d9515a30516a711dd5f1860a6fc5e44582d62a",
+        "bytes": 130375
+      },
+      {
+        "path": "_astro/trust-by-design.sbdvdm_i.png",
+        "sha256": "bc580bd3f3cc9c660bb66b517470d7575e41f86ce4cae5c3d6d01439e2bde5d3",
+        "bytes": 28973
+      },
+      {
+        "path": "_astro/trust-by-design.sbdvdm_i_283bRk.jpg",
+        "sha256": "5f6221ce38c78729f3a66ec0642be8ed45c32049d13c2ce46bdc452cd51825d4",
+        "bytes": 28211
+      },
+      {
+        "path": "_astro/when-job-hunting-feels-like-a-black-hole.astro_astro_type_script_index_0_lang.BdBAlKFb.js",
+        "sha256": "ed735e4bc58fdd7aa89e0ec3759211e676cf0d7f3dfdb38f2358f06cc4cd3846",
+        "bytes": 2027
+      },
+      {
+        "path": "_astro/when-job-hunting-feels-like-a-black-hole.bxV7n3Xy.png",
+        "sha256": "54ddfe84a7a759270d97c26426a9134ec1c03c7f6cf837845675f6bc0ff03c41",
+        "bytes": 510914
+      },
+      {
+        "path": "_astro/when-job-hunting-feels-like-a-black-hole.bxV7n3Xy_ZUX5OT.jpg",
+        "sha256": "9f938f8bd0db30b4c69a24994477ca5085d72e7894ddcb0577e35b430bc2aae0",
+        "bytes": 149069
+      },
+      {
+        "path": "_astro/why-tech-hiring-really-takes-so-long.D9NuhBGR.png",
+        "sha256": "5e413819078cc9fe8902148a85eaa0bc35b1920ea6844bbbb7aad864be0965d8",
+        "bytes": 2497983
+      },
+      {
+        "path": "_astro/why-tech-hiring-really-takes-so-long.D9NuhBGR_w5fxT.jpg",
+        "sha256": "157e8833f488d1ddab1d77a22c324193dd295d0440d5b5f16cf2c8d122e867d7",
+        "bytes": 203797
+      },
+      {
+        "path": "_astro/why-tech-hiring-really-takes-so-long.astro_astro_type_script_index_0_lang.BdBAlKFb.js",
+        "sha256": "ed735e4bc58fdd7aa89e0ec3759211e676cf0d7f3dfdb38f2358f06cc4cd3846",
+        "bytes": 2027
+      },
+      {
+        "path": "_headers",
+        "sha256": "065b8ff7cd64f819d2acefdababf396f9dc74171662aefd6568a785748250bb5",
+        "bytes": 1448
+      },
+      {
+        "path": "abhishek.png",
+        "sha256": "eb6bd056488e8466f1da2124a6f8150ede190bac2556a1bf894f19ee59cb95d6",
+        "bytes": 1324051
+      },
+      {
+        "path": "about/index.html",
+        "sha256": "995eb9e49c4793e0f7f05944306130e8044327a783240c21b151df96d51759f1",
+        "bytes": 271035
+      },
+      {
+        "path": "akshata.png",
+        "sha256": "e1770e6650069a4086eef66380e84e6857e35f3be5654e2656962e7697937a3c",
+        "bytes": 1394563
+      },
+      {
+        "path": "apple-touch-icon.png",
+        "sha256": "4f2dc6cb670f4307a4775047adf8813739c6dcbe5261db450d3e22f020d129f7",
+        "bytes": 5745
+      },
+      {
+        "path": "blog/designing-ai-for-high-stakes-technical-assessment/index.html",
+        "sha256": "37b86c92d0a8e44e3746b1808cd6a103da2ea18ab7b63f7b17584b267f071fb5",
+        "bytes": 63021
+      },
+      {
+        "path": "blog/designing-for-trust-privacy-transparency-respect/index.html",
+        "sha256": "4489473b987474dbbf27571048ddf30221362921bcaca708fc5da2920b68a6db",
+        "bytes": 66693
+      },
+      {
+        "path": "blog/hiring-is-not-a-transaction-its-a-relationship/index.html",
+        "sha256": "ad4816cf2a664ebe0bde635071633c7fbe374363f75f0b42a22af0f6b0e4b602",
+        "bytes": 53803
+      },
+      {
+        "path": "blog/index.html",
+        "sha256": "b6e171807a1944266d63a5f806ea44f7e8c35d39494a0eb36e496b01bad3d22b",
+        "bytes": 136204
+      },
+      {
+        "path": "blog/rethinking-hiring-metrics-signal-efficiency/index.html",
+        "sha256": "6831c3cc1df4a087e66adc4d375cf12ed10147c9c9f1b49f082d04220634c8da",
+        "bytes": 140910
+      },
+      {
+        "path": "blog/signal-vs-noise-technical-hiring/index.html",
+        "sha256": "aa1be4c48cc65578ab1a9d5d8f20104adab338da8755d0b8a17c686470682eac",
+        "bytes": 68495
+      },
+      {
+        "path": "blog/when-job-hunting-feels-like-a-black-hole/index.html",
+        "sha256": "dee5b121356dde5b8a25f2844d7ad817abd51f128434fcf60d47b1dea6932a98",
+        "bytes": 69384
+      },
+      {
+        "path": "blog/why-tech-hiring-really-takes-so-long/index.html",
+        "sha256": "57a36e7b15e413f65b66e090d648663faef2ac6bdee00e72966ea6a2df873c64",
+        "bytes": 53255
+      },
+      {
+        "path": "brand/v9/apple-touch-icon.png",
+        "sha256": "5c9834a0a8d5885ea345c02a0c0bdb756da3ac1a57d77de03f9dcf1909693477",
+        "bytes": 1344
+      },
+      {
+        "path": "brand/v9/authors/akshata-chandavarkar.jpg",
+        "sha256": "3e31b5fb40e8a54b72e55cc6b95bdee818270032d9059d7a57e83e26f187b324",
+        "bytes": 3268
+      },
+      {
+        "path": "brand/v9/candidates/hero-field.svg",
+        "sha256": "a5e0568e9610cfac0ff89621ec50e0503478036da7debb9088bf60c09316a0a5",
+        "bytes": 27347
+      },
+      {
+        "path": "brand/v9/editorial/portrait-3742dc874889.jpg",
+        "sha256": "3742dc874889b02551bb22208b872b6065b686a42063655660d7471d7e02d2ff",
+        "bytes": 19806
+      },
+      {
+        "path": "brand/v9/editorial/portrait-4fd2bf498416.jpg",
+        "sha256": "4fd2bf498416789758ee3a5b317445421d1df1234a734ce9317d890d1001a4d8",
+        "bytes": 30040
+      },
+      {
+        "path": "brand/v9/editorial/portrait-a03becec00ab.jpg",
+        "sha256": "a03becec00abdf94473771e75607ab54e6bf0d8357697cf440d2fd90a7978f4f",
+        "bytes": 26191
+      },
+      {
+        "path": "brand/v9/favicon.ico",
+        "sha256": "74f57d4ad2e23d107cc9e276802fa609311595b67cc74d61fe516675887fbef4",
+        "bytes": 2206
+      },
+      {
+        "path": "brand/v9/favicon.svg",
+        "sha256": "748d5c89844af7cbd3c2dcd0781ace2e0f9273c5e94d9a666a03b0b49006763f",
+        "bytes": 438
+      },
+      {
+        "path": "brand/v9/icon-192.png",
+        "sha256": "56935e97f4eb77b812da644a7fef944175f51ee0b471c43ac615185f93675671",
+        "bytes": 3121
+      },
+      {
+        "path": "brand/v9/icon-512.png",
+        "sha256": "f73a1889e5acfbb8a3a702f1a082909bb020eba9e62fdccfc932e9a26ad7654b",
+        "bytes": 9696
+      },
+      {
+        "path": "brand/v9/icon-maskable-512.png",
+        "sha256": "032dd56b7103948de65d4becd94bb4e2edf5735e89805b4afc441a59bd650e5c",
+        "bytes": 4664
+      },
+      {
+        "path": "brand/v9/icons-manifest.json",
+        "sha256": "42c62967e6951be6bd572c6785bf0237e4eb6f2e477abace2b0f14b4d27d1fa5",
+        "bytes": 1217
+      },
+      {
+        "path": "brand/v9/site.webmanifest",
+        "sha256": "17faa967eb490157753e3f9f5a8ef70710dedaaf3c8518c11d4770712911ed2d",
+        "bytes": 596
+      },
+      {
+        "path": "brand/v9/tribera-logo-black.png",
+        "sha256": "0d6195e702b06da92e195094c4a6a6e2d5cda47a29f70ba81718e166ab0a3a34",
+        "bytes": 20557
+      },
+      {
+        "path": "brand/v9/tribera-logo-red.png",
+        "sha256": "6099827fb56a00e3686b89200c99b88cb3177f54bee46eb5e4a8baada5fa1eb1",
+        "bytes": 25051
+      },
+      {
+        "path": "brand/v9/tribera-logo-white.png",
+        "sha256": "22de6403cca1d5ffcc064c222e062e8e0d405f46467c27b60cd4a9ad83261f88",
+        "bytes": 20454
+      },
+      {
+        "path": "candidates/index.html",
+        "sha256": "2e3a34709110e39ea5a47f8c638947e076c8ce361c032e204b4014d6496e3fe1",
+        "bytes": 152502
+      },
+      {
+        "path": "candidates/start/index.html",
+        "sha256": "99a1014040521198d47cca176069819dcc822655dad38f3271a5946fc10990e7",
+        "bytes": 83784
+      },
+      {
+        "path": "careers/ai-ml-engineer/index.html",
+        "sha256": "0319e18ba1e7eade974ff8a83a315252c7f47c85fbd3e5fb1ad37e001d745e6f",
+        "bytes": 53058
+      },
+      {
+        "path": "careers/backend-engineer/index.html",
+        "sha256": "ab53ee2012f90f3861ea1f48252d930fb304d748aaa796ade598ddcb47dd707c",
+        "bytes": 52945
+      },
+      {
+        "path": "careers/growth-intern/index.html",
+        "sha256": "b44c8985c5f49019b9846b3fd6af9314cf451b9c17844a73ecdcad751ade296a",
+        "bytes": 52756
+      },
+      {
+        "path": "careers/index.html",
+        "sha256": "d422bc557da65b1d7f83715fa403f1ebad5e012b13a4f2c6c03a1f7a4b2363ab",
+        "bytes": 45610
+      },
+      {
+        "path": "careers/senior-delivery-partner/index.html",
+        "sha256": "c62986b3b983f39ddbc6c3640f3d6ad2ca670395baa1e01539eaaa92dcfefcf7",
+        "bytes": 52950
+      },
+      {
+        "path": "careers/software-intern/index.html",
+        "sha256": "6c19be3ef5e871d91940bdc75f317ad1cec577f58020068b590c775f3c7e48a7",
+        "bytes": 52839
+      },
+      {
+        "path": "careers/talent-advisor/index.html",
+        "sha256": "e3d8ad2c6ed14c2951b2f3ad36f9a29a3218ae0c964481e8431679867205992a",
+        "bytes": 52875
+      },
+      {
+        "path": "careers/talent-associate/index.html",
+        "sha256": "cff705093c3ff310758094eca96ba2cfa8a337adb594d0907095e077d4106193",
+        "bytes": 52629
+      },
+      {
+        "path": "careers.json",
+        "sha256": "081ba58d9709a766f2de5018d50cfedd7588fc5f6dba2d7c9d78511d8b8d4a69",
+        "bytes": 2200
+      },
+      {
+        "path": "category/ai-and-assessment/index.html",
+        "sha256": "3e1aa850a5abedb137603be658580933311d4194fda683c8b6a091301668a931",
+        "bytes": 80957
+      },
+      {
+        "path": "category/candidate-experience/index.html",
+        "sha256": "2fd505cd550c01d16f9618c7b27435387469a77e78471ed66481b4da7cb2d679",
+        "bytes": 83155
+      },
+      {
+        "path": "category/hiring-philosophy/index.html",
+        "sha256": "2697d4fd3427d2b426db85907d1239d2adf69b9d07c570df297813259e70c324",
+        "bytes": 81035
+      },
+      {
+        "path": "category/hiring-strategy/index.html",
+        "sha256": "8175c6235982165a7ad79e2ef9670bcac65ad156f94bf801159f5f6ef9ee20d2",
+        "bytes": 81004
+      },
+      {
+        "path": "category/technical-hiring/index.html",
+        "sha256": "b5cc464d871c8c16496f8003817ec94867d9756827e810ba4e372c01d1be8445",
+        "bytes": 83071
+      },
+      {
+        "path": "contact/index.html",
+        "sha256": "1ea3b76ff895d46e15f90f654f92a173a141885bb391abef321a51c09c62df1c",
+        "bytes": 49059
+      },
+      {
+        "path": "decapcms/config.yml",
+        "sha256": "397891fdf5ceff67939dca11682e7daeab7eb372e0d06cfbd6f49f7d2cf6c614",
+        "bytes": 3351
+      },
+      {
+        "path": "decapcms/index.html",
+        "sha256": "7fd3270e89d3e4e6dbe8f8b1f19c248131d29982379c00113492131c27305936",
+        "bytes": 372
+      },
+      {
+        "path": "favicon-16x16.png",
+        "sha256": "6cfdc9692a20e09f023b5bba11793e5f5cc296b92e125a0c7e9faa4083d5aefe",
+        "bytes": 290
+      },
+      {
+        "path": "favicon-32x32.png",
+        "sha256": "0b30dc4f518910dd8fc2a3270d5975087df69dd6bb6974510eeffccb67831205",
+        "bytes": 566
+      },
+      {
+        "path": "favicon.ico",
+        "sha256": "9efce47d50845f8672765935de64c8cdf8b045c9f521f8531059fbbd12050e04",
+        "bytes": 15406
+      },
+      {
+        "path": "favicon.png",
+        "sha256": "0b30dc4f518910dd8fc2a3270d5975087df69dd6bb6974510eeffccb67831205",
+        "bytes": 566
+      },
+      {
+        "path": "favicon.svg",
+        "sha256": "b0b6799f95a624d9924d44a3edcbbaad27c101aac003148c59557c5d190f2eff",
+        "bytes": 45374
+      },
+      {
+        "path": "fonts/caveat-700.woff2",
+        "sha256": "292d88857413faf9dc841d1404ad6726d82b783cf7982616d61fda0d62e52de5",
+        "bytes": 105820
+      },
+      {
+        "path": "fonts/caveat-OFL.txt",
+        "sha256": "163a2b400e16916ad3196296c946c526d0efce6baf22a2164269ffc62fb9f671",
+        "bytes": 4384
+      },
+      {
+        "path": "fonts/figtree-400.woff2",
+        "sha256": "8f98dd642986f1fa39c45b89665a57372897c235b36028e0e4a136e43dc5f8ab",
+        "bytes": 11384
+      },
+      {
+        "path": "fonts/figtree-500.woff2",
+        "sha256": "953a6a4294b1205a1b4d4b9e5529478e8c9e1c5a67a9aa24a551414cd85b6f51",
+        "bytes": 11432
+      },
+      {
+        "path": "fonts/figtree-600.woff2",
+        "sha256": "367d713287918784702563518f59239989da815c80d3c7337686b9816635a08b",
+        "bytes": 11544
+      },
+      {
+        "path": "fonts/figtree-700.woff2",
+        "sha256": "7ec4f08d09f91d349917dd6592f6aaae66d8fe1bbd58fa24707961e79236616e",
+        "bytes": 11376
+      },
+      {
+        "path": "fonts/figtree-800.woff2",
+        "sha256": "90f6908a05e4dc417647be6d0637eb8ecb7977cab9e577ab284d02c2092111e3",
+        "bytes": 11392
+      },
+      {
+        "path": "fonts/fraunces-400.ttf",
+        "sha256": "3eb6cf0a14feb1876cc464fa093af4e0c5b05dc46dec65619c1d95f2a1ab5aa7",
+        "bytes": 71580
+      },
+      {
+        "path": "fonts/fraunces-400.woff2",
+        "sha256": "9545c7576624bfcb88f4e9149437336eaa7d08a825e4ede9a1169c5557b11da5",
+        "bytes": 30668
+      },
+      {
+        "path": "fonts/fraunces-500-italic.ttf",
+        "sha256": "9e23cd9475dfedb1d2510ea0aaca7fbb55a4eb4e6d39f423cd5af2394991b4bd",
+        "bytes": 85108
+      },
+      {
+        "path": "fonts/fraunces-500.ttf",
+        "sha256": "0c2fad18ed36cc400041f1e281ee79954a329b345caffc38dfaa3bb8bcef57de",
+        "bytes": 71596
+      },
+      {
+        "path": "fonts/fraunces-500.woff2",
+        "sha256": "59fb960b00b8e3fe9deb689623611f15e0465a9c2baf33a0a124bc4bdeb0f3b8",
+        "bytes": 30636
+      },
+      {
+        "path": "fonts/fraunces-600.ttf",
+        "sha256": "ff7cf63717c27756df857ca12045a83522569f7b561bedaff813a25274eb263f",
+        "bytes": 71632
+      },
+      {
+        "path": "fonts/fraunces-600.woff2",
+        "sha256": "fb7d3679bb12bc1b064ed1c9fc3786ef812d93ca6b79430e2533d449cc9f8c3d",
+        "bytes": 30740
+      },
+      {
+        "path": "fonts/fraunces-italic-latin.woff2",
+        "sha256": "066710ce7ed235a339d3d6cdcc8b55c0bea5632232662d83aacea25852108271",
+        "bytes": 81520
+      },
+      {
+        "path": "fonts/inter-tight-400.woff2",
+        "sha256": "6f32da94d4f26e98cb6ccd97034d306aa38945322c816f54a93c7d15dc0905b8",
+        "bytes": 22016
+      },
+      {
+        "path": "fonts/inter-tight-500.woff2",
+        "sha256": "6c0019f88d5bc179f2c972998ed8c14e779254566da9081c5e29f364a0a0aeb6",
+        "bytes": 22616
+      },
+      {
+        "path": "fonts/inter-tight-600.woff2",
+        "sha256": "db1a039d03ed646ef6a899f9ff92bf2f6fe382a49f1b0992066e85caf88b5be9",
+        "bytes": 22660
+      },
+      {
+        "path": "fonts/jetbrains-mono-400.woff2",
+        "sha256": "14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb",
+        "bytes": 21168
+      },
+      {
+        "path": "fonts/jetbrains-mono-500.woff2",
+        "sha256": "cb182feeed4d798ff6961d3c79f7026279448fca0676438aaecb21f3fc39553a",
+        "bytes": 21832
+      },
+      {
+        "path": "fonts/jetbrains-mono-700.woff2",
+        "sha256": "d0d4e818808f2a0ba39b2b09d1989366f63494e295f003c7ef436697378507e8",
+        "bytes": 21908
+      },
+      {
+        "path": "fonts/site-fonts.css",
+        "sha256": "c0b21a7f10555716ebec4fdc3e6e56b24bec3ee34cf28def586e197d8171f38d",
+        "bytes": 425080
+      },
+      {
+        "path": "fonts/v9/README.md",
+        "sha256": "ee8388cf65e94cf9ee9d333cfca8d2ac7bbe91224ef4edd65e932c2db6c4beb8",
+        "bytes": 2500
+      },
+      {
+        "path": "fonts/v9/fraunces-OFL.txt",
+        "sha256": "bdf4c22802eaf804f998195871c6b8938aac2ac14b2d78a8bd66a6f1eced833b",
+        "bytes": 4391
+      },
+      {
+        "path": "fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "sha256": "066710ce7ed235a339d3d6cdcc8b55c0bea5632232662d83aacea25852108271",
+        "bytes": 81520
+      },
+      {
+        "path": "fonts/v9/fraunces-italic-latin-ext-437e9d07.woff2",
+        "sha256": "4983926d3a16544eedcd2233448bd8a43f711e7bf1fabaae8431e78e0b798635",
+        "bytes": 71460
+      },
+      {
+        "path": "fonts/v9/fraunces-italic-vietnamese-ccf0fecc.woff2",
+        "sha256": "23af38108404d4b05ea87498afc5a104a3fe878b6339d162472e914a2c8bfa93",
+        "bytes": 22128
+      },
+      {
+        "path": "fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "sha256": "7234ed860a9cc83045413c4faee63c960a8f2d1917adcf728119307d56e0d783",
+        "bytes": 67304
+      },
+      {
+        "path": "fonts/v9/fraunces-normal-latin-ext-7cdca5ec.woff2",
+        "sha256": "a2930b27d13a228bd9ab6a49269b5f800237892ad560cb9dd7fab01b1620f88e",
+        "bytes": 59388
+      },
+      {
+        "path": "fonts/v9/fraunces-normal-vietnamese-a4c5fe4f.woff2",
+        "sha256": "f18853f63a870ebef013e30e789d8d544f102e4acd94988e57c223d9c796ddf4",
+        "bytes": 19700
+      },
+      {
+        "path": "fonts/v9/inter-tight-normal-cyrillic-0cc45335.woff2",
+        "sha256": "3937173d62f238179ca073aee632d53ebc088967ac841bf213211be05720881a",
+        "bytes": 16996
+      },
+      {
+        "path": "fonts/v9/inter-tight-normal-cyrillic-ext-a8294514.woff2",
+        "sha256": "9bba92a871106008d89cc9734c218a3660b92ff647bdfb6879bf0440fba002c0",
+        "bytes": 26660
+      },
+      {
+        "path": "fonts/v9/inter-tight-normal-greek-8f59721c.woff2",
+        "sha256": "815c54f4279b399a2afb93e99844e0ba6d9df2fc809eab372aa05e8b8d0847da",
+        "bytes": 22192
+      },
+      {
+        "path": "fonts/v9/inter-tight-normal-greek-ext-7aa16fae.woff2",
+        "sha256": "83735bbea54cc7c4e7ee2af3ede4c2bc5e421ba5bdef4cd3ea2ec8d25b5afaa8",
+        "bytes": 11700
+      },
+      {
+        "path": "fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "sha256": "77fefe8ca19b9f69b5284832c519e0493127c1f091f0a8936884be7721c4e618",
+        "bytes": 44872
+      },
+      {
+        "path": "fonts/v9/inter-tight-normal-latin-ext-e1523547.woff2",
+        "sha256": "fd9beddaaec644945809da574cf1caf342073c7e4b46a2ea5bd136c8cf1a9eca",
+        "bytes": 89800
+      },
+      {
+        "path": "fonts/v9/inter-tight-normal-vietnamese-c69d8181.woff2",
+        "sha256": "88599e6f2f36551c98dd836df944179f0d4e31eefa620bb753c96069b53ac55a",
+        "bytes": 10480
+      },
+      {
+        "path": "fonts/v9/intertight-OFL.txt",
+        "sha256": "50240ab035cf1b6b3307940235481d515c4b6de3ab1fa843dbe59e7892cb9d58",
+        "bytes": 4383
+      },
+      {
+        "path": "fonts/v9/jetbrains-mono-normal-cyrillic-eb83d8d4.woff2",
+        "sha256": "e17cfd15fb96909d64095015f958207063a0c07191da3512df7d560a781aebdf",
+        "bytes": 8872
+      },
+      {
+        "path": "fonts/v9/jetbrains-mono-normal-cyrillic-ext-6b5e37b5.woff2",
+        "sha256": "62213be8a78b42f1e29d1452d91e2f8b3e745572a9dd98d3941e39fa00b37d76",
+        "bytes": 1640
+      },
+      {
+        "path": "fonts/v9/jetbrains-mono-normal-greek-99e40033.woff2",
+        "sha256": "0a557721b1f8b36d3f3f84442689a71ca4a744300abcb46a1953f51bfc663b66",
+        "bytes": 6836
+      },
+      {
+        "path": "fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "sha256": "83c005d49d8a6a50474c73a5a36ac0468076e9c4a29da7bdb14995d80560a5be",
+        "bytes": 31432
+      },
+      {
+        "path": "fonts/v9/jetbrains-mono-normal-latin-ext-b19c2080.woff2",
+        "sha256": "db5ff4db83e580426280e9337a58dc57d3a83784a1b03ad80914651594441d52",
+        "bytes": 11624
+      },
+      {
+        "path": "fonts/v9/jetbrains-mono-normal-vietnamese-c4064400.woff2",
+        "sha256": "c89b9cc0bc6262bd4f8d8494b6961601f3aefa829d08c2e3635f4d501d3a47c2",
+        "bytes": 5888
+      },
+      {
+        "path": "fonts/v9/jetbrainsmono-OFL.txt",
+        "sha256": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d",
+        "bytes": 4399
+      },
+      {
+        "path": "fonts/v9/manifest.json",
+        "sha256": "33671856cd37a83f3542fbbd90cd562dc635407ada6f2cd1ce1b1233c3b298f1",
+        "bytes": 21899
+      },
+      {
+        "path": "functions/data-analytics/index.html",
+        "sha256": "596807a801191c301d3cffefbb79c23e0bbe055569f4a457f931af3a1627d77d",
+        "bytes": 46468
+      },
+      {
+        "path": "functions/engineering-platform/index.html",
+        "sha256": "b55fef478de4cdd4ccd7da12aeeed2903ff980735f4ed3104b0930b690dc65c0",
+        "bytes": 46747
+      },
+      {
+        "path": "functions/finance-risk/index.html",
+        "sha256": "6fc6e7f5193da9427b2451ae9072c103005271a220495027fa633171fa5bca76",
+        "bytes": 45948
+      },
+      {
+        "path": "functions/index.html",
+        "sha256": "2e6c50b2911d09f5f6681944907fff07ad67b9033ccf6c6804b4bea11a8e1a81",
+        "bytes": 48420
+      },
+      {
+        "path": "functions/infrastructure-sre/index.html",
+        "sha256": "8e69c0740a42a5abe460bf276f316637a5bd0bec5a5cb7ee56dedc293b4449d9",
+        "bytes": 46380
+      },
+      {
+        "path": "functions/leadership/index.html",
+        "sha256": "b71f970ac30d46c328e0dabbb35fb4501954cc22ee7a9eef0da542549bc31e51",
+        "bytes": 45472
+      },
+      {
+        "path": "functions/operations/index.html",
+        "sha256": "f74fcd82ef9556973b13f83338bb8cea9f170ef98aa635ad61fb6c470219612e",
+        "bytes": 45603
+      },
+      {
+        "path": "functions/product-design/index.html",
+        "sha256": "ccab853af47ea714b059d1fe146fcd1cae487fbfc75b1843c1f7c136b87bcfa2",
+        "bytes": 45792
+      },
+      {
+        "path": "functions/security/index.html",
+        "sha256": "1732fa3704430890502c14959267ad9e3635bf5746852af0983f9cfde55cadae",
+        "bytes": 46148
+      },
+      {
+        "path": "index.html",
+        "sha256": "ff59d21cb6008f6a4fc1ceac2bee20c12d14c19883b53871d732af8d18d21988",
+        "bytes": 170090
+      },
+      {
+        "path": "industries/ai-data/index.html",
+        "sha256": "79caacbe16a80e88377d2e3d5c6ebb7a562a44d9f29781149439267cd507e565",
+        "bytes": 45306
+      },
+      {
+        "path": "industries/banking-financial-services/index.html",
+        "sha256": "f4a6e5a3539dac3aa6b51730f519542baebea7ae03ac6b8cc2cb0287f2673618",
+        "bytes": 46529
+      },
+      {
+        "path": "industries/consumer-digital-commerce/index.html",
+        "sha256": "63f1276b2435852ba4b0b9448781d1280e567b7c34502c43857d3a498b41f3e4",
+        "bytes": 45171
+      },
+      {
+        "path": "industries/cybersecurity/index.html",
+        "sha256": "bc219bb761e9026f420e68338022c8b6d3db0b72f4947e2810d4eae9791abc7a",
+        "bytes": 45267
+      },
+      {
+        "path": "industries/enterprise-technology/index.html",
+        "sha256": "927227bc8282dc3c4ec26677a33595c0b15e178d041112153d7280d5e83fd96e",
+        "bytes": 45463
+      },
+      {
+        "path": "industries/global-capability-centres/index.html",
+        "sha256": "2bef91635a2aa0745154c0d1ee1cf715f8211d57c9c5f7d042437b408e06efb7",
+        "bytes": 45438
+      },
+      {
+        "path": "industries/healthcare-life-sciences/index.html",
+        "sha256": "1a348436fc2e984c96c907efa43ddb8fff333119a87e3dc8cb819badbedf8d71",
+        "bytes": 45353
+      },
+      {
+        "path": "industries/index.html",
+        "sha256": "49737a931a25283a4b9b1eb25cb81783322bf531edadc59c13b6d474362c1a2f",
+        "bytes": 39500
+      },
+      {
+        "path": "industries/industrial-engineering/index.html",
+        "sha256": "8ed0211b93f6b43e9d47b7f08ed309db89bb5afcdace3f79a0f53eb2a16eec0b",
+        "bytes": 45090
+      },
+      {
+        "path": "industries/manufacturing/index.html",
+        "sha256": "aab2fde9e436710c9d1ebe8ba754b43fea0aa8a1bbe445ae12d7a5ee1bb52584",
+        "bytes": 45167
+      },
+      {
+        "path": "industries/pharmaceutical/index.html",
+        "sha256": "dc0cf65fdb34e23cb6c5eee174bd31412ceb163f58292112f106a1c45d8f96f4",
+        "bytes": 45326
+      },
+      {
+        "path": "industries/private-equity-portfolio/index.html",
+        "sha256": "282305c54d32da99e9ac2592a348661eb1bb45d9af1c18a66b0505341ac731b2",
+        "bytes": 45375
+      },
+      {
+        "path": "industries/product-saas/index.html",
+        "sha256": "a8fcfb29c4dec322188e20138c81ffbcb4ba4ee2219b802683e7ff976878f336",
+        "bytes": 45217
+      },
+      {
+        "path": "intelligence/index.html",
+        "sha256": "db1fdc80f17ff06865fd8271a9705218fbef47703c0cf9c8abf0ca24ac798cf0",
+        "bytes": 199635
+      },
+      {
+        "path": "og-default.png",
+        "sha256": "23eb8a08ecc597d465fe4fc70c2a56dcd16d783a264b5c24ea7f851803f30132",
+        "bytes": 118295
+      },
+      {
+        "path": "og-image.png",
+        "sha256": "198e3830b83c0cac846985b3924f606a26851bf4c930585985c7affd9e646f25",
+        "bytes": 103790
+      },
+      {
+        "path": "pranav.png",
+        "sha256": "2f8e569c39d4433a66af6ac7787443ba12e9548bf506b1280e99cffc72d3591e",
+        "bytes": 1439294
+      },
+      {
+        "path": "privacy/index.html",
+        "sha256": "9d81f22f715332e7f5282d8ab594fa8641cbc667fddf0804173ed1ac1caf2bce",
+        "bytes": 84492
+      },
+      {
+        "path": "robots.txt",
+        "sha256": "232117be4da43bcbe32c9e9ef7cabac986f2f5dde7f029a387cf39c44177b29b",
+        "bytes": 135
+      },
+      {
+        "path": "scripts/newsletter-signup.js",
+        "sha256": "2808273bc5b533c3ddc6cb5dd1cfc69d37fecf285a3df78fab59fd461d099b2a",
+        "bytes": 722
+      },
+      {
+        "path": "security/index.html",
+        "sha256": "5f14217065085a607423bf7ebdc779b3ad6dcb95980acf03495ef986d1753f59",
+        "bytes": 79642
+      },
+      {
+        "path": "services/index.html",
+        "sha256": "d37dcd56203e92250bc1309572689fc6174bf2254d5986a907ce1ddf61f5ffd4",
+        "bytes": 57103
+      },
+      {
+        "path": "sitemap-0.xml",
+        "sha256": "30ecaa6be903cac0e6e7879d9eb4f141b682733026ddc764c11b2731532b92df",
+        "bytes": 3585
+      },
+      {
+        "path": "sitemap-index.xml",
+        "sha256": "cb53b84f7476ac41c5ee0f26f8eb230a81a11c6525b78ad81e27f11a3933e114",
+        "bytes": 185
+      },
+      {
+        "path": "tag/ai-in-hiring/index.html",
+        "sha256": "e43e0d296db40c0cb90c7ee43c40fa06c4179e5d32214fe9b4146d49f49e3e85",
+        "bytes": 80945
+      },
+      {
+        "path": "tag/candidate-experience/index.html",
+        "sha256": "bfae371813c292bbe766b01bc6773e08d7f45441b339fc646ee33f1c7c72cbc9",
+        "bytes": 83210
+      },
+      {
+        "path": "tag/decision-infrastructure/index.html",
+        "sha256": "dfc44cc44d75d73faa9728be9bf1c62806017d78d023a9a87deb48cf8a2873cb",
+        "bytes": 82995
+      },
+      {
+        "path": "tag/empathy/index.html",
+        "sha256": "f89d132643e3ba4a2272c788aa6c31368fc2eab2949457944964398239a9bf8e",
+        "bytes": 80979
+      },
+      {
+        "path": "tag/engineering/index.html",
+        "sha256": "f744d45b346083cccbd9967d1039ba29c32b09ae616979fb827ea93531bc3540",
+        "bytes": 80935
+      },
+      {
+        "path": "tag/hiring-insights/index.html",
+        "sha256": "5e52d99672763360f726d7be2f8d5589d091920d676b72636e96c1f975491012",
+        "bytes": 81128
+      },
+      {
+        "path": "tag/hiring-metrics/index.html",
+        "sha256": "e316fd3882bec3e686de0de804293889865c5e912885e1c10d68cb8874f63660",
+        "bytes": 81034
+      },
+      {
+        "path": "tag/human-first-hiring/index.html",
+        "sha256": "31951ba00174dc1cff147db0aadc10101e034a468c28882bf09f8379839cc23f",
+        "bytes": 81089
+      },
+      {
+        "path": "tag/job-search-tips/index.html",
+        "sha256": "42d28512e8ac2a0be364a684756fe0a47996f5de6bc56acac30cf1a8891cd3f1",
+        "bytes": 81128
+      },
+      {
+        "path": "tag/platform-design/index.html",
+        "sha256": "4b04bb423f4193c9af708d0cfe7b28b5735f6158245dc5aaca5f4d7488ef08ac",
+        "bytes": 81040
+      },
+      {
+        "path": "tag/privacy-by-design/index.html",
+        "sha256": "5ee0c72f67cdb0bf870dae25b5fed422b97bbad6a68c667d39ee070acb6cdecf",
+        "bytes": 81060
+      },
+      {
+        "path": "tag/professional-respect/index.html",
+        "sha256": "4ae1df6fe0588a28f9b8efb15423ae847103cbd9a6f3be51bc3d65a1809e8961",
+        "bytes": 81090
+      },
+      {
+        "path": "tag/quality-of-hire/index.html",
+        "sha256": "f498c2ebac33a2c13b468250b9cf1ca34def4a007b7782794dce123b3646d0ce",
+        "bytes": 81044
+      },
+      {
+        "path": "tag/recruitment/index.html",
+        "sha256": "f177850b33c6339b080a9f1aa9975474bae136da48d269cbe56851406bb9efed",
+        "bytes": 81005
+      },
+      {
+        "path": "tag/signal-based-hiring/index.html",
+        "sha256": "612713593a8f5849fe5035a21e643a4fba5d6f54c2112c88f73f7c7ac9e35c98",
+        "bytes": 83143
+      },
+      {
+        "path": "tag/structured-evaluation/index.html",
+        "sha256": "7f01559b241d6c139d80b1519a7c2c9e77e9565e1751973f2a382f53085a4d3e",
+        "bytes": 83066
+      },
+      {
+        "path": "tag/talent-acquisition/index.html",
+        "sha256": "7e5435fd5b67118a04d302f2bfbd1cb4c516a27858a76db563df04dfb25f8d20",
+        "bytes": 87115
+      },
+      {
+        "path": "tag/technical-assessment/index.html",
+        "sha256": "c96eeb4994c4deb092aabf5b50214f9b496a037eff29fb8a4604b43dae1685f9",
+        "bytes": 81025
+      },
+      {
+        "path": "tag/technical-hiring/index.html",
+        "sha256": "e06d0b447c2f364793de373b2fad0cc2d5f41229314b6062edd3a257a5a5db5d",
+        "bytes": 83118
+      },
+      {
+        "path": "tag/thought-leadership/index.html",
+        "sha256": "49bc763041ea2c41a6057f197844454db828a1c568ef0ad35fbd53ac8aa27c5b",
+        "bytes": 81089
+      },
+      {
+        "path": "tag/time-to-hire/index.html",
+        "sha256": "f2dc48d86a58fb4e05d5f3d7b63df4e6a544aa483ff3b6563c4b140ed96deac6",
+        "bytes": 81041
+      },
+      {
+        "path": "tag/trust-in-hiring/index.html",
+        "sha256": "5977c733acdefb7cb48bc02e7577d2d47bb8b4d53fe5ac06d7a7cc83ffd4d908",
+        "bytes": 81040
+      },
+      {
+        "path": "terms/index.html",
+        "sha256": "409f716402f4e5242af2bf0797b1fa9fb7d763e539c22ad4dc3e62b2286310d2",
+        "bytes": 83221
+      }
+    ]
+  },
+  "candidate": {
+    "path": "/tmp/tribera-v9-a1/artifacts/v9-a1/production-dist",
+    "fileCount": 266,
+    "inventorySha256": "b3caabda63ba7582299cd2d81542758cbf05ac449ba1d1e64c2f15d19c54ec50",
+    "files": [
+      {
+        "path": "404.html",
+        "sha256": "c075cc37ccd74ef5ef7c6abdcb3d6592c0035619633471686338c66450ec90e3",
+        "bytes": 79623
+      },
+      {
+        "path": "_astro/--hero-bg.DQPe3Sqy.png",
+        "sha256": "85420ff86f7b7896396070cbd71a7ddd12f8afa28294f2f253d241bec56cc785",
+        "bytes": 15724
+      },
+      {
+        "path": "_astro/-tribera_logo_default.BwGHjgDg.svg",
+        "sha256": "2ef73fee7845b10e8844650cd7fa619a7033d604193c00ff743015272437b3f5",
+        "bytes": 73480
+      },
+      {
+        "path": "_astro/200000-interviews-insights.CACZiAxh.png",
+        "sha256": "695c545cba5fe86d6a237764ba9c1e96240dabd2df9964481fc8edb3d42ec7e4",
+        "bytes": 39537
+      },
+      {
+        "path": "_astro/AboutPage.astro_astro_type_script_index_0_lang.BPT6GUvV.js",
+        "sha256": "b5638794b48805fd2f08da12d8dcb0583dc5d914e72e5238935a08320ca54144",
+        "bytes": 4016
+      },
+      {
+        "path": "_astro/AegonLife.DW6Kwb0-.png",
+        "sha256": "6da20403044819b71bbd67d0cb2eac486e721e8ef75e51f7f96ec6c45d0a4da9",
+        "bytes": 12722
+      },
+      {
+        "path": "_astro/Aeries.Dvss0AVs.png",
+        "sha256": "72dcb81000b4a03a93f273bbf01954a099d2defc00d4d9bbd2353e13b15c71ac",
+        "bytes": 6690
+      },
+      {
+        "path": "_astro/ArticlePage.astro_astro_type_script_index_0_lang.VnuYX3a0.js",
+        "sha256": "df645f5d56f0605a24c4bab3c0a45a90ff8cb8d48480d01e3df8945eff68dec3",
+        "bytes": 69
+      },
+      {
+        "path": "_astro/BfsiPage.astro_astro_type_script_index_0_lang.VnuYX3a0.js",
+        "sha256": "df645f5d56f0605a24c4bab3c0a45a90ff8cb8d48480d01e3df8945eff68dec3",
+        "bytes": 69
+      },
+      {
+        "path": "_astro/Candidates.astro_astro_type_script_index_0_lang.B2t4Tzas.js",
+        "sha256": "8d22cebbb5ab82af98170f0dbab81051ecbf8e21591bdd4aac5177f893d67185",
+        "bytes": 6280
+      },
+      {
+        "path": "_astro/ContactSalesModal.BaiHDf1r.css",
+        "sha256": "4f338d93ec547642e1d6c56b59ae835fb704fe3ea1462362e801ca5cb6a8bc48",
+        "bytes": 115391
+      },
+      {
+        "path": "_astro/DSP_Mutual_Funds.Bd3XWU5r.png",
+        "sha256": "df0858874022969ca71a5bbb86449f2ce78af0f367a7646597aef0ed343d208e",
+        "bytes": 7636
+      },
+      {
+        "path": "_astro/EditorialPage.BkT3SOhI.css",
+        "sha256": "4cd4cafa3b200aecd7bf5c9e6db046264ab229fc9a42122d2d0711e08d51647e",
+        "bytes": 8117
+      },
+      {
+        "path": "_astro/Enpro.BeVSuZgk.png",
+        "sha256": "cf4638b1ecfad8faca14638ff71c911121e4da257c8fc931980617580fef53f5",
+        "bytes": 12862
+      },
+      {
+        "path": "_astro/Home.astro_astro_type_script_index_0_lang.DS9DSow3.js",
+        "sha256": "77b01fe8e5452aed2fbe59a8c1cad860b9b0303c8e9cf076874cdfb5792b8f91",
+        "bytes": 12499
+      },
+      {
+        "path": "_astro/Home.astro_astro_type_script_index_0_lang.Du-HFaf2.js",
+        "sha256": "07caa26ecf29462ab5940eab7fcabbd1d987ad3b25afa98e779c2c0903f51fb4",
+        "bytes": 10303
+      },
+      {
+        "path": "_astro/ICICBank.uFYUodMj.png",
+        "sha256": "875cf6c5e6395d3c0be3078d1b07f1282f523a5a604d676bc36b48ce948e49a6",
+        "bytes": 8096
+      },
+      {
+        "path": "_astro/ICICISecurities.DchO96iF.png",
+        "sha256": "d8117914b401bbb7caaa87be61c087fda71d8937984ac578d42e8bba3b0cf157",
+        "bytes": 6740
+      },
+      {
+        "path": "_astro/Payu.0Y6FFHuE.png",
+        "sha256": "64fdcad3e1fbd513f56efeaf249dab57cf6e75a899a90e5e97e7ca63780dc107",
+        "bytes": 4274
+      },
+      {
+        "path": "_astro/ReferenceNavStyles.Cc3xTvLN.css",
+        "sha256": "b0b07bf84cae211244dec5c49e5146a7dd0427ba3793c44ab6b5978e7e826b5c",
+        "bytes": 17076
+      },
+      {
+        "path": "_astro/SplashBI.k0_SEhET.png",
+        "sha256": "57e99b19bcad9ed8fd74be17185afbb4f992a5af60540e78d7962f9fa6c11581",
+        "bytes": 9001
+      },
+      {
+        "path": "_astro/TechnologyHoldings.BQxTMCCS.png",
+        "sha256": "e2abdb54b3adc71d829b1ef825c043e7df41abcaef69a0671ca9abcfd554da04",
+        "bytes": 10085
+      },
+      {
+        "path": "_astro/UtkarshBank.DRJaUMTm.png",
+        "sha256": "ae837ebc682810a03b368bab3b4322322d841142f1f8ebc80452e0b21ecc27df",
+        "bytes": 9607
+      },
+      {
+        "path": "_astro/V9Layout.dOnKr9N5.css",
+        "sha256": "b9d7b772ddaa4e8575d0acdbdff4921e2dbad9dc7e91448c01ff2eb6bdf011a8",
+        "bytes": 27066
+      },
+      {
+        "path": "_astro/Volkwagen.DtGUwejJ.png",
+        "sha256": "a0c97c757507042469a3d408bd52cf2131fa682e5d7a11d129e88c0ef2c5def9",
+        "bytes": 6748
+      },
+      {
+        "path": "_astro/__hero-bg.D6jZ3_bL.png",
+        "sha256": "4b507cb9295e64269f0a9e8903617a6ce417ec0cf1f38f9bef76b81584715a2d",
+        "bytes": 1695495
+      },
+      {
+        "path": "_astro/_hero-bg.BSe2TRGE.png",
+        "sha256": "fc053a65d9e39510fc4ac2d9b4c795d8f00003f19cd7bca27b6e57b87c55ff4e",
+        "bytes": 1555658
+      },
+      {
+        "path": "_astro/_slug_.C8WCDMwR.css",
+        "sha256": "a4b23e6acf4c2998370d1c6cd6cf6c3f9b79d4c0fd8a80103800e033dd32f347",
+        "bytes": 232481
+      },
+      {
+        "path": "_astro/_slug_.Cjws8YrA.css",
+        "sha256": "d35f95119ccdb639f1273dd48a71a5daa84b52b4f9d7d0bac437f04ca23b408d",
+        "bytes": 92559
+      },
+      {
+        "path": "_astro/_slug_.astro_astro_type_script_index_0_lang.B1pYtZmQ.js",
+        "sha256": "89917f525cb94b14d934681a4283fb8f7104f46f8b1083e5b1f6c7aa301ef19a",
+        "bytes": 2002
+      },
+      {
+        "path": "_astro/_slug_.astro_astro_type_script_index_0_lang.Bez_FOEF.js",
+        "sha256": "89917f525cb94b14d934681a4283fb8f7104f46f8b1083e5b1f6c7aa301ef19a",
+        "bytes": 2002
+      },
+      {
+        "path": "_astro/_slug_.astro_astro_type_script_index_0_lang.DhqNcvGS.js",
+        "sha256": "d94f23a59e34df9895337a8e3074684388fcf1e7c233fc9c36619211ee4bd9d2",
+        "bytes": 1642
+      },
+      {
+        "path": "_astro/about.BRj_H6mj.css",
+        "sha256": "2eb47c7c2d272299b8063c9656f7f158fa03733659fac9b7ab50edfdda7f5497",
+        "bytes": 157738
+      },
+      {
+        "path": "_astro/about.CwbI5YpA.css",
+        "sha256": "ee797fc6fd02ba98071493d517b00c6500d673299c9e6478fff4a5fbe185e2cf",
+        "bytes": 35111
+      },
+      {
+        "path": "_astro/about.astro_astro_type_script_index_0_lang.BHlpwXUY.js",
+        "sha256": "27c99f40bc73c7fa6057636cb5e525c72574e750d17e331dc93183aa57b187b8",
+        "bytes": 2627
+      },
+      {
+        "path": "_astro/ai-technical-assessment.BF4Iz4Zm.png",
+        "sha256": "08a98d63e454b7c334f0b67089a89ecab1bfd8e55f40b6eedce20f080b3f24c1",
+        "bytes": 23253
+      },
+      {
+        "path": "_astro/ai-technical-assessment.BF4Iz4Zm_Z1gozBg.jpg",
+        "sha256": "dc8df49ef23e9f590d0621a8145a9ffab858babc16892a3d836992a901e11959",
+        "bytes": 21167
+      },
+      {
+        "path": "_astro/article.CwRheMbT.css",
+        "sha256": "40d462d8d43672ed9bf3c6632ef795b3c385e6330d254308102aabf3ec849dcb",
+        "bytes": 24298
+      },
+      {
+        "path": "_astro/bfsi.9NzOcGyx.css",
+        "sha256": "fecbc9e499dc48428868aa9eb9f9e7e4a85fcb47832b036a6c906212e80afe6e",
+        "bytes": 34864
+      },
+      {
+        "path": "_astro/candidates.CWAVY1VY.css",
+        "sha256": "8837bfed208fe9fbc38178287da214f22b00eb8c728ccf6473801c8112a2e0fa",
+        "bytes": 138456
+      },
+      {
+        "path": "_astro/candidates.astro_astro_type_script_index_0_lang.Bpq18UHI.js",
+        "sha256": "84ad8b0ce1bc6309605b2deb3a77927f612f38064c2d1138c14fcac57ba75e53",
+        "bytes": 10007
+      },
+      {
+        "path": "_astro/candidates.jpr1kjbw.css",
+        "sha256": "36b1930a0b90708394b4c305f40e118e290286d84c8817cdda2122fae38533d9",
+        "bytes": 50131
+      },
+      {
+        "path": "_astro/careers.CcXR7EDk.css",
+        "sha256": "39c68382971789e5f0a20b60186850347af9efe0a0d62b0437a8291c14b6bce7",
+        "bytes": 150363
+      },
+      {
+        "path": "_astro/careers.DZSa0oQd.png",
+        "sha256": "46173a5c9020fdccbcfcd732e3b41a02f8160cc4cac4c73e942f53c6209bac1a",
+        "bytes": 499135
+      },
+      {
+        "path": "_astro/careers.astro_astro_type_script_index_0_lang.aaow5WHg.js",
+        "sha256": "18c9072eb28be6bea68e2fffb53aa6bf251bbeac9e6a2717bf84347c5477efff",
+        "bytes": 16510
+      },
+      {
+        "path": "_astro/case-study.C_0xlz7Z.css",
+        "sha256": "ca654698bfb866b3abd64a1d6bb53759593a21ae3321c9d10d4f5234b7eadf2f",
+        "bytes": 24639
+      },
+      {
+        "path": "_astro/charts.DlqpdznW.js",
+        "sha256": "576e92dc8c553b8faef3b3d276d1a5e1b0241e247bd2bde5a16a30541084842a",
+        "bytes": 2426
+      },
+      {
+        "path": "_astro/contact.BYFLp45H.css",
+        "sha256": "8c994b738b52c927f27d886a5fc322e8804666a43ca826fc5d27330567451262",
+        "bytes": 156126
+      },
+      {
+        "path": "_astro/contact.astro_astro_type_script_index_0_lang.jTigSwye.js",
+        "sha256": "6c0d6bc885ddc8980623ccef00739885b2f970a07010287dbde60cc7b9bcb55c",
+        "bytes": 2632
+      },
+      {
+        "path": "_astro/content.BCDK3LCG.css",
+        "sha256": "62a9046005120ca72f098d121c345a28e130bc0b0c816a729e799862b6424711",
+        "bytes": 4200
+      },
+      {
+        "path": "_astro/default.Dmjw7dg-.png",
+        "sha256": "a2f18a2a6e68e0e67b5585726c6c1bf8b488e8e8be99c1224142d0022fa2262d",
+        "bytes": 234997
+      },
+      {
+        "path": "_astro/designing-ai-for-high-stakes-technical-assessment.DyWabe9n.css",
+        "sha256": "f43a0cf4ab69dcd5fd02f07b79b3bd2349604b4b368fc8b579672f981554d7fa",
+        "bytes": 99266
+      },
+      {
+        "path": "_astro/designing-ai-for-high-stakes-technical-assessment.astro_astro_type_script_index_0_lang.BdBAlKFb.js",
+        "sha256": "ed735e4bc58fdd7aa89e0ec3759211e676cf0d7f3dfdb38f2358f06cc4cd3846",
+        "bytes": 2027
+      },
+      {
+        "path": "_astro/designing-for-trust-privacy-transparency-respect.D7Geuifl.css",
+        "sha256": "700565acbc4db290c5fc1d7381ec20298df79fc7162c2aecc23bccc2813f41e4",
+        "bytes": 95083
+      },
+      {
+        "path": "_astro/designing-for-trust-privacy-transparency-respect.astro_astro_type_script_index_0_lang.Dcuy_mQ1.js",
+        "sha256": "2d811b7f7a1c749237e74ad47931ebfddd537246305c2ca63579ae6551e9f435",
+        "bytes": 424
+      },
+      {
+        "path": "_astro/hero-bg-2.CHf3dhtm.png",
+        "sha256": "c0681b39a52431371f419a383d601a08a9ef35eb110d1c9bef8a0d1855e3c68a",
+        "bytes": 3044169
+      },
+      {
+        "path": "_astro/hero-bg.D5nPWpKx.png",
+        "sha256": "c5c2298140d676a5a047ebaabbe60c4f47c67aedcb44e6f9ad13ec078b04d5f5",
+        "bytes": 2692308
+      },
+      {
+        "path": "_astro/hero-bg.EvH5k5et.jpg",
+        "sha256": "450f7c74f796a44e7835684818b0e9b41f70b36c93558d33c46d5086d4953325",
+        "bytes": 20383
+      },
+      {
+        "path": "_astro/hero-image.Cl79UQ8p.png",
+        "sha256": "2135ee3f0f010b0f176e82ecaf6bf9cb3282a0f3d3178e23a8b021b3577f7c27",
+        "bytes": 3244487
+      },
+      {
+        "path": "_astro/hiring-infrastructure.CsDXdJeO.png",
+        "sha256": "e65473f2d51ae8b1a7d18a98798ae755278a21b22355bb72abde79e22e03183e",
+        "bytes": 20222
+      },
+      {
+        "path": "_astro/hiring-is-not-a-transaction-its-a-relationship.BbEKxsnQ.css",
+        "sha256": "7318b6a5737a9452702198cded1f4527bdc1ea4d8189292c1e0b449ca1686e5b",
+        "bytes": 101330
+      },
+      {
+        "path": "_astro/hiring-is-not-a-transaction-its-a-relationship.astro_astro_type_script_index_0_lang.BdBAlKFb.js",
+        "sha256": "ed735e4bc58fdd7aa89e0ec3759211e676cf0d7f3dfdb38f2358f06cc4cd3846",
+        "bytes": 2027
+      },
+      {
+        "path": "_astro/hiring-is-not-a-transaction.gYgX93BY.png",
+        "sha256": "18ea542d40197a035f931d5222294a5b9c6c3e565b8b1fb56ad3d81ca06c5e86",
+        "bytes": 1698635
+      },
+      {
+        "path": "_astro/hiring-is-not-a-transaction.gYgX93BY_Z1HNys1.jpg",
+        "sha256": "ead49a7f40a80f6cb880fc2f12f813b3e6e6d7ef9bbcd415fc7ec84ec7e894a4",
+        "bytes": 70469
+      },
+      {
+        "path": "_astro/home.DcwTAr1-.css",
+        "sha256": "f94bb28d865b3454af5ddcc686fcfb9a37294cfc2829725d2ad68463cbee4763",
+        "bytes": 135052
+      },
+      {
+        "path": "_astro/index.BHp9XquF.css",
+        "sha256": "c08ad6246a7825b7dafd57313dc9b71b917f2b550c2eaa871d9ae6bb5d5f821d",
+        "bytes": 85801
+      },
+      {
+        "path": "_astro/index.CXDEyTpb.css",
+        "sha256": "537da1f6aa2b28c35972a6dd07582c8d691b29d6df5d68b4a6f4c53fee975202",
+        "bytes": 64857
+      },
+      {
+        "path": "_astro/index.DPAXFJiE.css",
+        "sha256": "830720126597df409b357b858d30b21c360bf0aa500cf0e12e91c57fa6c65975",
+        "bytes": 88809
+      },
+      {
+        "path": "_astro/index.DtmcVNHG.js",
+        "sha256": "07f4c68c2c10c2d16e42dad6b5c0e3163d1566b99e35ba6012cecd2fb9c2229a",
+        "bytes": 17031
+      },
+      {
+        "path": "_astro/index.astro_astro_type_script_index_0_lang.B2xNNu0s.js",
+        "sha256": "94123247e00460837d0851a4c3df2e2a00644d0208cdcac672730fa3fac95607",
+        "bytes": 44
+      },
+      {
+        "path": "_astro/index.astro_astro_type_script_index_0_lang.BS5TzGXj.js",
+        "sha256": "66102beab1a0aa29d4156ca48b3e3dc5acf0b1d71b9ba2805d846763159399aa",
+        "bytes": 131
+      },
+      {
+        "path": "_astro/index.astro_astro_type_script_index_1_lang.BBMOE7SM.js",
+        "sha256": "e4b5547cc6c6d551100019b32a6bf8013cff5b203dcce211fc6b23d89c736358",
+        "bytes": 914
+      },
+      {
+        "path": "_astro/index.vkIlkYtC.css",
+        "sha256": "8e9d53904c24386ddaf646b95745201707296dc3d7176965bdc9cbc24c6213b7",
+        "bytes": 107149
+      },
+      {
+        "path": "_astro/intelligence.Cr9znQ1j.css",
+        "sha256": "991dd59bb6a1631adecb22a1d0bc2b1f331c89f302a8d21e15e4caca59dabb0c",
+        "bytes": 221928
+      },
+      {
+        "path": "_astro/intelligence.astro_astro_type_script_index_0_lang.CRSTBjGJ.js",
+        "sha256": "1984e797d5b31ccc439d4a4b3bd782ddc602ea8bf377751cc989891d43f4bd02",
+        "bytes": 92
+      },
+      {
+        "path": "_astro/intelligence.astro_astro_type_script_index_1_lang.DFfjVgs6.js",
+        "sha256": "56ce7ae963e2da0ed5212a974b4bc2dd01de8001b2c284b478e665c792069352",
+        "bytes": 16809
+      },
+      {
+        "path": "_astro/inter-cyrillic-ext-wght-normal.BOeWTOD4.woff2",
+        "sha256": "ca157063339ac4ad418f214f3abfed119b0798ab4d377386ce5c9e5a7a435ebd",
+        "bytes": 25960
+      },
+      {
+        "path": "_astro/inter-cyrillic-wght-normal.DqGufNeO.woff2",
+        "sha256": "71d5ee93cc1e9f1d520a3a8b66456de18c7879d8df09d57fcd2eaff75fef0075",
+        "bytes": 18748
+      },
+      {
+        "path": "_astro/inter-greek-ext-wght-normal.DlzME5K_.woff2",
+        "sha256": "6e9e020a25f9b56d418f2c085b1d3c09725a4da23fe693a5b463064606732190",
+        "bytes": 11232
+      },
+      {
+        "path": "_astro/inter-greek-wght-normal.CkhJZR-_.woff2",
+        "sha256": "1be3448e292fbf05ffe176fe1e43f135013d50b1e7d324ad1a558f623d3bb6f6",
+        "bytes": 18996
+      },
+      {
+        "path": "_astro/inter-latin-ext-wght-normal.DO1Apj_S.woff2",
+        "sha256": "34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956",
+        "bytes": 85068
+      },
+      {
+        "path": "_astro/inter-latin-wght-normal.Dx4kXJAl.woff2",
+        "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+        "bytes": 48256
+      },
+      {
+        "path": "_astro/inter-vietnamese-wght-normal.CBcvBZtf.woff2",
+        "sha256": "5c66f9e07e90c6d4ac4922cc68d60de26c17b1858e677fb5e603fce3952b3ff2",
+        "bytes": 10252
+      },
+      {
+        "path": "_astro/interview-as-a-service.BApME65W.css",
+        "sha256": "f86574211d8e543cfb43abdf510dc9a2cbde76440e5e32f16f54ab20569f1f44",
+        "bytes": 21412
+      },
+      {
+        "path": "_astro/laptop.56YvgkdP.png",
+        "sha256": "ab2935dcbe34ae4d22da8d21f493dbf343ef67ccd00a72d11df5168bf03e7bea",
+        "bytes": 20188
+      },
+      {
+        "path": "_astro/meet-our-talent-advisors.BHalrsA0.png",
+        "sha256": "a2672aa84a934c401a4c5bae638d62b671ab23a859ca59b8c49b6293b4cee226",
+        "bytes": 48658
+      },
+      {
+        "path": "_astro/page.zh1XDkz8.js",
+        "sha256": "710fe3b5f666310193637f9bc289b33e60f32dded3bd400a33867583cb4d4052",
+        "bytes": 2254
+      },
+      {
+        "path": "_astro/placeholder.Bvl4ZYU5.png",
+        "sha256": "9b2db6feb59f6994c40c17c228a514d455adbec2997192ef85f150ac91c045e3",
+        "bytes": 679521
+      },
+      {
+        "path": "_astro/rethinking-hiring-metrics-signal-efficiency.CDnBjYiC.css",
+        "sha256": "f3d1d844d32f0834f38d2f02e504b1b6f21ea0ace07f1b54a7c394ee767768e0",
+        "bytes": 97242
+      },
+      {
+        "path": "_astro/rethinking-hiring-metrics-signal-efficiency.astro_astro_type_script_index_0_lang.Dcuy_mQ1.js",
+        "sha256": "2d811b7f7a1c749237e74ad47931ebfddd537246305c2ca63579ae6551e9f435",
+        "bytes": 424
+      },
+      {
+        "path": "_astro/services.CqM_Lj8i.css",
+        "sha256": "ec549c0f396edf6c8ed0f248b2420129c89a35b3c2a8bf5ebaba4af1bc45e9a0",
+        "bytes": 219441
+      },
+      {
+        "path": "_astro/services.astro_astro_type_script_index_0_lang.BfJQ_iRi.js",
+        "sha256": "66cd605aa85d631761c16fd022ae58b4f4d67ea6be34a3acef9f6e2102c7cce5",
+        "bytes": 3489
+      },
+      {
+        "path": "_astro/services.cBcFsxzD.css",
+        "sha256": "2166febdbe1e31d97276851d00f840ed32659d11658da870f5fba952859b067b",
+        "bytes": 42692
+      },
+      {
+        "path": "_astro/signal-based-hiring.B2Ay6bD4.png",
+        "sha256": "12e67dcc51c9131dbd517909aa6a5095daf6e9668287e44fa2b56a56ee9e9d26",
+        "bytes": 551084
+      },
+      {
+        "path": "_astro/signal-based-hiring.B2Ay6bD4_Z1e9pc8.jpg",
+        "sha256": "05bfd8c66f39ab264901d8d324999e4bef7a9fc531563a87b65a710512a3fe16",
+        "bytes": 192393
+      },
+      {
+        "path": "_astro/signal-efficiency.8lefGeXl.png",
+        "sha256": "a1af97ef8465f5f46e0e4c1be57871eb812370a3f249f518f9c108a9b0786cfe",
+        "bytes": 1614002
+      },
+      {
+        "path": "_astro/signal-efficiency.8lefGeXl_1MpzOU.jpg",
+        "sha256": "bd5001cd21ec2e349671a9ade566a6a330f5d50de2e0817309aabd7bc92dc3b6",
+        "bytes": 88684
+      },
+      {
+        "path": "_astro/signal-vs-noise-technical-hiring.astro_astro_type_script_index_0_lang.BdBAlKFb.js",
+        "sha256": "ed735e4bc58fdd7aa89e0ec3759211e676cf0d7f3dfdb38f2358f06cc4cd3846",
+        "bytes": 2027
+      },
+      {
+        "path": "_astro/start.nct19zUI.css",
+        "sha256": "dabfd1c31fb0a9ec80e2770a69ff0fd047feee337bccd9cb3b8dbea5f81be408",
+        "bytes": 9513
+      },
+      {
+        "path": "_astro/technical-hiring.Cjv_P-1M.png",
+        "sha256": "30d4fdb778a41aef709c67b4833d62e2f6acdd92892256ea10f85e4d376dbe6d",
+        "bytes": 501055
+      },
+      {
+        "path": "_astro/tribera_logo_default.z9-1FY0N.svg",
+        "sha256": "0760d5f968b5d79f74b0b9cdc9d9515a30516a711dd5f1860a6fc5e44582d62a",
+        "bytes": 130375
+      },
+      {
+        "path": "_astro/trust-by-design.sbdvdm_i.png",
+        "sha256": "bc580bd3f3cc9c660bb66b517470d7575e41f86ce4cae5c3d6d01439e2bde5d3",
+        "bytes": 28973
+      },
+      {
+        "path": "_astro/trust-by-design.sbdvdm_i_283bRk.jpg",
+        "sha256": "5f6221ce38c78729f3a66ec0642be8ed45c32049d13c2ce46bdc452cd51825d4",
+        "bytes": 28211
+      },
+      {
+        "path": "_astro/when-job-hunting-feels-like-a-black-hole.astro_astro_type_script_index_0_lang.BdBAlKFb.js",
+        "sha256": "ed735e4bc58fdd7aa89e0ec3759211e676cf0d7f3dfdb38f2358f06cc4cd3846",
+        "bytes": 2027
+      },
+      {
+        "path": "_astro/when-job-hunting-feels-like-a-black-hole.bxV7n3Xy.png",
+        "sha256": "54ddfe84a7a759270d97c26426a9134ec1c03c7f6cf837845675f6bc0ff03c41",
+        "bytes": 510914
+      },
+      {
+        "path": "_astro/when-job-hunting-feels-like-a-black-hole.bxV7n3Xy_ZUX5OT.jpg",
+        "sha256": "9f938f8bd0db30b4c69a24994477ca5085d72e7894ddcb0577e35b430bc2aae0",
+        "bytes": 149069
+      },
+      {
+        "path": "_astro/why-tech-hiring-really-takes-so-long.D9NuhBGR.png",
+        "sha256": "5e413819078cc9fe8902148a85eaa0bc35b1920ea6844bbbb7aad864be0965d8",
+        "bytes": 2497983
+      },
+      {
+        "path": "_astro/why-tech-hiring-really-takes-so-long.D9NuhBGR_w5fxT.jpg",
+        "sha256": "157e8833f488d1ddab1d77a22c324193dd295d0440d5b5f16cf2c8d122e867d7",
+        "bytes": 203797
+      },
+      {
+        "path": "_astro/why-tech-hiring-really-takes-so-long.astro_astro_type_script_index_0_lang.BdBAlKFb.js",
+        "sha256": "ed735e4bc58fdd7aa89e0ec3759211e676cf0d7f3dfdb38f2358f06cc4cd3846",
+        "bytes": 2027
+      },
+      {
+        "path": "_headers",
+        "sha256": "065b8ff7cd64f819d2acefdababf396f9dc74171662aefd6568a785748250bb5",
+        "bytes": 1448
+      },
+      {
+        "path": "abhishek.png",
+        "sha256": "eb6bd056488e8466f1da2124a6f8150ede190bac2556a1bf894f19ee59cb95d6",
+        "bytes": 1324051
+      },
+      {
+        "path": "about/index.html",
+        "sha256": "995eb9e49c4793e0f7f05944306130e8044327a783240c21b151df96d51759f1",
+        "bytes": 271035
+      },
+      {
+        "path": "akshata.png",
+        "sha256": "e1770e6650069a4086eef66380e84e6857e35f3be5654e2656962e7697937a3c",
+        "bytes": 1394563
+      },
+      {
+        "path": "apple-touch-icon.png",
+        "sha256": "4f2dc6cb670f4307a4775047adf8813739c6dcbe5261db450d3e22f020d129f7",
+        "bytes": 5745
+      },
+      {
+        "path": "blog/designing-ai-for-high-stakes-technical-assessment/index.html",
+        "sha256": "37b86c92d0a8e44e3746b1808cd6a103da2ea18ab7b63f7b17584b267f071fb5",
+        "bytes": 63021
+      },
+      {
+        "path": "blog/designing-for-trust-privacy-transparency-respect/index.html",
+        "sha256": "4489473b987474dbbf27571048ddf30221362921bcaca708fc5da2920b68a6db",
+        "bytes": 66693
+      },
+      {
+        "path": "blog/hiring-is-not-a-transaction-its-a-relationship/index.html",
+        "sha256": "ad4816cf2a664ebe0bde635071633c7fbe374363f75f0b42a22af0f6b0e4b602",
+        "bytes": 53803
+      },
+      {
+        "path": "blog/index.html",
+        "sha256": "b6e171807a1944266d63a5f806ea44f7e8c35d39494a0eb36e496b01bad3d22b",
+        "bytes": 136204
+      },
+      {
+        "path": "blog/rethinking-hiring-metrics-signal-efficiency/index.html",
+        "sha256": "6831c3cc1df4a087e66adc4d375cf12ed10147c9c9f1b49f082d04220634c8da",
+        "bytes": 140910
+      },
+      {
+        "path": "blog/signal-vs-noise-technical-hiring/index.html",
+        "sha256": "aa1be4c48cc65578ab1a9d5d8f20104adab338da8755d0b8a17c686470682eac",
+        "bytes": 68495
+      },
+      {
+        "path": "blog/when-job-hunting-feels-like-a-black-hole/index.html",
+        "sha256": "dee5b121356dde5b8a25f2844d7ad817abd51f128434fcf60d47b1dea6932a98",
+        "bytes": 69384
+      },
+      {
+        "path": "blog/why-tech-hiring-really-takes-so-long/index.html",
+        "sha256": "57a36e7b15e413f65b66e090d648663faef2ac6bdee00e72966ea6a2df873c64",
+        "bytes": 53255
+      },
+      {
+        "path": "brand/v9/apple-touch-icon.png",
+        "sha256": "5c9834a0a8d5885ea345c02a0c0bdb756da3ac1a57d77de03f9dcf1909693477",
+        "bytes": 1344
+      },
+      {
+        "path": "brand/v9/authors/akshata-chandavarkar.jpg",
+        "sha256": "3e31b5fb40e8a54b72e55cc6b95bdee818270032d9059d7a57e83e26f187b324",
+        "bytes": 3268
+      },
+      {
+        "path": "brand/v9/candidates/hero-field.svg",
+        "sha256": "a5e0568e9610cfac0ff89621ec50e0503478036da7debb9088bf60c09316a0a5",
+        "bytes": 27347
+      },
+      {
+        "path": "brand/v9/editorial/portrait-3742dc874889.jpg",
+        "sha256": "3742dc874889b02551bb22208b872b6065b686a42063655660d7471d7e02d2ff",
+        "bytes": 19806
+      },
+      {
+        "path": "brand/v9/editorial/portrait-4fd2bf498416.jpg",
+        "sha256": "4fd2bf498416789758ee3a5b317445421d1df1234a734ce9317d890d1001a4d8",
+        "bytes": 30040
+      },
+      {
+        "path": "brand/v9/editorial/portrait-a03becec00ab.jpg",
+        "sha256": "a03becec00abdf94473771e75607ab54e6bf0d8357697cf440d2fd90a7978f4f",
+        "bytes": 26191
+      },
+      {
+        "path": "brand/v9/favicon.ico",
+        "sha256": "74f57d4ad2e23d107cc9e276802fa609311595b67cc74d61fe516675887fbef4",
+        "bytes": 2206
+      },
+      {
+        "path": "brand/v9/favicon.svg",
+        "sha256": "748d5c89844af7cbd3c2dcd0781ace2e0f9273c5e94d9a666a03b0b49006763f",
+        "bytes": 438
+      },
+      {
+        "path": "brand/v9/icon-192.png",
+        "sha256": "56935e97f4eb77b812da644a7fef944175f51ee0b471c43ac615185f93675671",
+        "bytes": 3121
+      },
+      {
+        "path": "brand/v9/icon-512.png",
+        "sha256": "f73a1889e5acfbb8a3a702f1a082909bb020eba9e62fdccfc932e9a26ad7654b",
+        "bytes": 9696
+      },
+      {
+        "path": "brand/v9/icon-maskable-512.png",
+        "sha256": "032dd56b7103948de65d4becd94bb4e2edf5735e89805b4afc441a59bd650e5c",
+        "bytes": 4664
+      },
+      {
+        "path": "brand/v9/icons-manifest.json",
+        "sha256": "42c62967e6951be6bd572c6785bf0237e4eb6f2e477abace2b0f14b4d27d1fa5",
+        "bytes": 1217
+      },
+      {
+        "path": "brand/v9/site.webmanifest",
+        "sha256": "17faa967eb490157753e3f9f5a8ef70710dedaaf3c8518c11d4770712911ed2d",
+        "bytes": 596
+      },
+      {
+        "path": "brand/v9/tribera-logo-black.png",
+        "sha256": "0d6195e702b06da92e195094c4a6a6e2d5cda47a29f70ba81718e166ab0a3a34",
+        "bytes": 20557
+      },
+      {
+        "path": "brand/v9/tribera-logo-red.png",
+        "sha256": "6099827fb56a00e3686b89200c99b88cb3177f54bee46eb5e4a8baada5fa1eb1",
+        "bytes": 25051
+      },
+      {
+        "path": "brand/v9/tribera-logo-white.png",
+        "sha256": "22de6403cca1d5ffcc064c222e062e8e0d405f46467c27b60cd4a9ad83261f88",
+        "bytes": 20454
+      },
+      {
+        "path": "candidates/index.html",
+        "sha256": "2e3a34709110e39ea5a47f8c638947e076c8ce361c032e204b4014d6496e3fe1",
+        "bytes": 152502
+      },
+      {
+        "path": "candidates/start/index.html",
+        "sha256": "99a1014040521198d47cca176069819dcc822655dad38f3271a5946fc10990e7",
+        "bytes": 83784
+      },
+      {
+        "path": "careers/ai-ml-engineer/index.html",
+        "sha256": "0319e18ba1e7eade974ff8a83a315252c7f47c85fbd3e5fb1ad37e001d745e6f",
+        "bytes": 53058
+      },
+      {
+        "path": "careers/backend-engineer/index.html",
+        "sha256": "ab53ee2012f90f3861ea1f48252d930fb304d748aaa796ade598ddcb47dd707c",
+        "bytes": 52945
+      },
+      {
+        "path": "careers/growth-intern/index.html",
+        "sha256": "b44c8985c5f49019b9846b3fd6af9314cf451b9c17844a73ecdcad751ade296a",
+        "bytes": 52756
+      },
+      {
+        "path": "careers/index.html",
+        "sha256": "d422bc557da65b1d7f83715fa403f1ebad5e012b13a4f2c6c03a1f7a4b2363ab",
+        "bytes": 45610
+      },
+      {
+        "path": "careers/senior-delivery-partner/index.html",
+        "sha256": "c62986b3b983f39ddbc6c3640f3d6ad2ca670395baa1e01539eaaa92dcfefcf7",
+        "bytes": 52950
+      },
+      {
+        "path": "careers/software-intern/index.html",
+        "sha256": "6c19be3ef5e871d91940bdc75f317ad1cec577f58020068b590c775f3c7e48a7",
+        "bytes": 52839
+      },
+      {
+        "path": "careers/talent-advisor/index.html",
+        "sha256": "e3d8ad2c6ed14c2951b2f3ad36f9a29a3218ae0c964481e8431679867205992a",
+        "bytes": 52875
+      },
+      {
+        "path": "careers/talent-associate/index.html",
+        "sha256": "cff705093c3ff310758094eca96ba2cfa8a337adb594d0907095e077d4106193",
+        "bytes": 52629
+      },
+      {
+        "path": "careers.json",
+        "sha256": "081ba58d9709a766f2de5018d50cfedd7588fc5f6dba2d7c9d78511d8b8d4a69",
+        "bytes": 2200
+      },
+      {
+        "path": "category/ai-and-assessment/index.html",
+        "sha256": "3e1aa850a5abedb137603be658580933311d4194fda683c8b6a091301668a931",
+        "bytes": 80957
+      },
+      {
+        "path": "category/candidate-experience/index.html",
+        "sha256": "2fd505cd550c01d16f9618c7b27435387469a77e78471ed66481b4da7cb2d679",
+        "bytes": 83155
+      },
+      {
+        "path": "category/hiring-philosophy/index.html",
+        "sha256": "2697d4fd3427d2b426db85907d1239d2adf69b9d07c570df297813259e70c324",
+        "bytes": 81035
+      },
+      {
+        "path": "category/hiring-strategy/index.html",
+        "sha256": "8175c6235982165a7ad79e2ef9670bcac65ad156f94bf801159f5f6ef9ee20d2",
+        "bytes": 81004
+      },
+      {
+        "path": "category/technical-hiring/index.html",
+        "sha256": "b5cc464d871c8c16496f8003817ec94867d9756827e810ba4e372c01d1be8445",
+        "bytes": 83071
+      },
+      {
+        "path": "contact/index.html",
+        "sha256": "1ea3b76ff895d46e15f90f654f92a173a141885bb391abef321a51c09c62df1c",
+        "bytes": 49059
+      },
+      {
+        "path": "decapcms/config.yml",
+        "sha256": "397891fdf5ceff67939dca11682e7daeab7eb372e0d06cfbd6f49f7d2cf6c614",
+        "bytes": 3351
+      },
+      {
+        "path": "decapcms/index.html",
+        "sha256": "7fd3270e89d3e4e6dbe8f8b1f19c248131d29982379c00113492131c27305936",
+        "bytes": 372
+      },
+      {
+        "path": "favicon-16x16.png",
+        "sha256": "6cfdc9692a20e09f023b5bba11793e5f5cc296b92e125a0c7e9faa4083d5aefe",
+        "bytes": 290
+      },
+      {
+        "path": "favicon-32x32.png",
+        "sha256": "0b30dc4f518910dd8fc2a3270d5975087df69dd6bb6974510eeffccb67831205",
+        "bytes": 566
+      },
+      {
+        "path": "favicon.ico",
+        "sha256": "9efce47d50845f8672765935de64c8cdf8b045c9f521f8531059fbbd12050e04",
+        "bytes": 15406
+      },
+      {
+        "path": "favicon.png",
+        "sha256": "0b30dc4f518910dd8fc2a3270d5975087df69dd6bb6974510eeffccb67831205",
+        "bytes": 566
+      },
+      {
+        "path": "favicon.svg",
+        "sha256": "b0b6799f95a624d9924d44a3edcbbaad27c101aac003148c59557c5d190f2eff",
+        "bytes": 45374
+      },
+      {
+        "path": "fonts/caveat-700.woff2",
+        "sha256": "292d88857413faf9dc841d1404ad6726d82b783cf7982616d61fda0d62e52de5",
+        "bytes": 105820
+      },
+      {
+        "path": "fonts/caveat-OFL.txt",
+        "sha256": "163a2b400e16916ad3196296c946c526d0efce6baf22a2164269ffc62fb9f671",
+        "bytes": 4384
+      },
+      {
+        "path": "fonts/figtree-400.woff2",
+        "sha256": "8f98dd642986f1fa39c45b89665a57372897c235b36028e0e4a136e43dc5f8ab",
+        "bytes": 11384
+      },
+      {
+        "path": "fonts/figtree-500.woff2",
+        "sha256": "953a6a4294b1205a1b4d4b9e5529478e8c9e1c5a67a9aa24a551414cd85b6f51",
+        "bytes": 11432
+      },
+      {
+        "path": "fonts/figtree-600.woff2",
+        "sha256": "367d713287918784702563518f59239989da815c80d3c7337686b9816635a08b",
+        "bytes": 11544
+      },
+      {
+        "path": "fonts/figtree-700.woff2",
+        "sha256": "7ec4f08d09f91d349917dd6592f6aaae66d8fe1bbd58fa24707961e79236616e",
+        "bytes": 11376
+      },
+      {
+        "path": "fonts/figtree-800.woff2",
+        "sha256": "90f6908a05e4dc417647be6d0637eb8ecb7977cab9e577ab284d02c2092111e3",
+        "bytes": 11392
+      },
+      {
+        "path": "fonts/fraunces-400.ttf",
+        "sha256": "3eb6cf0a14feb1876cc464fa093af4e0c5b05dc46dec65619c1d95f2a1ab5aa7",
+        "bytes": 71580
+      },
+      {
+        "path": "fonts/fraunces-400.woff2",
+        "sha256": "9545c7576624bfcb88f4e9149437336eaa7d08a825e4ede9a1169c5557b11da5",
+        "bytes": 30668
+      },
+      {
+        "path": "fonts/fraunces-500-italic.ttf",
+        "sha256": "9e23cd9475dfedb1d2510ea0aaca7fbb55a4eb4e6d39f423cd5af2394991b4bd",
+        "bytes": 85108
+      },
+      {
+        "path": "fonts/fraunces-500.ttf",
+        "sha256": "0c2fad18ed36cc400041f1e281ee79954a329b345caffc38dfaa3bb8bcef57de",
+        "bytes": 71596
+      },
+      {
+        "path": "fonts/fraunces-500.woff2",
+        "sha256": "59fb960b00b8e3fe9deb689623611f15e0465a9c2baf33a0a124bc4bdeb0f3b8",
+        "bytes": 30636
+      },
+      {
+        "path": "fonts/fraunces-600.ttf",
+        "sha256": "ff7cf63717c27756df857ca12045a83522569f7b561bedaff813a25274eb263f",
+        "bytes": 71632
+      },
+      {
+        "path": "fonts/fraunces-600.woff2",
+        "sha256": "fb7d3679bb12bc1b064ed1c9fc3786ef812d93ca6b79430e2533d449cc9f8c3d",
+        "bytes": 30740
+      },
+      {
+        "path": "fonts/fraunces-italic-latin.woff2",
+        "sha256": "066710ce7ed235a339d3d6cdcc8b55c0bea5632232662d83aacea25852108271",
+        "bytes": 81520
+      },
+      {
+        "path": "fonts/inter-tight-400.woff2",
+        "sha256": "6f32da94d4f26e98cb6ccd97034d306aa38945322c816f54a93c7d15dc0905b8",
+        "bytes": 22016
+      },
+      {
+        "path": "fonts/inter-tight-500.woff2",
+        "sha256": "6c0019f88d5bc179f2c972998ed8c14e779254566da9081c5e29f364a0a0aeb6",
+        "bytes": 22616
+      },
+      {
+        "path": "fonts/inter-tight-600.woff2",
+        "sha256": "db1a039d03ed646ef6a899f9ff92bf2f6fe382a49f1b0992066e85caf88b5be9",
+        "bytes": 22660
+      },
+      {
+        "path": "fonts/jetbrains-mono-400.woff2",
+        "sha256": "14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb",
+        "bytes": 21168
+      },
+      {
+        "path": "fonts/jetbrains-mono-500.woff2",
+        "sha256": "cb182feeed4d798ff6961d3c79f7026279448fca0676438aaecb21f3fc39553a",
+        "bytes": 21832
+      },
+      {
+        "path": "fonts/jetbrains-mono-700.woff2",
+        "sha256": "d0d4e818808f2a0ba39b2b09d1989366f63494e295f003c7ef436697378507e8",
+        "bytes": 21908
+      },
+      {
+        "path": "fonts/site-fonts.css",
+        "sha256": "c0b21a7f10555716ebec4fdc3e6e56b24bec3ee34cf28def586e197d8171f38d",
+        "bytes": 425080
+      },
+      {
+        "path": "fonts/v9/README.md",
+        "sha256": "ee8388cf65e94cf9ee9d333cfca8d2ac7bbe91224ef4edd65e932c2db6c4beb8",
+        "bytes": 2500
+      },
+      {
+        "path": "fonts/v9/fraunces-OFL.txt",
+        "sha256": "bdf4c22802eaf804f998195871c6b8938aac2ac14b2d78a8bd66a6f1eced833b",
+        "bytes": 4391
+      },
+      {
+        "path": "fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "sha256": "066710ce7ed235a339d3d6cdcc8b55c0bea5632232662d83aacea25852108271",
+        "bytes": 81520
+      },
+      {
+        "path": "fonts/v9/fraunces-italic-latin-ext-437e9d07.woff2",
+        "sha256": "4983926d3a16544eedcd2233448bd8a43f711e7bf1fabaae8431e78e0b798635",
+        "bytes": 71460
+      },
+      {
+        "path": "fonts/v9/fraunces-italic-vietnamese-ccf0fecc.woff2",
+        "sha256": "23af38108404d4b05ea87498afc5a104a3fe878b6339d162472e914a2c8bfa93",
+        "bytes": 22128
+      },
+      {
+        "path": "fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "sha256": "7234ed860a9cc83045413c4faee63c960a8f2d1917adcf728119307d56e0d783",
+        "bytes": 67304
+      },
+      {
+        "path": "fonts/v9/fraunces-normal-latin-ext-7cdca5ec.woff2",
+        "sha256": "a2930b27d13a228bd9ab6a49269b5f800237892ad560cb9dd7fab01b1620f88e",
+        "bytes": 59388
+      },
+      {
+        "path": "fonts/v9/fraunces-normal-vietnamese-a4c5fe4f.woff2",
+        "sha256": "f18853f63a870ebef013e30e789d8d544f102e4acd94988e57c223d9c796ddf4",
+        "bytes": 19700
+      },
+      {
+        "path": "fonts/v9/inter-tight-normal-cyrillic-0cc45335.woff2",
+        "sha256": "3937173d62f238179ca073aee632d53ebc088967ac841bf213211be05720881a",
+        "bytes": 16996
+      },
+      {
+        "path": "fonts/v9/inter-tight-normal-cyrillic-ext-a8294514.woff2",
+        "sha256": "9bba92a871106008d89cc9734c218a3660b92ff647bdfb6879bf0440fba002c0",
+        "bytes": 26660
+      },
+      {
+        "path": "fonts/v9/inter-tight-normal-greek-8f59721c.woff2",
+        "sha256": "815c54f4279b399a2afb93e99844e0ba6d9df2fc809eab372aa05e8b8d0847da",
+        "bytes": 22192
+      },
+      {
+        "path": "fonts/v9/inter-tight-normal-greek-ext-7aa16fae.woff2",
+        "sha256": "83735bbea54cc7c4e7ee2af3ede4c2bc5e421ba5bdef4cd3ea2ec8d25b5afaa8",
+        "bytes": 11700
+      },
+      {
+        "path": "fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "sha256": "77fefe8ca19b9f69b5284832c519e0493127c1f091f0a8936884be7721c4e618",
+        "bytes": 44872
+      },
+      {
+        "path": "fonts/v9/inter-tight-normal-latin-ext-e1523547.woff2",
+        "sha256": "fd9beddaaec644945809da574cf1caf342073c7e4b46a2ea5bd136c8cf1a9eca",
+        "bytes": 89800
+      },
+      {
+        "path": "fonts/v9/inter-tight-normal-vietnamese-c69d8181.woff2",
+        "sha256": "88599e6f2f36551c98dd836df944179f0d4e31eefa620bb753c96069b53ac55a",
+        "bytes": 10480
+      },
+      {
+        "path": "fonts/v9/intertight-OFL.txt",
+        "sha256": "50240ab035cf1b6b3307940235481d515c4b6de3ab1fa843dbe59e7892cb9d58",
+        "bytes": 4383
+      },
+      {
+        "path": "fonts/v9/jetbrains-mono-normal-cyrillic-eb83d8d4.woff2",
+        "sha256": "e17cfd15fb96909d64095015f958207063a0c07191da3512df7d560a781aebdf",
+        "bytes": 8872
+      },
+      {
+        "path": "fonts/v9/jetbrains-mono-normal-cyrillic-ext-6b5e37b5.woff2",
+        "sha256": "62213be8a78b42f1e29d1452d91e2f8b3e745572a9dd98d3941e39fa00b37d76",
+        "bytes": 1640
+      },
+      {
+        "path": "fonts/v9/jetbrains-mono-normal-greek-99e40033.woff2",
+        "sha256": "0a557721b1f8b36d3f3f84442689a71ca4a744300abcb46a1953f51bfc663b66",
+        "bytes": 6836
+      },
+      {
+        "path": "fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "sha256": "83c005d49d8a6a50474c73a5a36ac0468076e9c4a29da7bdb14995d80560a5be",
+        "bytes": 31432
+      },
+      {
+        "path": "fonts/v9/jetbrains-mono-normal-latin-ext-b19c2080.woff2",
+        "sha256": "db5ff4db83e580426280e9337a58dc57d3a83784a1b03ad80914651594441d52",
+        "bytes": 11624
+      },
+      {
+        "path": "fonts/v9/jetbrains-mono-normal-vietnamese-c4064400.woff2",
+        "sha256": "c89b9cc0bc6262bd4f8d8494b6961601f3aefa829d08c2e3635f4d501d3a47c2",
+        "bytes": 5888
+      },
+      {
+        "path": "fonts/v9/jetbrainsmono-OFL.txt",
+        "sha256": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d",
+        "bytes": 4399
+      },
+      {
+        "path": "fonts/v9/manifest.json",
+        "sha256": "33671856cd37a83f3542fbbd90cd562dc635407ada6f2cd1ce1b1233c3b298f1",
+        "bytes": 21899
+      },
+      {
+        "path": "functions/data-analytics/index.html",
+        "sha256": "596807a801191c301d3cffefbb79c23e0bbe055569f4a457f931af3a1627d77d",
+        "bytes": 46468
+      },
+      {
+        "path": "functions/engineering-platform/index.html",
+        "sha256": "b55fef478de4cdd4ccd7da12aeeed2903ff980735f4ed3104b0930b690dc65c0",
+        "bytes": 46747
+      },
+      {
+        "path": "functions/finance-risk/index.html",
+        "sha256": "6fc6e7f5193da9427b2451ae9072c103005271a220495027fa633171fa5bca76",
+        "bytes": 45948
+      },
+      {
+        "path": "functions/index.html",
+        "sha256": "2e6c50b2911d09f5f6681944907fff07ad67b9033ccf6c6804b4bea11a8e1a81",
+        "bytes": 48420
+      },
+      {
+        "path": "functions/infrastructure-sre/index.html",
+        "sha256": "8e69c0740a42a5abe460bf276f316637a5bd0bec5a5cb7ee56dedc293b4449d9",
+        "bytes": 46380
+      },
+      {
+        "path": "functions/leadership/index.html",
+        "sha256": "b71f970ac30d46c328e0dabbb35fb4501954cc22ee7a9eef0da542549bc31e51",
+        "bytes": 45472
+      },
+      {
+        "path": "functions/operations/index.html",
+        "sha256": "f74fcd82ef9556973b13f83338bb8cea9f170ef98aa635ad61fb6c470219612e",
+        "bytes": 45603
+      },
+      {
+        "path": "functions/product-design/index.html",
+        "sha256": "ccab853af47ea714b059d1fe146fcd1cae487fbfc75b1843c1f7c136b87bcfa2",
+        "bytes": 45792
+      },
+      {
+        "path": "functions/security/index.html",
+        "sha256": "1732fa3704430890502c14959267ad9e3635bf5746852af0983f9cfde55cadae",
+        "bytes": 46148
+      },
+      {
+        "path": "images/v9/services/pranav.jpg",
+        "sha256": "d693c2e5f87b48784ff4f31d12657335d230fe1350257805aa55e684b44b75fa",
+        "bytes": 3198
+      },
+      {
+        "path": "index.html",
+        "sha256": "ff59d21cb6008f6a4fc1ceac2bee20c12d14c19883b53871d732af8d18d21988",
+        "bytes": 170090
+      },
+      {
+        "path": "industries/ai-data/index.html",
+        "sha256": "79caacbe16a80e88377d2e3d5c6ebb7a562a44d9f29781149439267cd507e565",
+        "bytes": 45306
+      },
+      {
+        "path": "industries/banking-financial-services/index.html",
+        "sha256": "f4a6e5a3539dac3aa6b51730f519542baebea7ae03ac6b8cc2cb0287f2673618",
+        "bytes": 46529
+      },
+      {
+        "path": "industries/consumer-digital-commerce/index.html",
+        "sha256": "63f1276b2435852ba4b0b9448781d1280e567b7c34502c43857d3a498b41f3e4",
+        "bytes": 45171
+      },
+      {
+        "path": "industries/cybersecurity/index.html",
+        "sha256": "bc219bb761e9026f420e68338022c8b6d3db0b72f4947e2810d4eae9791abc7a",
+        "bytes": 45267
+      },
+      {
+        "path": "industries/enterprise-technology/index.html",
+        "sha256": "927227bc8282dc3c4ec26677a33595c0b15e178d041112153d7280d5e83fd96e",
+        "bytes": 45463
+      },
+      {
+        "path": "industries/global-capability-centres/index.html",
+        "sha256": "2bef91635a2aa0745154c0d1ee1cf715f8211d57c9c5f7d042437b408e06efb7",
+        "bytes": 45438
+      },
+      {
+        "path": "industries/healthcare-life-sciences/index.html",
+        "sha256": "1a348436fc2e984c96c907efa43ddb8fff333119a87e3dc8cb819badbedf8d71",
+        "bytes": 45353
+      },
+      {
+        "path": "industries/index.html",
+        "sha256": "49737a931a25283a4b9b1eb25cb81783322bf531edadc59c13b6d474362c1a2f",
+        "bytes": 39500
+      },
+      {
+        "path": "industries/industrial-engineering/index.html",
+        "sha256": "8ed0211b93f6b43e9d47b7f08ed309db89bb5afcdace3f79a0f53eb2a16eec0b",
+        "bytes": 45090
+      },
+      {
+        "path": "industries/manufacturing/index.html",
+        "sha256": "aab2fde9e436710c9d1ebe8ba754b43fea0aa8a1bbe445ae12d7a5ee1bb52584",
+        "bytes": 45167
+      },
+      {
+        "path": "industries/pharmaceutical/index.html",
+        "sha256": "dc0cf65fdb34e23cb6c5eee174bd31412ceb163f58292112f106a1c45d8f96f4",
+        "bytes": 45326
+      },
+      {
+        "path": "industries/private-equity-portfolio/index.html",
+        "sha256": "282305c54d32da99e9ac2592a348661eb1bb45d9af1c18a66b0505341ac731b2",
+        "bytes": 45375
+      },
+      {
+        "path": "industries/product-saas/index.html",
+        "sha256": "a8fcfb29c4dec322188e20138c81ffbcb4ba4ee2219b802683e7ff976878f336",
+        "bytes": 45217
+      },
+      {
+        "path": "intelligence/index.html",
+        "sha256": "db1fdc80f17ff06865fd8271a9705218fbef47703c0cf9c8abf0ca24ac798cf0",
+        "bytes": 199635
+      },
+      {
+        "path": "og-default.png",
+        "sha256": "23eb8a08ecc597d465fe4fc70c2a56dcd16d783a264b5c24ea7f851803f30132",
+        "bytes": 118295
+      },
+      {
+        "path": "og-image.png",
+        "sha256": "198e3830b83c0cac846985b3924f606a26851bf4c930585985c7affd9e646f25",
+        "bytes": 103790
+      },
+      {
+        "path": "pranav.png",
+        "sha256": "2f8e569c39d4433a66af6ac7787443ba12e9548bf506b1280e99cffc72d3591e",
+        "bytes": 1439294
+      },
+      {
+        "path": "privacy/index.html",
+        "sha256": "9d81f22f715332e7f5282d8ab594fa8641cbc667fddf0804173ed1ac1caf2bce",
+        "bytes": 84492
+      },
+      {
+        "path": "robots.txt",
+        "sha256": "232117be4da43bcbe32c9e9ef7cabac986f2f5dde7f029a387cf39c44177b29b",
+        "bytes": 135
+      },
+      {
+        "path": "scripts/newsletter-signup.js",
+        "sha256": "2808273bc5b533c3ddc6cb5dd1cfc69d37fecf285a3df78fab59fd461d099b2a",
+        "bytes": 722
+      },
+      {
+        "path": "security/index.html",
+        "sha256": "5f14217065085a607423bf7ebdc779b3ad6dcb95980acf03495ef986d1753f59",
+        "bytes": 79642
+      },
+      {
+        "path": "services/index.html",
+        "sha256": "d37dcd56203e92250bc1309572689fc6174bf2254d5986a907ce1ddf61f5ffd4",
+        "bytes": 57103
+      },
+      {
+        "path": "sitemap-0.xml",
+        "sha256": "30ecaa6be903cac0e6e7879d9eb4f141b682733026ddc764c11b2731532b92df",
+        "bytes": 3585
+      },
+      {
+        "path": "sitemap-index.xml",
+        "sha256": "cb53b84f7476ac41c5ee0f26f8eb230a81a11c6525b78ad81e27f11a3933e114",
+        "bytes": 185
+      },
+      {
+        "path": "tag/ai-in-hiring/index.html",
+        "sha256": "e43e0d296db40c0cb90c7ee43c40fa06c4179e5d32214fe9b4146d49f49e3e85",
+        "bytes": 80945
+      },
+      {
+        "path": "tag/candidate-experience/index.html",
+        "sha256": "bfae371813c292bbe766b01bc6773e08d7f45441b339fc646ee33f1c7c72cbc9",
+        "bytes": 83210
+      },
+      {
+        "path": "tag/decision-infrastructure/index.html",
+        "sha256": "dfc44cc44d75d73faa9728be9bf1c62806017d78d023a9a87deb48cf8a2873cb",
+        "bytes": 82995
+      },
+      {
+        "path": "tag/empathy/index.html",
+        "sha256": "f89d132643e3ba4a2272c788aa6c31368fc2eab2949457944964398239a9bf8e",
+        "bytes": 80979
+      },
+      {
+        "path": "tag/engineering/index.html",
+        "sha256": "f744d45b346083cccbd9967d1039ba29c32b09ae616979fb827ea93531bc3540",
+        "bytes": 80935
+      },
+      {
+        "path": "tag/hiring-insights/index.html",
+        "sha256": "5e52d99672763360f726d7be2f8d5589d091920d676b72636e96c1f975491012",
+        "bytes": 81128
+      },
+      {
+        "path": "tag/hiring-metrics/index.html",
+        "sha256": "e316fd3882bec3e686de0de804293889865c5e912885e1c10d68cb8874f63660",
+        "bytes": 81034
+      },
+      {
+        "path": "tag/human-first-hiring/index.html",
+        "sha256": "31951ba00174dc1cff147db0aadc10101e034a468c28882bf09f8379839cc23f",
+        "bytes": 81089
+      },
+      {
+        "path": "tag/job-search-tips/index.html",
+        "sha256": "42d28512e8ac2a0be364a684756fe0a47996f5de6bc56acac30cf1a8891cd3f1",
+        "bytes": 81128
+      },
+      {
+        "path": "tag/platform-design/index.html",
+        "sha256": "4b04bb423f4193c9af708d0cfe7b28b5735f6158245dc5aaca5f4d7488ef08ac",
+        "bytes": 81040
+      },
+      {
+        "path": "tag/privacy-by-design/index.html",
+        "sha256": "5ee0c72f67cdb0bf870dae25b5fed422b97bbad6a68c667d39ee070acb6cdecf",
+        "bytes": 81060
+      },
+      {
+        "path": "tag/professional-respect/index.html",
+        "sha256": "4ae1df6fe0588a28f9b8efb15423ae847103cbd9a6f3be51bc3d65a1809e8961",
+        "bytes": 81090
+      },
+      {
+        "path": "tag/quality-of-hire/index.html",
+        "sha256": "f498c2ebac33a2c13b468250b9cf1ca34def4a007b7782794dce123b3646d0ce",
+        "bytes": 81044
+      },
+      {
+        "path": "tag/recruitment/index.html",
+        "sha256": "f177850b33c6339b080a9f1aa9975474bae136da48d269cbe56851406bb9efed",
+        "bytes": 81005
+      },
+      {
+        "path": "tag/signal-based-hiring/index.html",
+        "sha256": "612713593a8f5849fe5035a21e643a4fba5d6f54c2112c88f73f7c7ac9e35c98",
+        "bytes": 83143
+      },
+      {
+        "path": "tag/structured-evaluation/index.html",
+        "sha256": "7f01559b241d6c139d80b1519a7c2c9e77e9565e1751973f2a382f53085a4d3e",
+        "bytes": 83066
+      },
+      {
+        "path": "tag/talent-acquisition/index.html",
+        "sha256": "7e5435fd5b67118a04d302f2bfbd1cb4c516a27858a76db563df04dfb25f8d20",
+        "bytes": 87115
+      },
+      {
+        "path": "tag/technical-assessment/index.html",
+        "sha256": "c96eeb4994c4deb092aabf5b50214f9b496a037eff29fb8a4604b43dae1685f9",
+        "bytes": 81025
+      },
+      {
+        "path": "tag/technical-hiring/index.html",
+        "sha256": "e06d0b447c2f364793de373b2fad0cc2d5f41229314b6062edd3a257a5a5db5d",
+        "bytes": 83118
+      },
+      {
+        "path": "tag/thought-leadership/index.html",
+        "sha256": "49bc763041ea2c41a6057f197844454db828a1c568ef0ad35fbd53ac8aa27c5b",
+        "bytes": 81089
+      },
+      {
+        "path": "tag/time-to-hire/index.html",
+        "sha256": "f2dc48d86a58fb4e05d5f3d7b63df4e6a544aa483ff3b6563c4b140ed96deac6",
+        "bytes": 81041
+      },
+      {
+        "path": "tag/trust-in-hiring/index.html",
+        "sha256": "5977c733acdefb7cb48bc02e7577d2d47bb8b4d53fe5ac06d7a7cc83ffd4d908",
+        "bytes": 81040
+      },
+      {
+        "path": "terms/index.html",
+        "sha256": "409f716402f4e5242af2bf0797b1fa9fb7d763e539c22ad4dc3e62b2286310d2",
+        "bytes": 83221
+      }
+    ]
+  },
+  "summary": {
+    "baselineFiles": 262,
+    "candidateFiles": 266,
+    "unchanged": 262,
+    "changed": 0,
+    "missing": 0,
+    "added": 4,
+    "baselineHtmlFiles": 77,
+    "unchangedBaselineHtmlFiles": 77,
+    "changedBaselineHtmlFiles": [],
+    "missingBaselineHtmlFiles": [],
+    "addedByExtension": {
+      ".css": 3,
+      ".jpg": 1
+    },
+    "existingPublicHtmlAndRetainedRuntimeAssetsPreserved": true,
+    "unreferencedRemovedFixtureStylesheets": []
+  },
+  "missing": [],
+  "changed": [],
+  "added": [
+    {
+      "path": "_astro/case-study.C_0xlz7Z.css",
+      "sha256": "ca654698bfb866b3abd64a1d6bb53759593a21ae3321c9d10d4f5234b7eadf2f",
+      "bytes": 24639
+    },
+    {
+      "path": "_astro/interview-as-a-service.BApME65W.css",
+      "sha256": "f86574211d8e543cfb43abdf510dc9a2cbde76440e5e32f16f54ab20569f1f44",
+      "bytes": 21412
+    },
+    {
+      "path": "_astro/services.cBcFsxzD.css",
+      "sha256": "2166febdbe1e31d97276851d00f840ed32659d11658da870f5fba952859b067b",
+      "bytes": 42692
+    },
+    {
+      "path": "images/v9/services/pranav.jpg",
+      "sha256": "d693c2e5f87b48784ff4f31d12657335d230fe1350257805aa55e684b44b75fa",
+      "bytes": 3198
+    }
+  ],
+  "unchanged": [
+    "404.html",
+    "_astro/--hero-bg.DQPe3Sqy.png",
+    "_astro/-tribera_logo_default.BwGHjgDg.svg",
+    "_astro/200000-interviews-insights.CACZiAxh.png",
+    "_astro/AboutPage.astro_astro_type_script_index_0_lang.BPT6GUvV.js",
+    "_astro/AegonLife.DW6Kwb0-.png",
+    "_astro/Aeries.Dvss0AVs.png",
+    "_astro/ArticlePage.astro_astro_type_script_index_0_lang.VnuYX3a0.js",
+    "_astro/BfsiPage.astro_astro_type_script_index_0_lang.VnuYX3a0.js",
+    "_astro/Candidates.astro_astro_type_script_index_0_lang.B2t4Tzas.js",
+    "_astro/ContactSalesModal.BaiHDf1r.css",
+    "_astro/DSP_Mutual_Funds.Bd3XWU5r.png",
+    "_astro/EditorialPage.BkT3SOhI.css",
+    "_astro/Enpro.BeVSuZgk.png",
+    "_astro/Home.astro_astro_type_script_index_0_lang.DS9DSow3.js",
+    "_astro/Home.astro_astro_type_script_index_0_lang.Du-HFaf2.js",
+    "_astro/ICICBank.uFYUodMj.png",
+    "_astro/ICICISecurities.DchO96iF.png",
+    "_astro/Payu.0Y6FFHuE.png",
+    "_astro/ReferenceNavStyles.Cc3xTvLN.css",
+    "_astro/SplashBI.k0_SEhET.png",
+    "_astro/TechnologyHoldings.BQxTMCCS.png",
+    "_astro/UtkarshBank.DRJaUMTm.png",
+    "_astro/V9Layout.dOnKr9N5.css",
+    "_astro/Volkwagen.DtGUwejJ.png",
+    "_astro/__hero-bg.D6jZ3_bL.png",
+    "_astro/_hero-bg.BSe2TRGE.png",
+    "_astro/_slug_.C8WCDMwR.css",
+    "_astro/_slug_.Cjws8YrA.css",
+    "_astro/_slug_.astro_astro_type_script_index_0_lang.B1pYtZmQ.js",
+    "_astro/_slug_.astro_astro_type_script_index_0_lang.Bez_FOEF.js",
+    "_astro/_slug_.astro_astro_type_script_index_0_lang.DhqNcvGS.js",
+    "_astro/about.BRj_H6mj.css",
+    "_astro/about.CwbI5YpA.css",
+    "_astro/about.astro_astro_type_script_index_0_lang.BHlpwXUY.js",
+    "_astro/ai-technical-assessment.BF4Iz4Zm.png",
+    "_astro/ai-technical-assessment.BF4Iz4Zm_Z1gozBg.jpg",
+    "_astro/article.CwRheMbT.css",
+    "_astro/bfsi.9NzOcGyx.css",
+    "_astro/candidates.CWAVY1VY.css",
+    "_astro/candidates.astro_astro_type_script_index_0_lang.Bpq18UHI.js",
+    "_astro/candidates.jpr1kjbw.css",
+    "_astro/careers.CcXR7EDk.css",
+    "_astro/careers.DZSa0oQd.png",
+    "_astro/careers.astro_astro_type_script_index_0_lang.aaow5WHg.js",
+    "_astro/charts.DlqpdznW.js",
+    "_astro/contact.BYFLp45H.css",
+    "_astro/contact.astro_astro_type_script_index_0_lang.jTigSwye.js",
+    "_astro/content.BCDK3LCG.css",
+    "_astro/default.Dmjw7dg-.png",
+    "_astro/designing-ai-for-high-stakes-technical-assessment.DyWabe9n.css",
+    "_astro/designing-ai-for-high-stakes-technical-assessment.astro_astro_type_script_index_0_lang.BdBAlKFb.js",
+    "_astro/designing-for-trust-privacy-transparency-respect.D7Geuifl.css",
+    "_astro/designing-for-trust-privacy-transparency-respect.astro_astro_type_script_index_0_lang.Dcuy_mQ1.js",
+    "_astro/hero-bg-2.CHf3dhtm.png",
+    "_astro/hero-bg.D5nPWpKx.png",
+    "_astro/hero-bg.EvH5k5et.jpg",
+    "_astro/hero-image.Cl79UQ8p.png",
+    "_astro/hiring-infrastructure.CsDXdJeO.png",
+    "_astro/hiring-is-not-a-transaction-its-a-relationship.BbEKxsnQ.css",
+    "_astro/hiring-is-not-a-transaction-its-a-relationship.astro_astro_type_script_index_0_lang.BdBAlKFb.js",
+    "_astro/hiring-is-not-a-transaction.gYgX93BY.png",
+    "_astro/hiring-is-not-a-transaction.gYgX93BY_Z1HNys1.jpg",
+    "_astro/home.DcwTAr1-.css",
+    "_astro/index.BHp9XquF.css",
+    "_astro/index.CXDEyTpb.css",
+    "_astro/index.DPAXFJiE.css",
+    "_astro/index.DtmcVNHG.js",
+    "_astro/index.astro_astro_type_script_index_0_lang.B2xNNu0s.js",
+    "_astro/index.astro_astro_type_script_index_0_lang.BS5TzGXj.js",
+    "_astro/index.astro_astro_type_script_index_1_lang.BBMOE7SM.js",
+    "_astro/index.vkIlkYtC.css",
+    "_astro/intelligence.Cr9znQ1j.css",
+    "_astro/intelligence.astro_astro_type_script_index_0_lang.CRSTBjGJ.js",
+    "_astro/intelligence.astro_astro_type_script_index_1_lang.DFfjVgs6.js",
+    "_astro/inter-cyrillic-ext-wght-normal.BOeWTOD4.woff2",
+    "_astro/inter-cyrillic-wght-normal.DqGufNeO.woff2",
+    "_astro/inter-greek-ext-wght-normal.DlzME5K_.woff2",
+    "_astro/inter-greek-wght-normal.CkhJZR-_.woff2",
+    "_astro/inter-latin-ext-wght-normal.DO1Apj_S.woff2",
+    "_astro/inter-latin-wght-normal.Dx4kXJAl.woff2",
+    "_astro/inter-vietnamese-wght-normal.CBcvBZtf.woff2",
+    "_astro/laptop.56YvgkdP.png",
+    "_astro/meet-our-talent-advisors.BHalrsA0.png",
+    "_astro/page.zh1XDkz8.js",
+    "_astro/placeholder.Bvl4ZYU5.png",
+    "_astro/rethinking-hiring-metrics-signal-efficiency.CDnBjYiC.css",
+    "_astro/rethinking-hiring-metrics-signal-efficiency.astro_astro_type_script_index_0_lang.Dcuy_mQ1.js",
+    "_astro/services.CqM_Lj8i.css",
+    "_astro/services.astro_astro_type_script_index_0_lang.BfJQ_iRi.js",
+    "_astro/signal-based-hiring.B2Ay6bD4.png",
+    "_astro/signal-based-hiring.B2Ay6bD4_Z1e9pc8.jpg",
+    "_astro/signal-efficiency.8lefGeXl.png",
+    "_astro/signal-efficiency.8lefGeXl_1MpzOU.jpg",
+    "_astro/signal-vs-noise-technical-hiring.astro_astro_type_script_index_0_lang.BdBAlKFb.js",
+    "_astro/start.nct19zUI.css",
+    "_astro/technical-hiring.Cjv_P-1M.png",
+    "_astro/tribera_logo_default.z9-1FY0N.svg",
+    "_astro/trust-by-design.sbdvdm_i.png",
+    "_astro/trust-by-design.sbdvdm_i_283bRk.jpg",
+    "_astro/when-job-hunting-feels-like-a-black-hole.astro_astro_type_script_index_0_lang.BdBAlKFb.js",
+    "_astro/when-job-hunting-feels-like-a-black-hole.bxV7n3Xy.png",
+    "_astro/when-job-hunting-feels-like-a-black-hole.bxV7n3Xy_ZUX5OT.jpg",
+    "_astro/why-tech-hiring-really-takes-so-long.D9NuhBGR.png",
+    "_astro/why-tech-hiring-really-takes-so-long.D9NuhBGR_w5fxT.jpg",
+    "_astro/why-tech-hiring-really-takes-so-long.astro_astro_type_script_index_0_lang.BdBAlKFb.js",
+    "_headers",
+    "abhishek.png",
+    "about/index.html",
+    "akshata.png",
+    "apple-touch-icon.png",
+    "blog/designing-ai-for-high-stakes-technical-assessment/index.html",
+    "blog/designing-for-trust-privacy-transparency-respect/index.html",
+    "blog/hiring-is-not-a-transaction-its-a-relationship/index.html",
+    "blog/index.html",
+    "blog/rethinking-hiring-metrics-signal-efficiency/index.html",
+    "blog/signal-vs-noise-technical-hiring/index.html",
+    "blog/when-job-hunting-feels-like-a-black-hole/index.html",
+    "blog/why-tech-hiring-really-takes-so-long/index.html",
+    "brand/v9/apple-touch-icon.png",
+    "brand/v9/authors/akshata-chandavarkar.jpg",
+    "brand/v9/candidates/hero-field.svg",
+    "brand/v9/editorial/portrait-3742dc874889.jpg",
+    "brand/v9/editorial/portrait-4fd2bf498416.jpg",
+    "brand/v9/editorial/portrait-a03becec00ab.jpg",
+    "brand/v9/favicon.ico",
+    "brand/v9/favicon.svg",
+    "brand/v9/icon-192.png",
+    "brand/v9/icon-512.png",
+    "brand/v9/icon-maskable-512.png",
+    "brand/v9/icons-manifest.json",
+    "brand/v9/site.webmanifest",
+    "brand/v9/tribera-logo-black.png",
+    "brand/v9/tribera-logo-red.png",
+    "brand/v9/tribera-logo-white.png",
+    "candidates/index.html",
+    "candidates/start/index.html",
+    "careers.json",
+    "careers/ai-ml-engineer/index.html",
+    "careers/backend-engineer/index.html",
+    "careers/growth-intern/index.html",
+    "careers/index.html",
+    "careers/senior-delivery-partner/index.html",
+    "careers/software-intern/index.html",
+    "careers/talent-advisor/index.html",
+    "careers/talent-associate/index.html",
+    "category/ai-and-assessment/index.html",
+    "category/candidate-experience/index.html",
+    "category/hiring-philosophy/index.html",
+    "category/hiring-strategy/index.html",
+    "category/technical-hiring/index.html",
+    "contact/index.html",
+    "decapcms/config.yml",
+    "decapcms/index.html",
+    "favicon-16x16.png",
+    "favicon-32x32.png",
+    "favicon.ico",
+    "favicon.png",
+    "favicon.svg",
+    "fonts/caveat-700.woff2",
+    "fonts/caveat-OFL.txt",
+    "fonts/figtree-400.woff2",
+    "fonts/figtree-500.woff2",
+    "fonts/figtree-600.woff2",
+    "fonts/figtree-700.woff2",
+    "fonts/figtree-800.woff2",
+    "fonts/fraunces-400.ttf",
+    "fonts/fraunces-400.woff2",
+    "fonts/fraunces-500-italic.ttf",
+    "fonts/fraunces-500.ttf",
+    "fonts/fraunces-500.woff2",
+    "fonts/fraunces-600.ttf",
+    "fonts/fraunces-600.woff2",
+    "fonts/fraunces-italic-latin.woff2",
+    "fonts/inter-tight-400.woff2",
+    "fonts/inter-tight-500.woff2",
+    "fonts/inter-tight-600.woff2",
+    "fonts/jetbrains-mono-400.woff2",
+    "fonts/jetbrains-mono-500.woff2",
+    "fonts/jetbrains-mono-700.woff2",
+    "fonts/site-fonts.css",
+    "fonts/v9/README.md",
+    "fonts/v9/fraunces-OFL.txt",
+    "fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+    "fonts/v9/fraunces-italic-latin-ext-437e9d07.woff2",
+    "fonts/v9/fraunces-italic-vietnamese-ccf0fecc.woff2",
+    "fonts/v9/fraunces-normal-latin-6a837066.woff2",
+    "fonts/v9/fraunces-normal-latin-ext-7cdca5ec.woff2",
+    "fonts/v9/fraunces-normal-vietnamese-a4c5fe4f.woff2",
+    "fonts/v9/inter-tight-normal-cyrillic-0cc45335.woff2",
+    "fonts/v9/inter-tight-normal-cyrillic-ext-a8294514.woff2",
+    "fonts/v9/inter-tight-normal-greek-8f59721c.woff2",
+    "fonts/v9/inter-tight-normal-greek-ext-7aa16fae.woff2",
+    "fonts/v9/inter-tight-normal-latin-603db177.woff2",
+    "fonts/v9/inter-tight-normal-latin-ext-e1523547.woff2",
+    "fonts/v9/inter-tight-normal-vietnamese-c69d8181.woff2",
+    "fonts/v9/intertight-OFL.txt",
+    "fonts/v9/jetbrains-mono-normal-cyrillic-eb83d8d4.woff2",
+    "fonts/v9/jetbrains-mono-normal-cyrillic-ext-6b5e37b5.woff2",
+    "fonts/v9/jetbrains-mono-normal-greek-99e40033.woff2",
+    "fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+    "fonts/v9/jetbrains-mono-normal-latin-ext-b19c2080.woff2",
+    "fonts/v9/jetbrains-mono-normal-vietnamese-c4064400.woff2",
+    "fonts/v9/jetbrainsmono-OFL.txt",
+    "fonts/v9/manifest.json",
+    "functions/data-analytics/index.html",
+    "functions/engineering-platform/index.html",
+    "functions/finance-risk/index.html",
+    "functions/index.html",
+    "functions/infrastructure-sre/index.html",
+    "functions/leadership/index.html",
+    "functions/operations/index.html",
+    "functions/product-design/index.html",
+    "functions/security/index.html",
+    "index.html",
+    "industries/ai-data/index.html",
+    "industries/banking-financial-services/index.html",
+    "industries/consumer-digital-commerce/index.html",
+    "industries/cybersecurity/index.html",
+    "industries/enterprise-technology/index.html",
+    "industries/global-capability-centres/index.html",
+    "industries/healthcare-life-sciences/index.html",
+    "industries/index.html",
+    "industries/industrial-engineering/index.html",
+    "industries/manufacturing/index.html",
+    "industries/pharmaceutical/index.html",
+    "industries/private-equity-portfolio/index.html",
+    "industries/product-saas/index.html",
+    "intelligence/index.html",
+    "og-default.png",
+    "og-image.png",
+    "pranav.png",
+    "privacy/index.html",
+    "robots.txt",
+    "scripts/newsletter-signup.js",
+    "security/index.html",
+    "services/index.html",
+    "sitemap-0.xml",
+    "sitemap-index.xml",
+    "tag/ai-in-hiring/index.html",
+    "tag/candidate-experience/index.html",
+    "tag/decision-infrastructure/index.html",
+    "tag/empathy/index.html",
+    "tag/engineering/index.html",
+    "tag/hiring-insights/index.html",
+    "tag/hiring-metrics/index.html",
+    "tag/human-first-hiring/index.html",
+    "tag/job-search-tips/index.html",
+    "tag/platform-design/index.html",
+    "tag/privacy-by-design/index.html",
+    "tag/professional-respect/index.html",
+    "tag/quality-of-hire/index.html",
+    "tag/recruitment/index.html",
+    "tag/signal-based-hiring/index.html",
+    "tag/structured-evaluation/index.html",
+    "tag/talent-acquisition/index.html",
+    "tag/technical-assessment/index.html",
+    "tag/technical-hiring/index.html",
+    "tag/thought-leadership/index.html",
+    "tag/time-to-hire/index.html",
+    "tag/trust-in-hiring/index.html",
+    "terms/index.html"
+  ]
+}

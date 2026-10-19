@@ -1,0 +1,26 @@
+{
+  "revision": "6ce90cad47644a8cc87bfb5ef4624cfb009611d9",
+  "cleanTree": true,
+  "lockHash": "56be5c8181c79995befb9b07957589898a1eabfd027f0c8a8e82c4c178c370fa",
+  "builds": {
+    "preview": "faf625301153f5a9aa755bc3de3013bd3099d1c7c22752dcea4da064fcc3de05",
+    "production": "c00e646d607b92f28d379ec110fb9855a07f41b7353c6e8f6737700ba2fb34f2"
+  },
+  "fullCheckLog": "check-final.log",
+  "unitLog": "unit-final.log",
+  "unitTests": 110,
+  "chains": {
+    "chromium": {
+      "status": "passed",
+      "suites": 4
+    },
+    "firefox": {
+      "status": "passed",
+      "suites": 4
+    },
+    "webkit": {
+      "status": "passed",
+      "suites": 4
+    }
+  }
+}

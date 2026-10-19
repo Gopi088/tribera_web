@@ -23,7 +23,7 @@ route,baseline_present,handoff_source,planned_action,target_route,indexing,relea
 /careers/software-intern,yes,careers/backend-engineer.html (template),adapt existing role,/careers/software-intern,index,confirm open role and adapt existing role copy,not started
 /careers/talent-advisor,yes,careers/backend-engineer.html (template),adapt existing role,/careers/talent-advisor,index,confirm open role and adapt existing role copy,not started
 /careers/talent-associate,yes,careers/backend-engineer.html (template),adapt existing role,/careers/talent-associate,index,confirm open role and adapt existing role copy,not started
-/case-study,no,case-study.html,add,/case-study,index,confirm shared 22-day case claims,not started
+/case-study,no,case-study.html,add,/case-study,index,confirm shared 22-day case claims,private preview validated; public pending
 /category/ai-and-assessment,yes,,retain collection archive,/category/ai-and-assessment,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
 /category/candidate-experience,yes,,retain collection archive,/category/candidate-experience,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
 /category/hiring-philosophy,yes,,retain collection archive,/category/hiring-philosophy,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
@@ -57,11 +57,11 @@ route,baseline_present,handoff_source,planned_action,target_route,indexing,relea
 /industries/private-equity-portfolio,yes,industries/private-equity-portfolio.html,replace,/industries/private-equity-portfolio,index,content and functional checks,not started
 /industries/product-saas,yes,industries/product-saas.html,replace,/industries/product-saas,index,content and functional checks,not started
 /intelligence,yes,intelligence.html,replace,/intelligence,index,real scarcity data or explicit alternate publication treatment,not started
-/interview-as-a-service,no,interview-as-a-service.html,add,/interview-as-a-service,index,content and functional checks,not started
+/interview-as-a-service,no,interview-as-a-service.html,add,/interview-as-a-service,index,content and functional checks,private preview validated; public pending
 /privacy,yes,privacy.html,replace,/privacy,index,legal and operational review,not started
 /sample-write-up,no,sample-write-up.html,add,/sample-write-up,index,content and functional checks,not started
 /security,yes,security.html,replace,/security,index,legal and operational review,not started
-/services,yes,services.html,replace,/services,index,confirm shared 22-day case claims,not started
+/services,yes,services.html,replace,/services,index,confirm shared 22-day case claims,private preview validated; public pending
 /tag/ai-in-hiring,yes,,retain collection archive,/tag/ai-in-hiring,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
 /tag/candidate-experience,yes,,retain collection archive,/tag/candidate-experience,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
 /tag/decision-infrastructure,yes,,retain collection archive,/tag/decision-infrastructure,noindex,reconcile taxonomy against migrated collection; no empty archives,not started

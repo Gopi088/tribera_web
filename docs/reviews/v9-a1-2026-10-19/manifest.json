@@ -1,0 +1,20 @@
+[
+  {
+    "name": "source",
+    "requestedRevision": "54ea9c1",
+    "note": "Rolling source-only review; source advanced during review, not final acceptance",
+    "sessionId": "955e3851-15c2-45eb-9e28-a74f432d2ce0",
+    "models": ["claude-sonnet-5"],
+    "isError": false,
+    "report": "source-report.txt"
+  },
+  {
+    "name": "final",
+    "requestedRevision": "6ce90cad47644a8cc87bfb5ef4624cfb009611d9",
+    "note": "Frozen final bounded acceptance",
+    "sessionId": "48c6ca6c-dea6-4cf7-b88c-d60e94353ba9",
+    "models": ["claude-sonnet-5"],
+    "isError": false,
+    "report": "final-report.txt"
+  }
+]

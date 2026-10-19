@@ -1,0 +1,687 @@
+
+> tribera-website@1.0.0-beta.52 check
+> npm run check:astro && npm run check:eslint && npm run check:prettier
+
+
+> tribera-website@1.0.0-beta.52 check:astro
+> astro check
+
+12:08:32 [astrowind] Astrowind `./src/config.yaml` has been loaded.
+12:08:32 [vite] Re-optimizing dependencies because vite config has changed
+12:08:33 [content] Syncing content
+12:08:33 [content] Synced content
+12:08:33 [types] Generated 1.06s
+12:08:33 [check] Getting diagnostics for Astro files in /tmp/tribera-v9-a1...
+[96mscripts/audit-all-text.mjs[0m:[93m75[0m:[93m54[0m - [93mwarning[0m[90m ts(6385): [0m'clip' is deprecated.
+
+[7m75[0m                 if (s.clipPath === 'inset(50%)' || s.clip === 'rect(0px, 0px, 0px, 0px)') return false;
+[7m  [0m [93m                                                     ~~~~[0m
+[96mscripts/audit-all-text.mjs[0m:[93m50[0m:[93m16[0m - [93mwarning[0m[90m ts(2568): [0mProperty 'status' may not exist on type '{ route: any; width: number; states: never[]; errors: never[]; }'. Did you mean 'states'?
+
+[7m50[0m         record.status = response.status();
+[7m  [0m [93m               ~~~~~~[0m
+
+[96mscripts/audit-heading-hierarchy.mjs[0m:[93m162[0m:[93m27[0m - [93mwarning[0m[90m ts(2568): [0mProperty 'error' may not exist on type '{ title: string; rootSize: string; overflow: boolean; headings: { tag: any; text: any; selector: string; parent: string; section: string; font: string; size: number; weight: string; lineHeight: string; ... 11 more ...; opacity: string; }[]; ... 4 more ...; errors: any[]; } | { ...; }'. Did you mean 'errors'?
+  Property 'error' does not exist on type '{ title: string; rootSize: string; overflow: boolean; headings: { tag: any; text: any; selector: string; parent: string; section: string; font: string; size: number; weight: string; lineHeight: string; ... 11 more ...; opacity: string; }[]; ... 4 more ...; errors: any[]; }'.
+
+[7m162[0m if (records.some((r) => r.error)) process.exitCode = 1;
+[7m   [0m [93m                          ~~~~~[0m
+[96mscripts/audit-heading-hierarchy.mjs[0m:[93m148[0m:[93m22[0m - [93mwarning[0m[90m ts(2568): [0mProperty 'error' may not exist on type '{ title: string; rootSize: string; overflow: boolean; headings: { tag: any; text: any; selector: string; parent: string; section: string; font: string; size: number; weight: string; lineHeight: string; ... 11 more ...; opacity: string; }[]; ... 4 more ...; errors: any[]; } | { ...; }'. Did you mean 'errors'?
+  Property 'error' does not exist on type '{ title: string; rootSize: string; overflow: boolean; headings: { tag: any; text: any; selector: string; parent: string; section: string; font: string; size: number; weight: string; lineHeight: string; ... 11 more ...; opacity: string; }[]; ... 4 more ...; errors: any[]; }'.
+
+[7m148[0m         lines.push(r.error);
+[7m   [0m [93m                     ~~~~~[0m
+[96mscripts/audit-heading-hierarchy.mjs[0m:[93m147[0m:[93m13[0m - [93mwarning[0m[90m ts(2568): [0mProperty 'error' may not exist on type '{ title: string; rootSize: string; overflow: boolean; headings: { tag: any; text: any; selector: string; parent: string; section: string; font: string; size: number; weight: string; lineHeight: string; ... 11 more ...; opacity: string; }[]; ... 4 more ...; errors: any[]; } | { ...; }'. Did you mean 'errors'?
+  Property 'error' does not exist on type '{ title: string; rootSize: string; overflow: boolean; headings: { tag: any; text: any; selector: string; parent: string; section: string; font: string; size: number; weight: string; lineHeight: string; ... 11 more ...; opacity: string; }[]; ... 4 more ...; errors: any[]; }'.
+
+[7m147[0m       if (r.error) {
+[7m   [0m [93m            ~~~~~[0m
+
+[96msrc/content.config.ts[0m:[93m111[0m:[93m19[0m - [93mwarning[0m[90m ts(6385): [0m'ZodIssueCode' is deprecated.
+
+[7m111[0m           code: z.ZodIssueCode.custom,
+[7m   [0m [93m                  ~~~~~~~~~~~~[0m
+[96msrc/content.config.ts[0m:[93m111[0m:[93m17[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m111[0m           code: z.ZodIssueCode.custom,
+[7m   [0m [93m                ~[0m
+[96msrc/content.config.ts[0m:[93m104[0m:[93m23[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m104[0m       seoDescription: z.string().optional(),
+[7m   [0m [93m                      ~[0m
+[96msrc/content.config.ts[0m:[93m103[0m:[93m17[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m103[0m       seoTitle: z.string().optional(),
+[7m   [0m [93m                ~[0m
+[96msrc/content.config.ts[0m:[93m101[0m:[93m18[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m101[0m       updatedAt: z.date().optional(),
+[7m   [0m [93m                 ~[0m
+[96msrc/content.config.ts[0m:[93m100[0m:[93m17[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m100[0m       postedAt: z.date().optional(),
+[7m   [0m [93m                ~[0m
+[96msrc/content.config.ts[0m:[93m98[0m:[93m28[0m - [93mwarning[0m[90m ts(6385): [0m'(params?: string | { pattern?: RegExp | undefined; normalize?: boolean | undefined; abort?: boolean | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.
+
+[7m98[0m       applyUrl: z.string().url().optional(),
+[7m  [0m [93m                           ~~~[0m
+[96msrc/content.config.ts[0m:[93m98[0m:[93m17[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m98[0m       applyUrl: z.string().url().optional(),
+[7m  [0m [93m                ~[0m
+[96msrc/content.config.ts[0m:[93m97[0m:[93m30[0m - [93mwarning[0m[90m ts(6385): [0m'(params?: string | { pattern?: RegExp | undefined; abort?: boolean | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.
+
+[7m97[0m       applyEmail: z.string().email().optional(),
+[7m  [0m [93m                             ~~~~~[0m
+[96msrc/content.config.ts[0m:[93m97[0m:[93m19[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m97[0m       applyEmail: z.string().email().optional(),
+[7m  [0m [93m                  ~[0m
+[96msrc/content.config.ts[0m:[93m96[0m:[93m16[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m96[0m       summary: z.string(),
+[7m  [0m [93m               ~[0m
+[96msrc/content.config.ts[0m:[93m94[0m:[93m18[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m94[0m       sortOrder: z.number().int().optional().default(100),
+[7m  [0m [93m                 ~[0m
+[96msrc/content.config.ts[0m:[93m93[0m:[93m17[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m93[0m       featured: z.boolean().optional().default(false),
+[7m  [0m [93m                ~[0m
+[96msrc/content.config.ts[0m:[93m91[0m:[93m18[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m91[0m       positions: z.number().int().positive().optional().default(1),
+[7m  [0m [93m                 ~[0m
+[96msrc/content.config.ts[0m:[93m90[0m:[93m24[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m90[0m       experienceLevel: z.string().optional(),
+[7m  [0m [93m                       ~[0m
+[96msrc/content.config.ts[0m:[93m89[0m:[93m21[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m89[0m       remotePolicy: z.enum(['remote', 'onsite']),
+[7m  [0m [93m                    ~[0m
+[96msrc/content.config.ts[0m:[93m88[0m:[93m17[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m88[0m       location: z.string(),
+[7m  [0m [93m                ~[0m
+[96msrc/content.config.ts[0m:[93m87[0m:[93m23[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m87[0m       employmentType: z.enum(['full-time', 'intern', 'contract']),
+[7m  [0m [93m                      ~[0m
+[96msrc/content.config.ts[0m:[93m86[0m:[93m19[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m86[0m       roleFamily: z.enum(['technical', 'talent', 'go-to-market', 'operations', 'intern']),
+[7m  [0m [93m                  ~[0m
+[96msrc/content.config.ts[0m:[93m77[0m:[93m19[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m77[0m       department: z.enum([
+[7m  [0m [93m                  ~[0m
+[96msrc/content.config.ts[0m:[93m76[0m:[93m15[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m76[0m       status: z.enum(['open', 'closed', 'draft']).default('open'),
+[7m  [0m [93m              ~[0m
+[96msrc/content.config.ts[0m:[93m74[0m:[93m14[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m74[0m       title: z.string(),
+[7m  [0m [93m             ~[0m
+[96msrc/content.config.ts[0m:[93m72[0m:[93m11[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m72[0m   schema: z
+[7m  [0m [93m          ~[0m
+[96msrc/content.config.ts[0m:[93m64[0m:[93m13[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m64[0m     author: z.string().optional(),
+[7m  [0m [93m            ~[0m
+[96msrc/content.config.ts[0m:[93m63[0m:[93m19[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m63[0m     tags: z.array(z.string()).optional(),
+[7m  [0m [93m                  ~[0m
+[96msrc/content.config.ts[0m:[93m63[0m:[93m11[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m63[0m     tags: z.array(z.string()).optional(),
+[7m  [0m [93m          ~[0m
+[96msrc/content.config.ts[0m:[93m62[0m:[93m15[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m62[0m     category: z.string().optional(),
+[7m  [0m [93m              ~[0m
+[96msrc/content.config.ts[0m:[93m60[0m:[93m18[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m60[0m     readingTime: z.string().optional(),
+[7m  [0m [93m                 ~[0m
+[96msrc/content.config.ts[0m:[93m59[0m:[93m12[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m59[0m     image: z.string().optional(),
+[7m  [0m [93m           ~[0m
+[96msrc/content.config.ts[0m:[93m58[0m:[93m14[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m58[0m     excerpt: z.string().optional(),
+[7m  [0m [93m             ~[0m
+[96msrc/content.config.ts[0m:[93m57[0m:[93m20[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m57[0m     permalinkSlug: z.string().optional(),
+[7m  [0m [93m                   ~[0m
+[96msrc/content.config.ts[0m:[93m56[0m:[93m12[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m56[0m     title: z.string(),
+[7m  [0m [93m           ~[0m
+[96msrc/content.config.ts[0m:[93m54[0m:[93m12[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m54[0m     draft: z.boolean().optional(),
+[7m  [0m [93m           ~[0m
+[96msrc/content.config.ts[0m:[93m53[0m:[93m17[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m53[0m     updateDate: z.date().optional(),
+[7m  [0m [93m                ~[0m
+[96msrc/content.config.ts[0m:[93m52[0m:[93m18[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m52[0m     publishDate: z.date().optional(),
+[7m  [0m [93m                 ~[0m
+[96msrc/content.config.ts[0m:[93m51[0m:[93m11[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m51[0m   schema: z.object({
+[7m  [0m [93m          ~[0m
+[96msrc/content.config.ts[0m:[93m43[0m:[93m21[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m43[0m           cardType: z.string().optional(),
+[7m  [0m [93m                    ~[0m
+[96msrc/content.config.ts[0m:[93m42[0m:[93m17[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m42[0m           site: z.string().optional(),
+[7m  [0m [93m                ~[0m
+[96msrc/content.config.ts[0m:[93m41[0m:[93m19[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m41[0m           handle: z.string().optional(),
+[7m  [0m [93m                  ~[0m
+[96msrc/content.config.ts[0m:[93m39[0m:[93m16[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m39[0m       twitter: z
+[7m  [0m [93m               ~[0m
+[96msrc/content.config.ts[0m:[93m35[0m:[93m17[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m35[0m           type: z.string().optional(),
+[7m  [0m [93m                ~[0m
+[96msrc/content.config.ts[0m:[93m34[0m:[93m19[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m34[0m           locale: z.string().optional(),
+[7m  [0m [93m                  ~[0m
+[96msrc/content.config.ts[0m:[93m30[0m:[93m25[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m30[0m                 height: z.number().optional(),
+[7m  [0m [93m                        ~[0m
+[96msrc/content.config.ts[0m:[93m29[0m:[93m24[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m29[0m                 width: z.number().optional(),
+[7m  [0m [93m                       ~[0m
+[96msrc/content.config.ts[0m:[93m28[0m:[93m22[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m28[0m                 url: z.string(),
+[7m  [0m [93m                     ~[0m
+[96msrc/content.config.ts[0m:[93m27[0m:[93m15[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m27[0m               z.object({
+[7m  [0m [93m              ~[0m
+[96msrc/content.config.ts[0m:[93m25[0m:[93m19[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m25[0m           images: z
+[7m  [0m [93m                  ~[0m
+[96msrc/content.config.ts[0m:[93m24[0m:[93m21[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m24[0m           siteName: z.string().optional(),
+[7m  [0m [93m                    ~[0m
+[96msrc/content.config.ts[0m:[93m23[0m:[93m16[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m23[0m           url: z.string().optional(),
+[7m  [0m [93m               ~[0m
+[96msrc/content.config.ts[0m:[93m21[0m:[93m18[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m21[0m       openGraph: z
+[7m  [0m [93m                 ~[0m
+[96msrc/content.config.ts[0m:[93m19[0m:[93m20[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m19[0m       description: z.string().optional(),
+[7m  [0m [93m                   ~[0m
+[96msrc/content.config.ts[0m:[93m15[0m:[93m19[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m15[0m           follow: z.boolean().optional(),
+[7m  [0m [93m                  ~[0m
+[96msrc/content.config.ts[0m:[93m14[0m:[93m18[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m14[0m           index: z.boolean().optional(),
+[7m  [0m [93m                 ~[0m
+[96msrc/content.config.ts[0m:[93m12[0m:[93m15[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m12[0m       robots: z
+[7m  [0m [93m              ~[0m
+[96msrc/content.config.ts[0m:[93m10[0m:[93m29[0m - [93mwarning[0m[90m ts(6385): [0m'(params?: string | { pattern?: RegExp | undefined; normalize?: boolean | undefined; abort?: boolean | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.
+
+[7m10[0m       canonical: z.string().url().optional(),
+[7m  [0m [93m                            ~~~[0m
+[96msrc/content.config.ts[0m:[93m10[0m:[93m18[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m10[0m       canonical: z.string().url().optional(),
+[7m  [0m [93m                 ~[0m
+[96msrc/content.config.ts[0m:[93m8[0m:[93m28[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m8[0m       ignoreTitleTemplate: z.boolean().optional(),
+[7m [0m [93m                           ~[0m
+[96msrc/content.config.ts[0m:[93m7[0m:[93m14[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m7[0m       title: z.string().optional(),
+[7m [0m [93m             ~[0m
+[96msrc/content.config.ts[0m:[93m5[0m:[93m3[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m5[0m   z
+[7m [0m [93m  ~[0m
+[96msrc/content.config.ts[0m:[93m1[0m:[93m10[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m1[0m import { z, defineCollection } from 'astro:content';
+[7m [0m [93m         ~[0m
+
+[96msrc/layouts/Layout.astro[0m:[93m945[0m:[93m13[0m - [93mwarning[0m[90m astro(4000): [0mThis script will be treated as if it has the `is:inline` directive because it contains an attribute. Therefore, features that require processing (e.g. using TypeScript or npm packages in the script) are unavailable.
+
+See docs for more details: https://docs.astro.build/en/guides/client-side-scripts/#script-processing.
+
+Add the `is:inline` directive explicitly to silence this hint.
+
+[7m945[0m     <script defer src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+[7m   [0m [93m            ~~~~~[0m
+
+[96msrc/pages/about.astro[0m:[93m5418[0m:[93m35[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'n' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m5418[0m           nodes.forEach(function (n) {
+[7m    [0m [93m                                  ~[0m
+[96msrc/pages/about.astro[0m:[93m5406[0m:[93m35[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'threshold' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m5406[0m         function watch(nodes, fn, threshold) {
+[7m    [0m [93m                                  ~~~~~~~~~[0m
+[96msrc/pages/about.astro[0m:[93m5406[0m:[93m31[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'fn' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m5406[0m         function watch(nodes, fn, threshold) {
+[7m    [0m [93m                              ~~[0m
+[96msrc/pages/about.astro[0m:[93m5406[0m:[93m24[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'nodes' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m5406[0m         function watch(nodes, fn, threshold) {
+[7m    [0m [93m                       ~~~~~[0m
+[96msrc/pages/about.astro[0m:[93m5388[0m:[93m23[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'el' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m5388[0m         function fill(el) {
+[7m    [0m [93m                      ~~[0m
+[96msrc/pages/about.astro[0m:[93m5365[0m:[93m24[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'v' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m5365[0m           function fmt(v) {
+[7m    [0m [93m                       ~[0m
+[96msrc/pages/about.astro[0m:[93m5357[0m:[93m24[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'el' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m5357[0m         function count(el) {
+[7m    [0m [93m                       ~~[0m
+[96msrc/pages/about.astro[0m:[93m5343[0m:[93m24[0m - [93mwarning[0m[90m ts(7044): [0mParameter 't' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m5343[0m         function parse(t) {
+[7m    [0m [93m                       ~[0m
+[96msrc/pages/about.astro[0m:[93m12878[0m:[93m13[0m - [93mwarning[0m[90m astro(4000): [0mThis script will be treated as if it has the `is:inline` directive because it contains an attribute. Therefore, features that require processing (e.g. using TypeScript or npm packages in the script) are unavailable.
+
+See docs for more details: https://docs.astro.build/en/guides/client-side-scripts/#script-processing.
+
+Add the `is:inline` directive explicitly to silence this hint.
+
+[7m12878[0m     <script type="text/plain">
+[7m     [0m [93m            ~~~~[0m
+
+[96msrc/pages/careers.astro[0m:[93m11468[0m:[93m31[0m - [93mwarning[0m[90m ts(6133): [0m'n' is declared but its value is never read.
+
+[7m11468[0m           D.forEach(function (n, i) {
+[7m     [0m [93m                              ~[0m
+
+[96msrc/pages/contact.astro[0m:[93m6569[0m:[93m22[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'm' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m6569[0m         function set(m) {
+[7m    [0m [93m                     ~[0m
+
+[96msrc/pages/intelligence.astro[0m:[93m12604[0m:[93m31[0m - [93mwarning[0m[90m ts(6133): [0m'n' is declared but its value is never read.
+
+[7m12604[0m           D.forEach(function (n, i) {
+[7m     [0m [93m                              ~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11870[0m:[93m35[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'n' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m11870[0m           nodes.forEach(function (n) {
+[7m     [0m [93m                                  ~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11858[0m:[93m35[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'threshold' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m11858[0m         function watch(nodes, fn, threshold) {
+[7m     [0m [93m                                  ~~~~~~~~~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11858[0m:[93m31[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'fn' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m11858[0m         function watch(nodes, fn, threshold) {
+[7m     [0m [93m                              ~~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11858[0m:[93m24[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'nodes' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m11858[0m         function watch(nodes, fn, threshold) {
+[7m     [0m [93m                       ~~~~~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11840[0m:[93m23[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'el' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m11840[0m         function fill(el) {
+[7m     [0m [93m                      ~~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11817[0m:[93m24[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'v' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m11817[0m           function fmt(v) {
+[7m     [0m [93m                       ~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11809[0m:[93m24[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'el' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m11809[0m         function count(el) {
+[7m     [0m [93m                       ~~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11795[0m:[93m24[0m - [93mwarning[0m[90m ts(7044): [0mParameter 't' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m11795[0m         function parse(t) {
+[7m     [0m [93m                       ~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11681[0m:[93m24[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'p' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m11681[0m         function phase(p) {
+[7m     [0m [93m                       ~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11666[0m:[93m30[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'p' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m11666[0m               .map(function (p) {
+[7m     [0m [93m                             ~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11639[0m:[93m23[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'k' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m11639[0m         function show(k) {
+[7m     [0m [93m                      ~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11427[0m:[93m35[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'i' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m11427[0m         btns.forEach(function (b, i) {
+[7m     [0m [93m                                  ~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11427[0m:[93m32[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'b' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m11427[0m         btns.forEach(function (b, i) {
+[7m     [0m [93m                               ~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11402[0m:[93m37[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'j' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m11402[0m           btns.forEach(function (b, j) {
+[7m     [0m [93m                                    ~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11402[0m:[93m34[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'b' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m11402[0m           btns.forEach(function (b, j) {
+[7m     [0m [93m                                 ~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11399[0m:[93m26[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'mark' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m11399[0m         function pick(i, mark) {
+[7m     [0m [93m                         ~~~~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11399[0m:[93m23[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'i' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m11399[0m         function pick(i, mark) {
+[7m     [0m [93m                      ~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11271[0m:[93m31[0m - [93mwarning[0m[90m ts(6133): [0m'n' is declared but its value is never read.
+
+[7m11271[0m           D.forEach(function (n, i) {
+[7m     [0m [93m                              ~[0m
+[96msrc/pages/intelligence.astro[0m:[93m11888[0m:[93m13[0m - [93mwarning[0m[90m astro(4000): [0mThis script will be treated as if it has the `is:inline` directive because it contains an attribute. Therefore, features that require processing (e.g. using TypeScript or npm packages in the script) are unavailable.
+
+See docs for more details: https://docs.astro.build/en/guides/client-side-scripts/#script-processing.
+
+Add the `is:inline` directive explicitly to silence this hint.
+
+[7m11888[0m     <script type="text/plain">
+[7m     [0m [93m            ~~~~[0m
+
+[96msrc/pages/services.astro[0m:[93m11322[0m:[93m31[0m - [93mwarning[0m[90m ts(6133): [0m'n' is declared but its value is never read.
+
+[7m11322[0m           D.forEach(function (n, i) {
+[7m     [0m [93m                              ~[0m
+
+[96msrc/pages/blog/designing-ai-for-high-stakes-technical-assessment.astro[0m:[93m7729[0m:[93m31[0m - [93mwarning[0m[90m ts(6133): [0m'n' is declared but its value is never read.
+
+[7m7729[0m           D.forEach(function (n, i) {
+[7m    [0m [93m                              ~[0m
+[96msrc/pages/blog/designing-ai-for-high-stakes-technical-assessment.astro[0m:[93m7636[0m:[93m15[0m - [93mwarning[0m[90m astro(4000): [0mThis script will be treated as if it has the `is:inline` directive because it contains an attribute. Therefore, features that require processing (e.g. using TypeScript or npm packages in the script) are unavailable.
+
+See docs for more details: https://docs.astro.build/en/guides/client-side-scripts/#script-processing.
+
+Add the `is:inline` directive explicitly to silence this hint.
+
+[7m7636[0m               src="/scripts/newsletter-signup.js"
+[7m    [0m [93m              ~~~[0m
+
+[96msrc/pages/blog/hiring-is-not-a-transaction-its-a-relationship.astro[0m:[93m7267[0m:[93m31[0m - [93mwarning[0m[90m ts(6133): [0m'n' is declared but its value is never read.
+
+[7m7267[0m           D.forEach(function (n, i) {
+[7m    [0m [93m                              ~[0m
+[96msrc/pages/blog/hiring-is-not-a-transaction-its-a-relationship.astro[0m:[93m7174[0m:[93m15[0m - [93mwarning[0m[90m astro(4000): [0mThis script will be treated as if it has the `is:inline` directive because it contains an attribute. Therefore, features that require processing (e.g. using TypeScript or npm packages in the script) are unavailable.
+
+See docs for more details: https://docs.astro.build/en/guides/client-side-scripts/#script-processing.
+
+Add the `is:inline` directive explicitly to silence this hint.
+
+[7m7174[0m               src="/scripts/newsletter-signup.js"
+[7m    [0m [93m              ~~~[0m
+
+[96msrc/pages/blog/index.astro[0m:[93m12700[0m:[93m35[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'p' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m12700[0m           posts.forEach(function (p) {
+[7m     [0m [93m                                  ~[0m
+[96msrc/pages/blog/index.astro[0m:[93m12687[0m:[93m33[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'post' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m12687[0m         posts.forEach(function (post) {
+[7m     [0m [93m                                ~~~~[0m
+[96msrc/pages/blog/index.astro[0m:[93m12684[0m:[93m33[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'b' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m12684[0m         posts.sort(function (a, b) {
+[7m     [0m [93m                                ~[0m
+[96msrc/pages/blog/index.astro[0m:[93m12684[0m:[93m30[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'a' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m12684[0m         posts.sort(function (a, b) {
+[7m     [0m [93m                             ~[0m
+[96msrc/pages/blog/index.astro[0m:[93m12680[0m:[93m39[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'post' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m12680[0m         const publishedAt = function (post) {
+[7m     [0m [93m                                      ~~~~[0m
+
+[96msrc/pages/blog/rethinking-hiring-metrics-signal-efficiency.astro[0m:[93m13223[0m:[93m15[0m - [93mwarning[0m[90m astro(4000): [0mThis script will be treated as if it has the `is:inline` directive because it contains an attribute. Therefore, features that require processing (e.g. using TypeScript or npm packages in the script) are unavailable.
+
+See docs for more details: https://docs.astro.build/en/guides/client-side-scripts/#script-processing.
+
+Add the `is:inline` directive explicitly to silence this hint.
+
+[7m13223[0m               src="/scripts/newsletter-signup.js"
+[7m     [0m [93m              ~~~[0m
+
+[96msrc/pages/blog/signal-vs-noise-technical-hiring.astro[0m:[93m7697[0m:[93m31[0m - [93mwarning[0m[90m ts(6133): [0m'n' is declared but its value is never read.
+
+[7m7697[0m           D.forEach(function (n, i) {
+[7m    [0m [93m                              ~[0m
+[96msrc/pages/blog/signal-vs-noise-technical-hiring.astro[0m:[93m7606[0m:[93m15[0m - [93mwarning[0m[90m astro(4000): [0mThis script will be treated as if it has the `is:inline` directive because it contains an attribute. Therefore, features that require processing (e.g. using TypeScript or npm packages in the script) are unavailable.
+
+See docs for more details: https://docs.astro.build/en/guides/client-side-scripts/#script-processing.
+
+Add the `is:inline` directive explicitly to silence this hint.
+
+[7m7606[0m               src="/scripts/newsletter-signup.js"
+[7m    [0m [93m              ~~~[0m
+
+[96msrc/pages/blog/when-job-hunting-feels-like-a-black-hole.astro[0m:[93m8310[0m:[93m31[0m - [93mwarning[0m[90m ts(6133): [0m'n' is declared but its value is never read.
+
+[7m8310[0m           D.forEach(function (n, i) {
+[7m    [0m [93m                              ~[0m
+[96msrc/pages/blog/when-job-hunting-feels-like-a-black-hole.astro[0m:[93m8219[0m:[93m15[0m - [93mwarning[0m[90m astro(4000): [0mThis script will be treated as if it has the `is:inline` directive because it contains an attribute. Therefore, features that require processing (e.g. using TypeScript or npm packages in the script) are unavailable.
+
+See docs for more details: https://docs.astro.build/en/guides/client-side-scripts/#script-processing.
+
+Add the `is:inline` directive explicitly to silence this hint.
+
+[7m8219[0m               src="/scripts/newsletter-signup.js"
+[7m    [0m [93m              ~~~[0m
+
+[96msrc/pages/blog/why-tech-hiring-really-takes-so-long.astro[0m:[93m7263[0m:[93m31[0m - [93mwarning[0m[90m ts(6133): [0m'n' is declared but its value is never read.
+
+[7m7263[0m           D.forEach(function (n, i) {
+[7m    [0m [93m                              ~[0m
+[96msrc/pages/blog/why-tech-hiring-really-takes-so-long.astro[0m:[93m7172[0m:[93m15[0m - [93mwarning[0m[90m astro(4000): [0mThis script will be treated as if it has the `is:inline` directive because it contains an attribute. Therefore, features that require processing (e.g. using TypeScript or npm packages in the script) are unavailable.
+
+See docs for more details: https://docs.astro.build/en/guides/client-side-scripts/#script-processing.
+
+Add the `is:inline` directive explicitly to silence this hint.
+
+[7m7172[0m               src="/scripts/newsletter-signup.js"
+[7m    [0m [93m              ~~~[0m
+
+[96msrc/pages/careers/[slug].astro[0m:[93m18[0m:[93m14[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'v' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m18[0m const pct = (v) => Math.round((v / mx) * 100);
+[7m  [0m [93m             ~[0m
+[96msrc/pages/careers/[slug].astro[0m:[93m11786[0m:[93m31[0m - [93mwarning[0m[90m ts(6133): [0m'n' is declared but its value is never read.
+
+[7m11786[0m           D.forEach(function (n, i) {
+[7m     [0m [93m                              ~[0m
+
+[96msrc/pages/fonts/site-fonts.css.ts[0m:[93m27[0m:[93m56[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'weight' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m27[0m     .flatMap(([family, file, weights]) => weights.map((weight) => face(family, `${file}-${weight}`, weight)))
+[7m  [0m [93m                                                       ~~~~~~[0m
+
+[96msrc/pages/functions/[slug].astro[0m:[93m6926[0m:[93m31[0m - [93mwarning[0m[90m ts(6133): [0m'n' is declared but its value is never read.
+
+[7m6926[0m           D.forEach(function (n, i) {
+[7m    [0m [93m                              ~[0m
+
+[96msrc/pages/industries/[slug].astro[0m:[93m6935[0m:[93m31[0m - [93mwarning[0m[90m ts(6133): [0m'n' is declared but its value is never read.
+
+[7m6935[0m           D.forEach(function (n, i) {
+[7m    [0m [93m                              ~[0m
+
+[96msrc/scripts/reference/funnel.ts[0m:[93m124[0m:[93m29[0m - [93mwarning[0m[90m ts(7044): [0mParameter 's' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m124[0m     steps.forEach(function (s) {
+[7m   [0m [93m                            ~[0m
+[96msrc/scripts/reference/funnel.ts[0m:[93m123[0m:[93m17[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'n' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m123[0m   function mark(n) {
+[7m   [0m [93m                ~[0m
+[96msrc/scripts/reference/funnel.ts[0m:[93m115[0m:[93m46[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'e' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m115[0m     st.addEventListener('keydown', function (e) {
+[7m   [0m [93m                                             ~[0m
+[96msrc/scripts/reference/funnel.ts[0m:[93m96[0m:[93m27[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'st' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m96[0m   steps.forEach(function (st) {
+[7m  [0m [93m                          ~~[0m
+[96msrc/scripts/reference/funnel.ts[0m:[93m64[0m:[93m20[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'mode' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m64[0m   function peek(n, mode) {
+[7m  [0m [93m                   ~~~~[0m
+[96msrc/scripts/reference/funnel.ts[0m:[93m64[0m:[93m17[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'n' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m64[0m   function peek(n, mode) {
+[7m  [0m [93m                ~[0m
+[96msrc/scripts/reference/funnel.ts[0m:[93m45[0m:[93m21[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'n' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m45[0m   function setStage(n) {
+[7m  [0m [93m                    ~[0m
+
+[96msrc/scripts/reference/motion.ts[0m:[93m41[0m:[93m30[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'r' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m41[0m       rows.forEach(function (r) {
+[7m  [0m [93m                             ~[0m
+[96msrc/scripts/reference/motion.ts[0m:[93m34[0m:[93m32[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'r' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m34[0m         rows.forEach(function (r) {
+[7m  [0m [93m                               ~[0m
+[96msrc/scripts/reference/motion.ts[0m:[93m30[0m:[93m20[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'k' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m30[0m     function apply(k) {
+[7m  [0m [93m                   ~[0m
+
+[96msrc/scripts/reference/rubric.ts[0m:[93m143[0m:[93m20[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'on' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m143[0m   function link(i, on) {
+[7m   [0m [93m                   ~~[0m
+[96msrc/scripts/reference/rubric.ts[0m:[93m143[0m:[93m17[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'i' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m143[0m   function link(i, on) {
+[7m   [0m [93m                ~[0m
+
+[96msrc/scripts/reference/score-card.ts[0m:[93m72[0m:[93m17[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'b' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m72[0m   function face(b) {
+[7m  [0m [93m                ~[0m
+[96msrc/scripts/reference/score-card.ts[0m:[93m12[0m:[93m19[0m - [93mwarning[0m[90m ts(7044): [0mParameter 't' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m12[0m     function show(t) {
+[7m  [0m [93m                  ~[0m
+
+[96msrc/scripts/reference/volume.ts[0m:[93m38[0m:[93m29[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'i' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m38[0m   segs.forEach(function (b, i) {
+[7m  [0m [93m                            ~[0m
+[96msrc/scripts/reference/volume.ts[0m:[93m38[0m:[93m26[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'b' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m38[0m   segs.forEach(function (b, i) {
+[7m  [0m [93m                         ~[0m
+[96msrc/scripts/reference/volume.ts[0m:[93m21[0m:[93m31[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'j' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m21[0m     segs.forEach(function (b, j) {
+[7m  [0m [93m                              ~[0m
+[96msrc/scripts/reference/volume.ts[0m:[93m21[0m:[93m28[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'b' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m21[0m     segs.forEach(function (b, j) {
+[7m  [0m [93m                           ~[0m
+[96msrc/scripts/reference/volume.ts[0m:[93m18[0m:[93m17[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'i' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m18[0m   function pick(i) {
+[7m  [0m [93m                ~[0m
+
+[96msrc/scripts/v9/home/index.js[0m:[93m67[0m:[93m21[0m - [93mwarning[0m[90m ts(6133): [0m'skill' is declared but its value is never read.
+
+[7m67[0m     skills.forEach((skill, i) => {
+[7m  [0m [93m                    ~~~~~[0m
+
+[96mtests/editorial-refresh.test.mjs[0m:[93m35[0m:[93m36[0m - [93mwarning[0m[90m ts(2568): [0mProperty 'click' may not exist on type 'HTMLElement | SVGElement'. Did you mean 'onclick'?
+  Property 'click' does not exist on type 'SVGElement'.
+
+[7m35[0m           .evaluate((link) => link.click());
+[7m  [0m [93m                                   ~~~~~[0m
+
+[96mtests/logo-navigation.test.mjs[0m:[93m39[0m:[93m38[0m - [93mwarning[0m[90m ts(2568): [0mProperty 'click' may not exist on type 'HTMLElement | SVGElement'. Did you mean 'onclick'?
+  Property 'click' does not exist on type 'SVGElement'.
+
+[7m39[0m             .evaluate((link) => link.click());
+[7m  [0m [93m                                     ~~~~~[0m
+
+[96mtests/nav-refresh.test.mjs[0m:[93m68[0m:[93m58[0m - [93mwarning[0m[90m ts(2568): [0mProperty 'navFrames' may not exist on type 'Window & typeof globalThis'. Did you mean 'frames'?
+
+[7m68[0m       const refreshed = await page.evaluate(() => window.navFrames);
+[7m  [0m [93m                                                         ~~~~~~~~~[0m
+[96mtests/nav-refresh.test.mjs[0m:[93m66[0m:[93m47[0m - [93mwarning[0m[90m ts(2568): [0mProperty 'navFrames' may not exist on type 'Window & typeof globalThis'. Did you mean 'frames'?
+
+[7m66[0m       await page.waitForFunction(() => window.navFrames.length > 0);
+[7m  [0m [93m                                              ~~~~~~~~~[0m
+[96mtests/nav-refresh.test.mjs[0m:[93m55[0m:[93m55[0m - [93mwarning[0m[90m ts(2568): [0mProperty 'navFrames' may not exist on type 'Window & typeof globalThis'. Did you mean 'frames'?
+
+[7m55[0m       const frames = await page.evaluate(() => window.navFrames);
+[7m  [0m [93m                                                      ~~~~~~~~~[0m
+[96mtests/nav-refresh.test.mjs[0m:[93m53[0m:[93m47[0m - [93mwarning[0m[90m ts(2568): [0mProperty 'navFrames' may not exist on type 'Window & typeof globalThis'. Did you mean 'frames'?
+
+[7m53[0m       await page.waitForFunction(() => window.navFrames.length > 0);
+[7m  [0m [93m                                              ~~~~~~~~~[0m
+[96mtests/nav-refresh.test.mjs[0m:[93m44[0m:[93m18[0m - [93mwarning[0m[90m ts(2568): [0mProperty 'navFrames' may not exist on type 'Window & typeof globalThis'. Did you mean 'frames'?
+
+[7m44[0m           window.navFrames.push(JSON.stringify(frame));
+[7m  [0m [93m                 ~~~~~~~~~[0m
+[96mtests/nav-refresh.test.mjs[0m:[93m23[0m:[93m14[0m - [93mwarning[0m[90m ts(2568): [0mProperty 'navFrames' may not exist on type 'Window & typeof globalThis'. Did you mean 'frames'?
+
+[7m23[0m       window.navFrames = [];
+[7m  [0m [93m             ~~~~~~~~~[0m
+
+Result (410 files): 
+- 0 errors
+- 0 warnings
+- 147 hints
+
+
+> tribera-website@1.0.0-beta.52 check:eslint
+> eslint .
+
+
+> tribera-website@1.0.0-beta.52 check:prettier
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!

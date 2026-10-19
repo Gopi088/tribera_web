@@ -1,0 +1,27 @@
+Independent final Services visual review — 2026-10-19
+Reviewer: a1_detail (did not author Services).
+Product build reviewed: 7dbb90ad0c701f8501f295752c26318c5c461314.
+Evidence: artifacts/v9-a1/pages-chromium/services-{390,768,1024,1366,1920}-{handoff,migrated}.png. All ten full-height images inspected through 50 contiguous vertical crops in artifacts/v9-a1/services-review-crops. No browser or tracked edits were made by this reviewer.
+
+Verdict: no blocking Services content/layout difference found in the captured default state at these five widths. This is a scoped visual verdict, not whole-batch acceptance or exhaustive WCAG certification.
+
+All sections inspected: compact hero and role-scorecard receipt, client strip, nine problem choices/initial recommendation, four ticket offerings, eight extended offerings, twelve pricing tiles and explanations, founder case narrative/signature, five questions with first answer open, closing CTA, shared footer. Text wraps, ticket grids, service rows, pricing grids and narrative columns match the source's responsive structure. No missing section, unreadable clipped content or overlapping copy found. The twelve-offering/pricing/recommendation data review is recorded separately in review-services.txt.
+
+Prior findings:
+- Founder portrait: CLOSED for migrated build. Actual portrait is visibly present in all five final migrated screenshots. Initial worker captures had a blank square; final capture waits for images. Handoff reference screenshots still show a blank square, so the reference cannot prove portrait pixel parity; source asset provenance and the visible migrated portrait support presence rather than pixel matching.
+- Document transition scope: CLOSED for global navigation behavior. The integrated source no longer contains @view-transition. Some unused original keyframe declarations remain, but no document cross-fade is enabled. Removing unused names is optional cleanup, not a release blocker in this evidence.
+
+Observed accepted or minor differences (do not claim pixel equality):
+- Accepted shared ClientStrip wraps all client names instead of the source's clipped/moving single row, increasing height especially at 390px. This moves later sections vertically without changing their relative layout.
+- Accepted shared footer has tighter spacing. Shared header treatment is retained; compiled Services HTML has aria-current="page" on both Services navigation links.
+- Faint decorative hero cell strip is absent at 390/768px; larger-width field remains. Hero headline/lead/card geometry remains intact.
+- The static “Yours to keep” stamp sits lower and is more rotated than the reference; at narrow widths it crosses the receipt bottom edge slightly. It is decorative, does not obscure text or escape the viewport.
+- Native FAQ rows have small spacing/wrapping differences, notably the long fourth question on a phone. All questions and the open first answer remain legible.
+- Sample write-up CTA deliberately says “request a sample write-up” instead of “see a sample write-up”.
+
+Limits: screenshots capture the initial selected recommendation and closed extended services; they do not prove all changed interaction states or no-JavaScript behavior. Those remain the coordinator's functional gate. This review does not approve claims, hosted delivery, production rollout or unrelated pages. Actual Claude review remains required.
+
+Additional integration observation — SUPERSEDED: I initially suggested marking Services current on IaaS to match the handoff highlight. The coordinator correctly retained actual-route semantics: IaaS and Case are different destinations and must not mark the Services link aria-current="page". Their default current route is intentionally retained and tested. No fix to mark Services current is requested. Services itself retains its correct current-page indication.
+
+Final frozen-capture confirmation — 2026-10-19, after 06:34 UTC
+Product revision: b2d5100a16ec8c9381f75c1fadc9d3a4c329dc4e. All five migrated screenshots were refreshed between 06:34:21 and 06:34:39 UTC. Compared all ten refreshed images against the previously inspected contiguous crops: all source-reference crops and every 390/768 migrated crop are pixel-identical at the inspection resolution; only upper-page crops 0/1 changed for 1024/1366/1920. Directly inspected all six changed crops. The Services current-page underline is now visible at desktop widths; no new layout, content, clipping or readability concern appeared. All lower-page crops, including the visibly loaded founder portrait at all five widths, remain identical to the reviewed captures. Prior scoped no-blocker visual verdict remains valid for this final frozen capture, with the documented intentional/minor differences and functional-review limits above. No tracked files or browser processes were changed.

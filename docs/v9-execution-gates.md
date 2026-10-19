@@ -201,3 +201,11 @@ Validation passed: 110 unit tests; all three 11-suite page chains (130 page chec
 Run independent Chromium/Firefox work in parallel on separate preview ports; keep heavy WebKit validation serial on this machine. A completed passing suite chain may be retained while another independent gate reruns only when commit, clean tree, dependency lock and build hashes remain identical. Preserve failures and explain the rerun; never substitute a partial or stale chain.
 
 Next: services/conversion pages and remaining sector/Intelligence pages, under the same G2/G3 and Claude-review process. G4 full-route regression, G5 hosted validation, G6 content/release decisions and G7 production verification remain pending. No push, deployment, remote CI or branch-protection result is claimed.
+
+## A1 private hiring pages / G3 batch acceptance — 19 October 2026
+
+Services, Interview as a Service and Case Study are accepted locally at `6ce90ca`, with actual Claude **ACCEPT**, no blockers. See the [acceptance record](v9-a1-acceptance.md) and [verbatim Claude review](reviews/v9-a1-2026-10-19/final-report.txt). All 262 accepted G2 files, including 77 public HTML pages, remain byte-identical; four assets are added.
+
+All three four-suite page chains pass at the same clean revision and preview hash: 78 responsive/no-JavaScript page states plus behavior and navigation coverage. Full checks, 110 unit tests, 138 production/preview smoke checks and the eight-report evidence aggregate pass. All 34 long source paragraphs and source h1/h2 headings are retained. Final visual follow-ups close the founder image and native FAQ-spacing findings.
+
+The later documentation commit preserves review and raw evidence; it does not change the reviewed product. Public routes remain unchanged. Contact context capture, sample delivery, remaining conversion/sector/Intelligence pages and G4–G7 remain pending. Next batch: Contact and sample-request flows. No push, deployment or remote CI result is claimed.

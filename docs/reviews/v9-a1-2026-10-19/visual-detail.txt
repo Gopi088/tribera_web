@@ -1,0 +1,25 @@
+Independent full-page visual review: Interview as a service + Case study
+Reviewed compiled source build: 7dbb90a (candidate /tmp/tribera-v9-a1)
+Reviewer: Services worker, independent of hiring-detail implementation.
+Inputs: pages-chromium/{interview-as-a-service,case-study}-{390,768,1024,1366,1920}-{handoff,migrated}.png
+Method: all ten source/migrated full-page pairs examined through 32 sequential side-by-side crops covering their complete heights; no browser launched. Crops saved under detail-review-sheets/.
+
+Verdict: no blocking page-content, responsive-layout or graphic loss found. One minor FAQ geometry repair recommended below. Shared nav current-page semantics disposition confirmed by coordinator.
+
+IaaS, all five widths:
+- Hero typography, wraps, introductory copy, 48-hour batch/pricing card, CTAs and responsive stacking match source closely.
+- Four dark process cards and five output rows retain source content, column transitions, spacing and visual hierarchy.
+- FAQ content and typography match, with native disclosure rows slightly taller. Source .faq-q uses individual font properties and has no line-height declaration; button UA normal differs from summary's inherited page line-height 1.5. At 390 seven question lines contribute approximately 31px extra overall. Recommend page-scoped summary line-height:normal, retaining native semantics; this is a small visual discrepancy, not a missing-content or functionality blocker.
+- Footer uses the accepted shared shell and is visibly tighter, particularly at 768. Sample CTA intentionally changes from “See a sample write-up” to “Request a sample”. Stable decorative hero field differs slightly in completed placement; no text is obscured.
+- Original desktop IaaS marks parent Services active. Coordinator ab351aa removes the misleading activeRoute override; only the actual Services page is marked current, so IaaS parent underline omission is intentional.
+
+Case study, all five widths:
+- Hero, number table, same-scale timeline, marker, legends and four chronological steps preserve source geometry and hierarchy.
+- The full 327-cell field matches the original grid and highlighted positions visually. The new status and four manual buttons below it are the intended enhancement and create predictable downstream vertical displacement.
+- Intake questions, comparison table, large quotation, explanatory paragraphs, related search card and closing CTA are retained with source wrapping and responsive behavior. No clipped text, missing block or overlapping controls observed.
+- Header/footer use the accepted shared shell; tighter footer spacing is expected.
+
+Not certified: pixel-perfect parity, animation timing, all interactive states, assistive technology behavior or cross-browser results. Coordinator's compiled functional/content gates and actual Claude review remain required. This report covers the captured five widths in Chromium only.
+
+Final FAQ follow-up — 2026-10-19, frozen product b2d5100:
+Inspected all five refreshed IaaS source/migrated captures generated 06:34:48–06:34:59 UTC (390/768/1024/1366/1920). Final paired FAQ crops are in detail-review-final/iaas-faq-{width}.png. The scoped normal line-height correction restores matching question-row geometry and FAQ section height at every reviewed width, including the wrapped phone question. The prior approximately 31px accumulated phone difference is no longer visible; the following CTA starts at the source boundary. All six questions and the first answer remain legible. Finding CLOSED for the captured final compiled state. No new visual blocker found. Native semantics/cross-browser behavior remain covered separately by coordinator gates.

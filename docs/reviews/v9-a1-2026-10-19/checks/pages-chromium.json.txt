@@ -1,0 +1,668 @@
+{
+  "status": "passed",
+  "browser": "chromium",
+  "widths": [
+    320,
+    360,
+    390,
+    600,
+    768,
+    830,
+    1024,
+    1366,
+    1600,
+    1920,
+    2560
+  ],
+  "records": [
+    {
+      "slug": "services",
+      "width": 320,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 8
+    },
+    {
+      "slug": "services",
+      "width": 360,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 8
+    },
+    {
+      "slug": "services",
+      "width": 390,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 8,
+      "screenshots": [
+        "services-390-migrated.png",
+        "services-390-handoff.png"
+      ]
+    },
+    {
+      "slug": "services",
+      "width": 600,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 8
+    },
+    {
+      "slug": "services",
+      "width": 768,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 8,
+      "screenshots": [
+        "services-768-migrated.png",
+        "services-768-handoff.png"
+      ]
+    },
+    {
+      "slug": "services",
+      "width": 830,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 8
+    },
+    {
+      "slug": "services",
+      "width": 1024,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 8,
+      "screenshots": [
+        "services-1024-migrated.png",
+        "services-1024-handoff.png"
+      ]
+    },
+    {
+      "slug": "services",
+      "width": 1366,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 8,
+      "screenshots": [
+        "services-1366-migrated.png",
+        "services-1366-handoff.png"
+      ],
+      "transfers": [
+        {
+          "path": "/__v9/services",
+          "bytes": 74765,
+          "gzipBytes": 12805,
+          "contentType": "text/html"
+        },
+        {
+          "path": "/fonts/v9/inter-tight-normal-latin-603db177.woff2",
+          "bytes": 44872,
+          "gzipBytes": 44873,
+          "contentType": "font/woff2"
+        },
+        {
+          "path": "/fonts/v9/fraunces-normal-latin-6a837066.woff2",
+          "bytes": 67304,
+          "gzipBytes": 67347,
+          "contentType": "font/woff2"
+        },
+        {
+          "path": "/_astro/V9Layout.dOnKr9N5.css",
+          "bytes": 27066,
+          "gzipBytes": 4520,
+          "contentType": "text/css"
+        },
+        {
+          "path": "/_astro/services.cBcFsxzD.css",
+          "bytes": 42692,
+          "gzipBytes": 8433,
+          "contentType": "text/css"
+        },
+        {
+          "path": "/_astro/page.zh1XDkz8.js",
+          "bytes": 2254,
+          "gzipBytes": 991,
+          "contentType": "text/javascript"
+        },
+        {
+          "path": "/brand/v9/tribera-logo-black.png",
+          "bytes": 20557,
+          "gzipBytes": 20585,
+          "contentType": "image/png"
+        },
+        {
+          "path": "/brand/v9/tribera-logo-white.png",
+          "bytes": 20454,
+          "gzipBytes": 20408,
+          "contentType": "image/png"
+        },
+        {
+          "path": "/fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+          "bytes": 81520,
+          "gzipBytes": 81563,
+          "contentType": "font/woff2"
+        },
+        {
+          "path": "/fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+          "bytes": 31432,
+          "gzipBytes": 31460,
+          "contentType": "font/woff2"
+        },
+        {
+          "path": "/images/v9/services/pranav.jpg",
+          "bytes": 3198,
+          "gzipBytes": 3080,
+          "contentType": "image/jpeg"
+        }
+      ],
+      "budgetTotals": {
+        "htmlGzipBytes": 12805,
+        "cssGzipBytes": 12953,
+        "jsGzipBytes": 991,
+        "fontBytes": 225128,
+        "imageBytes": 44209,
+        "otherBytes": 0
+      },
+      "observedPerformance": {
+        "layoutShift": 0,
+        "longTasks": [
+          66,
+          55,
+          82
+        ],
+        "supported": [
+          "element",
+          "event",
+          "first-input",
+          "largest-contentful-paint",
+          "layout-shift",
+          "long-animation-frame",
+          "longtask",
+          "mark",
+          "measure",
+          "navigation",
+          "paint",
+          "resource",
+          "visibility-state"
+        ]
+      },
+      "contentComparison": {
+        "sourceParagraphCount": 15,
+        "missingParagraphs": []
+      }
+    },
+    {
+      "slug": "services",
+      "width": 1600,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 8
+    },
+    {
+      "slug": "services",
+      "width": 1920,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 8,
+      "screenshots": [
+        "services-1920-migrated.png",
+        "services-1920-handoff.png"
+      ]
+    },
+    {
+      "slug": "services",
+      "width": 2560,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 8
+    },
+    {
+      "slug": "services",
+      "width": 1024,
+      "height": 600,
+      "javaScriptEnabled": true,
+      "headingCount": 8
+    },
+    {
+      "slug": "services",
+      "width": 390,
+      "height": 844,
+      "javaScriptEnabled": false,
+      "headingCount": 8
+    },
+    {
+      "slug": "services",
+      "width": 1366,
+      "height": 900,
+      "javaScriptEnabled": false,
+      "headingCount": 8
+    },
+    {
+      "slug": "interview-as-a-service",
+      "width": 320,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5
+    },
+    {
+      "slug": "interview-as-a-service",
+      "width": 360,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5
+    },
+    {
+      "slug": "interview-as-a-service",
+      "width": 390,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5,
+      "screenshots": [
+        "interview-as-a-service-390-migrated.png",
+        "interview-as-a-service-390-handoff.png"
+      ]
+    },
+    {
+      "slug": "interview-as-a-service",
+      "width": 600,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5
+    },
+    {
+      "slug": "interview-as-a-service",
+      "width": 768,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5,
+      "screenshots": [
+        "interview-as-a-service-768-migrated.png",
+        "interview-as-a-service-768-handoff.png"
+      ]
+    },
+    {
+      "slug": "interview-as-a-service",
+      "width": 830,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5
+    },
+    {
+      "slug": "interview-as-a-service",
+      "width": 1024,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5,
+      "screenshots": [
+        "interview-as-a-service-1024-migrated.png",
+        "interview-as-a-service-1024-handoff.png"
+      ]
+    },
+    {
+      "slug": "interview-as-a-service",
+      "width": 1366,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5,
+      "screenshots": [
+        "interview-as-a-service-1366-migrated.png",
+        "interview-as-a-service-1366-handoff.png"
+      ],
+      "transfers": [
+        {
+          "path": "/__v9/interview-as-a-service",
+          "bytes": 42186,
+          "gzipBytes": 6468,
+          "contentType": "text/html"
+        },
+        {
+          "path": "/fonts/v9/inter-tight-normal-latin-603db177.woff2",
+          "bytes": 44872,
+          "gzipBytes": 44873,
+          "contentType": "font/woff2"
+        },
+        {
+          "path": "/fonts/v9/fraunces-normal-latin-6a837066.woff2",
+          "bytes": 67304,
+          "gzipBytes": 67347,
+          "contentType": "font/woff2"
+        },
+        {
+          "path": "/_astro/V9Layout.dOnKr9N5.css",
+          "bytes": 27066,
+          "gzipBytes": 4520,
+          "contentType": "text/css"
+        },
+        {
+          "path": "/_astro/interview-as-a-service.BApME65W.css",
+          "bytes": 21412,
+          "gzipBytes": 4717,
+          "contentType": "text/css"
+        },
+        {
+          "path": "/_astro/page.zh1XDkz8.js",
+          "bytes": 2254,
+          "gzipBytes": 991,
+          "contentType": "text/javascript"
+        },
+        {
+          "path": "/brand/v9/tribera-logo-black.png",
+          "bytes": 20557,
+          "gzipBytes": 20585,
+          "contentType": "image/png"
+        },
+        {
+          "path": "/brand/v9/tribera-logo-white.png",
+          "bytes": 20454,
+          "gzipBytes": 20408,
+          "contentType": "image/png"
+        },
+        {
+          "path": "/fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+          "bytes": 81520,
+          "gzipBytes": 81563,
+          "contentType": "font/woff2"
+        },
+        {
+          "path": "/fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+          "bytes": 31432,
+          "gzipBytes": 31460,
+          "contentType": "font/woff2"
+        }
+      ],
+      "budgetTotals": {
+        "htmlGzipBytes": 6468,
+        "cssGzipBytes": 9237,
+        "jsGzipBytes": 991,
+        "fontBytes": 225128,
+        "imageBytes": 41011,
+        "otherBytes": 0
+      },
+      "observedPerformance": {
+        "layoutShift": 0,
+        "longTasks": [],
+        "supported": [
+          "element",
+          "event",
+          "first-input",
+          "largest-contentful-paint",
+          "layout-shift",
+          "long-animation-frame",
+          "longtask",
+          "mark",
+          "measure",
+          "navigation",
+          "paint",
+          "resource",
+          "visibility-state"
+        ]
+      },
+      "contentComparison": {
+        "sourceParagraphCount": 11,
+        "missingParagraphs": []
+      }
+    },
+    {
+      "slug": "interview-as-a-service",
+      "width": 1600,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5
+    },
+    {
+      "slug": "interview-as-a-service",
+      "width": 1920,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5,
+      "screenshots": [
+        "interview-as-a-service-1920-migrated.png",
+        "interview-as-a-service-1920-handoff.png"
+      ]
+    },
+    {
+      "slug": "interview-as-a-service",
+      "width": 2560,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5
+    },
+    {
+      "slug": "interview-as-a-service",
+      "width": 1024,
+      "height": 600,
+      "javaScriptEnabled": true,
+      "headingCount": 5
+    },
+    {
+      "slug": "interview-as-a-service",
+      "width": 390,
+      "height": 844,
+      "javaScriptEnabled": false,
+      "headingCount": 5
+    },
+    {
+      "slug": "interview-as-a-service",
+      "width": 1366,
+      "height": 900,
+      "javaScriptEnabled": false,
+      "headingCount": 5
+    },
+    {
+      "slug": "case-study",
+      "width": 320,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5
+    },
+    {
+      "slug": "case-study",
+      "width": 360,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5
+    },
+    {
+      "slug": "case-study",
+      "width": 390,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5,
+      "screenshots": [
+        "case-study-390-migrated.png",
+        "case-study-390-handoff.png"
+      ]
+    },
+    {
+      "slug": "case-study",
+      "width": 600,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5
+    },
+    {
+      "slug": "case-study",
+      "width": 768,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5,
+      "screenshots": [
+        "case-study-768-migrated.png",
+        "case-study-768-handoff.png"
+      ]
+    },
+    {
+      "slug": "case-study",
+      "width": 830,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5
+    },
+    {
+      "slug": "case-study",
+      "width": 1024,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5,
+      "screenshots": [
+        "case-study-1024-migrated.png",
+        "case-study-1024-handoff.png"
+      ]
+    },
+    {
+      "slug": "case-study",
+      "width": 1366,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5,
+      "screenshots": [
+        "case-study-1366-migrated.png",
+        "case-study-1366-handoff.png"
+      ],
+      "transfers": [
+        {
+          "path": "/__v9/case-study",
+          "bytes": 55072,
+          "gzipBytes": 7705,
+          "contentType": "text/html"
+        },
+        {
+          "path": "/fonts/v9/inter-tight-normal-latin-603db177.woff2",
+          "bytes": 44872,
+          "gzipBytes": 44873,
+          "contentType": "font/woff2"
+        },
+        {
+          "path": "/fonts/v9/fraunces-normal-latin-6a837066.woff2",
+          "bytes": 67304,
+          "gzipBytes": 67347,
+          "contentType": "font/woff2"
+        },
+        {
+          "path": "/_astro/V9Layout.dOnKr9N5.css",
+          "bytes": 27066,
+          "gzipBytes": 4520,
+          "contentType": "text/css"
+        },
+        {
+          "path": "/_astro/case-study.C_0xlz7Z.css",
+          "bytes": 24639,
+          "gzipBytes": 5290,
+          "contentType": "text/css"
+        },
+        {
+          "path": "/_astro/page.zh1XDkz8.js",
+          "bytes": 2254,
+          "gzipBytes": 991,
+          "contentType": "text/javascript"
+        },
+        {
+          "path": "/brand/v9/tribera-logo-black.png",
+          "bytes": 20557,
+          "gzipBytes": 20585,
+          "contentType": "image/png"
+        },
+        {
+          "path": "/brand/v9/tribera-logo-white.png",
+          "bytes": 20454,
+          "gzipBytes": 20408,
+          "contentType": "image/png"
+        },
+        {
+          "path": "/fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+          "bytes": 81520,
+          "gzipBytes": 81563,
+          "contentType": "font/woff2"
+        },
+        {
+          "path": "/fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+          "bytes": 31432,
+          "gzipBytes": 31460,
+          "contentType": "font/woff2"
+        }
+      ],
+      "budgetTotals": {
+        "htmlGzipBytes": 7705,
+        "cssGzipBytes": 9810,
+        "jsGzipBytes": 991,
+        "fontBytes": 225128,
+        "imageBytes": 41011,
+        "otherBytes": 0
+      },
+      "observedPerformance": {
+        "layoutShift": 0,
+        "longTasks": [
+          83,
+          102,
+          106
+        ],
+        "supported": [
+          "element",
+          "event",
+          "first-input",
+          "largest-contentful-paint",
+          "layout-shift",
+          "long-animation-frame",
+          "longtask",
+          "mark",
+          "measure",
+          "navigation",
+          "paint",
+          "resource",
+          "visibility-state"
+        ]
+      },
+      "contentComparison": {
+        "sourceParagraphCount": 8,
+        "missingParagraphs": []
+      }
+    },
+    {
+      "slug": "case-study",
+      "width": 1600,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5
+    },
+    {
+      "slug": "case-study",
+      "width": 1920,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5,
+      "screenshots": [
+        "case-study-1920-migrated.png",
+        "case-study-1920-handoff.png"
+      ]
+    },
+    {
+      "slug": "case-study",
+      "width": 2560,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5
+    },
+    {
+      "slug": "case-study",
+      "width": 1024,
+      "height": 600,
+      "javaScriptEnabled": true,
+      "headingCount": 5
+    },
+    {
+      "slug": "case-study",
+      "width": 390,
+      "height": 844,
+      "javaScriptEnabled": false,
+      "headingCount": 5
+    },
+    {
+      "slug": "case-study",
+      "width": 1366,
+      "height": 900,
+      "javaScriptEnabled": false,
+      "headingCount": 5
+    }
+  ],
+  "errors": [],
+  "scope": "Private A1 hiring pages: content headings, responsive overflow, loaded images, no-JS, reduced motion, screenshots and transfer measurements. Screenshots require separate visual review; local requests do not certify Netlify delivery."
+}

@@ -1,0 +1,53 @@
+{
+  "gate": "browser",
+  "startedAt": "2026-10-19T06:40:04.714Z",
+  "commit": "6ce90cad47644a8cc87bfb5ef4624cfb009611d9",
+  "cleanTree": true,
+  "lockHash": "56be5c8181c79995befb9b07957589898a1eabfd027f0c8a8e82c4c178c370fa",
+  "node": "v22.15.0",
+  "platform": "linux",
+  "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node /tmp/tribera-v9-a1/scripts/v9-gate.mjs browser",
+  "buildPath": "/tmp/tribera-v9-a1/dist",
+  "buildHash": "faf625301153f5a9aa755bc3de3013bd3099d1c7c22752dcea4da064fcc3de05",
+  "status": "passed",
+  "suites": [
+    {
+      "name": "browser-smoke-and-rendered-references",
+      "browser": "chromium",
+      "expectedChecks": 32,
+      "executedChecks": 32,
+      "renderedReferences": 2722,
+      "routes": [
+        "/",
+        "/candidates",
+        "/contact",
+        "/careers",
+        "/services",
+        "/blog",
+        "/industries",
+        "/__v9/foundation",
+        "/__v9/home",
+        "/__v9/candidates",
+        "/__v9/about",
+        "/__v9/bfsi",
+        "/__v9/article",
+        "/__v9/services",
+        "/__v9/interview-as-a-service",
+        "/__v9/case-study"
+      ],
+      "viewports": [
+        390,
+        1366
+      ],
+      "screenshotReducedMotion": true,
+      "errors": [],
+      "status": "passed"
+    }
+  ],
+  "limitations": [
+    "Hosted delivery, redirect and scanner behavior require hosted validation.",
+    "Browser smoke is not full interactive journey coverage.",
+    "HTML reference audit does not parse CSS URLs or arbitrary script-created URLs."
+  ],
+  "finishedAt": "2026-10-19T06:41:12.277Z"
+}

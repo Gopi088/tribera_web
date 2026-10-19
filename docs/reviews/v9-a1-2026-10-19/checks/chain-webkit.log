@@ -1,0 +1,27 @@
+
+> tribera-website@1.0.0-beta.52 test:migration:a1
+> node scripts/test-v9-a1.mjs
+
+Running tests/v9-a1-pages.test.mjs against http://127.0.0.1:4490
+webkit: 18 A1 page checks passed
+Running tests/v9-a1-behavior.test.mjs against http://127.0.0.1:4490
+webkit: all nine source recommendations, twelve offerings, native FAQs and four case stages passed with JS/no-JS
+Running tests/v9-a1-navigation.test.mjs against http://127.0.0.1:4490
+webkit: six hiring enquiry navigations preserve query URLs; legacy Contact notification context is not certified
+Running tests/v9-preview-navigation.test.mjs against http://127.0.0.1:4490
+TAP version 13
+# Subtest: independent private preview navigation (webkit)
+ok 1 - independent private preview navigation (webkit)
+  ---
+  duration_ms: 39891.312944
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 39899.93352

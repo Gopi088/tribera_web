@@ -1,0 +1,33 @@
+## Independent source review — candidate `54ea9c1`, worktree `/tmp/tribera-v9-a1`
+
+**Scope reviewed:** contract (`docs/v9-a1-contract.md`), `src/components/v9/services/*`, `src/components/v9/hiring-detail/*`, both READMEs, `src/data/v9/case-studies.ts`, page-local CSS (`handoff.css`/`enhancements.css` for all three pages), scripts (`services.ts`, `hiring-detail.ts`), private routes (`src/pages/[preview]/{services,interview-as-a-service,case-study}.astro`), `preview-links.ts`, the A1 test trio + `test-v9-a1.mjs`, and the CI workflow gate.
+
+### Verdict: **ACCEPT FOR SOURCE**
+
+This is a source-level review only; it does not certify the compiled/visual/CI gates, which the contract explicitly defers.
+
+### Findings
+
+**Content/number fidelity — correct.**
+- Services: 12 offerings (4 Doors + 8 More), 9 problem choices/recommendations, 4 primary tickets, 8 extended disclosures, 5 FAQs — all counted directly in `Problems.astro`/`Doors.astro`/`More.astro`/`Questions.astro` and match the contract exactly.
+- IaaS: distinct 48h batch promise, per-interview + success fee, 6 FAQs (`InterviewFaq.astro`) — correct, no merge with Services' 5 FAQs.
+- Case study: 327/11/2/1/22 days consistently reproduced across `case-studies.ts`, `CaseStudyPile.astro`, `CaseStudyHero.astro`, `CaseStudyScale.astro`, `CaseStudyIntake.astro`, and Services' own `Story.astro` recap. `CaseStudyMore.astro` cross-links Home's case as "126 people… hired two," correctly kept numerically distinct per contract.
+- All internal fragment links (`#sv-*` in `Problems.astro`/`Pricing.astro`) resolve to real IDs in `Doors.astro`/`More.astro`; no broken anchors found.
+
+**Accessibility/fallback — correct.** Services buttons are server-rendered `disabled` and only enabled by `services.ts`; recommendation panels are never `hidden` without that script, so all 9 recommendations stay readable with JS off (verified in both markup and `enhancements.css`). Tabs get full arrow/Home/End keyboard support plus horizontal-scroll-into-view handling for narrow viewports. Case controls are `hidden` until `hiring-detail.ts` runs, with the full completed result (`data-stage="3"`, 327 cells) already rendered server-side — matches "readable with scripts blocked." IaaS/Services FAQ `details` groups use the native `name` attribute for exclusivity, first item open.
+
+**Reduced motion / layout isolation — correct.** `prefers-reduced-motion: reduce` blocks disable all animation/transition/scroll-behavior inside `.v9-services`; `[data-rv]` arrival states are forced visible. All three stylesheets scope selectors under `:where(.v9-services)` / `:where(.v9-hiring-case)` / `:where(.v9-hiring-iaas)` with no bare global selectors found — no leakage risk into other pages.
+
+**View-transition regression — confirmed fixed.** No `view-transition-name` occurrences remain anywhere in `src`, consistent with `dcd5f1c` (the peer-review fix) being present on this branch.
+
+**Routing/noindex/sitemap — correct.** All three `getStaticPaths()` gate generation to `import.meta.env.DEV || V9_PREVIEW==='1'`; `V9Layout` receives `noindex`; `astro.config.ts` sitemap filter excludes `/__v9/` globally.
+
+**No fake functionality / honest CTAs — confirmed.** Every "sample" CTA links to `/contact?intent=sample-write-up` (a real enquiry route), not a nonexistent download; no `.pdf`/`download` attributes anywhere in the new components. `v9-a1-navigation.test.mjs` independently asserts contact CTAs resolve to a real `/contact` page with a present `<form>` and that query strings survive navigation — the primary CTA chain is not broken or fabricated.
+
+**Test/CI coverage — thorough and independent.** `v9-a1-pages.test.mjs` cross-checks against the raw handoff reference, drives real image load+decode (scroll-into-view + `complete` polling) *before* taking screenshots — this directly addresses the peer-reviewed "blank portrait, likely lazy image" concern; the fix looks structurally sound, though I have not executed it myself (compiled-gate scope). `v9-a1-behavior.test.mjs` parses the source `SV`/`SYM` JSON straight out of `sample_data/.../services.html` and asserts counts/content against it, not just internal self-consistency. Widths match the contract (11 Chromium / 3 Firefox+WebKit / one short-screen / two no-JS sizes exactly). CI's `migration-required` job correctly gates on all of check/unit/build/browser/a1-pages/legacy-regression.
+
+### Minor, non-blocking gaps (note for the record, not a block on source acceptance)
+- **Low:** The README's claim that the founder portrait (`public/images/v9/services/pranav.jpg`) is "extracted byte-for-byte from the source JPEG" has no corresponding automated byte/hash check in this batch's test suite (unlike other explicit parity claims, which are tested). Worth a follow-up assertion before final sign-off, but not a functional defect.
+- **Informational:** `test:migration:unit` wasn't extended with a dedicated unit test for `case-studies.ts`; coverage for that data currently comes only from the browser-level `v9-a1-behavior.test.mjs`. Acceptable given the coordinator's stated test architecture, but flagging for completeness.
+
+Neither item involves fake functionality, a broken CTA, or a contract violation — both are evidence-completeness notes for the next batch, not reasons to request changes at the source level.

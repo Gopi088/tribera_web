@@ -1,0 +1,41 @@
+
+> tribera-website@1.0.0-beta.52 test:migration:a1
+> node scripts/test-v9-a1.mjs
+
+Running tests/v9-a1-pages.test.mjs against http://127.0.0.1:4490
+chromium: 42 A1 page checks passed
+Running tests/v9-a1-behavior.test.mjs against http://127.0.0.1:4490
+chromium: all nine source recommendations, twelve offerings, native FAQs and four case stages passed with JS/no-JS
+Running tests/v9-a1-navigation.test.mjs against http://127.0.0.1:4490
+node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: case-study: real enquiry destination
+    at file:///tmp/tribera-v9-a1/tests/v9-a1-navigation.test.mjs:33:14 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '=='
+}
+
+Node.js v22.15.0
+node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: tests/v9-a1-navigation.test.mjs failed (1)
+
+1 !== 0
+
+    at file:///tmp/tribera-v9-a1/scripts/test-v9-a1.mjs:81:12
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 0,
+  operator: 'strictEqual'
+}
+
+Node.js v22.15.0
