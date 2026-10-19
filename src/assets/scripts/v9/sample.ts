@@ -115,7 +115,7 @@ if (form) {
         stopped = true;
         return;
       }
-      if (response.status === 400 && result.code !== 'expired') {
+      if (response.status === 400 && result.code === 'validation') {
         snapshot = undefined;
         fields.forEach((field) => {
           field.readOnly = false;
