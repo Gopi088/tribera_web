@@ -1,0 +1,177 @@
+---
+import { timeline, footerNotes } from './context';
+---
+
+<section class="g-paper" id="write">
+  <div class="wrap">
+    <div class="eyebrow"><span class="tick">\</span> 01 · One form, two directions</div>
+    <h2 style="--d:60ms">Which side of it are you on?</h2>
+    <p class="lead" style="--d:120ms">
+      The questions change with your answer. What we need to know about a role is nothing like what we need to know
+      about a person.
+    </p>
+    <div class="ct-grid" style="--d:160ms">
+      <form
+        class="ct-form"
+        id="ctForm"
+        action="/.netlify/functions/contact-send-v9"
+        method="post"
+        enctype="multipart/form-data"
+        data-side="hiring"
+      >
+        <div class="ct-seg" role="radiogroup" aria-label="Which side are you on">
+          <label><input type="radio" name="side" value="hiring" checked="" /><span>I’m hiring</span></label>
+          <label><input type="radio" name="side" value="looking" /><span>I’m looking</span></label>
+          <i class="ct-seg-k" aria-hidden="true"></i>
+        </div>
+        <p class="ct-about" id="ctAbout" hidden="">
+          <span class="pf-k">About</span><b id="ctAboutT"></b><button type="button" id="ctAboutX" aria-label="Remove"
+            >×</button
+          >
+        </p>
+        <input type="hidden" name="sector" id="ctSector" /><input type="hidden" name="service" id="ctService" />
+        <input type="hidden" name="request_token" value="" /><input
+          type="hidden"
+          name="form_loaded_at"
+          value=""
+        /><input type="hidden" name="intent" id="ctIntent" value="" /><div class="contact-honeypot" aria-hidden="true">
+          <label>Leave this empty<input name="botcheck" tabindex="-1" autocomplete="off" /></label>
+        </div><div class="ct-paper">
+          <p class="ct-l ct-hi">Hi Tribera,</p>
+          <fieldset class="ct-only" data-for="hiring" aria-label="Hiring details">
+            <p class="ct-l">
+              I’m <input
+                class="ct-in"
+                name="name"
+                autocomplete="name"
+                placeholder="your name"
+                aria-label="Your name"
+                required=""
+                size="14"
+              />, and I’m hiring a <input
+                class="ct-in"
+                name="role"
+                placeholder="head of data platform"
+                aria-label="The role you’re stuck on"
+                data-req=""
+                size="20"
+                required=""
+              />
+            </p>
+            <p class="ct-l">
+              at <input
+                class="ct-in"
+                name="company"
+                autocomplete="organization"
+                placeholder="company"
+                aria-label="Company"
+                data-req=""
+                size="14"
+                required=""
+              />. Here’s what’s gone wrong so far:
+            </p>
+            <textarea
+              class="ct-ta"
+              name="message"
+              rows="3"
+              placeholder="How long it’s been open, and what you’ve tried. Four sentences is plenty."
+              aria-label="What’s gone wrong so far"></textarea>
+            <p class="ct-l">
+              You can reach me at <input
+                class="ct-in"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="you@company.com"
+                aria-label="Email"
+                required=""
+                size="22"
+              />.
+            </p>
+          </fieldset>
+          <fieldset class="ct-only" data-for="looking" hidden="" aria-label="Candidate details" disabled="">
+            <p class="ct-l">
+              I’m <input
+                class="ct-in"
+                name="name"
+                autocomplete="name"
+                placeholder="your name"
+                aria-label="Your name"
+                data-req=""
+                size="14"
+                required=""
+              />, and I’m quietly looking.
+            </p>
+            <p class="ct-l">
+              My CV is <label class="ct-file"
+                ><input
+                  type="file"
+                  name="cv"
+                  accept=".pdf,.doc,.docx"
+                  data-req=""
+                  required=""
+                  aria-label="Your CV"
+                /><span>attached here</span></label
+              >, and you can reach me at <input
+                class="ct-in"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="you@email.com"
+                aria-label="Email"
+                data-req=""
+                size="20"
+                required=""
+              />.
+            </p>
+            <textarea
+              class="ct-ta"
+              name="note"
+              rows="3"
+              placeholder="What you want next, and anyone you’d want blocked. Optional."
+              aria-label="Anything we should know"></textarea>
+          </fieldset>
+          <p class="ct-l ct-sig">Thanks,<br /><span id="ctSig">—</span></p>
+        </div>
+        <div class="ct-send">
+          <button class="btn btn-primary" type="submit" disabled="">Send it</button><p class="ct-note" id="ctNote">
+            Abhishek reads this one. Expect a reply inside a day. If we’re not right for it, he’ll say so and point you
+            somewhere better.
+          </p>
+        </div>
+        <p class="contact-status" role="status" aria-live="polite" tabindex="-1" data-contact-status></p><p
+          class="contact-native"
+        >
+          <a href="/.netlify/functions/contact-form-v9" data-contact-native>Use the simple contact form</a>. It works
+          without JavaScript and sends a real request.
+        </p><noscript
+          ><p>
+            Use the simple contact form to choose your side and send your message. The preview form below requires
+            JavaScript.
+          </p></noscript
+        >
+      </form>
+      <aside class="ct-side">
+        <span class="ql">After you press send</span>
+        {
+          Object.entries(timeline).map(([side, steps]) => (
+            <div data-timeline={side} hidden={side === 'looking'}>
+              <>
+                <ol class="ct-tl">
+                  {steps.map((row, i) => (
+                    <li style={`--i:${i}`}>
+                      <em>{row[0]}</em>
+                      <b>{row[1]}</b>
+                      <span>{row[2]}</span>
+                    </li>
+                  ))}
+                </ol>
+                <p class="ct-side-ft">{footerNotes[side as keyof typeof footerNotes]}</p>
+              </>
+            </div>
+          ))
+        }
+      </aside>
+    </div>
+  </div>
+</section>

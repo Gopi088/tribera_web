@@ -1,0 +1,20 @@
+# Private Contact migration
+
+`ContactPage.astro` composes the complete five-section handoff: named reply owners, two-way letter form with per-side timeline, office cards and two office photographs, six native FAQs, and closing promise. `/__v9/contact` exists only in development or with `V9_PREVIEW=1`, always noindex. Public Contact and its legacy handler remain unchanged.
+
+The ordered final source CSS cascade is scoped below `.v9-contact`; the accepted shell and pinned fonts remain shared. Four embedded JPEGs are extracted byte-for-byte into page-owned assets. Inline vector fields remain SVG. No raw handoff document, iframe, remote font or handoff script is loaded. Decorative reveals render completed, and reduced motion removes page animations and transitions.
+
+The letter form uses native radio controls and separate labelled fieldsets. Inactive fieldsets and every inactive input/textarea are disabled, so hidden duplicate names and CV fields never enter FormData. Switching mode changes the signature, named reader, timeline and native fallback URL. Both timelines are server-rendered; hiring is the initial static state. FAQs use native exclusive details/summary and work without JavaScript.
+
+`context.ts` preserves the source's twelve sector and twelve service identifiers and display labels. Only these values plus `side=hiring|looking` and `intent=sample-write-up` are carried from the query. Unrecognised values are discarded. User data never chooses a recipient. Removing context clears all three contextual hidden fields and the enhanced native URL.
+
+Delivery contract:
+
+- No token request occurs just from viewing the page. First control focus or submit requests `contact-form-v9?format=json` with validated context. The backend returns a signed request token, request-time timestamp and minimum submit age. A submit-first flow waits the remaining minimum age before sending.
+- Enhanced multipart POST goes to `/.netlify/functions/contact-send-v9` with `request_token`, `form_loaded_at`, empty `botcheck`, active-mode fields and validated context. Hiring uses name/email/role/company and optional message; looking uses name/email/required CV and optional note. Browser CV checks allow PDF/DOC/DOCX up to 10 MiB; server signature/scanner/provider checks remain authoritative.
+- Only an actual successful JSON response produces received confirmation. During delivery all editing controls are disabled. Ambiguous network/provider outcomes retain the exact original FormData/token and lock edits; retry reuses that same attempt. There is no automatic new token or new payload after ambiguity. Nonretryable ambiguity stops resending. The native alternate is hidden while an attempt is unresolved to avoid silently starting a second request. Validation errors before delivery allow corrections.
+- The no-JavaScript fallback links to `/.netlify/functions/contact-form-v9`, a request-time form, rather than posting a stale build timestamp. Enhancement carries explicit validated context. The backend owns same-origin Referer fallback for no-JavaScript incoming context and visible native chooser/context controls when referrer information is absent.
+
+The default static preview does not pretend its disabled submit can send without scripts. It directs no-JavaScript visitors to the working request-time native form. Source named-person/response-time/privacy promises are retained content, not independent publication approval or proof of provider behavior. Any hosted upload limits, scanner configuration, live recipient routing and inbox delivery require the later hosted gate.
+
+Validation: scoped formatting/ESLint and Astro component parsing are worker checks. Coordinator owns compiled source parity, all-engine interaction/no-JavaScript/network-mocked tests, route/asset boundary, production comparison and actual Claude review. No real emails or provider requests are sent by worker verification.

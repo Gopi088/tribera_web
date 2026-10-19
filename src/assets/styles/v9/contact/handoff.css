@@ -1,0 +1,1790 @@
+/* Final source cascade scoped to the private Contact page. */
+
+.v9-contact {
+  --ease: cubic-bezier(0.16, 0.84, 0.32, 1);
+  --ease-smooth: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --white: #ffffff;
+  --paper: #f1eee7;
+  --ink: #131313;
+  --ink-2: #57565b;
+  --ink-3: #6b6a64;
+  --red: #da0007;
+  --charcoal: #121212;
+  --pw: rgba(255, 255, 255, 0.7);
+  --pw2: rgba(255, 255, 255, 0.55);
+  --surface-d: #191917;
+  --surface-d2: #1f1e1c;
+  --line-dw: #33332e;
+  --r-lg: 16px;
+  --line: rgba(19, 19, 19, 0.1);
+  --line-2: rgba(19, 19, 19, 0.16);
+  --line-d: rgba(255, 255, 255, 0.11);
+  --take: #3e9e63;
+  --takebg: rgba(62, 158, 99, 0.12);
+  --shadow: 0 1px 2px rgba(19, 19, 19, 0.05), 0 14px 30px -16px rgba(19, 19, 19, 0.15);
+  --card-r: 14px;
+  --shadow-h: 0 20px 44px -22px rgba(19, 19, 19, 0.22);
+  --shadow-d: 0 40px 90px -40px rgba(0, 0, 0, 0.7);
+  --display: 'V9 Fraunces', Georgia, serif;
+  --body: 'V9 Inter Tight', system-ui, sans-serif;
+  --mono: 'V9 JetBrains Mono', ui-monospace, monospace;
+  --wrap: 1160px;
+  --pad: clamp(22px, 5vw, 72px);
+}
+:where(.v9-contact) * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.v9-contact {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  .v9-contact {
+    scroll-behavior: auto;
+  }
+}
+.v9-contact {
+  font-family: var(--body);
+  background: var(--white);
+  color: var(--ink);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+:where(.v9-contact) ::selection {
+  background: rgba(218, 0, 7, 0.16);
+  color: var(--ink);
+}
+:where(.v9-contact) .g-dark ::selection {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+:where(.v9-contact) .wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding-inline: var(--pad);
+}
+:where(.v9-contact) section {
+  padding-block: clamp(52px, 6.5vw, 94px);
+}
+:where(.v9-contact) .g-white {
+  background: var(--white);
+}
+:where(.v9-contact) .g-paper {
+  background: var(--paper);
+}
+:where(.v9-contact) .g-dark {
+  background: var(--charcoal);
+  color: var(--white);
+}
+:where(.v9-contact) .g-dark .lead {
+  color: var(--pw);
+}
+/* light-on-light seam: hairline only where two light sections meet, since there's no dark slab to mark the cut */
+:where(.v9-contact) .g-white + .g-white,
+:where(.v9-contact) .g-white + .g-paper,
+:where(.v9-contact) .g-paper + .g-white,
+:where(.v9-contact) .g-paper + .g-paper {
+  border-top: 1px solid var(--line);
+}
+
+:where(.v9-contact) h1,
+:where(.v9-contact) h2,
+:where(.v9-contact) h3 {
+  font-family: var(--display);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+}
+:where(.v9-contact) h1 {
+  font-size: clamp(2.6rem, 5.6vw, 4.15rem);
+  font-weight: 500;
+}
+:where(.v9-contact) h2 {
+  font-size: clamp(2rem, 3.9vw, 3rem);
+}
+:where(.v9-contact) h3 {
+  font-family: var(--body);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+:where(.v9-contact) .lead {
+  font-family: var(--body);
+  font-size: clamp(1.08rem, 1.55vw, 1.28rem);
+  font-weight: 400;
+  color: var(--ink-2);
+  line-height: 1.5;
+  margin-top: 1.5rem;
+}
+:where(.v9-contact) p + p {
+  margin-top: 1rem;
+}
+
+:where(.v9-contact) .eyebrow {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-bottom: 1.6rem;
+}
+:where(.v9-contact) .g-dark .eyebrow {
+  color: var(--pw2);
+}
+:where(.v9-contact) .eyebrow .tick {
+  color: var(--red);
+}
+:where(.v9-contact) section[id],
+:where(.v9-contact) header[id] {
+  scroll-margin-top: 74px;
+}
+
+:where(.v9-contact) .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--body);
+  font-weight: 500;
+  font-size: 0.98rem;
+  letter-spacing: -0.01em;
+  padding: 0.8em 1.5em;
+  border-radius: 100px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition:
+    transform 0.18s var(--ease),
+    background 0.18s var(--ease),
+    box-shadow 0.18s var(--ease);
+}
+:where(.v9-contact) .btn-primary {
+  background: var(--red);
+  color: #fff;
+  box-shadow: 0 8px 20px -8px rgba(218, 0, 7, 0.5);
+}
+:where(.v9-contact) .btn-primary:hover {
+  transform: translateY(-1px);
+  background: #c10006;
+}
+:where(.v9-contact) .g-dark .btn-primary {
+  background: #fff;
+  color: var(--charcoal);
+  box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.6);
+}
+:where(.v9-contact) .link {
+  font-family: var(--body);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--red);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+}
+:where(.v9-contact) .link:hover {
+  gap: 0.5em;
+}
+:where(.v9-contact) .g-dark .link {
+  color: #fff;
+}
+:where(.v9-contact) .cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  margin-top: 2.3rem;
+}
+:where(.v9-contact) a:focus-visible,
+:where(.v9-contact) button:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* HERO */
+
+/* shortlist card */
+
+/* THESIS */
+
+/* RESULT strip */
+
+/* WORK flow */
+
+/* PROOF interactive */
+
+/* TWO WAYS */
+/* convergence only reads when its cards are side by side — hide it once they stack */
+
+/* COVERAGE */
+
+/* CLIENTS */
+
+/* START + founder */
+:where(.v9-contact) .start {
+  position: relative;
+  overflow: hidden;
+}
+:where(.v9-contact) .start > .wrap {
+  position: relative;
+  z-index: 1;
+}
+:where(.v9-contact) .start-head {
+  text-align: center;
+  max-width: 760px;
+  margin-inline: auto;
+}
+:where(.v9-contact) .start .lead {
+  max-width: 46ch;
+  margin-inline: auto;
+  text-align: center;
+}
+:where(.v9-contact) .start .cta-row {
+  justify-content: center;
+}
+
+:where(.v9-contact) [data-rv] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.55s var(--ease-smooth),
+    transform 0.74s var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+:where(.v9-contact) [data-rv].in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where(.v9-contact) [data-rv] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* 126 funnel */
+
+/* hero decision package card */
+/* funnel peek */
+/* mobile fit fixes */
+
+/* footer */
+
+/* composite inputs on the verdict card */
+
+/* experts bench */
+@keyframes pillIn {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* hand-drawn underline */
+:where(.v9-contact) .hd-word {
+  position: relative;
+  white-space: nowrap;
+}
+:where(.v9-contact) .hd-underline {
+  position: absolute;
+  left: -1%;
+  right: -1%;
+  bottom: -0.16em;
+  width: 102%;
+  height: 0.34em;
+  overflow: visible;
+  pointer-events: none;
+}
+/* fold buttons */
+:where(.v9-contact) #dpScore {
+  transition: opacity 0.2s;
+}
+
+/* interactive lab (proof) */
+@media (min-width: 900px) {
+}
+
+/* client marquee */
+
+@keyframes clmove {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* centered hero */
+
+/* engagement models */
+
+/* multiplier (hand-drawn bars) */
+@keyframes drawbox {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+/* testimonials */
+@keyframes tmmove {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+/* subtle apple-style hovers */
+/* trust */
+
+/* 8 -> 3 ratio */
+
+/* hand-drawn signature — the expert's red pen */
+:where(.v9-contact) .hd-underline path {
+  stroke: var(--red);
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+:where(.v9-contact) .g-dark .hd-underline path {
+  stroke: #ff5a5f;
+}
+
+/* moving client strip — section breaker */
+:where(.v9-contact) .hero-field {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+  width: min(1040px, 96vw);
+  -webkit-mask-image: radial-gradient(115% 120% at 50% 50%, #000 42%, transparent 92%);
+  mask-image: radial-gradient(115% 120% at 50% 50%, #000 42%, transparent 92%);
+}
+:where(.v9-contact) .hero-field svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+@keyframes heroDrift {
+  from {
+    transform: translate(-11%, -6%) scale(1);
+  }
+  to {
+    transform: translate(14%, 9%) scale(1.22);
+  }
+}
+
+/* savings */
+
+:where(.v9-contact) .hd-underline path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.62, 0.04, 0.2, 1) 0.15s;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where(.v9-contact) .hd-underline path {
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+}
+
+/* hero: live scroll cue */
+@keyframes cueDrop {
+  0% {
+    transform: translateY(-18px);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(48px);
+    opacity: 0;
+  }
+}
+@keyframes cueFlow {
+  0% {
+    transform: translateY(-3px);
+    opacity: 0;
+  }
+  22% {
+    opacity: 0.75;
+  }
+  70% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translateY(9px);
+    opacity: 0;
+  }
+}
+/* magnetic buttons */
+:where(.v9-contact) .btn-primary {
+  transition:
+    transform 0.25s var(--ease),
+    box-shadow 0.25s var(--ease),
+    background 0.2s;
+}
+:where(.v9-contact) .btn-primary:hover {
+  transform: translateY(-2px) scale(1.025);
+  box-shadow: 0 18px 44px -14px rgba(218, 0, 7, 0.55);
+}
+:where(.v9-contact) .btn-primary:active {
+  transform: translateY(0) scale(0.99);
+}
+/* coverage chips */
+/* stronger experts hover */
+/* trust cards reveal in a subtle stagger + red on hover */
+
+/* mobile nav */
+
+/* stronger, more visible cue bounce */
+
+/* experts hover reveal */
+/* trust hover reveal */
+
+/* TA OPS + PROCUREMENT */
+/* Procurement & security — a clean spec register (reads like precise terms) */
+/* FAQ — two-column, human aside + accordion */
+:where(.v9-contact) .faq-top {
+  display: grid;
+  gap: clamp(24px, 4vw, 60px);
+}
+@media (min-width: 900px) {
+  :where(.v9-contact) .faq-top {
+    grid-template-columns: 0.82fr 1.18fr;
+    align-items: start;
+  }
+  :where(.v9-contact) .faq-aside {
+    position: sticky;
+    top: 100px;
+  }
+}
+:where(.v9-contact) .faq-aside h2 {
+  margin-top: 0.3em;
+}
+:where(.v9-contact) .faq .hd-underline path {
+  stroke: var(--red);
+  stroke-width: 2.2;
+}
+:where(.v9-contact) .faq-ask {
+  margin-top: clamp(22px, 3vw, 38px);
+}
+:where(.v9-contact) .faq-ask-q {
+  font-family: var(--body);
+  font-size: 1rem;
+  color: var(--ink-3);
+  margin: 0 0 0.45rem;
+}
+:where(.v9-contact) .faq-ask a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42em;
+  font-family: var(--body);
+  font-size: 1.04rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--ink);
+  padding-bottom: 1px;
+  transition: gap 0.24s var(--ease);
+}
+:where(.v9-contact) .faq-ask a:hover {
+  gap: 0.7em;
+}
+:where(.v9-contact) .faq-ask a .ar {
+  transition: transform 0.24s var(--ease);
+}
+:where(.v9-contact) .faq-ask a:hover .ar {
+  transform: translateX(2px);
+}
+:where(.v9-contact) .faq-list {
+  margin-top: 0;
+  border-top: 1px solid var(--line);
+}
+:where(.v9-contact) .faq-item {
+  border-bottom: 1px solid var(--line);
+}
+:where(.v9-contact) .faq-q {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  padding: clamp(18px, 2.1vw, 26px) 0;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.06rem, 1.6vw, 1.24rem);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+:where(.v9-contact) .faq-ic {
+  position: relative;
+  flex: none;
+  width: 20px;
+  height: 20px;
+}
+:where(.v9-contact) .faq-ic::before,
+:where(.v9-contact) .faq-ic::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: var(--ink-3);
+  transition:
+    transform 0.3s var(--ease),
+    opacity 0.3s var(--ease),
+    background 0.2s var(--ease);
+}
+:where(.v9-contact) .faq-ic::before {
+  width: 13px;
+  height: 1.7px;
+  transform: translate(-50%, -50%);
+}
+:where(.v9-contact) .faq-ic::after {
+  width: 1.7px;
+  height: 13px;
+  transform: translate(-50%, -50%);
+}
+@media (hover: hover) {
+  :where(.v9-contact) .faq-q:hover .faq-ic::before,
+  :where(.v9-contact) .faq-q:hover .faq-ic::after {
+    background: var(--ink);
+  }
+}
+:where(.v9-contact) .faq-item[open] .faq-ic::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+  opacity: 0;
+}
+:where(.v9-contact) .faq-item[open] .faq-ic::before {
+  background: var(--ink);
+}
+:where(.v9-contact) .faq-a {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.36s var(--ease);
+}
+:where(.v9-contact) .faq-item[open] .faq-a {
+  grid-template-rows: 1fr;
+}
+:where(.v9-contact) .faq-a > div {
+  overflow: hidden;
+  min-height: 0;
+}
+:where(.v9-contact) .faq-a p {
+  margin: 0;
+  padding: 0 0 clamp(20px, 2.2vw, 26px);
+  max-width: 76ch;
+  font-family: var(--body);
+  font-size: clamp(0.98rem, 1.35vw, 1.05rem);
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+@media (prefers-reduced-motion: reduce) {
+  :where(.v9-contact) .faq-a {
+    transition: none;
+  }
+}
+
+/* ---------- CANDIDATE CLOCK ---------- */
+@keyframes cc-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(63, 190, 124, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 9px rgba(63, 190, 124, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(63, 190, 124, 0);
+  }
+}
+@keyframes cc-in {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes cc-out {
+  to {
+    opacity: 0;
+  }
+}
+
+/* ---------- HERO TWO-COLUMN + LIVE CLOCK ---------- */
+
+@keyframes hc-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* one-line section headings */
+:where(.v9-contact) section h2 {
+  text-wrap: balance;
+}
+@media (min-width: 1024px) {
+  :where(.v9-contact) section h2 {
+    max-width: none;
+    white-space: nowrap;
+  }
+}
+/* funnel conclusion at body size, not a second headline */
+/* hero card: ranked list with the bar drawn across */
+/* heading-to-subtitle spacing on all widths */
+/* scorer: sliders collapse behind a toggle on phones and tablets */
+/* AI & fairness: three-step handoff */
+
+/* ═══ v166 · DE-SaaS PASS ═══ */
+.v9-contact {
+  --shadow: none;
+  --shadow-h: none;
+  --shadow-d: none;
+}
+:where(.v9-contact) .btn-primary,
+:where(.v9-contact) .btn-primary:hover,
+:where(.v9-contact) .btn-primary:active {
+  box-shadow: none;
+  transform: none;
+}
+:where(.v9-contact) .btn-primary:hover {
+  background: #c10006;
+}
+
+/* ═══ v166 · THE HAND LAYER — hand marks are where a person judged ═══ */
+/* 1. marker redaction instead of blur */
+/* 2. one ink stamp, once on the page */
+/* 3. pen pressure: filled, tapered strokes revealed left to right */
+:where(.v9-contact) svg.hd-ink path {
+  fill: var(--red) !important;
+  stroke: none !important;
+  stroke-dasharray: none !important;
+  stroke-dashoffset: 0 !important;
+}
+:where(.v9-contact) svg.hd-ink {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.85s cubic-bezier(0.62, 0.04, 0.2, 1) 0.2s;
+}
+:where(.v9-contact) .g-dark svg.hd-ink path {
+  fill: #ff5a5f !important;
+}
+/* 4. paper grain on the cream sections only */
+:where(.v9-contact) .g-paper {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.07 0 0 0 0 0.07 0 0 0 0 0.07 0 0 0 .055 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+/* 5. crop marks on the decision card, like a proof sheet */
+@media (prefers-reduced-motion: reduce) {
+  :where(.v9-contact) svg.hd-ink {
+    clip-path: none;
+    transition: none;
+  }
+}
+
+/* ═══ v168 ═══ */
+
+/* ═══ v169 · THE BAR, DRAGGABLE ═══ */
+:where(.v9-contact) #ways .lead,
+:where(.v9-contact) #how .lead {
+  max-width: 60ch;
+}
+@keyframes bcPop {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ═══ v170 ═══ */
+/* light logo strip: sits between the white hero and the dark lab without merging into either */
+/* the 36-hour timeline continues the problem chapter on the same paper */
+
+/* ═══ v172 · SCROLL CUE — one red field cell slides down a hairline, three times, then rests ═══ */
+@keyframes cueCell {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.7);
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, 30px) scale(1);
+  }
+  86% {
+    opacity: 0;
+    transform: translate(-50%, 32px) scale(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.7);
+  }
+}
+@keyframes cueRest {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 24px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 30px) scale(1);
+  }
+}
+@media (max-width: 1023px) {
+  :where(.v9-contact) .hero-field .fm-d {
+    display: none;
+  }
+}
+/* ═══ v173 · PHONE HERO ═══ */
+
+/* ═══ v174 · "Try the scorer": the field cell leads, a hairline draws on hover ═══ */
+
+/* ═══ v178 ═══ */
+@media (max-width: 1023px) {
+  :where(.v9-contact) .hero-field {
+    display: none;
+  }
+}
+
+/* ═══ v179 · THE 36-HOUR CLOCK ═══ */
+
+/* ═══ v180 ═══ */
+
+/* ═══ v181 · AUDIT PASS ═══ */
+/* one colour code: ink = cleared, grey = borderline, faded = below; red only where a person judged or someone belongs */
+/* the field mark: never behind text */
+@keyframes fmPop {
+  0% {
+    transform: scale(0.4);
+  }
+  100% {
+    transform: none;
+  }
+}
+/* one tag style */
+/* links are ink, never red text */
+:where(.v9-contact) .link,
+:where(.v9-contact) a.link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: rgba(19, 19, 19, 0.25);
+  text-underline-offset: 4px;
+}
+:where(.v9-contact) .g-dark a.link {
+  color: #fff;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+}
+:where(.v9-contact) #ways .link {
+  display: table;
+  margin: 1.4rem auto 0;
+}
+/* sub-heads speak in the display face everywhere */
+/* hour 36: three empty cells wait, then fill */
+/* small screens */
+:where(.v9-contact) .start .lead {
+  text-wrap: balance;
+}
+
+/* ═══ v183 · FAQ ═══ */
+:where(.v9-contact) .faq-aside h2 {
+  margin-top: 0.6rem;
+  white-space: normal !important;
+  max-width: 11ch;
+}
+:where(.v9-contact) .faq-aside .faq-ask {
+  margin-top: clamp(28px, 4vw, 48px);
+}
+:where(.v9-contact) .faq-q {
+  font-weight: 400 !important;
+}
+@media (max-width: 900px) {
+  :where(.v9-contact) .faq-aside {
+    position: static;
+  }
+  :where(.v9-contact) .faq-aside h2 {
+    max-width: none;
+  }
+}
+
+/* ═══ v184 ═══ */
+:where(.v9-contact) .faq-a > div {
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    opacity 0.35s ease 0.05s,
+    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+:where(.v9-contact) .faq-item[open] .faq-a > div {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where(.v9-contact) .faq-a > div {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ═══ CANDIDATES · c1 ═══ */
+:where(.v9-contact) .pf-k {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+:where(.v9-contact) .pf-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--red);
+}
+
+/* ═══ c3 · CV → question ═══ */
+
+/* ═══ c4 ═══ */
+/* ═══ HERO VARIANTS · d1 ═══ */
+:where(.v9-contact) .hx {
+  position: relative;
+  padding: clamp(64px, 10vw, 150px) 0 clamp(44px, 5.4vw, 80px);
+}
+:where(.v9-contact) .hx .eyebrow {
+  margin-bottom: clamp(1.4rem, 2.4vw, 2.2rem);
+}
+:where(.v9-contact) .hx-h {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  color: var(--ink);
+}
+:where(.v9-contact) .hx .cta-row {
+  margin-top: clamp(26px, 3vw, 38px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  align-items: center;
+}
+:where(.v9-contact) .hx .cta-row .link {
+  color: var(--ink-2);
+  text-decoration: underline;
+  text-decoration-color: rgba(19, 19, 19, 0.22);
+  text-underline-offset: 4px;
+}
+:where(.v9-contact) .hx--c {
+  padding: clamp(48px, 7vw, 104px) 0 clamp(34px, 4vw, 56px);
+}
+:where(.v9-contact) .hx--c .hx-h {
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  line-height: 1.04;
+  max-width: 20ch;
+}
+:where(.v9-contact) .hx--c .lead {
+  max-width: 56ch;
+  margin-top: 1.3rem;
+}
+:where(.v9-contact) .hx--c .hx-c-g {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(20px, 4vw, 60px);
+  align-items: end;
+}
+@media (max-width: 860px) {
+  :where(.v9-contact) .hx--c .hx-c-g {
+    grid-template-columns: 1fr;
+  }
+}
+:where(.v9-contact) .hx .hd-word {
+  position: relative;
+  display: inline-block;
+}
+:where(.v9-contact) .hx + section.g-white,
+:where(.v9-contact) .hx + .g-white {
+  border-top: 1px solid var(--line);
+}
+:where(.v9-contact) .av-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
+  flex: none;
+  display: block;
+}
+
+/* ═══ OFFICE · o1 · real photos of the Bengaluru office ═══ */
+:where(.v9-contact) .of-ph {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--card-r);
+  background: var(--paper);
+  flex: 1;
+}
+:where(.v9-contact) .of-ph img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 3/2;
+  transition: transform 0.9s var(--e, ease);
+}
+:where(.v9-contact) .ct-photos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2.4vw, 28px);
+  margin-top: clamp(30px, 4vw, 48px);
+}
+:where(.v9-contact) .ct-photos figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+:where(.v9-contact) .ct-photos .of-ph {
+  flex: none;
+}
+:where(.v9-contact) .ct-photos .of-ph img {
+  aspect-ratio: 3/2;
+  height: auto;
+}
+:where(.v9-contact) .ct-photos figure:first-child .of-ph img {
+  object-position: 0% 50%;
+}
+:where(.v9-contact) .ct-photos figcaption {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--pw);
+}
+:where(.v9-contact) .ct-photos figcaption b {
+  display: block;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  line-height: 1.25;
+  color: #fff;
+  margin: 0.35rem 0 0.3rem;
+}
+@media (max-width: 760px) {
+  :where(.v9-contact) .ct-photos {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══ CONTACT · c2 ═══ */
+:where(.v9-contact) .ix-hx {
+  align-items: start;
+}
+:where(.v9-contact) .ix-hx .ct-who {
+  width: min(400px, 100%);
+  margin-top: 6px;
+}
+:where(.v9-contact) .ct-paper {
+  position: relative;
+  padding: clamp(18px, 2.6vw, 30px) clamp(16px, 2.4vw, 28px) clamp(16px, 2vw, 22px) clamp(40px, 4.4vw, 64px);
+  background: #fff;
+  border-radius: 4px;
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 43px,
+      rgba(19, 19, 19, 0.07) 43px,
+      rgba(19, 19, 19, 0.07) 44px
+    ),
+    linear-gradient(
+      to right,
+      transparent calc(clamp(40px, 4.4vw, 64px) - 14px),
+      rgba(19, 19, 19, 0.16) calc(clamp(40px, 4.4vw, 64px) - 14px),
+      rgba(19, 19, 19, 0.16) calc(clamp(40px, 4.4vw, 64px) - 13px),
+      transparent calc(clamp(40px, 4.4vw, 64px) - 13px)
+    );
+  box-shadow:
+    0 1px 0 var(--line),
+    0 3px 0 -1px #fff,
+    0 4px 0 -1px var(--line);
+}
+:where(.v9-contact) .ct-l {
+  font-family: var(--display);
+  font-size: clamp(1.15rem, 1.7vw, 1.4rem);
+  line-height: 44px;
+  color: var(--ink);
+}
+:where(.v9-contact) .ct-hi {
+  font-style: italic;
+}
+:where(.v9-contact) .ct-in {
+  font: inherit;
+  font-style: italic;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-bottom: 1.5px solid var(--ink);
+  padding: 0 0.15em;
+  max-width: 100%;
+  min-width: 6ch;
+  line-height: 1.2;
+}
+:where(.v9-contact) .ct-in::placeholder {
+  color: rgba(19, 19, 19, 0.32);
+}
+:where(.v9-contact) .ct-in:focus {
+  outline: none;
+  border-bottom-color: var(--red);
+}
+:where(.v9-contact) .ct-ta {
+  display: block;
+  width: 100%;
+  font: italic 400 clamp(1.05rem, 1.5vw, 1.25rem)/44px var(--display);
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  resize: vertical;
+  padding: 0;
+  min-height: 132px;
+}
+:where(.v9-contact) .ct-ta::placeholder {
+  color: rgba(19, 19, 19, 0.32);
+}
+:where(.v9-contact) .ct-ta:focus {
+  outline: none;
+}
+:where(.v9-contact) .ct-file {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+:where(.v9-contact) .ct-file input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+:where(.v9-contact) .ct-file span {
+  font-style: italic;
+  border-bottom: 1.5px dashed var(--ink);
+  padding: 0 0.15em;
+}
+:where(.v9-contact) .ct-file.has span {
+  border-bottom-style: solid;
+}
+:where(.v9-contact) .ct-sig {
+  margin-top: 0.2rem;
+}
+:where(.v9-contact) .ct-sig span {
+  font-style: italic;
+}
+:where(.v9-contact) .ct-form .ct-only {
+  display: block;
+}
+:where(.v9-contact) .ct-form .ct-only[hidden] {
+  display: none;
+}
+@media (max-width: 600px) {
+  :where(.v9-contact) .ct-l {
+    line-height: 2.2;
+    margin: 0;
+  }
+  :where(.v9-contact) .ct-in {
+    max-width: 100%;
+  }
+  :where(.v9-contact) .ct-ta {
+    line-height: 1.6;
+    min-height: 110px;
+    margin: 0.4rem 0;
+  }
+  :where(.v9-contact) .ct-paper {
+    background-image: none;
+    padding-left: 18px;
+  }
+}
+:where(.v9-contact) .hd-word {
+  position: relative;
+  display: inline-block;
+}
+:where(.v9-contact) .ct-who {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--card-r);
+  padding: 1.25rem 1.35rem 1.1rem;
+  text-align: left;
+}
+:where(.v9-contact) .ct-who .pf-k {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+:where(.v9-contact) .ct-p {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.2rem 0.9rem;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+:where(.v9-contact) .ct-p b {
+  display: block;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.15rem;
+}
+:where(.v9-contact) .ct-p div span {
+  display: block;
+  font-size: 0.84rem;
+  line-height: 1.4;
+  color: var(--ink-3);
+  margin-top: 0.15rem;
+}
+:where(.v9-contact) .ct-p em {
+  grid-column: 2;
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+:where(.v9-contact) .ct-who-ft {
+  margin-top: 0.9rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+@media (max-width: 900px) {
+  :where(.v9-contact) .ct-who {
+    max-width: 440px;
+    width: 100%;
+    margin-inline: auto;
+  }
+}
+:where(.v9-contact) .ct-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: clamp(20px, 3.4vw, 52px);
+  margin-top: clamp(30px, 4vw, 48px);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  :where(.v9-contact) .ct-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+:where(.v9-contact) .ct-form {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--card-r);
+  padding: clamp(18px, 2.4vw, 30px);
+  display: grid;
+  gap: 14px;
+}
+:where(.v9-contact) .ct-seg {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--paper);
+  border-radius: 100px;
+  padding: 4px;
+  margin-bottom: 4px;
+}
+:where(.v9-contact) .ct-seg label {
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+:where(.v9-contact) .ct-seg input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+:where(.v9-contact) .ct-seg span {
+  display: block;
+  text-align: center;
+  padding: 0.65em 1em;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--ink-2);
+  transition: color 0.3s ease;
+}
+:where(.v9-contact) .ct-seg input:checked + span {
+  color: #fff;
+}
+:where(.v9-contact) .ct-seg input:focus-visible + span {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  border-radius: 100px;
+}
+:where(.v9-contact) .ct-seg-k {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  border-radius: 100px;
+  background: var(--ink);
+  transition: transform 0.45s var(--ease);
+}
+:where(.v9-contact) .ct-form[data-side='looking'] .ct-seg-k {
+  transform: translateX(100%);
+}
+:where(.v9-contact) .ct-about {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px dashed var(--line-2);
+  border-radius: 10px;
+}
+:where(.v9-contact) .ct-about b {
+  font-weight: 500;
+  font-size: 0.92rem;
+  flex: 1;
+}
+:where(.v9-contact) .ct-about button {
+  background: none;
+  border: 0;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--ink-3);
+  cursor: pointer;
+}
+:where(.v9-contact) .ct-only {
+  display: grid;
+  gap: 14px;
+  animation: ctIn 0.45s var(--ease) both;
+}
+:where(.v9-contact) .ct-only[hidden],
+:where(.v9-contact) .ct-about[hidden] {
+  display: none;
+}
+@keyframes ctIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+:where(.v9-contact) .ct-send {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.4rem;
+  align-items: center;
+  margin-top: 4px;
+}
+:where(.v9-contact) .ct-note {
+  flex: 1;
+  min-width: 220px;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--ink-3);
+  transition: opacity 0.25s ease;
+}
+:where(.v9-contact) .ct-side {
+  position: sticky;
+  top: 96px;
+}
+:where(.v9-contact) .ct-side .pf-k {
+  display: block;
+}
+:where(.v9-contact) .ct-tl {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0 0 0 22px;
+  position: relative;
+}
+:where(.v9-contact) .ct-tl::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: var(--line-2);
+}
+:where(.v9-contact) .ct-tl li {
+  position: relative;
+  padding-bottom: 1.3rem;
+  animation: ctIn 0.5s var(--ease) both;
+  animation-delay: calc(var(--i) * 70ms);
+}
+:where(.v9-contact) .ct-tl li::before {
+  content: '';
+  position: absolute;
+  left: -22px;
+  top: 0.35rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 2.5px;
+  background: var(--ink);
+}
+:where(.v9-contact) .ct-tl li:last-child::before {
+  background: var(--red);
+}
+:where(.v9-contact) .ct-tl em {
+  display: block;
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+:where(.v9-contact) .ct-tl b {
+  display: block;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.2rem;
+  margin-top: 0.2rem;
+}
+:where(.v9-contact) .ct-tl span {
+  display: block;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin-top: 0.2rem;
+}
+:where(.v9-contact) .ct-side-ft {
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--ink-3);
+  border-top: 1px solid var(--line-2);
+  padding-top: 0.9rem;
+}
+@media (max-width: 900px) {
+  :where(.v9-contact) .ct-side {
+    position: relative;
+    top: 0;
+  }
+}
+:where(.v9-contact) .ct-off {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: clamp(30px, 4vw, 48px);
+}
+@media (max-width: 1000px) {
+  :where(.v9-contact) .ct-off {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  :where(.v9-contact) .ct-off {
+    grid-template-columns: 1fr;
+  }
+}
+:where(.v9-contact) .ct-off > div {
+  background: var(--surface-d);
+  border: 1px solid var(--line-d);
+  border-radius: var(--card-r);
+  padding: 1.3rem 1.3rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+:where(.v9-contact) .ct-off .ql {
+  color: var(--pw2);
+}
+:where(.v9-contact) .ct-off h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.45rem;
+  color: #fff;
+  margin-top: 0.5rem;
+}
+:where(.v9-contact) .ct-off p {
+  margin: 0.7rem 0 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--pw);
+  flex: 1;
+}
+:where(.v9-contact) .start .start-head h2 .hd-word {
+  position: relative;
+  display: inline-block;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where(.v9-contact) .ct-only,
+  :where(.v9-contact) .ct-tl li {
+    animation: none;
+  }
+  :where(.v9-contact) .ct-seg-k {
+    transition: none;
+  }
+}
+
+/* ═══ v167 · MOTION — only where it says something ═══ */
+@keyframes cellLit {
+  0% {
+    fill-opacity: 0.16;
+  }
+  30% {
+    fill-opacity: 0.85;
+  }
+  100% {
+    fill-opacity: 0.32;
+  }
+}
+
+/* ═══ CALM · h1 · quiet labels + motion only where it matters ═══ */
+:where(.v9-contact) .ql {
+  display: block;
+  font-family: var(--body);
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+:where(.v9-contact) .g-dark .ql {
+  color: var(--pw2);
+}
+/* section openers that aren't eyebrow + headline */
+:where(.v9-contact) [data-rv] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+:where(.v9-contact) .hx [data-rv] {
+  opacity: 0 !important;
+  transform: translateY(14px) !important;
+  transition:
+    opacity 0.55s var(--ease-smooth),
+    transform 0.74s var(--ease) !important;
+  transition-delay: var(--d, 0ms) !important;
+}
+:where(.v9-contact) .hx [data-rv].in {
+  opacity: 1 !important;
+  transform: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where(.v9-contact) .hx [data-rv] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ═══ MICRO · m1 · small moves: soft entry, hover, press, focus ═══
+   One curve, three durations. Nothing bounces, nothing glows, no shadows (v166 de-SaaS rule stands).
+   --e  cubic-bezier(.25,.1,.25,1)   Apple's ease
+   fast .18s (press, colour)  ·  base .32s (hover lifts, arrows)  ·  slow .7s (entry)            */
+.v9-contact {
+  --e: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --t1: 0.18s;
+  --t2: 0.32s;
+  --t3: 0.7s;
+}
+/* 1 · soft entry, everywhere: 8px rise + fade, once */
+:where(.v9-contact) [data-rv] {
+  opacity: 0 !important;
+  transform: translateY(8px) !important;
+  transition:
+    opacity var(--t3) var(--e),
+    transform var(--t3) var(--e) !important;
+  transition-delay: var(--d, 0ms) !important;
+}
+:where(.v9-contact) [data-rv].in {
+  opacity: 1 !important;
+  transform: none !important;
+}
+:where(.v9-contact) .hx [data-rv] {
+  transform: translateY(14px) !important;
+}
+:where(.v9-contact) .hx [data-rv].in {
+  transform: none !important;
+}
+/* 2 · buttons give a little when pressed */
+:where(.v9-contact) .btn:not([data-rv]),
+:where(.v9-contact) button:not([data-rv]) {
+  transition:
+    background-color var(--t1) var(--e),
+    color var(--t1) var(--e),
+    border-color var(--t1) var(--e),
+    transform var(--t1) var(--e) !important;
+}
+:where(.v9-contact) .btn:active,
+:where(.v9-contact) button:active {
+  transform: scale(0.97) !important;
+}
+:where(.v9-contact) .btn-primary .ar,
+:where(.v9-contact) .btn .ar {
+  display: inline-block;
+  transition: transform var(--t2) var(--e);
+}
+/* 3 · text links: underline darkens, chevron nudges */
+:where(.v9-contact) .link {
+  transition:
+    color var(--t1) var(--e),
+    text-decoration-color var(--t1) var(--e),
+    border-color var(--t1) var(--e),
+    transform var(--t2) var(--e),
+    gap var(--t2) var(--e) !important;
+}
+/* 4 · the nav underline slides in on hover, not just when active */
+/* 5 · FAQ answers open, they don't jump */
+:where(.v9-contact) .faq-a {
+  transition: grid-template-rows var(--t2) var(--e) !important;
+}
+:where(.v9-contact) .faq-ic::before,
+:where(.v9-contact) .faq-ic::after {
+  transition:
+    transform var(--t2) var(--e),
+    opacity var(--t2) var(--e),
+    background var(--t1) var(--e) !important;
+}
+/* 6 · clickable cards: 2px lift, border darkens. No shadow. */
+:where(.v9-contact) .ct-who {
+  transition:
+    transform var(--t2) var(--e),
+    border-color var(--t2) var(--e),
+    background-color var(--t2) var(--e) !important;
+}
+:where(.v9-contact) .av-img {
+  transition:
+    filter var(--t2) var(--e),
+    transform var(--t2) var(--e);
+}
+@media (hover: hover) {
+  :where(.v9-contact) .btn-primary:hover {
+    background: #c10006;
+  }
+  :where(.v9-contact) .btn:hover .ar {
+    transform: translateX(3px);
+  }
+  :where(.v9-contact) .link:hover {
+    text-decoration-color: currentColor !important;
+    gap: 0.45em;
+  }
+  :where(.v9-contact) a:hover .av-img,
+  :where(.v9-contact) .ct-who:hover .av-img,
+  :where(.v9-contact) .av-img:hover {
+    filter: grayscale(0) !important;
+  }
+  :where(.v9-contact) .faq-q:hover span:first-child {
+    color: var(--ink);
+  }
+}
+/* 7 · keyboard focus: a quiet ring that settles into place */
+:where(.v9-contact) :focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+  transition: outline-offset var(--t1) var(--e);
+}
+:where(.v9-contact) .g-dark :focus-visible {
+  outline-color: #fff;
+}
+:where(.v9-contact) :focus:not(:focus-visible) {
+  outline: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where(.v9-contact) [data-rv],
+  :where(.v9-contact) .hx [data-rv] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  :where(.v9-contact) *,
+  :where(.v9-contact) *::before,
+  :where(.v9-contact) *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* ═══ DEPTH · d1 · showcase cards float a few pixels with the cursor and the scroll ═══ */
+
+/* ═══ COVERS · the cell strip on a blog cover lights once on hover ═══ */
+@keyframes cvsweep {
+  40% {
+    opacity: 0.9;
+  }
+}
+
+/* ═══ ELEVATE · e1 · compact heroes share the first-screen language ═══ */
+:where(.v9-contact) .hx--c.hx-field {
+  position: relative;
+  overflow: hidden;
+}
+:where(.v9-contact) .hx-c-g.has-field {
+  position: relative;
+}
+:where(.v9-contact) .hx-c-g.has-field > .hero-field {
+  top: var(--fty, 50%);
+  left: var(--ftx, 75%);
+  right: auto;
+  transform: translate(-50%, -50%);
+  width: 780px;
+  z-index: 0;
+  -webkit-mask-image: radial-gradient(closest-side, #000 50%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 50%, transparent 100%);
+}
+:where(.v9-contact) .hx-c-g.has-field > *:not(.hero-field) {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 1023px) {
+  :where(.v9-contact) .hx-c-g.has-field > .hero-field {
+    display: none;
+  }
+}
+:where(.v9-contact) .hx-c-g > aside {
+  translate: var(--cx, 0px) var(--cy, 0px);
+  transition: translate 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  :where(.v9-contact) .hx-c-g > aside {
+    translate: none !important;
+  }
+}
+
+/* ═══ COMPAT · c1 · Safari, Firefox, iOS, Android ═══ */
+.v9-contact {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  color-scheme: light;
+}
+:where(.v9-contact) a,
+:where(.v9-contact) button {
+  -webkit-tap-highlight-color: rgba(19, 19, 19, 0.08);
+}
+
+/* ═══ LIFE · l1 · the closing mark breathes; the scorer shows itself once ═══ */
+
+/* ═══ HERO · h2 · matched cards + the field breathes ═══ */
+
+/* ═══ HERO · h2 · one alignment rule per hero type ═══ */
+@media (min-width: 861px) {
+  :where(.v9-contact) .hx--c .hx-c-g {
+    grid-template-columns: minmax(0, 1fr) 380px !important;
+    align-items: start !important;
+  }
+  :where(.v9-contact) .hx--c .hx-c-g > aside {
+    width: 100% !important;
+    max-width: none !important;
+    justify-self: stretch !important;
+    align-self: start !important;
+    margin-top: 0.35rem !important;
+  }
+}
+@media (max-width: 860px) {
+  :where(.v9-contact) .hx--c .hx-c-g > aside {
+    width: 100% !important;
+    max-width: 520px !important;
+    margin-top: 1.6rem !important;
+  }
+}
+/* ═══ HERO · h2 · the field is read: a slow scan, cells that clear, a little depth ═══ */
+:where(.v9-contact) .hero-field {
+  translate: var(--fx, 0px) var(--fy, 0px);
+  transition: translate 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  :where(.v9-contact) .hero-field {
+    translate: none !important;
+  }
+}
+
+/* ═══ QA · q1 · touch targets, contrast and reading width ═══ */ /* red on dark: the lighter red the system already uses on dark grounds (4.5:1+) */
+:where(.v9-contact) .g-dark .av-img {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22);
+  filter: grayscale(1) brightness(1.15) contrast(1.05) !important;
+}
+:where(.v9-contact) .lead {
+  text-wrap: balance;
+}
+:where(.v9-contact) section .lead {
+  max-width: min(64ch, 100%);
+}
+:where(.v9-contact) .start .lead {
+  margin-inline: auto;
+}
+@media (max-width: 820px) {
+  :where(.v9-contact) .faq-ask a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+  }
+  :where(.v9-contact) a.link,
+  :where(.v9-contact) .link {
+    min-height: 40px;
+  }
+  :where(.v9-contact) .ct-off a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+  }
+  :where(.v9-contact) #crSel {
+    min-height: 40px;
+  }
+  :where(.v9-contact) .ct-in {
+    min-height: 36px;
+  }
+}
+/* ═══ BRAND · logo files in the header and footer ═══ */
+
+/* ═══ TYPE · t1 · set, not just styled ═══ */
+.v9-contact {
+  hanging-punctuation: first allow-end last;
+}
+:where(.v9-contact) p,
+:where(.v9-contact) li,
+:where(.v9-contact) dd,
+:where(.v9-contact) figcaption,
+:where(.v9-contact) blockquote,
+:where(.v9-contact) .lead {
+  text-wrap: pretty;
+}
+:where(.v9-contact) h1,
+:where(.v9-contact) h3,
+:where(.v9-contact) .hx-h {
+  text-wrap: balance;
+} /* the opening quote hangs; the letters align */
+:where(.v9-contact) table {
+  font-variant-numeric: tabular-nums;
+}
+/* ═══ NOTES · n1 · numbered sources; a small note opens beside the number ═══ */
+@keyframes fnin {
+  from {
+    opacity: 0;
+    transform: translateX(calc(-50% + var(--dx, 0px))) translateY(4px);
+  }
+}
+/* ═══ PAGE TRANSITIONS · v1 · a quiet cross-fade; the header stays put ═══ */

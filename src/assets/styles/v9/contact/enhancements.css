@@ -1,0 +1,63 @@
+.v9-contact fieldset {
+  border: 0;
+  min-width: 0;
+}
+.v9-contact [hidden] {
+  display: none !important;
+}
+.v9-contact summary {
+  list-style: none;
+  cursor: pointer;
+  line-height: normal;
+}
+.v9-contact summary::-webkit-details-marker {
+  display: none;
+}
+.v9-contact .faq-item[open] .faq-a {
+  grid-template-rows: 1fr;
+}
+.v9-contact .faq-item[open] .faq-a > div {
+  opacity: 1;
+  transform: none;
+}
+.v9-contact .contact-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.v9-contact .contact-status {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.v9-contact .contact-status:empty {
+  display: none;
+}
+.v9-contact .contact-native {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.v9-contact .contact-native a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+.v9-contact .ct-file input:focus-visible + span {
+  outline: 2px solid var(--red);
+  outline-offset: 4px;
+}
+.v9-contact .ct-in {
+  max-width: 100%;
+}
+.v9-contact button:disabled {
+  cursor: wait;
+}
+@media (prefers-reduced-motion: reduce) {
+  .v9-contact *,
+  .v9-contact *::before,
+  .v9-contact *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

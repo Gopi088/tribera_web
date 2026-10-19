@@ -1,0 +1,19 @@
+---
+import V9Layout from '../../layouts/V9Layout.astro';
+import ContactPage from '../../components/v9/contact/ContactPage.astro';
+import { previewLinks } from '../../data/v9/preview-links';
+export function getStaticPaths() {
+  return import.meta.env.DEV || process.env.V9_PREVIEW === '1' ? [{ params: { preview: '__v9' } }] : [];
+}
+---
+
+<V9Layout
+  title="Contact Tribera — a named person, inside a day"
+  description="Tell us what you’re stuck on. A named person reads it, and you get an answer inside a day either way."
+  noindex
+  cta={{ label: 'Write to us', href: '#write' }}
+  headerLinkOverrides={previewLinks}
+  footerLinkOverrides={previewLinks}
+>
+  <ContactPage />
+</V9Layout>
