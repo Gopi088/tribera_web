@@ -5,6 +5,7 @@ if (form) {
   const status = form.querySelector<HTMLElement>('[data-sample-status]')!;
   const error = form.querySelector<HTMLElement>('#swErr')!;
   const done = document.querySelector<HTMLElement>('#swDone')!;
+  const native = document.querySelector<HTMLElement>('.v9-sample .sw-native')!;
   const fields = ['name', 'email', 'company'].map((name) => form.elements.namedItem(name) as HTMLInputElement);
   let credentials: { request_token: string; form_loaded_at: string; ready_at?: number } | undefined;
   let preparing: Promise<void> | undefined;
@@ -88,6 +89,7 @@ if (form) {
       const delay = (credentials?.ready_at || 0) - Date.now();
       if (delay > 0) await new Promise((resolve) => setTimeout(resolve, delay));
       snapshot ||= new FormData(form);
+      native.hidden = true;
       fields.forEach((field) => {
         field.readOnly = true;
       });
@@ -122,7 +124,9 @@ if (form) {
         stopped = true;
       }
       let message = result.message || 'We could not confirm delivery. Please retry the same request.';
-      if (result.code === 'expired') message += ' Open the email request form below to start a new request.';
+      if (result.code === 'expired')
+        message +=
+          ' A previous attempt may already have delivered the sample. Check your inbox and contact hello@tribera.ai before starting another request.';
       if (result.code === 'conflict')
         message +=
           ' Your original request may already have completed. Check your inbox before starting another request.';
@@ -137,6 +141,7 @@ if (form) {
         : snapshot
           ? 'Your details are preserved. Retrying sends the same request.'
           : '';
+      native.hidden = Boolean(snapshot);
       button.disabled = stopped;
       button.textContent = snapshot && !stopped ? 'Retry request' : 'Email me the sample';
     }
