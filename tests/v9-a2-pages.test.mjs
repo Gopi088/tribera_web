@@ -192,6 +192,17 @@ try {
           await reference.setViewportSize(size);
           await reference.goto(`${base}/__handoff/${file}`, { waitUntil: 'networkidle' });
           await waitForFonts(reference, { timeout: 15000 });
+          await reference.locator('img').evaluateAll((images) =>
+            images.forEach((image) => {
+              image.loading = 'eager';
+            })
+          );
+          await waitForPageCondition(
+            reference,
+            () => [...document.images].every((image) => image.complete && image.naturalWidth > 0),
+            undefined,
+            { timeout: 15000 }
+          );
           await reference.screenshot({ path: path.join(output, `${prefix}-handoff.png`), fullPage: true });
           record.screenshots = [`${prefix}-migrated.png`, `${prefix}-handoff.png`];
           for (const selector of ['h1', 'h2']) {
