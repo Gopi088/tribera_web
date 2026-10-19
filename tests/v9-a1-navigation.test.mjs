@@ -43,9 +43,7 @@ try {
         assert.equal(target.pathname, '/contact');
         assert.ok(!target.searchParams.has('email'), 'No personal data in query');
       }
-      const link = page
-        .locator(slug === 'case-study' ? '#sv-scorecard a[href^="/contact"]' : 'main a[href^="/contact"]')
-        .first();
+      const link = page.locator('main a[href^="/contact"]').first();
       const expected = new URL(await link.getAttribute('href'), base);
       await link.click();
       await page.waitForURL((url) => url.pathname.replace(/\/$/, '') === '/contact');
