@@ -2378,22 +2378,5 @@
   }
 }
 /* ═══ PAGE TRANSITIONS · v1 · a quiet cross-fade; the header stays put ═══ */
-@view-transition {
-  navigation: auto;
-}
-@keyframes vt-out {
-  to {
-    opacity: 0;
-  }
-}
-@keyframes vt-in {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-}
 @media (prefers-reduced-motion: reduce) {
-  @view-transition {
-    navigation: none;
-  }
 }
