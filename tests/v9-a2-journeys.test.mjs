@@ -82,7 +82,13 @@ try {
       await form.locator('[name="side"][value="hiring"]').focus();
       await page.keyboard.press('ArrowRight');
       assert.equal(await form.getAttribute('data-side'), 'looking');
-      assert.equal(await form.locator('[data-for="hiring"]').isDisabled(), true);
+      assert.equal(await form.locator('[data-for="hiring"]').evaluate((fieldset) => fieldset.disabled), true);
+      assert.equal(
+        await form
+          .locator('[data-for="hiring"] input, [data-for="hiring"] textarea')
+          .evaluateAll((controls) => controls.length > 0 && controls.every((control) => control.disabled)),
+        true
+      );
       for (const javaScriptEnabled of [true, false]) {
         const faqPage = await browser.newPage({ javaScriptEnabled, reducedMotion: 'reduce' });
         await faqPage.goto(`${base}/__v9/contact`);

@@ -203,6 +203,11 @@ try {
             undefined,
             { timeout: 15000 }
           );
+          // Full-page capture includes offscreen arrivals: settle the source's final reveal state.
+          await reference
+            .locator('[data-rv]')
+            .evaluateAll((elements) => elements.forEach((element) => element.classList.add('in', 'rv-done')));
+          await reference.locator('img').evaluateAll((images) => Promise.all(images.map((image) => image.decode())));
           await reference.screenshot({ path: path.join(output, `${prefix}-handoff.png`), fullPage: true });
           record.screenshots = [`${prefix}-migrated.png`, `${prefix}-handoff.png`];
           for (const selector of ['h1', 'h2']) {
