@@ -1,0 +1,333 @@
+{
+  "status": "passed",
+  "browser": "firefox",
+  "widths": [
+    390,
+    768,
+    1366
+  ],
+  "records": [
+    {
+      "slug": "contact",
+      "width": 390,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5,
+      "screenshots": [
+        "contact-390-migrated.png",
+        "contact-390-handoff.png"
+      ]
+    },
+    {
+      "slug": "contact",
+      "width": 768,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5,
+      "screenshots": [
+        "contact-768-migrated.png",
+        "contact-768-handoff.png"
+      ]
+    },
+    {
+      "slug": "contact",
+      "width": 1366,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 5,
+      "screenshots": [
+        "contact-1366-migrated.png",
+        "contact-1366-handoff.png"
+      ],
+      "transfers": [
+        {
+          "path": "/__v9/contact",
+          "bytes": 48065,
+          "gzipBytes": 8210,
+          "contentType": "text/html"
+        },
+        {
+          "path": "/fonts/v9/inter-tight-normal-latin-603db177.woff2",
+          "bytes": 44872,
+          "gzipBytes": 44873,
+          "contentType": "font/woff2"
+        },
+        {
+          "path": "/fonts/v9/fraunces-normal-latin-6a837066.woff2",
+          "bytes": 67304,
+          "gzipBytes": 67347,
+          "contentType": "font/woff2"
+        },
+        {
+          "path": "/_astro/V9Layout.dOnKr9N5.css",
+          "bytes": 27066,
+          "gzipBytes": 4520,
+          "contentType": "text/css"
+        },
+        {
+          "path": "/_astro/contact.kRGUz84Q.css",
+          "bytes": 31393,
+          "gzipBytes": 6741,
+          "contentType": "text/css"
+        },
+        {
+          "path": "/_astro/page.zh1XDkz8.js",
+          "bytes": 2254,
+          "gzipBytes": 991,
+          "contentType": "text/javascript"
+        },
+        {
+          "path": "/_astro/ContactPage.astro_astro_type_script_index_0_lang.B97-VhuV.js",
+          "bytes": 6042,
+          "gzipBytes": 2709,
+          "contentType": "text/javascript"
+        },
+        {
+          "path": "/brand/v9/tribera-logo-black.png",
+          "bytes": 20557,
+          "gzipBytes": 20585,
+          "contentType": "image/png"
+        },
+        {
+          "path": "/images/v9/contact/source-1.jpg",
+          "bytes": 2847,
+          "gzipBytes": 2727,
+          "contentType": "image/jpeg"
+        },
+        {
+          "path": "/images/v9/contact/source-2.jpg",
+          "bytes": 3268,
+          "gzipBytes": 3145,
+          "contentType": "image/jpeg"
+        },
+        {
+          "path": "/images/v9/contact/source-3.jpg",
+          "bytes": 208573,
+          "gzipBytes": 208270,
+          "contentType": "image/jpeg"
+        },
+        {
+          "path": "/images/v9/contact/source-4.jpg",
+          "bytes": 191962,
+          "gzipBytes": 191912,
+          "contentType": "image/jpeg"
+        },
+        {
+          "path": "/brand/v9/tribera-logo-white.png",
+          "bytes": 20454,
+          "gzipBytes": 20408,
+          "contentType": "image/png"
+        },
+        {
+          "path": "/brand/v9/apple-touch-icon.png",
+          "bytes": 1344,
+          "gzipBytes": 1097,
+          "contentType": "image/png"
+        },
+        {
+          "path": "/brand/v9/favicon.svg",
+          "bytes": 438,
+          "gzipBytes": 186,
+          "contentType": "image/svg+xml"
+        }
+      ],
+      "budgetTotals": {
+        "htmlGzipBytes": 8210,
+        "cssGzipBytes": 11261,
+        "jsGzipBytes": 3700,
+        "fontBytes": 112176,
+        "imageBytes": 449443,
+        "otherBytes": 0
+      },
+      "observedPerformance": {
+        "layoutShift": 0,
+        "longTasks": [],
+        "supported": [
+          "event",
+          "first-input",
+          "largest-contentful-paint",
+          "mark",
+          "measure",
+          "navigation",
+          "paint",
+          "resource"
+        ]
+      },
+      "contentComparison": {
+        "sourceParagraphCount": 9,
+        "missingParagraphs": []
+      }
+    },
+    {
+      "slug": "contact",
+      "width": 1024,
+      "height": 600,
+      "javaScriptEnabled": true,
+      "headingCount": 5
+    },
+    {
+      "slug": "contact",
+      "width": 390,
+      "height": 844,
+      "javaScriptEnabled": false,
+      "headingCount": 5
+    },
+    {
+      "slug": "contact",
+      "width": 1366,
+      "height": 900,
+      "javaScriptEnabled": false,
+      "headingCount": 5
+    },
+    {
+      "slug": "sample-write-up",
+      "width": 390,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 1,
+      "screenshots": [
+        "sample-write-up-390-migrated.png",
+        "sample-write-up-390-handoff.png"
+      ]
+    },
+    {
+      "slug": "sample-write-up",
+      "width": 768,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 1,
+      "screenshots": [
+        "sample-write-up-768-migrated.png",
+        "sample-write-up-768-handoff.png"
+      ]
+    },
+    {
+      "slug": "sample-write-up",
+      "width": 1366,
+      "height": 900,
+      "javaScriptEnabled": true,
+      "headingCount": 1,
+      "screenshots": [
+        "sample-write-up-1366-migrated.png",
+        "sample-write-up-1366-handoff.png"
+      ],
+      "transfers": [
+        {
+          "path": "/__v9/sample-write-up",
+          "bytes": 12816,
+          "gzipBytes": 4699,
+          "contentType": "text/html"
+        },
+        {
+          "path": "/fonts/v9/inter-tight-normal-latin-603db177.woff2",
+          "bytes": 44872,
+          "gzipBytes": 44873,
+          "contentType": "font/woff2"
+        },
+        {
+          "path": "/fonts/v9/fraunces-normal-latin-6a837066.woff2",
+          "bytes": 67304,
+          "gzipBytes": 67347,
+          "contentType": "font/woff2"
+        },
+        {
+          "path": "/_astro/V9Layout.dOnKr9N5.css",
+          "bytes": 27066,
+          "gzipBytes": 4520,
+          "contentType": "text/css"
+        },
+        {
+          "path": "/_astro/sample-write-up.CMWQhUCp.css",
+          "bytes": 11375,
+          "gzipBytes": 3117,
+          "contentType": "text/css"
+        },
+        {
+          "path": "/_astro/page.zh1XDkz8.js",
+          "bytes": 2254,
+          "gzipBytes": 991,
+          "contentType": "text/javascript"
+        },
+        {
+          "path": "/brand/v9/tribera-logo-black.png",
+          "bytes": 20557,
+          "gzipBytes": 20585,
+          "contentType": "image/png"
+        },
+        {
+          "path": "/images/v9/sample/write-up-page-one.jpg",
+          "bytes": 187589,
+          "gzipBytes": 161115,
+          "contentType": "image/jpeg"
+        },
+        {
+          "path": "/brand/v9/tribera-logo-white.png",
+          "bytes": 20454,
+          "gzipBytes": 20408,
+          "contentType": "image/png"
+        },
+        {
+          "path": "/brand/v9/apple-touch-icon.png",
+          "bytes": 1344,
+          "gzipBytes": 1097,
+          "contentType": "image/png"
+        },
+        {
+          "path": "/brand/v9/favicon.svg",
+          "bytes": 438,
+          "gzipBytes": 186,
+          "contentType": "image/svg+xml"
+        }
+      ],
+      "budgetTotals": {
+        "htmlGzipBytes": 4699,
+        "cssGzipBytes": 7637,
+        "jsGzipBytes": 991,
+        "fontBytes": 112176,
+        "imageBytes": 230382,
+        "otherBytes": 0
+      },
+      "observedPerformance": {
+        "layoutShift": 0,
+        "longTasks": [],
+        "supported": [
+          "event",
+          "first-input",
+          "largest-contentful-paint",
+          "mark",
+          "measure",
+          "navigation",
+          "paint",
+          "resource"
+        ]
+      },
+      "contentComparison": {
+        "sourceParagraphCount": 1,
+        "missingParagraphs": []
+      }
+    },
+    {
+      "slug": "sample-write-up",
+      "width": 1024,
+      "height": 600,
+      "javaScriptEnabled": true,
+      "headingCount": 1
+    },
+    {
+      "slug": "sample-write-up",
+      "width": 390,
+      "height": 844,
+      "javaScriptEnabled": false,
+      "headingCount": 1
+    },
+    {
+      "slug": "sample-write-up",
+      "width": 1366,
+      "height": 900,
+      "javaScriptEnabled": false,
+      "headingCount": 1
+    }
+  ],
+  "errors": [],
+  "scope": "Private A2 conversion pages: content headings, responsive overflow, loaded images, no-JS, reduced motion, screenshots and transfer measurements. Screenshots require separate visual review; local requests do not certify Netlify delivery."
+}

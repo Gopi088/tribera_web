@@ -1,0 +1,27 @@
+
+> tribera-website@1.0.0-beta.52 test:migration:a2
+> node scripts/test-v9-a2.mjs
+
+Running tests/v9-a2-pages.test.mjs against http://127.0.0.1:4590
+chromium: 28 A2 page checks passed
+Running tests/v9-a2-journeys.test.mjs against http://127.0.0.1:4590
+chromium: 13 actual-handler enhanced/native A2 journeys passed with mocked provider
+Running tests/v9-a1-navigation.test.mjs against http://127.0.0.1:4590
+chromium: six hiring enquiry navigations preserve query URLs; actual Contact delivery is covered by the A2 handler/browser gate
+Running tests/v9-preview-navigation.test.mjs against http://127.0.0.1:4590
+TAP version 13
+# Subtest: independent private preview navigation (chromium)
+ok 1 - independent private preview navigation (chromium)
+  ---
+  duration_ms: 21222.577895
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 21230.561554

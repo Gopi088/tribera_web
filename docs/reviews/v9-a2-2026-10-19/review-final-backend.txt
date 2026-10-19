@@ -1,0 +1,43 @@
+FINAL AUDIT UPDATE — 2026-10-19, clean revision 8418069a807b6a85e500200aa9cfcd82883fa890
+The historical open local gate gaps below are SUPERSEDED by this final verification. All six A2/A1 page chains and all eight required static/browser reports now pass on the same revision and lock hash. Independent source/evidence audit finds no remaining local evidence mismatch. Actual final Claude verdict is a separate coordinator gate; this report does not preempt it or approve publication.
+
+Direct verification completed:
+- Read all six underlying page-suites manifests (A2 and A1 x Chromium/Firefox/WebKit): each clean8418069, same preview build hash and lock hash, four suites each, all exit0/status passed.
+- Read required-evidence.json, gate-summary.json and eight raw files referenced by summary. Recomputed every report SHA256 and matched summary; all verifiedStatus passed, no errors, clean8418069 and correct respective preview/production hashes. 8/8 required evidence complete.
+- final-chain-summary.json agrees with all six raw manifests.
+- unit-final-8418069.log:124tests,124pass,0fail,0cancelled,0skipped. check-final-8418069.log:436files,0errors/0warnings (147hints), ESLint completed, Prettier all files formatted.
+- production-comparison.json:266existing files byte-identical,0changed,0missing,8added; all77baselineHTML identical. Additions:2CSS,5JPG,1JS. This is static artifact preservation only, not hosted form delivery proof.
+- Current Contact/sample visual closure artifacts were independently inspected: five-width review accepted, Contact final source lazy-photo capture corrected, sample page1 JPEG hash verified and320px overflow repaired. Earlier incorrect source capture is historical, not current acceptance evidence.
+- Official function bundle evidence remains applicable because executable backend/PDF/config have no change from bundled revision b79f668 (verified above); exact PDF/runtime-path evidence and mocked-only boundary remain valid.
+
+Preview build SHA256:730a13735e90e40f2332486233d6e51fdf2a28424aef4fdd44fed306d5c02abc
+Production build SHA256:c1a062e3d50d3754c493fc9e042e90af469108ed417784e718c3dc4ce641050d
+Hosted limitations remain OPEN as intended: no deployment, real delivery/recipient ownership/scanner readiness/platform payload-limit verification. No production publication or live email was performed.
+
+HISTORICAL AUDIT SNAPSHOT (retained for chronology; local open-gate statements superseded above):
+Independent A2 backend/source-evidence audit — 2026-10-19
+Reviewer: bootstrap_forms. Read-only audit; no source/test edits or browser launches.
+Snapshot HEAD8418069. Contract: docs/v9-a2-contract.md.
+
+Bounded verdict: backend source and local mocked delivery/bundle evidence accepted. Full A2 integration acceptance remains conditional on coordinator final gates and final Claude evidence review; this is not publication approval.
+
+Source continuity
+`git diff --exit-code b79f668 -- netlify/functions/_lib/v9-a2-forms.mjs netlify/functions/*-v9.mjs netlify/functions/_assets/sample-write-up.pdf netlify.toml` exits0. Thus executable handlers/helper, private PDF and bundling configuration are unchanged from the official-bundler evidence revision b79f6680f3fd4c1e54e887717cb0c1876c5fcb60. Only v9-a2-README.md changed afterward to clarify that expired/conflict native errors have no resubmission form; no runtime change is hidden by that wording correction.
+
+Evidence verified directly
+- unit-final.log:124tests,124pass,0fail,0skipped. Includes existing legacy contracts, CV adapters and A2 guarded/deduplicated delivery tests. Local tests mock providers; no live delivery.
+- check-final.log: Astro0errors/0warnings result, ESLint completed, Prettier reports all matched files formatted. Existing textual type hints earlier in the log do not change the final diagnostic result.
+- claude/source-report.txt: actual independent source review explicitly ACCEPT FOR SOURCE, boundedscope; no new blockers. It directly verifies HMAC/kind/timestamp,2h expiry, allowlisted contexts, mode scoping, server-owned recipients, dedupe ordering, malformed-provider-result rejection, private routes/assets. It notes123preflighttests; final124log supersedes only that count, not its scope.
+- function-bundle/EVIDENCE.txt,result.json,archive-listing.txt,runtime-verification.json: official pinned @netlify/zip-it-and-ship-it16.3.1 selects esbuild, node22CJS entry. ZIP includes privatePDF at netlify/functions/_assets/sample-write-up.pdf. Isolated extracted compiled handler runs with process.cwd at archive root; actual multipart request returns200, exactly2mock provider calls, attachment bytes match handoff. SHA2569f5bcd2c4417b805b4f2d136934800b4999a0c3a81c4cb2b7de6d7689da9507f. No package/lock changes. Extracted executables live outsidecheckout; diagnostic scripts have .mjs.txt extensions to avoid source scans.
+- journeys-chromium.json: passed actual local handler journeys,17provider attempts/14unique deliveries, enhanced/native modes, partial/lost-response retries, missingconfig visibility, expiry locks and PRG. This record is useful behavior evidence, but not proof of final multiengine gate closure.
+- boundary-preview.json records287files/13privatefixtures. Private asset boundary also receives source/test checks; hosted transport is separate.
+
+Current acceptance gaps at audit snapshot
+page-suites-chromium.json still says failed at318fc85: page suite passed but journey suite failed. Later8418069 test correction exists; this report does not infer its rerun outcome. final-gates.log is not a completed green summary. Final Firefox/WebKit A2 and affected A1 regression, preview/production smoke/static gates, production comparison and final Claude evidence verdict were not yet present as completed records. Root is actively rerunning these. Keep original failure logs and replace acceptance claims only after fresh reports pass against the same preserved build. Source ACCEPT is not sufficient to skip these contract-required gates.
+
+Hosted and release limitations retained
+No Netlify deployment, configured-recipient ownership validation, real Resend mail acceptance/deliverability, scanner availability or actual platform multipart/body ceiling is proven here. The10MiB local validator cap is not a verified Netlify transport promise. Official-bundler runtime proves inclusion/path resolution locally, not hosted runtime credentials or service availability. Required secrets/explicit recipients must be configured; no mailbox defaults or live messages were used. Private preview uses direct function endpoints; future public POSTaliases and publication remain later gates.
+
+Dedupe boundary: durable Resend key retention24hours backs signed2hour token acceptance, not a processMap. Exact retries replay requesterPDF before lead; eachstep has a stable key. New tokens are new requests and may send again; never mint one automatically after ambiguous failure. Expired/conflict UI/native states are terminal; uncertain outcomes need team follow-up. Config/assets must remain stable during in-flight retries or providerpayload conflicts fail closed. Sample sends requesterPDF and a lead email only, never subscribes. No claim of exactly-once user intent across intentionally new tokens.
+
+Coordinator progress clarification during audit: clean8418069 final run is underway; chain-chromium.log already records successful28page checks,13journeys and navigation (tail inspected shows latest navigation passed). Final manifest writes only on suite completion; the318fc85 failed manifest is historical and must not be mistaken for the currently running revision. Once the new manifest lands it supersedes that old failure for acceptance while the failure log remains preserved. Current source-check run writes check-final-8418069.log; the earlier check-final.log cited above is prior successful evidence, not a claim that the ongoing final check has finished.

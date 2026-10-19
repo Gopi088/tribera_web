@@ -1,0 +1,26 @@
+Independent sample write-up source review — 2026-10-19
+Reviewer: Contact implementation worker, independent of sample author.
+Reviewed worktree: /tmp/tribera-v9-a2-sample
+Reviewed commits: 3b405d0 implementation, 7ed203b ambiguity correction.
+Verdict: ACCEPT FOR SOURCE SCOPE after the correction below; compiled, actual-handler browser, visual and Claude acceptance remain required. One small defensive validation-code tightening recommended.
+
+Source/content/assets:
+- Private route explicitly requires DEV or V9_PREVIEW=1 and uses accepted V9Layout with noindex. No public route is replaced.
+- Hero, preview/caption, five-item contents list, form labels, privacy copy and confirmed-success wording preserve the handoff. The one source paragraph over 100 characters is present after normalized text extraction.
+- Exactly the embedded page-one JPEG is public. Its bytes match the handoff, SHA256 d449395b37d5af1774ba2d138e53a2cd9b72865c66a770694fbbd10a679f189c. No full PDF, page-two asset or document-delivery URL is introduced by these frontend files. The invented-person/figures caption remains visible.
+- CSS is scoped under .v9-sample; native asset sizing/figure layout and final source rule order retained. No document-wide view-transition rule was found. Reduced motion disables page motion, and hidden states have explicit display suppression.
+
+Form/error/accessibility inspection:
+- Real POST uses sample-request-v9. GET sample-form-v9 issues credentials on focus or valid submit, never just page load. Backend author confirmed both ready_at and min_submit_ms are present, so the client ready_at wait agrees with the contract.
+- Only HTTP success with success:true reveals #swDone; it receives focus. No fake client-only success or full-document exposure.
+- Labels, required attributes, field error associations, aria-invalid, alert/status regions and visible focus styles are present. Validation focuses the first invalid input. SSR submit is disabled, with a real request-time native fallback.
+- The exact FormData/token is retained for retryable network/provider ambiguity; fields become read-only. Expired/conflict stops further submit. No auto-refresh/new token is created for an unresolved attempt.
+
+Finding and correction:
+- Initial implementation kept native alternate usable during unresolved delivery and told an expired request to start again. That could invite a second delivery after an ambiguous first send. In 7ed203b, native alternate is hidden whenever a snapshot exists and expiry guidance warns that it may already have delivered, asking the visitor to check inbox/contact the team before another request. CLOSED for source inspection.
+- Confirmed-success Contact destination now points to the private /__v9/contact page. CLOSED.
+- Defensive recommendation sent to author: use HTTP400 AND code='validation' for editable retry rather than any400 except expired. Backend confirms 'validation' is the definitive pre-provider code. Existing expired and conflict handling covers the documented contract, but the explicit code match avoids over-broad assumptions if future error categories are added. Follow-up commit/result to be appended by coordinator.
+
+Limits: no browser or provider request was run for this review. Actual network idempotency, delivery guards, upload/public boundary checks, no-JavaScript native fallback, final source typography and visual rendering remain independent integration gates. Source privacy/follow-up promises are not approved publication or verified retention policy.
+
+Closure: c06bd25 / integrated c3bdd5f limits editable retries to explicit validation400. Recommendation CLOSED; no remaining source blocker from this review.

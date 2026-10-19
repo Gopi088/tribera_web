@@ -1,0 +1,25 @@
+Independent Sample write-up visual review — 2026-10-19
+Reviewer: Contact worker, independent of Sample implementation.
+Product build: 53dc282c625eac11a48f1a88a5135bc20be75060 (audit-only 318fc85 follows it).
+Evidence: pages-chromium/sample-write-up-{390,768,1024,1366,1920}-{handoff,migrated}.png, generated 07:18:09–07:18:19 UTC with original reference images eagerly loaded.
+Method: all five complete source/migrated pairs inspected through ten sequential side-by-side crops covering full page heights, saved in sample-review-crops/. No browser or source change by this reviewer.
+
+Verdict: ACCEPT for captured visual scope. No blocking missing section, clipping, wrong image, distorted document or overlapping form content found at any of the five widths. This is not whole-batch or hosted delivery acceptance.
+
+Observed parity:
+- Hero heading/lead, line wrapping, top spacing and white-to-paper section transition match source.
+- Page-one preview is now visible in both original and migrated captures, unlike earlier unloaded-reference evidence. Document proportions, faded lower preview treatment, placement and invented-person/figures caption match at phone, tablet and desktop sizes.
+- Five-item contents list, form labels, email placeholder, input geometry, submit button and privacy note retain the source hierarchy. Responsive single-column/two-column transition matches.
+- Exact JPEG provenance was independently checked during source review: source embedded page-one bytes equal public/images/v9/sample/write-up-page-one.jpg; SHA256 d449395b37d5af1774ba2d138e53a2cd9b72865c66a770694fbbd10a679f189c, dimensions1270×1797. No full PDF/page-two public asset is introduced by this frontend.
+
+Deliberate or minor differences:
+- A real request-time native fallback link and explanation are added below the enhanced form. They increase the paper section height and move the footer down. This makes no-JavaScript delivery possible; it is not a pretend download.
+- The enhanced form has a small additional lower space reserved by its status/error structure. No controls are obscured.
+- The accepted shared header/footer remain; footer spacing is tighter than the original, most visibly at tablet/mobile widths.
+- Source privacy copy (“One email with the PDF. We’ll only follow up if you ask us to.”) and Privacy link are retained. This visual review does not verify retention or follow-up policy; publication approval remains separate.
+- New manual submission/error/retry behavior uses actual server confirmation and a preserved attempt. Default screenshots do not demonstrate those states; the independent source review and coordinator's actual-handler browser tests cover them separately.
+
+320px overflow disposition:
+The sample form's intrinsic grid/input minimums were corrected in integrated5165419 using scoped minimum sizing and bounded input/button widths; no global overflow masking. Current pages-chromium/result.json reports passed and includes sample-write-up320×900 with JavaScript. The test explicitly enforces document scrollWidth <= innerWidth+1 before recording the row. This closes the reported320px default-state overflow in the compiled Chromium evidence; it is supporting gate evidence, not a claim that a320px source-pair screenshot was reviewed here.
+
+Limits: five-width default-state Chromium visual scope only. No live email/provider test, exhaustive accessibility certification, cross-browser claim or production rollout approval. Final complete chain manifests, boundary checks and actual Claude review remain coordinator obligations.

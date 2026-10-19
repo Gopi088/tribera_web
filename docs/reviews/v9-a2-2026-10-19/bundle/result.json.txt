@@ -1,0 +1,49 @@
+{
+  "version": "16.3.1",
+  "node": "v22.15.0",
+  "config": {
+    "sample-request-v9": {
+      "includedFiles": [
+        "netlify/functions/_assets/sample-write-up.pdf"
+      ],
+      "nodeVersion": "22"
+    }
+  },
+  "result": {
+    "bundler": "esbuild",
+    "bundlerReason": "esbuild-ext",
+    "config": {
+      "includedFiles": [
+        "netlify/functions/_assets/sample-write-up.pdf"
+      ],
+      "nodeVersion": "22"
+    },
+    "entryFilename": "sample-request-v9.js",
+    "inputs": [
+      "/tmp/tribera-v9-a2/netlify/functions/_lib/request-guards.mjs",
+      "/home/abhispra/mvp/website_latest/tribera/node_modules/busboy/lib/utils.js",
+      "/home/abhispra/mvp/website_latest/tribera/node_modules/streamsearch/lib/sbmh.js",
+      "/home/abhispra/mvp/website_latest/tribera/node_modules/busboy/lib/types/multipart.js",
+      "/home/abhispra/mvp/website_latest/tribera/node_modules/busboy/lib/types/urlencoded.js",
+      "/home/abhispra/mvp/website_latest/tribera/node_modules/busboy/lib/index.js",
+      "/tmp/tribera-v9-a2/netlify/functions/_lib/form-utils.mjs",
+      "/tmp/tribera-v9-a2/netlify/functions/_lib/v9-a2-forms.mjs",
+      "/tmp/tribera-v9-a2/netlify/functions/sample-request-v9.mjs"
+    ],
+    "includedFiles": [
+      "/tmp/tribera-v9-a2/netlify/functions/_assets/sample-write-up.pdf"
+    ],
+    "outputModuleFormat": "cjs",
+    "nativeNodeModules": {},
+    "path": "/tmp/tribera-v9-a2/artifacts/v9-a2/function-bundle/archives/sample-request-v9.zip",
+    "priority": 10,
+    "runtimeVersion": "nodejs22.x",
+    "mainFile": "/tmp/tribera-v9-a2/netlify/functions/sample-request-v9.mjs",
+    "name": "sample-request-v9",
+    "runtime": "js",
+    "runtimeAPIVersion": 1,
+    "buildData": {
+      "runtimeAPIVersion": 1
+    }
+  }
+}

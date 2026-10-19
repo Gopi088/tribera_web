@@ -1,0 +1,29 @@
+## Verdict: **ACCEPT** — bounded LOCAL private-preview acceptance for the A2 Contact/sample-request batch at `8418069`
+
+### Basis for acceptance (independently verified, not just summary-trusted)
+
+**Source correctness** (read directly in `claude/final-source.diff`, not only taken from `source-report.txt`):
+- `netlify/functions/_lib/v9-a2-forms.mjs`: HMAC-signed token with length-check before `timingSafeEqual`, fixed 2h TTL independent of env, `kind` binding. Context allowlist (`SECTORS`/`SERVICES`) strictly validated; Referer-derived context only applies when no explicit query key is present, with strict origin match. Active-field scoping (`active = kind==='sample' ? [...] : context.side==='looking' ? [...] : [...]`) strips inactive fields before building the outbound text. `config()` fails closed (503/`configuration`) on any missing secret/key/recipient — no invented mailbox. Resend idempotency keys are durable and deterministic (`v9/{kind}/{token.id}/sample`, `.../lead`, `.../contact`); sample flow always sends requester before lead, so an edited retry hits `409 conflict` before any second side effect. Success requires `response.ok && data.id` (malformed "success" is rejected).
+- `contact.ts`/`sample.ts`: lock on submit freezes `FormData` including server token; retry clears the lock **only** on `status===400 && code==='validation'`; `expired`/`conflict` set `stopped`, hide the native alternate, and give terminal guidance. This matches the contract and closes the duplicate-send risk flagged by `review-contact.txt`/`review-sample.txt`.
+- `preview-source-to-evidence.diff` (53dc282→8418069) touches **only** `scripts/v9-audit.mjs` and three test files — confirming the product build is unchanged since the reviewed preview source, consistent with `build-provenance.json`'s empty `productDiffToEvidence`.
+
+**Final evidence at 8418069** (verified directly, not summary-trusted):
+- `check-final-8418069.log`: 0 errors/0 warnings (147 pre-existing hints), ESLint/Prettier clean.
+- `unit-final-8418069.log`: 124/124 pass, 0 fail/skipped — includes all named critical tests (idempotency ordering, expiry/conflict terminal states, fail-closed config, native GET allowlist, etc.).
+- `gate-summary.json`: independently re-hashed and verified all 8 required static/browser reports (preview+production × static/chromium/firefox/webkit), all `reportedStatus`==`verifiedStatus`==`passed`, consistent `revision=8418069`, `lockHash`, `cleanTree:true`, and matching preview/production build hashes throughout.
+- All six four-suite manifests (`page-suites-{chromium,firefox,webkit}.json` under both `v9-a2` and `v9-a1`) pass 4/4 suites each, same commit/lock/build hash, in one continuous timestamped run — superseding the preserved historical failures (`static-native-route-failure.json` at 53dc282, `fieldset-query-failure-page-suites-chromium.json` at 318fc85), which remain archived under distinct filenames rather than overwritten.
+- `pages-chromium/result.json` + journeys-*.json (all 3 engines): 52 page states, 13/13 journey scenarios, 17 attempts/14 unique deliveries, `errors: []`.
+- `production-comparison.json`: 266/266 baseline files byte-unchanged, 0 changed/missing, 8 added files (none is the PDF) — exact public-HTML preservation confirmed.
+- `boundary-preview.json`/`boundary-production.json`: 287 files/13 private fixtures (preview) vs 274/0 (production), matching the no-PDF-in-dist claim; backed by passing "rejects private PDF even if renamed/embedded" unit test.
+- `function-bundle/EVIDENCE.txt` + `runtime-verification.json` + `result.json`: official `@netlify/zip-it-and-ship-it@16.3.1` bundle includes the PDF via `included_files`; extracted handler run outside the checkout returns success with exactly 2 mocked provider calls; bundled PDF SHA-256 matches source.
+- `review-final-backend.txt`'s caveat (page-suites still failing, gates not yet green at audit time) is now resolved by the later-timestamped passing manifests above — correctly treated as a stale interim snapshot, not current state.
+- `visual-contact.txt`/`visual-sample.txt`: the earlier blank-source-photo capture limitation is explicitly closed in the final 8418069 capture (post `[data-rv]` reveal + `image.decode()`), both office photos now render in every width; this is the correct final-closure evidence per the task's instruction, not a stale blank-source parity claim.
+
+### Blockers found: none material to local/LOCAL private-preview scope.
+
+### Hosted/release follow-ups (explicitly NOT covered by this acceptance, correctly disclosed as pending, not blockers here)
+- G4 full-route regression, G5 hosted provider/scanner/test-inbox validation, G6 content/recipient/publication approval, G7 release verification.
+- Real Netlify-hosted function credentials, body/multipart size limits, Resend live deliverability, scanner availability — all local-mocked only.
+- No push, deploy, or live email occurred or is authorized by this review.
+
+This acceptance is bounded to local private-preview use of the A2 Contact/sample-request batch; it does not constitute full migration or release approval.

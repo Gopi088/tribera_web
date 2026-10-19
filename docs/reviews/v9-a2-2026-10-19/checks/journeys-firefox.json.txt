@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "engine": "firefox",
+  "records": [
+    "enhanced hiring delivery preserves service and sector",
+    "context removal, keyboard mode switching and native FAQs with and without JavaScript",
+    "enhanced looking excludes inactive fields and rejects invalid CV signature",
+    "sample and lead delivered without subscription",
+    "sample partial lead failure retry deduplicated",
+    "sample lost-response retry deduplicated",
+    "contact missing provider configuration is a visible failure",
+    "sample missing provider configuration is a visible failure",
+    "contact uncertain delivery then expiry cannot create a fresh request",
+    "sample uncertain delivery then expiry cannot create a fresh request",
+    "native hiring context and PRG",
+    "native looking multipart upload with correct recipient",
+    "native sample email/lead and PRG"
+  ],
+  "providerAttempts": 17,
+  "uniqueDeliveries": 14,
+  "scope": "Compiled static pages and actual local handlers; mocked provider transport, not hosted delivery."
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "name": "source",
+    "requestedRevision": "rolling source review",
+    "sessionId": "623cbe0a-77d4-4bed-946b-ee8b85799372",
+    "models": ["claude-sonnet-5"],
+    "isError": false,
+    "report": "source-report.txt"
+  },
+  {
+    "name": "final",
+    "requestedRevision": "8418069a807b6a85e500200aa9cfcd82883fa890",
+    "sessionId": "0e4be8b7-ee3c-4705-9e01-e7088854547c",
+    "models": ["claude-sonnet-5"],
+    "isError": false,
+    "report": "final-report.txt"
+  }
+]

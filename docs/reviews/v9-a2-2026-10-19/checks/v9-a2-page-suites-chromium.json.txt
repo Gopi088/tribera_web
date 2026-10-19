@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "startedAt": "2026-10-19T07:22:50.286Z",
+  "commit": "8418069a807b6a85e500200aa9cfcd82883fa890",
+  "cleanTree": true,
+  "lockHash": "56be5c8181c79995befb9b07957589898a1eabfd027f0c8a8e82c4c178c370fa",
+  "buildPath": "/tmp/tribera-v9-a2/dist",
+  "buildHash": "730a13735e90e40f2332486233d6e51fdf2a28424aef4fdd44fed306d5c02abc",
+  "browser": "chromium",
+  "base": "http://127.0.0.1:4590",
+  "expectedSuites": 4,
+  "suites": [
+    {
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node tests/v9-a2-pages.test.mjs",
+      "startedAt": "2026-10-19T07:22:52.175Z",
+      "finishedAt": "2026-10-19T07:23:40.114Z",
+      "exitCode": 0,
+      "signal": null,
+      "status": "passed"
+    },
+    {
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node tests/v9-a2-journeys.test.mjs",
+      "startedAt": "2026-10-19T07:23:40.115Z",
+      "finishedAt": "2026-10-19T07:23:49.473Z",
+      "exitCode": 0,
+      "signal": null,
+      "status": "passed"
+    },
+    {
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node tests/v9-a1-navigation.test.mjs",
+      "startedAt": "2026-10-19T07:23:49.473Z",
+      "finishedAt": "2026-10-19T07:24:04.389Z",
+      "exitCode": 0,
+      "signal": null,
+      "status": "passed"
+    },
+    {
+      "command": "/home/abhispra/.nvm/versions/node/v22.15.0/bin/node tests/v9-preview-navigation.test.mjs",
+      "startedAt": "2026-10-19T07:24:04.390Z",
+      "finishedAt": "2026-10-19T07:24:26.299Z",
+      "exitCode": 0,
+      "signal": null,
+      "status": "passed"
+    }
+  ],
+  "errors": [],
+  "finishedAt": "2026-10-19T07:24:26.326Z"
+}

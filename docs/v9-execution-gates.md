@@ -209,3 +209,11 @@ Services, Interview as a Service and Case Study are accepted locally at `6ce90ca
 All three four-suite page chains pass at the same clean revision and preview hash: 78 responsive/no-JavaScript page states plus behavior and navigation coverage. Full checks, 110 unit tests, 138 production/preview smoke checks and the eight-report evidence aggregate pass. All 34 long source paragraphs and source h1/h2 headings are retained. Final visual follow-ups close the founder image and native FAQ-spacing findings.
 
 The later documentation commit preserves review and raw evidence; it does not change the reviewed product. Public routes remain unchanged. Contact context capture, sample delivery, remaining conversion/sector/Intelligence pages and G4–G7 remain pending. Next batch: Contact and sample-request flows. No push, deployment or remote CI result is claimed.
+
+## A2 private Contact and sample requests / G3 batch acceptance — 19 October 2026
+
+Contact and sample-request flows are accepted locally at `8418069`, with actual Claude **ACCEPT**, no local blockers. See the [acceptance record](v9-a2-acceptance.md) and [verbatim final review](reviews/v9-a2-2026-10-19/final-report.txt). All 266 accepted A1 output files, including 77 public HTML pages, remain byte-identical; eight assets are added.
+
+Full checks and 124 unit tests pass. All three engines pass four-suite A2 and A1 chains: 52 new-page states, 78 prior-page states, 39 actual-handler form scenarios, and affected navigation. All 150 production/preview smoke checks and the eight-report revision/hash-bound aggregate pass. Five-width visual reviews and official function-bundle/private-PDF runtime verification pass locally with mocked transport.
+
+The acceptance commit preserves documentation/evidence only. New pages remain private. Live provider/scanner/recipient/platform validation, public aliases, remaining conversion/sector/Intelligence pages and G4–G7 remain pending. No push, deployment or live email occurred. Continue the next bounded page-family batch with independent reviews and actual Claude acceptance.

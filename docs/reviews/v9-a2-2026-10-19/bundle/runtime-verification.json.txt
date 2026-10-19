@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "bundler": "@netlify/zip-it-and-ship-it@16.3.1",
+  "runtime": "v22.15.0",
+  "cwd": "/tmp/tribera-v9-bundle-runtime",
+  "entry": "sample-request-v9.js",
+  "pdfRuntimePath": "netlify/functions/_assets/sample-write-up.pdf",
+  "sourceSha256": "9f5bcd2c4417b805b4f2d136934800b4999a0c3a81c4cb2b7de6d7689da9507f",
+  "bundledSha256": "9f5bcd2c4417b805b4f2d136934800b4999a0c3a81c4cb2b7de6d7689da9507f",
+  "result": {
+    "success": true,
+    "message": "The sample was sent and your request recorded."
+  },
+  "mockProviderCalls": 2,
+  "liveOutbound": false
+}

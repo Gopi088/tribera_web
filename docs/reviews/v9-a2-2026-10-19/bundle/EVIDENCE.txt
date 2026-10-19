@@ -1,0 +1,20 @@
+Concrete function-bundle check,2026-10-19.
+Candidate source revision when bundled: b79f6680f3fd4c1e54e887717cb0c1876c5fcb60.
+Official pinned tooling @netlify/zip-it-and-ship-it@16.3.1 installed ONLY in /tmp/tribera-v9-bundler-tool. Repo package.json and lock untouched. Install log retained.
+Primary API documentation: https://github.com/netlify/build/tree/main/packages/zip-it-and-ship-it ; published official package README https://www.npmjs.com/package/@netlify/zip-it-and-ship-it . zipFunction(srcPath,destFolder,{basePath,config}); config includedFiles maps Netlify included_files. Configuration source https://docs.netlify.com/build/configure-builds/file-based-configuration/ .
+Commands:
+ npm install --prefix /tmp/tribera-v9-bundler-tool --no-audit --no-fund @netlify/zip-it-and-ship-it@16.3.1
+ node artifacts/v9-a2/function-bundle/bundle.mjs
+ unzip -l artifacts/v9-a2/function-bundle/archives/sample-request-v9.zip
+ unzip -q artifacts/v9-a2/function-bundle/archives/sample-request-v9.zip -d /tmp/tribera-v9-bundle-runtime
+ node artifacts/v9-a2/function-bundle/verify-runtime.mjs
+
+bundle.mjs reads the actual sample included_files value from netlify.toml, uses candidate basePath and target node22. Official bundler selected esbuild automatically for .mjs, produced CJS Lambda entry. archive-listing.txt and result.json preserve all paths/options. Four files include top-level shim, Netlify telemetry, bundled handler and private PDF at netlify/functions/_assets/sample-write-up.pdf.
+
+Runtime verification loads the extracted top-level compiled handler, changes cwd to archive root (outside repository), submits actual multipart fixture with a signed token, and intercepts ALL fetch calls. Handler returns200success with exactly2mock Resend calls. Attachment bytes match original handoff and bundled PDF. SHA2569f5bcd2c4417b805b4f2d136934800b4999a0c3a81c4cb2b7de6d7689da9507f. See runtime-verification.json/runtime.log. No deployment, hosted function request, real recipient delivery or package dependency change. The initial harness had a relative-import typo, corrected before the successful run; no production source correction was needed.
+
+This proves local official-bundler inclusion and runtime path resolution, not actual Netlify-hosted credentials/body limits/deliverability. No PDF was added to public/dist by this verification. Archive/runtime files remain ignored local evidence; never publish these artifacts to the website.
+
+Native terminal documentation reviewed: implementation and tests omit retry form for expired/conflict; README broad 'Native failures retain...' wording corrected separately to explicitly distinguish terminal failures from retryable/pre-delivery validation failures.
+
+Post-run evidence hygiene: diagnostic sources renamed bundle.mjs.txt and verify-runtime.mjs.txt after execution to avoid Astro/ESLint source discovery. The retained extracted directory was moved outside checkout to /tmp/tribera-v9-a2-function-extracted; actual isolated execution used /tmp/tribera-v9-bundle-runtime as recorded above. ZIP, listing, logs and JSON remain in candidate artifacts. No lint configuration change.

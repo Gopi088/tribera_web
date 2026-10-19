@@ -29,7 +29,7 @@ route,baseline_present,handoff_source,planned_action,target_route,indexing,relea
 /category/hiring-philosophy,yes,,retain collection archive,/category/hiring-philosophy,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
 /category/hiring-strategy,yes,,retain collection archive,/category/hiring-strategy,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
 /category/technical-hiring,yes,,retain collection archive,/category/technical-hiring,noindex,reconcile taxonomy against migrated collection; no empty archives,not started
-/contact,yes,contact.html,replace,/contact,index,content and functional checks,not started
+/contact,yes,contact.html,replace,/contact,index,content and functional checks,private preview validated; public pending
 /decapcms,yes,,retain existing admin asset,/decapcms,noindex,verify active editor usage and compatibility before retiring,not started
 /dpa,no,dpa.html,add,/dpa,index,legal and operational review,not started
 /functions,yes,,retain and restyle proposed,/functions,index,owner decision on retention; existing content review,not started
@@ -59,7 +59,7 @@ route,baseline_present,handoff_source,planned_action,target_route,indexing,relea
 /intelligence,yes,intelligence.html,replace,/intelligence,index,real scarcity data or explicit alternate publication treatment,not started
 /interview-as-a-service,no,interview-as-a-service.html,add,/interview-as-a-service,index,content and functional checks,private preview validated; public pending
 /privacy,yes,privacy.html,replace,/privacy,index,legal and operational review,not started
-/sample-write-up,no,sample-write-up.html,add,/sample-write-up,index,content and functional checks,not started
+/sample-write-up,no,sample-write-up.html,add,/sample-write-up,index,content and functional checks,private preview validated; public pending
 /security,yes,security.html,replace,/security,index,legal and operational review,not started
 /services,yes,services.html,replace,/services,index,confirm shared 22-day case claims,private preview validated; public pending
 /tag/ai-in-hiring,yes,,retain collection archive,/tag/ai-in-hiring,noindex,reconcile taxonomy against migrated collection; no empty archives,not started

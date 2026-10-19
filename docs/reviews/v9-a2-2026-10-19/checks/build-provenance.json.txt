@@ -1,0 +1,10 @@
+{
+  "evidenceRevision": "8418069a807b6a85e500200aa9cfcd82883fa890",
+  "previewBuildSource": "53dc282c625eac11a48f1a88a5135bc20be75060",
+  "productDiffToEvidence": [],
+  "previewBuildLog": "build-preview-3.log",
+  "previewArtifact": "/tmp/tribera-v9-a2-preview-evidence",
+  "bundleSource": "b79f668",
+  "backendChangesSinceBundle": "README terminal-response clarification only; executable backend, included PDF and netlify.toml unchanged",
+  "scope": "No hosted deployment or live provider delivery"
+}

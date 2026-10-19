@@ -1,0 +1,18 @@
+{
+  "status": "failed",
+  "evidence": "/tmp/tribera-v9-a2/artifacts/v9-a2/preview/static-chromium.json",
+  "suites": [
+    {
+      "name": "checker-negative-tests",
+      "status": "passed"
+    },
+    {
+      "name": "route-map-and-built-references",
+      "status": "failed",
+      "errors": [
+        "__v9/contact/index.html: Missing target /.netlify/functions/contact-form-v9",
+        "__v9/sample-write-up/index.html: Missing target /.netlify/functions/sample-form-v9"
+      ]
+    }
+  ]
+}

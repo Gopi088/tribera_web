@@ -1,0 +1,65 @@
+{
+  "scope": "Required local A2 static/browser evidence; A2 and A1 page chains independently verified. Hosted delivery remains pending.",
+  "revision": "8418069a807b6a85e500200aa9cfcd82883fa890",
+  "lockHash": "56be5c8181c79995befb9b07957589898a1eabfd027f0c8a8e82c4c178c370fa",
+  "builds": {
+    "preview": "730a13735e90e40f2332486233d6e51fdf2a28424aef4fdd44fed306d5c02abc",
+    "production": "c1a062e3d50d3754c493fc9e042e90af469108ed417784e718c3dc4ce641050d"
+  },
+  "reports": [
+    {
+      "id": "preview-static",
+      "path": "preview/static-chromium.json",
+      "build": "preview",
+      "gate": "static"
+    },
+    {
+      "id": "preview-chromium",
+      "path": "preview/browser-chromium.json",
+      "build": "preview",
+      "gate": "browser",
+      "browser": "chromium"
+    },
+    {
+      "id": "preview-firefox",
+      "path": "preview/browser-firefox.json",
+      "build": "preview",
+      "gate": "browser",
+      "browser": "firefox"
+    },
+    {
+      "id": "preview-webkit",
+      "path": "preview/browser-webkit.json",
+      "build": "preview",
+      "gate": "browser",
+      "browser": "webkit"
+    },
+    {
+      "id": "production-static",
+      "path": "production/static-chromium.json",
+      "build": "production",
+      "gate": "static"
+    },
+    {
+      "id": "production-chromium",
+      "path": "production/browser-chromium.json",
+      "build": "production",
+      "gate": "browser",
+      "browser": "chromium"
+    },
+    {
+      "id": "production-firefox",
+      "path": "production/browser-firefox.json",
+      "build": "production",
+      "gate": "browser",
+      "browser": "firefox"
+    },
+    {
+      "id": "production-webkit",
+      "path": "production/browser-webkit.json",
+      "build": "production",
+      "gate": "browser",
+      "browser": "webkit"
+    }
+  ]
+}

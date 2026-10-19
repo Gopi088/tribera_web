@@ -1,0 +1,22 @@
+Independent Contact visual review — /root/a1_detail
+Preflight captures: artifacts/v9-a2/pages-chromium/contact-{390,768,1024,1366,1920}-{handoff,migrated}.png. These are preflight captures, not final frozen-revision acceptance evidence.
+
+Inspected every vertical section of all ten images using 19 paired crops (source left, migrated right), covering hero, named-owner portraits, hiring letter, timeline, office cards/photos, FAQ, closing CTA and footer. No browser started for this review. A separately authorized short Chromium probe was used only to diagnose/fix Sample320 and was closed.
+
+Result: no blocking product-layout difference found in these captures. Hero composition, typography, owner portraits, letter layout, timeline, office cards, FAQs and closing promise closely preserve source across all five widths. No overlapping/clipped sections seen. At390 the long form wraps naturally in both source and migrated.
+
+Intentional differences:
+- Permanent native form link below Send adds roughly50–70px in page coordinates and shifts following sections down. This provides real no-JavaScript delivery access.
+- Native fieldset/input improvements make small input underline width differences, with source letter composition preserved.
+- Accepted shared shell has tighter mobile/footer rows than standalone source. This is shared-shell behavior rather than page content loss.
+
+Capture limitation requiring refreshed source evidence: source office photographs render blank placeholders in 390/768/1024/1920 captures; 1366 source shows Pune but Bengaluru blank. Migrated consistently displays both photographs. This appears to be source lazy-loading/capture timing, not a migrated defect. Root notified to force eager image loading/decode in source capture. Cannot certify source-photo visual parity from blank images; all surrounding geometry/captions are reviewed.
+
+Final exact-revision screenshot confirmation pending root's frozen capture run. This review does not certify provider sends, upload hosting limits, scanner availability, or interactive errors/no-JS journeys; those are separate gates.
+
+Fresh-capture follow-up (product53dc282, test-only318fc85): all ten PNGs were regenerated07:17:43–07:18:01UTC. Office-photo crops re-inspected at all five widths. Eager/decode did not fully resolve source rendering: Bengaluru remains blank at every width; Pune remains blank at390 and appears at remaining widths with a wider building crop than migrated. Root notified; final photographic closure remains pending source final-visibility/crop verification. This is not a product block by itself, but cannot be represented as completed visual parity evidence.
+
+Final photograph/visual closure — capture revision8418069, unchanged product53dc282:
+Verified refreshed handoff mtimes07:22:57 (390),07:23:01 (768),07:23:05 (1024),07:23:09 (1366),07:23:14UTC (1920). Re-inspected paired office-photo regions at all five widths after source reveal completion and decode. Both Pune and Bengaluru now render in every reference and migrated capture; the previous blank-reference limitation is CLOSED. The same building/lobby scenes, signs, captions, rounded frames and responsive arrangement are present. Minor framing differences are visible, but no essential image content is lost and no product visual blocker is warranted. This is visual acceptance, not a pixel-identical claim.
+
+Combined with prior full-height five-width inspection, Contact visual review ACCEPT for product53dc282 with capture evidence8418069, retaining the documented intentional native-fallback height and accepted shared-shell differences. No browser or tracked product edits performed in this final review.

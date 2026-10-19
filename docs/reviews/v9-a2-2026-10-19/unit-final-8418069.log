@@ -1,0 +1,759 @@
+
+> tribera-website@1.0.0-beta.52 test:migration:unit
+> node --test tests/netlify-functions.test.mjs tests/v9-form-adapters.test.mjs tests/v9-gate.test.mjs tests/migration-build-boundary.test.mjs tests/v9-assets.test.mjs tests/v9-evidence.test.mjs tests/v9-native-form.test.mjs tests/v9-candidates-score.test.mjs tests/v9-home-model.test.mjs tests/v9-performance.test.mjs tests/v9-a2-forms.test.mjs tests/v9-a2-assets.test.mjs
+
+TAP version 13
+# Subtest: accepts normal build and rejects absent build
+ok 1 - accepts normal build and rejects absent build
+  ---
+  duration_ms: 60.277606
+  type: 'test'
+  ...
+# Subtest: requires explicit preview mode, existing fixture and noindex
+ok 2 - requires explicit preview mode, existing fixture and noindex
+  ---
+  duration_ms: 91.357499
+  type: 'test'
+  ...
+# Subtest: rejects private PDF even if renamed or embedded
+ok 3 - rejects private PDF even if renamed or embedded
+  ---
+  duration_ms: 21.342307
+  type: 'test'
+  ...
+# Subtest: rejects copied internal documentation
+ok 4 - rejects copied internal documentation
+  ---
+  duration_ms: 25.216601
+  type: 'test'
+  ...
+# Subtest: site inquiry contact form accepts a valid submission and returns success
+ok 5 - site inquiry contact form accepts a valid submission and returns success
+  ---
+  duration_ms: 156.356548
+  type: 'test'
+  ...
+# Subtest: site inquiry rejects invalid email addresses
+ok 6 - site inquiry rejects invalid email addresses
+  ---
+  duration_ms: 13.770913
+  type: 'test'
+  ...
+# Subtest: site inquiry rejects submissions that arrive too quickly
+ok 7 - site inquiry rejects submissions that arrive too quickly
+  ---
+  duration_ms: 19.205036
+  type: 'test'
+  ...
+# Subtest: site inquiry rejects unknown interest values
+ok 8 - site inquiry rejects unknown interest values
+  ---
+  duration_ms: 13.389294
+  type: 'test'
+  ...
+# Subtest: site inquiry escapes HTML in outbound email content
+ok 9 - site inquiry escapes HTML in outbound email content
+  ---
+  duration_ms: 19.353976
+  type: 'test'
+  ...
+# Subtest: site inquiry rejects an invalid form type
+ok 10 - site inquiry rejects an invalid form type
+  ---
+  duration_ms: 6.449567
+  type: 'test'
+  ...
+# Subtest: site inquiry honeypot returns success without sending email
+ok 11 - site inquiry honeypot returns success without sending email
+  ---
+  duration_ms: 13.865164
+  type: 'test'
+  ...
+# Subtest: site inquiry rejects requests from disallowed origins
+ok 12 - site inquiry rejects requests from disallowed origins
+  ---
+  duration_ms: 16.190508
+  type: 'test'
+  ...
+# Subtest: site inquiry accepts requests when origin matches the current host
+ok 13 - site inquiry accepts requests when origin matches the current host
+  ---
+  duration_ms: 16.852265
+  type: 'test'
+  ...
+# Subtest: site inquiry accepts trusted Netlify preview hosts for this site only
+ok 14 - site inquiry accepts trusted Netlify preview hosts for this site only
+  ---
+  duration_ms: 12.623477
+  type: 'test'
+  ...
+# Subtest: site inquiry rejects same-host origins when the host is not trusted
+ok 15 - site inquiry rejects same-host origins when the host is not trusted
+  ---
+  duration_ms: 26.771137
+  type: 'test'
+  ...
+# Subtest: site inquiry rejects Netlify preview hosts for other sites
+ok 16 - site inquiry rejects Netlify preview hosts for other sites
+  ---
+  duration_ms: 33.557592
+  type: 'test'
+  ...
+# Subtest: site inquiry rate limiting returns 429 after the threshold
+ok 17 - site inquiry rate limiting returns 429 after the threshold
+  ---
+  duration_ms: 54.917288
+  type: 'test'
+  ...
+# Subtest: candidate profile accepts a valid resume submission
+ok 18 - candidate profile accepts a valid resume submission
+  ---
+  duration_ms: 65.436407
+  type: 'test'
+  ...
+# Subtest: candidate profile rejects invalid email addresses
+ok 19 - candidate profile rejects invalid email addresses
+  ---
+  duration_ms: 35.74096
+  type: 'test'
+  ...
+# Subtest: candidate profile rejects overlong mobile numbers
+ok 20 - candidate profile rejects overlong mobile numbers
+  ---
+  duration_ms: 21.94901
+  type: 'test'
+  ...
+# Subtest: candidate profile rejects disallowed resume file types
+ok 21 - candidate profile rejects disallowed resume file types
+  ---
+  duration_ms: 14.250403
+  type: 'test'
+  ...
+# Subtest: candidate profile rejects disguised files that do not match the claimed resume format
+ok 22 - candidate profile rejects disguised files that do not match the claimed resume format
+  ---
+  duration_ms: 12.657922
+  type: 'test'
+  ...
+# Subtest: candidate profile rejects empty resumes
+ok 23 - candidate profile rejects empty resumes
+  ---
+  duration_ms: 17.988181
+  type: 'test'
+  ...
+# Subtest: candidate profile accepts a valid doc resume
+ok 24 - candidate profile accepts a valid doc resume
+  ---
+  duration_ms: 22.064887
+  type: 'test'
+  ...
+# Subtest: candidate profile accepts a valid docx resume
+ok 25 - candidate profile accepts a valid docx resume
+  ---
+  duration_ms: 54.248514
+  type: 'test'
+  ...
+# Subtest: candidate profile accepts docx resumes that use zip data descriptors
+ok 26 - candidate profile accepts docx resumes that use zip data descriptors
+  ---
+  duration_ms: 15.532399
+  type: 'test'
+  ...
+# Subtest: candidate profile rejects zip files disguised as docx resumes
+ok 27 - candidate profile rejects zip files disguised as docx resumes
+  ---
+  duration_ms: 14.658225
+  type: 'test'
+  ...
+# Subtest: candidate profile rejects docx files with required markers outside zip entries
+ok 28 - candidate profile rejects docx files with required markers outside zip entries
+  ---
+  duration_ms: 13.631306
+  type: 'test'
+  ...
+# Subtest: candidate profile rejects uploads when scanner marks the file unsafe
+ok 29 - candidate profile rejects uploads when scanner marks the file unsafe
+  ---
+  duration_ms: 19.708126
+  type: 'test'
+  ...
+# Subtest: candidate profile rejects uploads when required scanning is unavailable
+ok 30 - candidate profile rejects uploads when required scanning is unavailable
+  ---
+  duration_ms: 21.178075
+  type: 'test'
+  ...
+# Subtest: candidate profile rejects uploads in production when scanning is not configured
+ok 31 - candidate profile rejects uploads in production when scanning is not configured
+  ---
+  duration_ms: 46.180136
+  type: 'test'
+  ...
+# Subtest: candidate profile passes an abort signal to the upload scanner fetch
+ok 32 - candidate profile passes an abort signal to the upload scanner fetch
+  ---
+  duration_ms: 13.629416
+  type: 'test'
+  ...
+# Subtest: careers apply passes the expected scan context to the upload scanner
+ok 33 - careers apply passes the expected scan context to the upload scanner
+  ---
+  duration_ms: 16.79917
+  type: 'test'
+  ...
+# Subtest: candidate profile rejects missing resume
+ok 34 - candidate profile rejects missing resume
+  ---
+  duration_ms: 3.317575
+  type: 'test'
+  ...
+# Subtest: careers apply accepts a valid application with resume
+ok 35 - careers apply accepts a valid application with resume
+  ---
+  duration_ms: 25.579111
+  type: 'test'
+  ...
+# Subtest: careers apply rejects invalid email addresses
+ok 36 - careers apply rejects invalid email addresses
+  ---
+  duration_ms: 37.72201
+  type: 'test'
+  ...
+# Subtest: careers apply rejects disallowed resume file types
+ok 37 - careers apply rejects disallowed resume file types
+  ---
+  duration_ms: 5.686067
+  type: 'test'
+  ...
+# Subtest: careers apply rejects requests missing required metadata or resume
+ok 38 - careers apply rejects requests missing required metadata or resume
+  ---
+  duration_ms: 5.178117
+  type: 'test'
+  ...
+# Subtest: careers apply accepts trusted role submissions without client job_title
+ok 39 - careers apply accepts trusted role submissions without client job_title
+  ---
+  duration_ms: 10.218662
+  type: 'test'
+  ...
+# Subtest: site inquiry rejects oversized multipart request bodies before parsing
+ok 40 - site inquiry rejects oversized multipart request bodies before parsing
+  ---
+  duration_ms: 170.999838
+  type: 'test'
+  ...
+# Subtest: candidate profile rejects oversized multipart request bodies before parsing
+ok 41 - candidate profile rejects oversized multipart request bodies before parsing
+  ---
+  duration_ms: 202.637768
+  type: 'test'
+  ...
+# Subtest: careers apply rejects oversized multipart request bodies before parsing
+ok 42 - careers apply rejects oversized multipart request bodies before parsing
+  ---
+  duration_ms: 199.889225
+  type: 'test'
+  ...
+# Subtest: site inquiry rejects overlong contact messages
+ok 43 - site inquiry rejects overlong contact messages
+  ---
+  duration_ms: 21.318498
+  type: 'test'
+  ...
+# Subtest: site inquiry rate limiting prefers authoritative Netlify client IP headers
+ok 44 - site inquiry rate limiting prefers authoritative Netlify client IP headers
+  ---
+  duration_ms: 4.405723
+  type: 'test'
+  ...
+# Subtest: site inquiry can use a shared rate limiter backend when configured
+ok 45 - site inquiry can use a shared rate limiter backend when configured
+  ---
+  duration_ms: 2.352949
+  type: 'test'
+  ...
+# Subtest: site inquiry falls back to the local rate limiter when the shared backend fails
+ok 46 - site inquiry falls back to the local rate limiter when the shared backend fails
+  ---
+  duration_ms: 3.557238
+  type: 'test'
+  ...
+# Subtest: site inquiry fails closed in production when the shared rate limiter backend fails
+ok 47 - site inquiry fails closed in production when the shared rate limiter backend fails
+  ---
+  duration_ms: 2.176174
+  type: 'test'
+  ...
+# Subtest: site inquiry passes an abort signal to the shared rate limiter fetch
+ok 48 - site inquiry passes an abort signal to the shared rate limiter fetch
+  ---
+  duration_ms: 5.239428
+  type: 'test'
+  ...
+# Subtest: site inquiry prefers Netlify authoritative IP headers over spoofed client-ip values
+ok 49 - site inquiry prefers Netlify authoritative IP headers over spoofed client-ip values
+  ---
+  duration_ms: 2.891258
+  type: 'test'
+  ...
+# Subtest: parseMultipartForm returns a 413 when a multipart file part exceeds the configured limit
+ok 50 - parseMultipartForm returns a 413 when a multipart file part exceeds the configured limit
+  ---
+  duration_ms: 6.046514
+  type: 'test'
+  ...
+# Subtest: site inquiry does not trust x-forwarded-for in production when authoritative IP headers are absent
+ok 51 - site inquiry does not trust x-forwarded-for in production when authoritative IP headers are absent
+  ---
+  duration_ms: 5.932251
+  type: 'test'
+  ...
+# Subtest: careers apply ignores spoofed role metadata and uses trusted slug metadata
+ok 52 - careers apply ignores spoofed role metadata and uses trusted slug metadata
+  ---
+  duration_ms: 3.980749
+  type: 'test'
+  ...
+# Subtest: careers apply rejects untrusted role unknown-role
+ok 53 - careers apply rejects untrusted role unknown-role
+  ---
+  duration_ms: 5.221923
+  type: 'test'
+  ...
+# Subtest: careers apply rejects untrusted role constructor
+ok 54 - careers apply rejects untrusted role constructor
+  ---
+  duration_ms: 5.067979
+  type: 'test'
+  ...
+# Subtest: careers apply rejects untrusted role toString
+ok 55 - careers apply rejects untrusted role toString
+  ---
+  duration_ms: 3.82059
+  type: 'test'
+  ...
+# Subtest: careers apply rejects untrusted role __proto__
+ok 56 - careers apply rejects untrusted role __proto__
+  ---
+  duration_ms: 3.309455
+  type: 'test'
+  ...
+# Subtest: contact publishes only the exact original preview images
+ok 57 - contact publishes only the exact original preview images
+  ---
+  duration_ms: 128.426087
+  type: 'test'
+  ...
+# Subtest: sample-write-up publishes only the exact original preview images
+ok 58 - sample-write-up publishes only the exact original preview images
+  ---
+  duration_ms: 90.562385
+  type: 'test'
+  ...
+# Subtest: server context allowlists match the independent handoff models
+ok 59 - server context allowlists match the independent handoff models
+  ---
+  duration_ms: 44.420716
+  type: 'test'
+  ...
+# Subtest: GET token is fresh, no-store; native contextual form and explicit clearing
+ok 60 - GET token is fresh, no-store; native contextual form and explicit clearing
+  ---
+  duration_ms: 15.129564
+  type: 'test'
+  ...
+# Subtest: contact hiring only sends active fields and validated context to configured recipient
+ok 61 - contact hiring only sends active fields and validated context to configured recipient
+  ---
+  duration_ms: 196.812857
+  type: 'test'
+  ...
+# Subtest: looking CV validates bytes and routes only active candidate details
+ok 62 - looking CV validates bytes and routes only active candidate details
+  ---
+  duration_ms: 65.42075
+  type: 'test'
+  ...
+# Subtest: origin, forged token, changed timestamp, expired, missing active fields and unsupported context fail closed
+ok 63 - origin, forged token, changed timestamp, expired, missing active fields and unsupported context fail closed
+  ---
+  duration_ms: 65.081096
+  type: 'test'
+  ...
+# Subtest: required scanner and config absence block delivery honestly
+ok 64 - required scanner and config absence block delivery honestly
+  ---
+  duration_ms: 15.790801
+  type: 'test'
+  ...
+# Subtest: sample email attaches only private PDF, records lead, and exact retries dedupe
+ok 65 - sample email attaches only private PDF, records lead, and exact retries dedupe
+  ---
+  duration_ms: 72.756382
+  type: 'test'
+  ...
+# Subtest: lost accepted response retries identical first step, then lead; partial lead failure retries safely
+ok 66 - lost accepted response retries identical first step, then lead; partial lead failure retries safely
+  ---
+  duration_ms: 88.707488
+  type: 'test'
+  ...
+# Subtest: changed retry payload stops before lead; concurrent409 retryable; malformed provider success not success
+ok 67 - changed retry payload stops before lead; concurrent409 retryable; malformed provider success not success
+  ---
+  duration_ms: 31.422139
+  type: 'test'
+  ...
+# Subtest: native success PRG; ambiguous HTML preserves token and escaped fields
+ok 68 - native success PRG; ambiguous HTML preserves token and escaped fields
+  ---
+  duration_ms: 24.067126
+  type: 'test'
+  ...
+# Subtest: A2 honeypots explicitly reject and never claim delivery
+ok 69 - A2 honeypots explicitly reject and never claim delivery
+  ---
+  duration_ms: 22.973985
+  type: 'test'
+  ...
+# Subtest: native expired/conflicting request has terminal guidance without a new send form
+ok 70 - native expired/conflicting request has terminal guidance without a new send form
+  ---
+  duration_ms: 50.158834
+  type: 'test'
+  ...
+# Subtest: official handoff font faces retain all required weights, subsets and optical axes
+ok 71 - official handoff font faces retain all required weights, subsets and optical axes
+  ---
+  duration_ms: 51.219315
+  type: 'test'
+  ...
+# Subtest: official binaries and pinned OFL licenses match provenance hashes
+ok 72 - official binaries and pinned OFL licenses match provenance hashes
+  ---
+  duration_ms: 43.698667
+  type: 'test'
+  ...
+# Subtest: all supplied icons are unchanged and manifest references existing correctly sized assets
+ok 73 - all supplied icons are unchanged and manifest references existing correctly sized assets
+  ---
+  duration_ms: 21.286879
+  type: 'test'
+  ...
+# Subtest: Meera weights preserve fixed interview evidence and verdicts
+ok 74 - Meera weights preserve fixed interview evidence and verdicts
+  ---
+  duration_ms: 22.255941
+  type: 'test'
+  ...
+# Subtest: Scorer handles all-zero weights and exact verdict thresholds
+ok 75 - Scorer handles all-zero weights and exact verdict thresholds
+  ---
+  duration_ms: 3.859659
+  type: 'test'
+  ...
+# Subtest: derives success from complete explicit raw reports and preserves their hashes/statuses/counts
+ok 76 - derives success from complete explicit raw reports and preserves their hashes/statuses/counts
+  ---
+  duration_ms: 49.11692
+  type: 'test'
+  ...
+# Subtest: missing and malformed files cannot turn into passing evidence
+ok 77 - missing and malformed files cannot turn into passing evidence
+  ---
+  duration_ms: 6.924742
+  type: 'test'
+  ...
+# Subtest: failed, not-run and blocked reported statuses remain failures despite passing suites
+ok 78 - failed, not-run and blocked reported statuses remain failures despite passing suites
+  ---
+  duration_ms: 29.794144
+  type: 'test'
+  ...
+# Subtest: rejects mismatched candidate/build/dependencies, dirty runs and missing metadata
+ok 79 - rejects mismatched candidate/build/dependencies, dirty runs and missing metadata
+  ---
+  duration_ms: 35.364614
+  type: 'test'
+  ...
+# Subtest: does not trust passed labels over failed/skipped/zero/incomplete suite details
+ok 80 - does not trust passed labels over failed/skipped/zero/incomplete suite details
+  ---
+  duration_ms: 27.795458
+  type: 'test'
+  ...
+# Subtest: requires browser identity and nonempty exact route/viewport execution
+ok 81 - requires browser identity and nonempty exact route/viewport execution
+  ---
+  duration_ms: 46.91396
+  type: 'test'
+  ...
+# Subtest: empty requirements, duplicate inputs and unsupported hand-authored summaries fail
+ok 82 - empty requirements, duplicate inputs and unsupported hand-authored summaries fail
+  ---
+  duration_ms: 28.777022
+  type: 'test'
+  ...
+# Subtest: CLI writes reproducible provenance, fails nonzero, and cannot overwrite raw reports
+ok 83 - CLI writes reproducible provenance, fails nonzero, and cannot overwrite raw reports
+  ---
+  duration_ms: 1186.685937
+  type: 'test'
+  ...
+# {"level":"error","operation":"candidate-profile-v9","errorCode":"cv_submission_failed","requestId":"unknown"}
+# Subtest: candidate accepts CV-first active without fabricated identity
+ok 84 - candidate accepts CV-first active without fabricated identity
+  ---
+  duration_ms: 340.557939
+  type: 'test'
+  ...
+# Subtest: candidate accepts CV-first open without fabricated identity
+ok 85 - candidate accepts CV-first open without fabricated identity
+  ---
+  duration_ms: 20.486892
+  type: 'test'
+  ...
+# Subtest: career validates role identity server-side and escapes paragraph
+ok 86 - career validates role identity server-side and escapes paragraph
+  ---
+  duration_ms: 31.863013
+  type: 'test'
+  ...
+# Subtest: missing CV rejects without delivery
+ok 87 - missing CV rejects without delivery
+  ---
+  duration_ms: 5.926517
+  type: 'test'
+  ...
+# Subtest: wrong upload field rejects without delivery
+ok 88 - wrong upload field rejects without delivery
+  ---
+  duration_ms: 48.478044
+  type: 'test'
+  ...
+# Subtest: extra upload rejects without delivery
+ok 89 - extra upload rejects without delivery
+  ---
+  duration_ms: 17.111549
+  type: 'test'
+  ...
+# Subtest: invalid intent rejects without delivery
+ok 90 - invalid intent rejects without delivery
+  ---
+  duration_ms: 4.354226
+  type: 'test'
+  ...
+# Subtest: missing intent rejects without delivery
+ok 91 - missing intent rejects without delivery
+  ---
+  duration_ms: 11.264
+  type: 'test'
+  ...
+# Subtest: long phone rejects without delivery
+ok 92 - long phone rejects without delivery
+  ---
+  duration_ms: 12.942591
+  type: 'test'
+  ...
+# Subtest: invalid file signature rejects without delivery
+ok 93 - invalid file signature rejects without delivery
+  ---
+  duration_ms: 16.875466
+  type: 'test'
+  ...
+# Subtest: missing timestamp rejects without delivery
+ok 94 - missing timestamp rejects without delivery
+  ---
+  duration_ms: 9.780815
+  type: 'test'
+  ...
+# Subtest: stale timestamp rejects without delivery
+ok 95 - stale timestamp rejects without delivery
+  ---
+  duration_ms: 10.810118
+  type: 'test'
+  ...
+# Subtest: foreign origin rejects without delivery
+ok 96 - foreign origin rejects without delivery
+  ---
+  duration_ms: 12.426143
+  type: 'test'
+  ...
+# Subtest: missing paragraph rejects without delivery
+ok 97 - missing paragraph rejects without delivery
+  ---
+  duration_ms: 6.079403
+  type: 'test'
+  ...
+# Subtest: long paragraph rejects without delivery
+ok 98 - long paragraph rejects without delivery
+  ---
+  duration_ms: 15.835667
+  type: 'test'
+  ...
+# Subtest: unknown role rejects without delivery
+ok 99 - unknown role rejects without delivery
+  ---
+  duration_ms: 16.382316
+  type: 'test'
+  ...
+# Subtest: prototype role rejects without delivery
+ok 100 - prototype role rejects without delivery
+  ---
+  duration_ms: 24.076112
+  type: 'test'
+  ...
+# Subtest: closed role rejects
+ok 101 - closed role rejects
+  ---
+  duration_ms: 15.291084
+  type: 'test'
+  ...
+# Subtest: honeypot silently succeeds without delivery
+ok 102 - honeypot silently succeeds without delivery
+  ---
+  duration_ms: 5.374231
+  type: 'test'
+  ...
+# Subtest: rate limiter applies to new adapter
+ok 103 - rate limiter applies to new adapter
+  ---
+  duration_ms: 17.359179
+  type: 'test'
+  ...
+# Subtest: scanner rejection prevents email
+ok 104 - scanner rejection prevents email
+  ---
+  duration_ms: 21.257337
+  type: 'test'
+  ...
+# Subtest: provider failure is visible and not success
+ok 105 - provider failure is visible and not success
+  ---
+  duration_ms: 45.952612
+  type: 'test'
+  ...
+# Subtest: native POST gets readable HTML result and enhanced request gets JSON
+ok 106 - native POST gets readable HTML result and enhanced request gets JSON
+  ---
+  duration_ms: 39.336381
+  type: 'test'
+  ...
+# Subtest: GET does not submit
+ok 107 - GET does not submit
+  ---
+  duration_ms: 0.630081
+  type: 'test'
+  ...
+# Subtest: required scanner approval precedes delivery with same attachment
+ok 108 - required scanner approval precedes delivery with same attachment
+  ---
+  duration_ms: 28.258864
+  type: 'test'
+  ...
+# Subtest: missing required scanner blocks delivery
+ok 109 - missing required scanner blocks delivery
+  ---
+  duration_ms: 4.042611
+  type: 'test'
+  ...
+# Subtest: valid fragments and future routes do not require premature publication
+ok 110 - valid fragments and future routes do not require premature publication
+  ---
+  duration_ms: 67.877829
+  type: 'test'
+  ...
+# Subtest: broken absolute links, fragments and assets fail independently
+ok 111 - broken absolute links, fragments and assets fail independently
+  ---
+  duration_ms: 13.113269
+  type: 'test'
+  ...
+# Subtest: empty coverage and missing baseline routes fail
+ok 112 - empty coverage and missing baseline routes fail
+  ---
+  duration_ms: 17.095642
+  type: 'test'
+  ...
+# Subtest: untracked generated routes fail
+ok 113 - untracked generated routes fail
+  ---
+  duration_ms: 6.073468
+  type: 'test'
+  ...
+# Subtest: quoted CSV cells are parsed
+ok 114 - quoted CSV cells are parsed
+  ---
+  duration_ms: 1.073656
+  type: 'test'
+  ...
+# Subtest: only the implemented request-time native form is a server-side link exception
+ok 115 - only the implemented request-time native form is a server-side link exception
+  ---
+  duration_ms: 20.809584
+  type: 'test'
+  ...
+# Subtest: home brief presets retain independently calculated handoff verdicts
+ok 116 - home brief presets retain independently calculated handoff verdicts
+  ---
+  duration_ms: 3.293276
+  type: 'test'
+  ...
+# Subtest: home scoring handles empty brief, normalization and exact rounded verdict boundaries
+ok 117 - home scoring handles empty brief, normalization and exact rounded verdict boundaries
+  ---
+  duration_ms: 3.81599
+  type: 'test'
+  ...
+# Subtest: home hiring bar includes exact matches and narrows the same eight people
+ok 118 - home hiring bar includes exact matches and narrows the same eight people
+  ---
+  duration_ms: 1.006205
+  type: 'test'
+  ...
+# Subtest: integer shares retain the stated total, including equal fractional shares
+ok 119 - integer shares retain the stated total, including equal fractional shares
+  ---
+  duration_ms: 4.906561
+  type: 'test'
+  ...
+# Subtest: native CV form issues a fresh uncacheable timestamp and rejects other methods
+ok 120 - native CV form issues a fresh uncacheable timestamp and rejects other methods
+  ---
+  duration_ms: 3.607508
+  type: 'test'
+  ...
+# Subtest: server-issued native form submits after reading time, with existing timing and delivery guards
+ok 121 - server-issued native form submits after reading time, with existing timing and delivery guards
+  ---
+  duration_ms: 222.716198
+  type: 'test'
+  ...
+# Subtest: page budget uses gzip for text and raw transfer for compressed fonts/images
+ok 122 - page budget uses gzip for text and raw transfer for compressed fonts/images
+  ---
+  duration_ms: 5.054626
+  type: 'test'
+  ...
+# Subtest: oversized bundles and unclassified resources fail the gate
+ok 123 - oversized bundles and unclassified resources fail the gate
+  ---
+  duration_ms: 8.466044
+  type: 'test'
+  ...
+# Subtest: missing and invalid measurements or budgets never pass
+ok 124 - missing and invalid measurements or budgets never pass
+  ---
+  duration_ms: 14.395587
+  type: 'test'
+  ...
+1..124
+# tests 124
+# suites 0
+# pass 124
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2030.400035

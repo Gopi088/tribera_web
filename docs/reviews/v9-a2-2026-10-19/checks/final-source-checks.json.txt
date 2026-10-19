@@ -1,0 +1,17 @@
+{
+  "revision": "8418069a807b6a85e500200aa9cfcd82883fa890",
+  "cleanTree": true,
+  "check": {
+    "command": "npm run check",
+    "log": "check-final-8418069.log",
+    "status": "passed"
+  },
+  "unit": {
+    "command": "npm run test:migration:unit",
+    "log": "unit-final-8418069.log",
+    "tests": 124,
+    "passed": 124,
+    "failed": 0
+  },
+  "lockHash": "56be5c8181c79995befb9b07957589898a1eabfd027f0c8a8e82c4c178c370fa"
+}

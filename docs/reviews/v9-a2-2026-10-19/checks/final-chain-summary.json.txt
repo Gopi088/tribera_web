@@ -1,0 +1,39 @@
+{
+  "revision": "8418069a807b6a85e500200aa9cfcd82883fa890",
+  "builds": {
+    "preview": "730a13735e90e40f2332486233d6e51fdf2a28424aef4fdd44fed306d5c02abc",
+    "production": "c1a062e3d50d3754c493fc9e042e90af469108ed417784e718c3dc4ce641050d"
+  },
+  "chains": [
+    {
+      "path": "artifacts/v9-a2/page-suites-chromium.json",
+      "suites": 4,
+      "status": "passed"
+    },
+    {
+      "path": "artifacts/v9-a2/page-suites-firefox.json",
+      "suites": 4,
+      "status": "passed"
+    },
+    {
+      "path": "artifacts/v9-a2/page-suites-webkit.json",
+      "suites": 4,
+      "status": "passed"
+    },
+    {
+      "path": "artifacts/v9-a1/page-suites-chromium.json",
+      "suites": 4,
+      "status": "passed"
+    },
+    {
+      "path": "artifacts/v9-a1/page-suites-firefox.json",
+      "suites": 4,
+      "status": "passed"
+    },
+    {
+      "path": "artifacts/v9-a1/page-suites-webkit.json",
+      "suites": 4,
+      "status": "passed"
+    }
+  ]
+}

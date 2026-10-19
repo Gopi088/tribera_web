@@ -1,0 +1,22 @@
+Independent Contact source review — /root/a1_detail
+Reviewed integrated Contact commits 777350f + 086a8c9 in candidate /tmp/tribera-v9-a2 (HEAD during review ba9a5ea0349cb316967e14a1802cf454316a44e0).
+Scope: native Astro structure, source content/sections, scoped CSS, client modes, query context, disabled fields, fallback, accessibility, error/retry state. Read-only review; no browser or live sends.
+
+FINDING — blocking until addressed:
+contact.ts clears pendingPayload for every HTTP400. An expired signed token may follow an earlier ambiguous delivery (e.g. provider accepted then response lost). Clearing the saved payload enables fields and restores the native alternate, permitting a new identity and duplicate delivery. Keep the attempt locked for expired responses after attempted delivery; do not tell visitors to start a new request. Root notified. A validation-only 400 before delivery can still permit correction.
+
+Other inspected behavior:
+- Complete five-section composition retains hero/reply owners, two-direction letter and mode timelines, offices/photos, six FAQs and final promise. IaaS fee-per-interview plus success-fee FAQ retained. Source sector/service dictionaries contain twelve entries each and match client context.ts; named Abhishek/Akshata and timeline text retained.
+- Real radio group, labelled fieldsets, input accessible names, browser validation and CV extension/10 MiB checks. Inactive fieldsets AND their input/textarea controls are disabled before FormData collection, excluding duplicate names and inactive CV. Finally re-enables then reapplies active mode correctly.
+- Context allowlists drop unknown input; textContent avoids injecting query HTML; Remove clears service/sector/intent and native URL. Native URL carries selected side/context after enhancement.
+- No page-load handshake. Focus/submit obtain server token/time; submit waits min_submit_ms. No client-generated token. FormData snapshot is created before disabling controls; repeated retry retains same FormData including file and token. Network/JSON/provider ambiguity otherwise locks all edit controls, hides alternate and only permits retry when allowed.
+- Confirmation is gated on response.ok AND success=true. No pretend delivery. On success resets inputs, restores valid contextual fields/mode and clears token for a subsequent deliberate request.
+- SSR submit disabled with explicit no-JS native link; no stale build token. Static no-JS view remains hiring but native endpoint is described as providing mode chooser. Backend endpoint implementation/referrer context/native PRG was not present in candidate at this inspection and is NOT verified by this report.
+- Native details/summary FAQs remain operable without script; hidden overrides and fieldset reset scoped; reduced motion suppresses page animation/transitions; file focus indicator exists; status is announced and receives focus.
+- Decorative/source transitions remain scoped under .v9-contact. Private DEV/V9_PREVIEW gate/noindex are present. Hosted availability, upload/scanner limits, actual email delivery, layout fidelity, and runtime assistive behavior require coordinator gates.
+
+Minor editorial observation (nonblocking): noscript says 'preview form below' although the form is above that explanatory paragraph.
+
+Disposition: request fix for expired-attempt ambiguity above. No additional source-level blocker found within this bounded review. Visual review pending final five-width captures.
+
+Closure: integrated a0d2c0f (worker a5ec226) inspected. Only HTTP400 with code validation clears pendingPayload; expired/conflict set stopped and retain original locked payload, hide native alternate, and direct the visitor to contact the team before another request. Original blocker CLOSED in source. Contact source review ACCEPT within the bounded scope above; runtime/visual gates remain separate.
