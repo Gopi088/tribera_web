@@ -23,6 +23,13 @@ try {
       await page.waitForURL((url) => url.pathname.replace(/\/$/, '') === '/__v9/services');
       assert.match(await page.locator('h1').innerText(), /Hire the people/);
       await page.goto(base + '/__v9/' + slug, { waitUntil: 'networkidle' });
+      if (slug === 'case-study') {
+        await page.getByRole('link', { name: 'Book a scorecard session', exact: true }).first().click();
+        await page.waitForURL(
+          (url) => url.pathname.replace(/\/$/, '') === '/__v9/services' && url.hash === '#sv-scorecard'
+        );
+        await page.locator('#sv-scorecard').waitFor({ state: 'visible' });
+      }
       const ctas = await page
         .locator('main a[href]')
         .evaluateAll((links) =>
@@ -36,7 +43,9 @@ try {
         assert.equal(target.pathname, '/contact');
         assert.ok(!target.searchParams.has('email'), 'No personal data in query');
       }
-      const link = page.locator('main a[href^="/contact"]').first();
+      const link = page
+        .locator(slug === 'case-study' ? '#sv-scorecard a[href^="/contact"]' : 'main a[href^="/contact"]')
+        .first();
       const expected = new URL(await link.getAttribute('href'), base);
       await link.click();
       await page.waitForURL((url) => url.pathname.replace(/\/$/, '') === '/contact');
