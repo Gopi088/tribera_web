@@ -12,6 +12,9 @@ const offerings = JSON.parse(match[1]),
   problems = JSON.parse(match[2]);
 assert.equal(Object.keys(offerings).length, 12);
 assert.equal(problems.length, 9);
+const labels = [...source.matchAll(/<button class="sv-sym"[^>]*>\s*<b>([^<]+)<\/b>/g)].map((match) => match[1]);
+assert.equal(labels.length, 9);
+const normalized = (text) => text.replace(/\s+/g, ' ').trim();
 const browser = await { chromium, firefox, webkit }[engine].launch();
 const records = [];
 try {
@@ -33,7 +36,8 @@ try {
     for (let i = 0; i < problems.length; i++) {
       const button = page.locator('.sv-sym').nth(i);
       const panel = page.locator('.sv-recommendation').nth(i);
-      assert.ok((await button.textContent()).includes(problems[i][0]));
+      assert.equal(normalized(await button.locator('b').textContent()), labels[i]);
+      assert.equal(await panel.getAttribute('aria-label'), problems[i][0]);
       if (javaScriptEnabled) {
         await button.click();
         assert.equal(await button.getAttribute('aria-selected'), 'true');
@@ -48,7 +52,7 @@ try {
         problems[i][2].map((key) => '#sv-' + key)
       );
       for (const key of problems[i][2]) {
-        const text = await panel.textContent();
+        const text = normalized(await panel.textContent());
         for (const value of Object.values(offerings[key]))
           assert.ok(text.includes(value), `Recommendation ${i}: ${key}: ${value}`);
       }
