@@ -6,6 +6,13 @@ import { waitForPageCondition } from '../scripts/v9-browser-readiness.mjs';
 const engine = process.env.BROWSER || 'chromium';
 const base = process.env.TEST_BASE_URL || 'http://127.0.0.1:4390';
 const source = fs.readFileSync('sample_data/tribera-web-handoff-v9/services.html', 'utf8');
+const portrait = source.match(/<img class="av-img" src="data:image\/jpeg;base64,([^"]+)"/);
+assert.ok(portrait, 'Source founder portrait must exist');
+assert.deepEqual(
+  fs.readFileSync('public/images/v9/services/pranav.jpg'),
+  Buffer.from(portrait[1], 'base64'),
+  'Founder portrait must preserve the exact handoff bytes'
+);
 const match = source.match(/var SV=(.*?), SYM=(.*?);\n/);
 assert.ok(match, 'Source service/problem model must exist');
 const offerings = JSON.parse(match[1]),

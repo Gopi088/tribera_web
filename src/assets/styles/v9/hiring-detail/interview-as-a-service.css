@@ -997,6 +997,7 @@
 /* Native disclosure preserves the handoff typography and works without scripts. */
 :where(.v9-hiring-iaas) .faq-q {
   list-style: none;
+  line-height: normal;
   cursor: pointer;
 }
 :where(.v9-hiring-iaas) .faq-q::-webkit-details-marker {
