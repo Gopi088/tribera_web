@@ -48,3 +48,17 @@
     scroll-behavior: auto !important;
   }
 }
+/* Allow the narrow single-column grid and native input intrinsics to shrink. */
+:where(.v9-sample) .sw-g > *,
+:where(.v9-sample) .sw-form > *,
+:where(.v9-sample) .sw-form label {
+  min-width: 0;
+}
+:where(.v9-sample) .sw-form input:not([type='hidden']):not(.sw-hp) {
+  width: 100%;
+  min-width: 0;
+}
+:where(.v9-sample) .sw-form .btn {
+  max-width: 100%;
+  white-space: normal;
+}
