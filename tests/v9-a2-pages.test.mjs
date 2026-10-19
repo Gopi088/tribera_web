@@ -272,4 +272,4 @@ try {
     await exited;
   }
 }
-console.log(`${name}: ${report.records.length} A1 page checks passed`);
+console.log(`${name}: ${report.records.length} A2 page checks passed`);
