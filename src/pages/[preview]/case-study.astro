@@ -1,0 +1,17 @@
+---
+import V9Layout from '../../layouts/V9Layout.astro';
+import CaseStudyPage from '../../components/v9/hiring-detail/CaseStudyPage.astro';
+import { previewLinks } from '../../data/v9/preview-links';
+export function getStaticPaths() {
+  return import.meta.env.DEV || process.env.V9_PREVIEW === '1' ? [{ params: { preview: '__v9' } }] : [];
+}
+---
+
+<V9Layout
+  title="Case study: five months open, closed in 22 days | Tribera"
+  description="A technical role saw 327 profiles in five months and no hire. One 45-minute intake and a written scorecard closed it in 22 days, with someone already passed over."
+  noindex
+  activeRoute="/services"
+  headerLinkOverrides={previewLinks}
+  footerLinkOverrides={previewLinks}><CaseStudyPage /></V9Layout
+>
