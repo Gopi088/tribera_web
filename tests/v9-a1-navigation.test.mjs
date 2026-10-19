@@ -1,0 +1,60 @@
+import assert from 'node:assert/strict';
+import { chromium, firefox, webkit } from 'playwright';
+const engine = process.env.BROWSER || 'chromium';
+const base = process.env.TEST_BASE_URL || 'http://127.0.0.1:4390';
+const browser = await { chromium, firefox, webkit }[engine].launch();
+const routes = ['services', 'interview-as-a-service', 'case-study'];
+let checks = 0;
+try {
+  for (const javaScriptEnabled of [true, false]) {
+    const page = await browser.newPage({
+      javaScriptEnabled,
+      reducedMotion: 'reduce',
+      viewport: { width: 1366, height: 900 },
+    });
+    for (const slug of routes) {
+      await page.goto(base + '/__v9/' + slug, { waitUntil: 'networkidle' });
+      const services = page
+        .getByRole('navigation', { name: 'Primary', exact: true })
+        .getByRole('link', { name: 'Services', exact: true });
+      assert.equal(await services.getAttribute('href'), '/__v9/services');
+      assert.equal(await services.getAttribute('aria-current'), slug === 'services' ? 'page' : null);
+      await services.click();
+      await page.waitForURL((url) => url.pathname.replace(/\/$/, '') === '/__v9/services');
+      assert.match(await page.locator('h1').innerText(), /Hire the people/);
+      await page.goto(base + '/__v9/' + slug, { waitUntil: 'networkidle' });
+      const ctas = await page
+        .locator('main a[href]')
+        .evaluateAll((links) =>
+          links
+            .map((a) => ({ href: a.getAttribute('href'), text: a.textContent.trim() }))
+            .filter((a) => a.href.startsWith('/contact'))
+        );
+      assert.ok(ctas.length > 0, slug + ': real enquiry destination');
+      for (const cta of ctas) {
+        const target = new URL(cta.href, base);
+        assert.equal(target.pathname, '/contact');
+        assert.ok(!target.searchParams.has('email'), 'No personal data in query');
+      }
+      const link = page.locator('main a[href^="/contact"]').first();
+      const expected = new URL(await link.getAttribute('href'), base);
+      await link.click();
+      await page.waitForURL((url) => url.pathname.replace(/\/$/, '') === '/contact');
+      assert.equal(new URL(page.url()).search, expected.search, 'Source query survives navigation');
+      assert.equal(await page.locator('h1').count(), 1);
+      assert.ok((await page.locator('form').count()) > 0, 'Existing working contact form is present');
+      checks++;
+    }
+    await page.goto(base + '/__v9/home', { waitUntil: 'networkidle' });
+    await page.getByRole('link', { name: 'See how each service works' }).click();
+    await page.waitForURL((url) => url.pathname.replace(/\/$/, '') === '/__v9/services');
+    assert.equal(await page.locator('.sv-door').count(), 4);
+    await page.close();
+  }
+  assert.equal(checks, 6);
+  console.log(
+    `${engine}: six hiring enquiry navigations preserve query URLs; legacy Contact notification context is not certified`
+  );
+} finally {
+  await browser.close();
+}

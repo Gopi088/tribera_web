@@ -1,4 +1,4 @@
-// Five-page preview journeys stay in v9; unavailable families use working legacy routes.
+// Accepted private preview journeys stay in v9; unavailable families use working legacy routes.
 export const previewLinks: Record<string, string> = {
   '/': '/__v9/home',
   '/#proof': '/__v9/home#proof',
@@ -9,7 +9,9 @@ export const previewLinks: Record<string, string> = {
   '/candidates#controls': '/__v9/candidates#controls',
   '/candidates#when': '/__v9/candidates#when',
   '/candidates#apply': '/__v9/candidates#apply',
-  '/case-study': '/services',
+  '/services': '/__v9/services',
+  '/interview-as-a-service': '/__v9/interview-as-a-service',
+  '/case-study': '/__v9/case-study',
   '/how-we-work-with-numbers': '/__v9/about',
   '/dpa': '/privacy',
 };

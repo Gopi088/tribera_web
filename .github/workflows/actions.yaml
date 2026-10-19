@@ -107,6 +107,33 @@ jobs:
           name: browser-${{ matrix.browser }}-${{ matrix.artifact }}
           path: artifacts/
 
+  a1-pages:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit, firefox]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: foundation-build
+          path: dist/
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: npm run test:migration:a1
+        env:
+          BROWSER: ${{ matrix.browser }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: a1-pages-${{ matrix.browser }}-evidence
+          path: artifacts/v9-a1/
+
   legacy-regression:
     needs: build
     runs-on: ubuntu-latest
@@ -136,7 +163,7 @@ jobs:
 
   migration-required:
     if: always()
-    needs: [check, unit, build, browser, legacy-regression]
+    needs: [check, unit, build, browser, a1-pages, legacy-regression]
     runs-on: ubuntu-latest
     steps:
       - name: Require every migration job to pass

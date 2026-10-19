@@ -1,0 +1,29 @@
+{
+  "scope": "A1 local resource ceilings, set before implementation measurements. Text uses gzip estimates; fonts/images raw bytes. Not hosted performance certification.",
+  "pages": {
+    "services": {
+      "htmlGzipBytes": 30000,
+      "cssGzipBytes": 40000,
+      "jsGzipBytes": 8000,
+      "fontBytes": 256000,
+      "imageBytes": 200000,
+      "otherBytes": 4096
+    },
+    "interview-as-a-service": {
+      "htmlGzipBytes": 24000,
+      "cssGzipBytes": 30000,
+      "jsGzipBytes": 8000,
+      "fontBytes": 256000,
+      "imageBytes": 100000,
+      "otherBytes": 4096
+    },
+    "case-study": {
+      "htmlGzipBytes": 24000,
+      "cssGzipBytes": 30000,
+      "jsGzipBytes": 8000,
+      "fontBytes": 256000,
+      "imageBytes": 100000,
+      "otherBytes": 4096
+    }
+  }
+}
