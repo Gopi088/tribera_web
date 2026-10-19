@@ -1,0 +1,16 @@
+---
+import V9Layout from '../../layouts/V9Layout.astro';
+import SamplePage from '../../components/v9/sample/SamplePage.astro';
+import { previewLinks } from '../../data/v9/preview-links';
+export function getStaticPaths() {
+  return import.meta.env.DEV || process.env.V9_PREVIEW === '1' ? [{ params: { preview: '__v9' } }] : [];
+}
+---
+
+<V9Layout
+  title="Sample candidate write-up | Tribera"
+  description="See page one of a sample Tribera candidate write-up. Request the complete sample by email."
+  noindex
+  headerLinkOverrides={previewLinks}
+  footerLinkOverrides={previewLinks}><SamplePage /></V9Layout
+>

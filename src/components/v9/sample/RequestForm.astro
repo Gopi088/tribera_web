@@ -1,0 +1,70 @@
+<form
+  class="sw-form"
+  id="swForm"
+  action="/.netlify/functions/sample-request-v9"
+  method="post"
+  novalidate
+  data-sample-form
+>
+  <p class="ql">Get the full sample</p>
+  <label for="sample-name"
+    ><span>Name</span><input
+      id="sample-name"
+      name="name"
+      autocomplete="name"
+      required
+      maxlength="120"
+      aria-describedby="sample-name-error"
+    /><span class="sw-field-error" id="sample-name-error" hidden></span></label
+  >
+  <label for="sample-email"
+    ><span>Work email</span><input
+      id="sample-email"
+      name="email"
+      type="email"
+      autocomplete="email"
+      required
+      maxlength="254"
+      placeholder="you@company.com"
+      aria-describedby="sample-email-error"
+    /><span class="sw-field-error" id="sample-email-error" hidden></span></label
+  >
+  <label for="sample-company"
+    ><span>Company</span><input
+      id="sample-company"
+      name="company"
+      autocomplete="organization"
+      required
+      maxlength="160"
+      aria-describedby="sample-company-error"
+    /><span class="sw-field-error" id="sample-company-error" hidden></span></label
+  >
+  <input
+    type="text"
+    name="website"
+    tabindex="-1"
+    autocomplete="off"
+    class="sw-hp"
+    aria-hidden="true"
+    aria-label="Leave this field empty"
+  />
+  <input type="hidden" name="botcheck" value="" />
+  <input type="hidden" name="form_loaded_at" value="" />
+  <input type="hidden" name="request_token" value="" />
+  <button class="btn btn-primary" type="submit" disabled>Email me the sample</button>
+  <p class="sw-note">One email with the PDF. We’ll only follow up if you ask us to. <a href="/privacy">Privacy</a></p>
+  <p class="sw-note sw-ready" data-sample-ready data-sample-status role="status">
+    JavaScript is needed for this form. You can also use the email request form below.
+  </p>
+  <p class="sw-err" id="swErr" role="alert" hidden></p>
+</form>
+<div class="sw-done" id="swDone" hidden role="status" tabindex="-1">
+  <b>On its way.</b><p>
+    Check your inbox in a few minutes. If you’d like to talk about a role meanwhile, <a href="/contact">write to us</a>.
+  </p>
+</div>
+<p class="sw-native">
+  <a href="/.netlify/functions/sample-form-v9">Use the email request form</a><span
+    >Works without JavaScript. Submitting it requests a real email with the sample.</span
+  >
+</p>

@@ -1,0 +1,50 @@
+:where(.v9-sample) [hidden] {
+  display: none !important;
+}
+:where(.v9-sample) .sw-form input[disabled],
+:where(.v9-sample) .sw-form button[disabled] {
+  cursor: not-allowed;
+}
+:where(.v9-sample) .sw-form button[disabled] {
+  opacity: 0.65;
+}
+:where(.v9-sample) .sw-form .sw-field-error {
+  color: var(--red);
+  font-size: 0.8rem;
+}
+:where(.v9-sample) .sw-ready {
+  margin: 0;
+}
+:where(.v9-sample) .sw-native {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+:where(.v9-sample) .sw-native a {
+  display: inline-block;
+  min-height: 40px;
+  padding-block: 0.5rem;
+  text-underline-offset: 3px;
+  color: var(--ink);
+}
+:where(.v9-sample) .sw-native span {
+  display: block;
+}
+:where(.v9-sample) :focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 4px;
+}
+:where(.v9-sample) .sw-done:focus {
+  outline: 2px solid var(--red);
+  outline-offset: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where(.v9-sample) *,
+  :where(.v9-sample) *::before,
+  :where(.v9-sample) *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
