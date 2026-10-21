@@ -1,0 +1,27 @@
+{
+  "head": "590be3ced15046df6bdd8d52b804d6b3cd07e4cf",
+  "files": {
+    "src/layouts/V9Layout.astro": "92c66f4988c6d4c8261e6fdd2caae5689416edeae1887c5b3e46850c219ffea7",
+    "src/components/v9/content/Content.astro": "b9a15441b255f98edec1130e486f251866ec6cac3381482c470fa8c783c28a39",
+    "src/assets/styles/v9/content-pages.css": "dd3a3c6a715dc91d875c8f4a0e1715b96fb184d4a749b9d047f03d401489bae5",
+    "src/scripts/v9/content-pages.ts": "d8d0fa31926e59cd6e61a7cbf02f787b5f0b79eba79308e929743474e0f27713",
+    "src/pages/careers.astro": "1e357590f44c195ac1601ea45e0e41a1c6f72cde2b9c0aa641fe5344bf01aa1d",
+    "src/pages/careers/[slug].astro": "65a88257ec9d4cb4d525b7877d84452be0e5c0c1bae45fc3e909f836df5358e9",
+    "src/pages/functions/index.astro": "1cefc9420ce830cfdd7f61d829c0e68b6e18d96128e2c133c2447f3a107a8628",
+    "src/pages/functions/[slug].astro": "e765e86a7cd9bb75a9ab74ce8cc57577795242ec6532831142b37dcc3fb88c9e",
+    "src/pages/blog/index.astro": "bdd6a23f068e5c2ba273d0f3781b0e1873dbb086f936f9a619bbb01346c10b2f",
+    "src/pages/blog/rethinking-hiring-metrics-signal-efficiency.astro": "7e4c1b2fdcf2e8743c8cf406f6d31f5cc5340793b00cc093914cd9f878b01cf7",
+    "src/pages/[...blog]/index.astro": "885050dfc51fc8f165cf58caa3d2f1bd26334289d7c5a2b06d6a277112c61f63",
+    "src/pages/candidates/start.astro": "5a6e163dc5f9e5a2e52410293d5bb39d20ec57ec1d7c9184c9c2ef87cf1f1470",
+    "src/components/blog/TopicIndex.astro": "ccba5850700eaedf1c8a0d3c2fb882eae78bc150e63775808e133195f08eaf8e",
+    "src/components/blog/FieldNotesList.astro": "ebfa908304d4785621e2609b08151d0777e597dca6628366689deaa2a8bd02e3",
+    "src/components/blog/HeroFilters.astro": "16869c433008f6f53b8c3bf3b38a7e73d8e3b9c783cb9eca5713ec0bff7c9a8e",
+    "src/pages/category/[category]/[...page].astro": "d85c08d93dfee92ef5fc9bd61375b7476f0097047b2641ef4cd960749831c423",
+    "src/pages/tag/[tag]/[...page].astro": "6dea1e5acd85b448dd8e4efdb978f8af4ca13477999b2b693b41015a2c7f7edb",
+    "src/pages/404.astro": "3c4ec11369358d3f88ad451f02746df8d7e401fa45041934f8906c3c2b626c09",
+    "scripts/test-v9-public.mjs": "92b31b5746482fedd042e2926d7cf16193293022078b1dbcfbe0f8c396059acc",
+    "tests/v9-content-pages.test.mjs": "631771dd6df6f3c8b4a2abdef6babfe619f352bc65e2ff96201454aee3633622",
+    ".github/workflows/actions.yaml": "918d9ff29c8d4752d3ec5ebf4d8df5055a448be6f9592b3aa0d2341703555121",
+    "tests/reviewed-suite-migration.json": "acf012091638eb192db501e215a16f58aef43ffec56d1ec71366b702daddf14f"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "duration_api_ms": 45353,
+  "stop_reason": "end_turn",
+  "session_id": "f85ee656-a2b2-419e-a7f7-0a9e6bc7ccf8",
+  "total_cost_usd": 0.410022,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 79658,
+    "cache_read_input_tokens": 263630,
+    "output_tokens": 3864,
+    "output_tokens_details": { "thinking_tokens": 1409 },
+    "server_tool_use": { "web_search_requests": 0, "web_fetch_requests": 0 },
+    "service_tier": "standard",
+    "cache_creation": { "ephemeral_1h_input_tokens": 79658, "ephemeral_5m_input_tokens": 0 },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 1547,
+        "cache_read_input_tokens": 68919,
+        "cache_creation_input_tokens": 3105,
+        "cache_creation": { "ephemeral_5m_input_tokens": 0, "ephemeral_1h_input_tokens": 3105 },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-5": {
+      "inputTokens": 12,
+      "outputTokens": 3864,
+      "cacheReadInputTokens": 263630,
+      "cacheCreationInputTokens": 79658,
+      "webSearchRequests": 0,
+      "costUSD": 0.410022,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 1409,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": { "background": 0, "foreground": 0, "unset": 0 },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": { "parent": 0, "user": 0, "system": 0 },
+    "refused": { "depth_limit": 0, "concurrency_limit": 0, "budget": 0 },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 18,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "These four routes match closely in structure, section completeness, chart presence, and spacing. I've now reviewed all four routes requested in Stage 1.\n\n## Stage 1 findings — Desktop (1366px) visual comparison\n\n**Images actually read:**\n- `artifacts/v9-sectors/reference/industries-1366.png` + `artifacts/v9-sectors/chromium/industries-1366.png`\n- `artifacts/v9-sectors/reference/industries-ai-data-1366.png` + `artifacts/v9-sectors/chromium/industries-ai-data-1366.png`\n- `artifacts/v9-sectors/reference/industries-banking-financial-services-1366.png` + `artifacts/v9-sectors/chromium/industries-banking-financial-services-1366.png`\n- `artifacts/v9-sectors/reference/industries-consumer-digital-commerce-1366.png` + `artifacts/v9-sectors/chromium/industries-consumer-digital-commerce-1366.png`\n\n### industries — ACCEPT (this stage)\nSection-for-section match: hero, 12-line chart, 12 sector cards (bars, counts, copy), CTA band, footer. Chart selection state differs by design (candidate shows a selected sector line \"Banking & financial services\" with an explicit callout line and a full per-skill percentage breakdown row beneath the chart; reference shows the unselected default state). This matches the documented \"explicit selected chart values\" intentional difference. No layout, spacing, or illustration defects found. Page height differs slightly (4133px ref vs 4192px candidate), consistent with the extra value-summary row.\n\n### industries-ai-data — ACCEPT (this stage)\nAll sections present and aligned: hero bar panel, 30% stat block, compare panel, \"Three things a CV can't tell you,\" \"Three questions,\" roles/bench grid, FAQ, closing CTA, sources, footer. One wording difference worth flagging as **confirmed, low-severity, informational, not a defect**: in the \"Compare with\" panel, reference phrases the sector label informally — \"against 34% in pharma.\" — while candidate uses the full normalized label \"against 34% in Pharmaceutical.\" This is consistent with the review doc's statement that \"marketing wording is normalized\" and the sector picker pill in both images is labeled \"Pharmaceutical,\" so this looks like a deliberate normalization rather than a bug. Flagging only because it's a visible text difference, not because it's wrong.\n\n### industries-banking-financial-services — ACCEPT (this stage)\nFull section match (hero, stat callout, compare panel, four-item \"what a CV can't tell you,\" three questions, roles/bench, FAQ, CTA, sources, footer). The compare-panel sentence differs in style — reference: \"Controls and risk carries 30% here, five times its weight in product and SaaS\"; candidate: \"Controls and risk carries 30% here, against 6% in Product & SaaS.\" The two are numerically consistent (30% is 5× 6%), so this reads as the same documented intentional pattern (ratio phrasing vs. explicit selected-value phrasing), not a data defect.\n\n### industries-consumer-digital-commerce — ACCEPT (this stage)\nFull section match (hero, stat block, compare panel, three-item breakdown, three questions, roles/bench, FAQ, CTA, sources, footer). No layout or content gaps found. Note the compare panel in both reference and candidate happens to have \"Pharmaceutical\" selected with matching numbers (8% vs 34%) and matching phrasing style this time — no wording discrepancy here, unlike the ai-data page.\n\n### Caveats\n- These are static, full-page PNGs; I cannot confirm chart-draw animation, hover interactions, or sector-switching transitions from them — that would need the archived test evidence, which I have not inspected in this stage.\n- At this downscale (full page ~1366×6600–6900 → displayed ~400×2000, i.e. ~3.3× reduction), small body text is legible in the regions I examined, but I have not pixel-inspected every line of every paragraph; I did not detect garbled or cut-off text in the areas checked.\n- Per the review doc, candidate FAQs intentionally show only the first answer expanded while reference shows all expanded — confirmed as expected in all three detail pages checked, not a defect.\n\nNo REVISE-level defects found in Stage 1 for these four routes. Ready to continue to the remaining 10 routes (other sector details, GCC alias, Intelligence) or move to Stage 2 (mobile/responsive, illustrations detail, etc.) — let me know which you'd like next.",
+  "ttft_ms": 4429,
+  "type": "result",
+  "duration_ms": 47337,
+  "uuid": "01fb7971-975c-4225-98ed-106bda8e4f63",
+  "ttft_stream_ms": 4093,
+  "time_to_request_ms": 887,
+  "first_content_frame_ms": 4093,
+  "queued_turn_count": 0,
+  "result_index": 0
+}

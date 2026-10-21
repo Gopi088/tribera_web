@@ -1,0 +1,1179 @@
+---
+import { v9Href } from '~/data/v9/routes';
+import { sectors, skills, sectorValues } from '../../../data/v9/sectors';
+import type { Sector } from '../../../data/v9/sectors';
+import '../../../assets/styles/v9/editorial/bfsi.css';
+import SectorWeights from './SectorWeights.astro';
+import '../../../assets/styles/v9/editorial/behavior.css';
+interface Props {
+  sector: Sector;
+}
+const { sector } = Astro.props;
+const values = sectorValues(sector);
+const top = values.indexOf(Math.max(...values));
+const comparison = sectors.find((s) => s.slug === sector.copy.comparisonSlug)!;
+const otherValues = sectorValues(comparison);
+const differences = values.map((v, i) => Math.abs(v - otherValues[i]));
+const difference = differences.indexOf(Math.max(...differences));
+const comparisonRead = `${skills[difference]} carries ${values[difference]}% here, against ${otherValues[difference]}% in ${comparison.name}.`;
+const contact = v9Href(`/__v9/contact?sector=${sector.slug}`, Astro.url.pathname);
+---
+
+<div class="v9-editorial v9-editorial-bfsi">
+  <SectorWeights />
+
+  <svg aria-hidden="true" height="0" style="position:absolute" width="0"
+    ><filter height="120%" id="ink" width="120%" x="-10%" y="-10%"
+      ><feTurbulence baseFrequency=".85" numOctaves="2" result="n" seed="7" type="fractalNoise"
+      ></feTurbulence><feColorMatrix
+        in="n"
+        result="m"
+        type="matrix"
+        values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.3 1.38"></feColorMatrix><feComposite
+        in="SourceGraphic"
+        in2="m"
+        operator="in"></feComposite></filter
+    ></svg
+  >
+
+  <!-- HERO (compact) -->
+  <header class="hx hx--c hx-field g-white" id="editorial-top">
+    <div class="wrap">
+      <div
+        class:list={['eyebrow', 'ix-breadcrumb', { 'ix-breadcrumb--long': sector.name.length > 24 }]}
+        data-v9-reveal=""
+      >
+        <span class="tick">\</span>
+        <a class="ix-crumb" href={v9Href('/__v9/industries', Astro.url.pathname)}>Industries</a><span class="ix-current"
+          >· {sector.name}</span
+        >
+      </div>
+      <div class="hx-c-g ix-hx has-field">
+        <div aria-hidden="true" class="hero-field">
+          <svg viewBox="0 0 740 190"
+            ><rect fill="#131313" fill-opacity="0.021" height="14" rx="3" width="14" x="0" y="0"></rect><rect
+              fill="#131313"
+              fill-opacity="0.032"
+              height="14"
+              rx="3"
+              width="14"
+              x="22"
+              y="0"></rect><rect fill="#131313" fill-opacity="0.025" height="14" rx="3" width="14" x="44" y="0"
+            ></rect><rect fill="#131313" fill-opacity="0.034" height="14" rx="3" width="14" x="66" y="0"></rect><rect
+              fill="#131313"
+              fill-opacity="0.035"
+              height="14"
+              rx="3"
+              width="14"
+              x="88"
+              y="0"></rect><rect fill="#131313" fill-opacity="0.014" height="14" rx="3" width="14" x="110" y="0"
+            ></rect><rect fill="#131313" fill-opacity="0.012" height="14" rx="3" width="14" x="132" y="0"></rect><rect
+              fill="#131313"
+              fill-opacity="0.042"
+              height="14"
+              rx="3"
+              width="14"
+              x="154"
+              y="0"></rect><rect fill="#131313" fill-opacity="0.021" height="14" rx="3" width="14" x="176" y="0"
+            ></rect><rect fill="#131313" fill-opacity="0.020" height="14" rx="3" width="14" x="198" y="0"></rect><rect
+              fill="#131313"
+              fill-opacity="0.048"
+              height="14"
+              rx="3"
+              width="14"
+              x="220"
+              y="0"></rect><rect fill="#131313" fill-opacity="0.032" height="14" rx="3" width="14" x="242" y="0"
+            ></rect><rect fill="#131313" fill-opacity="0.029" height="14" rx="3" width="14" x="264" y="0"></rect><rect
+              fill="#131313"
+              fill-opacity="0.042"
+              height="14"
+              rx="3"
+              width="14"
+              x="286"
+              y="0"></rect><rect fill="#131313" fill-opacity="0.029" height="14" rx="3" width="14" x="308" y="0"
+            ></rect><rect fill="#131313" fill-opacity="0.035" height="14" rx="3" width="14" x="330" y="0"></rect><rect
+              fill="#131313"
+              fill-opacity="0.017"
+              height="14"
+              rx="3"
+              width="14"
+              x="352"
+              y="0"></rect><rect fill="#131313" fill-opacity="0.035" height="14" rx="3" width="14" x="374" y="0"
+            ></rect><rect fill="#131313" fill-opacity="0.043" height="14" rx="3" width="14" x="396" y="0"></rect><rect
+              fill="#131313"
+              fill-opacity="0.031"
+              height="14"
+              rx="3"
+              width="14"
+              x="418"
+              y="0"></rect><rect fill="#131313" fill-opacity="0.039" height="14" rx="3" width="14" x="440" y="0"
+            ></rect><rect fill="#131313" fill-opacity="0.036" height="14" rx="3" width="14" x="462" y="0"></rect><rect
+              fill="#131313"
+              fill-opacity="0.014"
+              height="14"
+              rx="3"
+              width="14"
+              x="484"
+              y="0"></rect><rect fill="#131313" fill-opacity="0.039" height="14" rx="3" width="14" x="506" y="0"
+            ></rect><rect fill="#131313" fill-opacity="0.033" height="14" rx="3" width="14" x="528" y="0"></rect><rect
+              fill="#131313"
+              fill-opacity="0.023"
+              height="14"
+              rx="3"
+              width="14"
+              x="550"
+              y="0"></rect><rect fill="#131313" fill-opacity="0.013" height="14" rx="3" width="14" x="572" y="0"
+            ></rect><rect fill="#131313" fill-opacity="0.043" height="14" rx="3" width="14" x="594" y="0"></rect><rect
+              fill="#131313"
+              fill-opacity="0.029"
+              height="14"
+              rx="3"
+              width="14"
+              x="616"
+              y="0"></rect><rect fill="#131313" fill-opacity="0.038" height="14" rx="3" width="14" x="638" y="0"
+            ></rect><rect fill="#131313" fill-opacity="0.044" height="14" rx="3" width="14" x="660" y="0"></rect><rect
+              fill="#131313"
+              fill-opacity="0.038"
+              height="14"
+              rx="3"
+              width="14"
+              x="682"
+              y="0"></rect><rect fill="#131313" fill-opacity="0.045" height="14" rx="3" width="14" x="704" y="0"
+            ></rect><rect fill="#131313" fill-opacity="0.026" height="14" rx="3" width="14" x="726" y="0"></rect><rect
+              fill="#131313"
+              fill-opacity="0.041"
+              height="14"
+              rx="3"
+              width="14"
+              x="0"
+              y="22"></rect><rect fill="#131313" fill-opacity="0.028" height="14" rx="3" width="14" x="22" y="22"
+            ></rect><rect fill="#131313" fill-opacity="0.046" height="14" rx="3" width="14" x="44" y="22"></rect><rect
+              fill="#131313"
+              fill-opacity="0.044"
+              height="14"
+              rx="3"
+              width="14"
+              x="66"
+              y="22"></rect><rect fill="#131313" fill-opacity="0.016" height="14" rx="3" width="14" x="88" y="22"
+            ></rect><rect fill="#131313" fill-opacity="0.017" height="14" rx="3" width="14" x="110" y="22"></rect><rect
+              fill="#131313"
+              fill-opacity="0.020"
+              height="14"
+              rx="3"
+              width="14"
+              x="132"
+              y="22"></rect><rect fill="#131313" fill-opacity="0.047" height="14" rx="3" width="14" x="154" y="22"
+            ></rect><rect fill="#131313" fill-opacity="0.028" height="14" rx="3" width="14" x="176" y="22"></rect><rect
+              fill="#131313"
+              fill-opacity="0.035"
+              height="14"
+              rx="3"
+              width="14"
+              x="198"
+              y="22"></rect><rect fill="#131313" fill-opacity="0.023" height="14" rx="3" width="14" x="220" y="22"
+            ></rect><rect fill="#131313" fill-opacity="0.030" height="14" rx="3" width="14" x="242" y="22"></rect><rect
+              fill="#131313"
+              fill-opacity="0.026"
+              height="14"
+              rx="3"
+              width="14"
+              x="264"
+              y="22"></rect><rect fill="#131313" fill-opacity="0.025" height="14" rx="3" width="14" x="286" y="22"
+            ></rect><rect fill="#131313" fill-opacity="0.033" height="14" rx="3" width="14" x="308" y="22"></rect><rect
+              fill="#131313"
+              fill-opacity="0.032"
+              height="14"
+              rx="3"
+              width="14"
+              x="330"
+              y="22"></rect><rect fill="#131313" fill-opacity="0.033" height="14" rx="3" width="14" x="352" y="22"
+            ></rect><rect fill="#131313" fill-opacity="0.045" height="14" rx="3" width="14" x="374" y="22"></rect><rect
+              fill="#131313"
+              fill-opacity="0.037"
+              height="14"
+              rx="3"
+              width="14"
+              x="396"
+              y="22"></rect><rect fill="#131313" fill-opacity="0.045" height="14" rx="3" width="14" x="418" y="22"
+            ></rect><rect fill="#131313" fill-opacity="0.043" height="14" rx="3" width="14" x="440" y="22"></rect><rect
+              fill="#131313"
+              fill-opacity="0.048"
+              height="14"
+              rx="3"
+              width="14"
+              x="462"
+              y="22"></rect><rect fill="#131313" fill-opacity="0.036" height="14" rx="3" width="14" x="484" y="22"
+            ></rect><rect fill="#131313" fill-opacity="0.018" height="14" rx="3" width="14" x="506" y="22"></rect><rect
+              fill="#131313"
+              fill-opacity="0.043"
+              height="14"
+              rx="3"
+              width="14"
+              x="528"
+              y="22"></rect><rect fill="#131313" fill-opacity="0.047" height="14" rx="3" width="14" x="550" y="22"
+            ></rect><rect fill="#131313" fill-opacity="0.045" height="14" rx="3" width="14" x="572" y="22"></rect><rect
+              fill="#131313"
+              fill-opacity="0.032"
+              height="14"
+              rx="3"
+              width="14"
+              x="594"
+              y="22"></rect><rect fill="#131313" fill-opacity="0.038" height="14" rx="3" width="14" x="616" y="22"
+            ></rect><rect fill="#131313" fill-opacity="0.020" height="14" rx="3" width="14" x="638" y="22"></rect><rect
+              fill="#131313"
+              fill-opacity="0.042"
+              height="14"
+              rx="3"
+              width="14"
+              x="660"
+              y="22"></rect><rect fill="#131313" fill-opacity="0.033" height="14" rx="3" width="14" x="682" y="22"
+            ></rect><rect fill="#131313" fill-opacity="0.022" height="14" rx="3" width="14" x="704" y="22"></rect><rect
+              fill="#131313"
+              fill-opacity="0.014"
+              height="14"
+              rx="3"
+              width="14"
+              x="726"
+              y="22"></rect><rect fill="#131313" fill-opacity="0.043" height="14" rx="3" width="14" x="0" y="44"
+            ></rect><rect fill="#131313" fill-opacity="0.048" height="14" rx="3" width="14" x="22" y="44"></rect><rect
+              fill="#131313"
+              fill-opacity="0.015"
+              height="14"
+              rx="3"
+              width="14"
+              x="44"
+              y="44"></rect><rect fill="#131313" fill-opacity="0.041" height="14" rx="3" width="14" x="66" y="44"
+            ></rect><rect fill="#131313" fill-opacity="0.027" height="14" rx="3" width="14" x="88" y="44"></rect><rect
+              fill="#131313"
+              fill-opacity="0.017"
+              height="14"
+              rx="3"
+              width="14"
+              x="110"
+              y="44"></rect><rect fill="#131313" fill-opacity="0.023" height="14" rx="3" width="14" x="132" y="44"
+            ></rect><rect fill="#131313" fill-opacity="0.032" height="14" rx="3" width="14" x="154" y="44"></rect><rect
+              fill="#131313"
+              fill-opacity="0.040"
+              height="14"
+              rx="3"
+              width="14"
+              x="176"
+              y="44"></rect><rect fill="#131313" fill-opacity="0.043" height="14" rx="3" width="14" x="198" y="44"
+            ></rect><rect fill="#131313" fill-opacity="0.014" height="14" rx="3" width="14" x="220" y="44"></rect><rect
+              fill="#131313"
+              fill-opacity="0.034"
+              height="14"
+              rx="3"
+              width="14"
+              x="242"
+              y="44"></rect><rect fill="#131313" fill-opacity="0.014" height="14" rx="3" width="14" x="264" y="44"
+            ></rect><rect fill="#131313" fill-opacity="0.038" height="14" rx="3" width="14" x="286" y="44"></rect><rect
+              fill="#131313"
+              fill-opacity="0.024"
+              height="14"
+              rx="3"
+              width="14"
+              x="308"
+              y="44"></rect><rect fill="#131313" fill-opacity="0.044" height="14" rx="3" width="14" x="330" y="44"
+            ></rect><rect fill="#131313" fill-opacity="0.047" height="14" rx="3" width="14" x="352" y="44"></rect><rect
+              fill="#131313"
+              fill-opacity="0.030"
+              height="14"
+              rx="3"
+              width="14"
+              x="374"
+              y="44"></rect><rect fill="#131313" fill-opacity="0.048" height="14" rx="3" width="14" x="396" y="44"
+            ></rect><rect fill="#131313" fill-opacity="0.023" height="14" rx="3" width="14" x="418" y="44"></rect><rect
+              fill="#131313"
+              fill-opacity="0.015"
+              height="14"
+              rx="3"
+              width="14"
+              x="440"
+              y="44"></rect><rect fill="#131313" fill-opacity="0.034" height="14" rx="3" width="14" x="462" y="44"
+            ></rect><rect fill="#131313" fill-opacity="0.013" height="14" rx="3" width="14" x="484" y="44"></rect><rect
+              fill="#131313"
+              fill-opacity="0.019"
+              height="14"
+              rx="3"
+              width="14"
+              x="506"
+              y="44"></rect><rect fill="#131313" fill-opacity="0.027" height="14" rx="3" width="14" x="528" y="44"
+            ></rect><rect fill="#131313" fill-opacity="0.034" height="14" rx="3" width="14" x="550" y="44"></rect><rect
+              fill="#131313"
+              fill-opacity="0.018"
+              height="14"
+              rx="3"
+              width="14"
+              x="572"
+              y="44"></rect><rect fill="#131313" fill-opacity="0.014" height="14" rx="3" width="14" x="594" y="44"
+            ></rect><rect fill="#131313" fill-opacity="0.043" height="14" rx="3" width="14" x="616" y="44"></rect><rect
+              fill="#131313"
+              fill-opacity="0.023"
+              height="14"
+              rx="3"
+              width="14"
+              x="638"
+              y="44"></rect><rect fill="#131313" fill-opacity="0.047" height="14" rx="3" width="14" x="660" y="44"
+            ></rect><rect fill="#131313" fill-opacity="0.044" height="14" rx="3" width="14" x="682" y="44"></rect><rect
+              fill="#131313"
+              fill-opacity="0.026"
+              height="14"
+              rx="3"
+              width="14"
+              x="704"
+              y="44"></rect><rect fill="#131313" fill-opacity="0.029" height="14" rx="3" width="14" x="726" y="44"
+            ></rect><rect fill="#131313" fill-opacity="0.031" height="14" rx="3" width="14" x="0" y="66"></rect><rect
+              fill="#131313"
+              fill-opacity="0.035"
+              height="14"
+              rx="3"
+              width="14"
+              x="22"
+              y="66"></rect><rect fill="#131313" fill-opacity="0.033" height="14" rx="3" width="14" x="44" y="66"
+            ></rect><rect fill="#131313" fill-opacity="0.032" height="14" rx="3" width="14" x="66" y="66"></rect><rect
+              fill="#131313"
+              fill-opacity="0.034"
+              height="14"
+              rx="3"
+              width="14"
+              x="88"
+              y="66"></rect><rect fill="#131313" fill-opacity="0.046" height="14" rx="3" width="14" x="110" y="66"
+            ></rect><rect fill="#131313" fill-opacity="0.030" height="14" rx="3" width="14" x="132" y="66"></rect><rect
+              fill="#131313"
+              fill-opacity="0.028"
+              height="14"
+              rx="3"
+              width="14"
+              x="154"
+              y="66"></rect><rect fill="#131313" fill-opacity="0.038" height="14" rx="3" width="14" x="176" y="66"
+            ></rect><rect fill="#131313" fill-opacity="0.021" height="14" rx="3" width="14" x="198" y="66"></rect><rect
+              fill="#131313"
+              fill-opacity="0.023"
+              height="14"
+              rx="3"
+              width="14"
+              x="220"
+              y="66"></rect><rect fill="#131313" fill-opacity="0.047" height="14" rx="3" width="14" x="242" y="66"
+            ></rect><rect fill="#131313" fill-opacity="0.031" height="14" rx="3" width="14" x="264" y="66"></rect><rect
+              fill="#131313"
+              fill-opacity="0.032"
+              height="14"
+              rx="3"
+              width="14"
+              x="286"
+              y="66"></rect><rect fill="#131313" fill-opacity="0.012" height="14" rx="3" width="14" x="308" y="66"
+            ></rect><rect fill="#131313" fill-opacity="0.027" height="14" rx="3" width="14" x="330" y="66"></rect><rect
+              fill="#131313"
+              fill-opacity="0.033"
+              height="14"
+              rx="3"
+              width="14"
+              x="352"
+              y="66"></rect><rect fill="#131313" fill-opacity="0.013" height="14" rx="3" width="14" x="374" y="66"
+            ></rect><rect fill="#131313" fill-opacity="0.034" height="14" rx="3" width="14" x="396" y="66"></rect><rect
+              fill="#131313"
+              fill-opacity="0.035"
+              height="14"
+              rx="3"
+              width="14"
+              x="418"
+              y="66"></rect><rect fill="#131313" fill-opacity="0.014" height="14" rx="3" width="14" x="440" y="66"
+            ></rect><rect fill="#131313" fill-opacity="0.035" height="14" rx="3" width="14" x="462" y="66"></rect><rect
+              fill="#131313"
+              fill-opacity="0.029"
+              height="14"
+              rx="3"
+              width="14"
+              x="484"
+              y="66"></rect><rect fill="#131313" fill-opacity="0.036" height="14" rx="3" width="14" x="506" y="66"
+            ></rect><rect fill="#131313" fill-opacity="0.025" height="14" rx="3" width="14" x="528" y="66"></rect><rect
+              fill="#131313"
+              fill-opacity="0.037"
+              height="14"
+              rx="3"
+              width="14"
+              x="550"
+              y="66"></rect><rect fill="#131313" fill-opacity="0.039" height="14" rx="3" width="14" x="572" y="66"
+            ></rect><rect fill="#131313" fill-opacity="0.013" height="14" rx="3" width="14" x="594" y="66"></rect><rect
+              fill="#131313"
+              fill-opacity="0.014"
+              height="14"
+              rx="3"
+              width="14"
+              x="616"
+              y="66"></rect><rect fill="#131313" fill-opacity="0.036" height="14" rx="3" width="14" x="638" y="66"
+            ></rect><rect fill="#131313" fill-opacity="0.047" height="14" rx="3" width="14" x="660" y="66"></rect><rect
+              fill="#131313"
+              fill-opacity="0.021"
+              height="14"
+              rx="3"
+              width="14"
+              x="682"
+              y="66"></rect><rect fill="#131313" fill-opacity="0.028" height="14" rx="3" width="14" x="704" y="66"
+            ></rect><rect fill="#131313" fill-opacity="0.033" height="14" rx="3" width="14" x="726" y="66"></rect><rect
+              fill="#131313"
+              fill-opacity="0.024"
+              height="14"
+              rx="3"
+              width="14"
+              x="0"
+              y="88"></rect><rect fill="#131313" fill-opacity="0.025" height="14" rx="3" width="14" x="22" y="88"
+            ></rect><rect fill="#131313" fill-opacity="0.023" height="14" rx="3" width="14" x="44" y="88"></rect><rect
+              fill="#131313"
+              fill-opacity="0.025"
+              height="14"
+              rx="3"
+              width="14"
+              x="66"
+              y="88"></rect><rect fill="#131313" fill-opacity="0.033" height="14" rx="3" width="14" x="88" y="88"
+            ></rect><rect fill="#131313" fill-opacity="0.023" height="14" rx="3" width="14" x="110" y="88"></rect><rect
+              fill="#131313"
+              fill-opacity="0.026"
+              height="14"
+              rx="3"
+              width="14"
+              x="132"
+              y="88"></rect><rect fill="#131313" fill-opacity="0.040" height="14" rx="3" width="14" x="154" y="88"
+            ></rect><rect fill="#131313" fill-opacity="0.013" height="14" rx="3" width="14" x="176" y="88"></rect><rect
+              fill="#131313"
+              fill-opacity="0.032"
+              height="14"
+              rx="3"
+              width="14"
+              x="198"
+              y="88"></rect><rect fill="#131313" fill-opacity="0.038" height="14" rx="3" width="14" x="220" y="88"
+            ></rect><rect fill="#131313" fill-opacity="0.023" height="14" rx="3" width="14" x="242" y="88"></rect><rect
+              fill="#131313"
+              fill-opacity="0.020"
+              height="14"
+              rx="3"
+              width="14"
+              x="264"
+              y="88"></rect><rect fill="#131313" fill-opacity="0.041" height="14" rx="3" width="14" x="286" y="88"
+            ></rect><rect fill="#131313" fill-opacity="0.021" height="14" rx="3" width="14" x="308" y="88"></rect><rect
+              fill="#131313"
+              fill-opacity="0.019"
+              height="14"
+              rx="3"
+              width="14"
+              x="330"
+              y="88"></rect><rect fill="#131313" fill-opacity="0.028" height="14" rx="3" width="14" x="352" y="88"
+            ></rect><rect fill="#131313" fill-opacity="0.037" height="14" rx="3" width="14" x="374" y="88"></rect><rect
+              fill="#131313"
+              fill-opacity="0.016"
+              height="14"
+              rx="3"
+              width="14"
+              x="396"
+              y="88"></rect><rect fill="#131313" fill-opacity="0.024" height="14" rx="3" width="14" x="418" y="88"
+            ></rect><rect fill="#131313" fill-opacity="0.024" height="14" rx="3" width="14" x="440" y="88"></rect><rect
+              fill="#131313"
+              fill-opacity="0.042"
+              height="14"
+              rx="3"
+              width="14"
+              x="462"
+              y="88"></rect><rect fill="#131313" fill-opacity="0.028" height="14" rx="3" width="14" x="484" y="88"
+            ></rect><rect fill="#131313" fill-opacity="0.043" height="14" rx="3" width="14" x="506" y="88"></rect><rect
+              fill="#131313"
+              fill-opacity="0.018"
+              height="14"
+              rx="3"
+              width="14"
+              x="528"
+              y="88"></rect><rect fill="#131313" fill-opacity="0.024" height="14" rx="3" width="14" x="550" y="88"
+            ></rect><rect fill="#131313" fill-opacity="0.035" height="14" rx="3" width="14" x="572" y="88"></rect><rect
+              fill="#131313"
+              fill-opacity="0.044"
+              height="14"
+              rx="3"
+              width="14"
+              x="594"
+              y="88"></rect><rect fill="#131313" fill-opacity="0.028" height="14" rx="3" width="14" x="616" y="88"
+            ></rect><rect fill="#131313" fill-opacity="0.020" height="14" rx="3" width="14" x="638" y="88"></rect><rect
+              fill="#131313"
+              fill-opacity="0.016"
+              height="14"
+              rx="3"
+              width="14"
+              x="660"
+              y="88"></rect><rect fill="#131313" fill-opacity="0.031" height="14" rx="3" width="14" x="682" y="88"
+            ></rect><rect fill="#131313" fill-opacity="0.019" height="14" rx="3" width="14" x="704" y="88"></rect><rect
+              fill="#131313"
+              fill-opacity="0.041"
+              height="14"
+              rx="3"
+              width="14"
+              x="726"
+              y="88"></rect><rect fill="#131313" fill-opacity="0.042" height="14" rx="3" width="14" x="0" y="110"
+            ></rect><rect fill="#131313" fill-opacity="0.019" height="14" rx="3" width="14" x="22" y="110"></rect><rect
+              fill="#131313"
+              fill-opacity="0.022"
+              height="14"
+              rx="3"
+              width="14"
+              x="44"
+              y="110"></rect><rect fill="#131313" fill-opacity="0.041" height="14" rx="3" width="14" x="66" y="110"
+            ></rect><rect fill="#131313" fill-opacity="0.035" height="14" rx="3" width="14" x="88" y="110"></rect><rect
+              fill="#131313"
+              fill-opacity="0.041"
+              height="14"
+              rx="3"
+              width="14"
+              x="110"
+              y="110"></rect><rect fill="#131313" fill-opacity="0.024" height="14" rx="3" width="14" x="132" y="110"
+            ></rect><rect fill="#131313" fill-opacity="0.017" height="14" rx="3" width="14" x="154" y="110"></rect><rect
+              fill="#131313"
+              fill-opacity="0.023"
+              height="14"
+              rx="3"
+              width="14"
+              x="176"
+              y="110"></rect><rect fill="#131313" fill-opacity="0.041" height="14" rx="3" width="14" x="198" y="110"
+            ></rect><rect fill="#131313" fill-opacity="0.022" height="14" rx="3" width="14" x="220" y="110"></rect><rect
+              fill="#131313"
+              fill-opacity="0.024"
+              height="14"
+              rx="3"
+              width="14"
+              x="242"
+              y="110"></rect><rect fill="#131313" fill-opacity="0.027" height="14" rx="3" width="14" x="264" y="110"
+            ></rect><rect fill="#131313" fill-opacity="0.027" height="14" rx="3" width="14" x="286" y="110"></rect><rect
+              fill="#131313"
+              fill-opacity="0.027"
+              height="14"
+              rx="3"
+              width="14"
+              x="308"
+              y="110"></rect><rect fill="#131313" fill-opacity="0.045" height="14" rx="3" width="14" x="330" y="110"
+            ></rect><rect fill="#131313" fill-opacity="0.018" height="14" rx="3" width="14" x="352" y="110"></rect><rect
+              fill="#131313"
+              fill-opacity="0.012"
+              height="14"
+              rx="3"
+              width="14"
+              x="374"
+              y="110"></rect><rect fill="#131313" fill-opacity="0.046" height="14" rx="3" width="14" x="396" y="110"
+            ></rect><rect fill="#131313" fill-opacity="0.044" height="14" rx="3" width="14" x="418" y="110"></rect><rect
+              fill="#131313"
+              fill-opacity="0.048"
+              height="14"
+              rx="3"
+              width="14"
+              x="440"
+              y="110"></rect><rect fill="#131313" fill-opacity="0.028" height="14" rx="3" width="14" x="462" y="110"
+            ></rect><rect fill="#131313" fill-opacity="0.046" height="14" rx="3" width="14" x="484" y="110"></rect><rect
+              fill="#131313"
+              fill-opacity="0.045"
+              height="14"
+              rx="3"
+              width="14"
+              x="506"
+              y="110"></rect><rect fill="#131313" fill-opacity="0.020" height="14" rx="3" width="14" x="528" y="110"
+            ></rect><rect fill="#131313" fill-opacity="0.039" height="14" rx="3" width="14" x="550" y="110"></rect><rect
+              fill="#131313"
+              fill-opacity="0.042"
+              height="14"
+              rx="3"
+              width="14"
+              x="572"
+              y="110"></rect><rect fill="#131313" fill-opacity="0.036" height="14" rx="3" width="14" x="594" y="110"
+            ></rect><rect fill="#131313" fill-opacity="0.031" height="14" rx="3" width="14" x="616" y="110"></rect><rect
+              fill="#131313"
+              fill-opacity="0.022"
+              height="14"
+              rx="3"
+              width="14"
+              x="638"
+              y="110"></rect><rect fill="#131313" fill-opacity="0.024" height="14" rx="3" width="14" x="660" y="110"
+            ></rect><rect fill="#131313" fill-opacity="0.020" height="14" rx="3" width="14" x="682" y="110"></rect><rect
+              fill="#131313"
+              fill-opacity="0.014"
+              height="14"
+              rx="3"
+              width="14"
+              x="704"
+              y="110"></rect><rect fill="#131313" fill-opacity="0.033" height="14" rx="3" width="14" x="726" y="110"
+            ></rect><rect fill="#131313" fill-opacity="0.022" height="14" rx="3" width="14" x="0" y="132"></rect><rect
+              fill="#131313"
+              fill-opacity="0.041"
+              height="14"
+              rx="3"
+              width="14"
+              x="22"
+              y="132"></rect><rect fill="#131313" fill-opacity="0.014" height="14" rx="3" width="14" x="44" y="132"
+            ></rect><rect fill="#131313" fill-opacity="0.045" height="14" rx="3" width="14" x="66" y="132"></rect><rect
+              fill="#131313"
+              fill-opacity="0.037"
+              height="14"
+              rx="3"
+              width="14"
+              x="88"
+              y="132"></rect><rect fill="#131313" fill-opacity="0.045" height="14" rx="3" width="14" x="110" y="132"
+            ></rect><rect fill="#131313" fill-opacity="0.044" height="14" rx="3" width="14" x="132" y="132"></rect><rect
+              fill="#131313"
+              fill-opacity="0.044"
+              height="14"
+              rx="3"
+              width="14"
+              x="154"
+              y="132"></rect><rect fill="#131313" fill-opacity="0.033" height="14" rx="3" width="14" x="176" y="132"
+            ></rect><rect fill="#131313" fill-opacity="0.012" height="14" rx="3" width="14" x="198" y="132"></rect><rect
+              fill="#131313"
+              fill-opacity="0.039"
+              height="14"
+              rx="3"
+              width="14"
+              x="220"
+              y="132"></rect><rect fill="#131313" fill-opacity="0.018" height="14" rx="3" width="14" x="242" y="132"
+            ></rect><rect fill="#131313" fill-opacity="0.023" height="14" rx="3" width="14" x="264" y="132"></rect><rect
+              fill="#131313"
+              fill-opacity="0.036"
+              height="14"
+              rx="3"
+              width="14"
+              x="286"
+              y="132"></rect><rect fill="#131313" fill-opacity="0.031" height="14" rx="3" width="14" x="308" y="132"
+            ></rect><rect fill="#131313" fill-opacity="0.027" height="14" rx="3" width="14" x="330" y="132"></rect><rect
+              fill="#131313"
+              fill-opacity="0.046"
+              height="14"
+              rx="3"
+              width="14"
+              x="352"
+              y="132"></rect><rect fill="#131313" fill-opacity="0.034" height="14" rx="3" width="14" x="374" y="132"
+            ></rect><rect fill="#131313" fill-opacity="0.024" height="14" rx="3" width="14" x="396" y="132"></rect><rect
+              fill="#131313"
+              fill-opacity="0.021"
+              height="14"
+              rx="3"
+              width="14"
+              x="418"
+              y="132"></rect><rect fill="#131313" fill-opacity="0.043" height="14" rx="3" width="14" x="440" y="132"
+            ></rect><rect fill="#131313" fill-opacity="0.029" height="14" rx="3" width="14" x="462" y="132"></rect><rect
+              fill="#131313"
+              fill-opacity="0.040"
+              height="14"
+              rx="3"
+              width="14"
+              x="484"
+              y="132"></rect><rect fill="#131313" fill-opacity="0.025" height="14" rx="3" width="14" x="506" y="132"
+            ></rect><rect fill="#131313" fill-opacity="0.019" height="14" rx="3" width="14" x="528" y="132"></rect><rect
+              fill="#131313"
+              fill-opacity="0.031"
+              height="14"
+              rx="3"
+              width="14"
+              x="550"
+              y="132"></rect><rect fill="#131313" fill-opacity="0.041" height="14" rx="3" width="14" x="572" y="132"
+            ></rect><rect fill="#131313" fill-opacity="0.018" height="14" rx="3" width="14" x="594" y="132"></rect><rect
+              fill="#131313"
+              fill-opacity="0.041"
+              height="14"
+              rx="3"
+              width="14"
+              x="616"
+              y="132"></rect><rect fill="#131313" fill-opacity="0.045" height="14" rx="3" width="14" x="638" y="132"
+            ></rect><rect fill="#131313" fill-opacity="0.041" height="14" rx="3" width="14" x="660" y="132"></rect><rect
+              fill="#131313"
+              fill-opacity="0.042"
+              height="14"
+              rx="3"
+              width="14"
+              x="682"
+              y="132"></rect><rect fill="#131313" fill-opacity="0.012" height="14" rx="3" width="14" x="704" y="132"
+            ></rect><rect fill="#131313" fill-opacity="0.035" height="14" rx="3" width="14" x="726" y="132"></rect><rect
+              fill="#131313"
+              fill-opacity="0.043"
+              height="14"
+              rx="3"
+              width="14"
+              x="0"
+              y="154"></rect><rect fill="#131313" fill-opacity="0.014" height="14" rx="3" width="14" x="22" y="154"
+            ></rect><rect fill="#131313" fill-opacity="0.022" height="14" rx="3" width="14" x="44" y="154"></rect><rect
+              fill="#131313"
+              fill-opacity="0.022"
+              height="14"
+              rx="3"
+              width="14"
+              x="66"
+              y="154"></rect><rect fill="#131313" fill-opacity="0.031" height="14" rx="3" width="14" x="88" y="154"
+            ></rect><rect fill="#131313" fill-opacity="0.027" height="14" rx="3" width="14" x="110" y="154"></rect><rect
+              fill="#131313"
+              fill-opacity="0.029"
+              height="14"
+              rx="3"
+              width="14"
+              x="132"
+              y="154"></rect><rect fill="#131313" fill-opacity="0.040" height="14" rx="3" width="14" x="154" y="154"
+            ></rect><rect fill="#131313" fill-opacity="0.012" height="14" rx="3" width="14" x="176" y="154"></rect><rect
+              fill="#131313"
+              fill-opacity="0.014"
+              height="14"
+              rx="3"
+              width="14"
+              x="198"
+              y="154"></rect><rect fill="#131313" fill-opacity="0.017" height="14" rx="3" width="14" x="220" y="154"
+            ></rect><rect fill="#131313" fill-opacity="0.016" height="14" rx="3" width="14" x="242" y="154"></rect><rect
+              fill="#131313"
+              fill-opacity="0.014"
+              height="14"
+              rx="3"
+              width="14"
+              x="264"
+              y="154"></rect><rect fill="#131313" fill-opacity="0.047" height="14" rx="3" width="14" x="286" y="154"
+            ></rect><rect fill="#131313" fill-opacity="0.043" height="14" rx="3" width="14" x="308" y="154"></rect><rect
+              fill="#131313"
+              fill-opacity="0.015"
+              height="14"
+              rx="3"
+              width="14"
+              x="330"
+              y="154"></rect><rect fill="#131313" fill-opacity="0.030" height="14" rx="3" width="14" x="352" y="154"
+            ></rect><rect fill="#131313" fill-opacity="0.023" height="14" rx="3" width="14" x="374" y="154"></rect><rect
+              fill="#131313"
+              fill-opacity="0.023"
+              height="14"
+              rx="3"
+              width="14"
+              x="396"
+              y="154"></rect><rect fill="#131313" fill-opacity="0.025" height="14" rx="3" width="14" x="418" y="154"
+            ></rect><rect fill="#131313" fill-opacity="0.035" height="14" rx="3" width="14" x="440" y="154"></rect><rect
+              fill="#131313"
+              fill-opacity="0.033"
+              height="14"
+              rx="3"
+              width="14"
+              x="462"
+              y="154"></rect><rect fill="#131313" fill-opacity="0.025" height="14" rx="3" width="14" x="484" y="154"
+            ></rect><rect fill="#131313" fill-opacity="0.019" height="14" rx="3" width="14" x="506" y="154"></rect><rect
+              fill="#131313"
+              fill-opacity="0.024"
+              height="14"
+              rx="3"
+              width="14"
+              x="528"
+              y="154"></rect><rect fill="#131313" fill-opacity="0.016" height="14" rx="3" width="14" x="550" y="154"
+            ></rect><rect fill="#131313" fill-opacity="0.032" height="14" rx="3" width="14" x="572" y="154"></rect><rect
+              fill="#131313"
+              fill-opacity="0.038"
+              height="14"
+              rx="3"
+              width="14"
+              x="594"
+              y="154"></rect><rect fill="#131313" fill-opacity="0.026" height="14" rx="3" width="14" x="616" y="154"
+            ></rect><rect fill="#131313" fill-opacity="0.015" height="14" rx="3" width="14" x="638" y="154"></rect><rect
+              fill="#131313"
+              fill-opacity="0.018"
+              height="14"
+              rx="3"
+              width="14"
+              x="660"
+              y="154"></rect><rect fill="#131313" fill-opacity="0.025" height="14" rx="3" width="14" x="682" y="154"
+            ></rect><rect fill="#131313" fill-opacity="0.034" height="14" rx="3" width="14" x="704" y="154"></rect><rect
+              fill="#131313"
+              fill-opacity="0.040"
+              height="14"
+              rx="3"
+              width="14"
+              x="726"
+              y="154"></rect><rect fill="#131313" fill-opacity="0.026" height="14" rx="3" width="14" x="0" y="176"
+            ></rect><rect fill="#131313" fill-opacity="0.041" height="14" rx="3" width="14" x="22" y="176"></rect><rect
+              fill="#131313"
+              fill-opacity="0.034"
+              height="14"
+              rx="3"
+              width="14"
+              x="44"
+              y="176"></rect><rect fill="#131313" fill-opacity="0.028" height="14" rx="3" width="14" x="66" y="176"
+            ></rect><rect fill="#131313" fill-opacity="0.025" height="14" rx="3" width="14" x="88" y="176"></rect><rect
+              fill="#131313"
+              fill-opacity="0.030"
+              height="14"
+              rx="3"
+              width="14"
+              x="110"
+              y="176"></rect><rect fill="#131313" fill-opacity="0.037" height="14" rx="3" width="14" x="132" y="176"
+            ></rect><rect fill="#131313" fill-opacity="0.027" height="14" rx="3" width="14" x="154" y="176"></rect><rect
+              fill="#131313"
+              fill-opacity="0.037"
+              height="14"
+              rx="3"
+              width="14"
+              x="176"
+              y="176"></rect><rect fill="#131313" fill-opacity="0.029" height="14" rx="3" width="14" x="198" y="176"
+            ></rect><rect fill="#131313" fill-opacity="0.021" height="14" rx="3" width="14" x="220" y="176"></rect><rect
+              fill="#131313"
+              fill-opacity="0.031"
+              height="14"
+              rx="3"
+              width="14"
+              x="242"
+              y="176"></rect><rect fill="#131313" fill-opacity="0.037" height="14" rx="3" width="14" x="264" y="176"
+            ></rect><rect fill="#131313" fill-opacity="0.015" height="14" rx="3" width="14" x="286" y="176"></rect><rect
+              fill="#131313"
+              fill-opacity="0.027"
+              height="14"
+              rx="3"
+              width="14"
+              x="308"
+              y="176"></rect><rect fill="#131313" fill-opacity="0.027" height="14" rx="3" width="14" x="330" y="176"
+            ></rect><rect fill="#131313" fill-opacity="0.044" height="14" rx="3" width="14" x="352" y="176"></rect><rect
+              fill="#131313"
+              fill-opacity="0.046"
+              height="14"
+              rx="3"
+              width="14"
+              x="374"
+              y="176"></rect><rect fill="#131313" fill-opacity="0.025" height="14" rx="3" width="14" x="396" y="176"
+            ></rect><rect fill="#131313" fill-opacity="0.044" height="14" rx="3" width="14" x="418" y="176"></rect><rect
+              fill="#131313"
+              fill-opacity="0.040"
+              height="14"
+              rx="3"
+              width="14"
+              x="440"
+              y="176"></rect><rect fill="#131313" fill-opacity="0.021" height="14" rx="3" width="14" x="462" y="176"
+            ></rect><rect fill="#131313" fill-opacity="0.029" height="14" rx="3" width="14" x="484" y="176"></rect><rect
+              fill="#131313"
+              fill-opacity="0.016"
+              height="14"
+              rx="3"
+              width="14"
+              x="506"
+              y="176"></rect><rect fill="#131313" fill-opacity="0.041" height="14" rx="3" width="14" x="528" y="176"
+            ></rect><rect fill="#131313" fill-opacity="0.036" height="14" rx="3" width="14" x="550" y="176"></rect><rect
+              fill="#131313"
+              fill-opacity="0.044"
+              height="14"
+              rx="3"
+              width="14"
+              x="572"
+              y="176"></rect><rect fill="#131313" fill-opacity="0.041" height="14" rx="3" width="14" x="594" y="176"
+            ></rect><rect fill="#131313" fill-opacity="0.036" height="14" rx="3" width="14" x="616" y="176"></rect><rect
+              fill="#131313"
+              fill-opacity="0.038"
+              height="14"
+              rx="3"
+              width="14"
+              x="638"
+              y="176"></rect><rect fill="#131313" fill-opacity="0.032" height="14" rx="3" width="14" x="660" y="176"
+            ></rect><rect fill="#131313" fill-opacity="0.016" height="14" rx="3" width="14" x="682" y="176"></rect><rect
+              fill="#131313"
+              fill-opacity="0.033"
+              height="14"
+              rx="3"
+              width="14"
+              x="704"
+              y="176"></rect><rect fill="#131313" fill-opacity="0.012" height="14" rx="3" width="14" x="726" y="176"
+            ></rect><rect class="fm-d" fill="#DA0007" fill-opacity="0.18" height="14" rx="3" width="14" x="352" y="132"
+            ></rect><rect class="fm-d" fill="#DA0007" fill-opacity="0.18" height="14" rx="3" width="14" x="418" y="154"
+            ></rect><rect class="fm-d" fill="#DA0007" fill-opacity="0.18" height="14" rx="3" width="14" x="330" y="176"
+            ></rect></svg
+          >
+        </div>
+        <div>
+          <h1 class="hx-h" data-v9-reveal="" style="--d:60ms">{sector.h1}</h1>
+          <p class="lead" data-v9-reveal="" style="--d:120ms">
+            {sector.tagline} Three scored candidates in about 36 hours, each interviewed by someone who has done the job.
+          </p>
+          <div class="cta-row" data-v9-reveal="" style="--d:180ms">
+            <a class="btn btn-primary" href={contact}>Brief a role</a><a class="link" href="#ask">See what we ask ›</a>
+          </div>
+          <p class="ix-mkt" data-v9-reveal="" style="--d:220ms">
+            <span class="ql">The market right now</span><b>{sector.market.figure}</b>
+            {sector.market.text}<sup class="fn"><a class="fn-r" href="#src-1" aria-label="Source 1">1</a></sup>
+          </p>
+        </div>
+        <aside
+          aria-label={`How the score is weighted in ${sector.name}`}
+          class="ix-card"
+          data-v9-reveal=""
+          style="--d:200ms"
+        >
+          <div class="ix-card-top"><span class="pf-k"><span class="pf-dot"></span> {sector.copy.barTitle}</span></div>
+          <ul class="ix-bars">
+            {
+              skills.map((skill, i) => (
+                <li class:list={{ top: i === top }}>
+                  <>
+                    <span class="ix-dn">{skill}</span>
+                    <span class="ix-tr">
+                      <i style={`--v:${values[i]}`} />
+                    </span>
+                    <b>{values[i]}%</b>
+                  </>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="ix-card-ft"><b>{skills[top]}</b> carries {values[top]}% of the score here.</p>
+        </aside>
+      </div>
+    </div>
+  </header>
+  <!-- 01 · COMPARE -->
+  <section class="g-dark" id="bar">
+    <div class="wrap">
+      <div class="op-n" data-v9-reveal=""><b>{values[top]}%</b><span>{sector.copy.opening}</span></div>
+      <h2 data-v9-reveal="" style="--d:60ms">Same six skills. A different shape.</h2>
+      <p class="lead" data-v9-reveal="" style="--d:120ms">{sector.copy.compareLead}</p>
+      <div class="ix-lab" data-me={sector.slug} data-v9-reveal="" style="--d:160ms">
+        <div class="ix-panel">
+          <div class="ix-panel-top">
+            <span class="ix-key"><i class="a"></i>{sector.name}</span><span class="ix-key"
+              ><i class="b"></i><span id="ixBName">{comparison.name}</span></span
+            >
+          </div>
+          <p class="ix-read" id="ixRead">{comparisonRead}</p>
+          <ul class="ix-cbars" id="ixC">
+            {
+              skills.map((skill, i) => (
+                <li data-d={i} class:list={{ hot: i === difference }}>
+                  <>
+                    <span class="ix-dn">{skill}</span>
+                    <span class="ix-pair">
+                      <>
+                        <span class="ix-tr ix-tr--a">
+                          <i style={`--v:${values[i]}`} />
+                        </span>
+                        <span class="ix-tr ix-tr--b">
+                          <i style={`--v:${otherValues[i]}`} />
+                        </span>
+                      </>
+                    </span>
+                    <b>
+                      <>
+                        <span class="ix-a">{values[i]}</span>
+                        <span class="ix-b">{otherValues[i]}</span>
+                      </>
+                    </b>
+                  </>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="ix-cmps-w">
+          <span class="ql">Compare with</span><div aria-label="Compare with" class="ix-cmps" role="tablist">
+            {
+              sectors
+                .filter((s) => s.slug !== sector.slug)
+                .map((s) => (
+                  <button
+                    hidden
+                    class="ix-cmp"
+                    type="button"
+                    role="tab"
+                    aria-selected={s.slug === comparison.slug ? 'true' : 'false'}
+                    data-s={s.slug}
+                  >
+                    {s.name}
+                  </button>
+                ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- 02 · MISSES -->
+  <section class="g-white" id="misses">
+    <div class="wrap">
+      <div class="eyebrow" data-v9-reveal=""><span class="tick">\</span> 02 · Where a generic screen breaks</div>
+      <h2 data-v9-reveal="" style="--d:60ms">{sector.copy.missesHeading}</h2>
+      <p class="lead" data-v9-reveal="" style="--d:120ms">
+        None of them are exotic. They’re invisible to anyone assessing from outside the sector, which is most of the
+        people doing the assessing.
+      </p>
+      <ol class="ix-miss">
+        {
+          sector.misses.map((miss, i) => (
+            <li data-v9-reveal style={`--d:${i * 70}ms`}>
+              <>
+                <span class="ab-k">{String(i + 1).padStart(2, '0')}</span>
+                <div>
+                  <>
+                    <h3>{miss.title}</h3>
+                    <span class="ix-lbl">{miss.label}</span>
+                  </>
+                </div>
+                <div>
+                  <>
+                    <p>{miss.body}</p>
+                    <p class="ix-tell">
+                      <span>Where it shows up</span>
+                      {miss.tell.replace(/^Where it shows up: /, '')}
+                    </p>
+                  </>
+                </div>
+              </>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+  <!-- 03 · QUESTIONS -->
+  <section class="g-paper" id="ask">
+    <div class="wrap">
+      <div class="eyebrow" data-v9-reveal=""><span class="tick">\</span> 03 · What we actually ask</div>
+      <h2 data-v9-reveal="" style="--d:60ms">Three questions. Three thin answers.</h2>
+      <p class="lead" data-v9-reveal="" style="--d:120ms">
+        Every question comes off the candidate’s own CV, so these show the shape. The right-hand column is the part a
+        generic interviewer can’t supply.
+      </p>
+      <div class="ix-qs">
+        {
+          sector.questions.map((question, i) => (
+            <article class="ix-q" data-v9-reveal style={`--d:${i * 80}ms`}>
+              <>
+                <span class="ab-k">Q{i + 1}</span>
+                <h3>{question.q}</h3>
+                <div class="ix-q-g">
+                  <>
+                    <div>
+                      <>
+                        <span class="ix-lbl">A thin answer</span>
+                        <p class="ix-thin">
+                          <span>{question.thin}</span>
+                        </p>
+                      </>
+                    </div>
+                    <div>
+                      <>
+                        <span class="ix-lbl">What the expert listens for</span>
+                        <p>{question.listeningFor}</p>
+                      </>
+                    </div>
+                  </>
+                </div>
+              </>
+            </article>
+          ))
+        }
+      </div>
+      <p class="decide" data-v9-reveal="">
+        <b>A correct answer with no reasoning behind it proves nothing.</b> That line is written into how we score, and this
+        sector is where it earns its keep.
+      </p>
+    </div>
+  </section>
+  <!-- 04 · ROLES + BENCH -->
+  <section class="g-dark" id="roles">
+    <div class="wrap">
+      <div class="eyebrow" data-v9-reveal=""><span class="tick">\</span> 04 · Roles and interviewers</div>
+      <h2 data-v9-reveal="" style="--d:60ms">Every level, one guarantee.</h2>
+      <p class="lead" data-v9-reveal="" style="--d:120ms">{sector.copy.rolesLead}</p>
+      <div class="ix-rb">
+        <ul class="ix-roles">
+          {
+            sector.roles.map((role, i) => (
+              <li data-v9-reveal style={`--d:${i * 40}ms`}>
+                <>
+                  <b>{role.family}</b>
+                  <span>{role.levels}</span>
+                </>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="ix-bench" data-v9-reveal="" style="--d:120ms">
+          <span class="ql">{sector.copy.benchHeading}</span>
+          <ul>{sector.bench.map((person) => <li>{person}</li>)}</ul>
+          <span class="ql">What that changes</span>
+          <ul class="ix-chg">
+            <li>The follow-up lands, because they know where answers usually thin out.</li><li>
+              Titles get read against what the person was accountable for.
+            </li><li>A weak answer gets a second chance before it gets a low score.</li><li>
+              The write-up is in the language your hiring manager already uses.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <p class="ix-miss-r" data-v9-reveal="">
+        Not seeing your role? <a class="link" href={contact}>Tell us what you’re hiring for ›</a> We’ll say straight away
+        whether it’s our ground.
+      </p>
+    </div>
+  </section>
+  <!-- 05 · FAQ -->
+  <section class="faq g-paper">
+    <div class="wrap">
+      <div class="faq-top">
+        <div class="faq-aside">
+          <div class="eyebrow" data-v9-reveal=""><span class="tick">\</span> 05 · Before you brief us</div>
+          <h2 data-v9-reveal="" style="--d:60ms">What teams ask first.</h2>
+          <div class="faq-ask" data-v9-reveal="" style="--d:180ms">
+            <p class="faq-ask-q">Didn’t see yours?</p>
+            <a href={contact}>Ask us anything <span aria-hidden="true" class="ar">→</span></a>
+          </div>
+        </div>
+        <div class="faq-list" data-v9-reveal="" style="--d:120ms">
+          {
+            sector.faq.map((faq, i) => (
+              <details class="faq-item" open={i === 0}>
+                <>
+                  <summary class="faq-q">
+                    <>
+                      <span>{faq.q}</span>
+                      <span class="faq-ic" aria-hidden="true" />
+                    </>
+                  </summary>
+                  <div class="faq-a">
+                    <div>
+                      <p>{faq.a}</p>
+                    </div>
+                  </div>
+                </>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CLOSE -->
+  <section class="start g-white" id="start">
+    <div class="wrap">
+      <div class="start-head">
+        <div class="eyebrow" data-v9-reveal="" style="justify-content:center">
+          <span class="tick">\</span> Start here
+        </div>
+        <h2 data-v9-reveal="" style="--d:60ms">
+          Tell us the role. Three names in <span class="hd-word"
+            >36 hours.<svg
+              aria-hidden="true"
+              class="hd-underline hd-ink"
+              preserveAspectRatio="none"
+              viewBox="0 0 120 12"
+              ><path d="M3,8 Q34,3.5 62,6.5 Q92,9 117,5 Q92,11.2 62,9.2 Q34,6.4 3,8.7 Z"></path></svg
+            ></span
+          >
+        </h2>
+      </div>
+      <p class="lead" data-v9-reveal="" style="--d:120ms">{sector.copy.closingLead}</p>
+      <div class="cta-row" data-v9-reveal="" style="--d:180ms">
+        <a class="btn btn-primary" href={contact}>Brief a role</a>
+        <a class="link" href={v9Href('/__v9/industries', Astro.url.pathname)}>Other sectors ›</a>
+      </div>
+    </div>
+  </section>
+  <section class="g-white fn-sec" id="sources">
+    <div class="wrap">
+      <div class="fn-end">
+        <p class="ql">Sources</p><ol class="fn-list">
+          <li id="src-1">
+            <span class="fn-t"
+              ><a href={sector.market.url} target="_blank" rel="noopener">{sector.market.source}</a></span
+            >
+          </li>
+        </ol><a class="link" href={v9Href('/__v9/about', Astro.url.pathname)}>How we work with numbers ›</a>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  import '../../../scripts/v9/editorial';
+</script>

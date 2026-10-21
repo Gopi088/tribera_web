@@ -1,0 +1,6 @@
+{
+  "productionHtmlPages": 77,
+  "privateProductionHtml": [],
+  "publicHtmlDifferencesBetweenBuilds": [],
+  "note": "Production built before final private chart/default refinements; route gating and public templates are unchanged. Compared with final preview public HTML."
+}

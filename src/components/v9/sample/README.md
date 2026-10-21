@@ -2,7 +2,7 @@
 
 Source: `sample_data/tribera-web-handoff-v9/sample-write-up.html`.
 
-`/__v9/sample-write-up` exists only in development or a `V9_PREVIEW=1` build and uses the accepted shared V9Layout with noindex. Hero, preview figure/caption, five-item contents list, form labels, privacy note and confirmed-success wording preserve the handoff. Native Astro components and scoped final-cascade CSS replace the standalone document. Source global header/footer are supplied by V9Layout. No raw HTML or iframe is shipped.
+`/__v9/sample-write-up` exists only in development or a `V9_PREVIEW=1` build and uses the accepted shared V9Layout with noindex. Hero, preview figure/caption, five-item contents list, form labels, privacy note and confirmed-success wording preserve the handoff. Native Astro components and scoped final-cascade CSS replace the standalone document. The public `/sample-write-up` route uses the same components with public navigation and metadata. Source global header/footer are supplied by V9Layout. No raw HTML or iframe is shipped.
 
 ## Asset boundary
 

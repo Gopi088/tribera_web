@@ -1,3 +1,4 @@
+import { initializeDisclosures } from './disclosures';
 // Native disclosure controls keep navigation and reading usable without JavaScript.
 document.querySelectorAll<HTMLDetailsElement>('[data-v9-menu]').forEach((menu) => {
   menu.addEventListener('keydown', (event) => {
@@ -11,22 +12,13 @@ document.querySelectorAll<HTMLDetailsElement>('[data-v9-menu]').forEach((menu) =
   });
 });
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+initializeDisclosures(reducedMotion);
 document.querySelectorAll<HTMLElement>('[data-v9-strip]').forEach((strip) => {
-  const button = strip.querySelector<HTMLButtonElement>('button');
-  if (!button) return;
-  let paused = false;
   let visible = false;
   const update = () => {
-    strip.toggleAttribute('data-running', visible && !document.hidden && !paused && !reducedMotion.matches);
-    button.setAttribute('aria-pressed', String(paused));
-    button.textContent = paused ? 'Resume client strip' : 'Pause client strip';
+    strip.toggleAttribute('data-running', visible && !document.hidden && !reducedMotion.matches);
   };
   strip.setAttribute('data-ready', '');
-  button.hidden = false;
-  button.addEventListener('click', () => {
-    paused = !paused;
-    update();
-  });
   reducedMotion.addEventListener('change', update);
   document.addEventListener('visibilitychange', update);
   const observer = new IntersectionObserver(([entry]) => {
@@ -43,20 +35,40 @@ const revealObserver = new IntersectionObserver((entries) => {
     if (!entry.isIntersecting) continue;
     const element = entry.target as HTMLElement;
     revealObserver.unobserve(element);
-    element.classList.add('rv-done');
+    element.classList.add('in', 'rv-done');
     if (reducedMotion.matches || document.hidden) continue;
+    const hero = Boolean(element.closest('.hero-c, .hx, .bl-head'));
+    const delay = parseFloat(getComputedStyle(element).getPropertyValue('--d')) || 0;
     const animation = element.animate(
       [
-        { transform: 'translateY(14px)', opacity: 0 },
+        { transform: `translateY(${hero ? 14 : 8}px)`, opacity: 0 },
         { transform: 'none', opacity: 1 },
       ],
-      { duration: 700, easing: 'cubic-bezier(.25,.1,.25,1)' }
+      { duration: 700, delay, fill: 'backwards', easing: 'cubic-bezier(.25,.1,.25,1)' }
     );
     arrivals.add(animation);
     animation.finished.then(() => arrivals.delete(animation)).catch(() => arrivals.delete(animation));
   }
 });
 document.querySelectorAll('[data-v9-reveal]').forEach((element) => revealObserver.observe(element));
+// Filled ink cannot be revealed with stroke-dashoffset. Keep its completed shape
+// in CSS and draw it with clipping once; Home owns its timed hero sequence.
+const inkObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    inkObserver.unobserve(entry.target);
+    if (reducedMotion.matches || document.hidden) return;
+    const animation = entry.target.animate(
+      [{ clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(-20% -4% -20% 0)' }],
+      { duration: 850, delay: 200, fill: 'backwards', easing: 'cubic-bezier(.62,.04,.2,1)' }
+    );
+    arrivals.add(animation);
+    animation.finished.finally(() => arrivals.delete(animation)).catch(() => {});
+  });
+});
+document.querySelectorAll('svg.hd-ink').forEach((ink) => {
+  if (!ink.closest('[data-v9-home]')) inkObserver.observe(ink);
+});
 const settleArrivals = () => {
   if (reducedMotion.matches || document.hidden) arrivals.forEach((animation) => animation.finish());
 };

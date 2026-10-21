@@ -1,8 +1,22 @@
+import { initializeFieldMotion } from '../../../scripts/v9/field-motion.js';
 import { sectors, services, readerNotes } from '../../../components/v9/contact/context';
 
 const root = document.querySelector<HTMLElement>('.v9-contact');
 const form = root?.querySelector<HTMLFormElement>('#ctForm');
 if (root && form) {
+  const hero = root.querySelector<HTMLElement>('#contact-top')!;
+  const field = hero.querySelector<HTMLElement>('.hero-field')!;
+  const card = hero.querySelector<HTMLElement>('aside')!;
+  const grid = hero.querySelector<HTMLElement>('.hx-c-g')!;
+  const place = () => {
+    grid.style.setProperty('--ftx', `${card.offsetLeft + card.offsetWidth / 2}px`);
+    grid.style.setProperty('--fty', `${card.offsetTop + card.offsetHeight / 2}px`);
+  };
+  place();
+  addEventListener('resize', place);
+  void document.fonts.ready.then(place);
+  initializeFieldMotion(field, hero, card, matchMedia('(prefers-reduced-motion: reduce)'));
+
   type Side = 'hiring' | 'looking';
   const modes = [...form.querySelectorAll<HTMLInputElement>('input[name="side"]')];
   const sections = [...form.querySelectorAll<HTMLFieldSetElement>('.ct-only')];

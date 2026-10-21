@@ -1,12 +1,12 @@
 ---
 title: 'Privacy Policy'
 layout: '~/layouts/MarkdownLayout.astro'
+pageUpdated: '2026-10-21'
+policyUpdated: 'July 27, 2025'
 robots:
   index: false
   follow: true
 ---
-
-_Last updated_: July 27, 2025
 
 This Privacy Policy explains how tribera.ai ("tribera", "we", "us", or "our") collects, uses, and discloses your personal information when you access our website at [https://www.tribera.ai](https://www.tribera.ai) or use our services. Please read it carefully.
 

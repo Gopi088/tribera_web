@@ -1,3 +1,7 @@
+---
+import { v9Href } from '~/data/v9/routes';
+---
+
 <header class="hero-c g-white" id="services-top">
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-field" aria-hidden="true">
@@ -2102,8 +2106,8 @@
   <div class="hero-main">
     <div class="wrap hero-two">
       <div class="hero-copy">
-        <div class="eyebrow" data-rv=""><span class="tick">\</span> Services</div>
-        <h1 data-rv="" style="--d:60ms">
+        <div class="eyebrow" data-v9-reveal><span class="tick">\</span> Services</div>
+        <h1 data-v9-reveal style="--d:60ms">
           <span class="h1-a">Hire the people,</span><br class="h1-br" />
           <span class="i"
             >or <span class="hd-word"
@@ -2117,15 +2121,17 @@
             ></span
           >
         </h1>
-        <p class="lead" data-rv="" style="--d:120ms">
+        <p class="lead" data-v9-reveal style="--d:120ms">
           More than fifty senior experts who have held the job. Some teams want them interviewing candidates. Others
           want them doing the work while the hiring happens.
         </p>
-        <div class="cta-row" data-rv="" style="--d:180ms">
+        <div class="cta-row" data-v9-reveal style="--d:180ms">
           <a class="btn btn-primary" href="#fix">Start with what’s wrong</a>
-          <a class="link" href="/__v9/contact">Talk it through ›</a>
+          <a class="link" href={v9Href('/__v9/contact', Astro.url.pathname)}>Talk it through ›</a>
         </div>
-        <p class="hero-note" data-rv="" style="--d:240ms">Twelve pieces of work. Each one has an output and a date.</p>
+        <p class="hero-note" data-v9-reveal style="--d:240ms">
+          Twelve pieces of work. Each one has an output and a date.
+        </p>
         <div class="hero-band" aria-hidden="true">
           <svg viewBox="0 0 740 58" preserveAspectRatio="xMidYMid meet"
             ><rect x="0" y="0" width="14" height="14" rx="3" fill="#131313" fill-opacity="0.032"></rect><rect
@@ -2839,7 +2845,7 @@
           >
         </div>
       </div>
-      <aside class="sv-rc" data-rv="" style="--d:200ms" aria-label="Example engagement">
+      <aside class="sv-rc" data-v9-reveal style="--d:200ms" aria-label="Example engagement">
         <div class="sv-rc-top">
           <span class="pf-k"><span class="pf-dot"></span> Example · Role scorecard</span><span class="sv-rc-n"
             >No. 01</span
@@ -2859,7 +2865,7 @@
       </aside>
     </div>
   </div>
-  <a class="hero-cue" href="#fix" data-rv="" style="--d:320ms" aria-label="Start with what’s wrong"
+  <a class="hero-cue" href="#fix" data-v9-reveal style="--d:320ms" aria-label="Start with what’s wrong"
     ><span class="hero-cue-k">What’s wrong?</span><span class="hero-cue-ln"><i></i></span></a
   >
 </header>

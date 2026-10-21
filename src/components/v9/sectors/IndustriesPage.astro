@@ -1,0 +1,104 @@
+---
+import { v9Href } from '~/data/v9/routes';
+import SectorWeights from './SectorWeights.astro';
+import IndustryChart from './IndustryChart.astro';
+import IndustryCards from './IndustryCards.astro';
+import '../../../assets/styles/v9/industries.css';
+import '../../../assets/styles/v9/editorial/behavior.css';
+import '../../../assets/styles/v9/sector-enhancements.css';
+---
+
+<div class="v9-editorial v9-industries">
+  <SectorWeights />
+
+  <svg aria-hidden="true" height="0" style="position:absolute" width="0"
+    ><filter height="120%" id="ink" width="120%" x="-10%" y="-10%"
+      ><feTurbulence baseFrequency=".85" numOctaves="2" result="n" seed="7" type="fractalNoise"
+      ></feTurbulence><feColorMatrix
+        in="n"
+        result="m"
+        type="matrix"
+        values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.3 1.38"></feColorMatrix><feComposite
+        in="SourceGraphic"
+        in2="m"
+        operator="in"></feComposite></filter
+    ></svg
+  >
+
+  <header class="hx hx--ed g-white" id="editorial-top">
+    <div class="wrap">
+      <div class="eyebrow" data-v9-reveal=""><span class="tick">\</span> Industries</div>
+      <h1 class="hx-h ii-h" data-v9-reveal="" style="--d:60ms">Twelve sectors. <em>Twelve different bars.</em></h1>
+      <div class="hx-row" data-v9-reveal="" style="--d:140ms">
+        <div>
+          <p class="lead">
+            We score the same six skills everywhere. What changes is how much each one counts. In pharma, controls and
+            risk carry 34% of the score. In consumer commerce, 8%.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#all">Find your sector</a><a
+              class="link"
+              href={v9Href('/__v9/contact', Astro.url.pathname)}>Not listed? Ask us ›</a
+            >
+          </div>
+        </div>
+        <div class="hx-side">
+          <span class="ql">How to read the lines</span><p>
+            Each line below is one sector, drawn across the six skills. The higher it rises, the more that skill counts
+            there.
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section class="g-dark" id="lines">
+    <div class="wrap">
+      <div class="eyebrow" data-v9-reveal=""><span class="tick">\</span> The bar, sector by sector</div>
+      <h2 data-v9-reveal="" style="--d:60ms">Twelve lines. No two the same.</h2>
+      <IndustryChart />
+    </div>
+  </section>
+  <section class="g-paper" id="all">
+    <div class="wrap">
+      <div class="eyebrow" data-v9-reveal=""><span class="tick">\</span> Every sector we cover</div>
+      <h2 data-v9-reveal="" style="--d:60ms">Pick yours.</h2>
+      <p class="lead" data-v9-reveal="" style="--d:120ms">
+        Each bar below is one skill: core depth, systems design, controls and risk, delivery speed, documentation and
+        stakeholder handling. The dark one counts most.
+      </p>
+      <IndustryCards />
+    </div>
+  </section>
+  <section class="start g-white" id="start">
+    <div class="wrap">
+      <div class="start-head">
+        <div class="eyebrow" data-v9-reveal="" style="justify-content:center">
+          <span class="tick">\</span> Start here
+        </div>
+        <h2 data-v9-reveal="" style="--d:60ms">
+          Tell us the role. Three names in <span class="hd-word"
+            >36 hours.<svg
+              aria-hidden="true"
+              class="hd-underline hd-ink"
+              preserveAspectRatio="none"
+              viewBox="0 0 120 12"
+              ><path d="M3,8 Q34,3.5 62,6.5 Q92,9 117,5 Q92,11.2 62,9.2 Q34,6.4 3,8.7 Z"></path></svg
+            ></span
+          >
+        </h2>
+      </div>
+      <p class="lead" data-v9-reveal="" style="--d:120ms">
+        If your sector isn’t one of these twelve, ask anyway. We’ll say straight away whether it’s our ground.
+      </p>
+      <div class="cta-row" data-v9-reveal="" style="--d:180ms">
+        <a class="btn btn-primary" href={v9Href('/__v9/contact', Astro.url.pathname)}>Brief a role</a><a
+          class="link"
+          href={v9Href('/__v9/services', Astro.url.pathname)}>See all services ›</a
+        >
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  import '../../../scripts/v9/sector-charts';
+</script>

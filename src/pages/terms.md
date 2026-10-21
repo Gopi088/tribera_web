@@ -1,12 +1,12 @@
 ---
 title: 'Terms and Conditions'
 layout: '~/layouts/MarkdownLayout.astro'
+pageUpdated: '2026-10-21'
+policyUpdated: 'July 27, 2025'
 robots:
   index: false
   follow: true
 ---
-
-_Last updated_: July 27, 2025
 
 Please read these Terms and Conditions carefully before using the tribera.ai website or services.
 

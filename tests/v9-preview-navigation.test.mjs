@@ -13,7 +13,7 @@ const base = process.env.TEST_BASE_URL || `http://127.0.0.1:${port}`;
 const hiringLinks = {
   'How it works': '/__v9/home#proof',
   Services: '/__v9/services',
-  Intelligence: '/intelligence',
+  Intelligence: '/__v9/intelligence',
   About: '/__v9/about',
   'For candidates': '/__v9/candidates',
 };

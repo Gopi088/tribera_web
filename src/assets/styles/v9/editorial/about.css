@@ -1658,3 +1658,7 @@
   height: 560px;
   filter: grayscale(0) contrast(1);
 }
+.v9-editorial-about .hx-side .ab-word-pair {
+  display: inline-block;
+  white-space: nowrap;
+}

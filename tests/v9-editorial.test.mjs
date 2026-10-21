@@ -143,6 +143,8 @@ try {
       assert.equal(await question.locator('.faq-a').evaluate((el) => el.getBoundingClientRect().height > 20), true);
     }
     await page.locator('.fn-r').click();
+    assert.equal(await page.locator('.v9-citation-preview').isVisible(), true);
+    await page.locator('.v9-citation-preview a').click();
     assert.ok(page.url().endsWith('#src-1'));
     assert.match(await page.locator('#src-1').textContent(), /KPMG.*Nasscom/);
     records.push({
@@ -192,23 +194,26 @@ try {
     );
     await page.locator('.bl-copy').click();
     assert.match(await page.locator('.v9-copy-status').textContent(), /Copy this link: https?:/);
-    assert.equal(await page.locator('#subscribe button').isDisabled(), true);
-    assert.match(await page.locator('#v9-subscription-status').textContent(), /unavailable in this private preview/);
+    assert.equal(await page.locator('#subscribe input, #subscribe button').count(), 0);
+    assert.equal(await page.locator('#subscribe a.btn').getAttribute('href'), '/blog#sub');
+    assert.match(await page.locator('#v9-subscription-status').textContent(), /newsletter is in preparation/);
     assert.equal(await page.locator('#subscribe form').count(), 0, 'No subscription POST or false signup in preview');
     await page.locator('.fn-r').first().click();
+    assert.equal(await page.locator('.v9-citation-preview').isVisible(), true);
+    await page.locator('.v9-citation-preview a').click();
     assert.ok(page.url().endsWith('#src-1'));
     records.push({
       page: 'article',
       width,
       status: 'passed',
       checks: [
-        'future date private fixture',
+        'collection publication date in private fixture',
         '12 cover marks',
         'three margin notes',
         'three related cards',
         'copy success/failure',
         'source anchor',
-        'disabled honest subscription',
+        'honest notification-list destination',
       ],
     });
     await page.close();

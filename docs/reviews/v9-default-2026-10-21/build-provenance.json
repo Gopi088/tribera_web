@@ -1,0 +1,8 @@
+{
+  "commit": "590be3ced15046df6bdd8d52b804d6b3cd07e4cf",
+  "cleanTree": false,
+  "buildHash": "8e8c5fa0cdde12761a9fbfc5029430b634af65afaa23ed8d97b328733c9d99d1",
+  "previewBuild": false,
+  "publicRoutes": 23,
+  "note": "Candidates route received whitespace-only Prettier formatting after this build. No deployment or complete release-gate acceptance is claimed."
+}

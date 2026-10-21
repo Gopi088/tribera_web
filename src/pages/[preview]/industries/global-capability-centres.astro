@@ -1,0 +1,6 @@
+---
+export function getStaticPaths() {
+  return import.meta.env.DEV || process.env.V9_PREVIEW === '1' ? [{ params: { preview: '__v9' } }] : [];
+}
+return Astro.redirect('/__v9/industries/global-capability-centers', 301);
+---

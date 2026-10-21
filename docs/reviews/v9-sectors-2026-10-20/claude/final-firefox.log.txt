@@ -1,0 +1,46 @@
+
+> tribera-website@1.0.0-beta.52 test:migration:sectors
+> node scripts/test-v9-sectors.mjs
+
+Running tests/v9-sectors.test.mjs against http://127.0.0.1:4390
+{
+  "status": "passed",
+  "checks": 47,
+  "errors": []
+}
+Running tests/v9-editorial.test.mjs against http://127.0.0.1:4390
+Passed 7 editorial behavior groups (firefox)
+Running tests/v9-ink-motion.test.mjs against http://127.0.0.1:4390
+TAP version 13
+# Subtest: filled underlines draw in normal motion and remain visible without scripts
+ok 1 - filled underlines draw in normal motion and remain visible without scripts
+  ---
+  duration_ms: 13725.029072
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 13731.453348
+Running tests/v9-preview-navigation.test.mjs against http://127.0.0.1:4390
+TAP version 13
+# Subtest: independent private preview navigation (firefox)
+ok 1 - independent private preview navigation (firefox)
+  ---
+  duration_ms: 23979.912733
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 23986.329828

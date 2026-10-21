@@ -1,6 +1,10 @@
+---
+import { v9Href } from '~/data/v9/routes';
+---
+
 <header class="hx hx--c hx-field g-white" id="contact-top">
   <div class="wrap">
-    <div class="eyebrow"><span class="tick">\</span> Contact</div>
+    <div class="eyebrow" data-v9-reveal><span class="tick">\</span> Contact</div>
     <div class="hx-c-g ix-hx has-field">
       <div class="hero-field" aria-hidden="true">
         <svg viewBox="0 0 740 190"
@@ -2167,18 +2171,19 @@
         >
       </div>
       <div>
-        <h1 class="hx-h" style="--d:60ms">Tell us what you’re stuck on.</h1>
-        <p class="lead" style="--d:120ms">
+        <h1 class="hx-h" style="--d:60ms" data-v9-reveal>Tell us what you’re stuck on.</h1>
+        <p class="lead" style="--d:120ms" data-v9-reveal>
           A named person reads it, and you get an answer inside a day either way. That includes the answer that we’re
           not the right people for it.
         </p>
-        <div class="cta-row" style="--d:180ms">
-          <a class="btn btn-primary" href="#write">Write to us</a><a class="link" href="/__v9/home#proof"
-            >See how a search runs ›</a
+        <div class="cta-row" style="--d:180ms" data-v9-reveal>
+          <a class="btn btn-primary" href="#write">Write to us</a><a
+            class="link"
+            href={v9Href('/__v9/home#proof', Astro.url.pathname)}>See how a search runs ›</a
           >
         </div>
       </div>
-      <aside class="ct-who" style="--d:200ms" aria-label="Who replies">
+      <aside class="ct-who" style="--d:200ms" aria-label="Who replies" data-v9-reveal>
         <span class="pf-k"><span class="pf-dot"></span> Who actually replies</span>
         <div class="ct-p">
           <img

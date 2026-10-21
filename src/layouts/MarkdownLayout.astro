@@ -1,35 +1,52 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
-import EditorialHeading from '~/components/v58/EditorialHeading.astro';
-
-import type { MetaData } from '~/types';
-
+import Layout from '~/layouts/V9Layout.astro';
+import { publicLinks } from '~/data/v9/preview-links';
 export interface Props {
   frontmatter: {
-    title?: string;
-    robots?: MetaData['robots'];
+    title: string;
+    description?: string;
+    pageUpdated?: string;
+    policyUpdated?: string;
+    robots?: { index?: boolean; follow?: boolean };
   };
 }
-
 const { frontmatter } = Astro.props;
-
-const metadata: MetaData = {
-  title: frontmatter?.title,
-  robots: frontmatter?.robots,
-};
+const policyDate = frontmatter.policyUpdated ? new Date(`${frontmatter.policyUpdated} UTC`) : undefined;
+const policyLabel =
+  policyDate && Number.isFinite(policyDate.valueOf())
+    ? new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(
+        policyDate
+      )
+    : frontmatter.policyUpdated;
+const updatedLabel = frontmatter.pageUpdated
+  ? new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(
+      new Date(frontmatter.pageUpdated)
+    )
+  : undefined;
 ---
 
-<Layout metadata={metadata}>
+<Layout
+  title={`${frontmatter.title} | Tribera`}
+  description={frontmatter.description || `${frontmatter.title} for Tribera.`}
+  noindex={frontmatter.robots?.index === false}
+  robotsFollow={frontmatter.robots?.follow !== false}
+  headerLinkOverrides={publicLinks}
+  footerLinkOverrides={publicLinks}
+>
   <section class="legal-document">
-    <EditorialHeading as="h1">
-      {frontmatter.title}
-    </EditorialHeading>
-    <div class="legal-document__body">
-      <slot />
-    </div>
+    <p class="v9-eyebrow">Trust and transparency</p>
+    <h1>{frontmatter.title}</h1>
+    {frontmatter.policyUpdated && <p class="legal-date legal-date--revision">Content last revised: {policyLabel}.</p>}
+    {
+      frontmatter.pageUpdated && (
+        <p class="legal-date">
+          Page presentation updated: <time datetime={frontmatter.pageUpdated}>{updatedLabel}</time>
+        </p>
+      )
+    }
+    <div class="legal-document__body"><slot /></div>
   </section>
 </Layout>
-
 <style>
   .legal-document {
     width: min(calc(100% - clamp(44px, 10vw, 144px)), 860px);
@@ -39,19 +56,19 @@ const metadata: MetaData = {
   .legal-document__body {
     max-width: 70ch;
     margin-top: 32px;
-    font: 400 16px/1.75 var(--v58-ui);
-    color: var(--v58-muted);
+    font: 400 16px/1.75 var(--body);
+    color: var(--ink-2);
     overflow-wrap: anywhere;
   }
   .legal-document__body :global(h2) {
     margin: 2em 0 0.75em;
-    font: var(--type-display-weight) var(--type-document-size)/var(--type-article-leading) var(--v58-display);
-    color: var(--v58-ink);
+    font: 400 clamp(1.5rem, 3vw, 2rem)/1.2 var(--display);
+    color: var(--ink);
   }
   .legal-document__body :global(h3) {
     margin: 1.5em 0 0.5em;
-    font: 500 1.25rem/1.3 var(--v58-display);
-    color: var(--v58-ink);
+    font: 500 1.25rem/1.3 var(--display);
+    color: var(--ink);
   }
   .legal-document__body :global(p),
   .legal-document__body :global(ul),
@@ -67,8 +84,24 @@ const metadata: MetaData = {
     padding-left: 1.5em;
   }
   .legal-document__body :global(a) {
-    color: var(--v58-ink);
+    color: var(--ink);
     text-decoration: underline;
     text-underline-offset: 3px;
+  }
+</style>
+
+<style>
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .legal-document .legal-date--revision {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .legal-date {
+    margin-top: 16px;
+    font-size: 0.875rem;
+    color: var(--ink-2);
+    max-width: 70ch;
   }
 </style>

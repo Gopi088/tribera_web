@@ -1,47 +1,29 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
-import Section from '~/components/v58/Section.astro';
-import EditorialHeading from '~/components/v58/EditorialHeading.astro';
-import Eyebrow from '~/components/v58/Eyebrow.astro';
-import Button from '~/components/v58/Button.astro';
-const metadata = {
-  title: 'Page not found',
-  description: 'Find your way back to Tribera for hiring teams and candidates.',
-  robots: { index: false, follow: true },
-};
+import Layout from '~/layouts/V9Layout.astro';
+import Content from '~/components/v9/content/Content.astro';
+import { publicLinks } from '~/data/v9/preview-links';
 ---
 
-<Layout metadata={metadata}>
-  <Section tone="paper" aria-labelledby="missing-title">
-    <div class="missing-page">
-      <Eyebrow>404 / Page not found</Eyebrow>
-      <EditorialHeading as="h1" id="missing-title"
-        >This page isn't here.<br />Let's find your next step.</EditorialHeading
-      >
-      <p>Looking for help with a role, or your next opportunity? Start here.</p>
-      <div class="missing-page__actions">
-        <Button href="/">I'm hiring</Button><Button href="/candidates" variant="secondary"
-          >I'm looking for a role &rsaquo;</Button
-        >
+<Layout
+  title="Page not found | Tribera"
+  description="Find your way back to Tribera for hiring teams and candidates."
+  noindex
+  robotsFollow
+  headerLinkOverrides={publicLinks}
+  footerLinkOverrides={publicLinks}
+>
+  <Content>
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">404 / Page not found</p>
+        <h1>This page isn't here.<br />Let's find your next step.</h1>
+        <p class="hero__p">Looking for help with a role, or your next opportunity? Start here.</p>
+        <div class="btns">
+          <a class="btn" href="/">I'm hiring</a><a class="btn btn--ghost" href="/candidates"
+            >I'm looking for a role &rsaquo;</a
+          >
+        </div>
       </div>
-    </div>
-  </Section>
+    </section>
+  </Content>
 </Layout>
-<style>
-  .missing-page {
-    padding-block: clamp(24px, 5vw, 64px);
-  }
-  .missing-page p {
-    max-width: 48ch;
-    margin-top: 24px;
-    font: 400 18px/1.55 var(--v58-ui);
-    color: var(--v58-muted);
-  }
-  .missing-page__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-    align-items: center;
-    margin-top: 32px;
-  }
-</style>

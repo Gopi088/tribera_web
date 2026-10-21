@@ -1,5 +1,5 @@
 {
-  "reason": "The current homepage renders v126; the reviewed runner still invoked suites written for removed v58/v60/v61 DOM and copy. Original suite files remain available as historical references.",
+  "reason": "Historical pre-v9 reconciliation: the v126 runner replaced suites written for removed v58/v60/v61 DOM and copy. The current public v9 replacements are recorded under v9PublicMigration; original suites remain as references.",
   "replacements": {
     "home-handoff": "home-v126: sample heading parity, section order, scores, navigation, FAQ, no-JS and motion. Old barcard drawing choreography and old copy are obsolete.",
     "home-audit": "home-v126 plus hero-viewport: current section order, responsive bounds, scores, controls and fallback. v58 dark-section adjacency is obsolete.",
@@ -18,5 +18,20 @@
     "reviewed-bugs": "Replace v58 weight instruction/calculation copy checks with nine weight controls, static score/thresholds and interactive v126 preset; retain all non-home checks. Industries comparison chart was also removed before v9; assert all twelve unique visible sector destinations and hiring CTA in enabled, disabled and blocked-script modes instead. Candidate v7 uses #sScore and .pre2; preserve independent weighted-score verification and inactive-control requirement. Removed old explanatory copy selectors are obsolete. No-JS inactive controls remain a potential real failure, not waived.",
     "content-typography": "Preserve family/size/leading/weight/tracking checks with explicit current version scales: home v126 sample.css (including ops/proc headings), candidate-v7.css, and current industries hero. Shared editorial tokens continue on other routes; no automatic snapshot acceptance."
   },
-  "limits": "This reconciles baseline version mismatches, not v9 acceptance. New v9 routes require separate reviewed coverage and visual comparisons. Remaining real baseline failures must be recorded, not suppressed."
+  "limits": "Historical baseline reconciliation does not certify current v9 acceptance. v9PublicMigration records current public coverage; private v9 suites and independent visual reviews remain required.",
+  "v9PublicMigration": {
+    "reason": "All public content routes now use V9Layout. The pre-v9 public journey and text suites assert superseded layouts, selectors and font scales.",
+    "runner": "scripts/test-v9-public.mjs",
+    "coverage": {
+      "tests/v9-public-routes.test.mjs": "Promoted v9 pages: canonical/index metadata, contextual links, responsive bounds, keyboard interactions and no-JS.",
+      "tests/v9-content-pages.test.mjs": "Every remaining public content route at mobile/desktop sizes: v9 fonts and shell, route retention, filters, comparison charts, native application dialog, mocked form success/retry, no-JS content.",
+      "tests/shared-chrome.test.mjs": "All built public pages have one shared shell; responsive header/footer consistency, navigation, legal metadata and no overflow.",
+      "tests/client-publication.test.mjs": "Approved v9 customer names, including explicitly approved Heineken, ARIA duplicate suppression, responsive and no-JS rendering.",
+      "tests/built-links.test.mjs": "Every built link resolves to a static target or an existing Netlify handler; publication exclusions, article reading times, sitemap and robots.",
+      "tests/newsletter-journey.test.mjs": "Retained newsletter waitlist delivery contract on the blog index and an existing article, using mocked responses.",
+      "tests/v9-release-regressions.test.mjs": "Chart widths and contrast, mobile labels, upload validation/payload/error/retry/success/focus/state, no-JS alternatives, native sharing and single topic navigation.",
+      "tests/v9-content-journeys.test.mjs": "Dropped location across all built pages, eight-article discovery/metadata, real related destinations, mocked notification journey, example context and policy revision hierarchy."
+    },
+    "preserved": "Original historical suites remain in tests; v9 preview, A1, A2, sector, unit and static gates remain required. Production artifacts run on Chromium, Firefox and WebKit."
+  }
 }

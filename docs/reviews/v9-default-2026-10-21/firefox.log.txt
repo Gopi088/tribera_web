@@ -1,0 +1,1 @@
+firefox: 46 public route/viewport checks plus navigation, alias, tablet keyboard and no-JS passed

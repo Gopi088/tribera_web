@@ -1,0 +1,16 @@
+Read-only focused follow-up to content-followup.md. Use Read/Glob/Grep only. Never execute commands, edit, use network, submit, deploy or spawn agents. Return ACCEPT/REVISE for stage 2 local content + visuals, not CI/hosted delivery. Prior review accepted all fixes except desktop About belong/here wrapping. The owner explicitly directed keeping business claims AS IS, dropping New Jersey, publishing Heineken. Do not claim independent substantiation.
+
+Changes since last review: About groups decorated belong + nonbreaking here? inside nowrap ab-word-pair. Publication dates consistently en-GB with explicit UTC on blog listing, FieldNotesList, all seven archive headers, related cards, generic layout, flagship ArticleHero. ArticleHero now derives title/excerpt/category/date/time from collection, cover says Field note rather than misleading No.10. Related heading More from our field notes. Notification CTA margin20, candidate Example controls mono label, scarcity pill no-wrap plus wrapping panel header. See corresponding source and appended CSS. Build passed, Chromium content-journey suite passed. Current production build a3ff2843fbff485a35a218595e7677795b4a85c2aaddf261f6dd2070b2b18166. No new overflow/browser/image errors across 10 route-width captures.
+
+Open actual PNGs below. If source and image fix prior blocker, accept bounded stage2. Optional polish separately; report images actually inspected and limitations. Full CI and hosted delivery remain later stages.
+artifacts/v9-release-2026-10-22/content-final/_about-390-section-0.png
+artifacts/v9-release-2026-10-22/content-final/_about-1366-section-0.png
+artifacts/v9-release-2026-10-22/content-final/_blog-390-top.png
+artifacts/v9-release-2026-10-22/content-final/_blog-1366-top.png
+artifacts/v9-release-2026-10-22/content-final/_blog_seventeen-interviews-one-hire-390-top.png
+artifacts/v9-release-2026-10-22/content-final/_blog_seventeen-interviews-one-hire-1366-top.png
+artifacts/v9-release-2026-10-22/content-final/_blog_seventeen-interviews-one-hire-390-section-6.png
+artifacts/v9-release-2026-10-22/content-final/_blog_seventeen-interviews-one-hire-1366-section-7.png
+artifacts/v9-release-2026-10-22/content-final/_intelligence-390-section-2.png
+artifacts/v9-release-2026-10-22/content-final/_intelligence-390-section-9.png
+artifacts/v9-release-2026-10-22/content-final/_candidates-390-section-8.png

@@ -161,14 +161,41 @@ jobs:
           name: a2-pages-${{ matrix.browser }}-evidence
           path: artifacts/v9-a2/
 
-  legacy-regression:
+  sector-pages:
     needs: build
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 25
     strategy:
       fail-fast: false
       matrix:
-        group: [journeys, text]
+        browser: [chromium, webkit, firefox]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: foundation-build
+          path: dist/
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: npm run test:migration:sectors
+        env:
+          BROWSER: ${{ matrix.browser }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sector-pages-${{ matrix.browser }}-evidence
+          path: artifacts/v9-sectors/
+
+  public-regression:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit, firefox]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -178,19 +205,19 @@ jobs:
         with:
           name: production-build
           path: dist/
-      - run: npx playwright install --with-deps chromium
-      - run: node scripts/test-reviewed-site.mjs
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: node scripts/test-v9-public.mjs
         env:
-          LEGACY_SUITE_GROUP: ${{ matrix.group }}
+          BROWSER: ${{ matrix.browser }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: legacy-regression-${{ matrix.group }}-evidence
+          name: public-regression-${{ matrix.browser }}-evidence
           path: artifacts/
 
   migration-required:
     if: always()
-    needs: [check, unit, build, browser, a1-pages, a2-pages, legacy-regression]
+    needs: [check, unit, build, browser, a1-pages, a2-pages, sector-pages, public-regression]
     runs-on: ubuntu-latest
     steps:
       - name: Require every migration job to pass

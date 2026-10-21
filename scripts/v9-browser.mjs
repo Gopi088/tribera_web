@@ -24,8 +24,13 @@ export async function browserAudit(root, evidence) {
     'case-study',
     'contact',
     'sample-write-up',
+    'industries',
+    'intelligence',
   ]) {
     if (pages.has(`/__v9/${slug}`)) routes.push(`/__v9/${slug}`);
+  }
+  for (const route of pages.keys()) {
+    if (route.startsWith('/__v9/industries/') && !route.endsWith('/global-capability-centres')) routes.push(route);
   }
   const server = process.env.TEST_BASE_URL
     ? null

@@ -6,6 +6,7 @@ document.querySelectorAll('[data-newsletter-form]').forEach((form) => {
   if (!loadedAt || !status || !submitter) return;
 
   loadedAt.value = String(Date.now());
+  submitter.disabled = false;
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     submitter.disabled = true;

@@ -1,0 +1,27 @@
+Independent read-only CODE review of the latest public-content v9 migration. Review the CURRENT source listed below. This migrates 54 remaining public pages (Careers, Functions, old blog articles/index/topics, candidate signup, 404) onto the common v9 layout. Earlier bounded Claude reviews did not cover this change. The user explicitly requested sequential independent code and visual review before content correction, business-claim verification, commit/CI and hosted verification. This packet is code review only; a visual packet follows. Do not claim you inspected screenshots in this packet. Do not edit files, run commands, spawn agents, submit forms, contact external services, or deploy. Tools are restricted to Read/Glob/Grep.
+
+Inspect implementation and tests for concrete correctness, accessibility, progressive enhancement and regression issues: native careers dialog and form ownership/state, file uploads, failure/retry/close/reopen, no-JS behavior, category/tag filtering/pagination, metadata inheritance and OG image handling, CSS scoping/typography and retained diagrams, and whether CI replacement preserves substantive coverage rather than just disabling old assertions. Use the existing Netlify handlers and data files to check actual contracts where needed. Read tests before alleging missing coverage. Known business/copy issues (unlisted new article, stronger candidate promises, New Jersey address placeholder, Our numbers fallback) are already scheduled as step 2; identify separately and do not treat them as new migration defects. Do not waive genuine code defects on that basis.
+
+Return ACCEPT or REVISE for this bounded migration CODE scope, severity-ranked actionable findings with file and line references and reproducible trigger, plus nonblocking suggestions and explicit limitations. Do not claim actual hosted delivery, full CI acceptance, or legal/business approval. Complete in at most 35 turns. Files:
+src/layouts/V9Layout.astro
+src/components/v9/content/Content.astro
+src/assets/styles/v9/content-pages.css
+src/scripts/v9/content-pages.ts
+src/pages/careers.astro
+src/pages/careers/[slug].astro
+src/pages/functions/index.astro
+src/pages/functions/[slug].astro
+src/pages/blog/index.astro
+src/pages/blog/rethinking-hiring-metrics-signal-efficiency.astro
+src/pages/[...blog]/index.astro
+src/pages/candidates/start.astro
+src/components/blog/TopicIndex.astro
+src/components/blog/FieldNotesList.astro
+src/components/blog/HeroFilters.astro
+src/pages/category/[category]/[...page].astro
+src/pages/tag/[tag]/[...page].astro
+src/pages/404.astro
+scripts/test-v9-public.mjs
+tests/v9-content-pages.test.mjs
+.github/workflows/actions.yaml
+tests/reviewed-suite-migration.json

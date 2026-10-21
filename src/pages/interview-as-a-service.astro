@@ -1,0 +1,13 @@
+---
+import V9Layout from '../layouts/V9Layout.astro';
+import InterviewPage from '../components/v9/hiring-detail/InterviewPage.astro';
+import { publicLinks } from '../data/v9/preview-links';
+---
+
+<V9Layout
+  title="Interview as a service in India | Tribera"
+  description="Send us the candidates you already have. Senior experts interview each one against your bar and return a ranked list, with reasons, in about 48 hours."
+  cta={{ label: 'Send us a batch', href: '/contact?service=iaas' }}
+  headerLinkOverrides={publicLinks}
+  footerLinkOverrides={publicLinks}><InterviewPage /></V9Layout
+>

@@ -1,5 +1,6 @@
 ---
 import BfsiInkFilter from './bfsi/BfsiInkFilter.astro';
+import SectorWeights from '../sectors/SectorWeights.astro';
 import BfsiIntro from './bfsi/BfsiIntro.astro';
 import BfsiComparison from './bfsi/BfsiComparison.astro';
 import BfsiMisses from './bfsi/BfsiMisses.astro';
@@ -13,6 +14,7 @@ import '../../../assets/styles/v9/editorial/behavior.css';
 ---
 
 <div class="v9-editorial v9-editorial-bfsi">
+  <SectorWeights />
   <BfsiInkFilter />
   <BfsiIntro />
   <BfsiComparison />

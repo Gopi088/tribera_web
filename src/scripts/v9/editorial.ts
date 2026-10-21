@@ -1,3 +1,5 @@
+import { initializeEditorialMotion } from './editorial-motion';
+import { initializeEditorialCitations } from './editorial-citations';
 /** Page-owned editorial enhancements. Static markup carries all claims and selected weights. */
 const scope = document.querySelector<HTMLElement>('.v9-editorial');
 if (scope) {
@@ -10,7 +12,15 @@ if (scope) {
       more.setAttribute('aria-expanded', String(open));
       more.querySelector('span')!.textContent = open ? 'Fold the letter' : 'Keep reading';
     };
-    more.addEventListener('click', () => setOpen(more.getAttribute('aria-expanded') !== 'true'));
+    more.addEventListener('click', () => {
+      const open = more.getAttribute('aria-expanded') !== 'true';
+      setOpen(open);
+      if (!open)
+        document.getElementById('letter')?.scrollIntoView({
+          behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+          block: 'start',
+        });
+    });
     more.hidden = false;
     setOpen(false);
   }
@@ -19,6 +29,7 @@ if (scope) {
     const choices = debate.querySelectorAll<HTMLButtonElement>('.ab-db-b');
     const settle = (side?: string) => {
       debate.classList.add('done');
+      debate.classList.toggle('skipped', !side);
       debate.querySelectorAll<HTMLElement>('.ab-db-c').forEach((card) => {
         const picked = card.dataset.side === side;
         card.classList.toggle('picked', picked);
@@ -30,7 +41,16 @@ if (scope) {
           : side === 'let'
             ? 'You’d let them go. So did we, and Abhishek still disagrees. '
             : 'Where we landed, for now. ';
-      debate.querySelector('.ab-stamp')?.classList.add('on');
+      const stamp = debate.querySelector<HTMLElement>('.ab-stamp');
+      stamp?.classList.add('on');
+      if (stamp && !matchMedia('(prefers-reduced-motion: reduce)').matches)
+        stamp.animate(
+          [
+            { opacity: 0, transform: 'rotate(-6deg) scale(1.35)' },
+            { opacity: 0.9, transform: 'rotate(-6deg) scale(1)' },
+          ],
+          { delay: 550, duration: 260, fill: 'backwards', easing: 'cubic-bezier(.3,1.6,.5,1)' }
+        );
     };
     choices.forEach((button) => {
       button.hidden = false;
@@ -42,28 +62,19 @@ if (scope) {
     // The actual retention policy stays visible before a choice; this is a demonstration, not a preference setting.
     skip.style.display = 'inline-block';
   }
-  const weights: Record<string, { name: string; values: number[] }> = {
-    'enterprise-technology': { name: 'Enterprise technology', values: [26, 26, 10, 20, 10, 8] },
-    'product-saas': { name: 'Product & SaaS', values: [22, 18, 6, 20, 8, 26] },
-    'ai-data': { name: 'AI & data', values: [30, 26, 10, 16, 10, 8] },
-    cybersecurity: { name: 'Cybersecurity', values: [24, 16, 32, 12, 10, 6] },
-    'healthcare-life-sciences': { name: 'Healthcare & life sciences', values: [18, 12, 30, 10, 22, 8] },
-    pharmaceutical: { name: 'Pharmaceutical', values: [16, 10, 34, 8, 24, 8] },
-    manufacturing: { name: 'Manufacturing', values: [22, 14, 22, 18, 14, 10] },
-    'industrial-engineering': { name: 'Industrial & engineering', values: [24, 18, 18, 18, 14, 8] },
-    'global-capability-centers': { name: 'Global capability centres', values: [22, 18, 12, 20, 10, 18] },
-    'consumer-digital-commerce': { name: 'Consumer & digital commerce', values: [30, 24, 8, 22, 6, 10] },
-    'private-equity-portfolio': { name: 'Private equity portfolio', values: [20, 14, 10, 32, 8, 16] },
-  };
+  const weights: Record<string, { name: string; values: number[] }> = JSON.parse(
+    scope.querySelector('[data-sector-weights]')?.textContent || '{}'
+  );
   const tabs = [...scope.querySelectorAll<HTMLButtonElement>('.ix-cmp')];
-  const selectedWeights = [20, 14, 30, 10, 18, 8];
+  const selectedWeights =
+    weights[scope.querySelector<HTMLElement>('.ix-lab')?.dataset.me || 'banking-financial-services']?.values || [];
   const rows = [...scope.querySelectorAll<HTMLElement>('#ixC li')];
   const panel = scope.querySelector<HTMLElement>('.ix-panel');
   if (panel) {
     panel.id = 'v9-sector-comparison';
     panel.setAttribute('role', 'tabpanel');
   }
-  const choose = (tab: HTMLButtonElement) => {
+  const choose = (tab: HTMLButtonElement, announce = true) => {
     const selected = weights[tab.dataset.s!];
     tabs.forEach((candidate) => {
       const active = candidate === tab;
@@ -79,7 +90,15 @@ if (scope) {
     const biggest = differences.indexOf(Math.max(...differences));
     const label = rows[biggest].querySelector('.ix-dn')!.textContent;
     const read = scope.querySelector('#ixRead')!;
-    read.setAttribute('aria-live', 'polite');
+    read.setAttribute('aria-live', announce ? 'polite' : 'off');
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches && scope.dataset.ready === 'true')
+      read.animate(
+        [
+          { opacity: 0, transform: 'translateY(4px)' },
+          { opacity: 1, transform: 'none' },
+        ],
+        { duration: 400 }
+      );
     read.textContent = `${label} carries ${selectedWeights[biggest]}% here, against ${selected.values[biggest]}% in ${selected.name}.`;
     rows.forEach((row, i) => row.classList.toggle('hot', i === biggest));
     panel?.setAttribute('aria-labelledby', tab.id);
@@ -102,7 +121,7 @@ if (scope) {
       choose(tabs[next]);
     });
   });
-  if (tabs.length) choose(tabs.find((tab) => tab.getAttribute('aria-selected') === 'true') || tabs[0]);
+  if (tabs.length) choose(tabs.find((tab) => tab.getAttribute('aria-selected') === 'true') || tabs[0], false);
   scope.querySelectorAll<HTMLDetailsElement>('.faq-item').forEach((detail) => {
     detail.addEventListener('toggle', () => {
       if (detail.open)
@@ -130,5 +149,7 @@ if (scope) {
       }
     });
   }
+  initializeEditorialMotion(scope, tabs, choose);
+  initializeEditorialCitations(scope);
   scope.dataset.ready = 'true';
 }

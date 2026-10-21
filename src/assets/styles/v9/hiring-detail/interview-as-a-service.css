@@ -1013,3 +1013,8 @@
   transform: rotate(90deg);
   opacity: 0;
 }
+
+/* Completed baseline; JavaScript adds finite ink drawing without hiding no-JS content. */
+.v9-hiring-iaas svg.hd-ink {
+  clip-path: inset(-20% -4% -20% 0);
+}

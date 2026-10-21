@@ -1,6 +1,6 @@
 # Private candidate page (G2)
 
-`/__v9/candidates` is emitted only in development or with `V9_PREVIEW=1`. The existing public candidate route is untouched. The accepted V9 shell, client strip, native FAQ and testimonial cards compose seven candidate-owned components. Root-owned `previewLinks` keeps the preview navigation in the migration journey.
+`/__v9/candidates` is emitted only in development or with `V9_PREVIEW=1`. The public `/candidates` route uses the same components with public navigation. The accepted V9 shell, client strip, native FAQ and testimonial cards compose seven candidate-owned components. Root-owned `previewLinks` keeps the preview navigation in the migration journey.
 
 ## Source and deliberate differences
 
@@ -10,7 +10,7 @@ The authoritative source is `sample_data/tribera-web-handoff-v9/candidates.html`
 - The team demonstration runs once, has an explicit play/pause control, and stops on user input/focus, visibility loss or reduced motion. CV questions have keyboard tabs, play/pause, visibility handling and cancellation after manual selection. All four question/answer pairs remain visible without JavaScript. Reduced motion suppresses autoplay and transitions.
 - Privacy switches are explicitly illustrative, never persist, and never claim to modify an account. The hero is labeled “Example · anonymous”.
 - The source's scroll timeline remains, with an added accessible day scrubber. Manual selection stops scroll-driven updates. Reduced motion and no-JavaScript modes show the final timeline and complete milestones.
-- Testimonials use the accepted static component; all four quotes remain readable rather than drifting offscreen. FAQs use the accepted native disclosure component. The file chooser stays keyboard-accessible, unlike the source's hidden input. Decorative entrances do not hide no-JavaScript content.
+- Testimonials use the accepted component in a 28px/second pausable drift on desktop and a swipe row on phones. Reduced motion and no-JavaScript modes retain all four original quotes. FAQs use the accepted native disclosure component. The file chooser stays keyboard-accessible, unlike the source's hidden input. Hero sweep/parallax, profile bars/stamp, scorer staging, question transitions, the scroll cue and closing cells follow the handoff. Decorative entrances do not hide no-JavaScript content.
 
 ## Submission boundary
 

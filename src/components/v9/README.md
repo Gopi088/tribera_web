@@ -1,14 +1,14 @@
 # v9 foundation contract
 
-`V9Layout` owns the document, local font declarations, skip link, header, main landmark and footer. It does not import the legacy layout or global stylesheet. All CSS classes and font-family names are prefixed with `v9` / `V9` to avoid accidental coupling. Production pages have not adopted this layout yet.
+`V9Layout` owns the document, local font declarations, skip link, header, main landmark and footer. It does not import the legacy layout or global stylesheet. Font-family aliases and component scopes isolate v9 from historical styles. All 81 public HTML pages now use this layout.
 
 - Required layout props: `title`, `description`.
 - Optional layout props: `audience` (`hiring` or `candidate`), `activeRoute`, `cta: { label, href }`, `canonicalPath`, `noindex`, `footerLinkOverrides`.
 - `Hero` accepts `variant` (`product`, `editorial`, `compact`), `eyebrow`, `title`, `description`, optional `cta`; named `title` and `aside` slots preserve page-specific composition. The product scorecard remains page-owned.
 - `FAQ` accepts `items: { question, answer }[]` and uses native disclosure semantics.
 - `SourceNote` accepts `number`, `title`, `href`, optional `context`; native disclosure keeps the reference usable without JavaScript. Enhancement keeps open notes inside the viewport and supports Escape; no-JavaScript disclosures stay in document flow. `SourceList` handles longer lists.
-- `ClientStrip` contains the 13 handoff clients. It starts static; enhancement activates animation only while visible and the document is active. Pause, focus, hover and reduced motion stop movement. Reduced motion and no-JavaScript modes wrap the complete list.
-- Header links and footer destinations match v9. Three footer destinations belong to later migration batches. The private fixtures use explicit `footerLinkOverrides` to send these links to existing Services, About and Privacy pages until the new routes exist; production defaults retain the handoff destinations. Remove these preview overrides when the corresponding routes land.
+- `ClientStrip` contains the 13 handoff clients. It starts static; enhancement activates animation only while visible and the document is active. Focus, hover and reduced motion stop movement. Reduced motion and no-JavaScript modes wrap the complete list.
+- Header and footer links resolve through the page context: public visitors stay on public routes and private review journeys stay under `/__v9/`. Optional unpublished destinations have no public navigation entry. The misleading “Our numbers” link was removed; office labels list Pune and Bengaluru.
 
 The fixtures are at `/__v9/foundation`, `/__v9/candidate` and `/__v9/content`, emitted only in development or builds with `V9_PREVIEW=1`. Astro ignores underscore directories, so their source is `src/pages/[preview]/[fixture].astro`. All fixtures always use `noindex, nofollow` and omit canonical URLs. They are component demonstrations, not visual-parity evidence for complete pages.
 
@@ -26,4 +26,4 @@ TEST_BASE_URL=http://127.0.0.1:4331 BROWSER=chromium node --test tests/v9-founda
 
 The same command supports `firefox` and `webkit`; missing browsers fail rather than skip. The tests require both fixture pages, cover nine widths around responsive boundaries, keyboard menu controls, audience navigation, disclosures, reduced motion and no-JavaScript fallback. Full handoff screenshot comparison is still a separate gate.
 
-`npm run test:migration:foundation` runs shell interactions, editorial content checks and final-cascade reference comparisons. Reference fixtures remove handoff scripts and load the same pinned local fonts; external font requests are blocked. They compare reusable component properties and save screenshots, not certify complete-page visual parity. Representative-page composition, full-page accessibility, product animations and future route adoption remain later gates.
+`npm run test:migration:foundation` runs shell interactions, editorial content checks and final-cascade reference comparisons. Reference fixtures remove handoff scripts and load the same pinned local fonts; external font requests are blocked. They compare reusable component properties and save screenshots, not certify complete-page visual parity. Representative-page, motion and public-route suites provide separate coverage. See `docs/v9-release-readiness-2026-10-22.md` for current review and release boundaries.

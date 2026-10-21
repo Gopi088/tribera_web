@@ -1,4 +1,5 @@
 export const STANDALONE_BLOG_PERMALINKS = new Set([
+  'blog/seventeen-interviews-one-hire',
   'blog/designing-ai-for-high-stakes-technical-assessment',
   'blog/designing-for-trust-privacy-transparency-respect',
   'blog/hiring-is-not-a-transaction-its-a-relationship',

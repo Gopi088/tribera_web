@@ -1,9 +1,13 @@
+---
+import { v9Href } from '~/data/v9/routes';
+---
+
 <!-- Handoff industries/banking-financial-services.html: editorial-top. Native Astro markup; shared document shell is V9Layout. -->
 <header class="hx hx--c hx-field g-white" id="editorial-top">
   <div class="wrap">
-    <div class="eyebrow">
+    <div class="eyebrow" data-v9-reveal>
       <span class="tick">\</span>
-      <a class="ix-crumb" href="/industries">Industries</a> · Banking &amp; financial services
+      <a class="ix-crumb" href={v9Href('/__v9/industries', Astro.url.pathname)}>Industries</a> · Banking &amp; financial services
     </div>
     <div class="hx-c-g ix-hx has-field">
       <div class="hero-field" aria-hidden="true">
@@ -2171,25 +2175,30 @@
         >
       </div>
       <div>
-        <h1 class="hx-h" style="--d:60ms">Where the wrong hire costs more than a quarter.</h1>
-        <p class="lead" style="--d:120ms">
+        <h1 class="hx-h" style="--d:60ms" data-v9-reveal>Where the wrong hire costs more than a quarter.</h1>
+        <p class="lead" style="--d:120ms" data-v9-reveal>
           Three vetted people for roles where the wrong hire costs more than a quarter. Three scored candidates in about
           36 hours, each interviewed by someone who has done the job.
         </p>
-        <div class="cta-row" style="--d:180ms">
-          <a class="btn btn-primary" href="/__v9/contact?sector=banking-financial-services">Brief a role</a><a
-            class="link"
-            href="#ask">See what we ask ›</a
-          >
+        <div class="cta-row" style="--d:180ms" data-v9-reveal>
+          <a
+            class="btn btn-primary"
+            href={v9Href('/__v9/contact?sector=banking-financial-services', Astro.url.pathname)}>Brief a role</a
+          ><a class="link" href="#ask">See what we ask ›</a>
         </div>
-        <p class="ix-mkt" style="--d:220ms">
+        <p class="ix-mkt" style="--d:220ms" data-v9-reveal>
           <span class="ql">The market right now</span><b>3 lakh</b> people work in India’s 170-plus BFSI capability centres,
           about one in five of everyone employed in GCCs.<sup class="fn"
             ><a class="fn-r" href="#src-1" aria-label="Source 1">1</a></sup
           >
         </p>
       </div>
-      <aside class="ix-card" style="--d:200ms" aria-label="How the score is weighted in Banking & financial services">
+      <aside
+        class="ix-card"
+        style="--d:200ms"
+        aria-label="How the score is weighted in Banking & financial services"
+        data-v9-reveal
+      >
         <div class="ix-card-top"><span class="pf-k"><span class="pf-dot"></span> The bar in banking</span></div>
         <ul class="ix-bars">
           <li class="">

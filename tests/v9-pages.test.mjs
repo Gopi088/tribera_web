@@ -78,7 +78,10 @@ try {
     page.locator('h1,h2').evaluateAll((els) => els.map((el) => el.innerText.replace(/\s+/g, ' ').trim()));
   for (const [slug, file] of pages) {
     await reference.goto(`${base}/__handoff/${file}`, { waitUntil: 'networkidle' });
-    const expectedHeadings = await normalizedHeadings(reference);
+    // The related cards now describe published field notes rather than fictional searches.
+    const expectedHeadings = (await normalizedHeadings(reference)).map((heading) =>
+      slug === 'article' && heading === 'Three more from real searches.' ? 'More from our field notes.' : heading
+    );
     assert.ok(expectedHeadings.length > 1, `${slug}: reference heading coverage must not be empty`);
     for (const javaScriptEnabled of [true, false]) {
       const context = await browser.newContext({ javaScriptEnabled, reducedMotion: 'reduce' });

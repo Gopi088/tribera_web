@@ -1,12 +1,16 @@
+---
+import { v9Href } from '~/data/v9/routes';
+---
+
 <section class="g-white" id="more">
   <div class="wrap">
-    <div class="eyebrow" data-rv=""><span class="tick">\</span> 03 · Eight more</div>
-    <h2 data-rv="" style="--d:60ms">For when the problem is bigger than a role.</h2>
-    <p class="lead" data-rv="" style="--d:120ms">
+    <div class="eyebrow" data-v9-reveal><span class="tick">\</span> 03 · Eight more</div>
+    <h2 data-v9-reveal style="--d:60ms">For when the problem is bigger than a role.</h2>
+    <p class="lead" data-v9-reveal style="--d:120ms">
       A leadership seat, a whole hiring function, a team in India, or a read on the people you already have.
     </p>
     <div class="sv-accs">
-      <details class="sv-acc" id="sv-iaas" data-rv="" style="--d:0ms">
+      <details class="sv-acc" id="sv-iaas" data-v9-reveal style="--d:0ms">
         <summary class="sv-acc-q"
           ><b>Interview as a service</b><span class="sv-acc-l"
             >You give us candidates you already have. A scored write-up on each, all against the same bar.</span
@@ -24,12 +28,12 @@
               </li>
             </ul><p>Works for three candidates or thirty. Who you progress stays your call.</p><a
               class="link"
-              href="/__v9/contact?service=iaas">Ask about this ›</a
+              href={v9Href('/__v9/contact?service=iaas', Astro.url.pathname)}>Ask about this ›</a
             >
           </div>
         </div>
       </details>
-      <details class="sv-acc" id="sv-managed" data-rv="" style="--d:40ms">
+      <details class="sv-acc" id="sv-managed" data-v9-reveal style="--d:40ms">
         <summary class="sv-acc-q"
           ><b>Managed hiring</b><span class="sv-acc-l"
             >You give us your hiring function. We run it end to end, with named recruiters inside your team. The hires
@@ -46,13 +50,14 @@
               </li><li>A weekly working session with your TA team</li><li>
                 A quarterly refresh as the organisation changes
               </li>
-            </ul><p>For teams hiring steadily through the year.</p><a class="link" href="/__v9/contact?service=managed"
-              >Ask about this ›</a
+            </ul><p>For teams hiring steadily through the year.</p><a
+              class="link"
+              href={v9Href('/__v9/contact?service=managed', Astro.url.pathname)}>Ask about this ›</a
             >
           </div>
         </div>
       </details>
-      <details class="sv-acc" id="sv-exec" data-rv="" style="--d:80ms">
+      <details class="sv-acc" id="sv-exec" data-v9-reveal style="--d:80ms">
         <summary class="sv-acc-q"
           ><b>Executive search</b><span class="sv-acc-l"
             >You give us a leadership seat. A confidential shortlist, and a map of who else exists.</span
@@ -67,12 +72,12 @@
               </li><li>A board-ready write-up on each finalist</li>
             </ul><p>For CXOs, function heads and country leaders, where a wrong hire costs years.</p><a
               class="link"
-              href="/__v9/contact?service=exec">Ask about this ›</a
+              href={v9Href('/__v9/contact?service=exec', Astro.url.pathname)}>Ask about this ›</a
             >
           </div>
         </div>
       </details>
-      <details class="sv-acc" id="sv-delivery" data-rv="" style="--d:120ms">
+      <details class="sv-acc" id="sv-delivery" data-v9-reveal style="--d:120ms">
         <summary class="sv-acc-q"
           ><b>Managed delivery team</b><span class="sv-acc-l"
             >You give us a scope and a date. A team of ours that does the work and reports to you weekly.</span
@@ -85,13 +90,14 @@
               <li>A team shaped around the work</li><li>Everyone on it interviewed against your scorecard</li><li>
                 A weekly demo and one named lead
               </li><li>Scope and exit criteria written before anyone starts</li>
-            </ul><p>It ends when the scope ends.</p><a class="link" href="/__v9/contact?service=delivery"
-              >Ask about this ›</a
+            </ul><p>It ends when the scope ends.</p><a
+              class="link"
+              href={v9Href('/__v9/contact?service=delivery', Astro.url.pathname)}>Ask about this ›</a
             >
           </div>
         </div>
       </details>
-      <details class="sv-acc" id="sv-bot" data-rv="" style="--d:160ms">
+      <details class="sv-acc" id="sv-bot" data-v9-reveal style="--d:160ms">
         <summary class="sv-acc-q"
           ><b>Build, operate, transfer</b><span class="sv-acc-l"
             >You give us a headcount plan for India. We hire the team, run it, then hand it to your entity.</span
@@ -108,12 +114,12 @@
               </li><li>Retention through transfer is the number we’re measured on</li>
             </ul><p>The usual route into India for teams not ready to open an entity.</p><a
               class="link"
-              href="/__v9/contact?service=bot">Ask about this ›</a
+              href={v9Href('/__v9/contact?service=bot', Astro.url.pathname)}>Ask about this ›</a
             >
           </div>
         </div>
       </details>
-      <details class="sv-acc" id="sv-team" data-rv="" style="--d:200ms">
+      <details class="sv-acc" id="sv-team" data-v9-reveal style="--d:200ms">
         <summary class="sv-acc-q"
           ><b>Team assessment</b><span class="sv-acc-l"
             >You give us your current team. A straight read on each person against the bar you’d hire to today.</span
@@ -129,12 +135,12 @@
               </li>
             </ul><p>Also how buyers read an engineering team before an acquisition.</p><a
               class="link"
-              href="/__v9/contact?service=team">Ask about this ›</a
+              href={v9Href('/__v9/contact?service=team', Astro.url.pathname)}>Ask about this ›</a
             >
           </div>
         </div>
       </details>
-      <details class="sv-acc" id="sv-library" data-rv="" style="--d:240ms">
+      <details class="sv-acc" id="sv-library" data-v9-reveal style="--d:240ms">
         <summary class="sv-acc-q"
           ><b>Scorecard library</b><span class="sv-acc-l"
             >You give us a role family. A scorecard for every level, and a panel trained to use them.</span
@@ -146,13 +152,14 @@
               <li>One scorecard per level, mid-level to head of function</li><li>
                 Interview guides your own panel can run
               </li><li>A calibration workshop on real transcripts</li><li>A quarterly refresh as roles change</li>
-            </ul><p>Your team runs it without us afterwards.</p><a class="link" href="/__v9/contact?service=library"
-              >Ask about this ›</a
+            </ul><p>Your team runs it without us afterwards.</p><a
+              class="link"
+              href={v9Href('/__v9/contact?service=library', Astro.url.pathname)}>Ask about this ›</a
             >
           </div>
         </div>
       </details>
-      <details class="sv-acc" id="sv-process" data-rv="" style="--d:280ms">
+      <details class="sv-acc" id="sv-process" data-v9-reveal style="--d:280ms">
         <summary class="sv-acc-q"
           ><b>Hiring process review</b><span class="sv-acc-l"
             >You give us last year’s hires and leavers. A written analysis of what your process keeps missing.</span
@@ -168,7 +175,7 @@
               </li>
             </ul><p>A report you can take to your board. No hiring attached.</p><a
               class="link"
-              href="/__v9/contact?service=process">Ask about this ›</a
+              href={v9Href('/__v9/contact?service=process', Astro.url.pathname)}>Ask about this ›</a
             >
           </div>
         </div>

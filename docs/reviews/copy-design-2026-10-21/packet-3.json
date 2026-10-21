@@ -1,0 +1,74 @@
+{
+  "duration_api_ms": 134230,
+  "stop_reason": "end_turn",
+  "session_id": "649b291f-2e99-43f3-bc0f-a25991c502fb",
+  "total_cost_usd": 0.6563802,
+  "usage": {
+    "input_tokens": 20,
+    "cache_creation_input_tokens": 86663,
+    "cache_read_input_tokens": 949391,
+    "output_tokens": 11981,
+    "output_tokens_details": { "thinking_tokens": 6458 },
+    "server_tool_use": { "web_search_requests": 0, "web_fetch_requests": 0 },
+    "service_tier": "standard",
+    "cache_creation": { "ephemeral_1h_input_tokens": 86663, "ephemeral_5m_input_tokens": 0 },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 5745,
+        "cache_read_input_tokens": 123494,
+        "cache_creation_input_tokens": 6841,
+        "cache_creation": { "ephemeral_5m_input_tokens": 0, "ephemeral_1h_input_tokens": 6841 },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-5": {
+      "inputTokens": 20,
+      "outputTokens": 11981,
+      "cacheReadInputTokens": 949391,
+      "cacheCreationInputTokens": 86663,
+      "webSearchRequests": 0,
+      "costUSD": 0.6563802,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 6458,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": { "background": 0, "foreground": 0, "unset": 0 },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": { "parent": 0, "user": 0, "system": 0 },
+    "refused": { "depth_limit": 0, "concurrency_limit": 0, "budget": 0 },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 37,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "## Coverage Table\n\n| Route | Desktop | Mobile | Copy (JSON) | Notes |\n|---|---|---|---|---|\n| /blog | ✅ top | ✅ top | ✅ | Full-page images not opened; top crop + copy only |\n| /blog/seventeen-interviews-one-hire | ✅ top | ✅ top | ✅ | |\n| /blog/rethinking-hiring-metrics-signal-efficiency | ✅ top | — | ✅ | Mobile screenshot not opened |\n| /careers | ✅ top | ✅ top | ✅ | |\n| /careers/ai-ml-engineer | ✅ top | — | ✅ | Mobile screenshot not opened |\n| /functions | ✅ top | ✅ top | ✅ | |\n| /functions/engineering-platform | ✅ top | — | ✅ | Mobile screenshot not opened |\n| /candidates/start | ✅ top + full | ✅ top | ✅ | Full-page desktop opened |\n| /privacy | ✅ top | ✅ top | ✅ | |\n| /security | ✅ top | — | ✅ | Mobile screenshot not opened |\n| /terms | ✅ top | — | ✅ | Mobile screenshot not opened |\n| /dpa | ✅ top | — | ✅ | Mobile screenshot not opened |\n\nOnly the above packet was reviewed; no other site routes were assessed. Below-the-fold sections not shown in `-top` crops were read from copy.json text only, not visually verified for those routes.\n\n## Findings\n\n**P1 — Careers (`/careers`), \"Open roles\" / \"What it is actually like\" sections: verbatim duplicated paragraph.**\nExact text — *\"Pune and Bengaluru, with people in both. The roles open right now are in the Bengaluru office, in Indiranagar, where somebody makes filter coffee at about four.\"* — appears twice, word-for-word, once under OPEN ROLES and again just before HOW WE HIRE. Reads as a templating/content-duplication slip, not a stylistic callback (the \"Belong/Build/Become\" motif repeats by design; this doesn't). **Fix:** remove the second instance, or replace it with a line specific to \"What it is actually like\" (e.g., team culture detail) rather than repeating the office-location sentence.\n\n**P1 — /candidates/start, \"Submit profile\" CTA: off-brand washed-out color.**\nScreenshot shows the primary CTA rendered as a muted salmon/pink, while every other primary CTA reviewed (Careers \"See the roles,\" AI/ML Engineer \"Apply for this role,\" Blog \"Read the latest\") is a solid saturated red. This is the one page whose entire job is to capture a candidate's CV, and the lighter tone reads as disabled/inactive rather than \"restrained.\" **Fix:** confirm whether this is an unintended default/disabled style bleeding through, or a deliberate inactive state for a not-yet-wired form; if the latter, add inline microcopy (e.g., \"Profile submission opens soon\") so the lighter button is legible as intentional rather than broken.\n\n**P2 — Privacy/Terms/Security, header dates: prominence imbalance between the two dates.**\nObserved exactly as instructed — \"Page updated\" is the presentation date and \"Content last revised\" is the real policy date; this is intentional and not misreported here as a false update. But visually, both lines carry identical weight/size with \"Page updated\" listed first, so a scanning reader is more likely to register \"updated 21 October 2026\" than the older substantive date beneath it. **Fix:** differentiate the two lines typographically (e.g., mute \"Page updated\" to a caption-weight note, keep \"Content last revised\" as the primary legal date) so the distinction the owner intends is actually legible at a glance.\n\n**P2 — Blog, newsletter CTA: disclosure of unavailability is inconsistent across surfaces.**\nOn the article page (`/blog/seventeen-interviews-one-hire`), the newsletter block explicitly states \"Newsletter subscriptions are not available yet.\" The `/blog` index page's equivalent CTAs (\"Join the newsletter waitlist,\" \"Notify me\") carry no such note in the extracted copy — only \"We never share the list.\" A visitor landing on the index gets no signal the signup is a waitlist/illustrative state until they reach an article. **Fix:** surface the same \"not available yet\" framing next to the index-page CTA, or rename the button itself (e.g., \"Join the waitlist\" is already close — ensure the explanatory line travels with it everywhere the CTA appears).\n\n**P2 — Blog teaser cards: some statistics are sourced, others aren't.**\nThe lead article's \"17.6 interviews\" figure is footnoted to an Ashby report. The teaser cards for \"NO. 09 — 2.3M AI job openings expected in India by 2027\" and \"NO. 08 — 2,117 capability centres in India\" carry no visible citation in the extracted copy. Inconsistent sourcing on adjacent cards undercuts the credibility the cited stat is trying to build. **Flag for owner:** confirm sources exist for the 2.3M and 2,117 figures and surface them (even a footnote link) the way the lead article does — no replacement figures are proposed here since these claims weren't verified by this review.\n\n**P3 — Privacy/Terms/Security/DPA: narrow single-column layout leaves large unused desktop space.**\nConsistently across all four legal pages (not a one-off bug), body copy sits in a ~630px column against a 1366px canvas, leaving roughly 45% of the right side empty. This is presumably a deliberate \"readable line length\" choice, but it sits oddly next to the richer two-column editorial hero treatment used elsewhere on the site. **Suggestion:** use the right rail for something purposeful and on-brand — a quick-link card to the other Trust & Transparency pages (Security/Terms/Privacy/DPA) or a contact card — rather than leaving it blank.\n\n---\n**Limitations:** this review covers only the 12 routes and screenshot/copy artifacts listed in the packet (desktop `-top` crops plus full copy.json for all; a handful of full-page and mobile images were not opened). No interaction testing, no verification of linked claims (Ashby citation, 200,000 interviews, etc.), and no comparison against routes outside this packet.",
+  "ttft_ms": 4837,
+  "type": "result",
+  "duration_ms": 135444,
+  "uuid": "883b0b00-47c3-4d04-8d93-0fe6312234f6",
+  "ttft_stream_ms": 2289,
+  "time_to_request_ms": 876,
+  "first_content_frame_ms": 2289,
+  "queued_turn_count": 0,
+  "result_index": 0
+}

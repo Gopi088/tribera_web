@@ -1,8 +1,12 @@
+---
+import { v9Href } from '~/data/v9/routes';
+---
+
 <header class="hx hx--c hx-field g-white" id="iaas-hero">
   <div class="wrap">
-    <div class="eyebrow">
+    <div data-v9-reveal class="eyebrow">
       <span class="tick">\</span>
-      <a class="ix-crumb" href="/__v9/services">Services</a> · Interview as a service
+      <a class="ix-crumb" href={v9Href('/__v9/services', Astro.url.pathname)}>Services</a> · Interview as a service
     </div>
     <div class="hx-c-g ix-hx has-field">
       <div class="hero-field" aria-hidden="true">
@@ -2170,20 +2174,18 @@
         >
       </div>
       <div>
-        <h1 class="hx-h" style="--d:60ms">You found the candidates. We’ll interview them.</h1>
-        <p class="lead" style="--d:120ms">
+        <h1 data-v9-reveal class="hx-h" style="--d:60ms">You found the candidates. We’ll interview them.</h1>
+        <p data-v9-reveal class="lead" style="--d:120ms">
           Send us the people your recruiters, agencies and referrals found. A senior expert who has done the job
           interviews each one for 30 to 45 minutes and scores them against your bar. You get back a ranked list, with
           the reasons.
         </p>
-        <div class="cta-row" style="--d:180ms">
-          <a class="btn btn-primary" href="/__v9/contact?service=iaas">Send us a batch</a><a
-            class="link"
-            href="/__v9/services">See all services ›</a
-          >
+        <div data-v9-reveal class="cta-row" style="--d:180ms">
+          <a class="btn btn-primary" href={v9Href('/__v9/contact?service=iaas', Astro.url.pathname)}>Send us a batch</a
+          ><a class="link" href={v9Href('/__v9/services', Astro.url.pathname)}>See all services ›</a>
         </div>
       </div>
-      <aside class="sv-rc" style="--d:200ms" aria-label="What a batch looks like">
+      <aside data-v9-reveal class="sv-rc" style="--d:200ms" aria-label="What a batch looks like">
         <div class="sv-rc-top">
           <span class="pf-k"><span class="pf-dot"></span> One batch</span><span class="sv-rc-n">IaaS</span>
         </div>

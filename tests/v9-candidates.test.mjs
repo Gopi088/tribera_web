@@ -48,7 +48,7 @@ test(`private candidate journey (${browserName})`, async () => {
         `${width}px overflow ${overflow.join(', ')}`
       );
       assert.equal(await page.locator('[data-weight]').count(), 9);
-      assert.equal(await page.locator('.v9-testimonial').count(), 4);
+      assert.equal(await page.locator('.v9-testimonial:not([data-clone])').count(), 4);
       assert.equal(await page.locator('.faq-list details').count(), 7);
       await page.screenshot({ path: `${artifact}/candidates-${width}.png`, fullPage: true });
     }

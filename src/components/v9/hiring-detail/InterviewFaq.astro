@@ -1,11 +1,15 @@
+---
+import { v9Href } from '~/data/v9/routes';
+---
+
 <section class="faq g-paper">
   <div class="wrap">
     <div class="faq-top">
       <div class="faq-aside">
-        <div class="eyebrow"><span class="tick">\</span> 03 · Questions</div>
-        <h2 style="--d:60ms">Before you send a batch.</h2>
-        <div class="faq-ask">
-          <p class="faq-ask-q">Didn’t see yours?</p><a href="/__v9/contact?service=iaas"
+        <div data-v9-reveal class="eyebrow"><span class="tick">\</span> 03 · Questions</div>
+        <h2 data-v9-reveal style="--d:60ms">Before you send a batch.</h2>
+        <div data-v9-reveal class="faq-ask">
+          <p class="faq-ask-q">Didn’t see yours?</p><a href={v9Href('/__v9/contact?service=iaas', Astro.url.pathname)}
             >Ask us <span class="ar" aria-hidden="true">→</span></a
           >
         </div>

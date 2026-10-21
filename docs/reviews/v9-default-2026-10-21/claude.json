@@ -1,0 +1,74 @@
+{
+  "duration_api_ms": 110988,
+  "stop_reason": "end_turn",
+  "session_id": "1d9127c4-1ccf-4bb1-9988-1445b11b0df8",
+  "total_cost_usd": 0.5402998,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 91365,
+    "cache_read_input_tokens": 345559,
+    "output_tokens": 10570,
+    "output_tokens_details": { "thinking_tokens": 6893 },
+    "server_tool_use": { "web_search_requests": 0, "web_fetch_requests": 0 },
+    "service_tier": "standard",
+    "cache_creation": { "ephemeral_1h_input_tokens": 91365, "ephemeral_5m_input_tokens": 0 },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 3589,
+        "cache_read_input_tokens": 77309,
+        "cache_creation_input_tokens": 6763,
+        "cache_creation": { "ephemeral_5m_input_tokens": 0, "ephemeral_1h_input_tokens": 6763 },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-5": {
+      "inputTokens": 14,
+      "outputTokens": 10570,
+      "cacheReadInputTokens": 345559,
+      "cacheCreationInputTokens": 91365,
+      "webSearchRequests": 0,
+      "costUSD": 0.5402998,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 6893,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": { "background": 0, "foreground": 0, "unset": 0 },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": { "parent": 0, "user": 0, "system": 0 },
+    "refused": { "depth_limit": 0, "concurrency_limit": 0, "budget": 0 },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 36,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "## Verdict: **ACCEPT** (bounded scope: local route-promotion/link-composition only)\n\n### What I verified\n\n**Link resolution (`routes.ts` + `preview-links.ts`)** — `v9Href` correctly special-cases `/__v9/home`, `/__v9/bfsi`, `/__v9/article` to their public equivalents (`/`, `/industries/banking-financial-services`, `/blog/seventeen-interviews-one-hire`) and falls back to a generic `/__v9/*` → `/*` strip for everything else. `publicLinks` always calls `v9Href(to, '/')`, i.e. a non-`/__v9/` pathname, so it unconditionally resolves to clean public URLs — it can never leak a `/__v9/` link onto a public page. Cross-checked every key Header.astro/Footer.astro actually dereferences (`/`, `/services`, `/intelligence`, `/about`, `/candidates`, `/candidates#proof|#controls|#when|#apply`, `/case-study`, `/industries`, `/how-we-work-with-numbers`, `/dpa`) against `previewLinks` — all present and map to sane destinations (`/how-we-work-with-numbers`→`/about`, `/dpa`→`/privacy`, matching the doc's stated fallback-to-legacy behavior).\n\n**Wrapper pages** (`index.astro`, `candidates.astro`, `industries/[slug].astro`, `intelligence.astro`, `interview-as-a-service.astro`, `contact.astro`) — all pass `headerLinkOverrides`/`footerLinkOverrides={publicLinks}` and rely on `V9Layout`'s default `canonicalPath = Astro.url.pathname` / `noindex = false`, giving each page a correct self-referential canonical and `index, follow` robots meta. No wrapper sets `noindex`, consistent with the doc's claim these pages are indexable.\n\n**Redirect for the GCC alias** is implemented twice and consistently: `astro.config.ts` (`redirects` map, 301, for local/static preview) and `netlify.toml` (`[[redirects]]`, 301, force) both point `/industries/global-capability-centres` → `/industries/global-capability-centers`. `astro.config.ts`'s sitemap `filter()` also excludes `/__v9/`, the GCC alias, and other non-canonical paths — matches the doc's indexing claims.\n\n**Screenshots** (`_`, `_candidates`, `_contact`, `_industries`, `_intelligence` at 390 and 1366, chromium) — all five render cleanly at both breakpoints: no overlapping text, no truncated/broken layout, nav and footer links are present and consistent, audience-aware header (hiring vs. candidate) renders as expected. One empty gray placeholder box under \"Bengaluru · Indiranagar\" office photo on the desktop contact screenshot — this is a missing content asset, not a routing regression, and the component itself is outside this review's scope.\n\n### Findings / follow-ups (non-blocking for this scope)\n\n1. **`artifacts/v9-default/static.json` has an unexplained gap**: `expectedRoutes: 86` (`baselineRoutes: 77` + `futureRoutes: 9`) but `executedPages: 82`, with `errors: []`. Four expected routes were not executed and nothing in the file explains why. I'm not treating this as a defect in the reviewed route files, but it means this particular artifact should not be cited as confirming full route coverage until that gap is explained.\n2. **Production exclusion of `/__v9/` routes is asserted, not verified by me.** The doc states \"a normal production build excludes them,\" but the actual gating mechanism lives in files outside the list I was given to inspect (presumably the `/__v9/*` page files themselves or a build-time condition). Sitemap exclusion is confirmed; build-time route exclusion is not, from what I read.\n3. **Minor latent fragility in `v9Href`**: the `/__v9/home`, `/__v9/bfsi`, `/__v9/article` rewrites only match when immediately followed by `?`, `#`, or end-of-string. A trailing-slash variant (`/__v9/home/`) would skip that rule and fall through to the generic strip, producing `/home` — a path with no wrapper page (home lives at `/`). Not currently triggered by anything in `previewLinks`, but worth a defensive fix if any future link ever includes a trailing slash.\n\nNone of these are regressions in the routing/link-composition logic itself — they're either confirmations needed from outside the reviewed file set, or a non-triggered edge case. Within the stated bounded scope (route composition and context-aware links for the five production routes and their shared layout/config), the promotion is sound.",
+  "ttft_ms": 2629,
+  "type": "result",
+  "duration_ms": 115159,
+  "uuid": "d1f6ff9a-9eeb-4b3f-a0aa-d012063886e9",
+  "ttft_stream_ms": 2204,
+  "time_to_request_ms": 1287,
+  "first_content_frame_ms": 2206,
+  "queued_turn_count": 0,
+  "result_index": 0
+}

@@ -1,22 +1,26 @@
+---
+import { v9Href } from '~/data/v9/routes';
+---
+
 <section class="g-white" id="lesson">
   <div class="wrap cs-lesson">
-    <p class="op-q hq">
+    <p data-v9-reveal class="op-q hq">
       “Every step was competent, and the search still took five months.”<cite>From our field note on this search</cite>
     </p>
     <div class="cs-lesson-b">
-      <p>
+      <p data-v9-reveal>
         Nobody had done anything wrong. The recruiter sourced well, the panel interviewed properly and the hiring
         manager was engaged throughout. What was missing was a sentence everyone could point to: this is what we are
         deciding.
       </p>
-      <p>
+      <p data-v9-reveal>
         The work that fixed it took two days and cost a fixed fee. It’s the reason we won’t start a search before the
         intake conversation has happened.
       </p>
-      <p class="cs-links">
+      <p data-v9-reveal class="cs-links">
         <a class="link" href="/blog/why-tech-hiring-really-takes-so-long">Read the field note ›</a><a
           class="link"
-          href="/__v9/services#sv-scorecard">The role scorecard ›</a
+          href={v9Href('/__v9/services#sv-scorecard', Astro.url.pathname)}>The role scorecard ›</a
         >
       </p>
     </div>

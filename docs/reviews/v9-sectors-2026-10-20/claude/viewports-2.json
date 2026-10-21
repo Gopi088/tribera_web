@@ -1,0 +1,74 @@
+{
+  "duration_api_ms": 72345,
+  "stop_reason": "end_turn",
+  "session_id": "40e6abc7-5792-4ab2-a0f0-10ce51e4b13c",
+  "total_cost_usd": 0.27109,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 33524,
+    "cache_read_input_tokens": 338700,
+    "output_tokens": 6923,
+    "output_tokens_details": { "thinking_tokens": 2322 },
+    "server_tool_use": { "web_search_requests": 0, "web_fetch_requests": 0 },
+    "service_tier": "standard",
+    "cache_creation": { "ephemeral_1h_input_tokens": 33524, "ephemeral_5m_input_tokens": 0 },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 2450,
+        "cache_read_input_tokens": 77923,
+        "cache_creation_input_tokens": 5609,
+        "cache_creation": { "ephemeral_5m_input_tokens": 0, "ephemeral_1h_input_tokens": 5609 },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-5": {
+      "inputTokens": 12,
+      "outputTokens": 6923,
+      "cacheReadInputTokens": 338700,
+      "cacheCreationInputTokens": 33524,
+      "webSearchRequests": 0,
+      "costUSD": 0.27109,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 2322,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": { "background": 0, "foreground": 0, "unset": 0 },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": { "parent": 0, "user": 0, "system": 0 },
+    "refused": { "depth_limit": 0, "concurrency_limit": 0, "budget": 0 },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 58,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "## Stage 2 Responsive Review — Industries Sector Pages\n\n**Scope note:** This covers only the responsive/cross-engine visual pass for the 4 routes listed (desktop source review is a separate prior pass per route-map). All screenshots below were actually opened and read.\n\n**Resolution limitation:** These are full-page screenshots scaled down heavily for display (e.g., the 320px-wide capture is shown at ~66px, a ~4.85x reduction; 1920px captures are reduced ~3.35x). At this scale I can reliably judge macro-layout — section order, column/stack behavior, card-grid collapse, nav presence, overflow/clipping, content presence — but **cannot** verify fine text legibility, exact line-wrap quality, or sub-pixel alignment. No findings below claim to read unreadable text.\n\n### Images read (28 total)\nFor each of `industries-cybersecurity`, `industries-enterprise-technology`, `industries-global-capability-centers`, `industries-healthcare-life-sciences`:\n`chromium/{route}-320.png`, `-390.png`, `-768.png`, `-1366.png`, `-1920.png`; `firefox/{route}-390.png`; `webkit/{route}-390.png` — all under `artifacts/v9-sectors/`.\n\n### Per-route verdict\n\n**industries-cybersecurity — ACCEPT (responsive, within bounded scope)**\nHero stacks (text above chart) at 320/390/768, moves to side-by-side at 1366/1920. Compare pills wrap cleanly at narrow widths. \"Every level, one guarantee\" role grid collapses to single column at 320/390, 2-column at 768+. FAQ accordion, three-question cards, and footer all reflow without visible clipping/overflow at any width. Firefox and WebKit 390px match Chromium 390px structurally.\n\n**industries-enterprise-technology — ACCEPT (responsive, within bounded scope)**\nSame structural pattern holds. The sector-compare pill list (12 sectors) wraps to multiple rows at 768 and stacks as a vertical list beside the chart at 1366/1920 — no truncation or overlap observed. Role grid and FAQ sections reflow consistently. Firefox/WebKit 390px match.\n\n**industries-global-capability-centers — ACCEPT (responsive, within bounded scope)**\nPrivate spelling-alias route renders with the same template structure as the other three. No layout anomalies at any width. Firefox/WebKit 390px match.\n\n**industries-healthcare-life-sciences — ACCEPT (responsive, within bounded scope)**\nSame consistent behavior across all five widths. Firefox/WebKit 390px match.\n\n### Cross-engine observation (not a defect, flagged for completeness)\nFull-page capture heights at 390px are consistently shortest in WebKit, then Firefox, then Chromium, by a similar ~100–130px margin across all four routes (e.g., cybersecurity: 8791/8789/8688; enterprise-technology: 8885/8884/8781; GCC: 8802/8776/8674; healthcare: 8920/8846/8768). This pattern is uniform across all four routes, consistent with a systematic font-metric/line-height rendering difference between browser engines rather than a page-specific layout bug. I did not find any content clipped or missing in WebKit/Firefox relative to Chromium at 390px for any route.\n\n### What this review could not confirm\n- No animation/autoplay behavior inspected here (static images only, per task framing) — would need the archived test evidence for that claim.\n- No horizontal-scroll/overflow could be directly measured pixel-by-pixel; absence of visible overflow in the screenshots is the basis for \"no overflow\" findings, not a DOM-level check.\n- FAQ answer-expansion state (candidate first-answer-open vs. reference all-expanded) is a known intentional difference per the review doc and not re-flagged here.\n\n### Overall Stage 2 verdict: **ACCEPT**\nNo confirmed responsive defects (overflow, clipping, broken stacking, missing content/nav) found in any of the 4 routes across 320/390/768/1366/1920 or in Firefox/WebKit 390px comparisons. This verdict is bounded to the responsive visual pass for these 4 routes only, per the stated scope — it is not a full G2/G3 acceptance of the migration.",
+  "ttft_ms": 2307,
+  "type": "result",
+  "duration_ms": 73204,
+  "uuid": "118030dc-48e6-45d7-951a-7a7f5e1d3aed",
+  "ttft_stream_ms": 1668,
+  "time_to_request_ms": 425,
+  "first_content_frame_ms": 1669,
+  "queued_turn_count": 0,
+  "result_index": 0
+}

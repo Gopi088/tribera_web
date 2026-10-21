@@ -23,12 +23,11 @@ const clients = [
 <div class="v9-client-strip" data-v9-strip>
   <div class="v9-wrap">
     <p class="v9-eyebrow">{label}</p>
-    <div class="v9-client-window">
+    <div class="v9-client-window" tabindex="0" role="region" aria-label="Customer names">
       <div class="v9-client-track">
         <ul>{clients.map((name) => <li>{name}</li>)}</ul>
         <ul aria-hidden="true">{clients.map((name) => <li>{name}</li>)}</ul>
       </div>
     </div>
-    <button type="button" class="v9-strip-toggle" aria-pressed="false" hidden>Pause client strip</button>
   </div>
 </div>

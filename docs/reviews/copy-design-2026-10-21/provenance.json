@@ -1,0 +1,20 @@
+[
+  {
+    "packet": "packet-1.json",
+    "success": true,
+    "session_id": "e2d53df7-3fba-4cd3-9253-6d5e14c83c50",
+    "models": ["claude-sonnet-5"]
+  },
+  {
+    "packet": "packet-2.json",
+    "success": true,
+    "session_id": "27af97ad-f5ec-4d10-ad3a-8b1e491f14f9",
+    "models": ["claude-sonnet-5"]
+  },
+  {
+    "packet": "packet-3.json",
+    "success": true,
+    "session_id": "649b291f-2e99-43f3-bc0f-a25991c502fb",
+    "models": ["claude-sonnet-5"]
+  }
+]

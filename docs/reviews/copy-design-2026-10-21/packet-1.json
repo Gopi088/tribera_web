@@ -1,0 +1,74 @@
+{
+  "duration_api_ms": 123898,
+  "stop_reason": "end_turn",
+  "session_id": "e2d53df7-3fba-4cd3-9253-6d5e14c83c50",
+  "total_cost_usd": 0.7118368,
+  "usage": {
+    "input_tokens": 22,
+    "cache_creation_input_tokens": 112487,
+    "cache_read_input_tokens": 796374,
+    "output_tokens": 10257,
+    "output_tokens_details": { "thinking_tokens": 5594 },
+    "server_tool_use": { "web_search_requests": 0, "web_fetch_requests": 0 },
+    "service_tier": "standard",
+    "cache_creation": { "ephemeral_1h_input_tokens": 112487, "ephemeral_5m_input_tokens": 0 },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 6388,
+        "cache_read_input_tokens": 101996,
+        "cache_creation_input_tokens": 1994,
+        "cache_creation": { "ephemeral_5m_input_tokens": 0, "ephemeral_1h_input_tokens": 1994 },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-5": {
+      "inputTokens": 22,
+      "outputTokens": 10257,
+      "cacheReadInputTokens": 796374,
+      "cacheCreationInputTokens": 112487,
+      "webSearchRequests": 0,
+      "costUSD": 0.7118368,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 5594,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": { "background": 0, "foreground": 0, "unset": 0 },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": { "parent": 0, "user": 0, "system": 0 },
+    "refused": { "depth_limit": 0, "concurrency_limit": 0, "budget": 0 },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 27,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "## Coverage table\n\n| Route | Desktop (1366) | Mobile (390) | Copy extract | Notes |\n|---|---|---|---|---|\n| `/` | ✅ full + top | ✅ full + top | ✅ | Reviewed in full |\n| `/services` | ✅ top | ✅ top | ✅ | Reviewed top viewport only; relied on copy.json for lower sections |\n| `/interview-as-a-service` | ✅ top | ✅ top | ✅ | Same as above |\n| `/candidates` | ✅ top | ✅ top | ✅ | Same as above |\n| `/contact` | ✅ top | ✅ top | ✅ | Same as above |\n| `/sample-write-up` | ✅ top | ✅ top | ✅ | Short page, reviewed in full |\n\nNot in this packet: `/about`, `/intelligence`, `/case-study`, `/industries/*`, `/blog/*`, `/careers/*`, legal pages. Findings below are scoped only to the six routes supplied.\n\n## Findings\n\n**P1 — `/candidates`, \"Your controls\" section.** Toggles are styled as live switches (\"HIDDEN\", \"3 BLOCKED\", \"ROUTED\", \"LIVE\") sitting directly under the core trust promise \"Your current employer can't see you.\" The only disclosure that these are inert is one small italic sentence above the card (\"Demo only: these switches do not change an account...\"). Given privacy/employer-visibility is the page's central credibility claim, a skimming visitor could mistake the demo for a working setting. *Proposed change:* put a persistent small badge (\"ILLUSTRATIVE\") on the card itself, next to the status pills, not only in body copy above it.\n\n**P1 — `/` footer, \"Our numbers.\"** The footer link sits in the COMPANY column beside About/Blog/Careers, implying a dedicated data/methodology page, but it currently routes to `/about` (confirmed intentional per project notes — methodology page not yet built). On a site that leads with hard numbers (126→2, 36 hours, 22 days), a labeled \"Our numbers\" link landing on generic About copy is a credibility soft-spot for exactly the audience most likely to click it. *Proposed change:* either relabel the footer link to \"About\" until the methodology page ships, or ship a minimal stub page at that route restating the numbers already on the homepage with sourcing notes.\n\n**P1 — `/`, \"07 · In their words.\"** This section sits on the hiring-manager-audience homepage (eyebrow: \"FOR HEADS OF TALENT & HIRING MANAGERS\") but of 5 testimonials shown, 4 are labeled CANDIDATE and only 1 is labeled HIRING TEAM (Sashank Pappu, Antz AI). For a buyer-facing homepage, the dominant social proof is from the wrong side of the transaction. *Proposed change:* lead with 2–3 hiring-team quotes on `/`, and move the candidate-heavy set to `/candidates` (where it already also appears verbatim, see below).\n\n**P2 — `/` and `/candidates`, \"In their words\" blocks.** The Anil Giri, Nirmala P, Reema Mitra and Prasath S quotes appear identically on both pages. A visitor comparing the hiring and candidate sides (a plausible path for someone researching the company) sees the same proof twice, which reads as a thinner evidence base than it may actually be. *Proposed change:* split the testimonial pool so each audience page shows distinct quotes, or add 1–2 new candidate quotes to one of the pages.\n\n**P2 — `/` homepage FAQ, \"01 · How is this different from an agency or RPO?\"** \"RPO\" is used unexplained in the very first FAQ question a first-time visitor sees. The rest of the page works hard to avoid jargon (e.g. explicitly writing out \"agency,\" \"model,\" \"scorecard\"). *Proposed change:* expand on first use — \"...or an RPO (recruiting-process outsourcer)?\" — consistent with the plain-language tone elsewhere.\n\n**P2 — `/`, CTA label reuse.** \"Start with one role\" is used for both the hero CTA (→ `#start`, in-page anchor) and the closing \"GET STARTED\" CTA (→ `/contact`). Same visible label, two different destinations on the same page. Low risk in normal browsing, but if either button is shared as a standalone link or screenshotted in isolation, the destination is unpredictable from the label alone. *Proposed change:* keep the hero CTA as \"Start with one role\" (anchor) and make the closing CTA's distinct action clearer, e.g. \"Send us the role →\" (to `/contact`), since the surrounding copy already says \"Give us the role you're stuck on.\"\n\n**P3 — `/sample-write-up`.** Visually the thinnest page in the set: a headline, a short paragraph, a bulleted list, one static write-up image, and a form — next to the highly produced, interactive diagrams on `/` and `/services`. Since this page is reached at a high-intent moment (a hiring manager asking to see real work product), the relative plainness may undersell the \"see what you're buying\" moment. *Proposed change (inference — not confirmed against production, based on the downscaled thumbnail only):* consider adding a second visible page-1 detail crop or a short \"what you'll notice\" callout next to the form to make the page feel as considered as the product it's selling.\n\n**P3 — `/` mobile, \"126 → 2\" and 36-hour timeline diagrams.** Based on the full-page mobile thumbnail (390px), these data-visualization blocks compress into a small, dense area; legibility at this scale wasn't independently confirmed via a dedicated crop. *Flag for a targeted mobile-viewport check of these two components specifically*, since they carry the site's strongest quantitative trust signal.\n\n**P3 — `/services` vs `/interview-as-a-service`, duplicated client-logo strip and testimonial-free FAQ wording.** Not a defect, but the \"TEAMS HIRING THROUGH US\" strip (Mizuho, Capco, Deloitte...) repeats identically across `/`, `/services`, and presumably `/interview-as-a-service` and `/candidates`. Reasonable for trust-building but worth knowing it's the same 13 logos everywhere in this packet — no diversification by service line or industry.\n\n---\n\n**Limitations:** Only the six routes and viewport crops listed were reviewed; `/about`, `/intelligence`, `/case-study`, legal pages, blog, careers, and industries pages were not assessed. No claims (36 hours, 126→2, 22 days, \"50+ senior experts\") were fact-checked — these require owner evidence before any public reuse or expansion. The candidate privacy toggles and homepage/candidates scoring sliders are confirmed-illustrative by design per project context and are not reported as functional bugs.",
+  "ttft_ms": 1974,
+  "type": "result",
+  "duration_ms": 125206,
+  "uuid": "4470d4fa-7a8d-4b5d-97c3-1133d76eb066",
+  "ttft_stream_ms": 1711,
+  "time_to_request_ms": 889,
+  "first_content_frame_ms": 1711,
+  "queued_turn_count": 0,
+  "result_index": 0
+}

@@ -1,0 +1,74 @@
+{
+  "duration_api_ms": 171596,
+  "stop_reason": "end_turn",
+  "session_id": "df075322-670b-4e14-92ec-8aa9ebe82951",
+  "total_cost_usd": 0.9800219999999998,
+  "usage": {
+    "input_tokens": 48,
+    "cache_creation_input_tokens": 64551,
+    "cache_read_input_tokens": 878910,
+    "output_tokens": 14382,
+    "output_tokens_details": { "thinking_tokens": 4038 },
+    "server_tool_use": { "web_search_requests": 0, "web_fetch_requests": 0 },
+    "service_tier": "standard",
+    "cache_creation": { "ephemeral_1h_input_tokens": 64551, "ephemeral_5m_input_tokens": 0 },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 3023,
+        "cache_read_input_tokens": 64461,
+        "cache_creation_input_tokens": 4715,
+        "cache_creation": { "ephemeral_5m_input_tokens": 0, "ephemeral_1h_input_tokens": 4715 },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5-5": {
+      "inputTokens": 48,
+      "outputTokens": 14382,
+      "cacheReadInputTokens": 878910,
+      "cacheCreationInputTokens": 64551,
+      "webSearchRequests": 0,
+      "costUSD": 0.9800219999999998,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 4038,
+      "canonicalModel": "claude-opus-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": { "background": 0, "foreground": 0, "unset": 0 },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": { "parent": 0, "user": 0, "system": 0 },
+    "refused": { "depth_limit": 0, "concurrency_limit": 0, "budget": 0 },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 67,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "**Verdict: REVISE.** One fix doesn't hold up in the screenshots: the About spacing. Everything else in scope checks out at both widths.\n\n## Finding to fix\n\n**1. About hero, side quote, 1366: \"belong\" and \"here?\" still split onto two lines.** In `about-quote-1366.png`, \"Who will actually belong\" ends the first line and the second line starts \" here?\" with a visible leading space, so the fix made the gap show at the start of the line instead. At 390 it reads fine on one line.\n- **Cause:** on About, the decorated-word style (`.hx .hd-word`) displays the word as an inline block (`src/assets/styles/v9/editorial/about.css:595-598`). Browsers can still break the line right after an inline block, even when a nonbreaking space follows, so the nonbreaking space at `src/components/v9/editorial/about/AboutIntro.astro:28` doesn't stop the break.\n- **Fix:** wrap `<span class=\"hd-word\">belong…</span>&nbsp;here?` in a no-wrap span (for example `<span style=\"white-space:nowrap\">`). Then recapture at 1366 and 390.\n- **Same pattern elsewhere:** Contact, BFSI, Industries, Services, Interview-as-a-service and Case study also display decorated words as inline blocks. I only verified About in this packet.\n\n## Verified\n\n- **New Jersey / Address to follow / Our numbers:** none of these appear anywhere in `dist/`. In active sources, the Footer (`Footer.astro:59`), About (`AboutIntro.astro:32`) and the Contact FAQ (`Questions.astro:54`) all say Pune and Bengaluru. The only remaining source mention is `src/components/home/v126/sections/footer.html:51`, which nothing imports (see polish).\n- **Contact:** the heading says \"Two offices.\" `office-cards-1366.png` shows Pune, Bengaluru, and Press and partners in three equal columns. At 390 they stack cleanly.\n- **New article:**\n  - It's in the post collection (`publishDate: 2026-10-19`) and the standalone routing registry.\n  - The /blog Latest card shows it at both widths.\n  - It appears on the Hiring Strategy category page and the hiring-metrics, structured-evaluation and quality-of-hire tag pages, plus the sitemap.\n  - The date (19 Oct 2026) and \"4 min read\" match across the blog card and the article header. Reading time comes from `standaloneReadingTime`.\n- **Related cards:** all three are published posts, filtered against `fetchPosts()`. Category, excerpt, date and reading time are real, and the dates in the built HTML match the source files.\n- **Flagship article and Intelligence notifications:** both now link to `/blog#sub`, with no email inputs. The \"in preparation / not available yet\" note reads well at both widths.\n- **Waitlist forms:**\n  - All 7 forms (blog plus 6 archive articles) ship with the button disabled and labelled \"Notify me\".\n  - All load `/scripts/newsletter-signup.js`, which enables the button once it runs.\n  - Each has a no-JS `mailto:` alternative.\n  - The success text is \"We will let you know when the newsletter is ready\", so no delivery is claimed.\n- **ScarcityLab:** the page text (`ScarcityLab.astro:32`) and the interactive version (`sector-charts.ts:58`) both say \"In this example\". The values are unchanged and it renders correctly at 390.\n- **Candidates:** \"Demo only…\" and \"Example controls\" appear above the switches (`example-controls-390.png`).\n- **Careers:** the filter-coffee sentence appears exactly once in the built page.\n- **RPO:** spelled out in the home FAQ answer, \"Recruitment process outsourcing (RPO)\".\n- **Legal pages:** the policy revision date (27 July 2025) shows first and in bold. The presentation date (21 October 2026) is a separate, quieter line. Both use UTC formatting in `MarkdownLayout.astro`. Policy dates are unchanged in the frontmatter.\n- **Flagship vs. archive layout:** the illustrated hero versus the plain archive layout reads as intentional. Fonts, colours and header/footer are consistent, and I found no defects.\n\n## Optional polish (not blocking)\n\n1. **Dates are formatted in two ways:**\n   - **Time zone:** four places still format dates in the build machine's local time instead of UTC: `blog/index.astro:48`, `FieldNotesList.astro:40`, `ArticleRelated.astro:27` and `[...blog]/index.astro:35`. They're correct when the build runs on UTC, but add `timeZone: 'UTC'` to match the fix you already made.\n   - **Style:** the article hero shows \"Oct 19, 2026\" (US style) while the blog card and related cards show \"19 Oct 2026\" (UK style). The archive list (`FieldNotesList.astro`) also uses US style.\n2. **Flagship cover says \"No. 10\"** (`ArticleHero.astro:11`), but only 8 posts are published.\n3. **\"Three more from real searches.\"** The \"Designing AI for high-stakes assessment\" card isn't a search story. \"Keep reading\" or \"Three more\" would be accurate.\n4. **Notification notes sit right on top of their buttons:** about 5px apart on the flagship at 1366, slightly more on Intelligence. A small gap would help.\n5. **\"Example controls\" label** is plain white body text tucked under the demo note, so it looks like a stray line. A small mono label style just above the switches would fit better.\n6. **Privacy policy text vs. label:** the unchanged policy text refers to a revised \"Last updated\" date, but the label now says \"Content last revised\". You could change the label wording instead of the policy.\n7. **Stale or dead files:**\n   - `src/components/v9/editorial/README.md:17` still describes a disabled Subscribe control.\n   - The unused `src/components/home/v126/sections/footer.html` still contains New Jersey; consider deleting it.\n8. **ScarcityLab tag** \"ILLUSTRATIVE · SAMPLE DATA\" wraps awkwardly onto two lines at 390.\n\n## Images opened\n\nAll 20 under `content-fixed/`:\n- `_blog` at 390 and 1366\n- `_blog_seventeen-interviews-one-hire` at 390 and 1366\n- `about-quote`, `office-cards`, `published-related`, `article-notification` and `intelligence-notification`, each at 390 and 1366\n- `scarcity-example-390` and `example-controls-390`\n- `_privacy` at 390 and 1366\n- `_careers` full page at 390 and 1366\n\n## Limitations\n\n- I used static screenshots plus a source and `dist/` read-through. I ran nothing, so the JS enable/submit behaviour and the three-browser results are your evidence, not mine.\n- I used the full Careers pages for structure only. At 390 the scaled image is too small to judge the filter-chip styling.\n- I didn't review the business claims or the legal text itself, as you asked. The Privacy body still lists \"United States (for international operations)\", and I left that alone because policy text is to stay unchanged.\n- CI and hosted delivery haven't been done and aren't claimed.",
+  "ttft_ms": 2610,
+  "type": "result",
+  "duration_ms": 172289,
+  "uuid": "0bce3f72-9887-4dde-a52f-2d8f27f2b0b6",
+  "ttft_stream_ms": 2224,
+  "time_to_request_ms": 72,
+  "first_content_frame_ms": 2224,
+  "queued_turn_count": 0,
+  "result_index": 0
+}

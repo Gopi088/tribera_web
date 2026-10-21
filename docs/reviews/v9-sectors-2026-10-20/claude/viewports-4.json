@@ -1,0 +1,74 @@
+{
+  "duration_api_ms": 83762,
+  "stop_reason": "end_turn",
+  "session_id": "0a7502e0-71e2-4754-b1ac-e5cdd2b0175f",
+  "total_cost_usd": 0.329185,
+  "usage": {
+    "input_tokens": 28,
+    "cache_creation_input_tokens": 23686,
+    "cache_read_input_tokens": 839225,
+    "output_tokens": 6654,
+    "output_tokens_details": { "thinking_tokens": 2991 },
+    "server_tool_use": { "web_search_requests": 0, "web_fetch_requests": 0 },
+    "service_tier": "standard",
+    "cache_creation": { "ephemeral_1h_input_tokens": 23686, "ephemeral_5m_input_tokens": 0 },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 2956,
+        "cache_read_input_tokens": 73727,
+        "cache_creation_input_tokens": 515,
+        "cache_creation": { "ephemeral_5m_input_tokens": 0, "ephemeral_1h_input_tokens": 515 },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-5": {
+      "inputTokens": 28,
+      "outputTokens": 6654,
+      "cacheReadInputTokens": 839225,
+      "cacheCreationInputTokens": 23686,
+      "webSearchRequests": 0,
+      "costUSD": 0.329185,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 2991,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": { "background": 0, "foreground": 0, "unset": 0 },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": { "parent": 0, "user": 0, "system": 0 },
+    "refused": { "depth_limit": 0, "concurrency_limit": 0, "budget": 0 },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 37,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "## Responsive Visual Review — Stage 2\n\n**Resolution caveat:** All screenshots are full-page captures 5,300–9,600px tall, downscaled 2.7×–4.85× for display. Fine body text (11–13px source) is not reliably legible at this scale; findings below are limited to structural layout (overflow, clipping, stacking, spacing, visible tab/content presence), not text-content verification. Static images cannot confirm animation/motion behavior — not evaluated here.\n\n### Images actually read\n- `artifacts/v9-sectors/chromium/industries-product-saas-{320,390,768,1366,1920}.png`\n- `artifacts/v9-sectors/firefox/industries-product-saas-390.png`\n- `artifacts/v9-sectors/webkit/industries-product-saas-390.png`\n- `artifacts/v9-sectors/chromium/intelligence-{320,390,768,1366,1920}.png`\n- `artifacts/v9-sectors/firefox/intelligence-390.png`\n- `artifacts/v9-sectors/webkit/intelligence-390.png`\n\nNote: I could not locate/read the prior desktop-review files referenced at `docs/reviews/v9-sectors-2026-10-20/claude/` — no directory-listing tool is available in this session and my filename guesses didn't resolve. I proceeded directly to the responsive screenshots as instructed.\n\n### industries-product-saas\nAll five Chromium widths show a clean single-column mobile layout (320/390) transitioning to two-column hero/chart and multi-column \"Every level\" grids at 768/1366/1920. No horizontal overflow, clipped cards, or broken stacking visible at any width. Chart bars, sector comparison selector, Q&A cards, and footer all render fully at each width. Firefox and WebKit at 390px match the Chromium 390 layout closely; total page height differs slightly (8786/8736/8635px chromium/firefox/webkit) consistent with normal font-metric variance, not a defect.\n\n**Verdict: ACCEPT** (responsive layout, bounded to this review's scope)\n\n### intelligence\n320/390/1366/1920 all render cleanly: hero with decorative dot-grid background, stat cards, function-picker panel, and footer stack/grid appropriately per width. Firefox and WebKit 390 match Chromium 390.\n\n**Finding — needs verification (MEDIUM, unconfirmed at this resolution):** At 768px (`chromium/intelligence-768.png`, \"Pick a function\" section), the function selector renders as a single horizontal row of pill/tab buttons rather than the vertical sidebar list used at 1366/1920 or the stacked vertical list used at 320/390. In the row, only \"Backend & platform,\" \"Data & analytics,\" \"AI & machine learning,\" and \"Cybersecurity\" are clearly legible before the row appears to end at the panel's right edge; the remaining four functions (Infrastructure & SRE, Product & design, Risk & compliance, Leadership & GCC — visible as a vertical list at 1366+) are not visibly present in that row, and I can't tell from the screenshot whether they wrap, scroll, or are cut off. This is exactly the resolution ceiling called out above — I cannot confirm this from a static downscaled capture. Recommend the author check the live 768px breakpoint directly (or supply a cropped/full-resolution capture of that panel) to confirm all eight functions remain reachable.\n\n**Verdict: REVISE** — pending confirmation of the 768px function-tab-row content above; everything else at this width and all other widths/engines looks structurally sound.\n\n### Overall\n- industries-product-saas: **ACCEPT**\n- intelligence: **REVISE** (single open item — 768px function-tab visibility, unconfirmed due to image resolution, not a confirmed defect)",
+  "ttft_ms": 2451,
+  "type": "result",
+  "duration_ms": 85810,
+  "uuid": "b2204845-b39b-4e0a-8fec-2f9fc8b986f8",
+  "ttft_stream_ms": 1846,
+  "time_to_request_ms": 268,
+  "first_content_frame_ms": 1846,
+  "queued_turn_count": 0,
+  "result_index": 0
+}

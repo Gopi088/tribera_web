@@ -4,7 +4,8 @@ import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
 import { blogCategoryRobots, getStaticPathsBlogCategory } from '~/utils/blog';
 
 import TopicIndex from '~/components/blog/TopicIndex.astro';
-import Layout from '~/layouts/PageLayout.astro';
+import { publicLinks } from '~/data/v9/preview-links';
+import Layout from '~/layouts/V9Layout.astro';
 
 export const prerender = true;
 
@@ -27,7 +28,14 @@ const metadata = {
 };
 ---
 
-<Layout metadata={metadata}>
+<Layout
+  title={metadata.title}
+  description="Field notes on hiring, assessment and the candidate experience."
+  noindex={metadata.robots.index === false}
+  robotsFollow={metadata.robots.follow !== false}
+  headerLinkOverrides={publicLinks}
+  footerLinkOverrides={publicLinks}
+>
   <TopicIndex
     title={category.title}
     slug={category.slug}

@@ -1,0 +1,13 @@
+---
+import '../../../assets/styles/v9/content-pages.css';
+interface Props {
+  kind?: 'careers' | 'functions' | 'blog' | 'article' | 'candidate' | 'utility';
+}
+const { kind = 'utility' } = Astro.props;
+---
+
+<div class:list={['v9-content', `v9-content--${kind}`]} data-v9-content={kind}><slot /></div>
+
+<script>
+  import '../../../scripts/v9/content-pages';
+</script>

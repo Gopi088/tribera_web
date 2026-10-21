@@ -1,11 +1,15 @@
+---
+import { v9Href } from '~/data/v9/routes';
+---
+
 <section class="g-paper" id="priced">
   <div class="wrap">
-    <div class="eyebrow" data-rv=""><span class="tick">\</span> 04 · What you’re buying</div>
-    <h2 data-rv="" style="--d:60ms">Eight are priced before we start.</h2>
-    <p class="lead" data-rv="" style="--d:120ms">
+    <div class="eyebrow" data-v9-reveal><span class="tick">\</span> 04 · What you’re buying</div>
+    <h2 data-v9-reveal style="--d:60ms">Eight are priced before we start.</h2>
+    <p class="lead" data-v9-reveal style="--d:120ms">
       The other four are paid, at least in part, when someone joins your team. Those are the red ones.
     </p>
-    <div class="sv-tiles" data-rv="" style="--d:160ms">
+    <div class="sv-tiles" data-v9-reveal style="--d:160ms">
       <a class="sv-tile" href="#sv-scorecard"><i aria-hidden="true"></i><b>Role scorecard</b><span>Fixed fee</span></a
       ><a class="sv-tile" href="#sv-review"><i aria-hidden="true"></i><b>Pipeline review</b><span>Fixed fee</span></a><a
         class="sv-tile sv-tile--h"
@@ -28,27 +32,29 @@
         ><i aria-hidden="true"></i><b>Hiring process review</b><span>Fixed fee</span></a
       >
     </div>
-    <p class="sv-tiles-k" data-rv="">
+    <p class="sv-tiles-k" data-v9-reveal>
       <span><i></i> Fixed fee, price or rate, agreed in writing</span><span
         ><i class="r"></i> Paid when someone joins</span
       >
     </p>
-    <p class="sv-sample" data-rv="">
-      <a class="link" href="/__v9/sample-write-up">What a scored candidate looks like: request a sample write-up ›</a>
+    <p class="sv-sample" data-v9-reveal>
+      <a class="link" href={v9Href('/__v9/sample-write-up', Astro.url.pathname)}
+        >What a scored candidate looks like: request a sample write-up ›</a
+      >
     </p>
     <div class="proof-checks sv-why">
-      <div data-rv="" style="--d:0ms">
+      <div data-v9-reveal style="--d:0ms">
         <h3>The price comes first.</h3><p>
           Scope and fee are written down before anything starts. No hourly billing, and no invoice you didn’t expect.
         </p>
       </div>
-      <div data-rv="" style="--d:90ms">
+      <div data-v9-reveal style="--d:90ms">
         <h3>The work leaves with you.</h3><p>
           Scorecards, interview guides and reports are yours to run without us. We’d rather be hired again than depended
           on.
         </p>
       </div>
-      <div data-rv="" style="--d:180ms">
+      <div data-v9-reveal style="--d:180ms">
         <h3>So we can be straight with you.</h3><p>
           We can say the brief is wrong, or that your hire is already in your rejected pile, without it costing us the
           engagement.

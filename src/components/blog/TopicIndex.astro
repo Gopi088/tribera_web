@@ -1,8 +1,8 @@
 ---
 import type { Post } from '~/types';
-import EditorialPage from '~/components/v58/EditorialPage.astro';
+import Content from '~/components/v9/content/Content.astro';
 import HeroFilters from './HeroFilters.astro';
-import EntryGrid from './EntryGrid.astro';
+import FieldNotesList from './FieldNotesList.astro';
 import Pagination from './Pagination.astro';
 interface Props {
   title: string;
@@ -19,8 +19,8 @@ const displayTitle = title
   .join(' ');
 ---
 
-<EditorialPage>
-  <header class="hero" id="top">
+<Content kind="blog">
+  <header class="hero">
     <div class="wrap">
       <p class="eyebrow">From the journal</p>
       <h1>{displayTitle}</h1>
@@ -31,21 +31,8 @@ const displayTitle = title
   <section class="band">
     <div class="wrap">
       <p class="eyebrow">{posts.length} {posts.length === 1 ? 'article' : 'articles'}</p>
-      <EntryGrid posts={posts} />
+      <FieldNotesList posts={posts} showFilters={false} />
       <Pagination prevUrl={prevUrl} nextUrl={nextUrl} />
     </div>
   </section>
-</EditorialPage>
-<style>
-  .hero h1 + .hero__p {
-    margin-top: 18px;
-  }
-  .eyebrow {
-    text-transform: uppercase;
-  }
-  .hero .eyebrow::before {
-    content: '\\';
-    color: #da0007;
-    margin-right: 0.7rem;
-  }
-</style>
+</Content>

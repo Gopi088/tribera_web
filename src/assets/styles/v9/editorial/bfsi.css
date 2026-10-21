@@ -1636,3 +1636,16 @@
     navigation: none;
   }
 }
+
+/* Long sector names get a deliberate second breadcrumb line on narrow screens. */
+.v9-editorial-bfsi .eyebrow.ix-breadcrumb {
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 0.65em;
+  row-gap: 0.35em;
+}
+@media (max-width: 600px) {
+  .v9-editorial-bfsi .ix-breadcrumb--long .ix-current {
+    flex-basis: 100%;
+  }
+}

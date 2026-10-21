@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-22",
+  "stages": [
+    {
+      "order": 1,
+      "task": "Fresh independent Claude code and visual review, fix and re-review findings",
+      "status": "complete",
+      "initialCodeVerdict": "REVISE",
+      "followupVerdict": "ACCEPT",
+      "condition": "WebKit regression run passed; same 32 chart/contrast cases plus upload/state/no-JS checks as Chromium and Firefox.",
+      "evidence": ["code-review.json", "visual-a.json", "visual-b.json", "visual-c.json", "migration-followup.json"],
+      "visualCoverage": "162 initial captures across 81 public pages; Claude reports enumerate inspected images and limits. 24 affected-route recaptures plus targeted close-ups for follow-up."
+    },
+    {
+      "order": 2,
+      "task": "Resolve confirmed content and journey findings",
+      "status": "complete",
+      "followupVerdict": "ACCEPT",
+      "evidence": ["content-followup.json", "content-final.json"],
+      "validation": "Final content journeys passed Chromium, Firefox and WebKit; 83 HTML / 3115 internal links; 8 computed article reading times."
+    },
+    {
+      "order": 3,
+      "task": "Verify or qualify business claims with evidence",
+      "status": "complete",
+      "resolution": "Owner directed retaining existing claims as is; see claims-decisions.json. This is publication authorization, not independent substantiation."
+    },
+    {
+      "order": 4,
+      "task": "Reconcile documentation, validate, commit and run complete CI",
+      "status": "in_progress",
+      "localValidation": "complete",
+      "checks": [
+        "Astro: 0 errors, 0 warnings; ESLint and full Prettier passed",
+        "124 unit tests passed",
+        "Production boundary, static references, 3115 internal links and all eight article reading times passed",
+        "Production migration and complete public regression suites passed Chromium, Firefox and WebKit",
+        "Private preview build boundary/static/browser and foundation, 11 representative-page suites, A1, A2 and sectors passed Chromium; full three-browser private matrix remains remote CI work"
+      ],
+      "remoteCi": "Pending feature-branch commit and push",
+      "evidence": "artifacts/v9-release-2026-10-22/validation/ (generated, ignored)"
+    },
+    {
+      "order": 5,
+      "task": "Hosted verification of routes, metadata and form delivery",
+      "status": "pending"
+    }
+  ],
+  "ownerInstructions": {
+    "businessClaims": "User requested: Use as is. Retain existing timing, counts and anonymity claims; this records a publication decision, not independent substantiation.",
+    "newJersey": "User requested: Drop New Jersey.",
+    "heineken": "Explicitly approved earlier in this conversation."
+  },
+  "snapshot": "Pre-commit checkpoint; matching remote CI and hosted results are subsequent evidence, not certified by this snapshot.",
+  "finalProductionArtifact": {
+    "sha256": "a3ff2843fbff485a35a218595e7677795b4a85c2aaddf261f6dd2070b2b18166",
+    "files": 241,
+    "privateFixtures": 0,
+    "matchesFinalReviewedAndTestedProductionBuild": true
+  }
+}

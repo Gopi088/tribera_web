@@ -199,3 +199,13 @@ test(`home phone expert keyboard selection stays inside its horizontal clip (${e
     await browser.close();
   }
 });
+
+test(`home handoff hero motion and lifecycle (${engine})`, async () => {
+  const { verifyHeroMotion } = await import('./v9-home-hero.mjs');
+  const browser = await { chromium, firefox, webkit }[engine].launch();
+  try {
+    await verifyHeroMotion(browser, base);
+  } finally {
+    await browser.close();
+  }
+});

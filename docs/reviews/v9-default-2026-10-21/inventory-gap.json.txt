@@ -1,0 +1,22 @@
+[
+  {
+    "route": "/blog/gcc-hiring-india-leadership-roles",
+    "baseline": "no",
+    "status": "not started"
+  },
+  {
+    "route": "/blog/hiring-ai-engineers-india",
+    "baseline": "no",
+    "status": "not started"
+  },
+  {
+    "route": "/dpa",
+    "baseline": "no",
+    "status": "not started"
+  },
+  {
+    "route": "/how-we-work-with-numbers",
+    "baseline": "no",
+    "status": "not started"
+  }
+]

@@ -95,3 +95,77 @@
   color: #fff;
   background: var(--ink);
 }
+/* Static content is complete. Only the enhanced scroll-driven timeline has unfilled dots. */
+.v9-editorial .ab-tl.motion-ready li:not(.on) .ab-tl-dot {
+  background: var(--paper);
+}
+.v9-editorial .ab-tl.motion-ready li.on .ab-tl-dot {
+  background: var(--red);
+}
+.v9-editorial .ix-q .ix-thin span {
+  background-size: 100% 1.5px;
+}
+.v9-editorial .hd-underline path {
+  stroke-dashoffset: 0;
+}
+.v9-editorial .bl-prog {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 63px;
+  height: 2px;
+  z-index: 40;
+  pointer-events: none;
+}
+@media (min-width: 1024px) {
+  .v9-editorial .bl-prog {
+    top: 77px;
+  }
+}
+.v9-editorial .bl-prog i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 2px;
+  width: var(--p, 0%);
+  background: var(--ink);
+}
+.v9-editorial .bl-prog i::after {
+  content: '';
+  position: absolute;
+  right: -3px;
+  top: -2.5px;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--red);
+}
+.v9-editorial .v9-citation-preview {
+  position: absolute;
+  z-index: 50;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  width: min(320px, calc(100vw - 24px));
+  padding: 16px;
+  transform: translateX(calc(-50% + var(--shift, 0px)));
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 12px 36px #0002;
+  font: 400 14px/1.5 var(--body);
+  text-align: left;
+}
+.v9-editorial .v9-citation-preview.below {
+  bottom: auto;
+  top: calc(100% + 10px);
+}
+.v9-editorial .v9-citation-preview strong,
+.v9-editorial .v9-citation-preview > span {
+  display: block;
+  margin-bottom: 8px;
+}
+.v9-editorial .v9-citation-preview a {
+  color: var(--ink);
+  text-decoration: underline;
+}

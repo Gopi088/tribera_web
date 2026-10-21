@@ -1,18 +1,22 @@
+---
+import { v9Href } from '~/data/v9/routes';
+---
+
 <!-- Handoff industries/banking-financial-services.html: faq g-paper. Native Astro markup; shared document shell is V9Layout. -->
 <section class="faq g-paper">
   <div class="wrap">
     <div class="faq-top">
       <div class="faq-aside">
-        <div class="eyebrow"><span class="tick">\</span> 05 · Before you brief us</div>
-        <h2 style="--d:60ms">What teams ask first.</h2>
-        <div class="faq-ask" style="--d:180ms">
+        <div class="eyebrow" data-v9-reveal><span class="tick">\</span> 05 · Before you brief us</div>
+        <h2 style="--d:60ms" data-v9-reveal>What teams ask first.</h2>
+        <div class="faq-ask" style="--d:180ms" data-v9-reveal>
           <p class="faq-ask-q">Didn’t see yours?</p>
-          <a href="/__v9/contact?sector=banking-financial-services"
+          <a href={v9Href('/__v9/contact?sector=banking-financial-services', Astro.url.pathname)}
             >Ask us anything <span class="ar" aria-hidden="true">→</span></a
           >
         </div>
       </div>
-      <div class="faq-list" style="--d:120ms">
+      <div class="faq-list" style="--d:120ms" data-v9-reveal>
         <details class="faq-item" open="">
           <summary class="faq-q"
             ><span>Do your experts actually have BFSI backgrounds?</span><span class="faq-ic" aria-hidden="true"

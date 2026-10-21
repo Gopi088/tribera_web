@@ -1,8 +1,12 @@
+---
+import { v9Href } from '~/data/v9/routes';
+---
+
 <section class="start g-white" id="start">
   <div class="wrap">
     <div class="start-head">
-      <div class="eyebrow" style="justify-content:center"><span class="tick">\</span> Get started</div>
-      <h2 style="--d:60ms">
+      <div data-v9-reveal class="eyebrow" style="justify-content:center"><span class="tick">\</span> Get started</div>
+      <h2 data-v9-reveal style="--d:60ms">
         Send us your next <span class="hd-word"
           >batch.<svg class="hd-underline hd-ink" viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true"
             ><path d="M3,8 Q34,3.5 62,6.5 Q92,9 117,5 Q92,11.2 62,9.2 Q34,6.4 3,8.7 Z"></path></svg
@@ -10,14 +14,14 @@
         >
       </h2>
     </div>
-    <p class="lead" style="--d:120ms">
+    <p data-v9-reveal class="lead" style="--d:120ms">
       One intake call sets the bar. After that, every candidate you have gets the same interview, and you get the
       ranking in about 48 hours.
     </p>
-    <div class="cta-row" style="--d:180ms">
-      <a class="btn btn-primary" href="/__v9/contact?service=iaas">Send us a batch</a><a
+    <div data-v9-reveal class="cta-row" style="--d:180ms">
+      <a class="btn btn-primary" href={v9Href('/__v9/contact?service=iaas', Astro.url.pathname)}>Send us a batch</a><a
         class="link"
-        href="/__v9/home#start">Or have us find them ›</a
+        href={v9Href('/__v9/home#start', Astro.url.pathname)}>Or have us find them ›</a
       >
     </div>
   </div>

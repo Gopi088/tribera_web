@@ -1,12 +1,12 @@
 ---
 title: 'Security'
 layout: '~/layouts/MarkdownLayout.astro'
+pageUpdated: '2026-10-21'
+policyUpdated: 'May 27, 2026'
 robots:
   index: false
   follow: true
 ---
-
-_Last updated_: May 27, 2026
 
 We take security reports seriously and appreciate responsible disclosure.
 

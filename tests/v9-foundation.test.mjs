@@ -109,8 +109,14 @@ test(`v9 foundation behavior (${browserName})`, { timeout: 120000 }, async () =>
     );
     const strip = page.locator('[data-v9-strip]');
     await strip.scrollIntoViewIfNeeded();
-    await strip.locator('button').click();
-    assert.equal(await strip.locator('button').getAttribute('aria-pressed'), 'true');
+    assert.equal(await strip.locator('button').count(), 0);
+    await strip.hover();
+    assert.equal(
+      await strip.locator('.v9-client-track').evaluate((el) => getComputedStyle(el).animationPlayState),
+      'paused'
+    );
+    await page.mouse.move(0, 0);
+    await strip.locator('.v9-client-window').focus();
     assert.equal(
       await strip.locator('.v9-client-track').evaluate((el) => getComputedStyle(el).animationPlayState),
       'paused'

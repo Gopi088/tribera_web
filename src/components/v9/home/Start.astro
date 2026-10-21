@@ -1,3 +1,7 @@
+---
+import { v9Href } from '~/data/v9/routes';
+---
+
 <section class="start g-white" id="start">
   <div class="start-field" aria-hidden="true">
     <svg viewBox="0 0 740 146"
@@ -1632,7 +1636,7 @@
       about 36 hours.
     </p>
     <div class="cta-row" data-home-reveal style="--d:180ms">
-      <a class="btn btn-primary" href="/__v9/contact">Start with one role</a>
+      <a class="btn btn-primary" href={v9Href('/__v9/contact', Astro.url.pathname)}>Start with one role</a>
       <a class="link" href="mailto:hello@tribera.ai?subject=Walkthrough">Book a walkthrough ›</a>
     </div>
     <p class="start-note" data-home-reveal style="--d:220ms">

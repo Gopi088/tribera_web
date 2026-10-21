@@ -1,3 +1,7 @@
+---
+import { v9Href } from '~/data/v9/routes';
+---
+
 <section class="g-white" id="ways">
   <div class="wrap">
     <div>
@@ -34,7 +38,7 @@
     </div>
     <p class="ways-foot" data-home-reveal style="--d:200ms">Both are scored against your bar.</p>
     <p class="ways-diff" data-home-reveal style="--d:220ms">
-      <a class="link" href="/__v9/services">See how each service works ›</a>
+      <a class="link" href={v9Href('/__v9/services', Astro.url.pathname)}>See how each service works ›</a>
     </p>
   </div>
 </section>

@@ -3,6 +3,7 @@ import '../assets/styles/v9/foundation.css';
 import HeadAssets from '../components/v9/HeadAssets.astro';
 import Header from '../components/v9/Header.astro';
 import Footer from '../components/v9/Footer.astro';
+import { findImage } from '../utils/images';
 interface Props {
   title: string;
   description: string;
@@ -11,8 +12,11 @@ interface Props {
   cta?: { label: string; href: string };
   canonicalPath?: string;
   noindex?: boolean;
+  robotsFollow?: boolean;
   footerLinkOverrides?: Record<string, string>;
   headerLinkOverrides?: Record<string, string>;
+  openGraphType?: 'website' | 'article';
+  image?: string;
 }
 const {
   title,
@@ -22,10 +26,16 @@ const {
   cta,
   canonicalPath = Astro.url.pathname,
   noindex = false,
+  robotsFollow = !noindex,
   footerLinkOverrides,
   headerLinkOverrides,
+  openGraphType = 'website',
+  image,
 } = Astro.props;
 const canonical = new URL(canonicalPath, 'https://www.tribera.ai');
+const resolvedImage = image ? await findImage(image) : undefined;
+const imageSrc = typeof resolvedImage === 'string' ? resolvedImage : resolvedImage?.src;
+const socialImage = new URL(imageSrc || '/og-image.png', canonical.origin).href;
 ---
 
 <!doctype html>
@@ -35,8 +45,14 @@ const canonical = new URL(canonicalPath, 'https://www.tribera.ai');
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta name="robots" content={`${noindex ? 'noindex' : 'index'}, ${robotsFollow ? 'follow' : 'nofollow'}`} />
     {!noindex && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content={openGraphType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {!noindex && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#ffffff" />
     <HeadAssets />
     <slot name="head" />

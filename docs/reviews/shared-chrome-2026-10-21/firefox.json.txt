@@ -1,0 +1,371 @@
+{
+  "status": "passed",
+  "staticPages": 81,
+  "records": [
+    {
+      "route": "/",
+      "width": 390,
+      "styles": {
+        "height": 63,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "14.72px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/privacy",
+      "width": 390,
+      "styles": {
+        "height": 63,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "14.72px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/security",
+      "width": 390,
+      "styles": {
+        "height": 63,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "14.72px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/terms",
+      "width": 390,
+      "styles": {
+        "height": 63,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "14.72px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/dpa",
+      "width": 390,
+      "styles": {
+        "height": 63,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "14.72px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/blog",
+      "width": 390,
+      "styles": {
+        "height": 63,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "14.72px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/blog/rethinking-hiring-metrics-signal-efficiency",
+      "width": 390,
+      "styles": {
+        "height": 63,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "14.72px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/careers",
+      "width": 390,
+      "styles": {
+        "height": 63,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "14.72px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/careers/ai-ml-engineer",
+      "width": 390,
+      "styles": {
+        "height": 63,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "14.72px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/functions",
+      "width": 390,
+      "styles": {
+        "height": 63,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "14.72px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/functions/engineering-platform",
+      "width": 390,
+      "styles": {
+        "height": 63,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "14.72px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/candidates/start",
+      "width": 390,
+      "styles": {
+        "height": 63,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "14.72px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/404",
+      "width": 390,
+      "styles": {
+        "height": 63,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "14.72px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/",
+      "width": 1366,
+      "styles": {
+        "height": 77,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "16px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/privacy",
+      "width": 1366,
+      "styles": {
+        "height": 77,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "16px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/security",
+      "width": 1366,
+      "styles": {
+        "height": 77,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "16px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/terms",
+      "width": 1366,
+      "styles": {
+        "height": 77,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "16px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/dpa",
+      "width": 1366,
+      "styles": {
+        "height": 77,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "16px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/blog",
+      "width": 1366,
+      "styles": {
+        "height": 77,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "16px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/blog/rethinking-hiring-metrics-signal-efficiency",
+      "width": 1366,
+      "styles": {
+        "height": 77,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "16px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/careers",
+      "width": 1366,
+      "styles": {
+        "height": 77,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "16px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/careers/ai-ml-engineer",
+      "width": 1366,
+      "styles": {
+        "height": 77,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "16px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/functions",
+      "width": 1366,
+      "styles": {
+        "height": 77,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "16px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/functions/engineering-platform",
+      "width": 1366,
+      "styles": {
+        "height": 77,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "16px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/candidates/start",
+      "width": 1366,
+      "styles": {
+        "height": 77,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "16px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    },
+    {
+      "route": "/404",
+      "width": 1366,
+      "styles": {
+        "height": 77,
+        "font": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "fontSize": "16px",
+        "background": "rgba(255, 255, 255, 0.75)",
+        "footerBackground": "rgb(18, 18, 18)",
+        "footerFont": "\"V9 Inter Tight\", system-ui, sans-serif",
+        "footerSize": "14.08px"
+      },
+      "status": "passed"
+    }
+  ],
+  "errors": []
+}

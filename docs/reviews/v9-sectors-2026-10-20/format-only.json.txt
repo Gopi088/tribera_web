@@ -1,0 +1,7 @@
+{
+  "file": "src/data/v9/intelligence.json",
+  "beforeSha256": "50e07daff9d1b916aca1f340d0df8b8e93e7d36807bbfcb97f3934b2f8ea8efc",
+  "afterSha256": "a4c1fd6b72e702aca70ca4d9cbb1863f8404564cb514b8901605d7d8f0c85549",
+  "parsedJsonUnchanged": true,
+  "note": "Only post-browser source edit: Prettier whitespace formatting. The tested compiled artifact remains unchanged."
+}

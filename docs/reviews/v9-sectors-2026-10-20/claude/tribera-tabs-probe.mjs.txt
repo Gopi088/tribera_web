@@ -1,0 +1,20 @@
+import { chromium,firefox,webkit } from '/home/abhispra/mvp/website_latest/tribera/node_modules/playwright/index.mjs';
+import fs from 'node:fs';
+const records=[];
+for(const [engine,type] of Object.entries({chromium,firefox,webkit})) {
+ const b=await type.launch(); const p=await b.newPage({viewport:{width:768,height:900},reducedMotion:'reduce'});
+ await p.goto('http://localhost:4390/__v9/intelligence');await p.evaluate(()=>document.fonts.ready);
+ const info=await p.locator('.in-fns').evaluate(el=>({overflow:getComputedStyle(el).overflowX,width:el.clientWidth,scrollWidth:el.scrollWidth}));
+ await p.locator('.in-fn').first().focus();
+ const states=[];
+ for(let i=0;i<8;i++) {
+ if(i) await p.keyboard.press('ArrowRight');
+ await p.waitForTimeout(500);
+ const state=await p.locator('.in-fn[aria-selected=true]').evaluate(el=>{const r=el.getBoundingClientRect(),par=el.parentElement.getBoundingClientRect();return {text:el.textContent.trim(),visible:r.left>=par.left-1&&r.right<=par.right+1,scrollLeft:el.parentElement.scrollLeft}});
+ state.heading=await p.locator('#inFnName').textContent();states.push(state);
+ }
+ if(states.length!==8||states.some(s=>!s.visible||s.text!==s.heading))throw new Error(JSON.stringify(states));
+ if(engine==='chromium')await p.locator('.in-lab').screenshot({path:'artifacts/v9-sectors/claude-detail/intelligence-tablet-last-tab.png'});
+ records.push({engine,width:768,info,states});await b.close();
+}
+fs.writeFileSync('artifacts/v9-sectors/claude-detail/tablet-tabs.json',JSON.stringify(records,null,2));console.log('All8 tabs reachable by keyboard, visible, matching content in all3 engines');

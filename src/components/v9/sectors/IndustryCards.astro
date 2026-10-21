@@ -1,0 +1,36 @@
+---
+import { sectors, skills, sectorValues, sectorHref } from '../../../data/v9/sectors';
+---
+
+<div class="ii-grid">
+  {
+    sectors.map((sector, index) => {
+      const values = sectorValues(sector);
+      const top = values.indexOf(Math.max(...values));
+      return (
+        <a
+          class="ii-c"
+          href={sectorHref(sector.slug, Astro.url.pathname)}
+          data-v9-reveal
+          style={`--d:${(index % 4) * 60}ms`}
+        >
+          <>
+            <span class="pf-k">
+              {skills[top]} · {values[top]}%
+            </span>
+            <h3>{sector.name}</h3>
+          </>
+          <span class="ii-sp" aria-hidden="true">
+            {values.map((value, i) => (
+              <i class:list={{ t: i === top }} style={`--v:${value}`} />
+            ))}
+          </span>
+          <>
+            <p>{sector.tagline}</p>
+            <span class="ii-go">See the bar ›</span>
+          </>
+        </a>
+      );
+    })
+  }
+</div>

@@ -1,0 +1,59 @@
+{
+  "sample": true,
+  "quarter": "Q4 2026",
+  "dims": [
+    "Core depth",
+    "Systems design",
+    "Controls and risk",
+    "Delivery speed",
+    "Documentation",
+    "Stakeholder handling"
+  ],
+  "functions": [
+    {
+      "k": "backend",
+      "n": "Backend & platform",
+      "v": [22, 28, 10, 18, 12, 10]
+    },
+    {
+      "k": "data",
+      "n": "Data & analytics",
+      "v": [24, 18, 14, 12, 18, 14]
+    },
+    {
+      "k": "ai",
+      "n": "AI & machine learning",
+      "v": [30, 22, 12, 16, 10, 10]
+    },
+    {
+      "k": "cyber",
+      "n": "Cybersecurity",
+      "v": [16, 12, 31, 14, 15, 12]
+    },
+    {
+      "k": "infra",
+      "n": "Infrastructure & SRE",
+      "v": [20, 26, 18, 18, 10, 8]
+    },
+    {
+      "k": "product",
+      "n": "Product & design",
+      "v": [12, 14, 8, 18, 16, 32]
+    },
+    {
+      "k": "risk",
+      "n": "Risk & compliance",
+      "v": [18, 8, 30, 10, 20, 14]
+    },
+    {
+      "k": "lead",
+      "n": "Leadership & GCC",
+      "v": [10, 18, 14, 16, 10, 32]
+    }
+  ],
+  "cohort": null,
+  "periodStart": null,
+  "periodEnd": null,
+  "sampleSize": null,
+  "method": "Illustrative distribution of the primary skill holding back candidates who did not clear. Not measured interview results."
+}

@@ -1,0 +1,246 @@
+{
+  "status": "passed",
+  "engine": "firefox",
+  "records": [
+    {
+      "route": "/",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/candidates",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/candidates",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/services",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/services",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/interview-as-a-service",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/interview-as-a-service",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/case-study",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/case-study",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/about",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/about",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/contact",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/contact",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/sample-write-up",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/sample-write-up",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/industries",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/industries",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/intelligence",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/intelligence",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/blog/seventeen-interviews-one-hire",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/blog/seventeen-interviews-one-hire",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/banking-financial-services",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/banking-financial-services",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/enterprise-technology",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/enterprise-technology",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/product-saas",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/product-saas",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/ai-data",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/ai-data",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/cybersecurity",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/cybersecurity",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/healthcare-life-sciences",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/healthcare-life-sciences",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/pharmaceutical",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/pharmaceutical",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/manufacturing",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/manufacturing",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/industrial-engineering",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/industrial-engineering",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/global-capability-centers",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/global-capability-centers",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/consumer-digital-commerce",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/consumer-digital-commerce",
+      "width": 1366,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/private-equity-portfolio",
+      "width": 390,
+      "status": "passed"
+    },
+    {
+      "route": "/industries/private-equity-portfolio",
+      "width": 1366,
+      "status": "passed"
+    }
+  ],
+  "checks": [
+    "canonical/indexing",
+    "public-navigation",
+    "responsive",
+    "GCC-alias",
+    "tablet-keyboard",
+    "sector-contact-context",
+    "no-JS"
+  ],
+  "errors": []
+}

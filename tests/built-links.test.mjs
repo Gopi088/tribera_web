@@ -9,7 +9,6 @@ const files = fs.readdirSync(root, { recursive: true }).filter((file) => file.en
 const missing = [];
 let checked = 0;
 const cutClients = [
-  'Heineken',
   'ICICI Bank',
   'ICICI Securities',
   'PayU',
@@ -33,6 +32,16 @@ for (const file of files) {
     const url = new URL(href.replaceAll('&amp;', '&'), origin);
     if (url.origin !== origin.origin) continue;
     const route = decodeURIComponent(url.pathname).replace(/^\//, '');
+    if (route.startsWith('.netlify/functions/')) {
+      const name = route.slice('.netlify/functions/'.length);
+      assert.ok(
+        /^[\w-]+$/.test(name) &&
+          ['mjs', 'js', 'ts'].some((extension) => fs.existsSync(`netlify/functions/${name}.${extension}`)),
+        `${file}: ${href} must resolve to a checked-in Netlify handler`
+      );
+      checked++;
+      continue;
+    }
     const candidates = [route, path.join(route, 'index.html'), route + '.html'];
     checked++;
     if (
@@ -50,10 +59,13 @@ console.log(
 );
 
 const index = fs.readFileSync(path.join(root, 'blog/index.html'), 'utf8');
-const article = fs.readFileSync(path.join(root, 'blog/rethinking-hiring-metrics-signal-efficiency/index.html'), 'utf8');
-const readTime = article.match(/(\d+ min) read/)?.[1];
-assert.ok(readTime, 'Article has computed reading time');
-assert.ok(index.includes(readTime + ' read'), 'Featured article uses the same reading time');
+const feature = index.match(/<a\b(?=[^>]*\bclass="feat")(?=[^>]*\bhref="([^"]+)")[^>]*>[\s\S]*?<\/a>/);
+assert.ok(feature, 'Blog has a featured article');
+const featuredRoute = feature[1].replace(/^\//, '').replace(/\/$/, '');
+const article = fs.readFileSync(path.join(root, featuredRoute, 'index.html'), 'utf8');
+const readTime = feature[0].match(/(\d+ min) read/)?.[1];
+assert.ok(readTime, 'Featured card has computed reading time');
+assert.ok(article.includes(readTime + ' read'), 'Featured card matches its actual article');
 assert.ok(!index.includes('2,00,000'), 'Published index number format is consistent');
 assert.ok(fs.existsSync(path.join(root, 'robots.txt')));
 assert.ok(fs.existsSync(path.join(root, 'sitemap-index.xml')));
@@ -62,7 +74,12 @@ console.log('Featured read time, number format, robots.txt and generated sitemap
 for (const file of fs
   .readdirSync('src/pages/blog')
   .filter((file) => file !== 'index.astro' && file.endsWith('.astro'))) {
-  const source = fs.readFileSync(path.join('src/pages/blog', file), 'utf8');
+  const source = fs.readFileSync(
+    file === 'seventeen-interviews-one-hire.astro'
+      ? 'src/components/v9/editorial/article/ArticleBody.astro'
+      : path.join('src/pages/blog', file),
+    'utf8'
+  );
   const body = source.match(/<article\b[^>]*>([\s\S]*?)<\/article>/)?.[1];
   assert.ok(body, file + ' has a served article body');
   const text = body
@@ -73,4 +90,4 @@ for (const file of fs
   const published = fs.readFileSync(path.join(root, 'blog', file.replace('.astro', ''), 'index.html'), 'utf8');
   assert.ok(published.includes(expected), file + ' reading time derived from served body');
 }
-console.log('All seven standalone article reading times match the served source bodies');
+console.log('All eight article reading times match the served source bodies');

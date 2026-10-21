@@ -1,0 +1,1772 @@
+[
+  {
+    "port": 4321,
+    "route": "/services",
+    "wall": 1018,
+    "load": 915,
+    "ttfb": 11.700000002980232,
+    "requests": 23,
+    "bytes": 95323,
+    "nav": {
+      "name": "http://127.0.0.1:4321/services",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 915,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentEncoding": "",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 2,
+      "domainLookupStart": 2,
+      "domainLookupEnd": 2,
+      "connectStart": 2,
+      "secureConnectionStart": 0,
+      "connectEnd": 2,
+      "requestStart": 3.2000000029802322,
+      "responseStart": 11.700000002980232,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 11.700000002980232,
+      "responseEnd": 265.5,
+      "transferSize": 165865,
+      "encodedBodySize": 165565,
+      "decodedBodySize": 165565,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 219,
+      "unloadEventEnd": 219,
+      "domInteractive": 269.20000000298023,
+      "domContentLoadedEventStart": 912.8999999985099,
+      "domContentLoadedEventEnd": 913.1000000014901,
+      "domComplete": 914.8999999985099,
+      "loadEventStart": 915,
+      "loadEventEnd": 915,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "high"
+      }
+    },
+    "resources": [
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/@vite/client",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/@id/astro:scripts/page.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/foundation.css",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/services/handoff.css",
+        "type": "script",
+        "bytes": 59314
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/fonts.css",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/services/enhancements.css",
+        "type": "script",
+        "bytes": 2505
+      },
+      {
+        "name": "http://127.0.0.1:4321/brand/v9/tribera-logo-black.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/components/v9/services/ServicesPage.astro?astro&type=script&index=0&lang.ts",
+        "type": "script",
+        "bytes": 2228
+      },
+      {
+        "name": "http://127.0.0.1:4321/brand/v9/tribera-logo-white.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/layouts/V9Layout.astro?astro&type=script&index=0&lang.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/node_modules/vite/dist/client/env.mjs",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "type": "css",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "type": "css",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/node_modules/astro/dist/virtual-modules/prefetch.js?v=b8dcf66b",
+        "type": "script",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/foundation.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/scripts/v9/services.ts",
+        "type": "script",
+        "bytes": 19681
+      },
+      {
+        "name": "http://127.0.0.1:4321/node_modules/astro/dist/prefetch/index.js?v=b8dcf66b",
+        "type": "script",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4321/@id/__x00__virtual:astro:adapter-config/client",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/disclosures.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/scripts/v9/hiring-motion.ts",
+        "type": "script",
+        "bytes": 6795
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/field-motion.js",
+        "type": "script",
+        "bytes": 300
+      }
+    ],
+    "paint": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 608,
+        "duration": 0,
+        "paintTime": 505,
+        "presentationTime": 608
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 608,
+        "duration": 0,
+        "paintTime": 505,
+        "presentationTime": 608
+      }
+    ]
+  },
+  {
+    "port": 4321,
+    "route": "/intelligence",
+    "wall": 1997,
+    "load": 1651.8999999985099,
+    "ttfb": 23.600000001490116,
+    "requests": 27,
+    "bytes": 227792,
+    "nav": {
+      "name": "http://127.0.0.1:4321/intelligence",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 1651.8999999985099,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentEncoding": "",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 1.5,
+      "domainLookupStart": 1.5,
+      "domainLookupEnd": 1.5,
+      "connectStart": 1.5,
+      "secureConnectionStart": 0,
+      "connectEnd": 1.5,
+      "requestStart": 3.100000001490116,
+      "responseStart": 23.600000001490116,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 23.600000001490116,
+      "responseEnd": 275.5,
+      "transferSize": 137202,
+      "encodedBodySize": 136902,
+      "decodedBodySize": 136902,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 476.6000000014901,
+      "unloadEventEnd": 476.6000000014901,
+      "domInteractive": 582.3999999985099,
+      "domContentLoadedEventStart": 1633.2000000029802,
+      "domContentLoadedEventEnd": 1633.3999999985099,
+      "domComplete": 1651.7999999970198,
+      "loadEventStart": 1651.8999999985099,
+      "loadEventEnd": 1651.8999999985099,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "high"
+      }
+    },
+    "resources": [
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/@vite/client",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/@id/astro:scripts/page.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/foundation.css",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/fonts.css",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/intelligence.css",
+        "type": "script",
+        "bytes": 38744
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/editorial/behavior.css",
+        "type": "script",
+        "bytes": 4762
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/sector-enhancements.css",
+        "type": "script",
+        "bytes": 2657
+      },
+      {
+        "name": "http://127.0.0.1:4321/brand/v9/tribera-logo-black.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/components/v9/sectors/IntelligencePage.astro?astro&type=script&index=0&lang.ts",
+        "type": "script",
+        "bytes": 96846
+      },
+      {
+        "name": "http://127.0.0.1:4321/brand/v9/tribera-logo-white.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/layouts/V9Layout.astro?astro&type=script&index=0&lang.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/node_modules/vite/dist/client/env.mjs",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/node_modules/astro/dist/virtual-modules/prefetch.js?v=b8dcf66b",
+        "type": "script",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4321/node_modules/astro/dist/prefetch/index.js?v=b8dcf66b",
+        "type": "script",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4321/@id/__x00__virtual:astro:adapter-config/client",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "type": "css",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "type": "css",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/foundation.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/sector-charts.ts",
+        "type": "script",
+        "bytes": 25479
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/disclosures.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/data/v9/intelligence.json?import",
+        "type": "script",
+        "bytes": 1406
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/editorial-motion.ts",
+        "type": "script",
+        "bytes": 35754
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/editorial-citations.ts",
+        "type": "script",
+        "bytes": 10585
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/field-motion.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/card-depth.ts",
+        "type": "script",
+        "bytes": 6759
+      }
+    ],
+    "paint": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 1144,
+        "duration": 0,
+        "paintTime": 999.2000000029802,
+        "presentationTime": 1144
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 1144,
+        "duration": 0,
+        "paintTime": 999.2000000029802,
+        "presentationTime": 1144
+      }
+    ]
+  },
+  {
+    "port": 4321,
+    "route": "/about",
+    "wall": 1460,
+    "load": 1270.8000000044703,
+    "ttfb": 13.899999998509884,
+    "requests": 25,
+    "bytes": 74098,
+    "nav": {
+      "name": "http://127.0.0.1:4321/about",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 1270.8000000044703,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentEncoding": "",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 1.1000000014901161,
+      "domainLookupStart": 1.1000000014901161,
+      "domainLookupEnd": 1.1000000014901161,
+      "connectStart": 1.1000000014901161,
+      "secureConnectionStart": 0,
+      "connectEnd": 1.1000000014901161,
+      "requestStart": 2.2000000029802322,
+      "responseStart": 13.899999998509884,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 13.899999998509884,
+      "responseEnd": 213.5,
+      "transferSize": 107306,
+      "encodedBodySize": 107006,
+      "decodedBodySize": 107006,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 374.5,
+      "unloadEventEnd": 374.5,
+      "domInteractive": 431.70000000298023,
+      "domContentLoadedEventStart": 1261.2000000029802,
+      "domContentLoadedEventEnd": 1261.3999999985099,
+      "domComplete": 1270.7000000029802,
+      "loadEventStart": 1270.8000000044703,
+      "loadEventEnd": 1270.8000000044703,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "high"
+      }
+    },
+    "resources": [
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/@vite/client",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/@id/astro:scripts/page.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/foundation.css",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/fonts.css",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/editorial/about.css",
+        "type": "script",
+        "bytes": 44240
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/editorial/behavior.css",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/brand/v9/tribera-logo-black.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/components/v9/editorial/AboutPage.astro?astro&type=script&index=0&lang.ts",
+        "type": "script",
+        "bytes": 1750
+      },
+      {
+        "name": "http://127.0.0.1:4321/brand/v9/tribera-logo-white.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/layouts/V9Layout.astro?astro&type=script&index=0&lang.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/node_modules/vite/dist/client/env.mjs",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "type": "css",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "type": "css",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/node_modules/astro/dist/virtual-modules/prefetch.js?v=b8dcf66b",
+        "type": "script",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4321/node_modules/astro/dist/prefetch/index.js?v=b8dcf66b",
+        "type": "script",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/editorial.ts",
+        "type": "script",
+        "bytes": 22108
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/foundation.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/@id/__x00__virtual:astro:adapter-config/client",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/disclosures.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/editorial-motion.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/editorial-citations.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/field-motion.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/card-depth.ts",
+        "type": "script",
+        "bytes": 300
+      }
+    ],
+    "paint": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 816,
+        "duration": 0,
+        "paintTime": 707.3999999985099,
+        "presentationTime": 816
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 816,
+        "duration": 0,
+        "paintTime": 707.3999999985099,
+        "presentationTime": 816
+      }
+    ]
+  },
+  {
+    "port": 4321,
+    "route": "/candidates",
+    "wall": 1805,
+    "load": 1456.2999999970198,
+    "ttfb": 38.20000000298023,
+    "requests": 27,
+    "bytes": 170160,
+    "nav": {
+      "name": "http://127.0.0.1:4321/candidates",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 1456.2999999970198,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentEncoding": "",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 1.6000000014901161,
+      "domainLookupStart": 1.6000000014901161,
+      "domainLookupEnd": 1.6000000014901161,
+      "connectStart": 1.6000000014901161,
+      "secureConnectionStart": 0,
+      "connectEnd": 1.6000000014901161,
+      "requestStart": 3.600000001490116,
+      "responseStart": 38.20000000298023,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 38.20000000298023,
+      "responseEnd": 355.79999999701977,
+      "transferSize": 184937,
+      "encodedBodySize": 184637,
+      "decodedBodySize": 184637,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 581.5,
+      "unloadEventEnd": 581.5,
+      "domInteractive": 634.3999999985099,
+      "domContentLoadedEventStart": 1450.8999999985099,
+      "domContentLoadedEventEnd": 1451.1000000014901,
+      "domComplete": 1456.2000000029802,
+      "loadEventStart": 1456.2999999970198,
+      "loadEventEnd": 1456.2999999970198,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "high"
+      }
+    },
+    "resources": [
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/@vite/client",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/@id/astro:scripts/page.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/foundation.css",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/fonts.css",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/content.css",
+        "type": "script",
+        "bytes": 6688
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/candidates.css",
+        "type": "script",
+        "bytes": 65533
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/candidates-faq.css",
+        "type": "script",
+        "bytes": 4418
+      },
+      {
+        "name": "http://127.0.0.1:4321/brand/v9/tribera-logo-black.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/pages/candidates.astro?astro&type=script&index=0&lang.ts",
+        "type": "script",
+        "bytes": 9386
+      },
+      {
+        "name": "http://127.0.0.1:4321/brand/v9/tribera-logo-white.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/layouts/V9Layout.astro?astro&type=script&index=0&lang.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/scripts/v9/candidates.ts",
+        "type": "script",
+        "bytes": 44205
+      },
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "type": "css",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "type": "css",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/node_modules/vite/dist/client/env.mjs",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/node_modules/astro/dist/virtual-modules/prefetch.js?v=b8dcf66b",
+        "type": "script",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/foundation.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/scripts/v9/candidate-motion.ts",
+        "type": "script",
+        "bytes": 23335
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/data/v9/candidate-demo.json?import",
+        "type": "script",
+        "bytes": 4923
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/scripts/v9/candidate-score.mjs",
+        "type": "script",
+        "bytes": 6572
+      },
+      {
+        "name": "http://127.0.0.1:4321/node_modules/astro/dist/prefetch/index.js?v=b8dcf66b",
+        "type": "script",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4321/@id/__x00__virtual:astro:adapter-config/client",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/disclosures.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/field-motion.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/card-depth.ts",
+        "type": "script",
+        "bytes": 300
+      }
+    ],
+    "paint": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 1112,
+        "duration": 0,
+        "paintTime": 989.3999999985099,
+        "presentationTime": 1112
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 1112,
+        "duration": 0,
+        "paintTime": 989.3999999985099,
+        "presentationTime": 1112
+      }
+    ]
+  },
+  {
+    "port": 4321,
+    "route": "/about",
+    "wall": 1455,
+    "load": 1242,
+    "ttfb": 24.200000002980232,
+    "requests": 25,
+    "bytes": 6900,
+    "nav": {
+      "name": "http://127.0.0.1:4321/about",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 1242,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentEncoding": "",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 1.5,
+      "domainLookupStart": 1.5,
+      "domainLookupEnd": 1.5,
+      "connectStart": 1.5,
+      "secureConnectionStart": 0,
+      "connectEnd": 1.5,
+      "requestStart": 3.3000000044703484,
+      "responseStart": 24.200000002980232,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 24.200000002980232,
+      "responseEnd": 312.8999999985099,
+      "transferSize": 107306,
+      "encodedBodySize": 107006,
+      "decodedBodySize": 107006,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 407.5,
+      "unloadEventEnd": 407.5,
+      "domInteractive": 471.6000000014901,
+      "domContentLoadedEventStart": 1235.2000000029802,
+      "domContentLoadedEventEnd": 1235.3999999985099,
+      "domComplete": 1241.8999999985099,
+      "loadEventStart": 1242,
+      "loadEventEnd": 1242,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "high"
+      }
+    },
+    "resources": [
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/@vite/client",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/@id/astro:scripts/page.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/foundation.css",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/fonts.css",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/editorial/about.css",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/assets/styles/v9/editorial/behavior.css",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/brand/v9/tribera-logo-black.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/components/v9/editorial/AboutPage.astro?astro&type=script&index=0&lang.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/brand/v9/tribera-logo-white.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/layouts/V9Layout.astro?astro&type=script&index=0&lang.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/node_modules/vite/dist/client/env.mjs",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "type": "css",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "type": "css",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/node_modules/astro/dist/virtual-modules/prefetch.js?v=b8dcf66b",
+        "type": "script",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/editorial.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/foundation.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/node_modules/astro/dist/prefetch/index.js?v=b8dcf66b",
+        "type": "script",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4321/@id/__x00__virtual:astro:adapter-config/client",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/disclosures.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/editorial-motion.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/editorial-citations.ts",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/field-motion.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4321/src/scripts/v9/card-depth.ts",
+        "type": "script",
+        "bytes": 300
+      }
+    ],
+    "paint": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 920,
+        "duration": 0,
+        "paintTime": 708.6000000014901,
+        "presentationTime": 920
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 920,
+        "duration": 0,
+        "paintTime": 708.6000000014901,
+        "presentationTime": 920
+      }
+    ]
+  },
+  {
+    "port": 4392,
+    "route": "/services",
+    "wall": 934,
+    "load": 784.8000000044703,
+    "ttfb": 9.800000004470348,
+    "requests": 12,
+    "bytes": 13520,
+    "nav": {
+      "name": "http://127.0.0.1:4392/services",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 784.8000000044703,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentEncoding": "gzip",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 1.8000000044703484,
+      "domainLookupStart": 1.8000000044703484,
+      "domainLookupEnd": 1.8000000044703484,
+      "connectStart": 1.8000000044703484,
+      "secureConnectionStart": 0,
+      "connectEnd": 1.8000000044703484,
+      "requestStart": 3.600000001490116,
+      "responseStart": 9.800000004470348,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 9.800000004470348,
+      "responseEnd": 122.70000000298023,
+      "transferSize": 13009,
+      "encodedBodySize": 12709,
+      "decodedBodySize": 75081,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 353.80000000447035,
+      "unloadEventEnd": 353.80000000447035,
+      "domInteractive": 384.6000000014901,
+      "domContentLoadedEventStart": 783.1000000014901,
+      "domContentLoadedEventEnd": 783.2000000029802,
+      "domComplete": 784.7000000029802,
+      "loadEventStart": 784.8000000044703,
+      "loadEventEnd": 784.8000000044703,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "high"
+      }
+    },
+    "resources": [
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/V9Layout.C2MlvHJr.css",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/ServicesPage.NUGzKtFx.css",
+        "type": "link",
+        "bytes": 8748
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/page.zh1XDkz8.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/brand/v9/tribera-logo-black.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/ServicesPage.astro_astro_type_script_index_0_lang.C5UQcuhI.js",
+        "type": "script",
+        "bytes": 1792
+      },
+      {
+        "name": "http://127.0.0.1:4392/brand/v9/tribera-logo-white.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/hiring-motion.C6XNA_dv.js",
+        "type": "script",
+        "bytes": 880
+      },
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "type": "css",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "type": "css",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/field-motion.SKUUgj2x.js",
+        "type": "script",
+        "bytes": 300
+      }
+    ],
+    "paint": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 712,
+        "duration": 0,
+        "paintTime": 659,
+        "presentationTime": 712
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 712,
+        "duration": 0,
+        "paintTime": 659,
+        "presentationTime": 712
+      }
+    ]
+  },
+  {
+    "port": 4392,
+    "route": "/intelligence",
+    "wall": 755,
+    "load": 674,
+    "ttfb": 7.799999997019768,
+    "requests": 14,
+    "bytes": 15371,
+    "nav": {
+      "name": "http://127.0.0.1:4392/intelligence",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 674,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentEncoding": "gzip",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 1,
+      "domainLookupStart": 1,
+      "domainLookupEnd": 1,
+      "connectStart": 1,
+      "secureConnectionStart": 0,
+      "connectEnd": 1,
+      "requestStart": 2.100000001490116,
+      "responseStart": 7.799999997019768,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 7.799999997019768,
+      "responseEnd": 115.69999999552965,
+      "transferSize": 11901,
+      "encodedBodySize": 11601,
+      "decodedBodySize": 66493,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 196.79999999701977,
+      "unloadEventEnd": 196.79999999701977,
+      "domInteractive": 215.89999999850988,
+      "domContentLoadedEventStart": 673.7999999970198,
+      "domContentLoadedEventEnd": 673.8999999985099,
+      "domComplete": 674,
+      "loadEventStart": 674,
+      "loadEventEnd": 674,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "high"
+      }
+    },
+    "resources": [
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/V9Layout.C2MlvHJr.css",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/IntelligencePage.DH1_55vB.css",
+        "type": "link",
+        "bytes": 6537
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/page.zh1XDkz8.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/brand/v9/tribera-logo-black.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/IntelligencePage.astro_astro_type_script_index_0_lang.B8NW12Hj.js",
+        "type": "script",
+        "bytes": 374
+      },
+      {
+        "name": "http://127.0.0.1:4392/brand/v9/tribera-logo-white.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/IndustriesPage.astro_astro_type_script_index_0_lang.HVhR8st6.js",
+        "type": "script",
+        "bytes": 2434
+      },
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "type": "css",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "type": "css",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/editorial-citations.ZzQxgULZ.js",
+        "type": "script",
+        "bytes": 3034
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/field-motion.SKUUgj2x.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/card-depth.Cq0nizmv.js",
+        "type": "script",
+        "bytes": 892
+      }
+    ],
+    "paint": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 484,
+        "duration": 0,
+        "paintTime": 431.8999999985099,
+        "presentationTime": 484
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 484,
+        "duration": 0,
+        "paintTime": 431.8999999985099,
+        "presentationTime": 484
+      }
+    ]
+  },
+  {
+    "port": 4392,
+    "route": "/about",
+    "wall": 667,
+    "load": 579,
+    "ttfb": 7.0999999940395355,
+    "requests": 13,
+    "bytes": 11773,
+    "nav": {
+      "name": "http://127.0.0.1:4392/about",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 579,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentEncoding": "gzip",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 1.2999999970197678,
+      "domainLookupStart": 1.2999999970197678,
+      "domainLookupEnd": 1.2999999970197678,
+      "connectStart": 1.2999999970197678,
+      "secureConnectionStart": 0,
+      "connectEnd": 1.2999999970197678,
+      "requestStart": 2.5999999940395355,
+      "responseStart": 7.0999999940395355,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 7.0999999940395355,
+      "responseEnd": 115,
+      "transferSize": 10694,
+      "encodedBodySize": 10394,
+      "decodedBodySize": 30671,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 223.19999999552965,
+      "unloadEventEnd": 223.19999999552965,
+      "domInteractive": 245.19999999552965,
+      "domContentLoadedEventStart": 578,
+      "domContentLoadedEventEnd": 578.8999999985099,
+      "domComplete": 578.8999999985099,
+      "loadEventStart": 579,
+      "loadEventEnd": 579,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "high"
+      }
+    },
+    "resources": [
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/V9Layout.C2MlvHJr.css",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/AboutPage.CwbI5YpA.css",
+        "type": "link",
+        "bytes": 7012
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/page.zh1XDkz8.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/brand/v9/tribera-logo-black.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/AboutPage.astro_astro_type_script_index_0_lang.tk2aimWo.js",
+        "type": "script",
+        "bytes": 2061
+      },
+      {
+        "name": "http://127.0.0.1:4392/brand/v9/tribera-logo-white.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/editorial-citations.ZzQxgULZ.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "type": "css",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "type": "css",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/field-motion.SKUUgj2x.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/card-depth.Cq0nizmv.js",
+        "type": "script",
+        "bytes": 300
+      }
+    ],
+    "paint": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 480,
+        "duration": 0,
+        "paintTime": 446.19999999552965,
+        "presentationTime": 480
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 480,
+        "duration": 0,
+        "paintTime": 446.19999999552965,
+        "presentationTime": 480
+      }
+    ]
+  },
+  {
+    "port": 4392,
+    "route": "/candidates",
+    "wall": 774,
+    "load": 676.2999999970198,
+    "ttfb": 7.199999995529652,
+    "requests": 14,
+    "bytes": 20870,
+    "nav": {
+      "name": "http://127.0.0.1:4392/candidates",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 676.2999999970198,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentEncoding": "gzip",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 1.1000000014901161,
+      "domainLookupStart": 1.1000000014901161,
+      "domainLookupEnd": 1.1000000014901161,
+      "connectStart": 1.1000000014901161,
+      "secureConnectionStart": 0,
+      "connectEnd": 1.1000000014901161,
+      "requestStart": 2.1999999955296516,
+      "responseStart": 7.199999995529652,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 7.199999995529652,
+      "responseEnd": 120.60000000149012,
+      "transferSize": 14411,
+      "encodedBodySize": 14111,
+      "decodedBodySize": 81048,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 278.69999999552965,
+      "unloadEventEnd": 278.69999999552965,
+      "domInteractive": 298.19999999552965,
+      "domContentLoadedEventStart": 673.5,
+      "domContentLoadedEventEnd": 673.6000000014901,
+      "domComplete": 676.2999999970198,
+      "loadEventStart": 676.2999999970198,
+      "loadEventEnd": 676.2999999970198,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "high"
+      }
+    },
+    "resources": [
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/V9Layout.C2MlvHJr.css",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/content.BCDK3LCG.css",
+        "type": "link",
+        "bytes": 1718
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/candidates-faq.C8NgXj3C.css",
+        "type": "link",
+        "bytes": 10795
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/page.zh1XDkz8.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/brand/v9/tribera-logo-black.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/candidates.astro_astro_type_script_index_0_lang.BrAV1OCY.js",
+        "type": "script",
+        "bytes": 370
+      },
+      {
+        "name": "http://127.0.0.1:4392/brand/v9/tribera-logo-white.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/candidates.astro_astro_type_script_index_0_lang.CEdcuzAN.js",
+        "type": "script",
+        "bytes": 5587
+      },
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "type": "css",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "type": "css",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/field-motion.SKUUgj2x.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/card-depth.Cq0nizmv.js",
+        "type": "script",
+        "bytes": 300
+      }
+    ],
+    "paint": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 588,
+        "duration": 0,
+        "paintTime": 536.7999999970198,
+        "presentationTime": 588
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 588,
+        "duration": 0,
+        "paintTime": 536.7999999970198,
+        "presentationTime": 588
+      }
+    ]
+  },
+  {
+    "port": 4392,
+    "route": "/about",
+    "wall": 701,
+    "load": 615.1000000014901,
+    "ttfb": 5.5,
+    "requests": 14,
+    "bytes": 3300,
+    "nav": {
+      "name": "http://127.0.0.1:4392/about",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 615.1000000014901,
+      "initiatorType": "navigation",
+      "deliveryType": "cache",
+      "nextHopProtocol": "",
+      "renderBlockingStatus": "non-blocking",
+      "contentEncoding": "gzip",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 1.1000000014901161,
+      "domainLookupStart": 1.1000000014901161,
+      "domainLookupEnd": 1.1000000014901161,
+      "connectStart": 1.1000000014901161,
+      "secureConnectionStart": 0,
+      "connectEnd": 1.1000000014901161,
+      "requestStart": 2.399999998509884,
+      "responseStart": 5.5,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 5.5,
+      "responseEnd": 107.5,
+      "transferSize": 300,
+      "encodedBodySize": 10394,
+      "decodedBodySize": 30671,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 255.70000000298023,
+      "unloadEventEnd": 255.70000000298023,
+      "domInteractive": 279,
+      "domContentLoadedEventStart": 612,
+      "domContentLoadedEventEnd": 612.1000000014901,
+      "domComplete": 615.1000000014901,
+      "loadEventStart": 615.1000000014901,
+      "loadEventEnd": 615.1000000014901,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "high"
+      }
+    },
+    "resources": [
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/V9Layout.C2MlvHJr.css",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/AboutPage.CwbI5YpA.css",
+        "type": "link",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/page.zh1XDkz8.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/brand/v9/tribera-logo-black.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/AboutPage.astro_astro_type_script_index_0_lang.tk2aimWo.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/brand/v9/tribera-logo-white.png",
+        "type": "img",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/editorial-citations.ZzQxgULZ.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "type": "css",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4392/fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "type": "css",
+        "bytes": 0
+      },
+      {
+        "name": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.07 0 0 0 0 0.07 0 0 0 0 0.07 0 0 0 .055 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>",
+        "type": "css",
+        "bytes": 0
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/field-motion.SKUUgj2x.js",
+        "type": "script",
+        "bytes": 300
+      },
+      {
+        "name": "http://127.0.0.1:4392/_astro/card-depth.Cq0nizmv.js",
+        "type": "script",
+        "bytes": 300
+      }
+    ],
+    "paint": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 548,
+        "duration": 0,
+        "paintTime": 479.6000000014901,
+        "presentationTime": 548
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 548,
+        "duration": 0,
+        "paintTime": 479.6000000014901,
+        "presentationTime": 548
+      }
+    ]
+  }
+]

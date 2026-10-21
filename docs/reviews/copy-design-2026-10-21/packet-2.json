@@ -1,0 +1,74 @@
+{
+  "duration_api_ms": 100880,
+  "stop_reason": "end_turn",
+  "session_id": "27af97ad-f5ec-4d10-ad3a-8b1e491f14f9",
+  "total_cost_usd": 0.3853426,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 53942,
+    "cache_read_input_tokens": 409453,
+    "output_tokens": 8766,
+    "output_tokens_details": { "thinking_tokens": 4074 },
+    "server_tool_use": { "web_search_requests": 0, "web_fetch_requests": 0 },
+    "service_tier": "standard",
+    "cache_creation": { "ephemeral_1h_input_tokens": 53942, "ephemeral_5m_input_tokens": 0 },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 5484,
+        "cache_read_input_tokens": 96156,
+        "cache_creation_input_tokens": 2564,
+        "cache_creation": { "ephemeral_5m_input_tokens": 0, "ephemeral_1h_input_tokens": 2564 },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-5": {
+      "inputTokens": 12,
+      "outputTokens": 8766,
+      "cacheReadInputTokens": 409453,
+      "cacheCreationInputTokens": 53942,
+      "webSearchRequests": 0,
+      "costUSD": 0.3853426,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 4074,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": { "background": 0, "foreground": 0, "unset": 0 },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": { "parent": 0, "user": 0, "system": 0 },
+    "refused": { "depth_limit": 0, "concurrency_limit": 0, "budget": 0 },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 28,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "## Coverage\n\n| Route | Reviewed | Notes |\n|---|---|---|\n| /about | Desktop+mobile top crops, mobile full page, copy.json | New unified editorial design throughout |\n| /case-study | Desktop+mobile top crops, desktop full page, copy.json | New unified editorial design throughout |\n| /industries | Desktop+mobile top crops, desktop full page, copy.json | New unified editorial design throughout |\n| /industries/banking-financial-services | Desktop+mobile top crops, copy.json | New unified editorial design throughout |\n| /industries/ai-data | Desktop+mobile top crops, copy.json | New unified editorial design throughout |\n| /intelligence | Desktop+mobile top crops, desktop full page, copy.json | New unified editorial design throughout |\n\nNo legacy-styled body sections were observed in this packet — all six routes already use the Fraunces/Inter Tight editorial system (warm paper, charcoal, restrained red CTAs) consistently. Only this packet was reviewed; other site routes are not covered by this assessment.\n\n## Findings\n\n**P1 — /about, mobile hero (390px): broken text, \"belonghere?\"**\nObserved: mobile top crop renders `Who will actually belonghere?` — the underlined link word \"belong\" runs directly into \"here?\" with no space, both on the same visual line where desktop shows them on separate lines with proper spacing. Desktop copy.json confirms intended text is \"Who will actually **belong** here?\". This sits in the first screen a mobile visitor sees on /about.\nWhy it matters: it's a legibility defect in the hero of a page meant to build founder credibility — reads as unpolished/broken on first impression.\nFix: insert an explicit space (or non-breaking space) between the styled \"belong\" span and the following \"here?\" text node so wrapping doesn't collapse the gap.\n\n**P1 — /intelligence, newsletter module: disabled CTA looks fully live**\nObserved: a red \"Get the quarterly note\" button sits next to an active-looking email input; directly beneath it, small print reads \"Quarterly email subscriptions are not available yet.\" The button itself carries no disabled/greyed treatment.\nWhy it matters: per the review brief this is intentionally unavailable, but nothing in the button's visual state communicates that before a user types an email and clicks — real conversion friction and a minor trust hit if the click goes nowhere.\nFix: either visually de-emphasize the button (outline/secondary style, \"Coming soon\" label on the button itself) or lead with the disclaimer and demote the form, pointing primary attention to the working alternative \"Ask about your function ›\" link that's already present.\n\n**P1 — /about: internal claims presented with no citation alongside sourced market stats**\nObserved: market numbers (\"319 applications,\" \"17.6 interviews\") carry visible Ashby/Bain citations throughout /about and /intelligence. But adjacent internal claims — \"200,000 interviews read, scored and argued about,\" \"more than fifty\" interviewers, and the four \"WHERE THIS GOES\" scoreboard lines (\"Today: true for every interview,\" \"Today, on technical roles: under two a month\") — appear with the same typographic authority but no source or methodology link.\nWhy it matters: mixing cited and uncited claims at equal visual weight risks the uncited ones being read as equally verified, which is a credibility risk once a reader starts checking.\nFix: this review does not verify or propose replacement figures — flagging for the owner to either link these to a methodology/evidence note (similar to \"How we know ›\" on /intelligence) or mark them explicitly as self-reported internal metrics.\n\n**P2 — /industries/banking-financial-services & /industries/ai-data, mobile breadcrumb wrap**\nObserved: mobile breadcrumb renders as two uneven lines — `INDUSTRIES · BANKING & FINANCIAL` then `SERVICES` crammed against the H1 \"Where the wrong hire costs more than a quarter.\" The same pattern is visible on /industries/ai-data's breadcrumb.\nWhy it matters: this is a repeating pattern across all twelve industry sub-pages (confirmed on 2 of them), not a one-off — it crowds the hero on every sector page at mobile width.\nFix: truncate to just the sector name on mobile (e.g. \"BANKING & FINANCIAL SERVICES\" without the \"INDUSTRIES ·\" prefix, since the back-link function is redundant with the breadcrumb above the fold) or force a line-break before the sector name instead of mid-word.\n\n**P2 — /intelligence: \"illustrative\" framing is weaker than the number it's attached to**\nObserved: the sample chart's bold claim — \"Hardest to find: systems design. It held back 28% of the people who didn't clear.\" — is set in full headline weight, while its \"ILLUSTRATIVE · SAMPLE DATA\" qualifier is a small badge above it and a caption below (\"No measured cohort... available for this demonstration\").\nWhy it matters: per the brief this is explicitly illustrative, which is reasonable — but the finding here is a UX gap: a specific percentage this prominent is exactly the kind of claim that gets isolated/screenshotted without its context, since the sample label doesn't travel with the number itself.\nFix: inline a short qualifier directly on or beside the \"28%\" figure (e.g. \"28%*\" with \"*sample figure\" adjacent), not only in surrounding chrome.\n\n**P2 — /about: \"See how a search runs ›\" gives no signal it leaves the page**\nObserved: CTA sits inline with \"Read Akshata's letter\" (which jumps to `#letter`, same page) but actually links to `/#proof` — a different page entirely.\nWhy it matters: paired next to an on-page anchor link with identical visual styling, a reader has no cue that one stays on /about and the other navigates to the homepage — minor but avoidable friction in a page built around a single reading flow.\nFix: no code change needed necessarily, but consider distinguishing destination (e.g. \"See how a search runs, on the homepage ›\") or routing it to a same-page section if one exists.\n\n**P3 — /about, Abhishek bio: unexplained internal jargon**\nObserved: \"He architected Tribera's scoring engine: what a CV hides, join probability, offer behaviour and retention.\" \"Join probability\" and \"offer behaviour\" are internal/product terms used without definition, unlike the rest of the page's plain-language voice.\nWhy it matters: minor inconsistency in an otherwise carefully demystified, jargon-free tone (the page goes out of its way to explain \"judgment\" vs \"sourcing\" elsewhere).\nFix: light rewrite, e.g. \"what a CV hides, whether a candidate will actually accept, how they behave through an offer, and whether they stay\" — or leave as a stylistic flourish if intentional, since the rest of the paragraph is plain.\n\n**P3 — /case-study: dense \"Before/After\" scale diagram labels at desktop**\nObserved: the \"Five months, drawn to scale\" bar on a near-black background packs four segment labels (\"Six weeks,\" \"Seven weeks,\" \"Three weeks,\" \"The rest\") plus a floating \"Month two\" callout into a single thin bar; legible at 1366px but tight.\nWhy it matters: this is the page's primary proof visual; cramped labels on a dark background are the first place legibility degrades as viewport narrows further (not tested below 390px in this packet).\nFix: no change needed at tested widths — flagging as worth a spot-check between 390–768px, which wasn't in the supplied artifact set.",
+  "ttft_ms": 2895,
+  "type": "result",
+  "duration_ms": 101931,
+  "uuid": "60a1a51c-e9f4-4a11-96bb-b6c3ad74b9a9",
+  "ttft_stream_ms": 2266,
+  "time_to_request_ms": 856,
+  "first_content_frame_ms": 2267,
+  "queued_turn_count": 0,
+  "result_index": 0
+}

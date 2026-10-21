@@ -1,0 +1,179 @@
+[
+  {
+    "engine": "chromium",
+    "width": 768,
+    "info": {
+      "overflow": "auto",
+      "width": 768,
+      "scrollWidth": 1344
+    },
+    "states": [
+      {
+        "text": "Backend & platform",
+        "visible": true,
+        "scrollLeft": 0,
+        "heading": "Backend & platform"
+      },
+      {
+        "text": "Data & analytics",
+        "visible": true,
+        "scrollLeft": 0,
+        "heading": "Data & analytics"
+      },
+      {
+        "text": "AI & machine learning",
+        "visible": true,
+        "scrollLeft": 0,
+        "heading": "AI & machine learning"
+      },
+      {
+        "text": "Cybersecurity",
+        "visible": true,
+        "scrollLeft": 0,
+        "heading": "Cybersecurity"
+      },
+      {
+        "text": "Infrastructure & SRE",
+        "visible": true,
+        "scrollLeft": 576,
+        "heading": "Infrastructure & SRE"
+      },
+      {
+        "text": "Product & design",
+        "visible": true,
+        "scrollLeft": 576,
+        "heading": "Product & design"
+      },
+      {
+        "text": "Risk & compliance",
+        "visible": true,
+        "scrollLeft": 576,
+        "heading": "Risk & compliance"
+      },
+      {
+        "text": "Leadership & GCC",
+        "visible": true,
+        "scrollLeft": 576,
+        "heading": "Leadership & GCC"
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "width": 768,
+    "info": {
+      "overflow": "auto",
+      "width": 768,
+      "scrollWidth": 1350
+    },
+    "states": [
+      {
+        "text": "Backend & platform",
+        "visible": true,
+        "scrollLeft": 0,
+        "heading": "Backend & platform"
+      },
+      {
+        "text": "Data & analytics",
+        "visible": true,
+        "scrollLeft": 0,
+        "heading": "Data & analytics"
+      },
+      {
+        "text": "AI & machine learning",
+        "visible": true,
+        "scrollLeft": 0,
+        "heading": "AI & machine learning"
+      },
+      {
+        "text": "Cybersecurity",
+        "visible": true,
+        "scrollLeft": 0,
+        "heading": "Cybersecurity"
+      },
+      {
+        "text": "Infrastructure & SRE",
+        "visible": true,
+        "scrollLeft": 582,
+        "heading": "Infrastructure & SRE"
+      },
+      {
+        "text": "Product & design",
+        "visible": true,
+        "scrollLeft": 582,
+        "heading": "Product & design"
+      },
+      {
+        "text": "Risk & compliance",
+        "visible": true,
+        "scrollLeft": 582,
+        "heading": "Risk & compliance"
+      },
+      {
+        "text": "Leadership & GCC",
+        "visible": true,
+        "scrollLeft": 582,
+        "heading": "Leadership & GCC"
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "width": 768,
+    "info": {
+      "overflow": "auto",
+      "width": 768,
+      "scrollWidth": 1349
+    },
+    "states": [
+      {
+        "text": "Backend & platform",
+        "visible": true,
+        "scrollLeft": 0,
+        "heading": "Backend & platform"
+      },
+      {
+        "text": "Data & analytics",
+        "visible": true,
+        "scrollLeft": 0,
+        "heading": "Data & analytics"
+      },
+      {
+        "text": "AI & machine learning",
+        "visible": true,
+        "scrollLeft": 0,
+        "heading": "AI & machine learning"
+      },
+      {
+        "text": "Cybersecurity",
+        "visible": true,
+        "scrollLeft": 0,
+        "heading": "Cybersecurity"
+      },
+      {
+        "text": "Infrastructure & SRE",
+        "visible": true,
+        "scrollLeft": 581,
+        "heading": "Infrastructure & SRE"
+      },
+      {
+        "text": "Product & design",
+        "visible": true,
+        "scrollLeft": 581,
+        "heading": "Product & design"
+      },
+      {
+        "text": "Risk & compliance",
+        "visible": true,
+        "scrollLeft": 581,
+        "heading": "Risk & compliance"
+      },
+      {
+        "text": "Leadership & GCC",
+        "visible": true,
+        "scrollLeft": 581,
+        "heading": "Leadership & GCC"
+      }
+    ]
+  }
+]

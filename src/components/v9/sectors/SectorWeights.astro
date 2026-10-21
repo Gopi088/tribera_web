@@ -1,0 +1,8 @@
+---
+import { sectors, sectorValues } from '../../../data/v9/sectors';
+const weights = Object.fromEntries(
+  sectors.map((sector) => [sector.slug, { name: sector.name, values: sectorValues(sector) }])
+);
+---
+
+<script type="application/json" data-sector-weights set:html={JSON.stringify(weights).replace(/</g, '\\u003c')} />

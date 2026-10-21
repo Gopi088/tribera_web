@@ -1,0 +1,104 @@
+[
+  {
+    "route": "/__v9/industries",
+    "htmlGzipBytes": 8001,
+    "jsGzipBytes": 7635,
+    "jsFiles": 5
+  },
+  {
+    "route": "/__v9/intelligence",
+    "htmlGzipBytes": 11520,
+    "jsGzipBytes": 7723,
+    "jsFiles": 6
+  },
+  {
+    "route": "/__v9/industries/banking-financial-services",
+    "htmlGzipBytes": 11294,
+    "jsGzipBytes": 7344,
+    "jsFiles": 6
+  },
+  {
+    "route": "/__v9/industries/enterprise-technology",
+    "htmlGzipBytes": 10968,
+    "jsGzipBytes": 7344,
+    "jsFiles": 6
+  },
+  {
+    "route": "/__v9/industries/product-saas",
+    "htmlGzipBytes": 10947,
+    "jsGzipBytes": 7344,
+    "jsFiles": 6
+  },
+  {
+    "route": "/__v9/industries/ai-data",
+    "htmlGzipBytes": 10915,
+    "jsGzipBytes": 7344,
+    "jsFiles": 6
+  },
+  {
+    "route": "/__v9/industries/cybersecurity",
+    "htmlGzipBytes": 10965,
+    "jsGzipBytes": 7344,
+    "jsFiles": 6
+  },
+  {
+    "route": "/__v9/industries/healthcare-life-sciences",
+    "htmlGzipBytes": 10891,
+    "jsGzipBytes": 7344,
+    "jsFiles": 6
+  },
+  {
+    "route": "/__v9/industries/pharmaceutical",
+    "htmlGzipBytes": 10933,
+    "jsGzipBytes": 7344,
+    "jsFiles": 6
+  },
+  {
+    "route": "/__v9/industries/manufacturing",
+    "htmlGzipBytes": 10838,
+    "jsGzipBytes": 7344,
+    "jsFiles": 6
+  },
+  {
+    "route": "/__v9/industries/industrial-engineering",
+    "htmlGzipBytes": 10769,
+    "jsGzipBytes": 7344,
+    "jsFiles": 6
+  },
+  {
+    "route": "/__v9/industries/global-capability-centers",
+    "htmlGzipBytes": 10871,
+    "jsGzipBytes": 7344,
+    "jsFiles": 6
+  },
+  {
+    "route": "/__v9/industries/consumer-digital-commerce",
+    "htmlGzipBytes": 10819,
+    "jsGzipBytes": 7344,
+    "jsFiles": 6
+  },
+  {
+    "route": "/__v9/industries/private-equity-portfolio",
+    "htmlGzipBytes": 10884,
+    "jsGzipBytes": 7344,
+    "jsFiles": 6
+  },
+  {
+    "route": "/__v9/bfsi",
+    "htmlGzipBytes": 11243,
+    "jsGzipBytes": 7344,
+    "jsFiles": 6
+  },
+  {
+    "route": "/__v9/about",
+    "htmlGzipBytes": 10280,
+    "jsGzipBytes": 7260,
+    "jsFiles": 5
+  },
+  {
+    "route": "/__v9/article",
+    "htmlGzipBytes": 8214,
+    "jsGzipBytes": 7344,
+    "jsFiles": 6
+  }
+]

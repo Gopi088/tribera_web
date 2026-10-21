@@ -1,0 +1,266 @@
+[
+  {
+    "packet": "visual-1",
+    "routes": [
+      "industries",
+      "industries-ai-data",
+      "industries-banking-financial-services",
+      "industries-consumer-digital-commerce"
+    ],
+    "exitCode": 0,
+    "session_id": "f85ee656-a2b2-419e-a7f7-0a9e6bc7ccf8",
+    "is_error": false,
+    "modelUsage": {
+      "claude-sonnet-5": {
+        "inputTokens": 12,
+        "outputTokens": 3864,
+        "cacheReadInputTokens": 263630,
+        "cacheCreationInputTokens": 79658,
+        "webSearchRequests": 0,
+        "costUSD": 0.410022,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 1409,
+        "canonicalModel": "claude-sonnet-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "timestamp": "2026-10-20T14:48:35.269096+00:00"
+  },
+  {
+    "packet": "visual-2",
+    "routes": [
+      "industries-cybersecurity",
+      "industries-enterprise-technology",
+      "industries-global-capability-centers",
+      "industries-healthcare-life-sciences"
+    ],
+    "exitCode": 0,
+    "session_id": "e4c7a29a-fd92-48ca-839b-b6edbee78b42",
+    "is_error": false,
+    "modelUsage": {
+      "claude-sonnet-5": {
+        "inputTokens": 14,
+        "outputTokens": 4576,
+        "cacheReadInputTokens": 388466,
+        "cacheCreationInputTokens": 23526,
+        "webSearchRequests": 0,
+        "costUSD": 0.2175852,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 1748,
+        "canonicalModel": "claude-sonnet-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "timestamp": "2026-10-20T14:49:30.579591+00:00"
+  },
+  {
+    "packet": "visual-3",
+    "routes": [
+      "industries-industrial-engineering",
+      "industries-manufacturing",
+      "industries-pharmaceutical",
+      "industries-private-equity-portfolio"
+    ],
+    "exitCode": 0,
+    "session_id": "4a1d90eb-27f3-422b-862c-1338dbffaf77",
+    "is_error": false,
+    "modelUsage": {
+      "claude-sonnet-5": {
+        "inputTokens": 12,
+        "outputTokens": 5207,
+        "cacheReadInputTokens": 321182,
+        "cacheCreationInputTokens": 19389,
+        "webSearchRequests": 0,
+        "costUSD": 0.19388640000000001,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 2538,
+        "canonicalModel": "claude-sonnet-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "timestamp": "2026-10-20T14:50:28.517482+00:00"
+  },
+  {
+    "packet": "visual-4",
+    "routes": ["industries-product-saas", "intelligence"],
+    "exitCode": 0,
+    "session_id": "b73d4560-71ce-4e45-944e-f36856674ad7",
+    "is_error": false,
+    "modelUsage": {
+      "claude-sonnet-5": {
+        "inputTokens": 8,
+        "outputTokens": 2867,
+        "cacheReadInputTokens": 183665,
+        "cacheCreationInputTokens": 14134,
+        "webSearchRequests": 0,
+        "costUSD": 0.12195500000000001,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 884,
+        "canonicalModel": "claude-sonnet-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "timestamp": "2026-10-20T14:51:05.387809+00:00"
+  },
+  {
+    "packet": "viewports-1",
+    "routes": [
+      "industries",
+      "industries-ai-data",
+      "industries-banking-financial-services",
+      "industries-consumer-digital-commerce"
+    ],
+    "exitCode": 0,
+    "session_id": "e69b1a81-20ba-4c06-ab84-6cf9ac92bb46",
+    "is_error": false,
+    "modelUsage": {
+      "claude-sonnet-5": {
+        "inputTokens": 12,
+        "outputTokens": 4828,
+        "cacheReadInputTokens": 342476,
+        "cacheCreationInputTokens": 34303,
+        "webSearchRequests": 0,
+        "costUSD": 0.2540112,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 815,
+        "canonicalModel": "claude-sonnet-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "timestamp": "2026-10-20T14:52:02.679438+00:00"
+  },
+  {
+    "packet": "viewports-2",
+    "routes": [
+      "industries-cybersecurity",
+      "industries-enterprise-technology",
+      "industries-global-capability-centers",
+      "industries-healthcare-life-sciences"
+    ],
+    "exitCode": 0,
+    "session_id": "40e6abc7-5792-4ab2-a0f0-10ce51e4b13c",
+    "is_error": false,
+    "modelUsage": {
+      "claude-sonnet-5": {
+        "inputTokens": 12,
+        "outputTokens": 6923,
+        "cacheReadInputTokens": 338700,
+        "cacheCreationInputTokens": 33524,
+        "webSearchRequests": 0,
+        "costUSD": 0.27109,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 2322,
+        "canonicalModel": "claude-sonnet-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "timestamp": "2026-10-20T14:53:18.295307+00:00"
+  },
+  {
+    "packet": "viewports-3",
+    "routes": [
+      "industries-industrial-engineering",
+      "industries-manufacturing",
+      "industries-pharmaceutical",
+      "industries-private-equity-portfolio"
+    ],
+    "exitCode": 0,
+    "session_id": "0be1a31d-14d1-473a-a908-8f08a2a5f6b9",
+    "is_error": false,
+    "modelUsage": {
+      "claude-sonnet-5": {
+        "inputTokens": 26,
+        "outputTokens": 7484,
+        "cacheReadInputTokens": 818396,
+        "cacheCreationInputTokens": 35482,
+        "webSearchRequests": 0,
+        "costUSD": 0.3804992,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 2409,
+        "canonicalModel": "claude-sonnet-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "timestamp": "2026-10-20T14:54:48.448020+00:00"
+  },
+  {
+    "packet": "viewports-4",
+    "routes": ["industries-product-saas", "intelligence"],
+    "exitCode": 0,
+    "session_id": "0a7502e0-71e2-4754-b1ac-e5cdd2b0175f",
+    "is_error": false,
+    "modelUsage": {
+      "claude-sonnet-5": {
+        "inputTokens": 28,
+        "outputTokens": 6654,
+        "cacheReadInputTokens": 839225,
+        "cacheCreationInputTokens": 23686,
+        "webSearchRequests": 0,
+        "costUSD": 0.329185,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 2991,
+        "canonicalModel": "claude-sonnet-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "timestamp": "2026-10-20T14:56:15.340061+00:00"
+  },
+  {
+    "packet": "detail-followup",
+    "session_id": "c0dd86ac-13b3-41e0-836c-fdb37c6e276a",
+    "is_error": false,
+    "modelUsage": {
+      "claude-sonnet-5": {
+        "inputTokens": 18,
+        "outputTokens": 12915,
+        "cacheReadInputTokens": 737870,
+        "cacheCreationInputTokens": 87803,
+        "webSearchRequests": 0,
+        "costUSD": 0.6279720000000001,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 6048,
+        "canonicalModel": "claude-sonnet-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    }
+  },
+  {
+    "packet": "tab-fix-followup",
+    "session_id": "d86339f7-0702-4815-a963-7691ece6a25d",
+    "is_error": false,
+    "modelUsage": {
+      "claude-sonnet-5": {
+        "inputTokens": 4,
+        "outputTokens": 2694,
+        "cacheReadInputTokens": 63007,
+        "cacheCreationInputTokens": 44152,
+        "webSearchRequests": 0,
+        "costUSD": 0.2161574,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 391,
+        "canonicalModel": "claude-sonnet-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    }
+  }
+]

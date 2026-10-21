@@ -1,0 +1,74 @@
+{
+  "duration_api_ms": 56074,
+  "stop_reason": "end_turn",
+  "session_id": "4a1d90eb-27f3-422b-862c-1338dbffaf77",
+  "total_cost_usd": 0.19388640000000001,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 19389,
+    "cache_read_input_tokens": 321182,
+    "output_tokens": 5207,
+    "output_tokens_details": { "thinking_tokens": 2538 },
+    "server_tool_use": { "web_search_requests": 0, "web_fetch_requests": 0 },
+    "service_tier": "standard",
+    "cache_creation": { "ephemeral_1h_input_tokens": 19389, "ephemeral_5m_input_tokens": 0 },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 3568,
+        "cache_read_input_tokens": 68558,
+        "cache_creation_input_tokens": 1589,
+        "cache_creation": { "ephemeral_5m_input_tokens": 0, "ephemeral_1h_input_tokens": 1589 },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-5": {
+      "inputTokens": 12,
+      "outputTokens": 5207,
+      "cacheReadInputTokens": 321182,
+      "cacheCreationInputTokens": 19389,
+      "webSearchRequests": 0,
+      "costUSD": 0.19388640000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 2538,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": { "background": 0, "foreground": 0, "unset": 0 },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": { "parent": 0, "user": 0, "system": 0 },
+    "refused": { "depth_limit": 0, "concurrency_limit": 0, "budget": 0 },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 18,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "## Stage 1 findings — desktop (1366px) full-page comparison\n\n**Images actually read** (all at native 1366px-wide full-page captures):\n- `artifacts/v9-sectors/reference/industries-industrial-engineering-1366.png` (1366×6507) vs `artifacts/v9-sectors/chromium/industries-industrial-engineering-1366.png` (1366×6538)\n- `artifacts/v9-sectors/reference/industries-manufacturing-1366.png` (1366×6555) vs `artifacts/v9-sectors/chromium/industries-manufacturing-1366.png` (1366×6587)\n- `artifacts/v9-sectors/reference/industries-pharmaceutical-1366.png` (1366×6645) vs `artifacts/v9-sectors/chromium/industries-pharmaceutical-1366.png` (1366×6682)\n- `artifacts/v9-sectors/reference/industries-private-equity-portfolio-1366.png` (1366×6624) vs `artifacts/v9-sectors/chromium/industries-private-equity-portfolio-1366.png` (1366×6656)\n\n### Per-route verdict\n\n**industries-industrial-engineering — ACCEPT (Stage 1 only)**\nAll sections present and in matching order: hero (headline, dek, CTAs, market stat, hero bar chart), dark \"24%\" stat/compare chart section, \"Three things a CV can't tell you\" triptych, \"What we actually ask\" Q&A cards, \"Every level, one guarantee\" roles/interview grid, FAQ block, closing CTA, sources, footer. Hero bar chart values, dark-section horizontal bar chart, and sector dot-grid illustration all render in the candidate. FAQ shows only the first answer expanded in the candidate vs. all three expanded in the reference — matches the documented intentional difference (review doc line 36). No missing sections or illustrations found.\n\n**industries-manufacturing — ACCEPT (Stage 1 only)**\nSame section set and ordering as reference; hero stat (\"14.39 lakh\"), hero bar chart, dark \"22%\" section with compare chart, triptych, Q&A cards, roles grid, FAQ, closing CTA, sources, footer all present. FAQ again first-only-expanded in candidate (intentional per review doc). No missing content observed.\n\n**industries-pharmaceutical — ACCEPT (Stage 1 only)**\nAll sections match: hero (\"3rd largest...\" stat), hero bar chart, dark \"34%\" compare section, triptych, Q&A cards, roles grid, FAQ, closing CTA, sources, footer. FAQ state difference is the same documented intentional pattern. No missing sections.\n\n**industries-private-equity-portfolio — ACCEPT (Stage 1 only)**\nAll sections match: hero (\"$36 bn\" stat), hero bar chart, dark \"32%\" compare section, triptych (\"first ninety days\" etc.), Q&A cards, roles grid, FAQ, closing CTA, sources, footer. FAQ difference intentional as documented.\n\n### Concrete findings\n\n- **Observation, not a confirmed defect — uniform page-height offset (low severity).** Across all four routes, the candidate full-page screenshot is consistently ~30–37px taller than the reference (industrial-engineering +31px, manufacturing +32px, pharmaceutical +37px, PE-portfolio +32px), despite the candidate's FAQ having *fewer* expanded answers than the reference (which should make it shorter, not taller). This is a small, consistent delta (~0.5% of page height) and is most plausibly a font-metric/line-height rendering difference between the reference capture tool and headless Chromium rather than a layout defect. I cannot confirm the cause from static screenshots alone — flagging as uncertain, not a finding requiring REVISE.\n- **Compare-sector list row-pairing (uncertain, not claimed as confirmed).** On the private-equity-portfolio page, the \"Compare with\" sector list in the dark chart section appears to group differently between reference and candidate (e.g., which sector pairs share a row). Given the downscaled render I reviewed, I can't reliably read this fine text to confirm an actual ordering defect versus a benign reflow from the current-sector exclusion. Not raising as a defect — would need a cropped/full-resolution capture of just that widget to verify.\n- No missing sections, missing illustrations, missing charts, or broken hierarchy/spacing found in any of the four routes.\n- Static screenshots cannot confirm chart-draw animation, stagger, or reduced-motion behavior — that would require the archived test evidence, which I have not inspected in this stage.\n\n### Stage 1 verdict for these 4 routes: **ACCEPT**\n\nThis covers only the 4 routes requested in Stage 1 (industrial-engineering, manufacturing, pharmaceutical, private-equity-portfolio) at 1366px desktop. The remaining 10 industries/sector/Intelligence routes, other breakpoints, and any Stage 2+ instructions are still outstanding — let me know how you'd like to proceed.",
+  "ttft_ms": 2023,
+  "type": "result",
+  "duration_ms": 57041,
+  "uuid": "83967fd5-d972-4cdc-84a9-04df3b27f1aa",
+  "ttft_stream_ms": 1551,
+  "time_to_request_ms": 170,
+  "first_content_frame_ms": 1551,
+  "queued_turn_count": 0,
+  "result_index": 0
+}

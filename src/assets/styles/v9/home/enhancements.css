@@ -7,6 +7,38 @@
 }
 .v9-home .v9-client-strip {
   background: var(--white);
+  padding-block: 18px;
+}
+/* Restore the shared strip's spacing after the handoff's descendant reset. */
+.v9-home .v9-client-strip .v9-wrap {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+.v9-home .v9-client-window {
+  flex: 1;
+}
+@media (min-width: 1024px) {
+  .v9-home .hero-c {
+    /* Original offset 131px + the nav's 14px increase (62px to 76px). */
+    min-height: calc(100svh - 145px);
+  }
+  .v9-home .hero-two {
+    max-width: 1440px;
+    grid-template-columns: minmax(0, 1fr) minmax(356px, 420px);
+    column-gap: clamp(48px, 5vw, 96px);
+  }
+  .v9-home .hero-two h1 {
+    font-size: min(3.4rem, 8.1cqi);
+  }
+  .v9-home .hero-field {
+    width: min(1360px, 96vw);
+  }
+}
+@media (max-width: 700px) {
+  .v9-home .v9-client-window {
+    flex-basis: 100%;
+  }
 }
 .v9-home .v9-client-strip .v9-eyebrow {
   font: 400 0.6875rem var(--mono);

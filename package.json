@@ -29,7 +29,12 @@
     "test:migration:foundation": "node tests/v9-foundation.test.mjs && node tests/v9-content.test.mjs && node tests/v9-reference.test.mjs && node tests/v9-content-reference.mjs",
     "test:migration:pages": "node scripts/test-v9-pages.mjs",
     "test:migration:a1": "node scripts/test-v9-a1.mjs",
-    "test:migration:a2": "node scripts/test-v9-a2.mjs"
+    "test:migration:a2": "node scripts/test-v9-a2.mjs",
+    "test:migration:sectors": "node scripts/test-v9-sectors.mjs",
+    "test:migration:public": "node tests/v9-public-routes.test.mjs",
+    "serve:local": "npm run build && astro preview --host 127.0.0.1 --port 4321",
+    "test:shared-chrome": "node tests/shared-chrome.test.mjs",
+    "test:migration:public:all": "node scripts/test-v9-public.mjs"
   },
   "dependencies": {
     "@astrojs/node": "^10.1.2",

@@ -1,4 +1,5 @@
 ---
+import { v9Href } from '~/data/v9/routes';
 import SourceList from '../../SourceList.astro';
 ---
 
@@ -309,10 +310,10 @@ import SourceList from '../../SourceList.astro';
             href: 'https://www.ashbyhq.com/talent-trends-report/reports/2023-recruiter-productivity-trends-report',
           },
         ]}
-        methodology={{ label: 'How we work with numbers', href: '/__v9/about' }}
+        methodology={{ label: 'How we work with numbers', href: v9Href('/__v9/about', Astro.url.pathname) }}
       />
     </article>
-    <a class="bl-cta" href="/__v9/home#start"
+    <a class="bl-cta" href={v9Href('/__v9/home#start', Astro.url.pathname)}
       ><span class="ql">Want fewer interviews per hire?</span><b
         >Send us one role. Three scored candidates in about 36 hours</b
       ><i aria-hidden="true">→</i></a

@@ -1,0 +1,1720 @@
+[
+  {
+    "port": 4321,
+    "route": "/",
+    "wall": 2592,
+    "nav": {
+      "name": "http://127.0.0.1:4321/",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 573.6000000014901,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentEncoding": "",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 0.20000000298023224,
+      "domainLookupStart": 1.6000000014901161,
+      "domainLookupEnd": 1.6000000014901161,
+      "connectStart": 1.6000000014901161,
+      "secureConnectionStart": 0,
+      "connectEnd": 2.4000000059604645,
+      "requestStart": 2.600000001490116,
+      "responseStart": 17.100000001490116,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 17.100000001490116,
+      "responseEnd": 21.5,
+      "transferSize": 322157,
+      "encodedBodySize": 321857,
+      "decodedBodySize": 321857,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 0,
+      "unloadEventEnd": 0,
+      "domInteractive": 53.600000001490116,
+      "domContentLoadedEventStart": 567.4000000059605,
+      "domContentLoadedEventEnd": 567.6000000014901,
+      "domComplete": 573.4000000059605,
+      "loadEventStart": 573.6000000014901,
+      "loadEventEnd": 573.6000000014901,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "high"
+      }
+    },
+    "paint": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 296,
+        "duration": 0,
+        "paintTime": 246.30000000447035,
+        "presentationTime": 296
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 296,
+        "duration": 0,
+        "paintTime": 246.30000000447035,
+        "presentationTime": 296
+      }
+    ],
+    "metrics": {
+      "long": [
+        {
+          "start": 80.80000000447035,
+          "duration": 170
+        },
+        {
+          "start": 444.6000000014901,
+          "duration": 90
+        }
+      ],
+      "lcp": [
+        {
+          "time": 296,
+          "size": 76014,
+          "tag": "H1"
+        }
+      ]
+    },
+    "resources": [
+      {
+        "name": "fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "type": "css",
+        "duration": 153.79999999701977,
+        "size": 31732
+      },
+      {
+        "name": "fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "type": "css",
+        "duration": 140.79999999701977,
+        "size": 81820
+      },
+      {
+        "name": "src/scripts/v9/disclosures.ts",
+        "type": "script",
+        "duration": 109.60000000149012,
+        "size": 5870
+      },
+      {
+        "name": "src/scripts/v9/home/motion.js",
+        "type": "script",
+        "duration": 109.60000000149012,
+        "size": 39547
+      },
+      {
+        "name": "src/scripts/v9/home/hero.js",
+        "type": "script",
+        "duration": 109.60000000149012,
+        "size": 10166
+      },
+      {
+        "name": "src/scripts/v9/home/model.mjs",
+        "type": "script",
+        "duration": 109.60000000149012,
+        "size": 26106
+      },
+      {
+        "name": "@id/__x00__virtual:astro:adapter-config/client",
+        "type": "script",
+        "duration": 108.70000000298023,
+        "size": 626
+      },
+      {
+        "name": "brand/v9/tribera-logo-white.png",
+        "type": "img",
+        "duration": 69.5,
+        "size": 20754
+      },
+      {
+        "name": "brand/v9/tribera-logo-black.png",
+        "type": "img",
+        "duration": 69.39999999850988,
+        "size": 20857
+      },
+      {
+        "name": "src/assets/styles/v9/home/enhancements.css",
+        "type": "script",
+        "duration": 62.5,
+        "size": 5030
+      },
+      {
+        "name": "src/components/v9/home/Home.astro?astro&type=script&index=0&lang.ts",
+        "type": "script",
+        "duration": 61.899999998509884,
+        "size": 2471
+      },
+      {
+        "name": "src/layouts/V9Layout.astro?astro&type=script&index=0&lang.ts",
+        "type": "script",
+        "duration": 61.80000000447035,
+        "size": 3375
+      },
+      {
+        "name": "@vite/client",
+        "type": "script",
+        "duration": 49.899999998509884,
+        "size": 295316
+      },
+      {
+        "name": "src/assets/styles/v9/home/handoff.css",
+        "type": "script",
+        "duration": 49.80000000447035,
+        "size": 178405
+      },
+      {
+        "name": "fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "type": "link",
+        "duration": 48.900000005960464,
+        "size": 67604
+      },
+      {
+        "name": "src/assets/styles/v9/fonts.css",
+        "type": "script",
+        "duration": 48,
+        "size": 18834
+      },
+      {
+        "name": "src/assets/styles/v9/foundation.css",
+        "type": "script",
+        "duration": 47.899999998509884,
+        "size": 18673
+      },
+      {
+        "name": "@id/astro:scripts/page.js",
+        "type": "script",
+        "duration": 45.100000001490116,
+        "size": 908
+      },
+      {
+        "name": "node_modules/astro/dist/prefetch/index.js?v=b8dcf66b",
+        "type": "script",
+        "duration": 24.600000001490116,
+        "size": 36569
+      },
+      {
+        "name": "src/scripts/v9/home/index.js",
+        "type": "script",
+        "duration": 20.299999997019768,
+        "size": 113772
+      },
+      {
+        "name": "src/scripts/v9/foundation.ts",
+        "type": "script",
+        "duration": 20.099999994039536,
+        "size": 14060
+      },
+      {
+        "name": "node_modules/astro/dist/virtual-modules/prefetch.js?v=b8dcf66b",
+        "type": "script",
+        "duration": 16.5,
+        "size": 818
+      },
+      {
+        "name": "fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "type": "link",
+        "duration": 7.899999998509884,
+        "size": 45172
+      },
+      {
+        "name": "node_modules/vite/dist/client/env.mjs",
+        "type": "script",
+        "duration": 7.299999997019768,
+        "size": 3778
+      },
+      {
+        "name": "src/scripts/v9/field-motion.js",
+        "type": "script",
+        "duration": 4.399999998509884,
+        "size": 29234
+      }
+    ],
+    "nodes": 1604
+  },
+  {
+    "port": 4321,
+    "route": "/industries",
+    "wall": 2374,
+    "nav": {
+      "name": "http://127.0.0.1:4321/industries",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 363.6000000014901,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentEncoding": "",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 0.20000000298023224,
+      "domainLookupStart": 0.8999999985098839,
+      "domainLookupEnd": 0.8999999985098839,
+      "connectStart": 0.8999999985098839,
+      "secureConnectionStart": 0,
+      "connectEnd": 1.6000000014901161,
+      "requestStart": 1.7000000029802322,
+      "responseStart": 135.5,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 135.5,
+      "responseEnd": 138.29999999701977,
+      "transferSize": 87051,
+      "encodedBodySize": 86751,
+      "decodedBodySize": 86751,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 0,
+      "unloadEventEnd": 0,
+      "domInteractive": 153.79999999701977,
+      "domContentLoadedEventStart": 362.5,
+      "domContentLoadedEventEnd": 362.6000000014901,
+      "domComplete": 363.5,
+      "loadEventStart": 363.6000000014901,
+      "loadEventEnd": 363.6000000014901,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "low"
+      }
+    },
+    "paint": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 296,
+        "duration": 0,
+        "paintTime": 257.6000000014901,
+        "presentationTime": 296
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 296,
+        "duration": 0,
+        "paintTime": 257.6000000014901,
+        "presentationTime": 296
+      }
+    ],
+    "metrics": {
+      "long": [
+        {
+          "start": 177.89999999850988,
+          "duration": 82
+        }
+      ],
+      "lcp": [
+        {
+          "time": 296,
+          "size": 270648,
+          "tag": "H1"
+        }
+      ]
+    },
+    "resources": [
+      {
+        "name": "brand/v9/tribera-logo-black.png",
+        "type": "img",
+        "duration": 73,
+        "size": 20857
+      },
+      {
+        "name": "brand/v9/tribera-logo-white.png",
+        "type": "img",
+        "duration": 73,
+        "size": 20754
+      },
+      {
+        "name": "src/components/v9/sectors/IndustriesPage.astro?astro&type=script&index=0&lang.ts",
+        "type": "script",
+        "duration": 72.70000000298023,
+        "size": 6510
+      },
+      {
+        "name": "src/layouts/V9Layout.astro?astro&type=script&index=0&lang.ts",
+        "type": "script",
+        "duration": 66.39999999850988,
+        "size": 3375
+      },
+      {
+        "name": "fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "type": "css",
+        "duration": 65.20000000298023,
+        "size": 81820
+      },
+      {
+        "name": "fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "type": "css",
+        "duration": 62.099999994039536,
+        "size": 31732
+      },
+      {
+        "name": "src/assets/styles/v9/editorial/behavior.css",
+        "type": "script",
+        "duration": 56.79999999701977,
+        "size": 4762
+      },
+      {
+        "name": "src/assets/styles/v9/sector-enhancements.css",
+        "type": "script",
+        "duration": 56.5,
+        "size": 2657
+      },
+      {
+        "name": "@vite/client",
+        "type": "script",
+        "duration": 51.70000000298023,
+        "size": 295316
+      },
+      {
+        "name": "src/assets/styles/v9/industries.css",
+        "type": "script",
+        "duration": 48.600000001490116,
+        "size": 23556
+      },
+      {
+        "name": "node_modules/astro/dist/virtual-modules/prefetch.js?v=b8dcf66b",
+        "type": "script",
+        "duration": 42.80000000447035,
+        "size": 818
+      },
+      {
+        "name": "fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "type": "link",
+        "duration": 29.69999999552965,
+        "size": 67604
+      },
+      {
+        "name": "src/assets/styles/v9/foundation.css",
+        "type": "script",
+        "duration": 28.899999998509884,
+        "size": 18673
+      },
+      {
+        "name": "src/assets/styles/v9/fonts.css",
+        "type": "script",
+        "duration": 28.700000002980232,
+        "size": 18834
+      },
+      {
+        "name": "@id/astro:scripts/page.js",
+        "type": "script",
+        "duration": 27.899999998509884,
+        "size": 908
+      },
+      {
+        "name": "src/scripts/v9/editorial-motion.ts",
+        "type": "script",
+        "duration": 23.399999998509884,
+        "size": 35754
+      },
+      {
+        "name": "src/scripts/v9/editorial-citations.ts",
+        "type": "script",
+        "duration": 23.100000001490116,
+        "size": 10585
+      },
+      {
+        "name": "src/data/v9/intelligence.json?import",
+        "type": "script",
+        "duration": 22.700000002980232,
+        "size": 1406
+      },
+      {
+        "name": "src/scripts/v9/field-motion.js",
+        "type": "script",
+        "duration": 22.69999999552965,
+        "size": 29234
+      },
+      {
+        "name": "@id/__x00__virtual:astro:adapter-config/client",
+        "type": "script",
+        "duration": 22.299999997019768,
+        "size": 626
+      },
+      {
+        "name": "node_modules/vite/dist/client/env.mjs",
+        "type": "script",
+        "duration": 22,
+        "size": 3778
+      },
+      {
+        "name": "node_modules/astro/dist/prefetch/index.js?v=b8dcf66b",
+        "type": "script",
+        "duration": 21.69999999552965,
+        "size": 36569
+      },
+      {
+        "name": "src/scripts/v9/sector-charts.ts",
+        "type": "script",
+        "duration": 21.5,
+        "size": 25479
+      },
+      {
+        "name": "src/scripts/v9/foundation.ts",
+        "type": "script",
+        "duration": 11.700000002980232,
+        "size": 14060
+      },
+      {
+        "name": "fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "type": "link",
+        "duration": 7,
+        "size": 45172
+      },
+      {
+        "name": "src/scripts/v9/disclosures.ts",
+        "type": "script",
+        "duration": 3.5,
+        "size": 5870
+      },
+      {
+        "name": "src/scripts/v9/card-depth.ts",
+        "type": "script",
+        "duration": 3.5,
+        "size": 6759
+      }
+    ],
+    "nodes": 347
+  },
+  {
+    "port": 4321,
+    "route": "/contact",
+    "wall": 2575,
+    "nav": {
+      "name": "http://127.0.0.1:4321/contact",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 559.5,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentEncoding": "",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 0.19999999552965164,
+      "domainLookupStart": 1.1000000014901161,
+      "domainLookupEnd": 1.1000000014901161,
+      "connectStart": 1.1000000014901161,
+      "secureConnectionStart": 0,
+      "connectEnd": 1.7999999970197678,
+      "requestStart": 1.8999999985098839,
+      "responseStart": 243,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 243,
+      "responseEnd": 246.10000000149012,
+      "transferSize": 126953,
+      "encodedBodySize": 126653,
+      "decodedBodySize": 126653,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 0,
+      "unloadEventEnd": 0,
+      "domInteractive": 268.6000000014901,
+      "domContentLoadedEventStart": 552.3999999985099,
+      "domContentLoadedEventEnd": 552.5,
+      "domComplete": 559.1999999955297,
+      "loadEventStart": 559.5,
+      "loadEventEnd": 559.5,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "low"
+      }
+    },
+    "paint": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 460,
+        "duration": 0,
+        "paintTime": 402.1000000014901,
+        "presentationTime": 460
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 460,
+        "duration": 0,
+        "paintTime": 402.1000000014901,
+        "presentationTime": 460
+      }
+    ],
+    "metrics": {
+      "long": [
+        {
+          "start": 283.79999999701977,
+          "duration": 122
+        },
+        {
+          "start": 466.5,
+          "duration": 85
+        }
+      ],
+      "lcp": [
+        {
+          "time": 460,
+          "size": 58546,
+          "tag": "H1"
+        }
+      ]
+    },
+    "resources": [
+      {
+        "name": "fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "type": "css",
+        "duration": 121.39999999850988,
+        "size": 81820
+      },
+      {
+        "name": "fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "type": "css",
+        "duration": 96.39999999850988,
+        "size": 31732
+      },
+      {
+        "name": "brand/v9/tribera-logo-black.png",
+        "type": "img",
+        "duration": 81.30000000447035,
+        "size": 20857
+      },
+      {
+        "name": "brand/v9/tribera-logo-white.png",
+        "type": "img",
+        "duration": 81.29999999701977,
+        "size": 20754
+      },
+      {
+        "name": "src/assets/styles/v9/contact/enhancements.css",
+        "type": "script",
+        "duration": 74.79999999701977,
+        "size": 2534
+      },
+      {
+        "name": "src/assets/styles/v9/contact/handoff.css",
+        "type": "script",
+        "duration": 68.79999999701977,
+        "size": 45078
+      },
+      {
+        "name": "node_modules/astro/dist/virtual-modules/prefetch.js?v=b8dcf66b",
+        "type": "script",
+        "duration": 57.600000001490116,
+        "size": 818
+      },
+      {
+        "name": "node_modules/vite/dist/client/env.mjs",
+        "type": "script",
+        "duration": 56.79999999701977,
+        "size": 3778
+      },
+      {
+        "name": "src/layouts/V9Layout.astro?astro&type=script&index=0&lang.ts",
+        "type": "script",
+        "duration": 34.5,
+        "size": 3375
+      },
+      {
+        "name": "src/assets/styles/v9/fonts.css",
+        "type": "script",
+        "duration": 33.5,
+        "size": 18834
+      },
+      {
+        "name": "src/components/v9/contact/ContactPage.astro?astro&type=script&index=0&lang.ts",
+        "type": "script",
+        "duration": 32.600000001490116,
+        "size": 1215
+      },
+      {
+        "name": "fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "type": "link",
+        "duration": 29.599999994039536,
+        "size": 67604
+      },
+      {
+        "name": "images/v9/contact/source-3.jpg",
+        "type": "img",
+        "duration": 26.399999998509884,
+        "size": 208873
+      },
+      {
+        "name": "src/assets/styles/v9/foundation.css",
+        "type": "script",
+        "duration": 26,
+        "size": 18673
+      },
+      {
+        "name": "images/v9/contact/source-4.jpg",
+        "type": "img",
+        "duration": 25.80000000447035,
+        "size": 192262
+      },
+      {
+        "name": "node_modules/astro/dist/prefetch/index.js?v=b8dcf66b",
+        "type": "script",
+        "duration": 25.5,
+        "size": 36569
+      },
+      {
+        "name": "images/v9/contact/source-2.jpg",
+        "type": "img",
+        "duration": 24.19999999552965,
+        "size": 3568
+      },
+      {
+        "name": "images/v9/contact/source-1.jpg",
+        "type": "img",
+        "duration": 24,
+        "size": 3147
+      },
+      {
+        "name": "src/assets/scripts/v9/contact.ts",
+        "type": "script",
+        "duration": 23.700000002980232,
+        "size": 31026
+      },
+      {
+        "name": "src/scripts/v9/foundation.ts",
+        "type": "script",
+        "duration": 22.700000002980232,
+        "size": 14060
+      },
+      {
+        "name": "@vite/client",
+        "type": "script",
+        "duration": 19.700000002980232,
+        "size": 295316
+      },
+      {
+        "name": "@id/astro:scripts/page.js",
+        "type": "script",
+        "duration": 15.399999998509884,
+        "size": 908
+      },
+      {
+        "name": "src/scripts/v9/disclosures.ts",
+        "type": "script",
+        "duration": 10.700000002980232,
+        "size": 5870
+      },
+      {
+        "name": "src/scripts/v9/field-motion.js",
+        "type": "script",
+        "duration": 10.199999995529652,
+        "size": 29234
+      },
+      {
+        "name": "fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "type": "link",
+        "duration": 7.700000002980232,
+        "size": 45172
+      },
+      {
+        "name": "@id/__x00__virtual:astro:adapter-config/client",
+        "type": "script",
+        "duration": 5.600000001490116,
+        "size": 626
+      },
+      {
+        "name": "src/components/v9/contact/context.ts",
+        "type": "script",
+        "duration": 4.5,
+        "size": 7046
+      }
+    ],
+    "nodes": 656
+  },
+  {
+    "port": 4321,
+    "route": "/intelligence",
+    "wall": 2475,
+    "nav": {
+      "name": "http://127.0.0.1:4321/intelligence",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 454.19999999552965,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentEncoding": "",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 0.3999999985098839,
+      "domainLookupStart": 1.5999999940395355,
+      "domainLookupEnd": 1.5999999940395355,
+      "connectStart": 1.5999999940395355,
+      "secureConnectionStart": 0,
+      "connectEnd": 2.2999999970197678,
+      "requestStart": 2.5999999940395355,
+      "responseStart": 15.799999997019768,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 15.799999997019768,
+      "responseEnd": 19.599999994039536,
+      "transferSize": 137202,
+      "encodedBodySize": 136902,
+      "decodedBodySize": 136902,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 0,
+      "unloadEventEnd": 0,
+      "domInteractive": 47.599999994039536,
+      "domContentLoadedEventStart": 445.09999999403954,
+      "domContentLoadedEventEnd": 445.19999999552965,
+      "domComplete": 454,
+      "loadEventStart": 454.19999999552965,
+      "loadEventEnd": 454.19999999552965,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "low"
+      }
+    },
+    "paint": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 300,
+        "duration": 0,
+        "paintTime": 224.39999999850988,
+        "presentationTime": 300
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 300,
+        "duration": 0,
+        "paintTime": 224.39999999850988,
+        "presentationTime": 300
+      }
+    ],
+    "metrics": {
+      "long": [
+        {
+          "start": 77.39999999850988,
+          "duration": 151
+        },
+        {
+          "start": 333.69999999552965,
+          "duration": 104
+        }
+      ],
+      "lcp": [
+        {
+          "time": 300,
+          "size": 60489,
+          "tag": "P"
+        }
+      ]
+    },
+    "resources": [
+      {
+        "name": "fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "type": "css",
+        "duration": 126.39999999850988,
+        "size": 81820
+      },
+      {
+        "name": "fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "type": "css",
+        "duration": 125.60000000149012,
+        "size": 31732
+      },
+      {
+        "name": "brand/v9/tribera-logo-white.png",
+        "type": "img",
+        "duration": 67.79999999701977,
+        "size": 20754
+      },
+      {
+        "name": "brand/v9/tribera-logo-black.png",
+        "type": "img",
+        "duration": 67.60000000149012,
+        "size": 20857
+      },
+      {
+        "name": "src/components/v9/sectors/IntelligencePage.astro?astro&type=script&index=0&lang.ts",
+        "type": "script",
+        "duration": 60,
+        "size": 96846
+      },
+      {
+        "name": "src/assets/styles/v9/editorial/behavior.css",
+        "type": "script",
+        "duration": 59.19999999552965,
+        "size": 4762
+      },
+      {
+        "name": "src/layouts/V9Layout.astro?astro&type=script&index=0&lang.ts",
+        "type": "script",
+        "duration": 57.79999999701977,
+        "size": 3375
+      },
+      {
+        "name": "src/assets/styles/v9/sector-enhancements.css",
+        "type": "script",
+        "duration": 57.400000005960464,
+        "size": 2657
+      },
+      {
+        "name": "@vite/client",
+        "type": "script",
+        "duration": 43.899999998509884,
+        "size": 295316
+      },
+      {
+        "name": "fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "type": "link",
+        "duration": 42.30000000447035,
+        "size": 67604
+      },
+      {
+        "name": "src/assets/styles/v9/intelligence.css",
+        "type": "script",
+        "duration": 41.29999999701977,
+        "size": 38744
+      },
+      {
+        "name": "fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "type": "link",
+        "duration": 40.600000001490116,
+        "size": 45172
+      },
+      {
+        "name": "src/assets/styles/v9/fonts.css",
+        "type": "script",
+        "duration": 40.100000001490116,
+        "size": 18834
+      },
+      {
+        "name": "@id/astro:scripts/page.js",
+        "type": "script",
+        "duration": 37.900000005960464,
+        "size": 908
+      },
+      {
+        "name": "src/scripts/v9/foundation.ts",
+        "type": "script",
+        "duration": 26.899999998509884,
+        "size": 14060
+      },
+      {
+        "name": "src/scripts/v9/editorial-motion.ts",
+        "type": "script",
+        "duration": 26.5,
+        "size": 35754
+      },
+      {
+        "name": "src/scripts/v9/field-motion.js",
+        "type": "script",
+        "duration": 25.299999997019768,
+        "size": 29234
+      },
+      {
+        "name": "src/scripts/v9/editorial-citations.ts",
+        "type": "script",
+        "duration": 25.100000001490116,
+        "size": 10585
+      },
+      {
+        "name": "src/scripts/v9/disclosures.ts",
+        "type": "script",
+        "duration": 24.799999997019768,
+        "size": 5870
+      },
+      {
+        "name": "@id/__x00__virtual:astro:adapter-config/client",
+        "type": "script",
+        "duration": 23.899999998509884,
+        "size": 626
+      },
+      {
+        "name": "node_modules/vite/dist/client/env.mjs",
+        "type": "script",
+        "duration": 19.69999999552965,
+        "size": 3778
+      },
+      {
+        "name": "node_modules/astro/dist/virtual-modules/prefetch.js?v=b8dcf66b",
+        "type": "script",
+        "duration": 19,
+        "size": 818
+      },
+      {
+        "name": "node_modules/astro/dist/prefetch/index.js?v=b8dcf66b",
+        "type": "script",
+        "duration": 15,
+        "size": 36569
+      },
+      {
+        "name": "src/data/v9/intelligence.json?import",
+        "type": "script",
+        "duration": 13.5,
+        "size": 1406
+      },
+      {
+        "name": "src/scripts/v9/sector-charts.ts",
+        "type": "script",
+        "duration": 9.5,
+        "size": 25479
+      },
+      {
+        "name": "src/assets/styles/v9/foundation.css",
+        "type": "script",
+        "duration": 9.400000005960464,
+        "size": 18673
+      },
+      {
+        "name": "src/scripts/v9/card-depth.ts",
+        "type": "script",
+        "duration": 5.800000004470348,
+        "size": 6759
+      }
+    ],
+    "nodes": 747
+  },
+  {
+    "port": 4392,
+    "route": "/",
+    "wall": 2576,
+    "nav": {
+      "name": "http://127.0.0.1:4392/",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 556.6000000014901,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentEncoding": "gzip",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 0.3999999985098839,
+      "domainLookupStart": 1.6000000014901161,
+      "domainLookupEnd": 1.6000000014901161,
+      "connectStart": 1.6000000014901161,
+      "secureConnectionStart": 0,
+      "connectEnd": 2.600000001490116,
+      "requestStart": 2.7999999970197678,
+      "responseStart": 8.899999998509884,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 8.899999998509884,
+      "responseEnd": 12.199999995529652,
+      "transferSize": 17735,
+      "encodedBodySize": 17435,
+      "decodedBodySize": 115453,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 0,
+      "unloadEventEnd": 0,
+      "domInteractive": 45.5,
+      "domContentLoadedEventStart": 500.19999999552965,
+      "domContentLoadedEventEnd": 500.29999999701977,
+      "domComplete": 556.2999999970198,
+      "loadEventStart": 556.6000000014901,
+      "loadEventEnd": 556.6000000014901,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "high"
+      }
+    },
+    "paint": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 532,
+        "duration": 0,
+        "paintTime": 422.69999999552965,
+        "presentationTime": 532
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 532,
+        "duration": 0,
+        "paintTime": 422.69999999552965,
+        "presentationTime": 532
+      }
+    ],
+    "metrics": {
+      "long": [
+        {
+          "start": 64.5,
+          "duration": 367
+        },
+        {
+          "start": 436.19999999552965,
+          "duration": 56
+        },
+        {
+          "start": 495.3999999985099,
+          "duration": 62
+        },
+        {
+          "start": 608.6999999955297,
+          "duration": 84
+        }
+      ],
+      "lcp": [
+        {
+          "time": 532,
+          "size": 76014,
+          "tag": "H1"
+        }
+      ]
+    },
+    "resources": [
+      {
+        "name": "fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "type": "css",
+        "duration": 355.29999999701977,
+        "size": 31732
+      },
+      {
+        "name": "fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "type": "css",
+        "duration": 341.5,
+        "size": 81820
+      },
+      {
+        "name": "brand/v9/tribera-logo-white.png",
+        "type": "img",
+        "duration": 39.69999999552965,
+        "size": 20754
+      },
+      {
+        "name": "brand/v9/tribera-logo-black.png",
+        "type": "img",
+        "duration": 39.600000001490116,
+        "size": 20857
+      },
+      {
+        "name": "fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "type": "link",
+        "duration": 31,
+        "size": 45172
+      },
+      {
+        "name": "fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "type": "link",
+        "duration": 30.899999998509884,
+        "size": 67604
+      },
+      {
+        "name": "_astro/Home.astro_astro_type_script_index_0_lang.BV2BnQFu.js",
+        "type": "script",
+        "duration": 30.600000001490116,
+        "size": 7377
+      },
+      {
+        "name": "_astro/page.zh1XDkz8.js",
+        "type": "script",
+        "duration": 29.200000002980232,
+        "size": 1291
+      },
+      {
+        "name": "_astro/Home.D18FwZcS.css",
+        "type": "link",
+        "duration": 28.5,
+        "size": 25535
+      },
+      {
+        "name": "_astro/V9Layout.C2MlvHJr.css",
+        "type": "link",
+        "duration": 27.19999999552965,
+        "size": 5098
+      },
+      {
+        "name": "_astro/field-motion.SKUUgj2x.js",
+        "type": "script",
+        "duration": 6.700000002980232,
+        "size": 1487
+      }
+    ],
+    "nodes": 1597
+  },
+  {
+    "port": 4392,
+    "route": "/industries",
+    "wall": 2264,
+    "nav": {
+      "name": "http://127.0.0.1:4392/industries",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 247.70000000298023,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentEncoding": "gzip",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 0.30000000447034836,
+      "domainLookupStart": 1.8000000044703484,
+      "domainLookupEnd": 1.8000000044703484,
+      "connectStart": 1.8000000044703484,
+      "secureConnectionStart": 0,
+      "connectEnd": 3.5,
+      "requestStart": 3.600000001490116,
+      "responseStart": 8.300000004470348,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 8.300000004470348,
+      "responseEnd": 12.5,
+      "transferSize": 8434,
+      "encodedBodySize": 8134,
+      "decodedBodySize": 31129,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 0,
+      "unloadEventEnd": 0,
+      "domInteractive": 48.600000001490116,
+      "domContentLoadedEventStart": 243.10000000149012,
+      "domContentLoadedEventEnd": 243.10000000149012,
+      "domComplete": 247.60000000149012,
+      "loadEventStart": 247.70000000298023,
+      "loadEventEnd": 247.70000000298023,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "high"
+      }
+    },
+    "paint": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 272,
+        "duration": 0,
+        "paintTime": 214.5,
+        "presentationTime": 272
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 272,
+        "duration": 0,
+        "paintTime": 214.5,
+        "presentationTime": 272
+      }
+    ],
+    "metrics": {
+      "long": [
+        {
+          "start": 71.89999999850988,
+          "duration": 146
+        }
+      ],
+      "lcp": [
+        {
+          "time": 272,
+          "size": 270648,
+          "tag": "H1"
+        }
+      ]
+    },
+    "resources": [
+      {
+        "name": "fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "type": "css",
+        "duration": 120.70000000298023,
+        "size": 31732
+      },
+      {
+        "name": "fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "type": "css",
+        "duration": 120.09999999403954,
+        "size": 81820
+      },
+      {
+        "name": "brand/v9/tribera-logo-white.png",
+        "type": "img",
+        "duration": 49.80000000447035,
+        "size": 20754
+      },
+      {
+        "name": "fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "type": "link",
+        "duration": 45.29999999701977,
+        "size": 67604
+      },
+      {
+        "name": "brand/v9/tribera-logo-black.png",
+        "type": "img",
+        "duration": 45.20000000298023,
+        "size": 20857
+      },
+      {
+        "name": "_astro/IndustriesPage.astro_astro_type_script_index_0_lang.HVhR8st6.js",
+        "type": "script",
+        "duration": 43.599999994039536,
+        "size": 2434
+      },
+      {
+        "name": "_astro/page.zh1XDkz8.js",
+        "type": "script",
+        "duration": 43.5,
+        "size": 1291
+      },
+      {
+        "name": "_astro/V9Layout.C2MlvHJr.css",
+        "type": "link",
+        "duration": 42.899999998509884,
+        "size": 5098
+      },
+      {
+        "name": "_astro/IndustriesPage.J0uCcJiE.css",
+        "type": "link",
+        "duration": 29.299999997019768,
+        "size": 4690
+      },
+      {
+        "name": "fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "type": "link",
+        "duration": 13.600000001490116,
+        "size": 45172
+      },
+      {
+        "name": "_astro/card-depth.Cq0nizmv.js",
+        "type": "script",
+        "duration": 13.200000002980232,
+        "size": 892
+      },
+      {
+        "name": "_astro/field-motion.SKUUgj2x.js",
+        "type": "script",
+        "duration": 10.5,
+        "size": 1487
+      },
+      {
+        "name": "_astro/editorial-citations.ZzQxgULZ.js",
+        "type": "script",
+        "duration": 10.199999995529652,
+        "size": 3034
+      }
+    ],
+    "nodes": 339
+  },
+  {
+    "port": 4392,
+    "route": "/contact",
+    "wall": 2264,
+    "nav": {
+      "name": "http://127.0.0.1:4392/contact",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 245.20000000298023,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentEncoding": "gzip",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 0.10000000149011612,
+      "domainLookupStart": 1.1000000014901161,
+      "domainLookupEnd": 1.1000000014901161,
+      "connectStart": 1.1000000014901161,
+      "secureConnectionStart": 0,
+      "connectEnd": 1.8000000044703484,
+      "requestStart": 1.8999999985098839,
+      "responseStart": 6.200000002980232,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 6.200000002980232,
+      "responseEnd": 8.700000002980232,
+      "transferSize": 9043,
+      "encodedBodySize": 8743,
+      "decodedBodySize": 50109,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 0,
+      "unloadEventEnd": 0,
+      "domInteractive": 30.200000002980232,
+      "domContentLoadedEventStart": 227.5,
+      "domContentLoadedEventEnd": 227.60000000149012,
+      "domComplete": 245.10000000149012,
+      "loadEventStart": 245.20000000298023,
+      "loadEventEnd": 245.20000000298023,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "low"
+      }
+    },
+    "paint": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 268,
+        "duration": 0,
+        "paintTime": 191.39999999850988,
+        "presentationTime": 268
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 268,
+        "duration": 0,
+        "paintTime": 191.39999999850988,
+        "presentationTime": 268
+      }
+    ],
+    "metrics": {
+      "long": [
+        {
+          "start": 50.5,
+          "duration": 147
+        }
+      ],
+      "lcp": [
+        {
+          "time": 268,
+          "size": 58546,
+          "tag": "H1"
+        }
+      ]
+    },
+    "resources": [
+      {
+        "name": "fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "type": "css",
+        "duration": 154.10000000149012,
+        "size": 81820
+      },
+      {
+        "name": "fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "type": "css",
+        "duration": 135.89999999850988,
+        "size": 31732
+      },
+      {
+        "name": "brand/v9/tribera-logo-black.png",
+        "type": "img",
+        "duration": 42.30000000447035,
+        "size": 20857
+      },
+      {
+        "name": "brand/v9/tribera-logo-white.png",
+        "type": "img",
+        "duration": 42,
+        "size": 20754
+      },
+      {
+        "name": "fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "type": "link",
+        "duration": 30.30000000447035,
+        "size": 67604
+      },
+      {
+        "name": "fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "type": "link",
+        "duration": 29.200000002980232,
+        "size": 45172
+      },
+      {
+        "name": "_astro/page.zh1XDkz8.js",
+        "type": "script",
+        "duration": 29.100000001490116,
+        "size": 1291
+      },
+      {
+        "name": "_astro/ContactPage.astro_astro_type_script_index_0_lang.DoopxZVl.js",
+        "type": "script",
+        "duration": 29.100000001490116,
+        "size": 3221
+      },
+      {
+        "name": "_astro/ContactPage.kRGUz84Q.css",
+        "type": "link",
+        "duration": 28.299999997019768,
+        "size": 7041
+      },
+      {
+        "name": "_astro/V9Layout.C2MlvHJr.css",
+        "type": "link",
+        "duration": 27.799999997019768,
+        "size": 5098
+      },
+      {
+        "name": "images/v9/contact/source-4.jpg",
+        "type": "img",
+        "duration": 20.899999998509884,
+        "size": 192262
+      },
+      {
+        "name": "images/v9/contact/source-3.jpg",
+        "type": "img",
+        "duration": 20.600000001490116,
+        "size": 208873
+      },
+      {
+        "name": "images/v9/contact/source-2.jpg",
+        "type": "img",
+        "duration": 17.30000000447035,
+        "size": 3568
+      },
+      {
+        "name": "images/v9/contact/source-1.jpg",
+        "type": "img",
+        "duration": 17.299999997019768,
+        "size": 3147
+      },
+      {
+        "name": "_astro/field-motion.SKUUgj2x.js",
+        "type": "script",
+        "duration": 12.399999998509884,
+        "size": 1487
+      }
+    ],
+    "nodes": 649
+  },
+  {
+    "port": 4392,
+    "route": "/intelligence",
+    "wall": 2661,
+    "nav": {
+      "name": "http://127.0.0.1:4392/intelligence",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 596.3999999985099,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentEncoding": "gzip",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 0.3999999985098839,
+      "domainLookupStart": 3.7000000029802322,
+      "domainLookupEnd": 3.7000000029802322,
+      "connectStart": 3.7000000029802322,
+      "secureConnectionStart": 0,
+      "connectEnd": 5.399999998509884,
+      "requestStart": 5.700000002980232,
+      "responseStart": 15,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 15,
+      "responseEnd": 19.200000002980232,
+      "transferSize": 11901,
+      "encodedBodySize": 11601,
+      "decodedBodySize": 66493,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 0,
+      "unloadEventEnd": 0,
+      "domInteractive": 63.79999999701977,
+      "domContentLoadedEventStart": 566.7999999970198,
+      "domContentLoadedEventEnd": 566.8999999985099,
+      "domComplete": 596.1000000014901,
+      "loadEventStart": 596.3999999985099,
+      "loadEventEnd": 596.3999999985099,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "high"
+      }
+    },
+    "paint": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 544,
+        "duration": 0,
+        "paintTime": 313.8999999985099,
+        "presentationTime": 544
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 544,
+        "duration": 0,
+        "paintTime": 313.8999999985099,
+        "presentationTime": 544
+      }
+    ],
+    "metrics": {
+      "long": [
+        {
+          "start": 92.89999999850988,
+          "duration": 234
+        },
+        {
+          "start": 392.3999999985099,
+          "duration": 100
+        }
+      ],
+      "lcp": [
+        {
+          "time": 544,
+          "size": 60489,
+          "tag": "P"
+        }
+      ]
+    },
+    "resources": [
+      {
+        "name": "fonts/v9/fraunces-italic-latin-e10563a8.woff2",
+        "type": "css",
+        "duration": 218.60000000149012,
+        "size": 81820
+      },
+      {
+        "name": "fonts/v9/jetbrains-mono-normal-latin-cc27b304.woff2",
+        "type": "css",
+        "duration": 217.29999999701977,
+        "size": 31732
+      },
+      {
+        "name": "brand/v9/tribera-logo-white.png",
+        "type": "img",
+        "duration": 74.10000000149012,
+        "size": 20754
+      },
+      {
+        "name": "brand/v9/tribera-logo-black.png",
+        "type": "img",
+        "duration": 59.899999998509884,
+        "size": 20857
+      },
+      {
+        "name": "_astro/field-motion.SKUUgj2x.js",
+        "type": "script",
+        "duration": 53.29999999701977,
+        "size": 1487
+      },
+      {
+        "name": "fonts/v9/fraunces-normal-latin-6a837066.woff2",
+        "type": "link",
+        "duration": 53,
+        "size": 67604
+      },
+      {
+        "name": "_astro/editorial-citations.ZzQxgULZ.js",
+        "type": "script",
+        "duration": 53,
+        "size": 3034
+      },
+      {
+        "name": "_astro/IntelligencePage.astro_astro_type_script_index_0_lang.B8NW12Hj.js",
+        "type": "script",
+        "duration": 50.79999999701977,
+        "size": 374
+      },
+      {
+        "name": "_astro/page.zh1XDkz8.js",
+        "type": "script",
+        "duration": 50.5,
+        "size": 1291
+      },
+      {
+        "name": "_astro/card-depth.Cq0nizmv.js",
+        "type": "script",
+        "duration": 49.79999999701977,
+        "size": 892
+      },
+      {
+        "name": "_astro/IntelligencePage.DH1_55vB.css",
+        "type": "link",
+        "duration": 49.20000000298023,
+        "size": 6537
+      },
+      {
+        "name": "_astro/V9Layout.C2MlvHJr.css",
+        "type": "link",
+        "duration": 48.5,
+        "size": 5098
+      },
+      {
+        "name": "fonts/v9/inter-tight-normal-latin-603db177.woff2",
+        "type": "link",
+        "duration": 24.80000000447035,
+        "size": 45172
+      },
+      {
+        "name": "_astro/IndustriesPage.astro_astro_type_script_index_0_lang.HVhR8st6.js",
+        "type": "script",
+        "duration": 19.799999997019768,
+        "size": 2434
+      }
+    ],
+    "nodes": 739
+  }
+]

@@ -1,27 +1,31 @@
+---
+import { v9Href } from '~/data/v9/routes';
+---
+
 <!-- Handoff about.html: start. Native Astro markup; shared document shell is V9Layout. -->
 <section class="start g-paper" id="start">
   <div class="wrap">
     <div class="start-head">
-      <div class="eyebrow" style="justify-content:center"><span class="tick">\</span> Get started</div>
-      <h2 style="--d:60ms">Two doors. Same room.</h2>
+      <div class="eyebrow" style="justify-content:center" data-v9-reveal><span class="tick">\</span> Get started</div>
+      <h2 style="--d:60ms" data-v9-reveal>Two doors. Same room.</h2>
     </div>
-    <p class="lead" style="--d:120ms">
+    <p class="lead" style="--d:120ms" data-v9-reveal>
       You’re hiring, or you’re looking. Our whole job is putting the two who should meet into one conversation.
     </p>
     <div class="ab-doors">
-      <div class="ab-door" style="--d:120ms">
+      <div class="ab-door" style="--d:120ms" data-v9-reveal>
         <span class="ql">If you’re hiring</span><h3>Three names you’d take any of.</h3><p>
           Each one interviewed by someone who has done the job, scored against your bar, with the reason behind every
           rank.
-        </p><a class="btn btn-primary" href="/__v9/home#start">Start with one role</a>
+        </p><a class="btn btn-primary" href={v9Href('/__v9/home#start', Astro.url.pathname)}>Start with one role</a>
       </div>
-      <div class="ab-door" style="--d:200ms">
+      <div class="ab-door" style="--d:200ms" data-v9-reveal>
         <span class="ql">If you’re looking</span><h3>One conversation. Then teams come to you.</h3><p>
           30 to 45 minutes with someone who has done your job. Anonymous until you choose a team, and free, always.
-        </p><a class="btn btn-ghost" href="/__v9/candidates#apply">Create your profile</a>
+        </p><a class="btn btn-ghost" href={v9Href('/__v9/candidates#apply', Astro.url.pathname)}>Create your profile</a>
       </div>
     </div>
-    <p class="ab-name">
+    <p class="ab-name" data-v9-reveal>
       <b>Tribe + Era.</b> The group you belong to, and the time you spend building something in it. <em
         >Belong. Build. Become.</em
       >

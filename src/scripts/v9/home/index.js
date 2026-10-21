@@ -1,3 +1,5 @@
+import { initializeHomeDetails } from './motion.js';
+import { initializeHero } from './hero.js';
 import { skills, presets, notes, scoreBrief, normalizedShares, candidateScores, clearCount, stages } from './model.mjs';
 
 const root = document.querySelector('[data-v9-home]');
@@ -8,6 +10,7 @@ function initializeHome(root) {
   const $$ = (selector) => [...root.querySelectorAll(selector)];
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   root.dataset.enhanced = '';
+  initializeHero(root, motion);
   $$('button:disabled, input:disabled').forEach((control) => {
     control.disabled = false;
   });
@@ -27,11 +30,14 @@ function initializeHome(root) {
       clear();
       if (!visible || stopped || document.hidden || motion.matches || element.matches(':hover, :focus-within')) return;
       element.classList.add('auto');
-      timer = setTimeout(() => {
-        step(index++);
-        if (finite && index >= finite) stopped = true;
-        arm();
-      }, interval);
+      timer = setTimeout(
+        () => {
+          step(index++);
+          if (finite && index >= finite) stopped = true;
+          arm();
+        },
+        Array.isArray(interval) ? interval[Math.min(index, interval.length - 1)] : interval
+      );
     };
     const stop = () => {
       stopped = true;
@@ -125,13 +131,27 @@ function initializeHome(root) {
     $('.adj-toggle').setAttribute('aria-expanded', String(expanded));
     $('.adj-ic').textContent = expanded ? '−' : '+';
   });
-  $('.lab-grid').classList.add('play');
   updateScore('brief');
+  const stopScorer = demonstration(
+    $('.lab-grid'),
+    (i) => {
+      const preset = i === 0 ? 'detect' : 'brief';
+      weights = [...presets[preset]];
+      updateScore(preset);
+    },
+    [4200, 3200],
+    2
+  );
+  ['input', 'wheel'].forEach((event) =>
+    $('.lab-grid').parentElement.addEventListener(event, stopScorer, { passive: true })
+  );
 
   // The draggable bar has the same eight fixed candidates as the handoff.
   const bar = $('.bc-bar');
   const chart = $('.bc-svg');
   let threshold = 34;
+  let displayedThreshold = threshold;
+  let barFrame = 0;
   const y = (score) => 190 - (score - 20) * 5.2;
   const describeBar = () => {
     const count = clearCount(threshold);
@@ -141,26 +161,52 @@ function initializeHome(root) {
         ? 'Three clear your bar.'
         : `${words[count]} clear${count === 1 ? 's' : ''} a bar of ${threshold}.${count > 3 ? ' More to interview.' : count < 3 ? ' Fewer to choose from.' : ''}`;
   };
-  const setBar = (value) => {
-    threshold = Math.min(42, Math.max(24, Math.round(value)));
-    bar.setAttribute('transform', `translate(0,${y(threshold)})`);
-    bar.setAttribute('aria-valuenow', String(threshold));
-    bar.setAttribute('aria-valuetext', `Bar at ${threshold}; ${clearCount(threshold)} candidates clear it`);
-    $('.bc-val b').textContent = String(threshold);
+  const paintBar = () => {
+    bar.setAttribute('transform', `translate(0,${y(displayedThreshold)})`);
     $$('.bc-c').forEach((candidate, i) => {
-      const clears = candidateScores[i] >= threshold;
+      const clears = candidateScores[i] >= displayedThreshold - 0.001;
       const cy = y(candidateScores[i]) + (clears ? -10 : 10);
       candidate.classList.toggle('on', clears);
       candidate.style.transform = `translate(${candidate.dataset.x}px,${cy}px)`;
       const stem = $$('.bc-stems line')[i];
       stem.setAttribute('y1', String(cy + (clears ? 8 : -8)));
-      stem.setAttribute('y2', String(y(threshold)));
+      stem.setAttribute('y2', String(y(displayedThreshold)));
     });
-    describeBar();
   };
+  const moveBar = () => {
+    barFrame = 0;
+    const difference = threshold - displayedThreshold;
+    displayedThreshold =
+      Math.abs(difference) < 0.01
+        ? threshold
+        : displayedThreshold + difference * ($('.bc').classList.contains('drag') ? 0.35 : 0.14);
+    paintBar();
+    if (displayedThreshold !== threshold) barFrame = requestAnimationFrame(moveBar);
+  };
+  const settleBar = () => {
+    cancelAnimationFrame(barFrame);
+    barFrame = 0;
+    displayedThreshold = threshold;
+    paintBar();
+  };
+  const setBar = (value, instant = false) => {
+    threshold = Math.min(42, Math.max(24, Math.round(value)));
+    bar.setAttribute('aria-valuenow', String(threshold));
+    bar.setAttribute('aria-valuetext', `Bar at ${threshold}; ${clearCount(threshold)} candidates clear it`);
+    $('.bc-val b').textContent = String(threshold);
+    describeBar();
+    if (instant || motion.matches || document.hidden) settleBar();
+    else if (!barFrame) barFrame = requestAnimationFrame(moveBar);
+  };
+  motion.addEventListener('change', () => {
+    if (motion.matches) settleBar();
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) settleBar();
+  });
   bar.setAttribute('tabindex', '0');
   bar.removeAttribute('aria-disabled');
-  const stopBar = demonstration($('.bc'), (i) => setBar(i === 0 ? 38 : 34), 2300, 2);
+  const stopBar = demonstration($('.bc'), (i) => setBar(i === 0 ? 38 : 34), [2300, 1500], 2);
   const valueAtPointer = (event) => {
     const point = chart.createSVGPoint();
     point.x = event.clientX;
@@ -208,7 +254,7 @@ function initializeHome(root) {
     });
     candidate.addEventListener('pointerleave', describeBar);
   });
-  setBar(34);
+  setBar(34, true);
 
   // The 36-hour ruler is a scroll illustration; all phases remain real document text.
   const clock = $('#clk');
@@ -253,7 +299,14 @@ function initializeHome(root) {
   const tabs = $$('.ear-t');
   const panels = $$('.ear-p');
   let selected = 0;
+  const expertAnimations = new Set();
+  const settleExperts = () => {
+    if (motion.matches || document.hidden) expertAnimations.forEach((animation) => animation.finish());
+  };
+  motion.addEventListener('change', settleExperts);
+  document.addEventListener('visibilitychange', settleExperts);
   const showExpert = (index, focus = false) => {
+    const previous = selected;
     selected = (index + tabs.length) % tabs.length;
     tabs.forEach((tab, i) => {
       tab.classList.toggle('on', i === selected);
@@ -262,6 +315,27 @@ function initializeHome(root) {
       panels[i].hidden = i !== selected;
       panels[i].classList.toggle('on', i === selected);
     });
+    if (previous !== selected && !motion.matches && !document.hidden) {
+      expertAnimations.forEach((animation) => animation.cancel());
+      const animate = (element, frames, options) => {
+        const animation = element.animate(frames, options);
+        expertAnimations.add(animation);
+        animation.finished.finally(() => expertAnimations.delete(animation)).catch(() => {});
+      };
+      animate(
+        panels[selected],
+        [
+          { opacity: 0, transform: 'translateY(6px)' },
+          { opacity: 1, transform: 'none' },
+        ],
+        { duration: 600, easing: 'cubic-bezier(.25,.1,.25,1)' }
+      );
+      animate(
+        panels[selected].querySelector('.ear-thin s'),
+        [{ backgroundSize: '0% 1.5px' }, { backgroundSize: '100% 1.5px' }],
+        { duration: 900, delay: 350, fill: 'backwards', easing: 'cubic-bezier(.25,.1,.25,1)' }
+      );
+    }
     if (focus) tabs[selected].focus({ preventScroll: true });
     // Move only the horizontal strip: scrollIntoView would also jump the document.
     const strip = $('.ear-tabs');
@@ -306,17 +380,31 @@ function initializeHome(root) {
       step.setAttribute('aria-pressed', String(i === index));
     });
   };
-  const stopFunnel = demonstration($('#funnel'), (i) => showStage([1, 2, 3, 4, 0][i]), 900, 5);
+  const peek = (n, stopped = false) => {
+    $('#fnlGrid').classList.add('peek');
+    $$('#fnlGrid .sq').forEach((square) =>
+      square.classList.toggle('co', stopped ? +square.dataset.drop === n : +square.dataset.drop >= n)
+    );
+  };
+  const unpeek = () => {
+    $('#fnlGrid').classList.remove('peek');
+    $$('#fnlGrid .sq').forEach((square) => square.classList.remove('co'));
+    $('#fnlFt').textContent = stages[stage].text;
+  };
+  const stopFunnel = demonstration($('#funnel'), (i) => showStage([1, 2, 3, 4, 0][i]), [800, 760], 5);
   steps.forEach((step, i) => {
     step.setAttribute('role', 'button');
     step.tabIndex = 0;
     const select = () => {
       stopFunnel();
       showStage(i);
+      peek(i + 1);
     };
     step.addEventListener('click', select);
     step.addEventListener('pointerenter', select);
     step.addEventListener('focus', select);
+    step.addEventListener('pointerleave', unpeek);
+    step.addEventListener('blur', unpeek);
     step.addEventListener('keydown', (event) => {
       if (['Enter', ' '].includes(event.key)) {
         event.preventDefault();
@@ -328,6 +416,7 @@ function initializeHome(root) {
     square.addEventListener('pointerenter', () => {
       stopFunnel();
       const dropped = Number(square.dataset.drop);
+      peek(dropped, true);
       const reasons = [
         '86 stopped here: screened out before anyone spent interview time on them.',
         '26 stopped here: interviewed, not taken forward.',
@@ -338,9 +427,7 @@ function initializeHome(root) {
       $('#fnlFt').textContent = reasons[dropped - 1];
     })
   );
-  $('#fnlGrid').addEventListener('pointerleave', () => {
-    $('#fnlFt').textContent = stages[stage].text;
-  });
+  $('#fnlGrid').addEventListener('pointerleave', unpeek);
   showStage(0);
 
   // Native FAQ disclosures retain every answer without scripts; only enhanced phones shorten the list.
@@ -408,6 +495,8 @@ function initializeHome(root) {
   measureTrack();
   drift.tabIndex = 0;
 
+  initializeHomeDetails(root, motion);
+
   const animations = new Set();
   const settle = () => {
     if (motion.matches || document.hidden) animations.forEach((animation) => animation.finish());
@@ -419,12 +508,14 @@ function initializeHome(root) {
         arrivals.unobserve(entry.target);
         entry.target.classList.add('in', 'rv-done');
         if (motion.matches || document.hidden) return;
+        const heroArrival = Boolean(entry.target.closest('.hero-c'));
+        const delay = parseFloat(getComputedStyle(entry.target).getPropertyValue('--d')) || 0;
         const animation = entry.target.animate(
           [
-            { opacity: 0, transform: 'translateY(8px)' },
+            { opacity: 0, transform: `translateY(${heroArrival ? 14 : 8}px)` },
             { opacity: 1, transform: 'none' },
           ],
-          { duration: 700, easing: 'cubic-bezier(.25,.1,.25,1)' }
+          { duration: 700, delay, fill: 'backwards', easing: 'cubic-bezier(.25,.1,.25,1)' }
         );
         animations.add(animation);
         animation.finished.then(() => animations.delete(animation)).catch(() => animations.delete(animation));

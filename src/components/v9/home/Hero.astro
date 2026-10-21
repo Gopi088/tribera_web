@@ -1,3 +1,7 @@
+---
+import { v9Href } from '~/data/v9/routes';
+---
+
 <header class="hero-c g-white" id="home-top">
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-field" aria-hidden="true">
@@ -2109,7 +2113,11 @@
           <span class="h1-a">Every candidate you meet</span><br class="h1-br" />
           <span class="i"
             >is one you could <span class="hd-word"
-              >hire.<svg class="hd-underline hd-ink" viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true"
+              >hire.<svg
+                class="hd-underline hd-ink drawn"
+                viewBox="0 0 120 12"
+                preserveAspectRatio="none"
+                aria-hidden="true"
                 ><path d="M3,8 Q34,3.5 62,6.5 Q92,9 117,5 Q92,11.2 62,9.2 Q34,6.4 3,8.7 Z"></path></svg
               ></span
             ></span
@@ -2890,7 +2898,7 @@
             </div><div class="hc-right"><span class="hc-pill hc-rej">Reject</span><span class="hc-val">24</span></div>
           </div>
         </div>
-        <a class="hc-sample" href="/__v9/sample-write-up"
+        <a class="hc-sample" href={v9Href('/__v9/sample-write-up', Astro.url.pathname)}
           >Each of the three comes with a write-up. <b>Request a sample&nbsp;›</b></a
         >
       </aside>

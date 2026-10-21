@@ -1,54 +1,41 @@
-<!-- Handoff blog/seventeen-interviews-one-hire.html: related. Native Astro markup; shared document shell is V9Layout. -->
+---
+import { fetchPosts } from '~/utils/blog';
+const published = await fetchPosts();
+const slugs = [
+  'blog/designing-ai-for-high-stakes-technical-assessment',
+  'blog/why-tech-hiring-really-takes-so-long',
+  'blog/rethinking-hiring-metrics-signal-efficiency',
+];
+const related = slugs
+  .map((slug) => published.find((post) => post.permalink === slug))
+  .filter((post) => post !== undefined);
+---
+
 <section class="g-paper" id="related">
   <div class="wrap">
-    <div class="eyebrow"><span class="tick">\</span> Keep reading</div>
-    <h2 style="--d:60ms">Three more from real searches.</h2>
+    <div class="eyebrow" data-v9-reveal><span class="tick">\</span> Keep reading</div>
+    <h2 style="--d:60ms" data-v9-reveal>More from our field notes.</h2>
     <div class="bl-rel">
-      <a class="bt" href="/blog"
-        ><div class="cv cv--m cv--d" aria-hidden="true">
-          <span class="cv-no">No. 09</span><b class="cv-n">2.3M</b><span class="cv-c"
-            >AI job openings expected in India by 2027</span
-          ><span class="cv-f"
-            ><i style="--o:0.5;--k:0"></i><i style="--o:0.14;--k:1"></i><i style="--o:0.3;--k:2"></i><i
-              style="--o:0.08;--k:3"></i><i style="--o:0.22;--k:4"></i><i style="--o:0.4;--k:5"></i><i
-              style="--o:0.1;--k:6"></i><i style="--o:0.18;--k:7"></i><i style="--o:0.06;--k:8"></i><i
-              style="--o:0.34;--k:9"></i><i style="--o:0.12;--k:10"></i><i style="--o:0.26;--k:11"></i></span
-          >
-        </div><span class="ql">AI and assessment · Abhishek</span><h3>
-          Every CV says AI now. Ask what they measured after it shipped.
-        </h3><p>
-          Demand for AI skills is running well ahead of the people who have them. That makes the claim cheap and the
-          proof expensive.
-        </p><em>Aug 27, 2026 · 2 min read</em></a
-      ><a class="bt" href="/blog"
-        ><div class="cv cv--m cv--p" aria-hidden="true">
-          <span class="cv-no">No. 08</span><b class="cv-n">2,117</b><span class="cv-c">capability centres in India</span
-          ><span class="cv-f"
-            ><i style="--o:0.5;--k:0"></i><i style="--o:0.14;--k:1"></i><i style="--o:0.3;--k:2"></i><i
-              style="--o:0.08;--k:3"></i><i style="--o:0.22;--k:4"></i><i style="--o:0.4;--k:5"></i><i
-              style="--o:0.1;--k:6"></i><i style="--o:0.18;--k:7"></i><i style="--o:0.06;--k:8"></i><i
-              style="--o:0.34;--k:9"></i><i style="--o:0.12;--k:10"></i><i style="--o:0.26;--k:11"></i></span
-          >
-        </div><span class="ql">GCC hiring · Pranav</span><h3>
-          The hard hire in a capability centre is the person who runs it.
-        </h3><p>
-          India’s GCCs have reached their 2030 headcount four years early. The roles still open are the ones a job
-          description describes worst.
-        </p><em>Jun 9, 2026 · 3 min read</em></a
-      ><a class="bt" href="/blog/rethinking-hiring-metrics-signal-efficiency"
-        ><div class="cv cv--m cv--d" aria-hidden="true">
-          <span class="cv-no">No. 07</span><b class="cv-n">4:12</b><span class="cv-c"
-            >interviews, in the same forty days</span
-          ><span class="cv-f"
-            ><i style="--o:0.5;--k:0"></i><i style="--o:0.14;--k:1"></i><i style="--o:0.3;--k:2"></i><i
-              style="--o:0.08;--k:3"></i><i style="--o:0.22;--k:4"></i><i style="--o:0.4;--k:5"></i><i
-              style="--o:0.1;--k:6"></i><i style="--o:0.18;--k:7"></i><i style="--o:0.06;--k:8"></i><i
-              style="--o:0.34;--k:9"></i><i style="--o:0.12;--k:10"></i><i style="--o:0.26;--k:11"></i></span
-          >
-        </div><span class="ql">Hiring strategy · Akshata</span><h3>The quietest number on your hiring dashboard.</h3><p>
-          Time-to-hire tells you how fast a search moved. Interview-to-hire tells you whether it was aimed.
-        </p><em>Feb 15, 2026 · 4 min read</em></a
-      >
+      {
+        related.map((post) => (
+          <a class="bt" href={`/${post.permalink}`} data-v9-reveal>
+            <span class="ql">{post.category?.title || 'Field notes'}</span>
+            <h3>{post.title}</h3>
+            <p>{post.excerpt}</p>
+            <em>
+              <time datetime={post.publishDate.toISOString()}>
+                {post.publishDate.toLocaleDateString('en-GB', {
+                  timeZone: 'UTC',
+                  day: 'numeric',
+                  month: 'short',
+                  year: 'numeric',
+                })}
+              </time>{' '}
+              · {post.readingTime} read
+            </em>
+          </a>
+        ))
+      }
     </div>
   </div>
 </section>

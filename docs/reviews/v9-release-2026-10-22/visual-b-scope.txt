@@ -1,0 +1,35 @@
+Independent read-only VISUAL review packet B of the current local v9 site. Actual screenshot inspection is REQUIRED: use Read to open PNGs below. Do not substitute source reading for viewing. First-viewport and section crops are at readable scale; very tall full-page images downscale, so use full pages for section order/whitespace only and crops to support text/legibility findings. You may inspect the manifest artifacts/v9-release-2026-10-22/initial/manifest.json and additional section PNGs in the same directory. Check visual hierarchy, typography, spacing/word collisions, card layouts, chart legibility, hidden/clipped text, empty/dark/light sections, field/action clarity and consistent v9 styling. For packet B focus on journal index/articles/topic pages and for packet C focus on core v9 and legal presentation. Distinguish confirmed defects from optional polish. Include route/width/region and specific evidence for each issue. Explicitly list images you actually inspected and all coverage limits. Return ACCEPT or REVISE for this bounded visual scope. Do not make legal, business, performance, delivery or whole-release acceptance claims. Never edit, run commands, spawn agents, submit forms, access network or deploy. Tools Read/Glob/Grep only.
+
+Known content items are scheduled as the NEXT step: new article missing from index, misleading related-card destinations, About word collision, repeated Careers text, inconsistent sample/subscription labels. Report confirmed observations, but separate them from newly discovered migration defects. The owner specifically requested that existing numerical/timing/anonymity business claims remain AS IS and that New Jersey be DROPPED; do not request evidence or change those instructions. Existing policy bodies are intentionally preserved and their substance is not under review.
+
+Images:
+artifacts/v9-release-2026-10-22/initial/_blog-390-top.png
+artifacts/v9-release-2026-10-22/initial/_blog-390-full.png
+artifacts/v9-release-2026-10-22/initial/_blog-1366-top.png
+artifacts/v9-release-2026-10-22/initial/_blog-1366-full.png
+artifacts/v9-release-2026-10-22/initial/_blog_rethinking-hiring-metrics-signal-efficiency-390-top.png
+artifacts/v9-release-2026-10-22/initial/_blog_rethinking-hiring-metrics-signal-efficiency-390-section-2.png
+artifacts/v9-release-2026-10-22/initial/_blog_rethinking-hiring-metrics-signal-efficiency-390-section-4.png
+artifacts/v9-release-2026-10-22/initial/_blog_rethinking-hiring-metrics-signal-efficiency-390-section-6.png
+artifacts/v9-release-2026-10-22/initial/_blog_rethinking-hiring-metrics-signal-efficiency-390-full.png
+artifacts/v9-release-2026-10-22/initial/_blog_rethinking-hiring-metrics-signal-efficiency-1366-top.png
+artifacts/v9-release-2026-10-22/initial/_blog_rethinking-hiring-metrics-signal-efficiency-1366-section-2.png
+artifacts/v9-release-2026-10-22/initial/_blog_rethinking-hiring-metrics-signal-efficiency-1366-section-4.png
+artifacts/v9-release-2026-10-22/initial/_blog_rethinking-hiring-metrics-signal-efficiency-1366-section-6.png
+artifacts/v9-release-2026-10-22/initial/_blog_rethinking-hiring-metrics-signal-efficiency-1366-full.png
+artifacts/v9-release-2026-10-22/initial/_blog_designing-for-trust-privacy-transparency-respect-390-top.png
+artifacts/v9-release-2026-10-22/initial/_blog_designing-for-trust-privacy-transparency-respect-390-full.png
+artifacts/v9-release-2026-10-22/initial/_blog_designing-for-trust-privacy-transparency-respect-1366-top.png
+artifacts/v9-release-2026-10-22/initial/_blog_designing-for-trust-privacy-transparency-respect-1366-full.png
+artifacts/v9-release-2026-10-22/initial/_blog_seventeen-interviews-one-hire-390-top.png
+artifacts/v9-release-2026-10-22/initial/_blog_seventeen-interviews-one-hire-390-full.png
+artifacts/v9-release-2026-10-22/initial/_blog_seventeen-interviews-one-hire-1366-top.png
+artifacts/v9-release-2026-10-22/initial/_blog_seventeen-interviews-one-hire-1366-full.png
+artifacts/v9-release-2026-10-22/initial/_category_ai-and-assessment-390-top.png
+artifacts/v9-release-2026-10-22/initial/_category_ai-and-assessment-390-full.png
+artifacts/v9-release-2026-10-22/initial/_category_ai-and-assessment-1366-top.png
+artifacts/v9-release-2026-10-22/initial/_category_ai-and-assessment-1366-full.png
+artifacts/v9-release-2026-10-22/initial/_tag_ai-in-hiring-390-top.png
+artifacts/v9-release-2026-10-22/initial/_tag_ai-in-hiring-390-full.png
+artifacts/v9-release-2026-10-22/initial/_tag_ai-in-hiring-1366-top.png
+artifacts/v9-release-2026-10-22/initial/_tag_ai-in-hiring-1366-full.png

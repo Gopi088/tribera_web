@@ -1,3 +1,7 @@
+---
+import { v9Href } from '~/data/v9/routes';
+---
+
 <!-- Handoff industries/banking-financial-services.html: sources. Native Astro markup; shared document shell is V9Layout. -->
 <section class="g-white fn-sec" id="sources">
   <div class="wrap">
@@ -12,7 +16,7 @@
             ></span
           >
         </li>
-      </ol><a class="link" href="/__v9/about">How we work with numbers ›</a>
+      </ol><a class="link" href={v9Href('/__v9/about', Astro.url.pathname)}>How we work with numbers ›</a>
     </div>
   </div>
 </section>

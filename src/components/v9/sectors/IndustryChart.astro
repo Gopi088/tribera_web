@@ -1,0 +1,84 @@
+---
+import { sectors, skills, sectorValues } from '../../../data/v9/sectors';
+const selected = sectors[0];
+const values = sectorValues(selected);
+const top = values.indexOf(Math.max(...values));
+const points = (values: number[]) => values.map((value, i) => `${60 + i * 176},${300 - (value / 35) * 300}`).join(' ');
+---
+
+<div class="ii-ov" id="iiOv" data-v9-reveal style="--d:120ms" role="tabpanel" aria-labelledby="industry-tab-0">
+  <div class="ii-ov-y" aria-hidden="true">
+    {[10, 20, 30].map((n) => <span style={`bottom:${(n / 35) * 100}%`}>{n}%</span>)}
+  </div>
+  <svg viewBox="0 0 1000 300" preserveAspectRatio="none" role="img" aria-labelledby="industry-chart-title">
+    <title id="industry-chart-title">Skill weights across twelve sectors. Exact percentages follow below.</title>
+    {
+      [10, 20, 30].map((n) => (
+        <line x1="0" x2="1000" y1={300 - (n / 35) * 300} y2={300 - (n / 35) * 300} stroke="rgba(255,255,255,.08)" />
+      ))
+    }
+    {
+      sectors.map((sector, i) => (
+        <polyline
+          class:list={['ii-line', { on: i === 0 }]}
+          data-s={sector.slug}
+          points={points(sectorValues(sector))}
+          fill="none"
+          vector-effect="non-scaling-stroke"
+        />
+      ))
+    }
+  </svg>
+  <div class="ii-ov-x" aria-hidden="true">
+    {
+      skills.map((skill, i) => (
+        <span style={`left:${6 + i * 17.6}%`} data-s={['Core', 'Systems', 'Controls', 'Speed', 'Docs', 'People'][i]}>
+          {skill}
+        </span>
+      ))
+    }
+  </div>
+  <p class="ii-ov-read" id="iiRead" aria-live="polite">
+    <b>{selected.name}</b>: {skills[top]} carries {values[top]}%.
+  </p>
+</div>
+<div class="ii-keys" id="iiKeys" role="tablist" aria-label="Highlight a sector">
+  {
+    sectors.map((sector, i) => (
+      <button
+        hidden
+        class="ii-k"
+        type="button"
+        role="tab"
+        id={`industry-tab-${i}`}
+        aria-controls="iiOv"
+        aria-selected={i === 0 ? 'true' : 'false'}
+        tabindex={i === 0 ? 0 : -1}
+        data-s={sector.slug}
+      >
+        {sector.name}
+      </button>
+    ))
+  }
+</div>
+<p class="sector-values" id="industry-values">{skills.map((skill, i) => `${skill} ${values[i]}%`).join(' · ')}</p>
+<noscript>
+  <div class="sector-table-wrap">
+    <table class="sector-table">
+      <caption>All sector weights, in percent</caption>
+      <thead><tr><th scope="col">Sector</th>{skills.map((skill) => <th scope="col">{skill}</th>)}</tr></thead>
+      <tbody
+        >{
+          sectors.map((sector) => (
+            <tr>
+              <th scope="row">{sector.name}</th>
+              {sectorValues(sector).map((value) => (
+                <td>{value}%</td>
+              ))}
+            </tr>
+          ))
+        }</tbody
+      >
+    </table>
+  </div>
+</noscript>

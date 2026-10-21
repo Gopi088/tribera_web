@@ -1,0 +1,18 @@
+---
+import V9Layout from '../../../layouts/V9Layout.astro';
+import IndustriesPage from '../../../components/v9/sectors/IndustriesPage.astro';
+import { previewLinks } from '../../../data/v9/preview-links';
+export function getStaticPaths() {
+  return import.meta.env.DEV || process.env.V9_PREVIEW === '1' ? [{ params: { preview: '__v9' } }] : [];
+}
+---
+
+<V9Layout
+  title="Hiring by industry: 12 sectors, 12 scorecards | Tribera"
+  description="Twelve sectors, the same six skills, and a different hiring bar for each."
+  noindex
+  headerLinkOverrides={previewLinks}
+  footerLinkOverrides={previewLinks}
+>
+  <IndustriesPage />
+</V9Layout>

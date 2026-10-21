@@ -1,6 +1,6 @@
 # Private Services migration
 
-`ServicesPage.astro` composes nine native Astro sections under the accepted `V9Layout`. `/__v9/services` is generated only in development or with `V9_PREVIEW=1`, always noindex; public Services remains unchanged.
+`ServicesPage.astro` composes nine native Astro sections under the accepted `V9Layout`. `/__v9/services` is generated only in development or with `V9_PREVIEW=1`, always noindex; public `/services` uses the same components and public navigation.
 
 `handoff.css` retains the ordered final Services handoff cascade for selectors used by this page, scoped with `:where(.v9-services)`. The shared shell and client strip use accepted components. Fonts use the pinned v9 families; the original vector fields remain inline SVG. The founder portrait is extracted byte-for-byte from the source JPEG. The source ink filter has a page-specific ID.
 
@@ -8,7 +8,7 @@ All twelve offerings, four primary tickets, nine problem recommendations, pricin
 
 Intentional changes:
 
-- Recommendations are manual rather than automatically advancing while someone is reading. Decorative arrival/count/stamp animations are completed immediately; reduced motion disables page animation and transitions. No essential information depends on animation or JavaScript.
+- Recommendations preview the first four choices while visible, with permanent manual takeover. Hero sweep/parallax, section arrivals, underline drawing, tile/stamp entrances, the 327 count-up and destination highlights follow the handoff. Native disclosures animate opening and closing; reduced motion disables page animation and transitions. No essential information depends on animation or JavaScript.
 - The sample write-up CTA says “request a sample write-up” and links to `/contact?intent=sample-write-up`. Other contact links retain the supplied service query. The legacy contact form does not yet capture the complete handoff context; that is a later migration batch.
 - Case-study and Home links use private preview routes. Header/footer mappings are owned by the integration coordinator.
 - Native disclosure semantics replace script-only buttons and hidden answers. Focus outlines include summaries. All recommendations are exposed as a readable sequence without JavaScript rather than an empty result panel.

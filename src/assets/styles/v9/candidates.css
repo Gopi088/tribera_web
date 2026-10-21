@@ -2603,3 +2603,143 @@
   outline-offset: 2px;
   border-radius: 6px;
 }
+
+/* Final handoff candidates.html:1232–1243,1352–1360,1780–1797.
+   Complete static HTML is the baseline; motion starts only after enhancement. */
+.v9-candidates .hero-field > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.v9-candidates .fmark {
+  display: grid;
+  grid-template-columns: repeat(12, 10px);
+  gap: 6px;
+  width: max-content;
+  margin: 30px auto 0;
+}
+.v9-candidates .fmark i {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2.5px;
+  background: rgba(19, 19, 19, var(--o, 0.1));
+}
+.v9-candidates .fmark i.r {
+  background: var(--red);
+}
+.v9-candidates[data-decorative-running] .hero-cue-ln i {
+  animation: candidate-cue 4.2s cubic-bezier(0.65, 0, 0.35, 1) 1.2s infinite;
+}
+@keyframes candidate-cue {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.7);
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, 30px) scale(1);
+  }
+  86% {
+    opacity: 0;
+    transform: translate(-50%, 32px) scale(0.9);
+  }
+}
+
+.v9-candidates .tm-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.1rem;
+}
+.v9-candidates .tm-pause {
+  background: none;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0 0 2px;
+  font: 500 0.86rem var(--body);
+  color: var(--pw);
+  cursor: pointer;
+}
+.v9-candidates .tm-pause:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 5px;
+}
+.v9-candidates .tm-drift {
+  margin-top: clamp(30px, 4vw, 48px);
+}
+@media (min-width: 821px) and (prefers-reduced-motion: no-preference) {
+  .v9-candidates section.tm {
+    overflow-x: clip;
+  }
+  .v9-candidates .tm-drift[data-enhanced] {
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  }
+  .v9-candidates .tm-drift[data-enhanced] .tm-track {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+    padding-left: max(16px, calc(50vw - 600px));
+    animation: candidate-drift var(--dur, 60s) linear infinite;
+    animation-play-state: paused;
+  }
+  .v9-candidates .tm-drift[data-running] .tm-track {
+    animation-play-state: running;
+  }
+  .v9-candidates .tm-drift:hover .tm-track,
+  .v9-candidates .tm-drift:focus-within .tm-track {
+    animation-play-state: paused;
+  }
+  .v9-candidates .tm-drift[data-enhanced] .v9-testimonial {
+    width: clamp(300px, 29vw, 372px);
+    flex: none;
+  }
+}
+@keyframes candidate-drift {
+  to {
+    transform: translateX(calc(-1 * var(--shift)));
+  }
+}
+@media (max-width: 820px) and (prefers-reduced-motion: no-preference) {
+  .v9-candidates .tm-drift[data-enhanced] {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  .v9-candidates .tm-drift[data-enhanced] .tm-track {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+  }
+  .v9-candidates .tm-drift[data-enhanced] .v9-testimonial {
+    width: min(84vw, 360px);
+    flex: none;
+    scroll-snap-align: start;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v9-candidates .hero-cue .hero-cue-ln i {
+    animation: none;
+    transform: translate(-50%, 30px);
+  }
+  .v9-candidates .tm-track {
+    animation: none;
+    transform: none;
+  }
+}
+.v9-candidates .candidate-demo-label {
+  margin: 24px 0 12px;
+  font: 400 0.75rem/1.6 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #fff;
+}

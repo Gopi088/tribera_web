@@ -1,0 +1,74 @@
+{
+  "duration_api_ms": 31938,
+  "stop_reason": "end_turn",
+  "session_id": "483b5a42-c84d-4593-b772-74218d934a46",
+  "total_cost_usd": 0.20056580000000002,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 26044,
+    "cache_read_input_tokens": 333779,
+    "output_tokens": 2961,
+    "output_tokens_details": { "thinking_tokens": 197 },
+    "server_tool_use": { "web_search_requests": 0, "web_fetch_requests": 0 },
+    "service_tier": "standard",
+    "cache_creation": { "ephemeral_1h_input_tokens": 26044, "ephemeral_5m_input_tokens": 0 },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 1479,
+        "cache_read_input_tokens": 75523,
+        "cache_creation_input_tokens": 1601,
+        "cache_creation": { "ephemeral_5m_input_tokens": 0, "ephemeral_1h_input_tokens": 1601 },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-5": {
+      "inputTokens": 12,
+      "outputTokens": 2961,
+      "cacheReadInputTokens": 333779,
+      "cacheCreationInputTokens": 26044,
+      "webSearchRequests": 0,
+      "costUSD": 0.20056580000000002,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 197,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": { "background": 0, "foreground": 0, "unset": 0 },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": { "parent": 0, "user": 0, "system": 0 },
+    "refused": { "depth_limit": 0, "concurrency_limit": 0, "budget": 0 },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 18,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "## Review: ACCEPT\n\n**Scope:** Local, read-only inspection of shared v9 header/footer components, legal page layout/dates, and DPA content changes. Not a legal, accessibility, or full-release review.\n\n### Findings\n\n**1. Shared header/footer implementation — consistent**\n- `widgets/Header.astro` and `widgets/Footer.astro` both wrap the single `v9/Header.astro` / `v9/Footer.astro` components with `isolated` + `linkOverrides={publicLinks}`, so legal/public pages render the same markup as the rest of the v9 site rather than a divergent copy.\n- `publicLinks` (`src/data/v9/preview-links.ts`) maps `/dpa` to itself (a real route) while other nav destinations route to `__v9/*` preview paths — intentional and consistent with the \"private preview\" pattern already used elsewhere.\n- `shared-chrome.css` only sets `isolated`-scoped font sizing/box-sizing resets to decouple legal pages from legacy global resets — doesn't touch layout/color, so visual identity with the main site chrome is preserved.\n\n**2. Visual consistency — confirmed by screenshots and result.json**\n- `_-1920-header.png` vs `_blog-1920-header.png`: identical nav layout, labels, spacing, logo.\n- `_-1920-footer.png` vs `_blog-1920-footer.png`: identical columns, ordering, and footer bar; both include the `Legal` column (`Security`, `Terms`, `Privacy`, `Data processing`).\n- `result.json`: `\"status\": \"passed\"`, 81 static pages checked, zero `errors`. `/privacy`, `/security`, `/terms`, `/dpa` all report `status: \"passed\"` with the same font/size/background values as `/` at all three measured widths (390/1366/1920) — no outlier styling on legal routes.\n\n**3. Date semantics — clear and non-misleading**\n- `MarkdownLayout.astro` renders `pageUpdated` (formatted, with a `<time datetime>`) and, separately, `policyUpdated` as a distinct \"Content last revised\" line — not merged or overwritten.\n- `privacy.md`: `pageUpdated: 2026-10-21`, `policyUpdated: 'July 27, 2025'`. The `privacy-390.png` screenshot confirms both lines render distinctly: \"Page updated: 21 October 2026\" and \"Content last revised: July 27, 2025.\" This correctly distinguishes a template/chrome refresh date from the actual last substantive policy revision — matches the stated intent.\n- `dpa.md` only sets `pageUpdated` (no `policyUpdated`), consistent with it being a new contact-style page rather than a dated legal policy.\n\n**4. /dpa is not a misleading Privacy alias**\n- Content is a genuine \"Request data-processing terms\" page: directs to `/contact?topic=data-processing` or an email, then separately links out to the real Privacy/Security/Terms pages for policy content. No agreement text or implied legal commitment is presented as already in effect.\n- `dpa-390.png` confirms this rendered content matches the source markdown, with correct header/footer chrome and `robots: noindex, follow` appropriate for a private/preview-style page.\n\n### Limitations\n- No code changes made; this is presentation/navigation-only, not a correctness or accessibility audit.\n- Did not verify the \"supplied replacement legal HTML\" (unpublished draft) — out of scope since it was not applied to any file reviewed.\n- Did not check desktop vs. mobile breakpoints beyond the four screenshots provided, nor cross-browser rendering (only `chromium` artifacts available).\n- Not a legal/factual review of policy wording — only confirmed existing Privacy/Terms/Security text was structurally preserved, not its substantive accuracy.\n- Did not verify live/deployed behavior — this reviewed only local source and pre-generated artifacts.",
+  "ttft_ms": 1993,
+  "type": "result",
+  "duration_ms": 32941,
+  "uuid": "53a95aa7-1f34-4c2c-ac0a-af6611bdd68d",
+  "ttft_stream_ms": 1717,
+  "time_to_request_ms": 682,
+  "first_content_frame_ms": 1718,
+  "queued_turn_count": 0,
+  "result_index": 0
+}

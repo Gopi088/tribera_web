@@ -1,0 +1,30 @@
+
+> tribera-website@1.0.0-beta.52 test:migration:sectors
+> node scripts/test-v9-sectors.mjs
+
+Running tests/v9-sectors.test.mjs against http://127.0.0.1:4391
+{
+  "status": "failed",
+  "checks": 2,
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: industries/banking-financial-services\n\n304 !== 200\n\n    at file:///home/abhispra/mvp/website_latest/tribera/tests/v9-sectors.test.mjs:53:12"
+  ]
+}
+node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: tests/v9-sectors.test.mjs failed (1)
+
+1 !== 0
+
+    at file:///home/abhispra/mvp/website_latest/tribera/scripts/test-v9-sectors.mjs:90:12
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 0,
+  operator: 'strictEqual'
+}
+
+Node.js v22.15.0

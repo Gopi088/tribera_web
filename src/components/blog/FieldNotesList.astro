@@ -2,30 +2,34 @@
 import type { Post } from '~/types';
 interface Props {
   posts: Post[];
+  showFilters?: boolean;
 }
-const { posts } = Astro.props;
+const { posts, showFilters = true } = Astro.props;
 const categories = ['All', ...new Set(posts.map((post) => post.category?.title || 'Field notes'))];
 ---
 
-<div class="fbar" role="group" aria-label="Filter field notes">
-  {
-    categories.map((category) => (
-      <button
-        type="button"
-        class:list={['fchip', { on: category === 'All' }]}
-        data-c={category}
-        aria-pressed={category === 'All'}
-      >
-        {category}{' '}
-        <span>
-          {category === 'All'
-            ? posts.length
-            : posts.filter((post) => (post.category?.title || 'Field notes') === category).length}
-        </span>
-      </button>
-    ))
-  }
-</div>
+{
+  showFilters && (
+    <div class="fbar" role="group" aria-label="Filter field notes">
+      {categories.map((category) => (
+        <button
+          type="button"
+          disabled
+          class:list={['fchip', { on: category === 'All' }]}
+          data-c={category}
+          aria-pressed={category === 'All'}
+        >
+          {category}{' '}
+          <span>
+            {category === 'All'
+              ? posts.length
+              : posts.filter((post) => (post.category?.title || 'Field notes') === category).length}
+          </span>
+        </button>
+      ))}
+    </div>
+  )
+}
 <div class="posts" id="posts">
   {
     posts.map((post) => (
@@ -33,7 +37,12 @@ const categories = ['All', ...new Set(posts.map((post) => post.category?.title |
         <span class="post__meta">
           <>
             <span class="post__d">
-              {post.publishDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+              {post.publishDate.toLocaleDateString('en-GB', {
+                timeZone: 'UTC',
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+              })}
             </span>
             <span class="post__cat">{post.category?.title || 'Field notes'}</span>
           </>

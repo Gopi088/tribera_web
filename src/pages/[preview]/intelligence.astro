@@ -1,0 +1,18 @@
+---
+import V9Layout from '../../layouts/V9Layout.astro';
+import IntelligencePage from '../../components/v9/sectors/IntelligencePage.astro';
+import { previewLinks } from '../../data/v9/preview-links';
+export function getStaticPaths() {
+  return import.meta.env.DEV || process.env.V9_PREVIEW === '1' ? [{ params: { preview: '__v9' } }] : [];
+}
+---
+
+<V9Layout
+  title="Talent intelligence: the hardest skills to hire | Tribera"
+  description="Explore cited market research and an illustrative preview of skill scarcity across eight functions."
+  noindex
+  headerLinkOverrides={previewLinks}
+  footerLinkOverrides={previewLinks}
+>
+  <IntelligencePage />
+</V9Layout>

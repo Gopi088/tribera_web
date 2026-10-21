@@ -29,15 +29,18 @@ const controls = [
 
 <section class="g-dark" id="controls">
   <div class="wrap">
-    <div class="eyebrow"><span class="tick">\</span> 04 · Your controls</div><h2>
-      Your current employer can't see you.
-    </h2><p class="lead">Most people look while they're employed. Try these illustrative switches.</p><p
-      class="candidate-demo-note"
-      id="candidate-privacy-note"
+    <div class="eyebrow" data-v9-reveal><span class="tick">\</span> 04 · Your controls</div><h2
+      data-v9-reveal
+      style="--d:60ms"
     >
+      Your current employer can't see you.
+    </h2><p class="lead" style="--d:120ms" data-v9-reveal>
+      Most people look while they're employed. Try these illustrative switches.
+    </p><p class="candidate-demo-note" id="candidate-privacy-note">
       Demo only: these switches do not change an account, block an employer, or publish a profile. Nothing is saved.
     </p>
-    <div class="sws">
+    <p class="ql candidate-demo-label">Example controls</p>
+    <div class="sws" aria-label="Example privacy controls" style="--d:150ms" data-v9-reveal>
       {
         controls.map((c, i) => (
           <div class="sw-row">
@@ -70,7 +73,7 @@ const controls = [
         ))
       }
     </div>
-    <p class="decide decide--d">
+    <p class="decide decide--d" data-v9-reveal>
       <b>Free for you, always.</b> Companies pay us when they hire. We ask for your consent before anything is evaluated,
       your data stays in India, and you can ask for all of it back, or deleted, at any time.
     </p>

@@ -1099,3 +1099,7 @@
     navigation: none;
   }
 }
+.v9-editorial-article .qs-form > .qs-note {
+  display: block;
+  margin-bottom: 20px;
+}

@@ -1,15 +1,132 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
-import Candidates from '~/components/candidates/Candidates.astro';
-
-const metadata = {
-  title: 'tribera · interviewed once, shortlisted everywhere',
-  description:
-    'One thirty-minute conversation with a senior expert who has done your job. Scored, recorded, and read by every team that asks for you. Anonymous until you say otherwise.',
-  ignoreTitleTemplate: true,
-};
+import V9Layout from '../layouts/V9Layout.astro';
+import { publicLinks } from '../data/v9/preview-links';
+import ClientStrip from '../components/v9/ClientStrip.astro';
+import Testimonial from '../components/v9/Testimonial.astro';
+import CandidateHero from '../components/v9/candidates/CandidateHero.astro';
+import CandidateScorer from '../components/v9/candidates/CandidateScorer.astro';
+import CandidateQuestions from '../components/v9/candidates/CandidateQuestions.astro';
+import CandidateTeamChecks from '../components/v9/candidates/CandidateTeamChecks.astro';
+import CandidatePrivacy from '../components/v9/candidates/CandidatePrivacy.astro';
+import CandidateTimeline from '../components/v9/candidates/CandidateTimeline.astro';
+import CandidateUpload from '../components/v9/candidates/CandidateUpload.astro';
+import demo from '../data/v9/candidate-demo.json';
+import testimonials from '../../sample_data/tribera-web-handoff-v9/data/testimonials.json';
+import '../assets/styles/v9/candidates.css';
+import '../assets/styles/v9/candidates-faq.css';
 ---
 
-<Layout metadata={metadata}>
-  <Candidates />
-</Layout>
+<V9Layout
+  title="Interviewed once, shortlisted everywhere | Tribera"
+  description="One 30 to 45-minute conversation with someone who has done your job. Teams read it before they ask for you. Free and anonymous."
+  audience="candidate"
+  activeRoute="/candidates"
+  cta={{ label: 'Create your profile', href: '#apply' }}
+  headerLinkOverrides={publicLinks}
+  footerLinkOverrides={publicLinks}
+>
+  <div class="v9-candidates" data-v9-candidates>
+    <CandidateHero />
+    <ClientStrip label="Teams hiring through us" />
+    <CandidateScorer />
+    <CandidateQuestions />
+    <CandidateTeamChecks />
+    <CandidatePrivacy />
+    <CandidateTimeline />
+    <section class="tm g-dark" id="results">
+      <div class="wrap">
+        <div class="eyebrow" data-v9-reveal><span class="tick">\</span> 06 · In their words</div><h2
+          data-v9-reveal
+          style="--d:60ms"
+        >
+          From people who have been through it.
+        </h2><div class="tm-drift" data-candidate-drift data-v9-reveal style="--d:120ms">
+          <div class="v9-testimonials-grid tm-track">
+            {
+              testimonials.testimonials
+                .filter((item) => item.side === 'candidate')
+                .map((item) => <Testimonial {...item} side="candidate" />)
+            }
+          </div>
+        </div><div class="tm-foot">
+          <p class="tm-count">4 people, in their own words</p><button
+            type="button"
+            class="tm-pause"
+            data-testimonial-pause
+            aria-pressed="false"
+            hidden>Pause</button
+          >
+        </div>
+      </div>
+    </section>
+    <CandidateUpload />
+    <section class="faq g-paper">
+      <div class="wrap">
+        <div class="faq-top">
+          <div class="faq-aside">
+            <div class="eyebrow" data-v9-reveal><span class="tick">\</span> 08 · Questions</div>
+            <h2 data-v9-reveal style="--d:60ms">What people ask before they start.</h2>
+            <div class="faq-ask" style="--d:180ms" data-v9-reveal>
+              <p class="faq-ask-q">Didn’t see yours?</p>
+              <a href="mailto:hello@tribera.ai">Ask us anything <span class="ar" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          <div class="faq-list" style="--d:120ms" data-v9-reveal>
+            {
+              demo.faqs.map(({ question, answer }, index) => (
+                <details class="faq-item" name="candidate-questions" open={index === 0}>
+                  <summary class="faq-q">
+                    <>
+                      <span>{question}</span>
+                      <span class="faq-ic" aria-hidden="true" />
+                    </>
+                  </summary>
+                  <div class="faq-a">
+                    <div>
+                      <p>{answer}</p>
+                    </div>
+                  </div>
+                </details>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="start g-white" id="start">
+      <div class="wrap">
+        <div class="start-head">
+          <div class="eyebrow" data-v9-reveal><span class="tick">\</span> Get started</div><h2
+            data-v9-reveal
+            style="--d:60ms"
+          >
+            One conversation. Then teams come to you.
+          </h2>
+        </div><p class="lead" style="--d:120ms" data-v9-reveal>
+          Fifteen minutes to set up. An expert calls within a week, and you keep the score whatever happens next.
+        </p><div class="cta-row" style="--d:180ms" data-v9-reveal>
+          <a class="btn btn-primary" href="#apply">Create your profile</a><a class="link" href="/">I'm hiring ›</a>
+        </div><p class="start-note" style="--d:220ms" data-v9-reveal>Free for you, always.</p><div
+          class="fmark fmark--c"
+          aria-hidden="true"
+        >
+          <i style="--i:0;--o:0.106"></i><i style="--i:1;--o:0.095"></i><i style="--i:2;--o:0.067"></i><i
+            style="--i:3;--o:0.154"></i><i style="--i:4;--o:0.051"></i><i style="--i:5;--o:0.110"></i><i
+            style="--i:6;--o:0.158"></i><i class="r" style="--i:7"></i><i style="--i:8;--o:0.060"></i><i
+            style="--i:9;--o:0.117"></i><i style="--i:10;--o:0.124"></i><i style="--i:11;--o:0.055"></i><i
+            style="--i:12;--o:0.095"></i><i style="--i:13;--o:0.134"></i><i style="--i:14;--o:0.104"></i><i
+            style="--i:15;--o:0.137"></i><i style="--i:16;--o:0.069"></i><i style="--i:17;--o:0.079"></i><i
+            style="--i:18;--o:0.063"></i><i style="--i:19;--o:0.111"></i><i style="--i:20;--o:0.161"></i><i
+            style="--i:21;--o:0.121"></i><i class="r" style="--i:22"></i><i style="--i:23;--o:0.143"></i><i
+            style="--i:24;--o:0.096"></i><i style="--i:25;--o:0.140"></i><i style="--i:26;--o:0.062"></i><i
+            style="--i:27;--o:0.085"></i><i class="r" style="--i:28"></i><i style="--i:29;--o:0.131"></i><i
+            style="--i:30;--o:0.137"></i><i style="--i:31;--o:0.101"></i><i style="--i:32;--o:0.061"></i><i
+            style="--i:33;--o:0.082"></i><i style="--i:34;--o:0.075"></i><i style="--i:35;--o:0.084"></i>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+    import '../assets/scripts/v9/candidates';
+  </script>
+</V9Layout>

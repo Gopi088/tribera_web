@@ -1,3 +1,4 @@
+import './candidate-motion';
 import demo from '../../../data/v9/candidate-demo.json';
 import { candidateScore } from './candidate-score.mjs';
 
@@ -88,11 +89,15 @@ if (root) {
     scorer.dataset.playing = 'true';
     scorePlay.textContent = 'Pause team demo';
     scorePlay.setAttribute('aria-pressed', 'true');
-    const sequence = [1, 3, 0];
+    const active = Math.max(
+      0,
+      presets.findIndex((button) => button.classList.contains('on'))
+    );
+    const sequence = [(active + 1) % presets.length, active];
     let index = 0;
     const advance = () => {
       selectPreset(presets[sequence[index++]], false);
-      if (index < sequence.length) scoreTimer = setTimeout(advance, 2200);
+      if (index < sequence.length) scoreTimer = setTimeout(advance, 3200);
       else stopScore();
     };
     scoreTimer = setTimeout(advance, 4200);
@@ -132,7 +137,10 @@ if (root) {
     play.setAttribute('aria-pressed', 'false');
     questions.dataset.playing = 'false';
   }
+  let questionAnimation: Animation | undefined;
   function showQuestion(index: number) {
+    const changed = current !== index;
+    questionAnimation?.cancel();
     current = index;
     tabs.forEach((tab, i) => {
       tab.classList.toggle('on', i === index);
@@ -140,6 +148,15 @@ if (root) {
       tab.tabIndex = i === index ? 0 : -1;
       panels[i].hidden = i !== index;
     });
+    if (changed && !reduced.matches && !document.hidden) {
+      questionAnimation = panels[index].animate(
+        [
+          { opacity: 0, transform: 'translateY(6px)' },
+          { opacity: 1, transform: 'none' },
+        ],
+        { duration: 280, easing: 'ease-out' }
+      );
+    }
   }
   function startQuestions() {
     if (reduced.matches || document.hidden || timer) return;
@@ -251,10 +268,12 @@ if (root) {
     play.hidden = reduced.matches;
     stopScore();
     stopQuestions();
+    questionAnimation?.finish();
     if (reduced.matches) paintClock(21);
   });
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
+      questionAnimation?.finish();
       stopQuestions();
       stopScore();
     }

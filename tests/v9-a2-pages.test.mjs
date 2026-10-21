@@ -75,7 +75,12 @@ try {
     page.locator('h1,h2').evaluateAll((els) => els.map((el) => el.innerText.replace(/\s+/g, ' ').trim()));
   for (const [slug, file] of pages) {
     await reference.goto(`${base}/__handoff/${file}`, { waitUntil: 'networkidle' });
-    const expectedHeadings = await normalizedHeadings(reference);
+    // Owner removed the unconfirmed New Jersey office on 22 October 2026.
+    const expectedHeadings = (await normalizedHeadings(reference)).map((heading) =>
+      slug === 'contact' && heading === 'Three offices. Come and sit down.'
+        ? 'Two offices. Come and sit down.'
+        : heading
+    );
     assert.ok(expectedHeadings.length > 0, `${slug}: reference heading coverage must not be empty`);
     for (const javaScriptEnabled of [true, false]) {
       const context = await browser.newContext({ javaScriptEnabled, reducedMotion: 'reduce' });
@@ -259,6 +264,16 @@ try {
             .locator('p,blockquote')
             .evaluateAll((els) =>
               els.map((el) => el.textContent.replace(/\s+/g, ' ').trim()).filter((text) => text.length >= 100)
+            )
+            .then((paragraphs) =>
+              paragraphs.map((paragraph) =>
+                slug === 'contact'
+                  ? paragraph.replace(
+                      'Our people sit in Pune, Bengaluru and New Jersey.',
+                      'Our people sit in Pune and Bengaluru.'
+                    )
+                  : paragraph
+              )
             );
           const actualText = await page.locator('body').textContent();
           const normalized = actualText.replace(/\s+/g, ' ').trim();

@@ -1,11 +1,12 @@
 ---
 interface Props {
+  isolated?: boolean;
   audience?: 'hiring' | 'candidate';
   activeRoute?: string;
   cta?: { label: string; href: string };
   linkOverrides?: Record<string, string>;
 }
-const { audience = 'hiring', activeRoute = '', cta, linkOverrides = {} } = Astro.props;
+const { isolated = false, audience = 'hiring', activeRoute = '', cta, linkOverrides = {} } = Astro.props;
 const destination = (href: string) => linkOverrides[href] ?? href;
 const currentRoute = activeRoute.replace(/\/$/, '') || '/';
 const links =
@@ -31,7 +32,7 @@ const action =
     : { label: 'Start with one role', href: '/#start' });
 ---
 
-<header class="v9-nav">
+<header class:list={['v9-nav', { 'v9 v9-chrome': isolated }]} id={isolated ? 'v9-site-top' : undefined}>
   <div class="v9-wrap v9-nav-row">
     <a class="v9-brand" href={destination('/')} aria-label="Tribera, home"
       ><img src="/brand/v9/tribera-logo-black.png" alt="Tribera" width="83" height="22" /></a

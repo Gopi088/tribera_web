@@ -1,0 +1,80 @@
+{
+  "duration_api_ms": 87728,
+  "stop_reason": "end_turn",
+  "session_id": "0be1a31d-14d1-473a-a908-8f08a2a5f6b9",
+  "total_cost_usd": 0.3804992,
+  "usage": {
+    "input_tokens": 26,
+    "cache_creation_input_tokens": 35482,
+    "cache_read_input_tokens": 818396,
+    "output_tokens": 7484,
+    "output_tokens_details": { "thinking_tokens": 2409 },
+    "server_tool_use": { "web_search_requests": 0, "web_fetch_requests": 0 },
+    "service_tier": "standard",
+    "cache_creation": { "ephemeral_1h_input_tokens": 35482, "ephemeral_5m_input_tokens": 0 },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 1697,
+        "cache_read_input_tokens": 81470,
+        "cache_creation_input_tokens": 4036,
+        "cache_creation": { "ephemeral_5m_input_tokens": 0, "ephemeral_1h_input_tokens": 4036 },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-5": {
+      "inputTokens": 26,
+      "outputTokens": 7484,
+      "cacheReadInputTokens": 818396,
+      "cacheCreationInputTokens": 35482,
+      "webSearchRequests": 0,
+      "costUSD": 0.3804992,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 2409,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [
+    {
+      "tool_name": "mcp__claude_ai_Canva__get-export-formats",
+      "tool_use_id": "toolu_01HESWcgJeN13CZovbYzcisq",
+      "tool_input": { "design_id": "Dxxxxxxxxxx", "user_intent": "placeholder" }
+    }
+  ],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": { "background": 0, "foreground": 0, "unset": 0 },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": { "parent": 0, "user": 0, "system": 0 },
+    "refused": { "depth_limit": 0, "concurrency_limit": 0, "budget": 0 },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 61,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "All four routes checked across all five widths and cross-engine 390px. Now writing up the stage 2 responsive review.\n\n## Stage 2 — Responsive visual review\n\n**Images actually read (28 total):**\n- `artifacts/v9-sectors/chromium/industries-industrial-engineering-{320,390,768,1366,1920}.png`, `firefox/industries-industrial-engineering-390.png`, `webkit/industries-industrial-engineering-390.png`\n- `artifacts/v9-sectors/chromium/industries-manufacturing-{320,390,768,1366,1920}.png`, `firefox/industries-manufacturing-390.png`, `webkit/industries-manufacturing-390.png`\n- `artifacts/v9-sectors/chromium/industries-pharmaceutical-{320,390,768,1366,1920}.png`, `firefox/industries-pharmaceutical-390.png`, `webkit/industries-pharmaceutical-390.png`\n- `artifacts/v9-sectors/chromium/industries-private-equity-portfolio-{320,390,768,1366,1920}.png`, `firefox/industries-private-equity-portfolio-390.png`, `webkit/industries-private-equity-portfolio-390.png`\n\n**Resolution limit note:** all images are full-page captures with very high native heights (6500–9800px) downscaled to a ~2000px-tall preview for my inspection. At that compression ratio (~3.3×–4.9×), small body text is legible at section level but individual glyph fidelity can't be certified; I did not attempt to read fine print beyond what was clearly legible, consistent with the review brief.\n\n### Finding — FAQ \"first answer open\" state is width-dependent (all 4 routes, same pattern)\n\nAt **1366 and 1920** (Chromium), the first \"What teams ask first\" FAQ item is expanded with its answer visible and a \"−\" indicator, matching the known boundary that candidate captures retain the first answer open.\n\nAt **320, 390, and 768** (Chromium), and at **390 in Firefox and WebKit**, the same FAQ section renders with **all three items collapsed** (all showing \"+\", no answer text visible) on every one of the four routes.\n\n- Severity: Low–Medium (visual/behavioral inconsistency, not a layout break)\n- Location: \"What teams ask first\" FAQ block, near page bottom, all 4 routes\n- This is consistent and reproducible across all four routes and all three engines at 390px, so it reads as a genuine breakpoint-dependent behavior (e.g., JS auto-open logic gated by a viewport check, or a CSS/media-query state), not a one-off capture timing glitch. It is outside what `docs/v9-sectors-intelligence-review-2026-10-20.md` describes (\"candidate captures retain the first answer open\" — stated without a width qualifier). Flagging for engineering confirmation of intent; native `<details>` fallback integrity itself is not in question (static reachability wasn't tested here, per the no-animation-proof caveat).\n\n### No other defects found\nAcross all five widths on all four routes: no horizontal overflow, text clipping, or broken stacking observed. Hero stat/chart block, \"Compare with\" sector pill grid, three-card insight grid, Q&A cards, roles grid (4 roles on industrial-engineering/manufacturing/pharmaceutical; 6 roles in a 2-column grid on private-equity-portfolio), and footer all reflow cleanly at 320/390/768, and sit in the expected multi-column layout at 1366/1920. Hamburger nav at 320/390, full nav bar at 768+. Chart bars/labels stay within their containers at every width, including the longest label set (private-equity-portfolio's \"Delivery speed\" chart).\n\n### Cross-engine (390px)\nFirefox and WebKit renders for all four routes are visually equivalent to Chromium at 390px — same collapsed FAQ state, same spacing, same chart layout, no engine-specific clipping or font-fallback issues visible at this resolution.\n\n### Per-route verdict (Stage 2, responsive only)\n| Route | Verdict | Note |\n|---|---|---|\n| industries-industrial-engineering | ACCEPT (bounded) | FAQ open-state finding applies |\n| industries-manufacturing | ACCEPT (bounded) | FAQ open-state finding applies |\n| industries-pharmaceutical | ACCEPT (bounded) | FAQ open-state finding applies |\n| industries-private-equity-portfolio | ACCEPT (bounded) | FAQ open-state finding applies; 6-role grid reflows correctly |\n\nNo layout-breaking defect found at any width on any of the four routes. The one concrete, reproducible finding (FAQ first-answer-open state present at 1366/1920 but absent at 320/390/768 and at 390 across all three engines) should be confirmed as intentional before sign-off, but does not block this bounded private-preview review. ACCEPT for Stage 2 scope, with the FAQ-state item flagged for a short follow-up.",
+  "ttft_ms": 2766,
+  "type": "result",
+  "duration_ms": 89004,
+  "uuid": "543aaa9a-a518-4b12-b5a8-ba2fd8dc63e3",
+  "ttft_stream_ms": 2016,
+  "time_to_request_ms": 234,
+  "first_content_frame_ms": 2017,
+  "queued_turn_count": 0,
+  "result_index": 0
+}

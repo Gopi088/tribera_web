@@ -64,3 +64,8 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Completed baseline; JavaScript adds finite ink drawing without hiding no-JS content. */
+.v9-services svg.hd-ink {
+  clip-path: inset(-20% -4% -20% 0);
+}

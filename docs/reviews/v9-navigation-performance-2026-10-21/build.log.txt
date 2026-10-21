@@ -1,0 +1,124 @@
+
+> tribera-website@1.0.0-beta.52 build
+> astro build
+
+00:54:16 [astrowind] Astrowind `./src/config.yaml` has been loaded.
+00:54:16 [vite] Re-optimizing dependencies because vite config has changed
+00:54:16 [content] Syncing content
+00:54:16 [content] Synced content
+00:54:16 [types] Generated 634ms
+00:54:16 [build] output: "static"
+00:54:16 [build] mode: "static"
+00:54:16 [build] directory: /home/abhispra/mvp/website_latest/tribera/dist/
+00:54:16 [build] Collecting build info...
+00:54:16 [build] ✓ Completed in 757ms.
+00:54:16 [build] Building static entrypoints...
+00:54:53 [vite] ✓ built in 37.07s
+00:54:54 [vite] ✓ built in 716ms
+00:54:54 [build] Rearranging server assets...
+
+ generating static routes
+00:54:55   ├─ /404.html (+35ms)
+00:54:55   ├─ /about/index.html (+8ms)
+00:54:55   ├─ /blog/designing-ai-for-high-stakes-technical-assessment/index.html (+18ms)
+00:54:55   ├─ /blog/designing-for-trust-privacy-transparency-respect/index.html (+11ms)
+00:54:55   ├─ /blog/hiring-is-not-a-transaction-its-a-relationship/index.html (+12ms)
+00:54:55   ├─ /blog/rethinking-hiring-metrics-signal-efficiency/index.html (+12ms)
+00:54:55   ├─ /blog/seventeen-interviews-one-hire/index.html (+8ms)
+00:54:55   ├─ /blog/signal-vs-noise-technical-hiring/index.html (+13ms)
+00:54:55   ├─ /blog/when-job-hunting-feels-like-a-black-hole/index.html (+13ms)
+00:54:55   ├─ /blog/why-tech-hiring-really-takes-so-long/index.html (+11ms)
+00:54:55   ├─ /blog/index.html (+17ms)
+00:54:55   ├─ /candidates/start/index.html (+10ms)
+00:54:55   ├─ /candidates/index.html (+15ms)
+00:54:55   ├─ /careers/backend-engineer/index.html (+8ms)
+00:54:55   ├─ /careers/ai-ml-engineer/index.html (+5ms)
+00:54:55   ├─ /careers/software-intern/index.html (+5ms)
+00:54:55   ├─ /careers/talent-advisor/index.html (+4ms)
+00:54:55   ├─ /careers/senior-delivery-partner/index.html (+4ms)
+00:54:55   ├─ /careers/talent-associate/index.html (+4ms)
+00:54:55   ├─ /careers/growth-intern/index.html (+4ms)
+00:54:55   ├─ /careers/index.html (+6ms)
+00:54:55   ├─ /case-study/index.html (+6ms)
+00:54:55   ├─ /category/hiring-strategy/index.html (+8ms)
+00:54:55   ├─ /category/candidate-experience/index.html (+5ms)
+00:54:55   ├─ /category/ai-and-assessment/index.html (+5ms)
+00:54:55   ├─ /category/technical-hiring/index.html (+5ms)
+00:54:55   ├─ /category/hiring-philosophy/index.html (+5ms)
+00:54:55   ├─ /contact/index.html (+8ms)
+00:54:55   ├─ /fonts/site-fonts.css (+7ms)
+00:54:55   ├─ /functions/engineering-platform/index.html (+6ms)
+00:54:55   ├─ /functions/data-analytics/index.html (+5ms)
+00:54:55   ├─ /functions/infrastructure-sre/index.html (+4ms)
+00:54:55   ├─ /functions/security/index.html (+4ms)
+00:54:55   ├─ /functions/finance-risk/index.html (+3ms)
+00:54:55   ├─ /functions/product-design/index.html (+5ms)
+00:54:55   ├─ /functions/operations/index.html (+4ms)
+00:54:55   ├─ /functions/leadership/index.html (+4ms)
+00:54:55   ├─ /functions/index.html (+9ms)
+00:54:55   ├─ /industries/global-capability-centres/index.html (+3ms)
+00:54:55   ├─ /industries/banking-financial-services/index.html (+6ms)
+00:54:55   ├─ /industries/enterprise-technology/index.html (+5ms)
+00:54:55   ├─ /industries/product-saas/index.html (+7ms)
+00:54:55   ├─ /industries/ai-data/index.html (+4ms)
+00:54:55   ├─ /industries/cybersecurity/index.html (+3ms)
+00:54:55   ├─ /industries/healthcare-life-sciences/index.html (+4ms)
+00:54:55   ├─ /industries/pharmaceutical/index.html (+3ms)
+00:54:55   ├─ /industries/manufacturing/index.html (+4ms)
+00:54:55   ├─ /industries/industrial-engineering/index.html (+3ms)
+00:54:55   ├─ /industries/global-capability-centers/index.html (+4ms)
+00:54:55   ├─ /industries/consumer-digital-commerce/index.html (+4ms)
+00:54:55   ├─ /industries/private-equity-portfolio/index.html (+3ms)
+00:54:55   ├─ /industries/index.html (+6ms)
+00:54:55   ├─ /intelligence/index.html (+7ms)
+00:54:55   ├─ /interview-as-a-service/index.html (+5ms)
+00:54:55   ├─ /privacy/index.html (+8ms)
+00:54:55   ├─ /sample-write-up/index.html (+5ms)
+00:54:55   ├─ /security/index.html (+6ms)
+00:54:55   ├─ /services/index.html (+6ms)
+00:54:55   ├─ /tag/hiring-metrics/index.html (+7ms)
+00:54:55   ├─ /tag/structured-evaluation/index.html (+5ms)
+00:54:55   ├─ /tag/decision-infrastructure/index.html (+5ms)
+00:54:55   ├─ /tag/talent-acquisition/index.html (+5ms)
+00:54:55   ├─ /tag/quality-of-hire/index.html (+4ms)
+00:54:55   ├─ /tag/candidate-experience/index.html (+4ms)
+00:54:55   ├─ /tag/privacy-by-design/index.html (+4ms)
+00:54:55   ├─ /tag/trust-in-hiring/index.html (+4ms)
+00:54:55   ├─ /tag/platform-design/index.html (+4ms)
+00:54:55   ├─ /tag/professional-respect/index.html (+4ms)
+00:54:55   ├─ /tag/ai-in-hiring/index.html (+4ms)
+00:54:55   ├─ /tag/technical-assessment/index.html (+6ms)
+00:54:55   ├─ /tag/engineering/index.html (+4ms)
+00:54:55   ├─ /tag/job-search-tips/index.html (+4ms)
+00:54:55   ├─ /tag/hiring-insights/index.html (+5ms)
+00:54:55   ├─ /tag/signal-based-hiring/index.html (+8ms)
+00:54:55   ├─ /tag/technical-hiring/index.html (+5ms)
+00:54:55   ├─ /tag/recruitment/index.html (+4ms)
+00:54:55   ├─ /tag/time-to-hire/index.html (+4ms)
+00:54:55   ├─ /tag/thought-leadership/index.html (+4ms)
+00:54:55   ├─ /tag/human-first-hiring/index.html (+4ms)
+00:54:55   ├─ /tag/empathy/index.html (+4ms)
+00:54:55   ├─ /terms/index.html (+6ms)
+00:54:55   ├─ /index.html (+7ms)
+00:54:55 ✓ Completed in 914ms.
+
+ generating optimized images
+00:54:55   ▶ /_astro/ai-technical-assessment.BF4Iz4Zm_Z1gozBg.jpg (reused cache entry) (+4ms) (1/7)
+00:54:55   ▶ /_astro/when-job-hunting-feels-like-a-black-hole.bxV7n3Xy_ZUX5OT.jpg (reused cache entry) (+4ms) (2/7)
+00:54:55   ▶ /_astro/signal-efficiency.8lefGeXl_1MpzOU.jpg (reused cache entry) (+5ms) (3/7)
+00:54:55   ▶ /_astro/signal-based-hiring.B2Ay6bD4_Z1e9pc8.jpg (reused cache entry) (+5ms) (4/7)
+00:54:55   ▶ /_astro/trust-by-design.sbdvdm_i_283bRk.jpg (reused cache entry) (+6ms) (5/7)
+00:54:55   ▶ /_astro/hiring-is-not-a-transaction.gYgX93BY_Z1HNys1.jpg (reused cache entry) (+7ms) (6/7)
+00:54:55   ▶ /_astro/why-tech-hiring-really-takes-so-long.D9NuhBGR_w5fxT.jpg (reused cache entry) (+9ms) (7/7)
+00:54:55 ✓ Completed in 11ms.
+
+00:54:55 [build] ✓ Completed in 38.80s.
+00:54:55 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+✓ Successfully compressed a total of 27 CSS files for 2.24 KB.
+00:55:16 [build] Waiting for integration "astro-compress", hook "astro:build:done"...
+✓ Successfully compressed a total of 82 HTML files for 1.57 MB.
+✓ Successfully compressed a total of 32 JavaScript files for 768 Bytes.
+✓ Successfully compressed a total of 3 JSON files for 6.79 KB.
+00:55:16 [astrowind] Updating `robots.txt` with `sitemap-index.xml` ...
+00:55:16 [build] 80 page(s) built in 1m 1s
+00:55:16 [build] Complete!

@@ -1,6 +1,10 @@
+---
+import { v9Href } from '~/data/v9/routes';
+---
+
 <header class="hx hx--c hx-field g-white" id="case-hero">
   <div class="wrap">
-    <div class="eyebrow"><span class="tick">\</span> Case study · Technical hiring</div>
+    <div data-v9-reveal class="eyebrow"><span class="tick">\</span> Case study · Technical hiring</div>
     <div class="hx-c-g has-field">
       <div class="hero-field" aria-hidden="true">
         <svg viewBox="0 0 740 190"
@@ -2166,18 +2170,17 @@
             fill-opacity="0.18"></rect></svg
         >
       </div><div>
-        <h1 class="hx-h" style="--d:60ms">Five months open. Closed in twenty‑two days.</h1>
-        <p class="lead" style="--d:120ms">
+        <h1 data-v9-reveal class="hx-h" style="--d:60ms">Five months open. Closed in twenty‑two days.</h1>
+        <p data-v9-reveal class="lead" style="--d:120ms">
           A technical role had been through 327 profiles without a hire. The person who got the job had been in the
           pipeline since month two. This is how the search found him again.
         </p>
-        <div class="cta-row" style="--d:180ms">
-          <a class="btn btn-primary" href="/__v9/services#sv-scorecard">Book a scorecard session</a><a
-            class="link"
-            href="/__v9/home#start">Or start a full search ›</a
-          >
+        <div data-v9-reveal class="cta-row" style="--d:180ms">
+          <a class="btn btn-primary" href={v9Href('/__v9/services#sv-scorecard', Astro.url.pathname)}
+            >Book a scorecard session</a
+          ><a class="link" href={v9Href('/__v9/home#start', Astro.url.pathname)}>Or start a full search ›</a>
         </div>
-      </div><aside class="cs-card" style="--d:200ms" aria-label="The search in numbers">
+      </div><aside data-v9-reveal class="cs-card" style="--d:200ms" aria-label="The search in numbers">
         <p class="ql">The search, in numbers</p>
         <dl>
           <dt>Open before us</dt><dd>5 months</dd>

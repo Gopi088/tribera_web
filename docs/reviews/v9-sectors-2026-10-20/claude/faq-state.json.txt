@@ -1,0 +1,618 @@
+[
+  {
+    "engine": "chromium",
+    "slug": "industrial-engineering",
+    "width": 320,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 170.5625,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "industrial-engineering",
+    "width": 390,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 145.46875,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "industrial-engineering",
+    "width": 768,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 95.28125,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "industrial-engineering",
+    "width": 1366,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 106.625,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "industrial-engineering",
+    "width": 1920,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 106.625,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "manufacturing",
+    "width": 320,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 170.5625,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "manufacturing",
+    "width": 390,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 145.46875,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "manufacturing",
+    "width": 768,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 95.28125,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "manufacturing",
+    "width": 1366,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 106.625,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "manufacturing",
+    "width": 1920,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 106.625,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "pharmaceutical",
+    "width": 320,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 170.5625,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "pharmaceutical",
+    "width": 390,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 145.46875,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "pharmaceutical",
+    "width": 768,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 95.28125,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "pharmaceutical",
+    "width": 1366,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 106.625,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "pharmaceutical",
+    "width": 1920,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 106.625,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "private-equity-portfolio",
+    "width": 320,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 220.75,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "private-equity-portfolio",
+    "width": 390,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 170.5625,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "private-equity-portfolio",
+    "width": 768,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 95.28125,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "private-equity-portfolio",
+    "width": 1366,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 133.5,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "slug": "private-equity-portfolio",
+    "width": 1920,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 133.5,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "slug": "industrial-engineering",
+    "width": 390,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 145.4166717529297,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "slug": "manufacturing",
+    "width": 390,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 145.4166717529297,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "slug": "pharmaceutical",
+    "width": 390,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 145.41665649414062,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "slug": "private-equity-portfolio",
+    "width": 390,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 170.5,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "slug": "industrial-engineering",
+    "width": 390,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 145,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "slug": "manufacturing",
+    "width": 390,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 145,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "slug": "pharmaceutical",
+    "width": 390,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 145,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "slug": "private-equity-portfolio",
+    "width": 390,
+    "state": [
+      {
+        "open": true,
+        "answerHeight": 170,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      },
+      {
+        "open": false,
+        "answerHeight": 0,
+        "answerDisplay": "grid"
+      }
+    ]
+  }
+]

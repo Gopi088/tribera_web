@@ -1,0 +1,12 @@
+---
+import V9Layout from '../layouts/V9Layout.astro';
+import SamplePage from '../components/v9/sample/SamplePage.astro';
+import { publicLinks } from '../data/v9/preview-links';
+---
+
+<V9Layout
+  title="Sample candidate write-up | Tribera"
+  description="See page one of a sample Tribera candidate write-up. Request the complete sample by email."
+  headerLinkOverrides={publicLinks}
+  footerLinkOverrides={publicLinks}><SamplePage /></V9Layout
+>

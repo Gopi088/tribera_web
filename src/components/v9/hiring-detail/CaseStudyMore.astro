@@ -1,6 +1,10 @@
+---
+import { v9Href } from '~/data/v9/routes';
+---
+
 <section class="g-paper" id="more">
   <div class="wrap">
-    <a class="cs-next" href="/__v9/home#funnel">
+    <a data-v9-reveal class="cs-next" href={v9Href('/__v9/home#funnel', Astro.url.pathname)}>
       <span class="ql">Another search</span>
       <b>Two seats, open nine months. We screened 126 people, the team met five, and hired two.</b>
       <i aria-hidden="true">→</i>

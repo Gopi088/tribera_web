@@ -1788,3 +1788,9 @@
   }
 }
 /* ═══ PAGE TRANSITIONS · v1 · a quiet cross-fade; the header stays put ═══ */
+/* After removal of the US location, the two offices and the general contact share three cards. */
+@media (min-width: 900px) {
+  .v9-contact .ct-off {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

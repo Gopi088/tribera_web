@@ -29,6 +29,9 @@ export default defineConfig({
   },
 
   output: 'static',
+  redirects: {
+    '/industries/global-capability-centres': { destination: '/industries/global-capability-centers', status: 301 },
+  },
   trailingSlash: 'ignore',
 
   prefetch: {
@@ -43,9 +46,12 @@ export default defineConfig({
 
         if (
           pathname.startsWith('/__v9/') ||
+          pathname.replace(/\/$/, '') === '/industries/global-capability-centres' ||
           pathname.startsWith('/category/') ||
           pathname.startsWith('/tag/') ||
           pathname === '/privacy/' ||
+          pathname === '/security/' ||
+          pathname === '/dpa/' ||
           pathname === '/terms/'
         ) {
           return false;

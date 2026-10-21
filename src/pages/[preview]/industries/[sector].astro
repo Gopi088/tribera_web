@@ -1,0 +1,22 @@
+---
+import V9Layout from '../../../layouts/V9Layout.astro';
+import SectorPage from '../../../components/v9/sectors/SectorPage.astro';
+import { sectors } from '../../../data/v9/sectors';
+import { previewLinks } from '../../../data/v9/preview-links';
+export function getStaticPaths() {
+  return import.meta.env.DEV || process.env.V9_PREVIEW === '1'
+    ? sectors.map((sector) => ({ params: { preview: '__v9', sector: sector.slug }, props: { sector } }))
+    : [];
+}
+const { sector } = Astro.props;
+---
+
+<V9Layout
+  title={`${sector.name} hiring in India | Tribera`}
+  description={sector.tagline}
+  noindex
+  headerLinkOverrides={previewLinks}
+  footerLinkOverrides={previewLinks}
+>
+  <SectorPage {sector} />
+</V9Layout>

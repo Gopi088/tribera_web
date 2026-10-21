@@ -1,0 +1,74 @@
+{
+  "duration_api_ms": 27722,
+  "stop_reason": "end_turn",
+  "session_id": "d86339f7-0702-4815-a963-7691ece6a25d",
+  "total_cost_usd": 0.2161574,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 44152,
+    "cache_read_input_tokens": 63007,
+    "output_tokens": 2694,
+    "output_tokens_details": { "thinking_tokens": 391 },
+    "server_tool_use": { "web_search_requests": 0, "web_fetch_requests": 0 },
+    "service_tier": "standard",
+    "cache_creation": { "ephemeral_1h_input_tokens": 44152, "ephemeral_5m_input_tokens": 0 },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 2012,
+        "cache_read_input_tokens": 53303,
+        "cache_creation_input_tokens": 41863,
+        "cache_creation": { "ephemeral_5m_input_tokens": 0, "ephemeral_1h_input_tokens": 41863 },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-5": {
+      "inputTokens": 4,
+      "outputTokens": 2694,
+      "cacheReadInputTokens": 63007,
+      "cacheCreationInputTokens": 44152,
+      "webSearchRequests": 0,
+      "costUSD": 0.2161574,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 391,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": { "background": 0, "foreground": 0, "unset": 0 },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": { "parent": 0, "user": 0, "system": 0 },
+    "refused": { "depth_limit": 0, "concurrency_limit": 0, "budget": 0 },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 8,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "## Evidence read\n\n- `docs/reviews/v9-sectors-2026-10-20/claude/viewports-4.md` — my original 768px tab-row finding (REVISE, unconfirmed from screenshot resolution).\n- `docs/reviews/v9-sectors-2026-10-20/claude/detail-followup.md` — follow-up confirming visual clipping, flagging \"needs live-browser check: scrollable vs. clipped,\" ACCEPT with that one open item.\n- `src/scripts/v9/sector-charts.ts` (`choose()`, lines 22–41) — the fix itself.\n- `src/assets/styles/v9/intelligence.css` (lines 1089–1112) — `.in-fns` horizontal scroll/snap rules confirming `overflow-x: auto`, `scroll-snap-type: x mandatory`, `scroll-padding-inline: var(--pad)`.\n- `artifacts/v9-sectors/claude-detail/tablet-tabs.json` — DOM probe, 3 engines at 768px.\n- `artifacts/v9-sectors/claude-detail/intelligence-tablet-last-tab.png` — visual check of last tab state.\n- `tests/v9-sectors.test.mjs` lines 194–211 — new `keyboard-tab-visibility` assertions for both `industries` and `intelligence`.\n\n## Source inspection\n\n`choose()` (lines 33–38) now computes the scroll offset identically for both clipping directions:\n```\noffset = tabBounds.left < bounds.left\n  ? tabBounds.left - bounds.left - 8\n  : tabBounds.right > bounds.right\n    ? tabBounds.left - bounds.left - 8   // previously likely used .right, causing snap-back\n    : 0;\n```\nBoth branches now align the tab's **left** edge into view, which combined with `scroll-snap-align: start` on `.in-fn` (intelligence.css:1109) and `scroll-snap-type: x mandatory` on `.in-fns` (line 1097) is consistent with the described bug and fix: a minimal rightward nudge using the old right-edge logic combined with snap-to-start could have snapped the scroller back to an earlier tab. This matches the stated fix.\n\n## JSON evidence\n\n`tablet-tabs.json` shows, for all three engines at 768px: tabs 0–3 (`Backend & platform` → `Cybersecurity`) stay at `scrollLeft: 0`; tab 4 (`Infrastructure & SRE`) jumps directly to a stable `scrollLeft` (576/582/581 depending on engine) and tabs 5–7 remain at that same value, each with `visible: true` and a `heading` matching the tab text. No oscillation or snap-back is recorded in the probe sequence.\n\n## Screenshot\n\n`intelligence-tablet-last-tab.png` shows the eighth tab \"Leadership & GCC\" focused/selected (focus ring visible, `aria-selected` styling applied), fully within the visible tab row, with the panel heading \"LEADERSHIP & GCC\" and matching chart data — consistent with the JSON record for that state.\n\n## Test coverage\n\n`tests/v9-sectors.test.mjs:194–211` adds a 768px loop for both `industries` (`.ii-k`) and `intelligence` (`.in-fn`): tabs through every index via `ArrowRight`, asserting after each step that the selected tab's bounding box is within its scroll container's bounds (`bounds.left >= container.left - 1 && bounds.right <= container.right + 1`), and that `aria-selected` is set correctly. This directly targets the snap-back/clipping failure mode previously only guessed at from static screenshots.\n\n## Disposition\n\nThis resolves my outstanding finding. The original concern (unconfirmed overflow visibility) and the follow-up's open item (live scroll behavior under keyboard navigation, scrollable-vs-clipped) are both addressed: the CSS confirms intentional native horizontal scroll (not all 8 tabs simultaneously visible, by design), and the code fix + JSON probe + screenshot + new automated assertions together show the fifth tab onward reaches full visibility without snapping back, across Chromium/Firefox/WebKit at 768px.\n\n**ACCEPT** for this bounded finding.\n\nScope reminder, per your instructions: this is local source/artifact inspection only. I have not observed live animation, have not accessed any production deployment, and am not rendering a G2/G3 sign-off — this disposition covers only the single tablet-tab keyboard-visibility item, not a re-review of the full 14-page/5-width/mobile-engine set (that remains as closed out in `detail-followup.md`, which already carried an overall ACCEPT with this one item pending). I'm not reporting on the \"test suites rerunning separately\" — no new suite results were provided to me in this turn.",
+  "ttft_ms": 2070,
+  "type": "result",
+  "duration_ms": 28723,
+  "uuid": "25a3259d-3c9c-4e39-add2-1c7c208f2d81",
+  "ttft_stream_ms": 1937,
+  "time_to_request_ms": 584,
+  "first_content_frame_ms": 1938,
+  "queued_turn_count": 0,
+  "result_index": 0
+}

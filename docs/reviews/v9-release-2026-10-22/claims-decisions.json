@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-22",
+  "authority": "Explicit user directions in this conversation",
+  "decisions": [
+    {
+      "scope": "Existing business claims, including 36-hour commitment, interview and expert counts, anonymous candidate sharing and associated case statistics",
+      "decision": "Use as is",
+      "effect": "Retain public copy. No supporting records or independent verification are represented by this decision."
+    },
+    {
+      "scope": "Heineken customer publication",
+      "decision": "Approved by user",
+      "effect": "Retain in public client strip and remove from forbidden-customer regression lists."
+    },
+    {
+      "scope": "New Jersey location",
+      "decision": "Drop New Jersey",
+      "effect": "Removed from active v9 Footer, About and Contact; built HTML assertion covers all pages. Historical unused pre-v9 reference files remain."
+    }
+  ],
+  "limits": [
+    "Mocked form tests do not establish provider or inbox delivery.",
+    "Hosted verification and CI have their own release stages."
+  ]
+}

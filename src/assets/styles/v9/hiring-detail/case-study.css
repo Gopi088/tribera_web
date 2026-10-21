@@ -1189,3 +1189,17 @@
     grid-column: 1;
   }
 }
+
+/* Completed baseline; JavaScript adds finite ink drawing without hiding no-JS content. */
+.v9-hiring-case svg.hd-ink {
+  clip-path: inset(-20% -4% -20% 0);
+}
+
+.v9-hiring-case .cs-field {
+  transition: translate 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .v9-hiring-case .cs-field {
+    translate: none !important;
+  }
+}

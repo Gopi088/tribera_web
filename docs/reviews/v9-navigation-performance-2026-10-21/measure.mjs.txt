@@ -1,0 +1,15 @@
+import {chromium} from '/home/abhispra/mvp/website_latest/tribera/node_modules/playwright/index.mjs';import fs from 'node:fs';
+const b=await chromium.launch(),results=[];
+for(const port of [4321,4392]) {
+ const p=await b.newPage({viewport:{width:1366,height:900}}),cdp=await p.context().newCDPSession(p);
+ await cdp.send('Network.enable');await cdp.send('Network.emulateNetworkConditions',{offline:false,latency:100,downloadThroughput:1250000,uploadThroughput:625000});
+ await p.goto(`http://127.0.0.1:${port}/`);await p.evaluate(()=>document.fonts.ready);
+ for (const route of ['/services','/intelligence','/about','/candidates','/about']) {
+  const start=Date.now();const link=p.locator(`header a[href="${route}"]`).first();
+  await Promise.all([p.waitForURL(u=>u.pathname.replace(/\/$/,'')===route,{waitUntil:'load'}),link.click()]);
+  await p.evaluate(()=>document.fonts.ready);
+  const data=await p.evaluate(()=>({nav:performance.getEntriesByType('navigation')[0].toJSON(),resources:performance.getEntriesByType('resource').map(e=>({name:e.name,type:e.initiatorType,bytes:e.transferSize})),paint:performance.getEntriesByType('paint').map(e=>e.toJSON())}));
+  const r={port,route,wall:Date.now()-start,load:data.nav.loadEventEnd,ttfb:data.nav.responseStart,requests:data.resources.length,bytes:data.resources.reduce((n,r)=>n+r.bytes,0),...data};results.push(r);console.log(JSON.stringify({port,route,wall:r.wall,load:r.load,requests:r.requests,bytes:r.bytes}));
+ }
+ await p.close();}
+await b.close();fs.writeFileSync('/tmp/tribera-navigation-before.json',JSON.stringify(results,null,2));

@@ -1,0 +1,78 @@
+---
+import data from '../../../data/v9/intelligence.json';
+const first = data.functions[0];
+const top = first.v.indexOf(Math.max(...first.v));
+---
+
+<div class="in-lab" data-v9-reveal style="--d:160ms" data-sample="true">
+  <div class="in-fns" role="tablist" aria-label="Function">
+    {
+      data.functions.map((fn, i) => (
+        <button
+          hidden
+          class="in-fn"
+          type="button"
+          role="tab"
+          id={`function-tab-${i}`}
+          aria-controls="scarcity-panel"
+          aria-selected={i === 0 ? 'true' : 'false'}
+          tabindex={i === 0 ? 0 : -1}
+          data-i={i}
+        >
+          {fn.n}
+        </button>
+      ))
+    }
+  </div>
+  <div class="in-panel" id="scarcity-panel" role="tabpanel" aria-labelledby="function-tab-0">
+    <div class="in-panel-top">
+      <span class="pf-k" id="inFnName">{first.n}</span><span class="in-tag">Illustrative · sample data</span>
+    </div>
+    <p class="in-read" id="inRead" aria-live="polite">
+      In this example, {data.dims[top].toLowerCase()} accounts for {first.v[top]}% of candidates who did not clear the
+      bar.
+    </p>
+    <ul class="in-bars" id="inBars">
+      {
+        data.dims.map((skill, i) => (
+          <li class:list={{ top: i === top }}>
+            <>
+              <span class="in-dn">{skill}</span>
+              <span class="in-tr">
+                <i style={`--v:${first.v[i]}`} />
+              </span>
+              <b>{first.v[i]}%</b>
+            </>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="in-foot">
+      Share of candidates who didn’t clear, by the skill that held them back. The six add up to 100.
+    </p>
+    <p class="in-foot">
+      Illustrative preview for {data.quarter}. No measured cohort, collection dates or sample size are available for
+      this demonstration.
+    </p>
+  </div>
+</div>
+<noscript>
+  <div class="sector-table-wrap">
+    <table class="sector-table">
+      <caption>Illustrative sample data — all eight functions, percentages</caption>
+      <thead><tr><th scope="col">Function</th>{data.dims.map((skill) => <th scope="col">{skill}</th>)}</tr></thead>
+      <tbody
+        >{
+          data.functions.map((fn) => (
+            <tr>
+              <th scope="row">{fn.n}</th>
+              {fn.v.map((value) => (
+                <td>{value}%</td>
+              ))}
+            </tr>
+          ))
+        }</tbody
+      >
+    </table>
+  </div>
+</noscript>

@@ -1,0 +1,44 @@
+/* Keep the shared shell independent of legacy page resets and their 20px root. */
+.v9-chrome {
+  font-size: 16px;
+  text-align: left;
+}
+.v9-chrome a {
+  text-decoration: none;
+}
+.v9-chrome .v9-button {
+  font-size: 15.68px;
+}
+.v9-chrome .v9-desktop-nav a {
+  font-size: 14.72px;
+}
+.v9-chrome .v9-ft-line {
+  font-size: 14.4px;
+}
+.v9-chrome .v9-ft-tribe,
+.v9-chrome .v9-ft-ttl {
+  font-size: 11px;
+}
+.v9-chrome .v9-ft-bbb {
+  font-size: 15.68px;
+}
+.v9-chrome .v9-ft-social a {
+  font-size: 13.6px;
+}
+.v9-chrome .v9-ft-col a {
+  font-size: 14.08px;
+}
+.v9-chrome .v9-ft-bar {
+  font-size: 12.48px;
+}
+@media (min-width: 1024px) {
+  .v9-chrome .v9-desktop-nav a,
+  .v9-chrome .v9-nav-cta {
+    font-size: 16px;
+  }
+}
+
+.v9-chrome .v9-ft-made,
+.v9-chrome .v9-ft-up {
+  font-size: 11px;
+}

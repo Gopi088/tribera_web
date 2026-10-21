@@ -1,0 +1,25 @@
+Follow-up independent CODE + VISUAL review of the corrected v9 public-content migration. Initial actual reports are docs/reviews/v9-release-2026-10-22/code-review.md and visual-a.md, visual-b.md, visual-c.md. Inspect the current source and actual new PNGs listed below using Read. Do not claim visual inspection without opening them. Only Read/Glob/Grep, no edits/commands/agents/network/submissions. Give ACCEPT/REVISE for this bounded migration-code and presentation scope, remaining concrete findings with triggers, and explicit coverage limits.
+
+Fixes to verify: (1) duplicate layout description props removed; (2) function closing heading now inherits readable ink; (3) all careers and function detail bars show their labelled percentages on a consistent 0–100% scale; mobile labels are above the bars to prevent mid-word splits; (4) function/feature card spans have block layout, icons constrained; (5) careers dialog now has a scrollable field area and fixed action area and uses shared applications.ts, no success auto-dismiss timer. Close cancels the request, guards late results, restores scroll/focus. Reopen after success resets the form; close without completion preserves values. (6) client checks extension/10 MB and exposes explicit 4xx messages with generic provider/network errors; preserves button markup on retry. File is collected in FormData BEFORE it is disabled during a request. Hidden upload tabstop removed, filename announced. (7) candidate signup has a nearby no-JS mailto path; careers Apply is a native mailto anchor enhanced to a dialog with JS. (8) old article share URLs are server-rendered, copy has an announced status; (9) pagination uses v9 styles, topic pages have one topic-nav filter row, not a second category-filter list. (10) long banking breadcrumb has a deliberate mobile second line. Original article content remains; distinct illustrated flagship article design is intentional within the common v9 type/color/navigation system. The generic markdown-only route has no current production posts; that latent path is not claimed browser-tested.
+
+New tests tests/v9-release-regressions.test.mjs passed Chromium and Firefox (32 chart/contrast cases each, payload/files, 4xx/5xx/retry, close-reopen after 3.4s, focus/scroll, native email fallback). WebKit is running. Earlier build had 162 captures on 81 pages without overflow, errors or broken images; current correction build is 99bf5e7024649f51b08b239ffea67bd9e61982ccd9e47cdf4af7dabbdebcd183, with 24 fresh captures of affected routes plus close-ups. These are LOCAL checks, not CI or hosted certification.
+
+IMPORTANT SCOPE: User requested sequential stages. This is stage 1, fixing migration/code/presentation. Stage 2 (NEXT, deliberately not done yet) covers new article discovery/related destinations, About word spacing, repeated Careers sentence, newsletter/waitlist clarity, method-link wording, and removing ALL public New Jersey mentions (owner expressly said Drop New Jersey). Do not mistake initial/new screenshots still containing those known stage-2 items for unaddressed migration fixes. List them as deferred, not as stage-1 findings. Owner explicitly says existing numerical, timing and anonymity business claims must remain AS IS; publication direction is recorded, not independently substantiated. No legal review. Review honest evidence rather than accepting claims in this prompt.
+
+SOURCE: src/scripts/v9/applications.ts; src/pages/careers/[slug].astro; src/pages/candidates/start.astro; src/pages/functions/[slug].astro; src/assets/styles/v9/content-pages.css; src/components/blog/FieldNotesList.astro; src/components/blog/TopicIndex.astro; src/components/blog/Pagination.astro; src/scripts/v9/content-pages.ts; tests/v9-release-regressions.test.mjs; scripts/test-v9-public.mjs.
+
+PNG FILES (all under artifacts/v9-release-2026-10-22/migration-fixed/):
+artifacts/v9-release-2026-10-22/migration-fixed/_careers_backend-engineer-390-top.png
+artifacts/v9-release-2026-10-22/migration-fixed/_careers_backend-engineer-1366-top.png
+artifacts/v9-release-2026-10-22/migration-fixed/_functions_engineering-platform-390-top.png
+artifacts/v9-release-2026-10-22/migration-fixed/_functions_engineering-platform-1366-top.png
+artifacts/v9-release-2026-10-22/migration-fixed/function-closing-390.png
+artifacts/v9-release-2026-10-22/migration-fixed/function-closing-1366.png
+artifacts/v9-release-2026-10-22/migration-fixed/function-card-390.png
+artifacts/v9-release-2026-10-22/migration-fixed/function-card-1366.png
+artifacts/v9-release-2026-10-22/migration-fixed/careers-dialog-390.png
+artifacts/v9-release-2026-10-22/migration-fixed/candidate-email-fallback-390.png
+artifacts/v9-release-2026-10-22/migration-fixed/_blog-1366-top.png
+artifacts/v9-release-2026-10-22/migration-fixed/_category_ai-and-assessment-390-top.png
+artifacts/v9-release-2026-10-22/migration-fixed/_tag_ai-in-hiring-1366-top.png
+artifacts/v9-release-2026-10-22/migration-fixed/_industries_banking-financial-services-390-top.png

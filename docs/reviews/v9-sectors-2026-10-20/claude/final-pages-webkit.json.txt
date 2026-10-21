@@ -1,0 +1,287 @@
+{
+  "status": "passed",
+  "browser": "webkit",
+  "base": "http://127.0.0.1:4390",
+  "records": [
+    {
+      "route": "industries",
+      "width": 390,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries",
+      "width": 1366,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/banking-financial-services",
+      "width": 390,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/banking-financial-services",
+      "width": 1366,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/enterprise-technology",
+      "width": 390,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/enterprise-technology",
+      "width": 1366,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/product-saas",
+      "width": 390,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/product-saas",
+      "width": 1366,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/ai-data",
+      "width": 390,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/ai-data",
+      "width": 1366,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/cybersecurity",
+      "width": 390,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/cybersecurity",
+      "width": 1366,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/healthcare-life-sciences",
+      "width": 390,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/healthcare-life-sciences",
+      "width": 1366,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/pharmaceutical",
+      "width": 390,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/pharmaceutical",
+      "width": 1366,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/manufacturing",
+      "width": 390,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/manufacturing",
+      "width": 1366,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/industrial-engineering",
+      "width": 390,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/industrial-engineering",
+      "width": 1366,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/global-capability-centers",
+      "width": 390,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/global-capability-centers",
+      "width": 1366,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/consumer-digital-commerce",
+      "width": 390,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/consumer-digital-commerce",
+      "width": 1366,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/private-equity-portfolio",
+      "width": 390,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/private-equity-portfolio",
+      "width": 1366,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "intelligence",
+      "width": 390,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "intelligence",
+      "width": 1366,
+      "mode": "reduced",
+      "status": "passed"
+    },
+    {
+      "route": "industries/global-capability-centres",
+      "mode": "preview alias",
+      "status": "passed"
+    },
+    {
+      "route": "industries",
+      "width": 390,
+      "mode": "no-JS",
+      "status": "passed"
+    },
+    {
+      "route": "industries/banking-financial-services",
+      "width": 390,
+      "mode": "no-JS",
+      "status": "passed"
+    },
+    {
+      "route": "industries/enterprise-technology",
+      "width": 390,
+      "mode": "no-JS",
+      "status": "passed"
+    },
+    {
+      "route": "industries/product-saas",
+      "width": 390,
+      "mode": "no-JS",
+      "status": "passed"
+    },
+    {
+      "route": "industries/ai-data",
+      "width": 390,
+      "mode": "no-JS",
+      "status": "passed"
+    },
+    {
+      "route": "industries/cybersecurity",
+      "width": 390,
+      "mode": "no-JS",
+      "status": "passed"
+    },
+    {
+      "route": "industries/healthcare-life-sciences",
+      "width": 390,
+      "mode": "no-JS",
+      "status": "passed"
+    },
+    {
+      "route": "industries/pharmaceutical",
+      "width": 390,
+      "mode": "no-JS",
+      "status": "passed"
+    },
+    {
+      "route": "industries/manufacturing",
+      "width": 390,
+      "mode": "no-JS",
+      "status": "passed"
+    },
+    {
+      "route": "industries/industrial-engineering",
+      "width": 390,
+      "mode": "no-JS",
+      "status": "passed"
+    },
+    {
+      "route": "industries/global-capability-centers",
+      "width": 390,
+      "mode": "no-JS",
+      "status": "passed"
+    },
+    {
+      "route": "industries/consumer-digital-commerce",
+      "width": 390,
+      "mode": "no-JS",
+      "status": "passed"
+    },
+    {
+      "route": "industries/private-equity-portfolio",
+      "width": 390,
+      "mode": "no-JS",
+      "status": "passed"
+    },
+    {
+      "route": "intelligence",
+      "width": 390,
+      "mode": "no-JS",
+      "status": "passed"
+    },
+    {
+      "route": "industries",
+      "width": 768,
+      "mode": "keyboard-tab-visibility",
+      "status": "passed"
+    },
+    {
+      "route": "intelligence",
+      "width": 768,
+      "mode": "keyboard-tab-visibility",
+      "status": "passed"
+    },
+    {
+      "route": "industries",
+      "mode": "motion/manual/keyboard",
+      "status": "passed"
+    },
+    {
+      "route": "intelligence",
+      "mode": "motion/manual/keyboard",
+      "status": "passed"
+    }
+  ],
+  "errors": []
+}

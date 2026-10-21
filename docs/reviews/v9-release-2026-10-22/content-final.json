@@ -1,0 +1,74 @@
+{
+  "duration_api_ms": 46529,
+  "stop_reason": "end_turn",
+  "session_id": "3ab17941-aed5-4f24-957f-1f2a83577639",
+  "total_cost_usd": 0.2466922,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 18658,
+    "cache_read_input_tokens": 122521,
+    "output_tokens": 3643,
+    "output_tokens_details": { "thinking_tokens": 311 },
+    "server_tool_use": { "web_search_requests": 0, "web_fetch_requests": 0 },
+    "service_tier": "standard",
+    "cache_creation": { "ephemeral_1h_input_tokens": 18658, "ephemeral_5m_input_tokens": 0 },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 1317,
+        "cache_read_input_tokens": 22616,
+        "cache_creation_input_tokens": 667,
+        "cache_creation": { "ephemeral_5m_input_tokens": 0, "ephemeral_1h_input_tokens": 667 },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5-5": {
+      "inputTokens": 16,
+      "outputTokens": 3643,
+      "cacheReadInputTokens": 122521,
+      "cacheCreationInputTokens": 18658,
+      "webSearchRequests": 0,
+      "costUSD": 0.2466922,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 311,
+      "canonicalModel": "claude-opus-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": { "background": 0, "foreground": 0, "unset": 0 },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": { "parent": 0, "user": 0, "system": 0 },
+    "refused": { "depth_limit": 0, "concurrency_limit": 0, "budget": 0 },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 20,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "**Verdict: ACCEPT** for stage 2 (local content and visuals). This is based on a read-only review: I read the source and opened the 11 PNGs. I didn't run anything, and CI and hosted delivery are still later stages.\n\n## The prior blocker (desktop About \"belong / here?\")\n- **Source:** In `src/components/v9/editorial/about/AboutIntro.astro:24`, the underlined \"belong\" now sits inside `.ab-word-pair` with \"here?\". `src/assets/styles/v9/editorial/about.css:1661-1664` sets that pair to `inline-block` and `white-space: nowrap`.\n- **1366 image:** \"Who will actually\" is on line 1 and \"belong here?\" is on line 2. The pair stays together and the red underline sits under \"belong\" only. Fixed.\n- **390 image:** The heading fits on one line with the underline in the right place. No regression.\n\n## Other changes, checked in source and images\n- **Dates:** Every date formatter in `src` now uses `'en-GB'` with `timeZone: 'UTC'`: the blog listing, `FieldNotesList`, all seven archive pages, `ArticleRelated`, `MarkdownLayout` and `ArticleHero`. In the images, the listing card shows \"19 Oct 2026\", the hero shows \"19 OCT 2026\" and the related cards show \"24 JAN 2026\" and \"18 AUG 2025\". They agree with each other.\n- **ArticleHero** (`ArticleHero.astro:5-26`): Title, excerpt, category, author, date and reading time all come from the collection entry. The cover label says \"Field note\". The 1366 and 390 hero images match the listing card's title, excerpt and category.\n- **Related heading:** The 390 section-6 image shows \"More from our field notes.\"\n- **Notification CTAs:** On the article at 1366 (section 7) the dark band's CTA is spaced well below the prep note. On Intelligence at 390 (section 9) the red CTA sits clear of the note and the \"Ask about your function\" link.\n- **Intelligence at 390 (section 2):** The stat cards and footnote markers render cleanly with no overflow.\n- **Candidates at 390 (section 8):** The FAQ renders cleanly. This image doesn't show the Example-controls mono label, the scarcity pill or the panel header, so I couldn't confirm those visually.\n\n## Limitations\n- I saw only these 11 captures. I couldn't check the claimed 10-route-width overflow sweep, the build hash or the Chromium suite pass.\n- Business claims are kept as-is on the owner's instruction. I haven't verified any of them independently, including \"Sixty years\", 319/17.6 and \"Founded June 2024\".\n\n## Optional polish (doesn't block)\n- `src/pages/[preview]/content.astro:25` still says `issue: 'No. 10'`. It only builds in dev or with `V9_PREVIEW=1`, so it doesn't ship. It's worth aligning to \"Field note\" so the preview doesn't drift from the real page.\n- `src/components/home/v126/sections/footer.html:51` still has \"New Jersey\". Nothing under `src/pages` references it, so it looks unused, but it could be cleaned up or deleted so it doesn't come back.\n- At 1366 the listing card's category reads \"Hiring Strategy\" but the article eyebrow reads \"HIRING STRATEGY\". That's just case styling, but check that the source category isn't stored with two different capitalisations.\n- `ArticleHero.astro:5` uses a non-null `!` lookup by permalink, so the build fails loudly if that slug is ever renamed. That's acceptable; just be aware of it.",
+  "ttft_ms": 9187,
+  "type": "result",
+  "duration_ms": 46835,
+  "uuid": "25605d89-089a-47bb-ab83-39febdd55bea",
+  "ttft_stream_ms": 8917,
+  "time_to_request_ms": 86,
+  "first_content_frame_ms": 8918,
+  "queued_turn_count": 0,
+  "result_index": 0
+}

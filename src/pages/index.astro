@@ -1,31 +1,16 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
-import Home from '~/components/home/v126/Home.astro';
-
-const metadata = {
-  title: 'tribera — three candidates, every one worth the interview',
-  description:
-    'We find, vet and interview against one bar your hiring manager sets, then send three you can hire — each with the proof behind every score.',
-  ignoreTitleTemplate: true,
-  openGraph: {
-    images: [{ url: new URL('/og-image.png', Astro.site).toString(), width: 2400, height: 1260 }],
-  },
-  twitter: { cardType: 'summary_large_image' },
-};
+import V9Layout from '../layouts/V9Layout.astro';
+import Home from '../components/v9/home/Home.astro';
+import { publicLinks } from '../data/v9/preview-links';
 ---
 
-<Layout metadata={metadata} mainClass="v126-route w-full" htmlClass="v126-document">
+<V9Layout
+  title="Pre-interviewed candidates in 36 hours | Tribera"
+  description="We interview every candidate against your hiring manager’s bar and send the three who clear it, with reasons. Three scored candidates in about 36 hours."
+  activeRoute="/"
+  headerLinkOverrides={publicLinks}
+  footerLinkOverrides={publicLinks}
+  cta={{ label: 'Start with one role', href: '#start' }}
+>
   <Home />
-</Layout>
-
-<style is:global>
-  body {
-    font-family: 'Inter Tight', system-ui, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-  }
-  :focus-visible {
-    outline: 2px solid #da0007;
-    outline-offset: 3px;
-  }
-</style>
+</V9Layout>

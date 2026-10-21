@@ -1,9 +1,13 @@
+---
+import { v9Href } from '~/data/v9/routes';
+---
+
 <section class="g-white" id="get">
   <div class="wrap iq-get">
     <div>
-      <div class="eyebrow"><span class="tick">\</span> 02 · What you get</div>
-      <h2 style="--d:60ms">A decision, not a pile of CVs.</h2>
-      <p class="lead" style="--d:120ms">
+      <div data-v9-reveal class="eyebrow"><span class="tick">\</span> 02 · What you get</div>
+      <h2 data-v9-reveal style="--d:60ms">A decision, not a pile of CVs.</h2>
+      <p data-v9-reveal class="lead" style="--d:120ms">
         Your panel spends its time on the people who cleared the bar, and on the questions still open about them.
       </p>
     </div>
@@ -15,7 +19,9 @@
         <li>Agency, referral and in-house candidates compared on one bar</li>
         <li>The recording and transcript of every interview</li>
       </ul>
-      <p class="iq-sample"><a class="link" href="/__v9/sample-write-up">Request a sample ›</a></p>
+      <p class="iq-sample">
+        <a class="link" href={v9Href('/__v9/sample-write-up', Astro.url.pathname)}>Request a sample ›</a>
+      </p>
     </div>
   </div>
 </section>

@@ -1,0 +1,31 @@
+Independent read-only final CONTENT + VISUAL review for sequential release stage 2. Stage 1 migration was accepted in migration-followup.md and all three browsers subsequently passed its regressions. Review the current content fixes and actual new PNGs below. You must open PNGs with Read to make visual claims; full Careers pages are for structure only, not small-copy legibility. Tools Read/Glob/Grep only. Never edit/run commands/spawn agents/use network/submit forms/deploy.
+
+USER DIRECTIONS: Keep existing numerical/timing/anonymity business claims AS IS. Remove New Jersey. Do not demand factual substantiation as a condition of this local content review; the owner decided to retain the claims, and independent substantiation is NOT being claimed. Existing legal policy bodies and their original revision dates must remain unchanged. The previous generic formatting parsed civil dates in local time; this was corrected to explicit UTC and the browser test confirms July 27 stays 27 July 2025.
+
+Verify: New Jersey and Address to follow are absent from all built public HTML and active v9 sources (Footer, About, Contact office card and FAQ). Contact now says Two offices; two physical office cards plus Press and partners are laid out in three columns at desktop. New article is in the post collection and standalone routing registry, actually appears as latest, has consistent computed reading time/date/header and is discoverable in archive/category/tag. New related cards resolve to published articles with real metadata; fictional/unpublished teasers replaced rather than inventing posts. No subscription-looking inert email controls remain on the flagship article or Intelligence: both lead to the real /blog#sub notification waitlist. Existing wired waitlist forms now consistently say Notify me, share public/scripts/newsletter-signup.js, enable only once JS initializes, and provide no-JS email alternatives. No actual delivery is claimed. About decorated-word spacing fixed with a nonbreaking space. Repeated Careers filter-coffee sentence removed. Example controls is explicit at candidate-demo interaction surface; stronger candidate claims intentionally retained per user instruction. ScarcityLab's static AND interactive readout says In this example without changing any values. Footer no longer mislabels About as Our numbers. RPO expanded on first explanation. Legal dates now show content-revision first with presentation date separate; policy wording/data unchanged. Distinct illustrated flagship article layout versus plain archive layout is intentional within shared v9 fonts/color/chrome; examine actual defects rather than requiring identical content formats.
+
+SOURCE: src/data/post/seventeen-interviews-one-hire.md; src/data/standalone-blog.ts; src/utils/standalone-reading-time.ts; src/pages/blog/index.astro; src/components/v9/editorial/article/ArticleHero.astro, ArticleRelated.astro, ArticleSubscribe.astro; src/components/v9/contact/Offices.astro and Questions.astro; src/components/v9/editorial/about/AboutIntro.astro; src/components/v9/Footer.astro; src/components/v9/candidates/CandidatePrivacy.astro; src/components/v9/sectors/ScarcityLab.astro and IntelligencePage.astro; src/scripts/v9/sector-charts.ts; public/scripts/newsletter-signup.js; src/layouts/MarkdownLayout.astro; tests/v9-content-journeys.test.mjs; tests/built-links.test.mjs. Inspect any needed related source.
+
+EVIDENCE: Local production build ddfe3422988cc45e34bf9bc99d6bb034f5ff2f17fa5a19c08cf981e54ecc5eb8. 162 fresh route/viewport captures on 81 public pages, no browser errors/overflow/broken images. Chromium/Firefox/WebKit content-journey suites passed; mocked newsletter delivery passed on blog and an archive article. 3115 internal links and all 8 reading times passed. Actual CI and hosted delivery have NOT been done and are the next stages; do not claim them. Return ACCEPT/REVISE for this bounded local content/visual scope, actionable findings with exact route/width, optional polish separately, images actually opened, and clear limitations.
+
+Images under artifacts/v9-release-2026-10-22/content-fixed/:
+artifacts/v9-release-2026-10-22/content-fixed/_blog-390-top.png
+artifacts/v9-release-2026-10-22/content-fixed/_blog-1366-top.png
+artifacts/v9-release-2026-10-22/content-fixed/_blog_seventeen-interviews-one-hire-390-top.png
+artifacts/v9-release-2026-10-22/content-fixed/_blog_seventeen-interviews-one-hire-1366-top.png
+artifacts/v9-release-2026-10-22/content-fixed/about-quote-390.png
+artifacts/v9-release-2026-10-22/content-fixed/about-quote-1366.png
+artifacts/v9-release-2026-10-22/content-fixed/office-cards-390.png
+artifacts/v9-release-2026-10-22/content-fixed/office-cards-1366.png
+artifacts/v9-release-2026-10-22/content-fixed/published-related-390.png
+artifacts/v9-release-2026-10-22/content-fixed/published-related-1366.png
+artifacts/v9-release-2026-10-22/content-fixed/article-notification-390.png
+artifacts/v9-release-2026-10-22/content-fixed/article-notification-1366.png
+artifacts/v9-release-2026-10-22/content-fixed/intelligence-notification-390.png
+artifacts/v9-release-2026-10-22/content-fixed/intelligence-notification-1366.png
+artifacts/v9-release-2026-10-22/content-fixed/scarcity-example-390.png
+artifacts/v9-release-2026-10-22/content-fixed/example-controls-390.png
+artifacts/v9-release-2026-10-22/content-fixed/_privacy-390-top.png
+artifacts/v9-release-2026-10-22/content-fixed/_privacy-1366-top.png
+artifacts/v9-release-2026-10-22/content-fixed/_careers-390-full.png
+artifacts/v9-release-2026-10-22/content-fixed/_careers-1366-full.png
