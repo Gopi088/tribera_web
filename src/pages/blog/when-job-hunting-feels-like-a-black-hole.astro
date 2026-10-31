@@ -1,4 +1,5 @@
 ---
+import SocialShare from '~/components/common/SocialShare.astro';
 import V9Layout from '~/layouts/V9Layout.astro';
 import Content from '~/components/v9/content/Content.astro';
 import { publicLinks } from '~/data/v9/preview-links';
@@ -117,13 +118,7 @@ const shareUrl = new URL(Astro.url.pathname, 'https://www.tribera.ai').href;
               ))
             }
           </div>
-          <div class="ashare">
-            <span>Share</span><a
-              href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
-              target="_blank"
-              rel="noopener noreferrer">LinkedIn</a
-            ><a href={shareUrl} data-copy-article>Permalink</a>
-          </div>
+          <SocialShare class="ashare" url={shareUrl} text={post.title} />
         </div>
       </div>
     </section>

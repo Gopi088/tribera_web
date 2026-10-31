@@ -19,22 +19,3 @@ document.querySelectorAll<HTMLElement>('[data-v9-content] .fbar').forEach((bar) 
     });
   });
 });
-
-document.querySelectorAll<HTMLAnchorElement>('[data-copy-article]').forEach((link) => {
-  if (!navigator.clipboard) return;
-  const status = document.createElement('span');
-  status.setAttribute('role', 'status');
-  status.setAttribute('aria-live', 'polite');
-  link.parentElement?.append(status);
-  link.textContent = 'Copy link';
-  link.setAttribute('aria-label', 'Copy article link');
-  link.addEventListener('click', async (event) => {
-    event.preventDefault();
-    try {
-      await navigator.clipboard.writeText(link.href);
-      status.textContent = 'Link copied';
-    } catch {
-      status.textContent = 'Copy the link from your browser’s address bar.';
-    }
-  });
-});

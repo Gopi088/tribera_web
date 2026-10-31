@@ -31,6 +31,7 @@ try {
     'tests/shared-chrome.test.mjs',
     'tests/v9-release-regressions.test.mjs',
     'tests/v9-content-journeys.test.mjs',
+    'tests/v9-sharing.test.mjs',
   ];
   if (!process.env.BROWSER || process.env.BROWSER === 'chromium') {
     suites.push('tests/client-publication.test.mjs', 'tests/newsletter-journey.test.mjs');

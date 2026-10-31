@@ -2,9 +2,9 @@ name: GitHub Actions
 
 on:
   pull_request:
-    branches: [main, feat/v9-migration]
+    branches: [main, test, feat/v9-migration]
   push:
-    branches: [main, 'feat/v9-*']
+    branches: [main, test, 'feat/v9-*']
   workflow_dispatch:
 
 permissions:

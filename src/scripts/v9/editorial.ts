@@ -130,25 +130,6 @@ if (scope) {
         });
     });
   });
-  const previewUrl = new URL(location.pathname, location.origin).href;
-  const share = scope.querySelector<HTMLAnchorElement>('[data-preview-share]');
-  if (share) {
-    share.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(previewUrl)}`;
-    share.hidden = false;
-  }
-  const copy = scope.querySelector<HTMLButtonElement>('.bl-copy');
-  if (copy) {
-    copy.hidden = false;
-    copy.addEventListener('click', async () => {
-      const status = scope.querySelector('.v9-copy-status')!;
-      try {
-        await navigator.clipboard.writeText(previewUrl);
-        status.textContent = 'Link copied.';
-      } catch {
-        status.textContent = `Copy this link: ${previewUrl}`;
-      }
-    });
-  }
   initializeEditorialMotion(scope, tabs, choose);
   initializeEditorialCitations(scope);
   scope.dataset.ready = 'true';

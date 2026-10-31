@@ -7,59 +7,116 @@ export interface Props {
   class?: string;
 }
 
-const { text, url, class: className = 'inline-block' } = Astro.props;
+const { text, url, class: className } = Astro.props;
+const preview = Astro.url.pathname.startsWith('/__v9/');
+const shareUrl = preview ? new URL(Astro.url.pathname, Astro.url.origin).href : String(url);
 ---
 
-<div class={className}>
-  <span class="align-super font-bold text-slate-500 dark:text-slate-400">Share:</span>
-  <button
-    class="ml-2 rtl:ml-0 rtl:mr-2"
-    title="Twitter Share"
-    data-aw-social-share="twitter"
-    data-aw-url={url}
-    data-aw-text={text}
-    ><Icon
-      name="tabler:brand-x"
-      class="w-6 h-6 text-gray-400 dark:text-slate-500 hover:text-black dark:hover:text-slate-300"
-    />
-  </button>
-  <button class="ml-2 rtl:ml-0 rtl:mr-2" title="Facebook Share" data-aw-social-share="facebook" data-aw-url={url}
-    ><Icon
-      name="tabler:brand-facebook"
-      class="w-6 h-6 text-gray-400 dark:text-slate-500 hover:text-black dark:hover:text-slate-300"
-    />
-  </button>
-  <button
-    class="ml-2 rtl:ml-0 rtl:mr-2"
-    title="Linkedin Share"
-    data-aw-social-share="linkedin"
-    data-aw-url={url}
-    data-aw-text={text}
-    ><Icon
-      name="tabler:brand-linkedin"
-      class="w-6 h-6 text-gray-400 dark:text-slate-500 hover:text-black dark:hover:text-slate-300"
-    />
-  </button>
-  <button
-    class="ml-2 rtl:ml-0 rtl:mr-2"
-    title="Whatsapp Share"
-    data-aw-social-share="whatsapp"
-    data-aw-url={url}
-    data-aw-text={text}
-    ><Icon
-      name="tabler:brand-whatsapp"
-      class="w-6 h-6 text-gray-400 dark:text-slate-500 hover:text-black dark:hover:text-slate-300"
-    />
-  </button>
-  <button
-    class="ml-2 rtl:ml-0 rtl:mr-2"
-    title="Email Share"
-    data-aw-social-share="mail"
-    data-aw-url={url}
-    data-aw-text={text}
-    ><Icon
-      name="tabler:mail"
-      class="w-6 h-6 text-gray-400 dark:text-slate-500 hover:text-black dark:hover:text-slate-300"
-    />
-  </button>
+<div class:list={['social-share', className]} data-social-share role="group" aria-label={`Share ${text}`}>
+  <a
+    class="social-share__action"
+    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Share on LinkedIn (opens in a new tab)"
+    title="Share on LinkedIn"
+    data-preview-share={preview || undefined}
+    hidden={preview}><Icon name="tabler:brand-linkedin" width="18" height="18" /></a
+  >
+  <a
+    class="social-share__action bl-copy"
+    href={shareUrl}
+    aria-label="Article permalink"
+    title="Article permalink"
+    data-copy-article
+    hidden={preview}><Icon name="tabler:link" width="18" height="18" /></a
+  >
+  <span class="social-share__status v9-copy-status" role="status" aria-live="polite" aria-atomic="true"></span>
+  {
+    preview && (
+      <noscript>
+        <span>Copy this preview’s address from your browser to share it.</span>
+      </noscript>
+    )
+  }
 </div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-social-share]').forEach((group) => {
+    const linkedin = group.querySelector<HTMLAnchorElement>('[data-preview-share]');
+    if (linkedin) {
+      const currentUrl = new URL(location.pathname, location.origin).href;
+      linkedin.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
+      linkedin.hidden = false;
+      const permalink = group.querySelector<HTMLAnchorElement>('[data-copy-article]');
+      if (permalink) permalink.href = currentUrl;
+    }
+    const copy = group.querySelector<HTMLAnchorElement>('[data-copy-article]');
+    const status = group.querySelector<HTMLElement>('[role="status"]');
+    if (!copy || !status) return;
+    copy.hidden = false;
+    if (navigator.clipboard) {
+      copy.setAttribute('aria-label', 'Copy article link');
+      copy.title = 'Copy link';
+    }
+    copy.addEventListener('click', async (event) => {
+      if (!navigator.clipboard) return;
+      event.preventDefault();
+      status.textContent = '';
+      try {
+        await navigator.clipboard.writeText(copy.href);
+        status.textContent = 'Link copied.';
+      } catch {
+        status.textContent = `Copy this link: ${copy.href}`;
+      }
+    });
+  });
+</script>
+
+<style>
+  .social-share {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    color: var(--ink-2, #555);
+    font: 400 0.8125rem/1.4 var(--body, sans-serif);
+  }
+  .social-share .social-share__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--line, #deddd8);
+    border-radius: 99px;
+    color: var(--ink, #131313);
+    background: transparent;
+    font: inherit;
+    text-decoration: none;
+  }
+  .social-share .social-share__action[hidden] {
+    display: none;
+  }
+  .social-share__action:hover {
+    background: var(--paper, #f1efe9);
+    border-color: var(--ink-2, #555);
+  }
+  .social-share__action:focus-visible {
+    outline: 2px solid var(--red, #da0007);
+    outline-offset: 3px;
+  }
+  .social-share__action :global(svg) {
+    display: block;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+  .social-share__status {
+    flex-basis: 100%;
+    min-height: 1.4em;
+    overflow-wrap: anywhere;
+  }
+</style>

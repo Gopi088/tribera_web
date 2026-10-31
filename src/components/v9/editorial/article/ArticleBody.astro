@@ -1,5 +1,6 @@
 ---
 import { v9Href } from '~/data/v9/routes';
+import SocialShare from '~/components/common/SocialShare.astro';
 import SourceList from '../../SourceList.astro';
 ---
 
@@ -319,16 +320,12 @@ import SourceList from '../../SourceList.astro';
       ><i aria-hidden="true">→</i></a
     >
     <div class="bl-aft">
-      <div class="bl-tags"><span>Hiring strategy</span><span>Interviews</span><span>Technical hiring</span></div><div
+      <div class="bl-tags"><span>Hiring strategy</span><span>Interviews</span><span>Technical hiring</span></div>
+      <SocialShare
         class="bl-share"
-        id="article-sharing"
-      >
-        <span>Share</span><a href="#article-sharing" data-preview-share hidden target="_blank" rel="noopener"
-          >LinkedIn</a
-        ><span class="v9-copy-status" role="status"></span><button class="bl-copy" type="button" hidden=""
-          >Copy preview link</button
-        ><noscript><span>Copy this preview’s address from your browser to share it.</span></noscript>
-      </div>
+        url={new URL(Astro.url.pathname, 'https://www.tribera.ai').href}
+        text="Seventeen interviews for one hire"
+      />
     </div>
   </div>
 </section>

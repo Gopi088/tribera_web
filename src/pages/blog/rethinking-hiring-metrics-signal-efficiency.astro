@@ -1,4 +1,5 @@
 ---
+import SocialShare from '~/components/common/SocialShare.astro';
 import V9Layout from '~/layouts/V9Layout.astro';
 import Content from '~/components/v9/content/Content.astro';
 import { publicLinks } from '~/data/v9/preview-links';
@@ -184,15 +185,15 @@ const shareUrl = new URL(Astro.url.pathname, 'https://www.tribera.ai').href;
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
-              ><rect x="0" y="0" width="288.0" height="10" rx="5" fill="#DA0007" opacity="1"></rect><rect
+              ><rect x="0" y="3" width="288.0" height="4" rx="2" fill="#DA0007" opacity="1"></rect><rect
                 x="0"
-                y="26"
+                y="29"
                 width="222.0"
-                height="10"
-                rx="5"
+                height="4"
+                rx="2"
                 fill="#8E8A80"
-                opacity="1"></rect><rect x="0" y="52" width="183.0" height="10" rx="5" fill="#8E8A80" opacity="1"
-              ></rect><rect x="0" y="78" width="69.0" height="10" rx="5" fill="#C6C2B8" opacity="1"></rect></svg
+                opacity="1"></rect><rect x="0" y="55" width="183.0" height="4" rx="2" fill="#8E8A80" opacity="1"
+              ></rect><rect x="0" y="81" width="69.0" height="4" rx="2" fill="#C6C2B8" opacity="1"></rect></svg
             >
             <figcaption>
               Across the mandates where the ratio was worst, <b
@@ -253,15 +254,7 @@ const shareUrl = new URL(Astro.url.pathname, 'https://www.tribera.ai').href;
               ))
             }
           </div>
-          <div class="ashare">
-            <span>Share</span>
-            <a
-              href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
-              target="_blank"
-              rel="noopener noreferrer">LinkedIn</a
-            >
-            <a href={shareUrl} data-copy-article>Permalink</a>
-          </div>
+          <SocialShare class="ashare" url={shareUrl} text={post.title} />
         </div>
       </div>
     </section>

@@ -43,7 +43,25 @@
       </div>
       <div class="clk-out">
         <span class="clk-k">Hour 36</span>
-        <div class="clk-three" aria-hidden="true"><span><i></i></span><span><i></i></span><span><i></i></span></div>
+        <div class="clk-three" aria-hidden="true">
+          {
+            [0, 1, 2].map(() => (
+              <span>
+                <i>
+                  <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+                    <path
+                      d="M2 6L6 10L14 2"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </i>
+              </span>
+            ))
+          }
+        </div>
         <b>You meet three</b>
         <span class="clk-p">Each with the reasons and a link to every answer.</span>
         <span class="clk-k clk-k2">Then</span>

@@ -617,43 +617,21 @@
   padding-top: 1.2rem;
   border-top: 1px solid var(--line);
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: center;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
 }
 :where(.v9-editorial-article) .bl-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 10px;
 }
 :where(.v9-editorial-article) .bl-tags span {
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font: 400 0.8125rem/1.4 var(--body);
   color: var(--ink-2);
-  border: 1px solid var(--line-2);
-  border-radius: 6px;
-  padding: 0.45em 0.65em;
-}
-:where(.v9-editorial-article) .bl-share {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  font-size: 0.9rem;
-  color: var(--ink-3);
-}
-:where(.v9-editorial-article) .bl-share a,
-:where(.v9-editorial-article) .bl-share button {
-  font: 500 0.9rem var(--body);
-  color: var(--ink);
-  background: none;
-  border: 0;
-  padding: 0 0 2px;
-  border-bottom: 1px solid rgba(19, 19, 19, 0.25);
-  cursor: pointer;
-  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  padding: 6px 12px;
 }
 :where(.v9-editorial-article) .bl-rel {
   display: grid;
@@ -952,15 +930,6 @@
   :where(.v9-editorial-article) .ix-crumb {
     display: inline-flex;
     align-items: center;
-    min-height: 40px;
-  }
-  :where(.v9-editorial-article) .bl-share a,
-  :where(.v9-editorial-article) .bl-share button {
-    display: inline-flex;
-    align-items: center;
-    min-height: 40px;
-  }
-  :where(.v9-editorial-article) .bl-copy {
     min-height: 40px;
   }
   :where(.v9-editorial-article) .fn-r {

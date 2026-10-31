@@ -30,7 +30,8 @@
       "tests/built-links.test.mjs": "Every built link resolves to a static target or an existing Netlify handler; publication exclusions, article reading times, sitemap and robots.",
       "tests/newsletter-journey.test.mjs": "Retained newsletter waitlist delivery contract on the blog index and an existing article, using mocked responses.",
       "tests/v9-release-regressions.test.mjs": "Chart widths and contrast, mobile labels, upload validation/payload/error/retry/success/focus/state, no-JS alternatives, native sharing and single topic navigation.",
-      "tests/v9-content-journeys.test.mjs": "Dropped location across all built pages, eight-article discovery/metadata, real related destinations, mocked notification journey, example context and policy revision hierarchy."
+      "tests/v9-content-journeys.test.mjs": "Dropped location across all built pages, eight-article discovery/metadata, real related destinations, mocked notification journey, example context and policy revision hierarchy.",
+      "tests/v9-sharing.test.mjs": "All eight articles at mobile/tablet/desktop sizes: shared icon controls, footer alignment, utility typography, correct share URLs, clipboard success/denial, keyboard focus and native no-JavaScript links."
     },
     "preserved": "Original historical suites remain in tests; v9 preview, A1, A2, sector, unit and static gates remain required. Production artifacts run on Chromium, Firefox and WebKit."
   }
