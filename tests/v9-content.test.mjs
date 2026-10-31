@@ -95,6 +95,7 @@ test(`v9 editorial content (${browserName})`, { timeout: 120000 }, async () => {
         const citation = page.getByRole('link', { name: 'Read source 1', exact: true });
         await citation.focus();
         await page.keyboard.press('Enter');
+        await page.waitForURL('**/__v9/content#content-source-1');
         assert.equal(new URL(page.url()).hash, '#content-source-1');
         await page.locator('#content-source-1 a').focus();
         assert.equal(await page.locator('#content-source-1 a').evaluate((el) => el === document.activeElement), true);
